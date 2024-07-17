@@ -10045,7 +10045,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20240617",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {

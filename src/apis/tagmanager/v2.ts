@@ -2687,7 +2687,7 @@ export namespace tagmanager_v2 {
     }
 
     /**
-     * Looks up a Container by destination ID.
+     * Looks up a Container by destination ID or tag ID.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3104,9 +3104,13 @@ export namespace tagmanager_v2 {
   export interface Params$Resource$Accounts$Containers$Lookup
     extends StandardParameters {
     /**
-     * Destination ID linked to a GTM Container, e.g. AW-123456789. Example: accounts/containers:lookup?destination_id={destination_id\}.
+     * Destination ID linked to a GTM Container, e.g. AW-123456789. Example: accounts/containers:lookup?destination_id={destination_id\}. Only one of destination_id or tag_id should be set.
      */
     destinationId?: string;
+    /**
+     * Tag ID for a GTM Container, e.g. GTM-123456789. Example: accounts/containers:lookup?tag_id={tag_id\}. Only one of destination_id or tag_id should be set.
+     */
+    tagId?: string;
   }
   export interface Params$Resource$Accounts$Containers$Move_tag_id
     extends StandardParameters {

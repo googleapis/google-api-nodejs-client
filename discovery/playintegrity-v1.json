@@ -105,6 +105,38 @@
   },
   "protocol": "rest",
   "resources": {
+    "deviceRecall": {
+      "methods": {
+        "write": {
+          "description": "Writes recall bits for the device where Play Integrity API token is obtained. The endpoint is available to select Play partners in an early access program (EAP).",
+          "flatPath": "v1/{v1Id}/deviceRecall:write",
+          "httpMethod": "POST",
+          "id": "playintegrity.deviceRecall.write",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Required. Package name of the app the attached integrity token belongs to.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+packageName}/deviceRecall:write",
+          "request": {
+            "$ref": "WriteDeviceRecallRequest"
+          },
+          "response": {
+            "$ref": "WriteDeviceRecallResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/playintegrity"
+          ]
+        }
+      }
+    },
     "v1": {
       "methods": {
         "decodeIntegrityToken": {
@@ -138,7 +170,7 @@
       }
     }
   },
-  "revision": "20240508",
+  "revision": "20240716",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -490,6 +522,46 @@
           "description": "Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status."
         }
       },
+      "type": "object"
+    },
+    "Values": {
+      "description": "Contains the recall bits values.",
+      "id": "Values",
+      "properties": {
+        "bitFirst": {
+          "description": "Required. First recall bit value.",
+          "type": "boolean"
+        },
+        "bitSecond": {
+          "description": "Required. Second recall bit value.",
+          "type": "boolean"
+        },
+        "bitThird": {
+          "description": "Required. Third recall bit value.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WriteDeviceRecallRequest": {
+      "description": "Request to write device recall bits.",
+      "id": "WriteDeviceRecallRequest",
+      "properties": {
+        "integrityToken": {
+          "description": "Required. Integrity token obtained from calling Play Integrity API. Note that the integrity token contains the existing device recall bits. The write will only succeed if those bits in the integrity token are up to date.",
+          "type": "string"
+        },
+        "newValues": {
+          "$ref": "Values",
+          "description": "Required. The new values for the device recall bits to be written."
+        }
+      },
+      "type": "object"
+    },
+    "WriteDeviceRecallResponse": {
+      "description": "Response for the Write Device Recall action. Currently empty.",
+      "id": "WriteDeviceRecallResponse",
+      "properties": {},
       "type": "object"
     }
   },

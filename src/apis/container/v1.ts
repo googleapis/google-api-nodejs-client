@@ -167,15 +167,15 @@ export namespace container_v1 {
    */
   export interface Schema$AdditionalPodNetworkConfig {
     /**
-     * The maximum number of pods per node which use this pod network
+     * The maximum number of pods per node which use this pod network.
      */
     maxPodsPerNode?: Schema$MaxPodsConstraint;
     /**
-     * The name of the secondary range on the subnet which provides IP address for this pod range
+     * The name of the secondary range on the subnet which provides IP address for this pod range.
      */
     secondaryPodRange?: string | null;
     /**
-     * Name of the subnetwork where the additional pod network belongs
+     * Name of the subnetwork where the additional pod network belongs.
      */
     subnetwork?: string | null;
   }
@@ -240,6 +240,10 @@ export namespace container_v1 {
      * Configuration for NetworkPolicy. This only tracks whether the addon is enabled or not on the Master, it does not track whether network policy is enabled for the nodes.
      */
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
+    /**
+     * Optional. Configuration for Ray Operator addon.
+     */
+    rayOperatorConfig?: Schema$RayOperatorConfig;
     /**
      * Optional. Configuration for the StatefulHA add-on.
      */
@@ -2799,6 +2803,41 @@ export namespace container_v1 {
      * Output only. [Output only] The utilization of the range.
      */
     utilization?: number | null;
+  }
+  /**
+   * RayClusterLoggingConfig specifies configuration of Ray logging.
+   */
+  export interface Schema$RayClusterLoggingConfig {
+    /**
+     * Enable log collection for Ray clusters.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * RayClusterMonitoringConfig specifies monitoring configuration for Ray clusters.
+   */
+  export interface Schema$RayClusterMonitoringConfig {
+    /**
+     * Enable metrics collection for Ray clusters.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Configuration options for the Ray Operator add-on.
+   */
+  export interface Schema$RayOperatorConfig {
+    /**
+     * Whether the Ray Operator addon is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+    /**
+     * Optional. Logging configuration for Ray clusters.
+     */
+    rayClusterLoggingConfig?: Schema$RayClusterLoggingConfig;
+    /**
+     * Optional. Monitoring configuration for Ray clusters.
+     */
+    rayClusterMonitoringConfig?: Schema$RayClusterMonitoringConfig;
   }
   /**
    * Represents an arbitrary window of time that recurs.

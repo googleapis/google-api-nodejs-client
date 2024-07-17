@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20240612",
+  "revision": "20240529",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {

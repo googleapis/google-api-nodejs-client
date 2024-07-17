@@ -417,7 +417,7 @@
       }
     }
   },
-  "revision": "20230620",
+  "revision": "20230607",
   "rootUrl": "https://businessprofileperformance.googleapis.com/",
   "schemas": {
     "DailyMetricTimeSeries": {

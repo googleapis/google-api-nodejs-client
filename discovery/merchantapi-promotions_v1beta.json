@@ -203,7 +203,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240611",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {

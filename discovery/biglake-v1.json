@@ -616,7 +616,7 @@
       }
     }
   },
-  "revision": "20231023",
+  "revision": "20231016",
   "rootUrl": "https://biglake.googleapis.com/",
   "schemas": {
     "Catalog": {

@@ -29,84 +29,84 @@
   "documentationLink": "https://cloud.google.com/logging/docs/",
   "endpoints": [
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Regional Endpoint"
+      "location": "europe-west3"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.europe-west8.rep.googleapis.com/",
-      "location": "europe-west8",
-      "description": "Regional Endpoint"
+      "location": "europe-west8"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9",
-      "description": "Regional Endpoint"
+      "location": "europe-west9"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
+      "location": "me-central2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-central1.rep.googleapis.com/",
-      "location": "us-central1",
-      "description": "Regional Endpoint"
+      "location": "us-central1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-central2.rep.googleapis.com/",
-      "location": "us-central2",
-      "description": "Regional Endpoint"
+      "location": "us-central2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-east1.rep.googleapis.com/",
-      "location": "us-east1",
-      "description": "Regional Endpoint"
+      "location": "us-east1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-east4.rep.googleapis.com/",
-      "location": "us-east4",
-      "description": "Regional Endpoint"
+      "location": "us-east4"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-east5.rep.googleapis.com/",
-      "location": "us-east5",
-      "description": "Regional Endpoint"
+      "location": "us-east5"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-east7.rep.googleapis.com/",
-      "location": "us-east7",
-      "description": "Regional Endpoint"
+      "location": "us-east7"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-south1.rep.googleapis.com/",
-      "location": "us-south1",
-      "description": "Regional Endpoint"
+      "location": "us-south1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-west1.rep.googleapis.com/",
-      "location": "us-west1",
-      "description": "Regional Endpoint"
+      "location": "us-west1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-west2.rep.googleapis.com/",
-      "location": "us-west2",
-      "description": "Regional Endpoint"
+      "location": "us-west2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-west3.rep.googleapis.com/",
-      "location": "us-west3",
-      "description": "Regional Endpoint"
+      "location": "us-west3"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-west4.rep.googleapis.com/",
-      "location": "us-west4",
-      "description": "Regional Endpoint"
+      "location": "us-west4"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-west8.rep.googleapis.com/",
-      "location": "us-west8",
-      "description": "Regional Endpoint"
+      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1362,6 +1362,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type(\"Logging\") type(\"OpsAnalytics\")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type(\"Logging\") AND visibility = PRIVATE visibility=SHARED type(\"OpsAnalytics\") type(\"OpsAnalytics)\" visibility = PRIVATE visibility = SHARED",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -2053,7 +2058,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name for the settings to update. \"organizations/[ORGANIZATION_ID]/settings\" For example:\"organizations/12345/settings\"",
+              "description": "Required. The resource name for the settings to update. \"organizations/[ORGANIZATION_ID]/settings\" \"folders/[FOLDER_ID]/settings\" For example:\"organizations/12345/settings\"",
               "location": "path",
               "pattern": "^folders/[^/]+$",
               "required": true,
@@ -3274,6 +3279,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type(\"Logging\") type(\"OpsAnalytics\")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type(\"Logging\") AND visibility = PRIVATE visibility=SHARED type(\"OpsAnalytics\") type(\"OpsAnalytics)\" visibility = PRIVATE visibility = SHARED",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -4700,7 +4710,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name for the settings to update. \"organizations/[ORGANIZATION_ID]/settings\" For example:\"organizations/12345/settings\"",
+              "description": "Required. The resource name for the settings to update. \"organizations/[ORGANIZATION_ID]/settings\" \"folders/[FOLDER_ID]/settings\" For example:\"organizations/12345/settings\"",
               "location": "path",
               "pattern": "^organizations/[^/]+$",
               "required": true,
@@ -5921,6 +5931,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type(\"Logging\") type(\"OpsAnalytics\")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type(\"Logging\") AND visibility = PRIVATE visibility=SHARED type(\"OpsAnalytics\") type(\"OpsAnalytics)\" visibility = PRIVATE visibility = SHARED",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -7552,6 +7567,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Specifies the type (\"Logging\" or \"OpsAnalytics\") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type(\"Logging\") type(\"OpsAnalytics\")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type(\"Logging\") AND visibility = PRIVATE visibility=SHARED type(\"OpsAnalytics\") type(\"OpsAnalytics)\" visibility = PRIVATE visibility = SHARED",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
                       "format": "int32",
@@ -8376,7 +8396,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name for the settings to update. \"organizations/[ORGANIZATION_ID]/settings\" For example:\"organizations/12345/settings\"",
+              "description": "Required. The resource name for the settings to update. \"organizations/[ORGANIZATION_ID]/settings\" \"folders/[FOLDER_ID]/settings\" For example:\"organizations/12345/settings\"",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -8404,7 +8424,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20240705",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AuditConfig": {

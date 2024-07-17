@@ -1146,6 +1146,122 @@
                 },
                 "rbacrolebindings": {
                   "methods": {
+                    "create": {
+                      "description": "Creates a Membership RBACRoleBinding.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/rbacrolebindings",
+                      "httpMethod": "POST",
+                      "id": "gkehub.projects.locations.memberships.rbacrolebindings.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/*/locations/*/memberships/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "rbacrolebindingId": {
+                          "description": "Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/rbacrolebindings",
+                      "request": {
+                        "$ref": "RBACRoleBinding"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a Membership RBACRoleBinding.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/rbacrolebindings/{rbacrolebindingsId}",
+                      "httpMethod": "DELETE",
+                      "id": "gkehub.projects.locations.memberships.rbacrolebindings.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/memberships/*/rbacrolebindings/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/rbacrolebindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "generateMembershipRBACRoleBindingYAML": {
+                      "description": "Generates a YAML of the RBAC policies for the specified RoleBinding and its associated impersonation resources.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/rbacrolebindings:generateMembershipRBACRoleBindingYAML",
+                      "httpMethod": "POST",
+                      "id": "gkehub.projects.locations.memberships.rbacrolebindings.generateMembershipRBACRoleBindingYAML",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent (project and location) where the RBACRoleBinding will be created. Specified in the format `projects/*/locations/*/memberships/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "rbacrolebindingId": {
+                          "description": "Required. Client chosen ID for the RBACRoleBinding. `rbacrolebinding_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/rbacrolebindings:generateMembershipRBACRoleBindingYAML",
+                      "request": {
+                        "$ref": "RBACRoleBinding"
+                      },
+                      "response": {
+                        "$ref": "GenerateMembershipRBACRoleBindingYAMLResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Returns the details of a Membership RBACRoleBinding.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/rbacrolebindings/{rbacrolebindingsId}",
+                      "httpMethod": "GET",
+                      "id": "gkehub.projects.locations.memberships.rbacrolebindings.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The RBACRoleBinding resource name in the format `projects/*/locations/*/memberships/*/rbacrolebindings/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/rbacrolebindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "RBACRoleBinding"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists all Membership RBACRoleBindings.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/rbacrolebindings",
@@ -1177,6 +1293,40 @@
                       "path": "v1/{+parent}/rbacrolebindings",
                       "response": {
                         "$ref": "ListMembershipRBACRoleBindingsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a Membership RBACRoleBinding.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}/rbacrolebindings/{rbacrolebindingsId}",
+                      "httpMethod": "PATCH",
+                      "id": "gkehub.projects.locations.memberships.rbacrolebindings.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The resource name for the rbacrolebinding `projects/{project}/locations/{location}/scopes/{scope}/rbacrolebindings/{rbacrolebinding}` or `projects/{project}/locations/{location}/memberships/{membership}/rbacrolebindings/{rbacrolebinding}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+/rbacrolebindings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. The fields to be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "RBACRoleBinding"
+                      },
+                      "response": {
+                        "$ref": "Operation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1951,7 +2101,7 @@
       }
     }
   },
-  "revision": "20240623",
+  "revision": "20240706",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2545,8 +2695,44 @@
           ],
           "type": "string"
         },
+        "otelCollector": {
+          "description": "Deployment state of otel-collector",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
+          ],
+          "type": "string"
+        },
         "reconcilerManager": {
           "description": "Deployment state of reconciler-manager pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
+          ],
+          "type": "string"
+        },
+        "resourceGroupControllerManager": {
+          "description": "Deployment state of resource-group-controller-manager",
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -2698,7 +2884,7 @@
       "id": "ConfigManagementConfigSyncVersion",
       "properties": {
         "admissionWebhook": {
-          "description": "Version of the deployed admission_webhook pod",
+          "description": "Version of the deployed admission-webhook pod",
           "type": "string"
         },
         "gitSync": {
@@ -2713,8 +2899,16 @@
           "description": "Version of the deployed monitor pod",
           "type": "string"
         },
+        "otelCollector": {
+          "description": "Version of the deployed otel-collector pod",
+          "type": "string"
+        },
         "reconcilerManager": {
           "description": "Version of the deployed reconciler-manager pod",
+          "type": "string"
+        },
+        "resourceGroupControllerManager": {
+          "description": "Version of the deployed resource-group-controller-manager pod",
           "type": "string"
         },
         "rootReconciler": {
@@ -3780,6 +3974,17 @@
             "$ref": "ConnectAgentResource"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateMembershipRBACRoleBindingYAMLResponse": {
+      "description": "Response for GenerateRBACRoleBindingYAML.",
+      "id": "GenerateMembershipRBACRoleBindingYAMLResponse",
+      "properties": {
+        "roleBindingsYaml": {
+          "description": "a yaml text blob including the RBAC policies.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6006,7 +6211,7 @@
           "type": "string"
         },
         "management": {
-          "description": "Enables automatic Service Mesh management.",
+          "description": "Optional. Enables automatic Service Mesh management.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",

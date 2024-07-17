@@ -983,6 +983,10 @@ export namespace discoveryengine_v1alpha {
      */
     snippetInfo?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerStepActionObservationSearchResultSnippetInfo[];
     /**
+     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document (code pointer: http://shortn/_objzAfIiHq), or the Chunk in search result (code pointer: http://shortn/_Ipo6KFFGBL).
+     */
+    structData?: {[key: string]: any} | null;
+    /**
      * Title.
      */
     title?: string | null;
@@ -1255,7 +1259,7 @@ export namespace discoveryengine_v1alpha {
      */
     requirementType?: string | null;
     /**
-     * The type needed for the monitored resources: * `discoveryengine.googleapis.com/Branch`. * The labels needed for this resource: * `project_number` * `location_id` * `collection_id` * `datastore_id` * `branch_id` * `discoveryengine.googleapis.com/DataStore` * The labels needed for this resource: * `project_number` * `location_id` * `collection_id` * `datastore_id`
+     * The type needed for the monitored resources: * `discoveryengine.googleapis.com/Branch`. * The labels needed for this resource: * `project`_`number` * `location`_`id` * `collection`_`id` * `datastore`_`id` * `branch`_`id` * `discoveryengine.googleapis.com/DataStore` * The labels needed for this resource: * `project`_`number` * `location`_`id` * `collection`_`id` * `datastore`_`id`
      */
     resources?: Schema$GoogleApiMonitoredResource[];
   }
@@ -1839,6 +1843,10 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
+    /**
      * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
      */
     modelState?: string | null;
@@ -2103,7 +2111,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -2468,6 +2476,32 @@ export namespace discoveryengine_v1alpha {
      * Total number of documents.
      */
     documentCount?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportUserEventsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the ExportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportUserEventsResponse {
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudDiscoveryengineV1alphaOutputResult;
+    /**
+     * The status of the export operation.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * Fact Chunk.
@@ -3157,6 +3191,28 @@ export namespace discoveryengine_v1alpha {
      * Media progress should be computed using only the media_progress_duration relative to the media total length. This value must be between `[0, 1.0]` inclusive. If this is not a playback or the progress cannot be computed (e.g. ongoing livestream), this field should be unset.
      */
     mediaProgressPercentage?: number | null;
+  }
+  /**
+   * Output result that stores the information about where the exported data is stored.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResult {
+    /**
+     * The BigQuery location where the result is stored.
+     */
+    bigqueryResult?: Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult;
+  }
+  /**
+   * A BigQuery output result.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult {
+    /**
+     * The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * The ID of a BigQuery Table.
+     */
+    tableId?: string | null;
   }
   /**
    * Detailed page information.
@@ -3902,7 +3958,7 @@ export namespace discoveryengine_v1alpha {
      */
     contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec;
     /**
-     * Custom fine tuning configs.
+     * Custom fine tuning configs. If set, it has higher priority than the configs set in ServingConfig.custom_fine_tuning_spec.
      */
     customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
     /**
@@ -3929,6 +3985,10 @@ export namespace discoveryengine_v1alpha {
      * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.
      */
     languageCode?: string | null;
+    /**
+     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     */
+    naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
      * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
      */
@@ -3958,7 +4018,7 @@ export namespace discoveryengine_v1alpha {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joint by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: `relevance_score`: pre-defined keywords, used for measure relevance between query and document. `embedding_field_path`: the document embedding field used with query embedding vector. `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
      */
     rankingExpression?: string | null;
     /**
@@ -3977,6 +4037,14 @@ export namespace discoveryengine_v1alpha {
      * Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical.
      */
     searchAsYouTypeSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpec;
+    /**
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     */
+    session?: string | null;
+    /**
+     * Session specification. Can be used only when `session` is set.
+     */
+    sessionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSessionSpec;
     /**
      * The spell correction specification that specifies the mode under which spell correction takes effect.
      */
@@ -4190,7 +4258,7 @@ export namespace discoveryengine_v1alpha {
     version?: string | null;
   }
   /**
-   * A struct to define data stores to filter on in a search call and configurations for those data stores. A maximum of 1 DataStoreSpec per data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
+   * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec {
     /**
@@ -4284,6 +4352,19 @@ export namespace discoveryengine_v1alpha {
     imageBytes?: string | null;
   }
   /**
+   * Specification to enable natural language understanding capabilities for search requests.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * The condition under which filter extraction should occur. Default to Condition.DISABLED.
+     */
+    filterExtractionCondition?: string | null;
+    /**
+     * Field names used for location-based filtering, where geolocation filters are detected in natural language search queries. Only valid when the FilterExtractionCondition is set to `ENABLED`. If this field is set, it overrides the field names set in Servingconfig.geo_search_query_detection_field_names.
+     */
+    geoSearchQueryDetectionFieldNames?: string[] | null;
+  }
+  /**
    * Specification to determine under which conditions query expansion should occur.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec {
@@ -4304,6 +4385,19 @@ export namespace discoveryengine_v1alpha {
      * The condition under which search as you type should occur. Default to Condition.DISABLED.
      */
     condition?: string | null;
+  }
+  /**
+   * Session specification. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSessionSpec {
+    /**
+     * If set, the search result gets stored to the "turn" specified by this query ID. Example: Let's say the session looks like this: session { name: ".../sessions/xxx" turns { query { text: "What is foo?" query_id: ".../questions/yyy" \} answer: "Foo is ..." \} turns { query { text: "How about bar then?" query_id: ".../questions/zzz" \} \} \} The user can call /search API with a request like this: session: ".../sessions/xxx" session_spec { query_id: ".../questions/zzz" \} Then, the API stores the search result, associated with the last turn. The stored search result can be used by a subsequent /answer API call (with the session ID and the query ID specified). Also, it is possible to call /search and /answer in parallel with the same session ID & query ID.
+     */
+    queryId?: string | null;
+    /**
+     * The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.
+     */
+    searchResultPersistenceCount?: number | null;
   }
   /**
    * The specification for query spell correction.
@@ -4340,6 +4434,10 @@ export namespace discoveryengine_v1alpha {
      */
     guidedSearchResult?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseGuidedSearchResult;
     /**
+     * Natural language query understanding information for the returned results.
+     */
+    naturalLanguageQueryUnderstandingInfo?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfo;
+    /**
      * A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
@@ -4355,6 +4453,10 @@ export namespace discoveryengine_v1alpha {
      * A list of matched documents. The order represents the ranking.
      */
     results?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResult[];
+    /**
+     * Session information. Only set if SearchRequest.session is provided. See its description for more details.
+     */
+    sessionInfo?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSessionInfo;
     /**
      * A summary as part of the search results. This field is only returned if SearchRequest.ContentSearchSpec.summary_spec is set.
      */
@@ -4438,6 +4540,122 @@ export namespace discoveryengine_v1alpha {
     attributeValue?: string | null;
   }
   /**
+   * Information describing what natural language understanding was done on the input query.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfo {
+    /**
+     * The filters that were extracted from the input query.
+     */
+    extractedFilters?: string | null;
+    /**
+     * Rewritten input query minus the extracted filters.
+     */
+    rewrittenQuery?: string | null;
+    /**
+     * The filters that were extracted from the input query represented in a structured form.
+     */
+    structuredExtractedFilter?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter;
+  }
+  /**
+   * The filters that were extracted from the input query represented in a structured form.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter {
+    /**
+     * The expression denoting the filter that was extracted from the input query in a structured form. It can be a simple expression denoting a single string, numerical or geolocation constraint or a compound expression which is a combination of multiple expressions connected using logical (OR and AND) operators.
+     */
+    expression?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression;
+  }
+  /**
+   * Logical `And` operator.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterAndExpression {
+    /**
+     * The expressions that were ANDed together.
+     */
+    expressions?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression[];
+  }
+  /**
+   * The expression denoting the filter that was extracted from the input query.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression {
+    /**
+     * Logical "And" compound operator connecting multiple expressions.
+     */
+    andExpr?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterAndExpression;
+    /**
+     * Geolocation constraint expression.
+     */
+    geolocationConstraint?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterGeolocationConstraint;
+    /**
+     * Numerical constraint expression.
+     */
+    numberConstraint?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterNumberConstraint;
+    /**
+     * Logical "Or" compound operator connecting multiple expressions.
+     */
+    orExpr?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterOrExpression;
+    /**
+     * String constraint expression.
+     */
+    stringConstraint?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterStringConstraint;
+  }
+  /**
+   * Constraint of a geolocation field. Name of the geolocation field as defined in the schema.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterGeolocationConstraint {
+    /**
+     * The reference address that was inferred from the input query. The proximity of the reference address to the geolocation field will be used to filter the results.
+     */
+    address?: string | null;
+    /**
+     * The name of the geolocation field as defined in the schema.
+     */
+    fieldName?: string | null;
+    /**
+     * The radius in meters around the address. The record is returned if the location of the geolocation field is within the radius.
+     */
+    radiusInMeters?: number | null;
+  }
+  /**
+   * Constraint expression of a number field. Example: price < 100.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterNumberConstraint {
+    /**
+     * The comparison operation performed between the field value and the value specified in the constraint.
+     */
+    comparison?: string | null;
+    /**
+     * Name of the numerical field as defined in the schema.
+     */
+    fieldName?: string | null;
+    /**
+     * The value specified in the numerical constraint.
+     */
+    value?: number | null;
+  }
+  /**
+   * Logical `Or` operator.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterOrExpression {
+    /**
+     * The expressions that were ORed together.
+     */
+    expressions?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression[];
+  }
+  /**
+   * Constraint expression of a string field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterStringConstraint {
+    /**
+     * Name of the string field as defined in the schema.
+     */
+    fieldName?: string | null;
+    /**
+     * Values of the string field. The record will only be returned if the field value matches one of the values specified here.
+     */
+    values?: string[] | null;
+  }
+  /**
    * Information describing query expansion including whether expansion has occurred.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseQueryExpansionInfo {
@@ -4472,6 +4690,19 @@ export namespace discoveryengine_v1alpha {
     modelScores?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1alphaDoubleList;
     } | null;
+  }
+  /**
+   * Information about the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSessionInfo {
+    /**
+     * Name of the session. If the auto-session mode is used (when SearchRequest.session ends with "-"), this field holds the newly generated session name.
+     */
+    name?: string | null;
+    /**
+     * Query ID that corresponds to this search API call. One session can have multiple turns, each with a unique query ID. By specifying the session name and this query ID in the Answer API call, the answer generation happens in the context of the search results from this search call.
+     */
+    queryId?: string | null;
   }
   /**
    * Summary of the top N search results specified by the summary spec.
@@ -4606,7 +4837,7 @@ export namespace discoveryengine_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Custom fine tuning configs.
+     * Custom fine tuning configs. If SearchRequest.custom_fine_tuning_spec is set, it has higher priority than the configs set here.
      */
     customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
     /**
@@ -4658,7 +4889,7 @@ export namespace discoveryengine_v1alpha {
      */
     onewaySynonymsControlIds?: string[] | null;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: relevance_score: pre-defined keywords, used for measure relevance between query and document. embedding_field_path: the document embedding field used with query embedding vector. dotProduct: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be 0.5 * relevance_score + 0.3 * dotProduct(doc_embedding).
+     * The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
      */
     rankingExpression?: string | null;
     /**
@@ -5383,6 +5614,10 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
+    /**
      * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
      */
     modelState?: string | null;
@@ -5530,7 +5765,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -6509,7 +6744,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [

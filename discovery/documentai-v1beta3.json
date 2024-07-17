@@ -1284,7 +1284,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240615",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {

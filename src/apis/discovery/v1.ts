@@ -153,10 +153,6 @@ export namespace discovery_v1 {
      */
     default?: string | null;
     /**
-     * Whether the parameter is deprecated.
-     */
-    deprecated?: boolean | null;
-    /**
      * A description of this object.
      */
     description?: string | null;
@@ -164,10 +160,6 @@ export namespace discovery_v1 {
      * Values this parameter may take (if it is an enum).
      */
     enum?: string[] | null;
-    /**
-     * The deprecation status for the enums. Each position maps to the corresponding value in the "enum" array.
-     */
-    enumDeprecated?: boolean[] | null;
     /**
      * The descriptions for the enums. Each position maps to the corresponding value in the "enum" array.
      */
@@ -262,15 +254,6 @@ export namespace discovery_v1 {
      */
     documentationLink?: string | null;
     /**
-     * A list of location-based endpoint objects for this API. Each object contains the endpoint URL, location, description and deprecation status.
-     */
-    endpoints?: Array<{
-      deprecated?: boolean;
-      description?: string;
-      endpointUrl?: string;
-      location?: string;
-    }> | null;
-    /**
      * The ETag for this response.
      */
     etag?: string | null;
@@ -358,14 +341,6 @@ export namespace discovery_v1 {
   }
   export interface Schema$RestMethod {
     /**
-     * The API Version of this method, as passed in via the `X-Goog-Api-Version` header or `$apiVersion` query parameter.
-     */
-    apiVersion?: string | null;
-    /**
-     * Whether this method is deprecated.
-     */
-    deprecated?: boolean | null;
-    /**
      * Description of this method.
      */
     description?: string | null;
@@ -438,10 +413,6 @@ export namespace discovery_v1 {
     useMediaDownloadService?: boolean | null;
   }
   export interface Schema$RestResource {
-    /**
-     * Whether this resource is deprecated.
-     */
-    deprecated?: boolean | null;
     /**
      * Methods on this resource.
      */

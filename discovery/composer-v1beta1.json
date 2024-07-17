@@ -994,7 +994,7 @@
       }
     }
   },
-  "revision": "20240317",
+  "revision": "20240310",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {

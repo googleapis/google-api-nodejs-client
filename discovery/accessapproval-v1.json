@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20240621",
+  "revision": "20240607",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {

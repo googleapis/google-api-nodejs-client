@@ -772,7 +772,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240701",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -797,6 +797,10 @@
       "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
       "id": "AssetLocation",
       "properties": {
+        "ccfeRmsPath": {
+          "description": "Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.",
+          "type": "string"
+        },
         "expected": {
           "$ref": "IsolationExpectations",
           "description": "Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation."
@@ -2318,7 +2322,15 @@
     "SpannerLocation": {
       "id": "SpannerLocation",
       "properties": {
+        "backupName": {
+          "description": "Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "dbName": {
+          "description": "Set of databases used by the resource in format /span//",
           "items": {
             "type": "string"
           },

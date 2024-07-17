@@ -227,7 +227,7 @@ export namespace connectors_v1 {
     /**
      * Optional. Omit query params from the redirect URI.
      */
-    omitQueryParams?: string | null;
+    omitQueryParams?: boolean | null;
     /**
      * The scopes for which the user will authorize Google Cloud Connectors on the connector data source.
      */
@@ -2134,7 +2134,7 @@ export namespace connectors_v1 {
      */
     multipleSelectOptions?: Schema$MultipleSelectOption[];
     /**
-     * Required. Value separator.
+     * Required. Value separator. Only "," can be used for OAuth auth code flow scope field.
      */
     valueSeparator?: string | null;
   }
@@ -2497,6 +2497,10 @@ export namespace connectors_v1 {
      */
     dataType?: string | null;
     /**
+     * The following field specifies the default value of the Parameter provided by the external system if a value is not provided.
+     */
+    defaultValue?: any | null;
+    /**
      * A brief description of the field.
      */
     description?: string | null;
@@ -2508,6 +2512,10 @@ export namespace connectors_v1 {
      * JsonSchema representation of this action's result
      */
     jsonSchema?: Schema$JsonSchema;
+    /**
+     * Specifies whether a null value is allowed.
+     */
+    nullable?: boolean | null;
   }
   /**
    * Request message for ConnectorsService.RefreshEventSubscription

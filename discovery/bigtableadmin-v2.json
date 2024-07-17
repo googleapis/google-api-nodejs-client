@@ -949,7 +949,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The name of the destination cluster that will contain the backup copy. The cluster must already exists. Values are of the form: `projects/{project}/instances/{instance}/clusters/{cluster}`.",
+                          "description": "Required. The name of the destination cluster that will contain the backup copy. The cluster must already exist. Values are of the form: `projects/{project}/instances/{instance}/clusters/{cluster}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+$",
                           "required": true,
@@ -2194,7 +2194,7 @@
       }
     }
   },
-  "revision": "20240616",
+  "revision": "20240703",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3144,9 +3144,21 @@
       "description": "A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes will provide either the `input_type` or `state_type`, and reads will always return the `state_type` .",
       "id": "GoogleBigtableAdminV2TypeAggregate",
       "properties": {
+        "hllppUniqueCount": {
+          "$ref": "GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount",
+          "description": "HyperLogLogPlusPlusUniqueCount aggregator."
+        },
         "inputType": {
           "$ref": "Type",
           "description": "Type of the inputs that are accumulated by this `Aggregate`, which must specify a full encoding. Use `AddInput` mutations to accumulate new inputs."
+        },
+        "max": {
+          "$ref": "GoogleBigtableAdminV2TypeAggregateMax",
+          "description": "Max aggregator."
+        },
+        "min": {
+          "$ref": "GoogleBigtableAdminV2TypeAggregateMin",
+          "description": "Min aggregator."
         },
         "stateType": {
           "$ref": "Type",
@@ -3160,9 +3172,44 @@
       },
       "type": "object"
     },
+    "GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount": {
+      "description": "Computes an approximate unique count over the input values. When using raw data as input, be careful to use a consistent encoding. Otherwise the same value encoded differently could count more than once, or two distinct values could count as identical. Input: Any, or omit for Raw State: TBD Special state conversions: `Int64` (the unique count estimate)",
+      "id": "GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeAggregateMax": {
+      "description": "Computes the max of the input values. Allowed input: `Int64` State: same as input",
+      "id": "GoogleBigtableAdminV2TypeAggregateMax",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeAggregateMin": {
+      "description": "Computes the min of the input values. Allowed input: `Int64` State: same as input",
+      "id": "GoogleBigtableAdminV2TypeAggregateMin",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleBigtableAdminV2TypeAggregateSum": {
       "description": "Computes the sum of the input values. Allowed input: `Int64` State: same as input",
       "id": "GoogleBigtableAdminV2TypeAggregateSum",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeArray": {
+      "description": "An ordered list of elements of a given type. Values of type `Array` are stored in `Value.array_value`.",
+      "id": "GoogleBigtableAdminV2TypeArray",
+      "properties": {
+        "elementType": {
+          "$ref": "Type",
+          "description": "The type of the elements in the array. This must not be `Array`."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeBool": {
+      "description": "bool Values of type `Bool` are stored in `Value.bool_value`.",
+      "id": "GoogleBigtableAdminV2TypeBool",
       "properties": {},
       "type": "object"
     },
@@ -3189,8 +3236,26 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeBytesEncodingRaw": {
-      "description": "Leaves the value \"as-is\" * Natural sort? Yes * Self-delimiting? No * Compatibility? N/A",
+      "description": "Leaves the value \"as-is\" * Order-preserving? Yes * Self-delimiting? No * Compatibility? N/A",
       "id": "GoogleBigtableAdminV2TypeBytesEncodingRaw",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeDate": {
+      "description": "Date Values of type `Date` are stored in `Value.date_value`.",
+      "id": "GoogleBigtableAdminV2TypeDate",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeFloat32": {
+      "description": "Float32 Values of type `Float32` are stored in `Value.float_value`.",
+      "id": "GoogleBigtableAdminV2TypeFloat32",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeFloat64": {
+      "description": "Float64 Values of type `Float64` are stored in `Value.float_value`.",
+      "id": "GoogleBigtableAdminV2TypeFloat64",
       "properties": {},
       "type": "object"
     },
@@ -3217,14 +3282,92 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes": {
-      "description": "Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Natural sort? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`",
+      "description": "Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Order-preserving? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`",
       "id": "GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes",
       "properties": {
         "bytesType": {
           "$ref": "GoogleBigtableAdminV2TypeBytes",
-          "description": "The underlying `Bytes` type, which may be able to encode further."
+          "description": "Deprecated: ignored if set."
         }
       },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeMap": {
+      "description": "A mapping of keys to values of a given type. Values of type `Map` are stored in a `Value.array_value` where each entry is another `Value.array_value` with two elements (the key and the value, in that order). Normally encoded Map values won't have repeated keys, however, clients are expected to handle the case in which they do. If the same key appears multiple times, the _last_ value takes precedence.",
+      "id": "GoogleBigtableAdminV2TypeMap",
+      "properties": {
+        "keyType": {
+          "$ref": "Type",
+          "description": "The type of a map key. Only `Bytes`, `String`, and `Int64` are allowed as key types."
+        },
+        "valueType": {
+          "$ref": "Type",
+          "description": "The type of the values in a map."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeString": {
+      "description": "String Values of type `String` are stored in `Value.string_value`.",
+      "id": "GoogleBigtableAdminV2TypeString",
+      "properties": {
+        "encoding": {
+          "$ref": "GoogleBigtableAdminV2TypeStringEncoding",
+          "description": "The encoding to use when converting to/from lower level types."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStringEncoding": {
+      "description": "Rules used to convert to/from lower level types.",
+      "id": "GoogleBigtableAdminV2TypeStringEncoding",
+      "properties": {
+        "utf8Bytes": {
+          "$ref": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
+          "description": "Use `Utf8Bytes` encoding."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes": {
+      "description": "UTF-8 encoding * Order-preserving? Yes (code point order) * Self-delimiting? No * Compatibility? - BigQuery Federation `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
+      "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStruct": {
+      "description": "A structured data value, consisting of fields which map to dynamically typed values. Values of type `Struct` are stored in `Value.array_value` where entries are in the same order and number as `field_types`.",
+      "id": "GoogleBigtableAdminV2TypeStruct",
+      "properties": {
+        "fields": {
+          "description": "The names and types of the fields in this struct.",
+          "items": {
+            "$ref": "GoogleBigtableAdminV2TypeStructField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructField": {
+      "description": "A struct field and its type.",
+      "id": "GoogleBigtableAdminV2TypeStructField",
+      "properties": {
+        "fieldName": {
+          "description": "The field name (optional). Fields without a `field_name` are considered anonymous and cannot be referenced by name.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "Type",
+          "description": "The type of values in this field."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeTimestamp": {
+      "description": "Timestamp Values of type `Timestamp` are stored in `Value.timestamp_value`.",
+      "id": "GoogleBigtableAdminV2TypeTimestamp",
+      "properties": {},
       "type": "object"
     },
     "HotTablet": {
@@ -4103,20 +4246,56 @@
       "type": "object"
     },
     "Type": {
-      "description": "`Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. This might involve composing a series of steps into an \"encoding chain,\" for example to convert from INT64 -> STRING -> raw bytes. In most cases, a \"link\" in the encoding chain will be based an on existing GoogleSQL conversion function like `CAST`. Each link in the encoding chain also defines the following properties: * Natural sort: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: BYTES values sort in the same order as their raw encodings. - Counterexample: Encoding INT64 to a fixed-width STRING does *not* preserve sort order when dealing with negative numbers. INT64(1) > INT64(-1), but STRING(\"-00001\") > STRING(\"00001). - The overall encoding chain has this property if *every* link does. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. - The overall encoding chain has this property if *any* link does. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?",
+      "description": "`Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. Each encoding also defines the following properties: * Order-preserving: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: BYTES values sort in the same order as their raw encodings. - Counterexample: Encoding INT64 as a fixed-width decimal string does *not* preserve sort order when dealing with negative numbers. INT64(1) > INT64(-1), but STRING(\"-00001\") > STRING(\"00001). * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?",
       "id": "Type",
       "properties": {
         "aggregateType": {
           "$ref": "GoogleBigtableAdminV2TypeAggregate",
           "description": "Aggregate"
         },
+        "arrayType": {
+          "$ref": "GoogleBigtableAdminV2TypeArray",
+          "description": "Array"
+        },
+        "boolType": {
+          "$ref": "GoogleBigtableAdminV2TypeBool",
+          "description": "Bool"
+        },
         "bytesType": {
           "$ref": "GoogleBigtableAdminV2TypeBytes",
           "description": "Bytes"
         },
+        "dateType": {
+          "$ref": "GoogleBigtableAdminV2TypeDate",
+          "description": "Date"
+        },
+        "float32Type": {
+          "$ref": "GoogleBigtableAdminV2TypeFloat32",
+          "description": "Float32"
+        },
+        "float64Type": {
+          "$ref": "GoogleBigtableAdminV2TypeFloat64",
+          "description": "Float64"
+        },
         "int64Type": {
           "$ref": "GoogleBigtableAdminV2TypeInt64",
           "description": "Int64"
+        },
+        "mapType": {
+          "$ref": "GoogleBigtableAdminV2TypeMap",
+          "description": "Map"
+        },
+        "stringType": {
+          "$ref": "GoogleBigtableAdminV2TypeString",
+          "description": "String"
+        },
+        "structType": {
+          "$ref": "GoogleBigtableAdminV2TypeStruct",
+          "description": "Struct"
+        },
+        "timestampType": {
+          "$ref": "GoogleBigtableAdminV2TypeTimestamp",
+          "description": "Timestamp"
         }
       },
       "type": "object"

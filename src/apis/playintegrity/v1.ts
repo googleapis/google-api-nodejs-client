@@ -112,6 +112,7 @@ export namespace playintegrity_v1 {
    */
   export class Playintegrity {
     context: APIRequestContext;
+    deviceRecall: Resource$Devicerecall;
     v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace playintegrity_v1 {
         google,
       };
 
+      this.deviceRecall = new Resource$Devicerecall(this.context);
       this.v1 = new Resource$V1(this.context);
     }
   }
@@ -295,6 +297,156 @@ export namespace playintegrity_v1 {
      * Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status.
      */
     testingDetails?: Schema$TestingDetails;
+  }
+  /**
+   * Contains the recall bits values.
+   */
+  export interface Schema$Values {
+    /**
+     * Required. First recall bit value.
+     */
+    bitFirst?: boolean | null;
+    /**
+     * Required. Second recall bit value.
+     */
+    bitSecond?: boolean | null;
+    /**
+     * Required. Third recall bit value.
+     */
+    bitThird?: boolean | null;
+  }
+  /**
+   * Request to write device recall bits.
+   */
+  export interface Schema$WriteDeviceRecallRequest {
+    /**
+     * Required. Integrity token obtained from calling Play Integrity API. Note that the integrity token contains the existing device recall bits. The write will only succeed if those bits in the integrity token are up to date.
+     */
+    integrityToken?: string | null;
+    /**
+     * Required. The new values for the device recall bits to be written.
+     */
+    newValues?: Schema$Values;
+  }
+  /**
+   * Response for the Write Device Recall action. Currently empty.
+   */
+  export interface Schema$WriteDeviceRecallResponse {}
+
+  export class Resource$Devicerecall {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Writes recall bits for the device where Play Integrity API token is obtained. The endpoint is available to select Play partners in an early access program (EAP).
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    write(
+      params: Params$Resource$Devicerecall$Write,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    write(
+      params?: Params$Resource$Devicerecall$Write,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WriteDeviceRecallResponse>;
+    write(
+      params: Params$Resource$Devicerecall$Write,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    write(
+      params: Params$Resource$Devicerecall$Write,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WriteDeviceRecallResponse>,
+      callback: BodyResponseCallback<Schema$WriteDeviceRecallResponse>
+    ): void;
+    write(
+      params: Params$Resource$Devicerecall$Write,
+      callback: BodyResponseCallback<Schema$WriteDeviceRecallResponse>
+    ): void;
+    write(
+      callback: BodyResponseCallback<Schema$WriteDeviceRecallResponse>
+    ): void;
+    write(
+      paramsOrCallback?:
+        | Params$Resource$Devicerecall$Write
+        | BodyResponseCallback<Schema$WriteDeviceRecallResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WriteDeviceRecallResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WriteDeviceRecallResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WriteDeviceRecallResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Devicerecall$Write;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Devicerecall$Write;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://playintegrity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+packageName}/deviceRecall:write').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WriteDeviceRecallResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WriteDeviceRecallResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Devicerecall$Write
+    extends StandardParameters {
+    /**
+     * Required. Package name of the app the attached integrity token belongs to.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WriteDeviceRecallRequest;
   }
 
   export class Resource$V1 {

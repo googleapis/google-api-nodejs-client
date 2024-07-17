@@ -667,9 +667,17 @@ export namespace gkehub_v1alpha {
      */
     monitor?: string | null;
     /**
+     * Deployment state of otel-collector
+     */
+    otelCollector?: string | null;
+    /**
      * Deployment state of reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Deployment state of resource-group-controller-manager
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Deployment state of root-reconciler
      */
@@ -726,7 +734,7 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementConfigSyncVersion {
     /**
-     * Version of the deployed admission_webhook pod
+     * Version of the deployed admission-webhook pod
      */
     admissionWebhook?: string | null;
     /**
@@ -742,9 +750,17 @@ export namespace gkehub_v1alpha {
      */
     monitor?: string | null;
     /**
+     * Version of the deployed otel-collector pod
+     */
+    otelCollector?: string | null;
+    /**
      * Version of the deployed reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Version of the deployed resource-group-controller-manager pod
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Version of the deployed reconciler container in root-reconciler pod
      */
@@ -3104,6 +3120,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ServiceMeshMembershipSpec {
     /**
+     * Optional. Specifies the API that will be used for configuring the mesh workloads.
+     */
+    configApi?: string | null;
+    /**
      * Deprecated: use `management` instead Enables automatic control plane management.
      */
     controlPlane?: string | null;
@@ -3112,7 +3132,7 @@ export namespace gkehub_v1alpha {
      */
     defaultChannel?: string | null;
     /**
-     * Enables automatic Service Mesh management.
+     * Optional. Enables automatic Service Mesh management.
      */
     management?: string | null;
   }

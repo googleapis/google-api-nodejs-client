@@ -5711,7 +5711,7 @@
       }
     }
   },
-  "revision": "20240621",
+  "revision": "20240704",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6177,6 +6177,11 @@
         "disable": {
           "description": "Disable query rephraser.",
           "type": "boolean"
+        },
+        "maxRephraseSteps": {
+          "description": "Max rephrase steps. The max number is 5 steps. If not set or set to < 1, it will be set to 1 by default.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6656,6 +6661,14 @@
             "$ref": "GoogleCloudDiscoveryengineV1AnswerStepActionObservationSearchResultSnippetInfo"
           },
           "type": "array"
+        },
+        "structData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document (code pointer: http://shortn/_objzAfIiHq), or the Chunk in search result (code pointer: http://shortn/_Ipo6KFFGBL).",
+          "type": "object"
         },
         "title": {
           "description": "Title.",
@@ -8038,7 +8051,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.",
           "type": "object"
         }
       },
@@ -9663,6 +9676,18 @@
           "description": "Whether to turn on safe search. This is only supported for website search.",
           "type": "boolean"
         },
+        "searchAsYouTypeSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec",
+          "description": "Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical."
+        },
+        "session": {
+          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
+          "type": "string"
+        },
+        "sessionSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestSessionSpec",
+          "description": "Session specification. Can be used only when `session` is set."
+        },
         "spellCorrectionSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec",
           "description": "The spell correction specification that specifies the mode under which spell correction takes effect."
@@ -9885,7 +9910,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec": {
-      "description": "A struct to define data stores to filter on in a search call and configurations for those data stores. A maximum of 1 DataStoreSpec per data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+      "description": "A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.",
       "id": "GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec",
       "properties": {
         "dataStore": {
@@ -10005,6 +10030,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec": {
+      "description": "Specification for search as you type in search requests.",
+      "id": "GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec",
+      "properties": {
+        "condition": {
+          "description": "The condition under which search as you type should occur. Default to Condition.DISABLED.",
+          "enum": [
+            "CONDITION_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Server behavior defaults to Condition.DISABLED.",
+            "Disables Search As You Type.",
+            "Enables Search As You Type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SearchRequestSessionSpec": {
+      "description": "Session specification. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
+      "id": "GoogleCloudDiscoveryengineV1SearchRequestSessionSpec",
+      "properties": {
+        "queryId": {
+          "description": "If set, the search result gets stored to the \"turn\" specified by this query ID. Example: Let's say the session looks like this: session { name: \".../sessions/xxx\" turns { query { text: \"What is foo?\" query_id: \".../questions/yyy\" } answer: \"Foo is ...\" } turns { query { text: \"How about bar then?\" query_id: \".../questions/zzz\" } } } The user can call /search API with a request like this: session: \".../sessions/xxx\" session_spec { query_id: \".../questions/zzz\" } Then, the API stores the search result, associated with the last turn. The stored search result can be used by a subsequent /answer API call (with the session ID and the query ID specified). Also, it is possible to call /search and /answer in parallel with the same session ID & query ID.",
+          "type": "string"
+        },
+        "searchResultPersistenceCount": {
+          "description": "The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec": {
       "description": "The specification for query spell correction.",
       "id": "GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec",
@@ -10063,6 +10125,10 @@
             "$ref": "GoogleCloudDiscoveryengineV1SearchResponseSearchResult"
           },
           "type": "array"
+        },
+        "sessionInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchResponseSessionInfo",
+          "description": "Session information. Only set if SearchRequest.session is provided. See its description for more details."
         },
         "summary": {
           "$ref": "GoogleCloudDiscoveryengineV1SearchResponseSummary",
@@ -10148,6 +10214,21 @@
         },
         "id": {
           "description": "Document.id of the searched Document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SearchResponseSessionInfo": {
+      "description": "Information about the session.",
+      "id": "GoogleCloudDiscoveryengineV1SearchResponseSessionInfo",
+      "properties": {
+        "name": {
+          "description": "Name of the session. If the auto-session mode is used (when SearchRequest.session ends with \"-\"), this field holds the newly generated session name.",
+          "type": "string"
+        },
+        "queryId": {
+          "description": "Query ID that corresponds to this search API call. One session can have multiple turns, each with a unique query ID. By specifying the session name and this query ID in the Answer API call, the answer generation happens in the context of the search results from this search call.",
           "type": "string"
         }
       },
@@ -11177,6 +11258,14 @@
           },
           "type": "array"
         },
+        "structData": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document (code pointer: http://shortn/_objzAfIiHq), or the Chunk in search result (code pointer: http://shortn/_Ipo6KFFGBL).",
+          "type": "object"
+        },
         "title": {
           "description": "Title.",
           "type": "string"
@@ -11532,6 +11621,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel",
       "properties": {
         "createTime": {
+          "deprecated": true,
           "description": "Timestamp the Model was created at.",
           "format": "google-datetime",
           "type": "string"
@@ -11539,6 +11629,14 @@
         "displayName": {
           "description": "The display name of the model.",
           "type": "string"
+        },
+        "metrics": {
+          "additionalProperties": {
+            "format": "double",
+            "type": "number"
+          },
+          "description": "The metrics of the trained model.",
+          "type": "object"
         },
         "modelState": {
           "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
@@ -11548,7 +11646,8 @@
             "TRAINING",
             "TRAINING_COMPLETE",
             "READY_FOR_SERVING",
-            "TRAINING_FAILED"
+            "TRAINING_FAILED",
+            "NO_IMPROVEMENT"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -11556,7 +11655,8 @@
             "The model is currently training.",
             "The model has successfully completed training.",
             "The model is ready for serving.",
-            "The model training failed."
+            "The model training failed.",
+            "The model training finished successfully but metrics did not improve."
           ],
           "type": "string"
         },
@@ -11788,7 +11888,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.",
           "type": "object"
         }
       },
@@ -12222,6 +12322,38 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaExportUserEventsMetadata": {
+      "description": "Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportUserEventsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaExportUserEventsResponse": {
+      "description": "Response of the ExportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportUserEventsResponse",
+      "properties": {
+        "outputResult": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOutputResult",
+          "description": "Output result indicating where the data were exported to."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of the export operation."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
       "description": "Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.",
       "id": "GoogleCloudDiscoveryengineV1alphaFieldConfig",
@@ -12647,6 +12779,32 @@
             "$ref": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOutputResult": {
+      "description": "Output result that stores the information about where the exported data is stored.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOutputResult",
+      "properties": {
+        "bigqueryResult": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult",
+          "description": "The BigQuery location where the result is stored."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult": {
+      "description": "A BigQuery output result.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult",
+      "properties": {
+        "datasetId": {
+          "description": "The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "The ID of a BigQuery Table.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13636,6 +13794,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaCustomTuningModel",
       "properties": {
         "createTime": {
+          "deprecated": true,
           "description": "Timestamp the Model was created at.",
           "format": "google-datetime",
           "type": "string"
@@ -13643,6 +13802,14 @@
         "displayName": {
           "description": "The display name of the model.",
           "type": "string"
+        },
+        "metrics": {
+          "additionalProperties": {
+            "format": "double",
+            "type": "number"
+          },
+          "description": "The metrics of the trained model.",
+          "type": "object"
         },
         "modelState": {
           "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
@@ -13652,7 +13819,8 @@
             "TRAINING",
             "TRAINING_COMPLETE",
             "READY_FOR_SERVING",
-            "TRAINING_FAILED"
+            "TRAINING_FAILED",
+            "NO_IMPROVEMENT"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -13660,7 +13828,8 @@
             "The model is currently training.",
             "The model has successfully completed training.",
             "The model is ready for serving.",
-            "The model training failed."
+            "The model training failed.",
+            "The model training finished successfully but metrics did not improve."
           ],
           "type": "string"
         },
@@ -13883,7 +14052,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.",
           "type": "object"
         }
       },
