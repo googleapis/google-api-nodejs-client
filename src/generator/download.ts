@@ -66,7 +66,6 @@ export async function downloadDiscoveryDocs(
     : 'json';
   console.log(`sending request to ${options.discoveryUrl}`);
   const res = await request({url: options.discoveryUrl, headers});
-  console.log(JSON.parse(res.data as string));
   const apis = (JSON.parse(res.data as string)).items as gapi.Schema[];
   const indexPath = path.join(options.downloadPath, 'index.json');
   gfs.writeFile(indexPath, JSON.parse(res.data as string));
