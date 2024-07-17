@@ -79,8 +79,8 @@ describe(__filename, () => {
 
   it('should download the discovery docs', async () => {
     const scopes = [
-      nock('https://www.googleapis.com')
-        .get('/discovery/v1/apis/')
+      nock('https://raw.githubusercontent.com/googleapis')
+        .get('/discovery-artifact-manager/master/discoveries/index.json/')
         .replyWithFile(200, fakeIndexPath, {
           'Content-Type': 'application/json',
         }),
@@ -99,8 +99,8 @@ describe(__filename, () => {
 
   it('should ignore changes to schemas that only have revision changes', async () => {
     const scopes = [
-      nock('https://www.googleapis.com')
-        .get('/discovery/v1/apis/')
+      nock('https://raw.githubusercontent.com/googleapis')
+        .get('/discovery-artifact-manager/master/discoveries/index.json/')
         .replyWithFile(200, fakeIndexPath, {
           'Content-Type': 'application/json',
         }),
