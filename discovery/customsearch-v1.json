@@ -702,7 +702,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240417",
   "rootUrl": "https://customsearch.googleapis.com/",
   "schemas": {
     "Promotion": {

@@ -1151,7 +1151,7 @@ export namespace batch_v1 {
     message?: string | null;
   }
   /**
-   * Status event
+   * Status event.
    */
   export interface Schema$StatusEvent {
     /**
@@ -1163,11 +1163,11 @@ export namespace batch_v1 {
      */
     eventTime?: string | null;
     /**
-     * Task Execution
+     * Task Execution. This field is only defined for task-level status events where the task fails.
      */
     taskExecution?: Schema$TaskExecution;
     /**
-     * Task State
+     * Task State. This field is only defined for task-level status events.
      */
     taskState?: string | null;
     /**
@@ -1293,11 +1293,11 @@ export namespace batch_v1 {
     volumes?: Schema$Volume[];
   }
   /**
-   * Status of a task
+   * Status of a task.
    */
   export interface Schema$TaskStatus {
     /**
-     * Task state
+     * Task state.
      */
     state?: string | null;
     /**

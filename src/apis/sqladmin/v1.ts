@@ -916,6 +916,7 @@ export namespace sqladmin_v1 {
     sqlExportOptions?: {
       mysqlExportOptions?: {masterData?: number};
       parallel?: boolean;
+      postgresExportOptions?: {clean?: boolean; ifExists?: boolean};
       schemaOnly?: boolean;
       tables?: string[];
       threads?: number;
@@ -1105,7 +1106,11 @@ export namespace sqladmin_v1 {
     /**
      * Optional. Options for importing data from SQL statements.
      */
-    sqlImportOptions?: {parallel?: boolean; threads?: number} | null;
+    sqlImportOptions?: {
+      parallel?: boolean;
+      postgresImportOptions?: {clean?: boolean; ifExists?: boolean};
+      threads?: number;
+    } | null;
     /**
      * Path to the import file in Cloud Storage, in the form `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported when `fileType` is `SQL`. The instance must have write permissions to the bucket and read access to the file.
      */

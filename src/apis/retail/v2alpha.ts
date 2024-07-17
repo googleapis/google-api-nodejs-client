@@ -495,10 +495,6 @@ export namespace retail_v2alpha {
      */
     name?: string | null;
     /**
-     * Output only. The number of products in different groups that this branch has. The key is a group representing a set of products, and the value is the number of products in that group. Note: keys in this map may change over time. Possible keys: * "primary-in-stock", products have Product.Type.PRIMARY type and Product.Availability.IN_STOCK availability. * "primary-out-of-stock", products have Product.Type.PRIMARY type and Product.Availability.OUT_OF_STOCK availability. * "primary-preorder", products have Product.Type.PRIMARY type and Product.Availability.PREORDER availability. * "primary-backorder", products have Product.Type.PRIMARY type and Product.Availability.BACKORDER availability. * "variant-in-stock", products have Product.Type.VARIANT type and Product.Availability.IN_STOCK availability. * "variant-out-of-stock", products have Product.Type.VARIANT type and Product.Availability.OUT_OF_STOCK availability. * "variant-preorder", products have Product.Type.VARIANT type and Product.Availability.PREORDER availability. * "variant-backorder", products have Product.Type.VARIANT type and Product.Availability.BACKORDER availability. * "price-discounted", products have [Product.price_info.price] < [Product.price_info.original_price]. This field is not populated in BranchView.BASIC view.
-     */
-    productCounts?: {[key: string]: string} | null;
-    /**
      * Output only. Statistics for number of products in the branch, provided for different scopes. This field is not populated in BranchView.BASIC view.
      */
     productCountStats?: Schema$GoogleCloudRetailV2alphaBranchProductCountStatistic[];
@@ -661,10 +657,6 @@ export namespace retail_v2alpha {
      * The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.
      */
     mergedFacetKey?: string | null;
-    /**
-     * Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.
-     */
-    mergedFacetValues?: Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue[];
   }
   /**
    * Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.
@@ -763,7 +755,7 @@ export namespace retail_v2alpha {
     totalProductCount?: number | null;
   }
   /**
-   * Recent search of this user.
+   * Deprecated: Recent search of this user.
    */
   export interface Schema$GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult {
     /**

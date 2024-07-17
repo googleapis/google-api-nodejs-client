@@ -840,7 +840,7 @@
       }
     }
   },
-  "revision": "20240527",
+  "revision": "20240523",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {

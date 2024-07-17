@@ -1180,6 +1180,66 @@
                     }
                   }
                 },
+                "diskMigrationJobs": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Cancels the disk migration job.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelDiskMigrationJobRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "run": {
+                      "description": "Runs the disk migration job.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:run",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.run",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:run",
+                      "request": {
+                        "$ref": "RunDiskMigrationJobRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "migratingVms": {
                   "methods": {
                     "create": {
@@ -2220,7 +2280,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20240704",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2873,13 +2933,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -2903,6 +2965,12 @@
     "CancelCutoverJobRequest": {
       "description": "Request message for 'CancelCutoverJob' request.",
       "id": "CancelCutoverJobRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CancelDiskMigrationJobRequest": {
+      "description": "Request message for 'CancelDiskMigrationJob' request.",
+      "id": "CancelDiskMigrationJobRequest",
       "properties": {},
       "type": "object"
     },
@@ -3137,13 +3205,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -3267,13 +3337,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -3713,7 +3785,7 @@
       "id": "DiskImageTargetDetails",
       "properties": {
         "additionalLicenses": {
-          "description": "Optional. Additional licenses to assign to the image.",
+          "description": "Optional. Additional licenses to assign to the image. Format: https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/licenses/LICENSE_NAME Or https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME",
           "items": {
             "type": "string"
           },
@@ -4874,7 +4946,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "The subnetwork to connect the NIC to.",
+          "description": "Optional. The subnetwork to connect the NIC to.",
           "type": "string"
         }
       },
@@ -5045,13 +5117,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -5066,7 +5140,7 @@
         },
         "vmAttachmentDetails": {
           "$ref": "VmAttachmentDetails",
-          "description": "Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attacked to a target VM."
+          "description": "Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attached to a target VM."
         }
       },
       "type": "object"
@@ -5211,6 +5285,12 @@
     "ResumeMigrationRequest": {
       "description": "Request message for 'ResumeMigration' request.",
       "id": "ResumeMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RunDiskMigrationJobRequest": {
+      "description": "Request message for 'RunDiskMigrationJobRequest' request.",
+      "id": "RunDiskMigrationJobRequest",
       "properties": {},
       "type": "object"
     },

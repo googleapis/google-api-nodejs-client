@@ -716,7 +716,7 @@ export namespace games_v1 {
     /**
      * Recall token data.
      */
-    token?: Schema$RecallToken[];
+    recallToken?: Schema$RecallToken;
   }
   /**
    * The payload to request to increment an achievement.
@@ -1535,7 +1535,7 @@ export namespace games_v1 {
     /**
      * The recall token associated with the requested PGS Player principal. It can be unset if there is no recall token associated with the requested principal.
      */
-    token?: Schema$RecallToken;
+    gamePlayerToken?: Schema$GamePlayerToken;
   }
   /**
    * A list of recall token data returned from the RetrieveGamesPlayerTokens RPC
@@ -1544,7 +1544,7 @@ export namespace games_v1 {
     /**
      * The requested applications along with the recall tokens for the player. If the player does not have recall tokens for an application, that application is not included in the response.
      */
-    applicationRecallTokens?: Schema$GamePlayerToken[];
+    gamePlayerTokens?: Schema$GamePlayerToken[];
   }
   /**
    * Response for the RetrievePlayerTokens RPC

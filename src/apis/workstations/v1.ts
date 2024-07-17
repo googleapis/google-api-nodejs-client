@@ -227,11 +227,11 @@ export namespace workstations_v1 {
     kmsKeyServiceAccount?: string | null;
   }
   /**
-   * Configuration options for private workstation clusters.
+   * Configuration options for a custom domain.
    */
   export interface Schema$DomainConfig {
     /**
-     * Immutable. Whether Workstations endpoint is private.
+     * Immutable. Domain used by Workstations for HTTP ingress.
      */
     domain?: string | null;
   }
@@ -673,10 +673,38 @@ export namespace workstations_v1 {
      */
     version?: number | null;
   }
+  /**
+   * A PortRange defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.
+   */
+  export interface Schema$PortRange {
+    /**
+     * Required. Starting port number for the current range of ports.
+     */
+    first?: number | null;
+    /**
+     * Required. Ending port number for the current range of ports.
+     */
+    last?: number | null;
+  }
+  /**
+   * Configuration options for private workstation clusters.
+   */
   export interface Schema$PrivateClusterConfig {
+    /**
+     * Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.
+     */
     allowedProjects?: string[] | null;
+    /**
+     * Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
+     */
     clusterHostname?: string | null;
+    /**
+     * Immutable. Whether Workstations endpoint is private.
+     */
     enablePrivateEndpoint?: boolean | null;
+    /**
+     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
+     */
     serviceAttachmentUri?: string | null;
   }
   /**
@@ -908,6 +936,10 @@ export namespace workstations_v1 {
    * A workstation configuration resource in the Cloud Workstations API. Workstation configurations act as templates for workstations. The workstation configuration defines details such as the workstation virtual machine (VM) instance type, persistent storage, container image defining environment, which IDE or Code Editor to use, and more. Administrators and platform teams can also use [Identity and Access Management (IAM)](https://cloud.google.com/iam/docs/overview) rules to grant access to teams or to individual developers.
    */
   export interface Schema$WorkstationConfig {
+    /**
+     * Optional. A Single or Range of ports externally accessible in the workstation. If not specified defaults to ports 22, 80 and ports 1024-65535.
+     */
+    allowedPorts?: Schema$PortRange[];
     /**
      * Optional. Client-specified annotations.
      */

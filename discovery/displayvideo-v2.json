@@ -9267,7 +9267,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20240618",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {

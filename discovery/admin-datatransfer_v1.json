@@ -272,7 +272,7 @@
       }
     }
   },
-  "revision": "20221205",
+  "revision": "20221108",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Application": {

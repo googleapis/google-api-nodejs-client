@@ -20,24 +20,24 @@
   "documentationLink": "https://cloud.google.com/kms/",
   "endpoints": [
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Regional Endpoint"
+      "location": "europe-west3"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9",
-      "description": "Regional Endpoint"
+      "location": "europe-west9"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
+      "location": "me-central2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-east1.rep.googleapis.com/",
-      "location": "us-east1",
-      "description": "Regional Endpoint"
+      "location": "us-east1"
     }
   ],
   "fullyEncodeReservedExpansion": true,

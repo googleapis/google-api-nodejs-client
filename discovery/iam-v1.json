@@ -3216,7 +3216,7 @@
       }
     }
   },
-  "revision": "20240621",
+  "revision": "20240617",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {

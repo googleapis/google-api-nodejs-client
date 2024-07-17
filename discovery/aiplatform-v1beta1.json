@@ -20,24 +20,24 @@
   "documentationLink": "https://cloud.google.com/vertex-ai/",
   "endpoints": [
     {
-      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://africa-south1-aiplatform.googleapis.com/",
       "location": "africa-south1"
     },
     {
-      "location": "asia-east1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "asia-east1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east2-aiplatform.googleapis.com/",
-      "location": "asia-east2",
-      "description": "Locational Endpoint"
+      "location": "asia-east2"
     },
     {
-      "location": "asia-northeast1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "asia-northeast1"
     },
     {
       "description": "Locational Endpoint",
@@ -45,9 +45,9 @@
       "location": "asia-northeast2"
     },
     {
-      "location": "asia-northeast3",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-northeast3-aiplatform.googleapis.com/",
+      "location": "asia-northeast3"
     },
     {
       "description": "Locational Endpoint",
@@ -55,44 +55,44 @@
       "location": "asia-south1"
     },
     {
-      "location": "asia-southeast1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "asia-southeast1"
     },
     {
-      "location": "asia-southeast2",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://asia-southeast2-aiplatform.googleapis.com/",
+      "location": "asia-southeast2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-aiplatform.googleapis.com/",
-      "location": "australia-southeast1",
-      "description": "Locational Endpoint"
+      "location": "australia-southeast1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "australia-southeast2",
-      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://australia-southeast2-aiplatform.googleapis.com/",
+      "location": "australia-southeast2"
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-central2",
-      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-central2-aiplatform.googleapis.com/",
+      "location": "europe-central2"
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-north1",
-      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-north1-aiplatform.googleapis.com/",
+      "location": "europe-north1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-southwest1-aiplatform.googleapis.com/",
-      "location": "europe-southwest1",
-      "description": "Locational Endpoint"
+      "location": "europe-southwest1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-west1",
-      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west1-aiplatform.googleapis.com/",
+      "location": "europe-west1"
     },
     {
       "description": "Locational Endpoint",
@@ -100,34 +100,34 @@
       "location": "europe-west2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west3-aiplatform.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "europe-west4",
-      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "europe-west3"
     },
     {
       "description": "Locational Endpoint",
-      "location": "europe-west6",
-      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/"
+      "endpointUrl": "https://europe-west4-aiplatform.googleapis.com/",
+      "location": "europe-west4"
     },
     {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west6-aiplatform.googleapis.com/",
+      "location": "europe-west6"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west8-aiplatform.googleapis.com/",
-      "location": "europe-west8",
-      "description": "Locational Endpoint"
+      "location": "europe-west8"
     },
     {
-      "location": "europe-west9",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west9-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "europe-west9"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west12-aiplatform.googleapis.com/",
-      "location": "europe-west12",
-      "description": "Locational Endpoint"
+      "location": "europe-west12"
     },
     {
       "description": "Locational Endpoint",
@@ -135,84 +135,84 @@
       "location": "me-central1"
     },
     {
-      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://me-central2-aiplatform.googleapis.com/",
       "location": "me-central2"
     },
     {
-      "location": "me-west1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://me-west1-aiplatform.googleapis.com/",
+      "location": "me-west1"
     },
     {
-      "location": "northamerica-northeast1",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://northamerica-northeast1-aiplatform.googleapis.com/",
+      "location": "northamerica-northeast1"
     },
     {
-      "location": "northamerica-northeast2",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://northamerica-northeast2-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "northamerica-northeast2"
     },
     {
-      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://southamerica-east1-aiplatform.googleapis.com/",
       "location": "southamerica-east1"
     },
     {
-      "location": "southamerica-west1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://southamerica-west1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "southamerica-west1"
     },
     {
-      "location": "us-central1",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
-    },
-    {
-      "location": "us-central2",
-      "description": "Locational Endpoint",
-      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/"
+      "location": "us-central1"
     },
     {
       "description": "Locational Endpoint",
-      "location": "us-east1",
-      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-central2-aiplatform.googleapis.com/",
+      "location": "us-central2"
     },
     {
-      "location": "us-east4",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-east1-aiplatform.googleapis.com/",
+      "location": "us-east1"
     },
     {
-      "location": "us-south1",
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east4-aiplatform.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-south1-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "us-south1"
     },
     {
-      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
-      "location": "us-west1",
-      "description": "Locational Endpoint"
-    },
-    {
-      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west1-aiplatform.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west2-aiplatform.googleapis.com/",
       "location": "us-west2"
     },
     {
-      "location": "us-west3",
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west3-aiplatform.googleapis.com/",
-      "description": "Locational Endpoint"
+      "location": "us-west3"
     },
     {
-      "location": "us-west4",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-west4-aiplatform.googleapis.com/",
+      "location": "us-west4"
     },
     {
-      "location": "us-east5",
       "description": "Locational Endpoint",
-      "endpointUrl": "https://us-east5-aiplatform.googleapis.com/"
+      "endpointUrl": "https://us-east5-aiplatform.googleapis.com/",
+      "location": "us-east5"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3411,6 +3411,40 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "patch": {
+                  "description": "Update a DeploymentResourcePool.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/deploymentResourcePools/{deploymentResourcePoolsId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.deploymentResourcePools.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the DeploymentResourcePool. Format: `projects/{project}/locations/{location}/deploymentResourcePools/{deployment_resource_pool}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deploymentResourcePools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1DeploymentResourcePool"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "queryDeployedModels": {
                   "description": "List DeployedModels that have been deployed on this DeploymentResourcePool.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/deploymentResourcePools/{deploymentResourcePoolsId}:queryDeployedModels",
@@ -5567,7 +5601,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`",
+                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `big_query` * `big_query.entity_id_columns`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -5746,7 +5780,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)",
+                          "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -6205,7 +6239,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `bigtable` * `labels` * `sync_config`",
+                      "description": "Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `bigtable` * `bigtable.auto_scaling` * `bigtable.enable_multi_region_replica`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -6495,7 +6529,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `serviceAgentType`",
+                          "description": "Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `service_agent_type` * `big_query_source` * `big_query_source.uri` * `big_query_source.entity_id_columns` * `feature_registry_source` * `feature_registry_source.feature_groups` * `sync_config` * `sync_config.cron`",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -7943,7 +7977,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)",
+                              "description": "Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -20413,11 +20447,11 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240709",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
-      "description": "Generate video response.",
+      "description": "Next ID: 8 Generate video response.",
       "id": "CloudAiLargeModelsVisionGenerateVideoResponse",
       "properties": {
         "generatedSamples": {
@@ -22063,7 +22097,12 @@
     "GoogleCloudAiplatformV1beta1BleuSpec": {
       "description": "Spec for bleu score metric - calculates the precision of n-grams in the prediction as compared to reference - returns a score ranging between 0 to 1.",
       "id": "GoogleCloudAiplatformV1beta1BleuSpec",
-      "properties": {},
+      "properties": {
+        "useEffectiveOrder": {
+          "description": "Optional. Whether to use_effective_order to compute bleu score.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1Blob": {
@@ -22510,12 +22549,23 @@
       "description": "Request message for ComputeTokens RPC call.",
       "id": "GoogleCloudAiplatformV1beta1ComputeTokensRequest",
       "properties": {
+        "contents": {
+          "description": "Required. Input content.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "type": "array"
+        },
         "instances": {
           "description": "Required. The instances that are the input to token computing API call. Schema is identical to the prediction schema of the text model, even for the non-text models, like chat models, or Codey models.",
           "items": {
             "type": "any"
           },
           "type": "array"
+        },
+        "model": {
+          "description": "Required. The name of the publisher model requested to serve the prediction. Format: projects/{project}/locations/{location}/publishers/*/models/*",
+          "type": "string"
         }
       },
       "type": "object"
@@ -27870,10 +27920,136 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GroundingAttribution": {
+      "description": "Grounding attribution.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingAttribution",
+      "properties": {
+        "confidenceScore": {
+          "description": "Optional. Output only. Confidence score of the attribution. Ranges from 0 to 1. 1 is the most confident.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "retrievedContext": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingAttributionRetrievedContext",
+          "description": "Optional. Attribution from context retrieved by the retrieval tools."
+        },
+        "segment": {
+          "$ref": "GoogleCloudAiplatformV1beta1Segment",
+          "description": "Output only. Segment of the content this attribution belongs to.",
+          "readOnly": true
+        },
+        "web": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingAttributionWeb",
+          "description": "Optional. Attribution from the web."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingAttributionRetrievedContext": {
+      "description": "Attribution from context retrieved by the retrieval tools.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingAttributionRetrievedContext",
+      "properties": {
+        "title": {
+          "description": "Output only. Title of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. URI reference of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingAttributionWeb": {
+      "description": "Attribution from the web.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingAttributionWeb",
+      "properties": {
+        "title": {
+          "description": "Output only. Title of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. URI reference of the attribution.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunk": {
+      "description": "Grounding chunk.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunk",
+      "properties": {
+        "retrievedContext": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext",
+          "description": "Grounding chunk from context retrieved by the retrieval tools."
+        },
+        "web": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkWeb",
+          "description": "Grounding chunk from the web."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext": {
+      "description": "Chunk from context retrieved by the retrieval tools.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext",
+      "properties": {
+        "title": {
+          "description": "Title of the attribution.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI reference of the attribution.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkWeb": {
+      "description": "Chunk from the web.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkWeb",
+      "properties": {
+        "title": {
+          "description": "Title of the chunk.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI reference of the chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GroundingMetadata": {
       "description": "Metadata returned to client when grounding is enabled.",
       "id": "GoogleCloudAiplatformV1beta1GroundingMetadata",
       "properties": {
+        "groundingAttributions": {
+          "description": "Optional. List of grounding attributions.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GroundingAttribution"
+          },
+          "type": "array"
+        },
+        "groundingChunks": {
+          "description": "List of supporting references retrieved from specified grounding source.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GroundingChunk"
+          },
+          "type": "array"
+        },
+        "groundingSupports": {
+          "description": "Optional. List of grounding support.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GroundingSupport"
+          },
+          "type": "array"
+        },
         "retrievalQueries": {
           "description": "Optional. Queries executed by the retrieval tools.",
           "items": {
@@ -27891,6 +28067,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingSupport": {
+      "description": "Grounding support.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingSupport",
+      "properties": {
+        "confidenceScores": {
+          "description": "Confidence score of the support references. Ranges from 0 to 1. 1 is the most confident. This list must have the same size as the grounding_chunk_indices.",
+          "items": {
+            "format": "float",
+            "type": "number"
+          },
+          "type": "array"
+        },
+        "groundingChunkIndices": {
+          "description": "A list of indices (into 'grounding_chunk') specifying the citations associated with the claim. For instance [1,3,4] means that grounding_chunk[1], grounding_chunk[3], grounding_chunk[4] are the retrieved content attributed to the claim.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "segment": {
+          "$ref": "GoogleCloudAiplatformV1beta1Segment",
+          "description": "Segment of the content this support belongs to."
         }
       },
       "type": "object"
@@ -29867,6 +30070,22 @@
             "TPU_V4_POD",
             "TPU_V5_LITEPOD"
           ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "Unspecified accelerator type, which means no accelerator.",
             "Nvidia Tesla K80 GPU.",
@@ -30409,6 +30628,16 @@
         "predictSchemata": {
           "$ref": "GoogleCloudAiplatformV1beta1PredictSchemata",
           "description": "The schemata that describe formats of the Model's predictions and explanations as given and returned via PredictionService.Predict and PredictionService.Explain."
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "supportedDeploymentResourcesTypes": {
           "description": "Output only. When this Model is deployed, its prediction resources are described by the `prediction_resources` field of the Endpoint.deployed_models object. Because not all Models support all resource configuration types, the configuration types this Model supports are listed here. If no configuration types are listed, the Model cannot be deployed to an Endpoint and does not support online predictions (PredictionService.Predict or PredictionService.Explain). Such a Model can serve predictions by using a BatchPredictionJob, if it has at least one entry each in supported_input_storage_formats and supported_output_storage_formats.",
@@ -34586,6 +34815,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1DedicatedResources",
           "description": "A description of resources that are dedicated to the DeployedModel, and that need a higher degree of manual configuration."
         },
+        "deployMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployDeployMetadata",
+          "description": "Optional. Metadata information about this deployment config."
+        },
         "deployTaskName": {
           "description": "Optional. The name of the deploy task (e.g., \"text to image generation\").",
           "type": "string"
@@ -34609,6 +34842,20 @@
         "title": {
           "description": "Required. The title of the regional resource reference.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployDeployMetadata": {
+      "description": "Metadata information about the deployment for managing deployment config.",
+      "id": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployDeployMetadata",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for the deployment. For managing deployment config like verifying, source of deployment config, etc.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -35534,11 +35781,6 @@
         "text": {
           "description": "Optional. The query in text format to get relevant contexts.",
           "type": "string"
-        },
-        "vectorDistanceThreshold": {
-          "description": "Optional. Only return contexts with vector distance smaller than the threshold.",
-          "format": "double",
-          "type": "number"
         }
       },
       "type": "object"
@@ -36042,7 +36284,7 @@
       "properties": {
         "autoscalingSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ResourcePoolAutoscalingSpec",
-          "description": "Optional. Optional spec to configure GKE autoscaling"
+          "description": "Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling"
         },
         "diskSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1DiskSpec",
@@ -36080,7 +36322,7 @@
           "type": "string"
         },
         "minReplicaCount": {
-          "description": "Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error",
+          "description": "Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error. For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a resource_pool to be 0 to match the OSS Ray behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters). As for Persistent Resource, the min_replica_count must be > 0, we added a corresponding validation inside CreatePersistentResourceRequestValidator.java.",
           "format": "int64",
           "type": "string"
         }
@@ -36352,7 +36594,7 @@
         },
         "vertexAiSearchRuntimeConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1RuntimeConfigVertexAISearchRuntimeConfig",
-          "description": "Runtime configuration for Vertext AI Search extension."
+          "description": "Runtime configuration for Vertex AI Search extension."
         }
       },
       "type": "object"
@@ -40973,6 +41215,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Segment": {
+      "description": "Segment of the content.",
+      "id": "GoogleCloudAiplatformV1beta1Segment",
+      "properties": {
+        "endIndex": {
+          "description": "Output only. End index in the given Part, measured in bytes. Offset from the start of the Part, exclusive, starting at zero.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "partIndex": {
+          "description": "Output only. The index of a Part object within its parent Content object.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "Output only. Start index in the given Part, measured in bytes. Offset from the start of the Part, inclusive, starting at zero.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "text": {
+          "description": "Output only. The text corresponding to the segment from the response.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ServiceAccountSpec": {
       "description": "Configuration for the use of custom service account to run the workloads.",
       "id": "GoogleCloudAiplatformV1beta1ServiceAccountSpec",
@@ -42169,7 +42441,14 @@
       "id": "GoogleCloudAiplatformV1beta1SupervisedTuningDataStats",
       "properties": {
         "totalBillableCharacterCount": {
+          "deprecated": true,
           "description": "Output only. Number of billable characters in the tuning dataset.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalBillableTokenCount": {
+          "description": "Output only. Number of billable tokens in the tuning dataset.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -42222,6 +42501,12 @@
       "description": "Dataset distribution for Supervised Tuning.",
       "id": "GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistribution",
       "properties": {
+        "billableSum": {
+          "description": "Output only. Sum of a given population of values that are billable.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "buckets": {
           "description": "Output only. Defines the histogram bucket.",
           "items": {
@@ -42537,6 +42822,16 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "updateTime": {
           "description": "Output only. Timestamp when this Tensorboard was last updated.",
@@ -42881,6 +43176,10 @@
       "description": "Tokens info with a list of tokens and the corresponding list of token ids.",
       "id": "GoogleCloudAiplatformV1beta1TokensInfo",
       "properties": {
+        "role": {
+          "description": "Optional. Optional fields for the role from the corresponding Content.",
+          "type": "string"
+        },
         "tokenIds": {
           "description": "A list of token ids from the input.",
           "items": {

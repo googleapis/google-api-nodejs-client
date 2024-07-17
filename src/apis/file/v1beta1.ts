@@ -145,6 +145,10 @@ export namespace file_v1beta1 {
      */
     downloadBytes?: string | null;
     /**
+     * Output only. The file system protocol of the source Filestore instance that this backup is created from.
+     */
+    fileSystemProtocol?: string | null;
+    /**
      * Immutable. KMS key name used for data encryption.
      */
     kmsKeyName?: string | null;

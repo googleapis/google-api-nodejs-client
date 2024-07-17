@@ -176,7 +176,7 @@
               ]
             },
             "lookupEntry": {
-              "description": "Looks up a single entry.",
+              "description": "Looks up a single Entry by name using the permission on the source system.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:lookupEntry",
               "httpMethod": "GET",
               "id": "dataplex.projects.locations.lookupEntry",
@@ -185,7 +185,7 @@
               ],
               "parameters": {
                 "aspectTypes": {
-                  "description": "Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.",
+                  "description": "Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -203,13 +203,13 @@
                   "type": "string"
                 },
                 "paths": {
-                  "description": "Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.",
+                  "description": "Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
                 },
                 "view": {
-                  "description": "Optional. View for controlling which parts of an entry are to be returned.",
+                  "description": "Optional. View to control which parts of an entry the service should return.",
                   "enum": [
                     "ENTRY_VIEW_UNSPECIFIED",
                     "BASIC",
@@ -221,8 +221,8 @@
                     "Unspecified EntryView. Defaults to FULL.",
                     "Returns entry only, without aspects.",
                     "Returns all required aspects as well as the keys of all non-required aspects.",
-                    "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects would exceed 100, the first 100 will be returned.",
-                    "Returns all aspects. If the number of aspects would exceed 100, the first 100 will be returned."
+                    "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects exceeds 100, the first 100 will be returned.",
+                    "Returns all aspects. If the number of aspects exceeds 100, the first 100 will be returned."
                   ],
                   "location": "query",
                   "type": "string"
@@ -237,7 +237,7 @@
               ]
             },
             "searchEntries": {
-              "description": "Searches for entries matching given query and scope.",
+              "description": "Searches for Entries matching the given query and scope.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:searchEntries",
               "httpMethod": "POST",
               "id": "dataplex.projects.locations.searchEntries",
@@ -253,17 +253,18 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Optional. Ordering of the results. Supported options to be added later.",
+                  "description": "Optional. Specifies the ordering of results.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Optional. Pagination.",
+                  "description": "Optional. Number of results in the search page. If <=0, then defaults to 10. Max limit for page_size is 1000. Throws an invalid argument for page_size > 1000.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
+                  "description": "Optional. Page token received from a previous SearchEntries call. Provide this to retrieve the subsequent page.",
                   "location": "query",
                   "type": "string"
                 },
@@ -273,7 +274,7 @@
                   "type": "string"
                 },
                 "scope": {
-                  "description": "Optional. The scope under which the search should be operating. Should either be organizations/ or projects/. If left unspecified, it will default to the organization where the project provided in name is located.",
+                  "description": "Optional. The scope under which the search should be operating. It must either be organizations/ or projects/. If it is unspecified, it defaults to the organization where the project provided in name is located.",
                   "location": "query",
                   "type": "string"
                 }
@@ -291,7 +292,7 @@
             "aspectTypes": {
               "methods": {
                 "create": {
-                  "description": "Creates an AspectType",
+                  "description": "Creates an AspectType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes",
                   "httpMethod": "POST",
                   "id": "dataplex.projects.locations.aspectTypes.create",
@@ -305,14 +306,14 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the AspectType, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the AspectType, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "description": "Optional. The service validates the request without performing any mutations. The default is false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -329,7 +330,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a AspectType resource.",
+                  "description": "Deletes an AspectType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes/{aspectTypesId}",
                   "httpMethod": "DELETE",
                   "id": "dataplex.projects.locations.aspectTypes.delete",
@@ -338,7 +339,7 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response",
+                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response.",
                       "location": "query",
                       "type": "string"
                     },
@@ -359,7 +360,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Retrieves a AspectType resource.",
+                  "description": "Gets an AspectType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes/{aspectTypesId}",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.aspectTypes.get",
@@ -424,28 +425,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = \"value1\" labels:key1 name = \"value\" These restrictions can be coinjoined with AND, OR and NOT conjunctions.",
+                      "description": "Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = \"value1\" labels:key1 name = \"value\"These restrictions can be conjoined with AND, OR, and NOT conjunctions.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.",
+                      "description": "Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, at most 10 AspectTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "description": "Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 AspectTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAspectTypes must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListAspectTypes must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the AspectType location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the AspectType location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -461,7 +462,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a AspectType resource.",
+                  "description": "Updates an AspectType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/aspectTypes/{aspectTypesId}",
                   "httpMethod": "PATCH",
                   "id": "dataplex.projects.locations.aspectTypes.patch",
@@ -1819,7 +1820,7 @@
             "entryGroups": {
               "methods": {
                 "create": {
-                  "description": "Creates an EntryGroup",
+                  "description": "Creates an EntryGroup.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups",
                   "httpMethod": "POST",
                   "id": "dataplex.projects.locations.entryGroups.create",
@@ -1840,7 +1841,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "description": "Optional. The service validates the request without performing any mutations. The default is false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1857,7 +1858,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a EntryGroup resource.",
+                  "description": "Deletes an EntryGroup.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
                   "httpMethod": "DELETE",
                   "id": "dataplex.projects.locations.entryGroups.delete",
@@ -1866,7 +1867,7 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response",
+                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1887,7 +1888,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Retrieves a EntryGroup resource.",
+                  "description": "Gets an EntryGroup.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.entryGroups.get",
@@ -1962,18 +1963,18 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, at most 10 EntryGroups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "description": "Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryGroups. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryGroups must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListEntryGroups must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the entryGroup location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the entryGroup location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1989,7 +1990,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a EntryGroup resource.",
+                  "description": "Updates an EntryGroup.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}",
                   "httpMethod": "PATCH",
                   "id": "dataplex.projects.locations.entryGroups.patch",
@@ -2011,7 +2012,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "description": "Optional. The service validates the request, without performing any mutations. The default is false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2097,7 +2098,7 @@
                       ],
                       "parameters": {
                         "entryId": {
-                          "description": "Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use Entry ID format based on Full Resource Names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a Full Resource Name of the resource without the prefix double slashes in the API Service Name part of Full Resource Name. This allows retrieval of entries using their associated resource name.For example if the Full Resource Name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from other providers or systems than Google Cloud.The maximum size of the field is 4000 characters.",
+                          "description": "Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use an Entry ID format based on full resource names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a full resource name of the resource without the prefix double slashes in the API service name part of the full resource name. This allows retrieval of entries using their associated resource name.For example, if the full resource name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from providers or systems other than Google Cloud.The maximum size of the field is 4000 characters.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2146,7 +2147,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets a single entry.",
+                      "description": "Gets an Entry.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.get",
@@ -2155,7 +2156,7 @@
                       ],
                       "parameters": {
                         "aspectTypes": {
-                          "description": "Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.",
+                          "description": "Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.",
                           "location": "query",
                           "repeated": true,
                           "type": "string"
@@ -2168,13 +2169,13 @@
                           "type": "string"
                         },
                         "paths": {
-                          "description": "Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.",
+                          "description": "Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.",
                           "location": "query",
                           "repeated": true,
                           "type": "string"
                         },
                         "view": {
-                          "description": "Optional. View for controlling which parts of an entry are to be returned.",
+                          "description": "Optional. View to control which parts of an entry the service should return.",
                           "enum": [
                             "ENTRY_VIEW_UNSPECIFIED",
                             "BASIC",
@@ -2186,8 +2187,8 @@
                             "Unspecified EntryView. Defaults to FULL.",
                             "Returns entry only, without aspects.",
                             "Returns all required aspects as well as the keys of all non-required aspects.",
-                            "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects would exceed 100, the first 100 will be returned.",
-                            "Returns all aspects. If the number of aspects would exceed 100, the first 100 will be returned."
+                            "Returns aspects matching custom fields in GetEntryRequest. If the number of aspects exceeds 100, the first 100 will be returned.",
+                            "Returns all aspects. If the number of aspects exceeds 100, the first 100 will be returned."
                           ],
                           "location": "query",
                           "type": "string"
@@ -2202,7 +2203,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists entries within an entry group.",
+                      "description": "Lists Entries within an EntryGroup.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.list",
@@ -2211,17 +2212,18 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. A filter on the entries to return. Filters are case-sensitive. The request can be filtered by the following fields: entry_type, entry_source.display_name. The comparison operators are =, !=, <, >, <=, >= (strings are compared according to lexical order) The logical operators AND, OR, NOT can be used in the filter. Wildcard \"*\" can be used, but for entry_type the full project id or number needs to be provided. Example filter expressions: \"entry_source.display_name=AnExampleDisplayName\" \"entry_type=projects/example-project/locations/global/entryTypes/example-entry_type\" \"entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/*\" \"NOT entry_source.display_name=AnotherExampleDisplayName\"",
+                          "description": "Optional. A filter on the entries to return. Filters are case-sensitive. You can filter the request by the following fields: entry_type entry_source.display_nameThe comparison operators are =, !=, <, >, <=, >=. The service compares strings according to lexical order.You can use the logical operators AND, OR, NOT in the filter.You can use Wildcard \"*\", but for entry_type you need to provide the full project id or number.Example filter expressions: \"entry_source.display_name=AnExampleDisplayName\" \"entry_type=projects/example-project/locations/global/entryTypes/example-entry_type\" \"entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/*\" \"NOT entry_source.display_name=AnotherExampleDisplayName\"",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
+                          "description": "Optional. Number of items to return per page. If there are remaining results, the service returns a next_page_token. If unspecified, the service returns at most 10 Entries. The maximum value is 100; values above 100 will be coerced to 100.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. The pagination token returned by a previous request.",
+                          "description": "Optional. Page token received from a previous ListEntries call. Provide this to retrieve the subsequent page.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2251,18 +2253,18 @@
                       ],
                       "parameters": {
                         "allowMissing": {
-                          "description": "Optional. If set to true and the entry does not exist, it will be created.",
+                          "description": "Optional. If set to true and the entry doesn't exist, the service will create it.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "aspectKeys": {
-                          "description": "Optional. The map keys of the Aspects which should be modified. Supports the following syntaxes: * - matches aspect on given type and empty path * @path - matches aspect on given type and specified path * * - matches aspects on given type for all paths * *@path - matches aspects of all types on the given pathExisting aspects matching the syntax will not be removed unless delete_missing_aspects is set to true.If this field is left empty, it will be treated as specifying exactly those Aspects present in the request.",
+                          "description": "Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. * - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.",
                           "location": "query",
                           "repeated": true,
                           "type": "string"
                         },
                         "deleteMissingAspects": {
-                          "description": "Optional. If set to true and the aspect_keys specify aspect ranges, any existing aspects from that range not provided in the request will be deleted.",
+                          "description": "Optional. If set to true and the aspect_keys specify aspect ranges, the service deletes any existing aspects from that range that weren't provided in the request.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -2274,7 +2276,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value \"aspects\".If the update_mask is empty, all modifiable fields present in the request will be updated.",
+                          "description": "Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value \"aspects\".If the update_mask is empty, the service will update all modifiable fields present in the request.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -2298,7 +2300,7 @@
             "entryTypes": {
               "methods": {
                 "create": {
-                  "description": "Creates an EntryType",
+                  "description": "Creates an EntryType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes",
                   "httpMethod": "POST",
                   "id": "dataplex.projects.locations.entryTypes.create",
@@ -2312,14 +2314,14 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the EntryType, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the EntryType, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "description": "Optional. The service validates the request without performing any mutations. The default is false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -2336,7 +2338,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a EntryType resource.",
+                  "description": "Deletes an EntryType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes/{entryTypesId}",
                   "httpMethod": "DELETE",
                   "id": "dataplex.projects.locations.entryTypes.delete",
@@ -2345,7 +2347,7 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response",
+                      "description": "Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2366,7 +2368,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Retrieves a EntryType resource.",
+                  "description": "Gets an EntryType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes/{entryTypesId}",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.entryTypes.get",
@@ -2431,28 +2433,28 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = \"value1\" labels:key1 name = \"value\" These restrictions can be coinjoined with AND, OR and NOT conjunctions.",
+                      "description": "Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = \"value1\" labels:key1 name = \"value\"These restrictions can be conjoined with AND, OR, and NOT conjunctions.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.",
+                      "description": "Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, at most 10 EntryTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "description": "Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryTypes must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provided to ListEntryTypes must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The resource name of the EntryType location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a GCP region.",
+                      "description": "Required. The resource name of the EntryType location, of the form: projects/{project_number}/locations/{location_id} where location_id refers to a Google Cloud region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2468,7 +2470,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a EntryType resource.",
+                  "description": "Updates an EntryType.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryTypes/{entryTypesId}",
                   "httpMethod": "PATCH",
                   "id": "dataplex.projects.locations.entryTypes.patch",
@@ -2490,7 +2492,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Only validate the request, but do not perform mutations. The default is false.",
+                      "description": "Optional. The service validates the request without performing any mutations. The default is false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -5271,7 +5273,7 @@
       }
     }
   },
-  "revision": "20240611",
+  "revision": "20240624",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5512,7 +5514,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. The content of the aspect, according to its aspect type schema. This will replace content. The maximum size of the field is 120KB (encoded as UTF-8).",
+          "description": "Required. The content of the aspect, according to its aspect type schema. The maximum size of the field is 120KB (encoded as UTF-8).",
           "type": "object"
         },
         "path": {
@@ -5530,7 +5532,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectSource": {
-      "description": "AspectSource contains source system related information for the aspect.",
+      "description": "AspectSource contains information related to the source system of the Aspect.",
       "id": "GoogleCloudDataplexV1AspectSource",
       "properties": {
         "createTime": {
@@ -5547,12 +5549,12 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectType": {
-      "description": "Aspect Type is a template for creating Aspects, and represents the JSON-schema for a given Entry, e.g., BigQuery Table Schema.",
+      "description": "AspectType is a template for creating Aspects, and represents the JSON-schema for a given Entry, for example, BigQuery Table Schema.",
       "id": "GoogleCloudDataplexV1AspectType",
       "properties": {
         "authorization": {
           "$ref": "GoogleCloudDataplexV1AspectTypeAuthorization",
-          "description": "Immutable. Authorization defined for this type."
+          "description": "Immutable. Defines the Authorization for this type."
         },
         "createTime": {
           "description": "Output only. The time when the AspectType was created.",
@@ -5569,7 +5571,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "The service computes this checksum. The client may send it on update and delete requests to ensure it has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
@@ -5588,23 +5590,8 @@
           "readOnly": true,
           "type": "string"
         },
-        "transferStatus": {
-          "description": "Output only. Denotes the transfer status of the Aspect Type. It is unspecified for Aspect Types created from Dataplex API.",
-          "enum": [
-            "TRANSFER_STATUS_UNSPECIFIED",
-            "TRANSFER_STATUS_MIGRATED",
-            "TRANSFER_STATUS_TRANSFERRED"
-          ],
-          "enumDescriptions": [
-            "The default value. It is set for resources that were not subject for migration from Data Catalog service.",
-            "Indicates that a resource was migrated from Data Catalog service but it hasn't been transferred yet. In particular the resource cannot be updated from Dataplex API.",
-            "Indicates that a resource was transferred from Data Catalog service. The resource can only be updated from Dataplex API."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "uid": {
-          "description": "Output only. System generated globally unique ID for the AspectType. This ID will be different if the AspectType is deleted and re-created with the same name.",
+          "description": "Output only. System generated globally unique ID for the AspectType. If you delete and recreate the AspectType with the same name, then this ID will be different.",
           "readOnly": true,
           "type": "string"
         },
@@ -5618,18 +5605,18 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectTypeAuthorization": {
-      "description": "Autorization for an Aspect Type.",
+      "description": "Autorization for an AspectType.",
       "id": "GoogleCloudDataplexV1AspectTypeAuthorization",
       "properties": {
         "alternateUsePermission": {
-          "description": "Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Aspects of Dataplex owned Aspect Types, only settable for Dataplex owned Types.",
+          "description": "Immutable. The IAM permission grantable on the EntryGroup to allow access to instantiate Aspects of Dataplex owned AspectTypes, only settable for Dataplex owned Types.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectTypeMetadataTemplate": {
-      "description": "MetadataTemplate definition for AspectType",
+      "description": "MetadataTemplate definition for an AspectType.",
       "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplate",
       "properties": {
         "annotations": {
@@ -5638,14 +5625,14 @@
         },
         "arrayItems": {
           "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplate",
-          "description": "Optional. array_items needs to be set if the type is array. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload."
+          "description": "Optional. If the type is array, set array_items. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, you only need to set name and type in the nested MetadataTemplate. The recommended value for the name field is item, as this isn't used in the actual payload."
         },
         "constraints": {
           "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints",
           "description": "Optional. Specifies the constraints on this field."
         },
         "enumValues": {
-          "description": "Optional. The list of values for an enum type. Needs to be defined if the type is enum.",
+          "description": "Optional. The list of values for an enum type. You must define it if the type is enum.",
           "items": {
             "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue"
           },
@@ -5658,61 +5645,61 @@
         },
         "mapItems": {
           "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplate",
-          "description": "Optional. map_items needs to be set if the type is map. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload."
+          "description": "Optional. If the type is map, set map_items. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, you only need to set name and type in the nested MetadataTemplate. The recommended value for the name field is item, as this isn't used in the actual payload."
         },
         "name": {
           "description": "Required. The name of the field.",
           "type": "string"
         },
         "recordFields": {
-          "description": "Optional. Field definition, needs to be specified if the type is record. Defines the nested fields.",
+          "description": "Optional. Field definition. You must specify it if the type is record. It defines the nested fields.",
           "items": {
             "$ref": "GoogleCloudDataplexV1AspectTypeMetadataTemplate"
           },
           "type": "array"
         },
         "type": {
-          "description": "Required. The datatype of this field. The following values are supported: Primitive types (string, integer, boolean, double, datetime); datetime must be of the format RFC3339 UTC \"Zulu\" (Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\"). Complex types (enum, array, map, record).",
+          "description": "Required. The datatype of this field. The following values are supported:Primitive types: string integer boolean double datetime. Must be of the format RFC3339 UTC \"Zulu\" (Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\").Complex types: enum array map record",
           "type": "string"
         },
         "typeId": {
-          "description": "Optional. Id can be used if this definition of the field needs to be reused later. Id needs to be unique across the entire template. Id can only be specified if the field type is record.",
+          "description": "Optional. You can use type id if this definition of the field needs to be reused later. The type id must be unique across the entire template. You can only specify it if the field type is record.",
           "type": "string"
         },
         "typeRef": {
-          "description": "Optional. A reference to another field definition (instead of an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with type as record can refer to other fields.",
+          "description": "Optional. A reference to another field definition (not an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with record type can refer to other fields.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations": {
-      "description": "Definition of the annotations of a field",
+      "description": "Definition of the annotations of a field.",
       "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations",
       "properties": {
         "deprecated": {
-          "description": "Optional. Marks a field as deprecated, a deprecation message can be included.",
+          "description": "Optional. Marks a field as deprecated. You can include a deprecation message.",
           "type": "string"
         },
         "description": {
-          "description": "Optional. Specify a description for a field",
+          "description": "Optional. Description for a field.",
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. Specify a displayname for a field.",
+          "description": "Optional. Display name for a field.",
           "type": "string"
         },
         "displayOrder": {
-          "description": "Optional. Specify a display order for a field. Display order can be used to reorder where a field is rendered",
+          "description": "Optional. Display order for a field. You can use this to reorder where a field is rendered.",
           "format": "int32",
           "type": "integer"
         },
         "stringType": {
-          "description": "Optional. String Type annotations can be used to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified url link. resource: A service qualified resource reference.",
+          "description": "Optional. You can use String Type annotations to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified URL link. resource: A service qualified resource reference.",
           "type": "string"
         },
         "stringValues": {
-          "description": "Optional. Suggested hints for string fields. These can be used to suggest values to users, through an UI for example.",
+          "description": "Optional. Suggested hints for string fields. You can use them to suggest values to users through console.",
           "items": {
             "type": "string"
           },
@@ -5722,31 +5709,31 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints": {
-      "description": "Definition of the constraints of a field",
+      "description": "Definition of the constraints of a field.",
       "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints",
       "properties": {
         "required": {
-          "description": "Optional. Marks this as an optional/required field.",
+          "description": "Optional. Marks this field as optional or required.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue": {
-      "description": "Definition of Enumvalue (to be used by enum fields)",
+      "description": "Definition of Enumvalue, to be used for enum fields.",
       "id": "GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue",
       "properties": {
         "deprecated": {
-          "description": "Optional. Optional deprecation message to be set if an enum value needs to be deprecated.",
+          "description": "Optional. You can set this message if you need to deprecate an enum value.",
           "type": "string"
         },
         "index": {
-          "description": "Required. Index for the enum. Cannot be modified.",
+          "description": "Required. Index for the enum value. It can't be modified.",
           "format": "int32",
           "type": "integer"
         },
         "name": {
-          "description": "Required. Name of the enumvalue. This is the actual value that the aspect will contain.",
+          "description": "Required. Name of the enumvalue. This is the actual value that the aspect can contain.",
           "type": "string"
         }
       },
@@ -7709,6 +7696,12 @@
       "description": "A DataScanJob represents an instance of DataScan execution.",
       "id": "GoogleCloudDataplexV1DataScanJob",
       "properties": {
+        "createTime": {
+          "description": "Output only. The time when the DataScanJob was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "dataProfileResult": {
           "$ref": "GoogleCloudDataplexV1DataProfileResult",
           "description": "Output only. The result of the data profile scan.",
@@ -8175,7 +8168,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDataplexV1Aspect"
           },
-          "description": "Optional. The Aspects attached to the Entry. The format for the key can be one of the following: 1. {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached directly to the entry) 2. {projectId}.{locationId}.{aspectTypeId}@{path} (if the aspect is attached to an entry's path)",
+          "description": "Optional. The Aspects attached to the Entry. The format for the key can be one of the following: {projectId}.{locationId}.{aspectTypeId} (if the aspect is attached directly to the entry) {projectId}.{locationId}.{aspectTypeId}@{path} (if the aspect is attached to an entry's path)",
           "type": "object"
         },
         "createTime": {
@@ -8186,7 +8179,7 @@
         },
         "entrySource": {
           "$ref": "GoogleCloudDataplexV1EntrySource",
-          "description": "Optional. Source system related information for an entry."
+          "description": "Optional. Information related to the source system for an entry."
         },
         "entryType": {
           "description": "Required. Immutable. The resource name of the EntryType used to create this Entry.",
@@ -8232,7 +8225,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "This checksum is computed by the service, and might be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
@@ -8247,23 +8240,8 @@
           "readOnly": true,
           "type": "string"
         },
-        "transferStatus": {
-          "description": "Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.",
-          "enum": [
-            "TRANSFER_STATUS_UNSPECIFIED",
-            "TRANSFER_STATUS_MIGRATED",
-            "TRANSFER_STATUS_TRANSFERRED"
-          ],
-          "enumDescriptions": [
-            "The default value. It is set for resources that were not subject for migration from Data Catalog service.",
-            "Indicates that a resource was migrated from Data Catalog service but it hasn't been transferred yet. In particular the resource cannot be updated from Dataplex API.",
-            "Indicates that a resource was transferred from Data Catalog service. The resource can only be updated from Dataplex API."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "uid": {
-          "description": "Output only. System generated globally unique ID for the EntryGroup. This ID will be different if the EntryGroup is deleted and re-created with the same name.",
+          "description": "Output only. System generated globally unique ID for the EntryGroup. If you delete and recreate the EntryGroup with the same name, this ID will be different.",
           "readOnly": true,
           "type": "string"
         },
@@ -8277,7 +8255,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1EntrySource": {
-      "description": "EntrySource contains source system related information for the entry.",
+      "description": "EntrySource contains information related to the source system of the Entry.",
       "id": "GoogleCloudDataplexV1EntrySource",
       "properties": {
         "ancestors": {
@@ -8308,7 +8286,7 @@
           "type": "object"
         },
         "location": {
-          "description": "Output only. Location of the resource in the source system. Entry will be searchable by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing source location for data external to GCP.",
+          "description": "Output only. Location of the resource in the source system. You can search the Entry by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing the source location for data external to Google Cloud.",
           "readOnly": true,
           "type": "string"
         },
@@ -8370,7 +8348,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "Optional. This checksum is computed by the service, and might be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
@@ -8401,7 +8379,7 @@
           "type": "string"
         },
         "typeAliases": {
-          "description": "Optional. Indicates the class this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.",
+          "description": "Optional. Indicates the classes this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.",
           "items": {
             "type": "string"
           },
@@ -9090,11 +9068,11 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1ListAspectTypesResponse": {
-      "description": "List AspectTypes response",
+      "description": "List AspectTypes response.",
       "id": "GoogleCloudDataplexV1ListAspectTypesResponse",
       "properties": {
         "aspectTypes": {
-          "description": "ListAspectTypes under the given parent location.",
+          "description": "AspectTypes under the given parent location.",
           "items": {
             "$ref": "GoogleCloudDataplexV1AspectType"
           },
@@ -9105,7 +9083,7 @@
           "type": "string"
         },
         "unreachableLocations": {
-          "description": "Locations that could not be reached.",
+          "description": "Locations that the service couldn't reach.",
           "items": {
             "type": "string"
           },
@@ -9287,28 +9265,29 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1ListEntriesResponse": {
+      "description": "List Entries response.",
       "id": "GoogleCloudDataplexV1ListEntriesResponse",
       "properties": {
         "entries": {
-          "description": "The list of entries.",
+          "description": "The list of entries under the given parent location.",
           "items": {
             "$ref": "GoogleCloudDataplexV1Entry"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Pagination token.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudDataplexV1ListEntryGroupsResponse": {
-      "description": "List ListEntryGroups response.",
+      "description": "List entry groups response.",
       "id": "GoogleCloudDataplexV1ListEntryGroupsResponse",
       "properties": {
         "entryGroups": {
-          "description": "ListEntryGroups under the given parent location.",
+          "description": "Entry groups under the given parent location.",
           "items": {
             "$ref": "GoogleCloudDataplexV1EntryGroup"
           },
@@ -9319,7 +9298,7 @@
           "type": "string"
         },
         "unreachableLocations": {
-          "description": "Locations that could not be reached.",
+          "description": "Locations that the service couldn't reach.",
           "items": {
             "type": "string"
           },
@@ -9329,11 +9308,11 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1ListEntryTypesResponse": {
-      "description": "List EntryTypes response",
+      "description": "List EntryTypes response.",
       "id": "GoogleCloudDataplexV1ListEntryTypesResponse",
       "properties": {
         "entryTypes": {
-          "description": "ListEntryTypes under the given parent location.",
+          "description": "EntryTypes under the given parent location.",
           "items": {
             "$ref": "GoogleCloudDataplexV1EntryType"
           },
@@ -9344,7 +9323,7 @@
           "type": "string"
         },
         "unreachableLocations": {
-          "description": "Locations that could not be reached.",
+          "description": "Locations that the service couldn't reach.",
           "items": {
             "type": "string"
           },
@@ -9840,7 +9819,7 @@
       "id": "GoogleCloudDataplexV1SearchEntriesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "Pagination token.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
         "results": {
@@ -9851,12 +9830,12 @@
           "type": "array"
         },
         "totalSize": {
-          "description": "The estimated total number of matching entries. Not guaranteed to be accurate.",
+          "description": "The estimated total number of matching entries. This number isn't guaranteed to be accurate.",
           "format": "int32",
           "type": "integer"
         },
         "unreachable": {
-          "description": "Unreachable locations. Search results don't include data from those locations.",
+          "description": "Locations that the service couldn't reach. Search results don't include data from these locations.",
           "items": {
             "type": "string"
           },

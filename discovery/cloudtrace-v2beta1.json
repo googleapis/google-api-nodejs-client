@@ -273,7 +273,7 @@
       }
     }
   },
-  "revision": "20220428",
+  "revision": "20220421",
   "rootUrl": "https://cloudtrace.googleapis.com/",
   "schemas": {
     "Empty": {

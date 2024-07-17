@@ -444,6 +444,10 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ExecutionReference {
     /**
+     * Status for the execution completion.
+     */
+    completionStatus?: string | null;
+    /**
      * Creation timestamp of the execution.
      */
     completionTime?: string | null;
@@ -451,6 +455,10 @@ export namespace run_v2 {
      * Creation timestamp of the execution.
      */
     createTime?: string | null;
+    /**
+     * The deletion time of the execution. It is only populated as a response to a Delete request.
+     */
+    deleteTime?: string | null;
     /**
      * Name of the execution.
      */
@@ -521,7 +529,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2GCSVolumeSource {
     /**
-     * Cloud Storage Bucket name. TODO (b/344678062) Fix the error validation once dynamic mounting is public.
+     * Cloud Storage Bucket name.
      */
     bucket?: string | null;
     /**
@@ -2044,23 +2052,6 @@ export namespace run_v2 {
     fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
-   * Represents a storage location in Cloud Storage
-   */
-  export interface Schema$GoogleDevtoolsCloudbuildV1GCSLocation {
-    /**
-     * Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements
-     */
-    bucket?: string | null;
-    /**
-     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
-     */
-    generation?: string | null;
-    /**
-     * Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames
-     */
-    object?: string | null;
-  }
-  /**
    * GitConfig is a configuration for git operations.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1GitConfig {
@@ -2104,13 +2095,9 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1HttpConfig {
     /**
-     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     * SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.
      */
     proxySecretVersionName?: string | null;
-    /**
-     * Optional. Cloud Storage object storing the certificate to use with the HTTP proxy.
-     */
-    proxySslCaInfo?: Schema$GoogleDevtoolsCloudbuildV1GCSLocation;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -3013,6 +3000,101 @@ export namespace run_v2 {
         return createAPIRequest<Schema$GoogleCloudRunV2Metadata>(parameters);
       }
     }
+
+    /**
+     * Export generated customer metadata for a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportProjectMetadata(
+      params: Params$Resource$Projects$Locations$Exportprojectmetadata,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    exportProjectMetadata(
+      params?: Params$Resource$Projects$Locations$Exportprojectmetadata,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2Metadata>;
+    exportProjectMetadata(
+      params: Params$Resource$Projects$Locations$Exportprojectmetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportProjectMetadata(
+      params: Params$Resource$Projects$Locations$Exportprojectmetadata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportProjectMetadata(
+      params: Params$Resource$Projects$Locations$Exportprojectmetadata,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportProjectMetadata(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+    ): void;
+    exportProjectMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Exportprojectmetadata
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Metadata>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2Metadata>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Exportprojectmetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Exportprojectmetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:exportProjectMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2Metadata>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2Metadata>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Exportimage
@@ -3038,6 +3120,13 @@ export namespace run_v2 {
     extends StandardParameters {
     /**
      * Required. The name of the resource of which metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}/services/{service\}` for Service `projects/{project_id_or_number\}/locations/{location\}/services/{service\}/revisions/{revision\}` for Revision `projects/{project_id_or_number\}/locations/{location\}/jobs/{job\}/executions/{execution\}` for Execution
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Exportprojectmetadata
+    extends StandardParameters {
+    /**
+     * Required. The name of the project of which metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}` for Project in a given location.
      */
     name?: string;
   }

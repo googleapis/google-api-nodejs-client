@@ -585,7 +585,7 @@
       }
     }
   },
-  "revision": "20240628",
+  "revision": "20240710",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppdistroV1Release": {
@@ -708,16 +708,16 @@
         "steps": {
           "description": "Required. Steps to be accomplished by the AI",
           "items": {
-            "$ref": "GoogleFirebaseAppdistroV1alphaAiInstructionsStep"
+            "$ref": "GoogleFirebaseAppdistroV1alphaAiStep"
           },
           "type": "array"
         }
       },
       "type": "object"
     },
-    "GoogleFirebaseAppdistroV1alphaAiInstructionsStep": {
+    "GoogleFirebaseAppdistroV1alphaAiStep": {
       "description": "A step to be accomplished by the AI",
-      "id": "GoogleFirebaseAppdistroV1alphaAiInstructionsStep",
+      "id": "GoogleFirebaseAppdistroV1alphaAiStep",
       "properties": {
         "assertion": {
           "description": "An assertion to be checked by the AI",
@@ -726,6 +726,34 @@
         "goal": {
           "description": "A goal to be accomplished by the AI",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaAiStepResult": {
+      "description": "Captures the results of an AiStep",
+      "id": "GoogleFirebaseAppdistroV1alphaAiStepResult",
+      "properties": {
+        "state": {
+          "description": "Output only. The current state of the step",
+          "enum": [
+            "STEP_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Step state unspecified",
+            "The step is in progress",
+            "The step has completed successfully",
+            "The step has failed"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "step": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaAiStep",
+          "description": "Required. The step performed by the AI"
         }
       },
       "type": "object"
@@ -818,6 +846,14 @@
       "description": "The results of running an automated test on a particular device.",
       "id": "GoogleFirebaseAppdistroV1alphaDeviceExecution",
       "properties": {
+        "aiStepResults": {
+          "description": "Output only. Results of the AI steps if passed in",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaAiStepResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "appCrash": {
           "$ref": "GoogleFirebaseAppdistroV1alphaAppCrash",
           "description": "Output only. An app crash, if any occurred during the test.",

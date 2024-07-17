@@ -174,7 +174,7 @@ export namespace sheets_v4 {
     rule?: Schema$ConditionalFormatRule;
   }
   /**
-   * Adds a data source. After the data source is added successfully, an associated DATA_SOURCE sheet is created and an execution is triggered to refresh the sheet to read data from the data source. The request requires an additional `bigquery.readonly` OAuth scope.
+   * Adds a data source. After the data source is added successfully, an associated DATA_SOURCE sheet is created and an execution is triggered to refresh the sheet to read data from the data source. The request requires an additional `bigquery.readonly` OAuth scope if you are adding a BigQuery data source.
    */
   export interface Schema$AddDataSourceRequest {
     /**
@@ -1055,7 +1055,7 @@ export namespace sheets_v4 {
     series?: Schema$ChartData;
   }
   /**
-   * Cancels one or multiple refreshes of data source objects in the spreadsheet by the specified references.
+   * Cancels one or multiple refreshes of data source objects in the spreadsheet by the specified references. The request requires an additional `bigquery.readonly` OAuth scope if you are cancelling a refresh on a BigQuery data source.
    */
   export interface Schema$CancelDataSourceRefreshRequest {
     /**
@@ -3407,7 +3407,7 @@ export namespace sheets_v4 {
     reference?: Schema$DataSourceObjectReference;
   }
   /**
-   * Refreshes one or multiple data source objects in the spreadsheet by the specified references. The request requires an additional `bigquery.readonly` OAuth scope. If there are multiple refresh requests referencing the same data source objects in one batch, only the last refresh request is processed, and all those requests will have the same response accordingly.
+   * Refreshes one or multiple data source objects in the spreadsheet by the specified references. The request requires an additional `bigquery.readonly` OAuth scope if you are refreshing a BigQuery data source. If there are multiple refresh requests referencing the same data source objects in one batch, only the last refresh request is processed, and all those requests will have the same response accordingly.
    */
   export interface Schema$RefreshDataSourceRequest {
     /**
@@ -4590,7 +4590,7 @@ export namespace sheets_v4 {
     oldRule?: Schema$ConditionalFormatRule;
   }
   /**
-   * Updates a data source. After the data source is updated successfully, an execution is triggered to refresh the associated DATA_SOURCE sheet to read data from the updated data source. The request requires an additional `bigquery.readonly` OAuth scope.
+   * Updates a data source. After the data source is updated successfully, an execution is triggered to refresh the associated DATA_SOURCE sheet to read data from the updated data source. The request requires an additional `bigquery.readonly` OAuth scope if you are updating a BigQuery data source.
    */
   export interface Schema$UpdateDataSourceRequest {
     /**

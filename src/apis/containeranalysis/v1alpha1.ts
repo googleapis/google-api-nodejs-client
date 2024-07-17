@@ -1094,23 +1094,6 @@ export namespace containeranalysis_v1alpha1 {
     fileHash?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
-   * Represents a storage location in Cloud Storage
-   */
-  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation {
-    /**
-     * Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements
-     */
-    bucket?: string | null;
-    /**
-     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
-     */
-    generation?: string | null;
-    /**
-     * Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames
-     */
-    object?: string | null;
-  }
-  /**
    * GitConfig is a configuration for git operations.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig {
@@ -1124,13 +1107,9 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig {
     /**
-     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     * SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.
      */
     proxySecretVersionName?: string | null;
-    /**
-     * Optional. Cloud Storage object storing the certificate to use with the HTTP proxy.
-     */
-    proxySslCaInfo?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation;
   }
   /**
    * Location of the source in any accessible Git repository.

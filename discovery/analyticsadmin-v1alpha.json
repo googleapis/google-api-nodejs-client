@@ -1710,6 +1710,59 @@
         },
         "bigQueryLinks": {
           "methods": {
+            "create": {
+              "description": "Creates a BigQueryLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.bigQueryLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/bigQueryLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a BigQueryLink on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.bigQueryLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The BigQueryLink to delete. Example format: properties/1234/bigQueryLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/bigQueryLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
             "get": {
               "description": "Lookup for a single BigQuery Link.",
               "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
@@ -1771,6 +1824,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit",
                 "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a BigQueryLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.bigQueryLinks.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this BigQuery link. Format: 'properties/{property_id}/bigQueryLinks/{bigquery_link_id}' Format: 'properties/1234/bigQueryLinks/abc567'",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/bigQueryLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
               ]
             }
           }
@@ -4646,7 +4733,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240707",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5764,6 +5851,10 @@
         "dailyExportEnabled": {
           "description": "If set true, enables daily data export to the linked Google Cloud project.",
           "type": "boolean"
+        },
+        "datasetLocation": {
+          "description": "Required. Immutable. The geographic location where the created BigQuery dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
+          "type": "string"
         },
         "excludedEvents": {
           "description": "The list of event names that will be excluded from exports.",
@@ -8511,6 +8602,7 @@
               "ATTRIBUTION_SETTINGS",
               "EXPANDED_DATA_SET",
               "CHANNEL_GROUP",
+              "BIGQUERY_LINK",
               "ENHANCED_MEASUREMENT_SETTINGS",
               "DATA_REDACTION_SETTINGS",
               "SKADNETWORK_CONVERSION_VALUE_SCHEMA",
@@ -8538,6 +8630,7 @@
               "AttributionSettings resource",
               "ExpandedDataSet resource",
               "ChannelGroup resource",
+              "BigQuery link resource",
               "EnhancedMeasurementSettings resource",
               "DataRedactionSettings resource",
               "SKAdNetworkConversionValueSchema resource",

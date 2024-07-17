@@ -2175,7 +2175,7 @@
       }
     }
   },
-  "revision": "20240519",
+  "revision": "20240706",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2970,8 +2970,44 @@
           ],
           "type": "string"
         },
+        "otelCollector": {
+          "description": "Deployment state of otel-collector",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
+          ],
+          "type": "string"
+        },
         "reconcilerManager": {
           "description": "Deployment state of reconciler-manager pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
+          ],
+          "type": "string"
+        },
+        "resourceGroupControllerManager": {
+          "description": "Deployment state of resource-group-controller-manager",
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -3123,7 +3159,7 @@
       "id": "ConfigManagementConfigSyncVersion",
       "properties": {
         "admissionWebhook": {
-          "description": "Version of the deployed admission_webhook pod",
+          "description": "Version of the deployed admission-webhook pod",
           "type": "string"
         },
         "gitSync": {
@@ -3138,8 +3174,16 @@
           "description": "Version of the deployed monitor pod",
           "type": "string"
         },
+        "otelCollector": {
+          "description": "Version of the deployed otel-collector pod",
+          "type": "string"
+        },
         "reconcilerManager": {
           "description": "Version of the deployed reconciler-manager pod",
+          "type": "string"
+        },
+        "resourceGroupControllerManager": {
+          "description": "Version of the deployed resource-group-controller-manager pod",
           "type": "string"
         },
         "rootReconciler": {
@@ -6690,6 +6734,20 @@
       "description": "**Service Mesh**: Spec for a single Membership for the servicemesh feature",
       "id": "ServiceMeshMembershipSpec",
       "properties": {
+        "configApi": {
+          "description": "Optional. Specifies the API that will be used for configuring the mesh workloads.",
+          "enum": [
+            "CONFIG_API_UNSPECIFIED",
+            "CONFIG_API_ISTIO",
+            "CONFIG_API_GATEWAY"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Use the Istio API for configuration.",
+            "Use the K8s Gateway API for configuration."
+          ],
+          "type": "string"
+        },
         "controlPlane": {
           "deprecated": true,
           "description": "Deprecated: use `management` instead Enables automatic control plane management.",
@@ -6706,6 +6764,7 @@
           "type": "string"
         },
         "defaultChannel": {
+          "deprecated": true,
           "description": "Determines which release channel to use for default injection and service mesh APIs.",
           "enum": [
             "CHANNEL_UNSPECIFIED",
@@ -6722,7 +6781,7 @@
           "type": "string"
         },
         "management": {
-          "description": "Enables automatic Service Mesh management.",
+          "description": "Optional. Enables automatic Service Mesh management.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",

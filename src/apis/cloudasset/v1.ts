@@ -1384,7 +1384,7 @@ export namespace cloudasset_v1 {
      */
     sourceRestriction?: string | null;
     /**
-     * Sources that this EgressPolicy authorizes access from. If this field is not empty, then `source_restriction` must be set to `SOURCE_RESTRICTION_ENABLED`.
+     * Sources that this EgressPolicy authorizes access from. If this field is not empty, then `source_restriction` must be set to `SOURCE_RESTRICTION_ENABLED`. TODO (b/332744441): annotate this field with custom_org_policy_accessibility when cl/640698580 will be rolled out.
      */
     sources?: Schema$GoogleIdentityAccesscontextmanagerV1EgressSource[];
   }
@@ -1406,7 +1406,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressSource {
     /**
-     * An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.
+     * An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed. TODO (b/332744441): annotate this field with custom_org_policy_accessibility when cl/640698580 will be rolled out.
      */
     accessLevel?: string | null;
   }
@@ -1593,7 +1593,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1VpcNetworkSource {
     /**
-     * Sub-segment ranges of a VPC network.
+     * Sub-segment ranges of a VPC network. TODO (b/332744441): annotate this field with custom_org_policy_accessibility when cl/640698580 will be rolled out.
      */
     vpcSubnetwork?: Schema$GoogleIdentityAccesscontextmanagerV1VpcSubNetwork;
   }

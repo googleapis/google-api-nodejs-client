@@ -832,7 +832,7 @@
       }
     }
   },
-  "revision": "20231121",
+  "revision": "20231107",
   "rootUrl": "https://fitness.googleapis.com/",
   "schemas": {
     "AggregateBucket": {

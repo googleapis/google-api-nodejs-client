@@ -604,6 +604,10 @@ export namespace run_v1 {
    */
   export interface Schema$ExecutionReference {
     /**
+     * Optional. Status for the execution completion.
+     */
+    completionStatus?: string | null;
+    /**
      * Optional. Completion timestamp of the execution.
      */
     completionTimestamp?: string | null;
@@ -611,6 +615,10 @@ export namespace run_v1 {
      * Optional. Creation timestamp of the execution.
      */
     creationTimestamp?: string | null;
+    /**
+     * Optional. The read-only soft deletion timestamp of the execution.
+     */
+    deletionTimestamp?: string | null;
     /**
      * Optional. Name of the execution.
      */
@@ -1184,23 +1192,6 @@ export namespace run_v1 {
     fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
-   * Represents a storage location in Cloud Storage
-   */
-  export interface Schema$GoogleDevtoolsCloudbuildV1GCSLocation {
-    /**
-     * Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements
-     */
-    bucket?: string | null;
-    /**
-     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
-     */
-    generation?: string | null;
-    /**
-     * Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames
-     */
-    object?: string | null;
-  }
-  /**
    * GitConfig is a configuration for git operations.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1GitConfig {
@@ -1244,13 +1235,9 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1HttpConfig {
     /**
-     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     * SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.
      */
     proxySecretVersionName?: string | null;
-    /**
-     * Optional. Cloud Storage object storing the certificate to use with the HTTP proxy.
-     */
-    proxySslCaInfo?: Schema$GoogleDevtoolsCloudbuildV1GCSLocation;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -2356,7 +2343,7 @@ export namespace run_v1 {
      */
     containerConcurrency?: number | null;
     /**
-     * Required. Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided.
+     * Required. Containers holds the list which define the units of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle.
      */
     containers?: Schema$Container[];
     /**
