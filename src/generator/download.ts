@@ -21,7 +21,7 @@ import {request, Headers} from 'gaxios';
 import * as gapi from 'googleapis-common';
 
 export type Schema = {[index: string]: {}};
-export const DISCOVERY_URL = 'https://www.googleapis.com/discovery/v1/apis/';
+export const DISCOVERY_URL = 'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries/index.json';
 
 export interface Change {
   action: 'ADDED' | 'DELETED' | 'CHANGED';
