@@ -109,7 +109,7 @@ export class Generator {
     if (useCache) {
       console.log('Reading from cache...');
     } else {
-      changes = await downloadDiscoveryDocs({
+        changes = await downloadDiscoveryDocs({
         includePrivate: this.options.includePrivate,
         discoveryUrl,
         downloadPath: discoveryPath,
@@ -133,6 +133,8 @@ export class Generator {
           api.discoveryRestUrl,
           'Attempting first generateAPI call...'
         );
+        console.log("DISCOVERY PATH")
+        console.log(discoveryPath)
         try {
           const apiPath = path.join(
             discoveryPath,
