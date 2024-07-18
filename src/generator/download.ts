@@ -86,15 +86,19 @@ export async function downloadDiscoveryDocs(
       const url = `${options.discoveryUrl}/${api.name}.${api.version}.json`;
       const changeSet: ChangeSet = {api, changes: []};
       try {
-        const res = await request<{}>({url});
+        const res = await request({url});
         // The keys in the downloaded JSON come back in an arbitrary order from
         // request to request. Sort them before storing.
-        const newDoc = sortKeys(res.data);
+        // console.log(JSON.parse(res.data as string))
+        const newDoc = sortKeys(JSON.parse(res.data as string));
         let updateFile = true;
 
         try {
           const oldDoc = JSON.parse(await gfs.readFile(apiPath));
+          // console.log(oldDoc)
+          // console.log(newDoc)
           updateFile = shouldUpdate(newDoc, oldDoc);
+          // console.log(updateFile)
           changeSet.changes = getDiffs(oldDoc, newDoc);
         } catch {
           // If the file doesn't exist, that's fine it's just new
