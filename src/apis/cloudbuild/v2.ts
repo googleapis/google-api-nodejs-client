@@ -849,10 +849,6 @@ export namespace cloudbuild_v2 {
      */
     arrayVal?: string[] | null;
     /**
-     * Optional. Value of the parameter if type is object.
-     */
-    objectVal?: {[key: string]: string} | null;
-    /**
      * Value of the parameter if type is string.
      */
     stringVal?: string | null;

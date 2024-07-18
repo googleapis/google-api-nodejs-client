@@ -5822,39 +5822,6 @@
                 }
               }
             },
-            "evaluations": {
-              "resources": {
-                "operations": {
-                  "methods": {
-                    "get": {
-                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/evaluations/{evaluationsId}/operations/{operationsId}",
-                      "httpMethod": "GET",
-                      "id": "discoveryengine.projects.locations.evaluations.operations.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/evaluations/[^/]+/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/{+name}",
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                }
-              }
-            },
             "groundingConfigs": {
               "methods": {
                 "check": {
@@ -5986,39 +5953,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
-                }
-              }
-            },
-            "sampleQuerySets": {
-              "resources": {
-                "operations": {
-                  "methods": {
-                    "get": {
-                      "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/sampleQuerySets/{sampleQuerySetsId}/operations/{operationsId}",
-                      "httpMethod": "GET",
-                      "id": "discoveryengine.projects.locations.sampleQuerySets.operations.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "The name of the operation resource.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/sampleQuerySets/[^/]+/operations/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta/{+name}",
-                      "response": {
-                        "$ref": "GoogleLongrunningOperation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
                 }
               }
             },
@@ -6175,7 +6109,7 @@
       }
     }
   },
-  "revision": "20240704",
+  "revision": "20240621",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6815,7 +6749,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
           "type": "object"
         }
       },
@@ -8086,14 +8020,6 @@
           },
           "type": "array"
         },
-        "structData": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document (code pointer: http://shortn/_objzAfIiHq), or the Chunk in search result (code pointer: http://shortn/_Ipo6KFFGBL).",
-          "type": "object"
-        },
         "title": {
           "description": "Title.",
           "type": "string"
@@ -8449,7 +8375,6 @@
       "id": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel",
       "properties": {
         "createTime": {
-          "deprecated": true,
           "description": "Timestamp the Model was created at.",
           "format": "google-datetime",
           "type": "string"
@@ -8457,14 +8382,6 @@
         "displayName": {
           "description": "The display name of the model.",
           "type": "string"
-        },
-        "metrics": {
-          "additionalProperties": {
-            "format": "double",
-            "type": "number"
-          },
-          "description": "The metrics of the trained model.",
-          "type": "object"
         },
         "modelState": {
           "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
@@ -8474,8 +8391,7 @@
             "TRAINING",
             "TRAINING_COMPLETE",
             "READY_FOR_SERVING",
-            "TRAINING_FAILED",
-            "NO_IMPROVEMENT"
+            "TRAINING_FAILED"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -8483,8 +8399,7 @@
             "The model is currently training.",
             "The model has successfully completed training.",
             "The model is ready for serving.",
-            "The model training failed.",
-            "The model training finished successfully but metrics did not improve."
+            "The model training failed."
           ],
           "type": "string"
         },
@@ -8716,7 +8631,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
           "type": "object"
         }
       },
@@ -9150,38 +9065,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaExportUserEventsMetadata": {
-      "description": "Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.",
-      "id": "GoogleCloudDiscoveryengineV1alphaExportUserEventsMetadata",
-      "properties": {
-        "createTime": {
-          "description": "Operation create time.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Operation last update time. If the operation is done, this is also the finish time.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaExportUserEventsResponse": {
-      "description": "Response of the ExportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.",
-      "id": "GoogleCloudDiscoveryengineV1alphaExportUserEventsResponse",
-      "properties": {
-        "outputResult": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaOutputResult",
-          "description": "Output result indicating where the data were exported to."
-        },
-        "status": {
-          "$ref": "GoogleRpcStatus",
-          "description": "The status of the export operation."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaFieldConfig": {
       "description": "Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.",
       "id": "GoogleCloudDiscoveryengineV1alphaFieldConfig",
@@ -9607,32 +9490,6 @@
             "$ref": "GoogleCloudDiscoveryengineV1alphaCustomTuningModel"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaOutputResult": {
-      "description": "Output result that stores the information about where the exported data is stored.",
-      "id": "GoogleCloudDiscoveryengineV1alphaOutputResult",
-      "properties": {
-        "bigqueryResult": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult",
-          "description": "The BigQuery location where the result is stored."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult": {
-      "description": "A BigQuery output result.",
-      "id": "GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult",
-      "properties": {
-        "datasetId": {
-          "description": "The ID of a BigQuery Dataset.",
-          "type": "string"
-        },
-        "tableId": {
-          "description": "The ID of a BigQuery Table.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -11126,14 +10983,6 @@
           },
           "type": "array"
         },
-        "structData": {
-          "additionalProperties": {
-            "description": "Properties of the object.",
-            "type": "any"
-          },
-          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document (code pointer: http://shortn/_objzAfIiHq), or the Chunk in search result (code pointer: http://shortn/_Ipo6KFFGBL).",
-          "type": "object"
-        },
         "title": {
           "description": "Title.",
           "type": "string"
@@ -12218,7 +12067,6 @@
       "id": "GoogleCloudDiscoveryengineV1betaCustomTuningModel",
       "properties": {
         "createTime": {
-          "deprecated": true,
           "description": "Timestamp the Model was created at.",
           "format": "google-datetime",
           "type": "string"
@@ -12226,14 +12074,6 @@
         "displayName": {
           "description": "The display name of the model.",
           "type": "string"
-        },
-        "metrics": {
-          "additionalProperties": {
-            "format": "double",
-            "type": "number"
-          },
-          "description": "The metrics of the trained model.",
-          "type": "object"
         },
         "modelState": {
           "description": "The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).",
@@ -12243,8 +12083,7 @@
             "TRAINING",
             "TRAINING_COMPLETE",
             "READY_FOR_SERVING",
-            "TRAINING_FAILED",
-            "NO_IMPROVEMENT"
+            "TRAINING_FAILED"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -12252,8 +12091,7 @@
             "The model is currently training.",
             "The model has successfully completed training.",
             "The model is ready for serving.",
-            "The model training failed.",
-            "The model training finished successfully but metrics did not improve."
+            "The model training failed."
           ],
           "type": "string"
         },
@@ -12587,7 +12425,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.",
           "type": "object"
         }
       },
@@ -14279,10 +14117,6 @@
           "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.",
           "type": "string"
         },
-        "naturalLanguageQueryUnderstandingSpec": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-          "description": "If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
-        },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
           "format": "int32",
@@ -14317,7 +14151,7 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joint by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: `relevance_score`: pre-defined keywords, used for measure relevance between query and document. `embedding_field_path`: the document embedding field used with query embedding vector. `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.",
           "type": "string"
         },
         "regionCode": {
@@ -14327,18 +14161,6 @@
         "safeSearch": {
           "description": "Whether to turn on safe search. This is only supported for website search.",
           "type": "boolean"
-        },
-        "searchAsYouTypeSpec": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec",
-          "description": "Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical."
-        },
-        "session": {
-          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
-          "type": "string"
-        },
-        "sessionSpec": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestSessionSpec",
-          "description": "Session specification. Can be used only when `session` is set."
         },
         "spellCorrectionSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestSpellCorrectionSpec",
@@ -14626,7 +14448,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec": {
-      "description": "A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+      "description": "A struct to define data stores to filter on in a search call and configurations for those data stores. A maximum of 1 DataStoreSpec per data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec",
       "properties": {
         "dataStore": {
@@ -14754,34 +14576,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec": {
-      "description": "Specification to enable natural language understanding capabilities for search requests.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-      "properties": {
-        "filterExtractionCondition": {
-          "description": "The condition under which filter extraction should occur. Default to Condition.DISABLED.",
-          "enum": [
-            "CONDITION_UNSPECIFIED",
-            "DISABLED",
-            "ENABLED"
-          ],
-          "enumDescriptions": [
-            "Server behavior defaults to Condition.DISABLED.",
-            "Disables NL filter extraction.",
-            "Enables NL filter extraction."
-          ],
-          "type": "string"
-        },
-        "geoSearchQueryDetectionFieldNames": {
-          "description": "Field names used for location-based filtering, where geolocation filters are detected in natural language search queries. Only valid when the FilterExtractionCondition is set to `ENABLED`. If this field is set, it overrides the field names set in Servingconfig.geo_search_query_detection_field_names.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec": {
       "description": "Specification to determine under which conditions query expansion should occur.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec",
@@ -14803,43 +14597,6 @@
         "pinUnexpandedResults": {
           "description": "Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec": {
-      "description": "Specification for search as you type in search requests.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec",
-      "properties": {
-        "condition": {
-          "description": "The condition under which search as you type should occur. Default to Condition.DISABLED.",
-          "enum": [
-            "CONDITION_UNSPECIFIED",
-            "DISABLED",
-            "ENABLED"
-          ],
-          "enumDescriptions": [
-            "Server behavior defaults to Condition.DISABLED.",
-            "Disables Search As You Type.",
-            "Enables Search As You Type."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchRequestSessionSpec": {
-      "description": "Session specification. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestSessionSpec",
-      "properties": {
-        "queryId": {
-          "description": "If set, the search result gets stored to the \"turn\" specified by this query ID. Example: Let's say the session looks like this: session { name: \".../sessions/xxx\" turns { query { text: \"What is foo?\" query_id: \".../questions/yyy\" } answer: \"Foo is ...\" } turns { query { text: \"How about bar then?\" query_id: \".../questions/zzz\" } } } The user can call /search API with a request like this: session: \".../sessions/xxx\" session_spec { query_id: \".../questions/zzz\" } Then, the API stores the search result, associated with the last turn. The stored search result can be used by a subsequent /answer API call (with the session ID and the query ID specified). Also, it is possible to call /search and /answer in parallel with the same session ID & query ID.",
-          "type": "string"
-        },
-        "searchResultPersistenceCount": {
-          "description": "The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -14901,10 +14658,6 @@
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseGuidedSearchResult",
           "description": "Guided search result."
         },
-        "naturalLanguageQueryUnderstandingInfo": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfo",
-          "description": "Natural language query understanding information for the returned results."
-        },
         "nextPageToken": {
           "description": "A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
@@ -14923,10 +14676,6 @@
             "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSearchResult"
           },
           "type": "array"
-        },
-        "sessionInfo": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSessionInfo",
-          "description": "Session information. Only set if SearchRequest.session is provided. See its description for more details."
         },
         "summary": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseSummary",
@@ -15033,165 +14782,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfo": {
-      "description": "Information describing what natural language understanding was done on the input query.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfo",
-      "properties": {
-        "extractedFilters": {
-          "description": "The filters that were extracted from the input query.",
-          "type": "string"
-        },
-        "rewrittenQuery": {
-          "description": "Rewritten input query minus the extracted filters.",
-          "type": "string"
-        },
-        "structuredExtractedFilter": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter",
-          "description": "The filters that were extracted from the input query represented in a structured form."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter": {
-      "description": "The filters that were extracted from the input query represented in a structured form.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter",
-      "properties": {
-        "expression": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression",
-          "description": "The expression denoting the filter that was extracted from the input query in a structured form. It can be a simple expression denoting a single string, numerical or geolocation constraint or a compound expression which is a combination of multiple expressions connected using logical (OR and AND) operators."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterAndExpression": {
-      "description": "Logical `And` operator.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterAndExpression",
-      "properties": {
-        "expressions": {
-          "description": "The expressions that were ANDed together.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression": {
-      "description": "The expression denoting the filter that was extracted from the input query.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression",
-      "properties": {
-        "andExpr": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterAndExpression",
-          "description": "Logical \"And\" compound operator connecting multiple expressions."
-        },
-        "geolocationConstraint": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterGeolocationConstraint",
-          "description": "Geolocation constraint expression."
-        },
-        "numberConstraint": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterNumberConstraint",
-          "description": "Numerical constraint expression."
-        },
-        "orExpr": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterOrExpression",
-          "description": "Logical \"Or\" compound operator connecting multiple expressions."
-        },
-        "stringConstraint": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterStringConstraint",
-          "description": "String constraint expression."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterGeolocationConstraint": {
-      "description": "Constraint of a geolocation field. Name of the geolocation field as defined in the schema.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterGeolocationConstraint",
-      "properties": {
-        "address": {
-          "description": "The reference address that was inferred from the input query. The proximity of the reference address to the geolocation field will be used to filter the results.",
-          "type": "string"
-        },
-        "fieldName": {
-          "description": "The name of the geolocation field as defined in the schema.",
-          "type": "string"
-        },
-        "radiusInMeters": {
-          "description": "The radius in meters around the address. The record is returned if the location of the geolocation field is within the radius.",
-          "format": "float",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterNumberConstraint": {
-      "description": "Constraint expression of a number field. Example: price < 100.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterNumberConstraint",
-      "properties": {
-        "comparison": {
-          "description": "The comparison operation performed between the field value and the value specified in the constraint.",
-          "enum": [
-            "COMPARISON_UNSPECIFIED",
-            "EQUALS",
-            "LESS_THAN_EQUALS",
-            "LESS_THAN",
-            "GREATER_THAN_EQUALS",
-            "GREATER_THAN"
-          ],
-          "enumDescriptions": [
-            "Undefined comparison operator.",
-            "Denotes equality `=` operator.",
-            "Denotes less than or equal to `<=` operator.",
-            "Denotes less than `<` operator.",
-            "Denotes greater than or equal to `>=` operator.",
-            "Denotes greater than `>` operator."
-          ],
-          "type": "string"
-        },
-        "fieldName": {
-          "description": "Name of the numerical field as defined in the schema.",
-          "type": "string"
-        },
-        "value": {
-          "description": "The value specified in the numerical constraint.",
-          "format": "double",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterOrExpression": {
-      "description": "Logical `Or` operator.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterOrExpression",
-      "properties": {
-        "expressions": {
-          "description": "The expressions that were ORed together.",
-          "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterExpression"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterStringConstraint": {
-      "description": "Constraint expression of a string field.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilterStringConstraint",
-      "properties": {
-        "fieldName": {
-          "description": "Name of the string field as defined in the schema.",
-          "type": "string"
-        },
-        "values": {
-          "description": "Values of the string field. The record will only be returned if the field value matches one of the values specified here.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaSearchResponseQueryExpansionInfo": {
       "description": "Information describing query expansion including whether expansion has occurred.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchResponseQueryExpansionInfo",
@@ -15230,21 +14820,6 @@
           },
           "description": "Google provided available scores.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDiscoveryengineV1betaSearchResponseSessionInfo": {
-      "description": "Information about the session.",
-      "id": "GoogleCloudDiscoveryengineV1betaSearchResponseSessionInfo",
-      "properties": {
-        "name": {
-          "description": "Name of the session. If the auto-session mode is used (when SearchRequest.session ends with \"-\"), this field holds the newly generated session name.",
-          "type": "string"
-        },
-        "queryId": {
-          "description": "Query ID that corresponds to this search API call. One session can have multiple turns, each with a unique query ID. By specifying the session name and this query ID in the Answer API call, the answer generation happens in the context of the search results from this search call.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -15500,7 +15075,7 @@
           "type": "array"
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.",
+          "description": "The ranking expression controls the customized ranking on retrieval documents. To leverage this, document embedding is required. The ranking expression setting in ServingConfig applies to all search requests served by the serving config. However, if SearchRequest.ranking_expression is specified, it overrides the ServingConfig ranking expression. The ranking expression is a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: relevance_score: pre-defined keywords, used for measure relevance between query and document. embedding_field_path: the document embedding field used with query embedding vector. dotProduct: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be 0.5 * relevance_score + 0.3 * dotProduct(doc_embedding).",
           "type": "string"
         },
         "redirectControlIds": {

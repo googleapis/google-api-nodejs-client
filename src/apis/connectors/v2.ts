@@ -755,10 +755,6 @@ export namespace connectors_v2 {
      */
     dataType?: string | null;
     /**
-     * The following field specifies the default value of the Parameter provided by the external system if a value is not provided.
-     */
-    defaultValue?: any | null;
-    /**
      * A brief description of the metadata field.
      */
     description?: string | null;
@@ -770,10 +766,6 @@ export namespace connectors_v2 {
      * Name of the metadata field.
      */
     name?: string | null;
-    /**
-     * Specifies whether a null value is allowed.
-     */
-    nullable?: boolean | null;
   }
   /**
    * Configure the schedule.

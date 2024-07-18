@@ -244,10 +244,6 @@ export namespace sts_v1 {
    */
   export interface Schema$GoogleIdentityStsV1ExchangeTokenResponse {
     /**
-     * The access boundary session key. This key is used along with the access boundary intermediate token to generate Credential Access Boundary tokens at client side. This field is absent when the `requested_token_type` from the request is not `urn:ietf:params:oauth:token-type:access_boundary_intermediate_token`.
-     */
-    access_boundary_session_key?: string | null;
-    /**
      * An OAuth 2.0 security token, issued by Google, in response to the token exchange request. Tokens can vary in size, depending in part on the size of mapped claims, up to a maximum of 12288 bytes (12 KB). Google reserves the right to change the token size and the maximum length at any time.
      */
     access_token?: string | null;

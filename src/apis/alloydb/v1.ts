@@ -420,14 +420,6 @@ export namespace alloydb_v1 {
      */
     state?: string | null;
     /**
-     * Optional. Subscription type of the cluster.
-     */
-    subscriptionType?: string | null;
-    /**
-     * Output only. Metadata for free trial clusters
-     */
-    trialMetadata?: Schema$TrialMetadata;
-    /**
      * Output only. The system-generated UID of the resource. The UID is assigned when the resource is created, and it is retained until it is deleted.
      */
     uid?: string | null;
@@ -1665,23 +1657,6 @@ export namespace alloydb_v1 {
      * The retention period.
      */
     retentionPeriod?: string | null;
-  }
-  /**
-   * Contains information and all metadata related to TRIAL clusters.
-   */
-  export interface Schema$TrialMetadata {
-    /**
-     * End time of the trial cluster.
-     */
-    endTime?: string | null;
-    /**
-     * start time of the trial cluster.
-     */
-    startTime?: string | null;
-    /**
-     * Upgrade time of trial cluster to Standard cluster.
-     */
-    upgradeTime?: string | null;
   }
   /**
    * Message describing User object.

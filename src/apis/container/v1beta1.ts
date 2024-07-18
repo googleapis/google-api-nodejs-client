@@ -253,10 +253,6 @@ export namespace container_v1beta1 {
      */
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
     /**
-     * Optional. Configuration for Ray Operator addon.
-     */
-    rayOperatorConfig?: Schema$RayOperatorConfig;
-    /**
      * Optional. Configuration for the StatefulHA add-on.
      */
     statefulHaConfig?: Schema$StatefulHAConfig;
@@ -3128,41 +3124,6 @@ export namespace container_v1beta1 {
      * Output only. [Output only] The utilization of the range.
      */
     utilization?: number | null;
-  }
-  /**
-   * RayClusterLoggingConfig specifies logging configuration for Ray clusters.
-   */
-  export interface Schema$RayClusterLoggingConfig {
-    /**
-     * Enable log collection for Ray clusters.
-     */
-    enabled?: boolean | null;
-  }
-  /**
-   * RayClusterMonitoringConfig specifies monitoring configuration for Ray clusters.
-   */
-  export interface Schema$RayClusterMonitoringConfig {
-    /**
-     * Enable metrics collection for Ray clusters.
-     */
-    enabled?: boolean | null;
-  }
-  /**
-   * Configuration options for the Ray Operator add-on.
-   */
-  export interface Schema$RayOperatorConfig {
-    /**
-     * Whether the Ray addon is enabled for this cluster.
-     */
-    enabled?: boolean | null;
-    /**
-     * Optional. Logging configuration for Ray clusters.
-     */
-    rayClusterLoggingConfig?: Schema$RayClusterLoggingConfig;
-    /**
-     * Optional. Monitoring configuration for Ray clusters.
-     */
-    rayClusterMonitoringConfig?: Schema$RayClusterMonitoringConfig;
   }
   /**
    * Represents an arbitrary window of time that recurs.

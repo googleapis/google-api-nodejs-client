@@ -1580,10 +1580,6 @@ export namespace contactcenterinsights_v1 {
      * Query text. Article Search uses this to store the input query used to generate the search results.
      */
     query?: string | null;
-    /**
-     * Query source for the answer.
-     */
-    querySource?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -3453,10 +3449,6 @@ export namespace contactcenterinsights_v1 {
      * Query text. Article Search uses this to store the input query used to generate the search results.
      */
     query?: string | null;
-    /**
-     * Query source for the answer.
-     */
-    querySource?: string | null;
   }
   /**
    * The data for a sentiment annotation.

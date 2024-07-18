@@ -319,7 +319,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20240424",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "DataRange": {
@@ -506,9 +506,7 @@
             "GRP",
             "YOUTUBE_PROGRAMMATIC_GUARANTEED",
             "REACH",
-            "UNIQUE_REACH_AUDIENCE",
-            "FULL_PATH",
-            "PATH_ATTRIBUTION"
+            "UNIQUE_REACH_AUDIENCE"
           ],
           "enumDeprecated": [
             false,
@@ -520,9 +518,7 @@
             false,
             false,
             false,
-            false,
-            true,
-            true
+            false
           ],
           "enumDescriptions": [
             "Default value when report type is not specified or is unknown in this version.",
@@ -534,9 +530,7 @@
             "GRP report.",
             "YouTube Programmatic Guaranteed report.",
             "Reach report.",
-            "Unique Reach Audience report.",
-            "Full Path report.",
-            "Path Attribution report."
+            "Unique Reach Audience report."
           ],
           "type": "string"
         }

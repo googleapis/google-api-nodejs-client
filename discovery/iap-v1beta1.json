@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20240119",
+  "revision": "20240126",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "Binding": {

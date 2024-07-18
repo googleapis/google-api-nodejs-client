@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20240627",
+  "revision": "20240612",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1967,25 +1967,6 @@
           ],
           "readOnly": true,
           "type": "string"
-        },
-        "subscriptionType": {
-          "description": "Optional. Subscription type of the cluster.",
-          "enum": [
-            "SUBSCRIPTION_TYPE_UNSPECIFIED",
-            "STANDARD",
-            "TRIAL"
-          ],
-          "enumDescriptions": [
-            "This is an unknown Subscription type (By default, Subscription Type is STANDARD)",
-            "Standard subscription.",
-            "Trial subscription."
-          ],
-          "type": "string"
-        },
-        "trialMetadata": {
-          "$ref": "TrialMetadata",
-          "description": "Output only. Metadata for free trial clusters",
-          "readOnly": true
         },
         "uid": {
           "description": "Output only. The system-generated UID of the resource. The UID is assigned when the resource is created, and it is retained until it is deleted.",
@@ -4591,28 +4572,6 @@
         "retentionPeriod": {
           "description": "The retention period.",
           "format": "google-duration",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TrialMetadata": {
-      "description": "Contains information and all metadata related to TRIAL clusters.",
-      "id": "TrialMetadata",
-      "properties": {
-        "endTime": {
-          "description": "End time of the trial cluster.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "startTime": {
-          "description": "start time of the trial cluster.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "upgradeTime": {
-          "description": "Upgrade time of trial cluster to Standard cluster.",
-          "format": "google-datetime",
           "type": "string"
         }
       },

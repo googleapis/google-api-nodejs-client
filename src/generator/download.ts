@@ -21,7 +21,8 @@ import {request, Headers} from 'gaxios';
 import * as gapi from 'googleapis-common';
 
 export type Schema = {[index: string]: {}};
-export const DISCOVERY_URL = 'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries';
+export const DISCOVERY_URL =
+  'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries';
 
 export interface Change {
   action: 'ADDED' | 'DELETED' | 'CHANGED';
@@ -65,9 +66,11 @@ export async function downloadDiscoveryDocs(
     ? headers['Content-Type']
     : 'application/json';
   console.log(`sending request to ${options.discoveryUrl}`);
-  const res = await request({url: `${options.discoveryUrl}/index.json`, headers});
-  console.log(res.data)
-  const discoveryDoc = JSON.parse(res.data as string) as gapi.Schemas
+  const res = await request({
+    url: `${options.discoveryUrl}/index.json`,
+    headers,
+  });
+  const discoveryDoc = JSON.parse(res.data as string) as gapi.Schemas;
   const apis = discoveryDoc.items;
   const indexPath = path.join(options.downloadPath, 'index.json');
   gfs.writeFile(indexPath, discoveryDoc);
@@ -80,7 +83,7 @@ export async function downloadDiscoveryDocs(
         options.downloadPath,
         api.id.replace(':', '-') + '.json'
       );
-      const url = `${options.discoveryUrl}/${api.id.replace(':', '.')}.json`;
+      const url = api.discoveryRestUrl;
       const changeSet: ChangeSet = {api, changes: []};
       try {
         const res = await request<{}>({url});

@@ -3272,7 +3272,7 @@
       }
     }
   },
-  "revision": "20230928",
+  "revision": "20231004",
   "rootUrl": "https://apigeeregistry.googleapis.com/",
   "schemas": {
     "Api": {

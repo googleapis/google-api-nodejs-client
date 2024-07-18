@@ -2610,7 +2610,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     commitmentPlan?: string | null;
     /**
-     * Optional. License type for premium images (RHEL, RHEL for SAP, SLES, SLES for SAP, Windows Server).
+     * Optional. License type of the OS image.
      */
     licenseType?: string | null;
   }

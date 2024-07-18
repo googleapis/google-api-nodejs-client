@@ -2427,7 +2427,7 @@
       }
     }
   },
-  "revision": "20240708",
+  "revision": "20240625",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2600,7 +2600,7 @@
         },
         "omitQueryParams": {
           "description": "Optional. Omit query params from the redirect URI.",
-          "type": "boolean"
+          "type": "string"
         },
         "scopes": {
           "description": "The scopes for which the user will authorize Google Cloud Connectors on the connector data source.",
@@ -5892,7 +5892,7 @@
           "type": "array"
         },
         "valueSeparator": {
-          "description": "Required. Value separator. Only \",\" can be used for OAuth auth code flow scope field.",
+          "description": "Required. Value separator.",
           "type": "string"
         }
       },
@@ -6536,10 +6536,6 @@
           ],
           "type": "string"
         },
-        "defaultValue": {
-          "description": "The following field specifies the default value of the Parameter provided by the external system if a value is not provided.",
-          "type": "any"
-        },
         "description": {
           "description": "A brief description of the field.",
           "type": "string"
@@ -6551,10 +6547,6 @@
         "jsonSchema": {
           "$ref": "JsonSchema",
           "description": "JsonSchema representation of this action's result"
-        },
-        "nullable": {
-          "description": "Specifies whether a null value is allowed.",
-          "type": "boolean"
         }
       },
       "type": "object"

@@ -366,10 +366,6 @@ export namespace dataform_v1beta1 {
      */
     compilationErrors?: Schema$CompilationError[];
     /**
-     * Output only. The timestamp of when the compilation result was created.
-     */
-    createTime?: string | null;
-    /**
      * Output only. Only set if the repository has a KMS Key.
      */
     dataEncryptionState?: Schema$DataEncryptionState;
@@ -1434,10 +1430,6 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$WorkflowConfig {
     /**
-     * Output only. The timestamp of when the WorkflowConfig was created.
-     */
-    createTime?: string | null;
-    /**
      * Optional. Optional schedule (in cron format) for automatic execution of this workflow config.
      */
     cronSchedule?: string | null;
@@ -1461,10 +1453,6 @@ export namespace dataform_v1beta1 {
      * Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.
      */
     timeZone?: string | null;
-    /**
-     * Output only. The timestamp of when the WorkflowConfig was last updated.
-     */
-    updateTime?: string | null;
   }
   /**
    * Represents a single invocation of a compilation result.

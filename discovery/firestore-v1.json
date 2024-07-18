@@ -1706,7 +1706,7 @@
       }
     }
   },
-  "revision": "20240630",
+  "revision": "20240617",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2499,7 +2499,7 @@
           "type": "string"
         },
         "retention": {
-          "description": "At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days. The maximum supported retention is 14 weeks.",
+          "description": "At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days.",
           "format": "google-duration",
           "type": "string"
         },
@@ -3461,7 +3461,7 @@
       "id": "GoogleFirestoreAdminV1RestoreDatabaseRequest",
       "properties": {
         "backup": {
-          "description": "Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
+          "description": "Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
           "type": "string"
         },
         "databaseId": {
@@ -3469,7 +3469,7 @@
           "type": "string"
         },
         "kmsKeyName": {
-          "description": "Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as the restored database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.",
+          "description": "Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.",
           "type": "string"
         },
         "useBackupEncryption": {

@@ -433,7 +433,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: - `space_details` - `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. - `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with admin access. - `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with admin access. - `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with admin access. - Developer Preview: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space, supported field paths include: `permission_settings.manage_members_and_groups`, `permission_settings.modify_space_details`, `permission_settings.toggle_history`, `permission_settings.use_at_mention_all`, `permission_settings.manage_apps`, `permission_settings.manage_webhooks`, `permission_settings.reply_messages` (Warning: mutually exclusive with all other non-permission settings field paths). `permission_settings` is not supported with admin access.",
+              "description": "Required. The updated field paths, comma separated if there are multiple. Currently supported field paths: - `display_name` (Only supports changing the display name of a space with the `SPACE` type, or when also including the `space_type` mask to change a `GROUP_CHAT` space type to `SPACE`. Trying to update the display name of a `GROUP_CHAT` or a `DIRECT_MESSAGE` space results in an invalid argument error. If you receive the error message `ALREADY_EXISTS` when updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name.) - `space_type` (Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error). `space_type` is not supported with admin access. - `space_details` - `space_history_state` (Supports [turning history on or off for the space](https://support.google.com/chat/answer/7664687) if [the organization allows users to change their history setting](https://support.google.com/a/answer/7664184). Warning: mutually exclusive with all other field paths.) `space_history_state` is not supported with admin access. - `access_settings.audience` (Supports changing the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in space. If no audience is specified in the access setting, the space's access setting is updated to private. Warning: mutually exclusive with all other field paths.) `access_settings.audience` is not supported with admin access. - Developer Preview: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space, supported field paths include: `permission_settings.manage_members_and_groups`, `permission_settings.modify_space_details`, `permission_settings.toggle_history`, `permission_settings.use_at_mention_all`, `permission_settings.manage_apps`, `permission_settings.manage_webhooks`, `permission_settings.reply_messages` (Warning: mutually exclusive with all other non-permission settings field paths). `permission_settings` is not supported with admin access.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -1241,7 +1241,7 @@
       }
     }
   },
-  "revision": "20240709",
+  "revision": "20240625",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -1257,14 +1257,14 @@
           ],
           "enumDescriptions": [
             "Access state is unknown or not supported in this API.",
-            "Only users or Google Groups that have been individually added or invited by other users or Google Workspace administrators can discover and access the space.",
-            "A space manager has granted a target audience access to the space. Users or Google Groups that have been individually added or invited to the space can also discover and access the space. To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience)."
+            "Space is discoverable by added or invited members or groups.",
+            "Space is discoverable by the selected [target audience](https://support.google.com/a/answer/9934697), as well as added or invited members or groups."
           ],
           "readOnly": true,
           "type": "string"
         },
         "audience": {
-          "description": "Optional. The resource name of the [target audience](https://support.google.com/a/answer/9934697) who can discover the space, join the space, and preview the messages in the space. If unset, only users or Google Groups who have been individually invited or added to the space can access it. For details, see [Make a space discoverable to a target audience](https://developers.google.com/workspace/chat/space-target-audience). Format: `audiences/{audience}` To use the default target audience for the Google Workspace organization, set to `audiences/default`.",
+          "description": "Optional. The resource name of the [target audience](https://support.google.com/a/answer/9934697) who can discover the space, join the space, and preview the messages in the space. For details, see [Make a space discoverable to a target audience](https://developers.google.com/workspace/chat/space-target-audience). Format: `audiences/{audience}` To use the default target audience for the Google Workspace organization, set to `audiences/default`.",
           "type": "string"
         }
       },
@@ -1850,7 +1850,7 @@
       "type": "object"
     },
     "DeprecatedEvent": {
-      "description": "A Google Chat app interaction event that represents and contains data about a user's interaction with a Chat app. To configure your Chat app to receive interaction events, see [Receive and respond to user interactions](https://developers.google.com/workspace/chat/receive-respond-interactions). In addition to receiving events from user interactions, Chat apps can receive events about changes to spaces, such as when a new member is added to a space. To learn about space events, see [Work with events from Google Chat](https://developers.google.com/workspace/chat/events-overview).",
+      "description": "A Google Chat app interaction event. To learn about interaction events, see [Receive and respond to interactions with your Google Chat app](https://developers.google.com/workspace/chat/api/guides/message-formats). To learn about event types and for example event payloads, see [Types of Google Chat app interaction events](https://developers.google.com/workspace/chat/events). In addition to receiving events from user interactions, Chat apps can receive events about changes to spaces, such as when a new member is added to a space. To learn about space events, see [Work with events from Google Chat](https://developers.google.com/workspace/chat/events-overview).",
       "id": "DeprecatedEvent",
       "properties": {
         "action": {
@@ -1859,7 +1859,7 @@
         },
         "common": {
           "$ref": "CommonEventObject",
-          "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/workspace/chat/dialogs), like data entered on a card."
+          "description": "Represents informatmessage_visibilityion about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/workspace/chat/dialogs), like data entered on a card."
         },
         "configCompleteRedirectUrl": {
           "description": "The URL the Chat app should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. For more information, see [Connect a Chat app with other services & tools](https://developers.google.com/workspace/chat/connect-web-services-tools).",
@@ -1896,7 +1896,7 @@
         },
         "space": {
           "$ref": "Space",
-          "description": "The space in which the user interacted with the Chat app."
+          "description": "The space in which the interaction event occurred."
         },
         "threadKey": {
           "description": "The Chat app-defined key for the thread related to the interaction event. See [`spaces.messages.thread.threadKey`](/chat/api/reference/rest/v1/spaces.messages#Thread.FIELDS.thread_key) for more information.",
@@ -1907,7 +1907,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The [type](/workspace/chat/api/reference/rest/v1/EventType) of user interaction with the Chat app, such as `MESSAGE` or `ADDED_TO_SPACE`.",
+          "description": "The type of interaction event. For details, see [Types of Google Chat app interaction events](https://developers.google.com/workspace/chat/events).",
           "enum": [
             "UNSPECIFIED",
             "MESSAGE",
@@ -1918,17 +1918,17 @@
           ],
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
-            "A user sends the Chat app a message, or invokes the Chat app in a space, such as any of the following examples: * Any message in a direct message (DM) space with the Chat app. * A message in a multi-person space where a person @mentions the Chat app, or uses one of its slash commands. * If you've configured link previews for your Chat app, a user posts a message that contains a link that matches the configured URL pattern.",
-            "A user adds the Chat app to a space, or a Google Workspace administrator installs the Chat app in direct message spaces for users in their organization. Chat apps typically respond to this interaction event by posting a welcome message in the space. When administrators install Chat apps, the `space.adminInstalled` field is set to `true` and users can't uninstall them. To learn about Chat apps installed by administrators, see Google Workspace Admin Help's documentation, [Install Marketplace apps in your domain](https://support.google.com/a/answer/172482).",
-            "A user removes the Chat app from a space, or a Google Workspace administrator uninstalls the Chat app for a user in their organization. Chat apps can't respond with messages to this event, because they have already been removed. When administrators uninstall Chat apps, the `space.adminInstalled` field is set to `false`. If a user installed the Chat app before the administrator, the Chat app remains installed for the user and the Chat app doesn't receive a `REMOVED_FROM_SPACE` interaction event.",
-            "A user clicks an interactive element of a card or dialog from a Chat app, such as a button. To receive an interaction event, the button must trigger another interaction with the Chat app. For example, a Chat app doesn't receive a `CARD_CLICKED` interaction event if a user clicks a button that opens a link to a website, but receives interaction events in the following examples: * The user clicks a `Send feedback` button on a card, which opens a dialog for the user to input information. * The user clicks a `Submit` button after inputting information into a card or dialog. If a user clicks a button to open, submit, or cancel a dialog, the `CARD_CLICKED` interaction event's `isDialogEvent` field is set to `true` and includes a [`DialogEventType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/DialogEventType).",
+            "A user sends the Chat app a message, or invokes the Chat app in a space.",
+            "A user adds the Chat app to a space, or a Google Workspace administrator installs the Chat app in direct message spaces for users in their organization.",
+            "A user removes the Chat app from a space.",
+            "A user clicks an interactive element of a card or dialog from a Chat app, such as a button. If a user interacts with a dialog, the `CARD_CLICKED` interaction event's `isDialogEvent` field is set to `true` and includes a [`DialogEventType`](https://developers.google.com/workspace/chat/api/reference/rest/v1/DialogEventType).",
             "A user updates a widget in a card message or dialog."
           ],
           "type": "string"
         },
         "user": {
           "$ref": "User",
-          "description": "The user that interacted with the Chat app."
+          "description": "The user that triggered the interaction event."
         }
       },
       "type": "object"
@@ -4098,7 +4098,7 @@
           "type": "string"
         },
         "externalUserAllowed": {
-          "description": "Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. Omit this field when creating spaces in the following conditions: * The authenticated user uses a consumer account (unmanaged user account). By default, a space created by a consumer account permits any Google Chat user. For existing spaces, this field is output only.",
+          "description": "Immutable. Whether this space permits any Google Chat user as a member. Input when creating a space in a Google Workspace organization. Omit this field when creating spaces in the following conditions: * The authenticated user uses a consumer account (unmanaged user account). By default, a space created by a consumer account permits any Google Chat user. * The space is used to [import data to Google Chat] (https://developers.google.com/chat/api/guides/import-data-overview) because import mode spaces must only permit members from the same Google Workspace organization. However, as part of the [Google Workspace Developer Preview Program](https://developers.google.com/workspace/preview), import mode spaces can permit any Google Chat user so this field can then be set for import mode spaces. For existing spaces, this field is output only.",
           "type": "boolean"
         },
         "importMode": {
