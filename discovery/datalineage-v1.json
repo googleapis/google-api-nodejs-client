@@ -798,7 +798,7 @@
       }
     }
   },
-  "revision": "20230901",
+  "revision": "20230908",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {

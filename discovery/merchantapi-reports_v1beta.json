@@ -142,7 +142,7 @@
       }
     }
   },
-  "revision": "20240611",
+  "revision": "20240614",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "BestSellersBrandView": {

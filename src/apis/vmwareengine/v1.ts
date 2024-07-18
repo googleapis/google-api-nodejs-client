@@ -151,56 +151,6 @@ export namespace vmwareengine_v1 {
     logType?: string | null;
   }
   /**
-   * Autoscaling policy describes the behavior of the autoscaling with respect to the resource utilization. The scale-out operation is initiated if the utilization exceeds ANY of the respective thresholds. The scale-in operation is initiated if the utilization is below ALL of the respective thresholds.
-   */
-  export interface Schema$AutoscalingPolicy {
-    /**
-     * Optional. Utilization thresholds pertaining to amount of consumed memory.
-     */
-    consumedMemoryThresholds?: Schema$Thresholds;
-    /**
-     * Optional. Utilization thresholds pertaining to CPU utilization.
-     */
-    cpuThresholds?: Schema$Thresholds;
-    /**
-     * Optional. Utilization thresholds pertaining to amount of granted memory.
-     */
-    grantedMemoryThresholds?: Schema$Thresholds;
-    /**
-     * Required. The canonical identifier of the node type to add or remove. Corresponds to the `NodeType`.
-     */
-    nodeTypeId?: string | null;
-    /**
-     * Required. Number of nodes to add to a cluster during a scale-out operation. Must be divisible by 2 for stretched clusters. During a scale-in operation only one node (or 2 for stretched clusters) are removed in a single iteration.
-     */
-    scaleOutSize?: number | null;
-    /**
-     * Optional. Utilization thresholds pertaining to amount of consumed storage.
-     */
-    storageThresholds?: Schema$Thresholds;
-  }
-  /**
-   * Autoscaling settings define the rules used by VMware Engine to automatically scale-out and scale-in the clusters in a private cloud.
-   */
-  export interface Schema$AutoscalingSettings {
-    /**
-     * Required. The map with autoscaling policies applied to the cluster. The key is the identifier of the policy. It must meet the following requirements: * Only contains 1-63 alphanumeric characters and hyphens * Begins with an alphabetical character * Ends with a non-hyphen character * Not formatted as a UUID * Complies with [RFC 1034](https://datatracker.ietf.org/doc/html/rfc1034) (section 3.5) Currently there map must contain only one element that describes the autoscaling policy for compute nodes.
-     */
-    autoscalingPolicies?: {[key: string]: Schema$AutoscalingPolicy} | null;
-    /**
-     * Optional. The minimum duration between consecutive autoscale operations. It starts once addition or removal of nodes is fully completed. Defaults to 30 minutes if not specified. Cool down period must be in whole minutes (for example, 30, 31, 50, 180 minutes).
-     */
-    coolDownPeriod?: string | null;
-    /**
-     * Optional. Maximum number of nodes of any type in a cluster. If not specified the default limits apply.
-     */
-    maxClusterNodeCount?: number | null;
-    /**
-     * Optional. Minimum number of nodes of any type in a cluster. If not specified the default limits apply.
-     */
-    minClusterNodeCount?: number | null;
-  }
-  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -221,10 +171,6 @@ export namespace vmwareengine_v1 {
    * A cluster in a private cloud.
    */
   export interface Schema$Cluster {
-    /**
-     * Optional. Configuration of the autoscaling applied to this cluster.
-     */
-    autoscalingSettings?: Schema$AutoscalingSettings;
     /**
      * Output only. Creation time of this resource.
      */
@@ -1577,19 +1523,6 @@ export namespace vmwareengine_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
-  }
-  /**
-   * Thresholds define the utilization of resources triggering scale-out and scale-in operations.
-   */
-  export interface Schema$Thresholds {
-    /**
-     * Required. The utilization triggering the scale-in operation in percent.
-     */
-    scaleIn?: number | null;
-    /**
-     * Required. The utilization triggering the scale-out operation in percent.
-     */
-    scaleOut?: number | null;
   }
   /**
    * Request message for VmwareEngine.UndeletePrivateCloud

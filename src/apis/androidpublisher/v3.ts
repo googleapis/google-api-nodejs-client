@@ -1327,7 +1327,7 @@ export namespace androidpublisher_v3 {
      */
     testPurchase?: Schema$ExternalTransactionTestPurchase;
     /**
-     * Optional. The transaction program code, used to help determine service fee for eligible apps participating in partner programs. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field. Note: this field can not be used for external offers transactions.
+     * Optional. The transaction program code, used to help determine service fee for apps partcipating in special partner programs. This field can not be used for external offers transactions. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing external transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field.
      */
     transactionProgramCode?: number | null;
     /**
@@ -4379,6 +4379,102 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * List all app recovery action resources associated with a particular package name and app version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    appRecoveries(
+      params?: Params$Resource$Apprecovery$Apprecoveries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAppRecoveriesResponse>;
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>,
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    appRecoveries(
+      params: Params$Resource$Apprecovery$Apprecoveries,
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    appRecoveries(
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    appRecoveries(
+      paramsOrCallback?:
+        | Params$Resource$Apprecovery$Apprecoveries
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAppRecoveriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Apprecovery$Apprecoveries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apprecovery$Apprecoveries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/appRecoveries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAppRecoveriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAppRecoveriesResponse>(parameters);
+      }
+    }
+
+    /**
      * Cancel an already executing app recovery action. Note that this action changes status of the recovery action to CANCELED.
      *
      * @param params - Parameters for request
@@ -4661,101 +4757,6 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$DeployAppRecoveryResponse>(parameters);
       }
     }
-
-    /**
-     * List all app recovery action resources associated with a particular package name and app version.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Apprecovery$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Apprecovery$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAppRecoveriesResponse>;
-    list(
-      params: Params$Resource$Apprecovery$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Apprecovery$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>,
-      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-    ): void;
-    list(
-      params: Params$Resource$Apprecovery$List,
-      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Apprecovery$List
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListAppRecoveriesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Apprecovery$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Apprecovery$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://androidpublisher.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/appRecoveries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName'],
-        pathParams: ['packageName'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListAppRecoveriesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListAppRecoveriesResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Apprecovery$Addtargeting
@@ -4773,6 +4774,17 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$AddTargetingRequest;
+  }
+  export interface Params$Resource$Apprecovery$Apprecoveries
+    extends StandardParameters {
+    /**
+     * Required. Package name of the app for which list of recovery actions is requested.
+     */
+    packageName?: string;
+    /**
+     * Required. Version code targeted by the list of recovery actions.
+     */
+    versionCode?: string;
   }
   export interface Params$Resource$Apprecovery$Cancel
     extends StandardParameters {
@@ -4817,16 +4829,6 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$DeployAppRecoveryRequest;
-  }
-  export interface Params$Resource$Apprecovery$List extends StandardParameters {
-    /**
-     * Required. Package name of the app for which list of recovery actions is requested.
-     */
-    packageName?: string;
-    /**
-     * Required. Version code targeted by the list of recovery actions.
-     */
-    versionCode?: string;
   }
 
   export class Resource$Edits {

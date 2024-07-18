@@ -813,21 +813,9 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeAggregate {
     /**
-     * HyperLogLogPlusPlusUniqueCount aggregator.
-     */
-    hllppUniqueCount?: Schema$GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount;
-    /**
      * Type of the inputs that are accumulated by this `Aggregate`, which must specify a full encoding. Use `AddInput` mutations to accumulate new inputs.
      */
     inputType?: Schema$Type;
-    /**
-     * Max aggregator.
-     */
-    max?: Schema$GoogleBigtableAdminV2TypeAggregateMax;
-    /**
-     * Min aggregator.
-     */
-    min?: Schema$GoogleBigtableAdminV2TypeAggregateMin;
     /**
      * Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen, and will always specify a full encoding.
      */
@@ -838,34 +826,9 @@ export namespace bigtableadmin_v2 {
     sum?: Schema$GoogleBigtableAdminV2TypeAggregateSum;
   }
   /**
-   * Computes an approximate unique count over the input values. When using raw data as input, be careful to use a consistent encoding. Otherwise the same value encoded differently could count more than once, or two distinct values could count as identical. Input: Any, or omit for Raw State: TBD Special state conversions: `Int64` (the unique count estimate)
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeAggregateHyperLogLogPlusPlusUniqueCount {}
-  /**
-   * Computes the max of the input values. Allowed input: `Int64` State: same as input
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeAggregateMax {}
-  /**
-   * Computes the min of the input values. Allowed input: `Int64` State: same as input
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeAggregateMin {}
-  /**
    * Computes the sum of the input values. Allowed input: `Int64` State: same as input
    */
   export interface Schema$GoogleBigtableAdminV2TypeAggregateSum {}
-  /**
-   * An ordered list of elements of a given type. Values of type `Array` are stored in `Value.array_value`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeArray {
-    /**
-     * The type of the elements in the array. This must not be `Array`.
-     */
-    elementType?: Schema$Type;
-  }
-  /**
-   * bool Values of type `Bool` are stored in `Value.bool_value`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeBool {}
   /**
    * Bytes Values of type `Bytes` are stored in `Value.bytes_value`.
    */
@@ -885,21 +848,9 @@ export namespace bigtableadmin_v2 {
     raw?: Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw;
   }
   /**
-   * Leaves the value "as-is" * Order-preserving? Yes * Self-delimiting? No * Compatibility? N/A
+   * Leaves the value "as-is" * Natural sort? Yes * Self-delimiting? No * Compatibility? N/A
    */
   export interface Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw {}
-  /**
-   * Date Values of type `Date` are stored in `Value.date_value`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeDate {}
-  /**
-   * Float32 Values of type `Float32` are stored in `Value.float_value`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeFloat32 {}
-  /**
-   * Float64 Values of type `Float64` are stored in `Value.float_value`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeFloat64 {}
   /**
    * Int64 Values of type `Int64` are stored in `Value.int_value`.
    */
@@ -919,75 +870,14 @@ export namespace bigtableadmin_v2 {
     bigEndianBytes?: Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes;
   }
   /**
-   * Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Order-preserving? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
+   * Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Natural sort? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`
    */
   export interface Schema$GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes {
     /**
-     * Deprecated: ignored if set.
+     * The underlying `Bytes` type, which may be able to encode further.
      */
     bytesType?: Schema$GoogleBigtableAdminV2TypeBytes;
   }
-  /**
-   * A mapping of keys to values of a given type. Values of type `Map` are stored in a `Value.array_value` where each entry is another `Value.array_value` with two elements (the key and the value, in that order). Normally encoded Map values won't have repeated keys, however, clients are expected to handle the case in which they do. If the same key appears multiple times, the _last_ value takes precedence.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeMap {
-    /**
-     * The type of a map key. Only `Bytes`, `String`, and `Int64` are allowed as key types.
-     */
-    keyType?: Schema$Type;
-    /**
-     * The type of the values in a map.
-     */
-    valueType?: Schema$Type;
-  }
-  /**
-   * String Values of type `String` are stored in `Value.string_value`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeString {
-    /**
-     * The encoding to use when converting to/from lower level types.
-     */
-    encoding?: Schema$GoogleBigtableAdminV2TypeStringEncoding;
-  }
-  /**
-   * Rules used to convert to/from lower level types.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeStringEncoding {
-    /**
-     * Use `Utf8Bytes` encoding.
-     */
-    utf8Bytes?: Schema$GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes;
-  }
-  /**
-   * UTF-8 encoding * Order-preserving? Yes (code point order) * Self-delimiting? No * Compatibility? - BigQuery Federation `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes {}
-  /**
-   * A structured data value, consisting of fields which map to dynamically typed values. Values of type `Struct` are stored in `Value.array_value` where entries are in the same order and number as `field_types`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeStruct {
-    /**
-     * The names and types of the fields in this struct.
-     */
-    fields?: Schema$GoogleBigtableAdminV2TypeStructField[];
-  }
-  /**
-   * A struct field and its type.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeStructField {
-    /**
-     * The field name (optional). Fields without a `field_name` are considered anonymous and cannot be referenced by name.
-     */
-    fieldName?: string | null;
-    /**
-     * The type of values in this field.
-     */
-    type?: Schema$Type;
-  }
-  /**
-   * Timestamp Values of type `Timestamp` are stored in `Value.timestamp_value`.
-   */
-  export interface Schema$GoogleBigtableAdminV2TypeTimestamp {}
   /**
    * A tablet is a defined by a start and end key and is explained in https://cloud.google.com/bigtable/docs/overview#architecture and https://cloud.google.com/bigtable/docs/performance#optimization. A Hot tablet is a tablet that exhibits high average cpu usage during the time interval from start time to end time.
    */
@@ -1595,7 +1485,7 @@ export namespace bigtableadmin_v2 {
     permissions?: string[] | null;
   }
   /**
-   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. Each encoding also defines the following properties: * Order-preserving: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: BYTES values sort in the same order as their raw encodings. - Counterexample: Encoding INT64 as a fixed-width decimal string does *not* preserve sort order when dealing with negative numbers. INT64(1) \> INT64(-1), but STRING("-00001") \> STRING("00001). * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?
+   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. This might involve composing a series of steps into an "encoding chain," for example to convert from INT64 -\> STRING -\> raw bytes. In most cases, a "link" in the encoding chain will be based an on existing GoogleSQL conversion function like `CAST`. Each link in the encoding chain also defines the following properties: * Natural sort: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: BYTES values sort in the same order as their raw encodings. - Counterexample: Encoding INT64 to a fixed-width STRING does *not* preserve sort order when dealing with negative numbers. INT64(1) \> INT64(-1), but STRING("-00001") \> STRING("00001). - The overall encoding chain has this property if *every* link does. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. - The overall encoding chain has this property if *any* link does. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?
    */
   export interface Schema$Type {
     /**
@@ -1603,49 +1493,13 @@ export namespace bigtableadmin_v2 {
      */
     aggregateType?: Schema$GoogleBigtableAdminV2TypeAggregate;
     /**
-     * Array
-     */
-    arrayType?: Schema$GoogleBigtableAdminV2TypeArray;
-    /**
-     * Bool
-     */
-    boolType?: Schema$GoogleBigtableAdminV2TypeBool;
-    /**
      * Bytes
      */
     bytesType?: Schema$GoogleBigtableAdminV2TypeBytes;
     /**
-     * Date
-     */
-    dateType?: Schema$GoogleBigtableAdminV2TypeDate;
-    /**
-     * Float32
-     */
-    float32Type?: Schema$GoogleBigtableAdminV2TypeFloat32;
-    /**
-     * Float64
-     */
-    float64Type?: Schema$GoogleBigtableAdminV2TypeFloat64;
-    /**
      * Int64
      */
     int64Type?: Schema$GoogleBigtableAdminV2TypeInt64;
-    /**
-     * Map
-     */
-    mapType?: Schema$GoogleBigtableAdminV2TypeMap;
-    /**
-     * String
-     */
-    stringType?: Schema$GoogleBigtableAdminV2TypeString;
-    /**
-     * Struct
-     */
-    structType?: Schema$GoogleBigtableAdminV2TypeStruct;
-    /**
-     * Timestamp
-     */
-    timestampType?: Schema$GoogleBigtableAdminV2TypeTimestamp;
   }
   /**
    * Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.
@@ -4886,7 +4740,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Clusters$Backups$Copy
     extends StandardParameters {
     /**
-     * Required. The name of the destination cluster that will contain the backup copy. The cluster must already exist. Values are of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
+     * Required. The name of the destination cluster that will contain the backup copy. The cluster must already exists. Values are of the form: `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
     parent?: string;
 

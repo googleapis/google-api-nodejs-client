@@ -1474,7 +1474,7 @@
       }
     }
   },
-  "revision": "20240701",
+  "revision": "20240624",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -3806,20 +3806,6 @@
         "query": {
           "description": "Query text. Article Search uses this to store the input query used to generate the search results.",
           "type": "string"
-        },
-        "querySource": {
-          "description": "Query source for the answer.",
-          "enum": [
-            "QUERY_SOURCE_UNSPECIFIED",
-            "AGENT_QUERY",
-            "SUGGESTED_QUERY"
-          ],
-          "enumDescriptions": [
-            "Unknown query source.",
-            "The query is from agents.",
-            "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -6050,20 +6036,6 @@
         },
         "query": {
           "description": "Query text. Article Search uses this to store the input query used to generate the search results.",
-          "type": "string"
-        },
-        "querySource": {
-          "description": "Query source for the answer.",
-          "enum": [
-            "QUERY_SOURCE_UNSPECIFIED",
-            "AGENT_QUERY",
-            "SUGGESTED_QUERY"
-          ],
-          "enumDescriptions": [
-            "Unknown query source.",
-            "The query is from agents.",
-            "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
-          ],
           "type": "string"
         }
       },

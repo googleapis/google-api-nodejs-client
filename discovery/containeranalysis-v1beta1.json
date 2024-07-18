@@ -17,9 +17,9 @@
   "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
   "endpoints": [
     {
+      "location": "me-central2",
       "description": "Regional Endpoint",
-      "endpointUrl": "https://containeranalysis.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
+      "endpointUrl": "https://containeranalysis.me-central2.rep.googleapis.com/"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1128,7 +1128,7 @@
       }
     }
   },
-  "revision": "20240704",
+  "revision": "20240625",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2924,6 +2924,26 @@
       },
       "type": "object"
     },
+    "ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation": {
+      "description": "Represents a storage location in Cloud Storage",
+      "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation",
+      "properties": {
+        "bucket": {
+          "description": "Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements",
+          "type": "string"
+        },
+        "generation": {
+          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "format": "int64",
+          "type": "string"
+        },
+        "object": {
+          "description": "Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig": {
       "description": "GitConfig is a configuration for git operations.",
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig",
@@ -2940,8 +2960,12 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig",
       "properties": {
         "proxySecretVersionName": {
-          "description": "SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.",
+          "description": "SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].",
           "type": "string"
+        },
+        "proxySslCaInfo": {
+          "$ref": "ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation",
+          "description": "Optional. Cloud Storage object storing the certificate to use with the HTTP proxy."
         }
       },
       "type": "object"

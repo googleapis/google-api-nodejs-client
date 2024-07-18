@@ -20,34 +20,34 @@
   "documentationLink": "https://cloud.google.com/bigquery/",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3"
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
     },
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9"
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
     },
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
+      "location": "me-central2",
+      "description": "Regional Endpoint"
     },
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.us-east4.rep.googleapis.com/",
-      "location": "us-east4"
+      "location": "us-east4",
+      "description": "Regional Endpoint"
     },
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
+      "location": "us-east7",
+      "description": "Regional Endpoint"
     },
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.us-west1.rep.googleapis.com/",
-      "location": "us-west1"
+      "location": "us-west1",
+      "description": "Regional Endpoint"
     }
   ],
   "fullyEncodeReservedExpansion": true,

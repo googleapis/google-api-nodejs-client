@@ -1069,7 +1069,7 @@
       }
     }
   },
-  "revision": "20240704",
+  "revision": "20240619",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1095,21 +1095,6 @@
         "downloadBytes": {
           "description": "Output only. Amount of bytes that will be downloaded if the backup is restored",
           "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "fileSystemProtocol": {
-          "description": "Output only. The file system protocol of the source Filestore instance that this backup is created from.",
-          "enum": [
-            "FILE_PROTOCOL_UNSPECIFIED",
-            "NFS_V3",
-            "NFS_V4_1"
-          ],
-          "enumDescriptions": [
-            "FILE_PROTOCOL_UNSPECIFIED serves a \"not set\" default value when a FileProtocol is a separate field in a message.",
-            "NFS 3.0.",
-            "NFS 4.1."
-          ],
           "readOnly": true,
           "type": "string"
         },

@@ -127,7 +127,7 @@ export namespace aiplatform_v1 {
   }
 
   /**
-   * Next ID: 8 Generate video response.
+   * Generate video response.
    */
   export interface Schema$CloudAiLargeModelsVisionGenerateVideoResponse {
     /**
@@ -1140,12 +1140,7 @@ export namespace aiplatform_v1 {
   /**
    * Spec for bleu score metric - calculates the precision of n-grams in the prediction as compared to reference - returns a score ranging between 0 to 1.
    */
-  export interface Schema$GoogleCloudAiplatformV1BleuSpec {
-    /**
-     * Optional. Whether to use_effective_order to compute bleu score.
-     */
-    useEffectiveOrder?: boolean | null;
-  }
+  export interface Schema$GoogleCloudAiplatformV1BleuSpec {}
   /**
    * Content blob. It's preferred to send as text directly rather than raw bytes.
    */
@@ -1401,17 +1396,9 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1ComputeTokensRequest {
     /**
-     * Required. Input content.
-     */
-    contents?: Schema$GoogleCloudAiplatformV1Content[];
-    /**
      * Required. The instances that are the input to token computing API call. Schema is identical to the prediction schema of the text model, even for the non-text models, like chat models, or Codey models.
      */
     instances?: any[] | null;
-    /**
-     * Required. The name of the publisher model requested to serve the prediction. Format: projects/{project\}/locations/{location\}/publishers/x/models/x
-     */
-    model?: string | null;
   }
   /**
    * Response message for ComputeTokens RPC call.
@@ -3988,17 +3975,9 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1FeatureOnlineStoreDedicatedServingEndpoint {
     /**
-     * Optional. Private service connect config. The private service connection is available only for Optimized storage type, not for embedding management now. If PrivateServiceConnectConfig.enable_private_service_connect set to true, customers will use private service connection to send request. Otherwise, the connection will set to public endpoint.
-     */
-    privateServiceConnectConfig?: Schema$GoogleCloudAiplatformV1PrivateServiceConnectConfig;
-    /**
      * Output only. This field will be populated with the domain name to use for this FeatureOnlineStore
      */
     publicEndpointDomainName?: string | null;
-    /**
-     * Output only. The name of the service attachment resource. Populated if private service connect is enabled and after FeatureViewSync is created.
-     */
-    serviceAttachment?: string | null;
   }
   /**
    * Optimized storage type
@@ -5025,90 +5004,9 @@ export namespace aiplatform_v1 {
     version?: number | null;
   }
   /**
-   * Grounding attribution.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingAttribution {
-    /**
-     * Optional. Output only. Confidence score of the attribution. Ranges from 0 to 1. 1 is the most confident.
-     */
-    confidenceScore?: number | null;
-    /**
-     * Output only. Segment of the content this attribution belongs to.
-     */
-    segment?: Schema$GoogleCloudAiplatformV1Segment;
-    /**
-     * Optional. Attribution from the web.
-     */
-    web?: Schema$GoogleCloudAiplatformV1GroundingAttributionWeb;
-  }
-  /**
-   * Attribution from the web.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingAttributionWeb {
-    /**
-     * Output only. Title of the attribution.
-     */
-    title?: string | null;
-    /**
-     * Output only. URI reference of the attribution.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Grounding chunk.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingChunk {
-    /**
-     * Grounding chunk from context retrieved by the retrieval tools.
-     */
-    retrievedContext?: Schema$GoogleCloudAiplatformV1GroundingChunkRetrievedContext;
-    /**
-     * Grounding chunk from the web.
-     */
-    web?: Schema$GoogleCloudAiplatformV1GroundingChunkWeb;
-  }
-  /**
-   * Chunk from context retrieved by the retrieval tools.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingChunkRetrievedContext {
-    /**
-     * Title of the attribution.
-     */
-    title?: string | null;
-    /**
-     * URI reference of the attribution.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Chunk from the web.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingChunkWeb {
-    /**
-     * Title of the chunk.
-     */
-    title?: string | null;
-    /**
-     * URI reference of the chunk.
-     */
-    uri?: string | null;
-  }
-  /**
    * Metadata returned to client when grounding is enabled.
    */
   export interface Schema$GoogleCloudAiplatformV1GroundingMetadata {
-    /**
-     * Optional. List of grounding attributions.
-     */
-    groundingAttributions?: Schema$GoogleCloudAiplatformV1GroundingAttribution[];
-    /**
-     * List of supporting references retrieved from specified grounding source.
-     */
-    groundingChunks?: Schema$GoogleCloudAiplatformV1GroundingChunk[];
-    /**
-     * Optional. List of grounding support.
-     */
-    groundingSupports?: Schema$GoogleCloudAiplatformV1GroundingSupport[];
     /**
      * Optional. Google search entry for the following-up web searches.
      */
@@ -5117,23 +5015,6 @@ export namespace aiplatform_v1 {
      * Optional. Web search queries for the following-up web search.
      */
     webSearchQueries?: string[] | null;
-  }
-  /**
-   * Grounding support.
-   */
-  export interface Schema$GoogleCloudAiplatformV1GroundingSupport {
-    /**
-     * Confidence score of the support references. Ranges from 0 to 1. 1 is the most confident. This list must have the same size as the grounding_chunk_indices.
-     */
-    confidenceScores?: number[] | null;
-    /**
-     * A list of indices (into 'grounding_chunk') specifying the citations associated with the claim. For instance [1,3,4] means that grounding_chunk[1], grounding_chunk[3], grounding_chunk[4] are the retrieved content attributed to the claim.
-     */
-    groundingChunkIndices?: number[] | null;
-    /**
-     * Segment of the content this support belongs to.
-     */
-    segment?: Schema$GoogleCloudAiplatformV1Segment;
   }
   /**
    * Represents a HyperparameterTuningJob. A HyperparameterTuningJob has a Study specification and multiple CustomJobs with identical CustomJob specification.
@@ -6773,14 +6654,6 @@ export namespace aiplatform_v1 {
      * The schemata that describe formats of the Model's predictions and explanations as given and returned via PredictionService.Predict and PredictionService.Explain.
      */
     predictSchemata?: Schema$GoogleCloudAiplatformV1PredictSchemata;
-    /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. When this Model is deployed, its prediction resources are described by the `prediction_resources` field of the Endpoint.deployed_models object. Because not all Models support all resource configuration types, the configuration types this Model supports are listed here. If no configuration types are listed, the Model cannot be deployed to an Endpoint and does not support online predictions (PredictionService.Predict or PredictionService.Explain). Such a Model can serve predictions by using a BatchPredictionJob, if it has at least one entry each in supported_input_storage_formats and supported_output_storage_formats.
      */
@@ -8989,10 +8862,6 @@ export namespace aiplatform_v1 {
      */
     dedicatedResources?: Schema$GoogleCloudAiplatformV1DedicatedResources;
     /**
-     * Optional. Metadata information about this deployment config.
-     */
-    deployMetadata?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployDeployMetadata;
-    /**
      * Optional. The name of the deploy task (e.g., "text to image generation").
      */
     deployTaskName?: string | null;
@@ -9016,15 +8885,6 @@ export namespace aiplatform_v1 {
      * Required. The title of the regional resource reference.
      */
     title?: string | null;
-  }
-  /**
-   * Metadata information about the deployment for managing deployment config.
-   */
-  export interface Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployDeployMetadata {
-    /**
-     * Optional. Labels for the deployment. For managing deployment config like verifying, source of deployment config, etc.
-     */
-    labels?: {[key: string]: string} | null;
   }
   /**
    * Configurations for PublisherModel GKE deployment
@@ -9785,7 +9645,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1ResourcePool {
     /**
-     * Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling
+     * Optional. Optional spec to configure GKE autoscaling
      */
     autoscalingSpec?: Schema$GoogleCloudAiplatformV1ResourcePoolAutoscalingSpec;
     /**
@@ -9818,7 +9678,7 @@ export namespace aiplatform_v1 {
      */
     maxReplicaCount?: string | null;
     /**
-     * Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error. For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a resource_pool to be 0 to match the OSS Ray behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters). As for Persistent Resource, the min_replica_count must be \> 0, we added a corresponding validation inside CreatePersistentResourceRequestValidator.java.
+     * Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error
      */
     minReplicaCount?: string | null;
   }
@@ -13086,27 +12946,6 @@ export namespace aiplatform_v1 {
     nearestNeighbors?: Schema$GoogleCloudAiplatformV1NearestNeighbors;
   }
   /**
-   * Segment of the content.
-   */
-  export interface Schema$GoogleCloudAiplatformV1Segment {
-    /**
-     * Output only. End index in the given Part, measured in bytes. Offset from the start of the Part, exclusive, starting at zero.
-     */
-    endIndex?: number | null;
-    /**
-     * Output only. The index of a Part object within its parent Content object.
-     */
-    partIndex?: number | null;
-    /**
-     * Output only. Start index in the given Part, measured in bytes. Offset from the start of the Part, inclusive, starting at zero.
-     */
-    startIndex?: number | null;
-    /**
-     * Output only. The text corresponding to the segment from the response.
-     */
-    text?: string | null;
-  }
-  /**
    * Configuration for the use of custom service account to run the workloads.
    */
   export interface Schema$GoogleCloudAiplatformV1ServiceAccountSpec {
@@ -13894,10 +13733,6 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistribution {
     /**
-     * Output only. Sum of a given population of values that are billable.
-     */
-    billableSum?: string | null;
-    /**
      * Output only. Defines the histogram bucket.
      */
     buckets?: Schema$GoogleCloudAiplatformV1SupervisedTuningDatasetDistributionDatasetBucket[];
@@ -13955,10 +13790,6 @@ export namespace aiplatform_v1 {
      * Output only. Number of billable characters in the tuning dataset.
      */
     totalBillableCharacterCount?: string | null;
-    /**
-     * Output only. Number of billable tokens in the tuning dataset.
-     */
-    totalBillableTokenCount?: string | null;
     /**
      * Output only. Number of tuning characters in the tuning dataset.
      */
@@ -14123,14 +13954,6 @@ export namespace aiplatform_v1 {
      * Output only. The number of Runs stored in this Tensorboard.
      */
     runCount?: number | null;
-    /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzi?: boolean | null;
-    /**
-     * Output only. Reserved for future use.
-     */
-    satisfiesPzs?: boolean | null;
     /**
      * Output only. Timestamp when this Tensorboard was last updated.
      */
@@ -14388,10 +14211,6 @@ export namespace aiplatform_v1 {
    * Tokens info with a list of tokens and the corresponding list of token ids.
    */
   export interface Schema$GoogleCloudAiplatformV1TokensInfo {
-    /**
-     * Optional. Optional fields for the role from the corresponding Content.
-     */
-    role?: string | null;
     /**
      * A list of token ids from the input.
      */
@@ -23939,99 +23758,6 @@ export namespace aiplatform_v1 {
     }
 
     /**
-     * Update a DeploymentResourcePool.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    patch(
-      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Deploymentresourcepools$Patch
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Deploymentresourcepools$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Deploymentresourcepools$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * List DeployedModels that have been deployed on this DeploymentResourcePool.
      *
      * @param params - Parameters for request
@@ -24169,22 +23895,6 @@ export namespace aiplatform_v1 {
      * Required. The parent Location which owns this collection of DeploymentResourcePools. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Deploymentresourcepools$Patch
-    extends StandardParameters {
-    /**
-     * Immutable. The resource name of the DeploymentResourcePool. Format: `projects/{project\}/locations/{location\}/deploymentResourcePools/{deployment_resource_pool\}`
-     */
-    name?: string;
-    /**
-     * Required. The list of fields to update.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudAiplatformV1DeploymentResourcePool;
   }
   export interface Params$Resource$Projects$Locations$Deploymentresourcepools$Querydeployedmodels
     extends StandardParameters {
@@ -27868,7 +27578,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `big_query` * `big_query.entity_id_columns`
+     * Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`
      */
     updateMask?: string;
 
@@ -28433,7 +28143,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
+     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      */
     updateMask?: string;
 
@@ -29843,7 +29553,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `bigtable` * `bigtable.auto_scaling` * `bigtable.enable_multi_region_replica`
+     * Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `bigtable` * `labels` * `sync_config`
      */
     updateMask?: string;
 
@@ -30715,7 +30425,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `service_agent_type` * `big_query_source` * `big_query_source.uri` * `big_query_source.entity_id_columns` * `feature_registry_source` * `feature_registry_source.feature_groups` * `sync_config` * `sync_config.cron`
+     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `serviceAgentType`
      */
     updateMask?: string;
 
@@ -35138,7 +34848,7 @@ export namespace aiplatform_v1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
+     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)
      */
     updateMask?: string;
 

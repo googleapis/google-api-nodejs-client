@@ -20,19 +20,19 @@
   "documentationLink": "https://cloud.google.com/pubsub/docs",
   "endpoints": [
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
-      "location": "me-central2"
+      "location": "me-central2",
+      "description": "Regional Endpoint"
     },
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3"
+      "location": "europe-west3",
+      "description": "Regional Endpoint"
     },
     {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9"
+      "location": "europe-west9",
+      "description": "Regional Endpoint"
     }
   ],
   "icons": {
@@ -1583,7 +1583,7 @@
       }
     }
   },
-  "revision": "20240702",
+  "revision": "20240618",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1780,11 +1780,6 @@
         "maxDuration": {
           "description": "Optional. The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes. May not exceed the subscription's acknowledgement deadline.",
           "format": "google-duration",
-          "type": "string"
-        },
-        "maxMessages": {
-          "description": "Optional. The maximum number of messages that can be written to a Cloud Storage file before a new file is created. Min 1000 messages.",
-          "format": "int64",
           "type": "string"
         },
         "serviceAccountEmail": {

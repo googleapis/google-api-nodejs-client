@@ -362,7 +362,7 @@
       }
     }
   },
-  "revision": "20240611",
+  "revision": "20240620",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {

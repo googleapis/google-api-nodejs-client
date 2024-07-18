@@ -532,10 +532,6 @@ export namespace discoveryengine_v1 {
      */
     snippetInfo?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerStepActionObservationSearchResultSnippetInfo[];
     /**
-     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document (code pointer: http://shortn/_objzAfIiHq), or the Chunk in search result (code pointer: http://shortn/_Ipo6KFFGBL).
-     */
-    structData?: {[key: string]: any} | null;
-    /**
      * Title.
      */
     title?: string | null;
@@ -802,10 +798,6 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * The metrics of the trained model.
-     */
-    metrics?: {[key: string]: number} | null;
-    /**
      * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
      */
     modelState?: string | null;
@@ -961,7 +953,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -1254,32 +1246,6 @@ export namespace discoveryengine_v1 {
     documentCount?: string | null;
   }
   /**
-   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportUserEventsMetadata {
-    /**
-     * Operation create time.
-     */
-    createTime?: string | null;
-    /**
-     * Operation last update time. If the operation is done, this is also the finish time.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Response of the ExportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportUserEventsResponse {
-    /**
-     * Output result indicating where the data were exported to.
-     */
-    outputResult?: Schema$GoogleCloudDiscoveryengineV1alphaOutputResult;
-    /**
-     * The status of the export operation.
-     */
-    status?: Schema$GoogleRpcStatus;
-  }
-  /**
    * Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaFieldConfig {
@@ -1532,28 +1498,6 @@ export namespace discoveryengine_v1 {
      * List of custom tuning models.
      */
     models?: Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel[];
-  }
-  /**
-   * Output result that stores the information about where the exported data is stored.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResult {
-    /**
-     * The BigQuery location where the result is stored.
-     */
-    bigqueryResult?: Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult;
-  }
-  /**
-   * A BigQuery output result.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult {
-    /**
-     * The ID of a BigQuery Dataset.
-     */
-    datasetId?: string | null;
-    /**
-     * The ID of a BigQuery Table.
-     */
-    tableId?: string | null;
   }
   /**
    * Metadata and configurations for a Google Cloud project in the service.
@@ -2231,10 +2175,6 @@ export namespace discoveryengine_v1 {
      * Disable query rephraser.
      */
     disable?: boolean | null;
-    /**
-     * Max rephrase steps. The max number is 5 steps. If not set or set to < 1, it will be set to 1 by default.
-     */
-    maxRephraseSteps?: number | null;
   }
   /**
    * Related questions specification.
@@ -2592,10 +2532,6 @@ export namespace discoveryengine_v1 {
      */
     snippetInfo?: Schema$GoogleCloudDiscoveryengineV1AnswerStepActionObservationSearchResultSnippetInfo[];
     /**
-     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document (code pointer: http://shortn/_objzAfIiHq), or the Chunk in search result (code pointer: http://shortn/_Ipo6KFFGBL).
-     */
-    structData?: {[key: string]: any} | null;
-    /**
      * Title.
      */
     title?: string | null;
@@ -2897,10 +2833,6 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * The metrics of the trained model.
-     */
-    metrics?: {[key: string]: number} | null;
-    /**
      * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
      */
     modelState?: string | null;
@@ -3048,7 +2980,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -4615,7 +4547,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -5845,18 +5777,6 @@ export namespace discoveryengine_v1 {
      */
     safeSearch?: boolean | null;
     /**
-     * Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical.
-     */
-    searchAsYouTypeSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec;
-    /**
-     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
-     */
-    session?: string | null;
-    /**
-     * Session specification. Can be used only when `session` is set.
-     */
-    sessionSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSessionSpec;
-    /**
      * The spell correction specification that specifies the mode under which spell correction takes effect.
      */
     spellCorrectionSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec;
@@ -6031,7 +5951,7 @@ export namespace discoveryengine_v1 {
     version?: string | null;
   }
   /**
-   * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
+   * A struct to define data stores to filter on in a search call and configurations for those data stores. A maximum of 1 DataStoreSpec per data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec {
     /**
@@ -6116,28 +6036,6 @@ export namespace discoveryengine_v1 {
     pinUnexpandedResults?: boolean | null;
   }
   /**
-   * Specification for search as you type in search requests.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec {
-    /**
-     * The condition under which search as you type should occur. Default to Condition.DISABLED.
-     */
-    condition?: string | null;
-  }
-  /**
-   * Session specification. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestSessionSpec {
-    /**
-     * If set, the search result gets stored to the "turn" specified by this query ID. Example: Let's say the session looks like this: session { name: ".../sessions/xxx" turns { query { text: "What is foo?" query_id: ".../questions/yyy" \} answer: "Foo is ..." \} turns { query { text: "How about bar then?" query_id: ".../questions/zzz" \} \} \} The user can call /search API with a request like this: session: ".../sessions/xxx" session_spec { query_id: ".../questions/zzz" \} Then, the API stores the search result, associated with the last turn. The stored search result can be used by a subsequent /answer API call (with the session ID and the query ID specified). Also, it is possible to call /search and /answer in parallel with the same session ID & query ID.
-     */
-    queryId?: string | null;
-    /**
-     * The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.
-     */
-    searchResultPersistenceCount?: number | null;
-  }
-  /**
    * The specification for query spell correction.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec {
@@ -6178,10 +6076,6 @@ export namespace discoveryengine_v1 {
      * A list of matched documents. The order represents the ranking.
      */
     results?: Schema$GoogleCloudDiscoveryengineV1SearchResponseSearchResult[];
-    /**
-     * Session information. Only set if SearchRequest.session is provided. See its description for more details.
-     */
-    sessionInfo?: Schema$GoogleCloudDiscoveryengineV1SearchResponseSessionInfo;
     /**
      * A summary as part of the search results. This field is only returned if SearchRequest.ContentSearchSpec.summary_spec is set.
      */
@@ -6254,19 +6148,6 @@ export namespace discoveryengine_v1 {
      * Document.id of the searched Document.
      */
     id?: string | null;
-  }
-  /**
-   * Information about the session.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1SearchResponseSessionInfo {
-    /**
-     * Name of the session. If the auto-session mode is used (when SearchRequest.session ends with "-"), this field holds the newly generated session name.
-     */
-    name?: string | null;
-    /**
-     * Query ID that corresponds to this search API call. One session can have multiple turns, each with a unique query ID. By specifying the session name and this query ID in the Answer API call, the answer generation happens in the context of the search results from this search call.
-     */
-    queryId?: string | null;
   }
   /**
    * Summary of the top N search results specified by the summary spec.

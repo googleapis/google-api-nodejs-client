@@ -660,7 +660,7 @@
       }
     }
   },
-  "revision": "20240708",
+  "revision": "20240619",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -2269,10 +2269,6 @@
           ],
           "type": "string"
         },
-        "defaultValue": {
-          "description": "The following field specifies the default value of the Parameter provided by the external system if a value is not provided.",
-          "type": "any"
-        },
         "description": {
           "description": "A brief description of the metadata field.",
           "type": "string"
@@ -2284,10 +2280,6 @@
         "name": {
           "description": "Name of the metadata field.",
           "type": "string"
-        },
-        "nullable": {
-          "description": "Specifies whether a null value is allowed.",
-          "type": "boolean"
         }
       },
       "type": "object"

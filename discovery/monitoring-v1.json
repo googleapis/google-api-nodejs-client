@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240707",
+  "revision": "20240623",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1356,9 +1356,7 @@
             "CLOUD_SQL_FAILOVER",
             "CLOUD_SQL_START_STOP",
             "CLOUD_SQL_STORAGE",
-            "UPTIME_CHECK_FAILURE",
-            "CLOUD_ALERTING_ALERT",
-            "SERVICE_HEALTH_INCIDENT"
+            "UPTIME_CHECK_FAILURE"
           ],
           "enumDescriptions": [
             "No event type specified.",
@@ -1380,9 +1378,7 @@
             "Failover of a Cloud SQL instance.",
             "Start/stop of a Cloud SQL instance.",
             "Storage event for a Cloud SQL instance.",
-            "Failure of a Cloud Monitoring uptime check.",
-            "Alerts from Cloud Alerting",
-            "Incidents from Service Health"
+            "Failure of a Cloud Monitoring uptime check."
           ],
           "type": "string"
         },

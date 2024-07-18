@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240709",
+  "revision": "20240618",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3712,20 +3712,6 @@
               "description": "Optional. Whether or not the export should be parallel.",
               "type": "boolean"
             },
-            "postgresExportOptions": {
-              "description": "Options for exporting from a Cloud SQL for PostgreSQL instance.",
-              "properties": {
-                "clean": {
-                  "description": "Optional. Use this option to include DROP SQL statements. These statements are used to delete database objects before running the import operation.",
-                  "type": "boolean"
-                },
-                "ifExists": {
-                  "description": "Optional. Option to include an IF EXISTS SQL statement with each DROP statement produced by clean.",
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
-            },
             "schemaOnly": {
               "description": "Export only schemas.",
               "type": "boolean"
@@ -4207,20 +4193,6 @@
             "parallel": {
               "description": "Optional. Whether or not the import should be parallel.",
               "type": "boolean"
-            },
-            "postgresImportOptions": {
-              "description": "Optional. Options for importing from a Cloud SQL for PostgreSQL instance.",
-              "properties": {
-                "clean": {
-                  "description": "Optional. The --clean flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel.",
-                  "type": "boolean"
-                },
-                "ifExists": {
-                  "description": "Optional. The --if-exists flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel.",
-                  "type": "boolean"
-                }
-              },
-              "type": "object"
             },
             "threads": {
               "description": "Optional. The number of threads to use for parallel import.",

@@ -161,7 +161,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20240625",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "ClickTag": {

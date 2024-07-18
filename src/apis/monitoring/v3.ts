@@ -1584,7 +1584,7 @@ export namespace monitoring_v3 {
      */
     mutationRecords?: Schema$MutationRecord[];
     /**
-     * Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+     * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
     name?: string | null;
     /**
@@ -5685,7 +5685,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Patch
     extends StandardParameters {
     /**
-     * Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+     * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
     name?: string;
     /**

@@ -5587,10 +5587,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Locations$Savedqueries$List
     extends StandardParameters {
     /**
-     * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
-     */
-    filter?: string;
-    /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
     pageSize?: number;
@@ -7626,7 +7622,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Updatesettings
     extends StandardParameters {
     /**
-     * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"
+     * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" For example:"organizations/12345/settings"
      */
     name?: string;
     /**
@@ -11418,10 +11414,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Folders$Locations$Savedqueries$List
     extends StandardParameters {
-    /**
-     * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
-     */
-    filter?: string;
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -15551,7 +15543,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Updatesettings
     extends StandardParameters {
     /**
-     * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"
+     * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" For example:"organizations/12345/settings"
      */
     name?: string;
     /**
@@ -19366,10 +19358,6 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Organizations$Locations$Savedqueries$List
     extends StandardParameters {
-    /**
-     * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
-     */
-    filter?: string;
     /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
@@ -24221,10 +24209,6 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$Savedqueries$List
     extends StandardParameters {
     /**
-     * Optional. Specifies the type ("Logging" or "OpsAnalytics") and the visibility (PRIVATE or SHARED) of the saved queries to list. If provided, the filter must contain either the type function or a visibility token, or both. If both are chosen, they can be placed in any order, but they must be joined by the AND operator or the empty character.The two supported type function calls are: type("Logging") type("OpsAnalytics")The two supported visibility tokens are: visibility = PRIVATE visibility = SHAREDFor example:type("Logging") AND visibility = PRIVATE visibility=SHARED type("OpsAnalytics") type("OpsAnalytics)" visibility = PRIVATE visibility = SHARED
-     */
-    filter?: string;
-    /**
      * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
      */
     pageSize?: number;
@@ -26484,7 +26468,7 @@ export namespace logging_v2 {
   export interface Params$Resource$V2$Updatesettings
     extends StandardParameters {
     /**
-     * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" "folders/[FOLDER_ID]/settings" For example:"organizations/12345/settings"
+     * Required. The resource name for the settings to update. "organizations/[ORGANIZATION_ID]/settings" For example:"organizations/12345/settings"
      */
     name?: string;
     /**

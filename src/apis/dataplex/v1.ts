@@ -287,7 +287,7 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The content of the aspect, according to its aspect type schema. The maximum size of the field is 120KB (encoded as UTF-8).
+     * Required. The content of the aspect, according to its aspect type schema. This will replace content. The maximum size of the field is 120KB (encoded as UTF-8).
      */
     data?: {[key: string]: any} | null;
     /**
@@ -300,7 +300,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * AspectSource contains information related to the source system of the Aspect.
+   * AspectSource contains source system related information for the aspect.
    */
   export interface Schema$GoogleCloudDataplexV1AspectSource {
     /**
@@ -313,11 +313,11 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * AspectType is a template for creating Aspects, and represents the JSON-schema for a given Entry, for example, BigQuery Table Schema.
+   * Aspect Type is a template for creating Aspects, and represents the JSON-schema for a given Entry, e.g., BigQuery Table Schema.
    */
   export interface Schema$GoogleCloudDataplexV1AspectType {
     /**
-     * Immutable. Defines the Authorization for this type.
+     * Immutable. Authorization defined for this type.
      */
     authorization?: Schema$GoogleCloudDataplexV1AspectTypeAuthorization;
     /**
@@ -333,7 +333,7 @@ export namespace dataplex_v1 {
      */
     displayName?: string | null;
     /**
-     * The service computes this checksum. The client may send it on update and delete requests to ensure it has an up-to-date value before proceeding.
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -349,7 +349,11 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Output only. System generated globally unique ID for the AspectType. If you delete and recreate the AspectType with the same name, then this ID will be different.
+     * Output only. Denotes the transfer status of the Aspect Type. It is unspecified for Aspect Types created from Dataplex API.
+     */
+    transferStatus?: string | null;
+    /**
+     * Output only. System generated globally unique ID for the AspectType. This ID will be different if the AspectType is deleted and re-created with the same name.
      */
     uid?: string | null;
     /**
@@ -358,16 +362,16 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Autorization for an AspectType.
+   * Autorization for an Aspect Type.
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeAuthorization {
     /**
-     * Immutable. The IAM permission grantable on the EntryGroup to allow access to instantiate Aspects of Dataplex owned AspectTypes, only settable for Dataplex owned Types.
+     * Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Aspects of Dataplex owned Aspect Types, only settable for Dataplex owned Types.
      */
     alternateUsePermission?: string | null;
   }
   /**
-   * MetadataTemplate definition for an AspectType.
+   * MetadataTemplate definition for AspectType
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate {
     /**
@@ -375,7 +379,7 @@ export namespace dataplex_v1 {
      */
     annotations?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations;
     /**
-     * Optional. If the type is array, set array_items. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, you only need to set name and type in the nested MetadataTemplate. The recommended value for the name field is item, as this isn't used in the actual payload.
+     * Optional. array_items needs to be set if the type is array. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload.
      */
     arrayItems?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate;
     /**
@@ -383,7 +387,7 @@ export namespace dataplex_v1 {
      */
     constraints?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints;
     /**
-     * Optional. The list of values for an enum type. You must define it if the type is enum.
+     * Optional. The list of values for an enum type. Needs to be defined if the type is enum.
      */
     enumValues?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue[];
     /**
@@ -391,7 +395,7 @@ export namespace dataplex_v1 {
      */
     index?: number | null;
     /**
-     * Optional. If the type is map, set map_items. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, you only need to set name and type in the nested MetadataTemplate. The recommended value for the name field is item, as this isn't used in the actual payload.
+     * Optional. map_items needs to be set if the type is map. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload.
      */
     mapItems?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate;
     /**
@@ -399,74 +403,74 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Field definition. You must specify it if the type is record. It defines the nested fields.
+     * Optional. Field definition, needs to be specified if the type is record. Defines the nested fields.
      */
     recordFields?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate[];
     /**
-     * Required. The datatype of this field. The following values are supported:Primitive types: string integer boolean double datetime. Must be of the format RFC3339 UTC "Zulu" (Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").Complex types: enum array map record
+     * Required. The datatype of this field. The following values are supported: Primitive types (string, integer, boolean, double, datetime); datetime must be of the format RFC3339 UTC "Zulu" (Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex types (enum, array, map, record).
      */
     type?: string | null;
     /**
-     * Optional. You can use type id if this definition of the field needs to be reused later. The type id must be unique across the entire template. You can only specify it if the field type is record.
+     * Optional. Id can be used if this definition of the field needs to be reused later. Id needs to be unique across the entire template. Id can only be specified if the field type is record.
      */
     typeId?: string | null;
     /**
-     * Optional. A reference to another field definition (not an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with record type can refer to other fields.
+     * Optional. A reference to another field definition (instead of an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with type as record can refer to other fields.
      */
     typeRef?: string | null;
   }
   /**
-   * Definition of the annotations of a field.
+   * Definition of the annotations of a field
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations {
     /**
-     * Optional. Marks a field as deprecated. You can include a deprecation message.
+     * Optional. Marks a field as deprecated, a deprecation message can be included.
      */
     deprecated?: string | null;
     /**
-     * Optional. Description for a field.
+     * Optional. Specify a description for a field
      */
     description?: string | null;
     /**
-     * Optional. Display name for a field.
+     * Optional. Specify a displayname for a field.
      */
     displayName?: string | null;
     /**
-     * Optional. Display order for a field. You can use this to reorder where a field is rendered.
+     * Optional. Specify a display order for a field. Display order can be used to reorder where a field is rendered
      */
     displayOrder?: number | null;
     /**
-     * Optional. You can use String Type annotations to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified URL link. resource: A service qualified resource reference.
+     * Optional. String Type annotations can be used to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified url link. resource: A service qualified resource reference.
      */
     stringType?: string | null;
     /**
-     * Optional. Suggested hints for string fields. You can use them to suggest values to users through console.
+     * Optional. Suggested hints for string fields. These can be used to suggest values to users, through an UI for example.
      */
     stringValues?: string[] | null;
   }
   /**
-   * Definition of the constraints of a field.
+   * Definition of the constraints of a field
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints {
     /**
-     * Optional. Marks this field as optional or required.
+     * Optional. Marks this as an optional/required field.
      */
     required?: boolean | null;
   }
   /**
-   * Definition of Enumvalue, to be used for enum fields.
+   * Definition of Enumvalue (to be used by enum fields)
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue {
     /**
-     * Optional. You can set this message if you need to deprecate an enum value.
+     * Optional. Optional deprecation message to be set if an enum value needs to be deprecated.
      */
     deprecated?: string | null;
     /**
-     * Required. Index for the enum value. It can't be modified.
+     * Required. Index for the enum. Cannot be modified.
      */
     index?: number | null;
     /**
-     * Required. Name of the enumvalue. This is the actual value that the aspect can contain.
+     * Required. Name of the enumvalue. This is the actual value that the aspect will contain.
      */
     name?: string | null;
   }
@@ -1850,10 +1854,6 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataScanJob {
     /**
-     * Output only. The time when the DataScanJob was created.
-     */
-    createTime?: string | null;
-    /**
      * Output only. The result of the data profile scan.
      */
     dataProfileResult?: Schema$GoogleCloudDataplexV1DataProfileResult;
@@ -2161,7 +2161,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1Entry {
     /**
-     * Optional. The Aspects attached to the Entry. The format for the key can be one of the following: {projectId\}.{locationId\}.{aspectTypeId\} (if the aspect is attached directly to the entry) {projectId\}.{locationId\}.{aspectTypeId\}@{path\} (if the aspect is attached to an entry's path)
+     * Optional. The Aspects attached to the Entry. The format for the key can be one of the following: 1. {projectId\}.{locationId\}.{aspectTypeId\} (if the aspect is attached directly to the entry) 2. {projectId\}.{locationId\}.{aspectTypeId\}@{path\} (if the aspect is attached to an entry's path)
      */
     aspects?: {[key: string]: Schema$GoogleCloudDataplexV1Aspect} | null;
     /**
@@ -2169,7 +2169,7 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Information related to the source system for an entry.
+     * Optional. Source system related information for an entry.
      */
     entrySource?: Schema$GoogleCloudDataplexV1EntrySource;
     /**
@@ -2210,7 +2210,7 @@ export namespace dataplex_v1 {
      */
     displayName?: string | null;
     /**
-     * This checksum is computed by the service, and might be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -2222,7 +2222,11 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Output only. System generated globally unique ID for the EntryGroup. If you delete and recreate the EntryGroup with the same name, this ID will be different.
+     * Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.
+     */
+    transferStatus?: string | null;
+    /**
+     * Output only. System generated globally unique ID for the EntryGroup. This ID will be different if the EntryGroup is deleted and re-created with the same name.
      */
     uid?: string | null;
     /**
@@ -2231,7 +2235,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * EntrySource contains information related to the source system of the Entry.
+   * EntrySource contains source system related information for the entry.
    */
   export interface Schema$GoogleCloudDataplexV1EntrySource {
     /**
@@ -2255,7 +2259,7 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Location of the resource in the source system. You can search the Entry by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing the source location for data external to Google Cloud.
+     * Output only. Location of the resource in the source system. Entry will be searchable by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing source location for data external to GCP.
      */
     location?: string | null;
     /**
@@ -2309,7 +2313,7 @@ export namespace dataplex_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. This checksum is computed by the service, and might be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -2333,7 +2337,7 @@ export namespace dataplex_v1 {
      */
     system?: string | null;
     /**
-     * Optional. Indicates the classes this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.
+     * Optional. Indicates the class this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.
      */
     typeAliases?: string[] | null;
     /**
@@ -2737,11 +2741,11 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * List AspectTypes response.
+   * List AspectTypes response
    */
   export interface Schema$GoogleCloudDataplexV1ListAspectTypesResponse {
     /**
-     * AspectTypes under the given parent location.
+     * ListAspectTypes under the given parent location.
      */
     aspectTypes?: Schema$GoogleCloudDataplexV1AspectType[];
     /**
@@ -2749,7 +2753,7 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that the service couldn't reach.
+     * Locations that could not be reached.
      */
     unreachableLocations?: string[] | null;
   }
@@ -2873,25 +2877,22 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * List Entries response.
-   */
   export interface Schema$GoogleCloudDataplexV1ListEntriesResponse {
     /**
-     * The list of entries under the given parent location.
+     * The list of entries.
      */
     entries?: Schema$GoogleCloudDataplexV1Entry[];
     /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     * Pagination token.
      */
     nextPageToken?: string | null;
   }
   /**
-   * List entry groups response.
+   * List ListEntryGroups response.
    */
   export interface Schema$GoogleCloudDataplexV1ListEntryGroupsResponse {
     /**
-     * Entry groups under the given parent location.
+     * ListEntryGroups under the given parent location.
      */
     entryGroups?: Schema$GoogleCloudDataplexV1EntryGroup[];
     /**
@@ -2899,16 +2900,16 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that the service couldn't reach.
+     * Locations that could not be reached.
      */
     unreachableLocations?: string[] | null;
   }
   /**
-   * List EntryTypes response.
+   * List EntryTypes response
    */
   export interface Schema$GoogleCloudDataplexV1ListEntryTypesResponse {
     /**
-     * EntryTypes under the given parent location.
+     * ListEntryTypes under the given parent location.
      */
     entryTypes?: Schema$GoogleCloudDataplexV1EntryType[];
     /**
@@ -2916,7 +2917,7 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that the service couldn't reach.
+     * Locations that could not be reached.
      */
     unreachableLocations?: string[] | null;
   }
@@ -3206,7 +3207,7 @@ export namespace dataplex_v1 {
   }
   export interface Schema$GoogleCloudDataplexV1SearchEntriesResponse {
     /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     * Pagination token.
      */
     nextPageToken?: string | null;
     /**
@@ -3214,11 +3215,11 @@ export namespace dataplex_v1 {
      */
     results?: Schema$GoogleCloudDataplexV1SearchEntriesResult[];
     /**
-     * The estimated total number of matching entries. This number isn't guaranteed to be accurate.
+     * The estimated total number of matching entries. Not guaranteed to be accurate.
      */
     totalSize?: number | null;
     /**
-     * Locations that the service couldn't reach. Search results don't include data from these locations.
+     * Unreachable locations. Search results don't include data from those locations.
      */
     unreachable?: string[] | null;
   }
@@ -4256,7 +4257,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Looks up a single Entry by name using the permission on the source system.
+     * Looks up a single entry.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4351,7 +4352,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Searches for Entries matching the given query and scope.
+     * Searches for entries matching given query and scope.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4477,7 +4478,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lookupentry
     extends StandardParameters {
     /**
-     * Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
+     * Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.
      */
     aspectTypes?: string[];
     /**
@@ -4489,11 +4490,11 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.
+     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.
      */
     paths?: string[];
     /**
-     * Optional. View to control which parts of an entry the service should return.
+     * Optional. View for controlling which parts of an entry are to be returned.
      */
     view?: string;
   }
@@ -4504,15 +4505,15 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Specifies the ordering of results.
+     * Optional. Ordering of the results. Supported options to be added later.
      */
     orderBy?: string;
     /**
-     * Optional. Number of results in the search page. If <=0, then defaults to 10. Max limit for page_size is 1000. Throws an invalid argument for page_size \> 1000.
+     * Optional. Pagination.
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous SearchEntries call. Provide this to retrieve the subsequent page.
+     *
      */
     pageToken?: string;
     /**
@@ -4520,7 +4521,7 @@ export namespace dataplex_v1 {
      */
     query?: string;
     /**
-     * Optional. The scope under which the search should be operating. It must either be organizations/ or projects/. If it is unspecified, it defaults to the organization where the project provided in name is located.
+     * Optional. The scope under which the search should be operating. Should either be organizations/ or projects/. If left unspecified, it will default to the organization where the project provided in name is located.
      */
     scope?: string;
   }
@@ -4532,7 +4533,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates an AspectType.
+     * Creates an AspectType
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4627,7 +4628,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes an AspectType.
+     * Deletes a AspectType resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4719,7 +4720,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an AspectType.
+     * Retrieves a AspectType resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5004,7 +5005,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates an AspectType.
+     * Updates a AspectType resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5295,11 +5296,11 @@ export namespace dataplex_v1 {
      */
     aspectTypeId?: string;
     /**
-     * Required. The resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     * Required. The resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
     /**
-     * Optional. The service validates the request without performing any mutations. The default is false.
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -5311,7 +5312,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Aspecttypes$Delete
     extends StandardParameters {
     /**
-     * Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response.
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response
      */
     etag?: string;
     /**
@@ -5340,23 +5341,23 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Aspecttypes$List
     extends StandardParameters {
     /**
-     * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
+     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 name = "value" These restrictions can be coinjoined with AND, OR and NOT conjunctions.
      */
     filter?: string;
     /**
-     * Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.
+     * Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 AspectTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, at most 10 AspectTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListAspectTypes must match the call that provided the page token.
+     * Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAspectTypes must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the AspectType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     * Required. The resource name of the AspectType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
   }
@@ -9503,7 +9504,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates an EntryGroup.
+     * Creates an EntryGroup
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9598,7 +9599,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes an EntryGroup.
+     * Deletes a EntryGroup resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9690,7 +9691,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an EntryGroup.
+     * Retrieves a EntryGroup resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9975,7 +9976,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates an EntryGroup.
+     * Updates a EntryGroup resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10270,7 +10271,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
     /**
-     * Optional. The service validates the request without performing any mutations. The default is false.
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -10282,7 +10283,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Delete
     extends StandardParameters {
     /**
-     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response.
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response
      */
     etag?: string;
     /**
@@ -10319,15 +10320,15 @@ export namespace dataplex_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryGroups. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, at most 10 EntryGroups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListEntryGroups must match the call that provided the page token.
+     * Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryGroups must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the entryGroup location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     * Required. The resource name of the entryGroup location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
   }
@@ -10342,7 +10343,7 @@ export namespace dataplex_v1 {
      */
     updateMask?: string;
     /**
-     * Optional. The service validates the request, without performing any mutations. The default is false.
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -10572,7 +10573,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an Entry.
+     * Gets a single entry.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10665,7 +10666,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists Entries within an EntryGroup.
+     * Lists entries within an entry group.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10859,7 +10860,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create
     extends StandardParameters {
     /**
-     * Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use an Entry ID format based on full resource names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a full resource name of the resource without the prefix double slashes in the API service name part of the full resource name. This allows retrieval of entries using their associated resource name.For example, if the full resource name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from providers or systems other than Google Cloud.The maximum size of the field is 4000 characters.
+     * Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use Entry ID format based on Full Resource Names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a Full Resource Name of the resource without the prefix double slashes in the API Service Name part of Full Resource Name. This allows retrieval of entries using their associated resource name.For example if the Full Resource Name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from other providers or systems than Google Cloud.The maximum size of the field is 4000 characters.
      */
     entryId?: string;
     /**
@@ -10882,7 +10883,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get
     extends StandardParameters {
     /**
-     * Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
+     * Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.
      */
     aspectTypes?: string[];
     /**
@@ -10890,26 +10891,26 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.
+     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.
      */
     paths?: string[];
     /**
-     * Optional. View to control which parts of an entry the service should return.
+     * Optional. View for controlling which parts of an entry are to be returned.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
     extends StandardParameters {
     /**
-     * Optional. A filter on the entries to return. Filters are case-sensitive. You can filter the request by the following fields: entry_type entry_source.display_nameThe comparison operators are =, !=, <, \>, <=, \>=. The service compares strings according to lexical order.You can use the logical operators AND, OR, NOT in the filter.You can use Wildcard "*", but for entry_type you need to provide the full project id or number.Example filter expressions: "entry_source.display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/x" "NOT entry_source.display_name=AnotherExampleDisplayName"
+     * Optional. A filter on the entries to return. Filters are case-sensitive. The request can be filtered by the following fields: entry_type, entry_source.display_name. The comparison operators are =, !=, <, \>, <=, \>= (strings are compared according to lexical order) The logical operators AND, OR, NOT can be used in the filter. Wildcard "*" can be used, but for entry_type the full project id or number needs to be provided. Example filter expressions: "entry_source.display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/x" "NOT entry_source.display_name=AnotherExampleDisplayName"
      */
     filter?: string;
     /**
-     * Optional. Number of items to return per page. If there are remaining results, the service returns a next_page_token. If unspecified, the service returns at most 10 Entries. The maximum value is 100; values above 100 will be coerced to 100.
+     *
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous ListEntries call. Provide this to retrieve the subsequent page.
+     * Optional. The pagination token returned by a previous request.
      */
     pageToken?: string;
     /**
@@ -10920,15 +10921,15 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
-     * Optional. If set to true and the entry doesn't exist, the service will create it.
+     * Optional. If set to true and the entry does not exist, it will be created.
      */
     allowMissing?: boolean;
     /**
-     * Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. * - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     * Optional. The map keys of the Aspects which should be modified. Supports the following syntaxes: * - matches aspect on given type and empty path * @path - matches aspect on given type and specified path * * - matches aspects on given type for all paths * *@path - matches aspects of all types on the given pathExisting aspects matching the syntax will not be removed unless delete_missing_aspects is set to true.If this field is left empty, it will be treated as specifying exactly those Aspects present in the request.
      */
     aspectKeys?: string[];
     /**
-     * Optional. If set to true and the aspect_keys specify aspect ranges, the service deletes any existing aspects from that range that weren't provided in the request.
+     * Optional. If set to true and the aspect_keys specify aspect ranges, any existing aspects from that range not provided in the request will be deleted.
      */
     deleteMissingAspects?: boolean;
     /**
@@ -10936,7 +10937,7 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value "aspects".If the update_mask is empty, the service will update all modifiable fields present in the request.
+     * Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value "aspects".If the update_mask is empty, all modifiable fields present in the request will be updated.
      */
     updateMask?: string;
 
@@ -10953,7 +10954,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates an EntryType.
+     * Creates an EntryType
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11048,7 +11049,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes an EntryType.
+     * Deletes a EntryType resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11140,7 +11141,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an EntryType.
+     * Retrieves a EntryType resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11425,7 +11426,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates an EntryType.
+     * Updates a EntryType resource.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11716,11 +11717,11 @@ export namespace dataplex_v1 {
      */
     entryTypeId?: string;
     /**
-     * Required. The resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     * Required. The resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
     /**
-     * Optional. The service validates the request without performing any mutations. The default is false.
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -11732,7 +11733,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrytypes$Delete
     extends StandardParameters {
     /**
-     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response.
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response
      */
     etag?: string;
     /**
@@ -11761,23 +11762,23 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrytypes$List
     extends StandardParameters {
     /**
-     * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
+     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 name = "value" These restrictions can be coinjoined with AND, OR and NOT conjunctions.
      */
     filter?: string;
     /**
-     * Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.
+     * Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, at most 10 EntryTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provided to ListEntryTypes must match the call that provided the page token.
+     * Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryTypes must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the EntryType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     * Required. The resource name of the EntryType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
   }
@@ -11792,7 +11793,7 @@ export namespace dataplex_v1 {
      */
     updateMask?: string;
     /**
-     * Optional. The service validates the request without performing any mutations. The default is false.
+     * Optional. Only validate the request, but do not perform mutations. The default is false.
      */
     validateOnly?: boolean;
 

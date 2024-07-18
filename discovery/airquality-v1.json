@@ -250,7 +250,7 @@
       }
     }
   },
-  "revision": "20240609",
+  "revision": "20240625",
   "rootUrl": "https://airquality.googleapis.com/",
   "schemas": {
     "AdditionalInfo": {

@@ -561,7 +561,7 @@
       }
     }
   },
-  "revision": "20240703",
+  "revision": "20240612",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -2010,7 +2010,7 @@
       "type": "object"
     },
     "StatusEvent": {
-      "description": "Status event.",
+      "description": "Status event",
       "id": "StatusEvent",
       "properties": {
         "description": {
@@ -2024,10 +2024,10 @@
         },
         "taskExecution": {
           "$ref": "TaskExecution",
-          "description": "Task Execution. This field is only defined for task-level status events where the task fails."
+          "description": "Task Execution"
         },
         "taskState": {
-          "description": "Task State. This field is only defined for task-level status events.",
+          "description": "Task State",
           "enum": [
             "STATE_UNSPECIFIED",
             "PENDING",
@@ -2223,11 +2223,11 @@
       "type": "object"
     },
     "TaskStatus": {
-      "description": "Status of a task.",
+      "description": "Status of a task",
       "id": "TaskStatus",
       "properties": {
         "state": {
-          "description": "Task state.",
+          "description": "Task state",
           "enum": [
             "STATE_UNSPECIFIED",
             "PENDING",

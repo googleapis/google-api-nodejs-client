@@ -2125,7 +2125,7 @@
       }
     }
   },
-  "revision": "20240628",
+  "revision": "20240615",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4479,7 +4479,8 @@
             "PROMOTE_IN_PROGRESS",
             "WAITING_FOR_SOURCE_WRITES_TO_STOP",
             "PREPARING_THE_DUMP",
-            "READY_FOR_PROMOTE"
+            "READY_FOR_PROMOTE",
+            "DIFF_BACKUP"
           ],
           "enumDescriptions": [
             "The phase of the migration job is unknown.",
@@ -4488,7 +4489,8 @@
             "The migration job is running the promote phase.",
             "Only RDS flow - waiting for source writes to stop",
             "Only RDS flow - the sources writes stopped, waiting for dump to begin",
-            "The migration job is ready to be promoted."
+            "The migration job is ready to be promoted.",
+            "The migration job is in the differential backup phase."
           ],
           "readOnly": true,
           "type": "string"

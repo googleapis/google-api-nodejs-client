@@ -676,7 +676,7 @@ export namespace firestore_v1 {
      */
     name?: string | null;
     /**
-     * At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days. The maximum supported retention is 14 weeks.
+     * At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days.
      */
     retention?: string | null;
     /**
@@ -1245,7 +1245,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseRequest {
     /**
-     * Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
+     * Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
      */
     backup?: string | null;
     /**
@@ -1253,7 +1253,7 @@ export namespace firestore_v1 {
      */
     databaseId?: string | null;
     /**
-     * Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as the restored database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
+     * Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
      */
     kmsKeyName?: string | null;
     /**

@@ -1824,7 +1824,7 @@
       }
     }
   },
-  "revision": "20240531",
+  "revision": "20240616",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {

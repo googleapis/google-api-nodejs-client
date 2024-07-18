@@ -416,7 +416,7 @@
       }
     }
   },
-  "revision": "20231109",
+  "revision": "20231113",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {

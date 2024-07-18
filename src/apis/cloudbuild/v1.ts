@@ -1514,7 +1514,7 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$HttpConfig {
     /**
-     * SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.
+     * SecretVersion resource of the HTTP proxy URL. The Service Account should have accessor permissions on this secret. The proxy URL should be in format protocol://@]proxyhost[:port].
      */
     proxySecretVersionName?: string | null;
   }

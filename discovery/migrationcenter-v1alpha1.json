@@ -2473,7 +2473,7 @@
       }
     }
   },
-  "revision": "20240704",
+  "revision": "20240620",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3443,7 +3443,7 @@
           "enumDescriptions": [
             "Unspecified (default value).",
             "Default Google Cloud licensing plan. Licensing is charged per usage. This a good value to start with.",
-            "Bring-your-own-license (BYOL) plan. User provides the license."
+            "Bring-your-own-license (BYOL) plan. User provides the OS license."
           ],
           "type": "string"
         },
@@ -6255,7 +6255,7 @@
           "type": "string"
         },
         "licenseType": {
-          "description": "Optional. License type for premium images (RHEL, RHEL for SAP, SLES, SLES for SAP, Windows Server).",
+          "description": "Optional. License type of the OS image.",
           "enum": [
             "LICENSE_TYPE_UNSPECIFIED",
             "LICENSE_TYPE_DEFAULT",
@@ -6264,7 +6264,7 @@
           "enumDescriptions": [
             "Unspecified (default value).",
             "Default Google Cloud licensing plan. Licensing is charged per usage. This a good value to start with.",
-            "Bring-your-own-license (BYOL) plan. User provides the license."
+            "Bring-your-own-license (BYOL) plan. User provides the OS license."
           ],
           "type": "string"
         }
@@ -8296,9 +8296,7 @@
             "COMMITMENT_1_YEAR_MONTHLY_PAYMENTS",
             "COMMITMENT_3_YEAR_MONTHLY_PAYMENTS",
             "COMMITMENT_1_YEAR_UPFRONT_PAYMENT",
-            "COMMITMENT_3_YEAR_UPFRONT_PAYMENT",
-            "COMMITMENT_FLEXIBLE_3_YEAR_MONTHLY_PAYMENTS",
-            "COMMITMENT_FLEXIBLE_3_YEAR_UPFRONT_PAYMENT"
+            "COMMITMENT_3_YEAR_UPFRONT_PAYMENT"
           ],
           "enumDescriptions": [
             "Unspecified commitment plan.",
@@ -8306,9 +8304,7 @@
             "1 year commitment (monthly payments).",
             "3 year commitment (monthly payments).",
             "1 year commitment (upfront payment).",
-            "3 years commitment (upfront payment).",
-            "3-year flexible commitment (monthly payments). While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API.",
-            "3-year flexible commitment (upfront payment). While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API."
+            "3 years commitment (upfront payment)."
           ],
           "type": "string"
         },

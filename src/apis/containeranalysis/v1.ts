@@ -1114,6 +1114,23 @@ export namespace containeranalysis_v1 {
     fileHash?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
+   * Represents a storage location in Cloud Storage
+   */
+  export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation {
+    /**
+     * Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements
+     */
+    bucket?: string | null;
+    /**
+     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames
+     */
+    object?: string | null;
+  }
+  /**
    * GitConfig is a configuration for git operations.
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfig {
@@ -1127,9 +1144,13 @@ export namespace containeranalysis_v1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GitConfigHttpConfig {
     /**
-     * SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.
+     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
      */
     proxySecretVersionName?: string | null;
+    /**
+     * Optional. Cloud Storage object storing the certificate to use with the HTTP proxy.
+     */
+    proxySslCaInfo?: Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1GCSLocation;
   }
   /**
    * Location of the source in any accessible Git repository.
@@ -1675,6 +1696,10 @@ export namespace containeranalysis_v1 {
      * The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;
+    /**
+     * The status of an vulnerability attestation generation.
+     */
+    vulnerabilityAttestation?: Schema$VulnerabilityAttestation;
   }
   /**
    * This represents a particular channel of distribution for a given package. E.g., Debian's jessie-backports dpkg mirror.
@@ -3149,6 +3174,23 @@ export namespace containeranalysis_v1 {
      * The title of the note. E.g. `Vex-Debian-11.4`
      */
     title?: string | null;
+  }
+  /**
+   * The status of an vulnerability attestation generation.
+   */
+  export interface Schema$VulnerabilityAttestation {
+    /**
+     * If failure, the error reason for why the attestation generation failed.
+     */
+    error?: string | null;
+    /**
+     * The last time we attempted to generate an attestation.
+     */
+    lastAttemptTime?: string | null;
+    /**
+     * The success/failure state of the latest attestation attempt.
+     */
+    state?: string | null;
   }
   /**
    * A security vulnerability that can be found in resources.
