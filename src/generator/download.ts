@@ -83,7 +83,7 @@ export async function downloadDiscoveryDocs(
         options.downloadPath,
         api.id.replace(':', '-') + '.json'
       );
-      const url = api.discoveryRestUrl;
+      const url = `${options.discoveryUrl}/${api.name}.${api.version}.json`;
       const changeSet: ChangeSet = {api, changes: []};
       try {
         const res = await request<{}>({url});

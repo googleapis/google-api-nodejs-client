@@ -87,7 +87,11 @@ describe(__filename, () => {
         .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
           'Content-Type': 'application/json',
         }),
-      nock('http://localhost:3030').get('/path').reply(200),
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+      )
+        .get('/fake.v1.json')
+        .reply(200),
     ];
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
@@ -109,9 +113,13 @@ describe(__filename, () => {
         .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
           'Content-Type': 'application/json',
         }),
-      nock('http://localhost:3030').get('/path').reply(200, {
-        revision: '1234',
-      }),
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+      )
+        .get('/fake.v1.json')
+        .reply(200, {
+          revision: '1234',
+        }),
     ];
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
     const readFileStub = sandbox.stub(dn.gfs, 'readFile').callsFake(() => {
