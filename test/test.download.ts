@@ -122,7 +122,7 @@ describe(__filename, () => {
         .get('/fake.v1.json')
         .reply(
           200,
-          '{"id": "fake:v1","discoveryRestUrl": "http://localhost:3030/path","name": "fake","version": "v1", revision: "1234"}'
+          '{"id": "fake:v1","discoveryRestUrl": "http://localhost:3030/path","name": "fake","version": "v1", "revision": "1234"}'
         ),
     ];
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
