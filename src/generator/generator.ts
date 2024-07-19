@@ -133,8 +133,6 @@ export class Generator {
           api.discoveryRestUrl,
           'Attempting first generateAPI call...'
         );
-        console.log("DISCOVERY PATH")
-        console.log(discoveryPath)
         try {
           const apiPath = path.join(
             discoveryPath,

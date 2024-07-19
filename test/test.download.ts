@@ -78,7 +78,7 @@ describe(__filename, () => {
     assert.strictEqual(shouldUpdate, false);
   });
 
-  it.only('should download the discovery docs', async () => {
+  it('should download the discovery docs', async () => {
     const scopes = [
       nock(
         'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
