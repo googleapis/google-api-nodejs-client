@@ -107,7 +107,7 @@ describe(__filename, () => {
     scopes.forEach(s => s.done());
   });
 
-  it.only('should ignore changes to schemas that only have revision changes', async () => {
+  it('should ignore changes to schemas that only have revision changes', async () => {
     const scopes = [
       nock(
         'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
