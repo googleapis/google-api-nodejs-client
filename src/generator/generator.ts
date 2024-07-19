@@ -109,7 +109,7 @@ export class Generator {
     if (useCache) {
       console.log('Reading from cache...');
     } else {
-        changes = await downloadDiscoveryDocs({
+      changes = await downloadDiscoveryDocs({
         includePrivate: this.options.includePrivate,
         discoveryUrl,
         downloadPath: discoveryPath,
