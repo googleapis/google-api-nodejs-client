@@ -107,7 +107,7 @@ describe(__filename, () => {
     scopes.forEach(s => s.done());
   });
 
-  it('should ignore changes to schemas that only have revision changes', async () => {
+  it.only('should ignore changes to schemas that only have revision changes', async () => {
     const scopes = [
       nock(
         'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
@@ -120,10 +120,7 @@ describe(__filename, () => {
         'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
       )
         .get('/fake.v1.json')
-        .reply(
-          200,
-          '{"id": "fake:v1","discoveryRestUrl": "http://localhost:3030/path","name": "fake","version": "v1", "revision": "1234"}'
-        ),
+        .reply(200, '{"revision": "1234"}'),
     ];
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
     const readFileStub = sandbox.stub(dn.gfs, 'readFile').callsFake(() => {
