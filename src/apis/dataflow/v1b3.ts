@@ -687,7 +687,7 @@ export namespace dataflow_v1b3 {
      */
     dataSampling?: Schema$DataSamplingConfig;
     /**
-     * When true, enables the logging of the literal hot key to the user's Cloud Logging.
+     * Optional. When true, enables the logging of the literal hot key to the user's Cloud Logging.
      */
     enableHotKeyLogging?: boolean | null;
   }
@@ -829,11 +829,11 @@ export namespace dataflow_v1b3 {
      */
     clusterManagerApiService?: string | null;
     /**
-     * The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset\}
+     * Optional. The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset\}
      */
     dataset?: string | null;
     /**
-     * Any debugging options to be supplied to the job.
+     * Optional. Any debugging options to be supplied to the job.
      */
     debugOptions?: Schema$DebugOptions;
     /**
@@ -841,7 +841,7 @@ export namespace dataflow_v1b3 {
      */
     experiments?: string[] | null;
     /**
-     * Which Flexible Resource Scheduling mode to run in.
+     * Optional. Which Flexible Resource Scheduling mode to run in.
      */
     flexResourceSchedulingGoal?: string | null;
     /**
@@ -853,11 +853,11 @@ export namespace dataflow_v1b3 {
      */
     sdkPipelineOptions?: {[key: string]: any} | null;
     /**
-     * Identity to run virtual machines as. Defaults to the default account.
+     * Optional. Identity to run virtual machines as. Defaults to the default account.
      */
     serviceAccountEmail?: string | null;
     /**
-     * If set, contains the Cloud KMS key identifier used to encrypt data at rest, AKA a Customer Managed Encryption Key (CMEK). Format: projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
+     * Optional. If set, contains the Cloud KMS key identifier used to encrypt data at rest, AKA a Customer Managed Encryption Key (CMEK). Format: projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY
      */
     serviceKmsKeyName?: string | null;
     /**
@@ -893,11 +893,11 @@ export namespace dataflow_v1b3 {
      */
     workerPools?: Schema$WorkerPool[];
     /**
-     * The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.
+     * Optional. The Compute Engine region (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1". Mutually exclusive with worker_zone. If neither worker_region nor worker_zone is specified, default to the control plane's region.
      */
     workerRegion?: string | null;
     /**
-     * The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1-a". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity.
+     * Optional. The Compute Engine zone (https://cloud.google.com/compute/docs/regions-zones/regions-zones) in which worker processing should occur, e.g. "us-west1-a". Mutually exclusive with worker_region. If neither worker_region nor worker_zone is specified, a zone in the control plane's region is chosen based on available capacity.
      */
     workerZone?: string | null;
   }
@@ -1334,7 +1334,7 @@ export namespace dataflow_v1b3 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
+     * Optional. The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains this job.
      */
     location?: string | null;
     /**
@@ -1374,6 +1374,10 @@ export namespace dataflow_v1b3 {
      */
     satisfiesPzs?: boolean | null;
     /**
+     * Output only. Resources used by the Dataflow Service to run the job.
+     */
+    serviceResources?: Schema$ServiceResources;
+    /**
      * This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.
      */
     stageStates?: Schema$ExecutionStageState[];
@@ -1394,7 +1398,7 @@ export namespace dataflow_v1b3 {
      */
     tempFiles?: string[] | null;
     /**
-     * The map of transform name prefixes of the job to be replaced to the corresponding name prefixes of the new job.
+     * Optional. The map of transform name prefixes of the job to be replaced to the corresponding name prefixes of the new job.
      */
     transformNameMapping?: {[key: string]: string} | null;
     /**
@@ -2659,6 +2663,15 @@ export namespace dataflow_v1b3 {
      * The id of the TupleTag the user code will tag the output value by.
      */
     tag?: string | null;
+  }
+  /**
+   * Resources used by the Dataflow Service to run the job.
+   */
+  export interface Schema$ServiceResources {
+    /**
+     * Output only. List of Cloud Zones being used by the Dataflow Service for this job. Example: us-central1-c
+     */
+    zones?: string[] | null;
   }
   /**
    * A task which consists of a shell command for the worker to execute.

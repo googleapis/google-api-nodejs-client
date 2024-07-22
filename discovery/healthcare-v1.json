@@ -4380,7 +4380,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+                              "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+/messages/[^/]+$",
                               "required": true,
@@ -4554,7 +4554,7 @@
       }
     }
   },
-  "revision": "20240605",
+  "revision": "20240619",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -6747,7 +6747,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`. Assigned by the server.",
+          "description": "Output only. Resource name of the Message, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7V2Stores/{hl7_v2_store_id}/messages/{message_id}`.",
           "readOnly": true,
           "type": "string"
         },

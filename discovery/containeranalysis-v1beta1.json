@@ -18,8 +18,8 @@
   "endpoints": [
     {
       "location": "me-central2",
-      "endpointUrl": "https://containeranalysis.me-central2.rep.googleapis.com/",
-      "description": "Regional Endpoint"
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://containeranalysis.me-central2.rep.googleapis.com/"
     }
   ],
   "fullyEncodeReservedExpansion": true,

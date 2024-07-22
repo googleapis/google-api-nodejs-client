@@ -3090,7 +3090,7 @@ export namespace healthcare_v1beta1 {
      */
     blobStorageInfo?: Schema$BlobStorageInfo;
     /**
-     * The resource whose storage info is returned. For example, to specify the resource path of a DICOM Instance: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicom_store_id\}/dicomWeb/studi/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`
+     * The resource whose storage info is returned. For example: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`
      */
     referencedResource?: string | null;
     /**
@@ -12388,7 +12388,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo
     extends StandardParameters {
     /**
-     * Required. The path of the resource for which the storage info is requested (for exaxmple for a DICOM Instance: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreId\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`)
+     * Required. The path of the instance to return storage info for, in the form: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`
      */
     resource?: string;
   }

@@ -588,7 +588,7 @@
       }
     }
   },
-  "revision": "20240621",
+  "revision": "20240627",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {

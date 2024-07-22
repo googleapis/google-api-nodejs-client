@@ -1184,6 +1184,10 @@ export namespace dlp_v2 {
      */
     columnProfile?: Schema$GooglePrivacyDlpV2ColumnDataProfile;
     /**
+     * File store data profile column.
+     */
+    fileStoreProfile?: Schema$GooglePrivacyDlpV2FileStoreDataProfile;
+    /**
      * Table data profile column
      */
     tableProfile?: Schema$GooglePrivacyDlpV2TableDataProfile;
@@ -1264,6 +1268,10 @@ export namespace dlp_v2 {
      * The event that caused the Pub/Sub message to be sent.
      */
     event?: string | null;
+    /**
+     * If `DetailLevel` is `FILE_STORE_PROFILE` this will be fully populated. Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and `file_store_path` will be populated.
+     */
+    fileStoreProfile?: Schema$GooglePrivacyDlpV2FileStoreDataProfile;
     /**
      * If `DetailLevel` is `TABLE_PROFILE` this will be fully populated. Otherwise, if `DetailLevel` is `RESOURCE_NAME`, then only `name` and `full_resource` will be populated.
      */
@@ -1863,6 +1871,10 @@ export namespace dlp_v2 {
      */
     details?: Schema$GoogleRpcStatus;
     /**
+     * Additional information about the error.
+     */
+    extraInfo?: string | null;
+    /**
      * The times the error occurred. List includes the oldest timestamp and the last 9 timestamps.
      */
     timestamps?: string[] | null;
@@ -1967,6 +1979,61 @@ export namespace dlp_v2 {
     primitiveTransformation?: Schema$GooglePrivacyDlpV2PrimitiveTransformation;
   }
   /**
+   * The file cluster summary.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileClusterSummary {
+    /**
+     * The data risk level of this cluster. RISK_LOW if nothing has been scanned.
+     */
+    dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
+    /**
+     * A list of Errors detected while scanning this cluster. The list is truncated to 10 per cluster.
+     */
+    errors?: Schema$GooglePrivacyDlpV2Error[];
+    /**
+     * The file cluster type.
+     */
+    fileClusterType?: Schema$GooglePrivacyDlpV2FileClusterType;
+    /**
+     * A sample of file types scanned in this cluster. Empty if no files were scanned.
+     */
+    fileExtensionsScanned?: Schema$GooglePrivacyDlpV2FileExtensionInfo[];
+    /**
+     * A sample of file types seen in this cluster. Empty if no files were seen.
+     */
+    fileExtensionsSeen?: Schema$GooglePrivacyDlpV2FileExtensionInfo[];
+    /**
+     * InfoTypes detected in this cluster.
+     */
+    fileStoreInfoTypeSummaries?: Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary[];
+    /**
+     * True if no files exist in this cluster. If the bucket had more files than could be listed, this will be false even if no files for this cluster were seen and file_extensions_seen is empty.
+     */
+    noFilesExist?: boolean | null;
+    /**
+     * The sensitivity score of this cluster. The score will be SENSITIVITY_LOW if nothing has been scanned.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+  }
+  /**
+   * Message used to identify file cluster type being profiled.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileClusterType {
+    /**
+     * Cluster type.
+     */
+    cluster?: string | null;
+  }
+  /**
+   * Information regarding the discovered file extension.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileExtensionInfo {
+    /**
+     * The file extension if set. (aka .pdf, .jpg, .txt)
+     */
+    fileExtension?: string | null;
+  }
+  /**
    * Set of files to scan.
    */
   export interface Schema$GooglePrivacyDlpV2FileSet {
@@ -1978,6 +2045,112 @@ export namespace dlp_v2 {
      * The Cloud Storage url of the file(s) to scan, in the format `gs:///`. Trailing wildcard in the path is allowed. If the url ends in a trailing slash, the bucket or directory represented by the url will be scanned non-recursively (content in sub-directories will not be scanned). This means that `gs://mybucket/` is equivalent to `gs://mybucket/x`, and `gs://mybucket/directory/` is equivalent to `gs://mybucket/directory/x`. Exactly one of `url` or `regex_file_set` must be set.
      */
     url?: string | null;
+  }
+  /**
+   * The profile for a file store. * Google Cloud Storage: maps 1:1 with a bucket.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileStoreDataProfile {
+    /**
+     * The snapshot of the configurations used to generate the profile.
+     */
+    configSnapshot?: Schema$GooglePrivacyDlpV2DataProfileConfigSnapshot;
+    /**
+     * The time the file store was first created.
+     */
+    createTime?: string | null;
+    /**
+     * The data risk level of this resource.
+     */
+    dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
+    /**
+     * The resource type that was profiled.
+     */
+    dataSourceType?: Schema$GooglePrivacyDlpV2DataSourceType;
+    /**
+     * For resources that have multiple storage locations, these are those regions. For Google Cloud Storage this is the list of regions chosen for dual-region storage. `file_store_location` will normally be the corresponding multi-region for the list of individual locations. The first region is always picked as the processing and storage location for the data profile.
+     */
+    dataStorageLocations?: string[] | null;
+    /**
+     * FileClusterSummary per each cluster.
+     */
+    fileClusterSummaries?: Schema$GooglePrivacyDlpV2FileClusterSummary[];
+    /**
+     * InfoTypes detected in this file store.
+     */
+    fileStoreInfoTypeSummaries?: Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary[];
+    /**
+     * The file store does not have any files.
+     */
+    fileStoreIsEmpty?: boolean | null;
+    /**
+     * The location of the file store. * Google Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations
+     */
+    fileStoreLocation?: string | null;
+    /**
+     * The file store path. * Google Cloud Storage: `gs://{bucket\}`
+     */
+    fileStorePath?: string | null;
+    /**
+     * The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    fullResource?: string | null;
+    /**
+     * The time the file store was last modified.
+     */
+    lastModifiedTime?: string | null;
+    /**
+     * The location type of the bucket (region, dual-region, multi-region, etc). If dual-region, expect data_storage_locations to be populated.
+     */
+    locationType?: string | null;
+    /**
+     * The name of the profile.
+     */
+    name?: string | null;
+    /**
+     * The last time the profile was generated.
+     */
+    profileLastGenerated?: string | null;
+    /**
+     * Success or error status from the most recent profile generation attempt. May be empty if the profile is still being generated.
+     */
+    profileStatus?: Schema$GooglePrivacyDlpV2ProfileStatus;
+    /**
+     * The resource name to the project data profile for this file store.
+     */
+    projectDataProfile?: string | null;
+    /**
+     * The Google Cloud project ID that owns the resource.
+     */
+    projectId?: string | null;
+    /**
+     * Attributes of the resource being profiled. Currently used attributes: - customer_managed_encryption: boolean true: the resource is encrypted with a customer-managed key. false: the resource is encrypted with a provider-managed key.
+     */
+    resourceAttributes?: {[key: string]: Schema$GooglePrivacyDlpV2Value} | null;
+    /**
+     * The labels applied to the resource at the time the profile was generated.
+     */
+    resourceLabels?: {[key: string]: string} | null;
+    /**
+     * How broadly a resource has been shared.
+     */
+    resourceVisibility?: string | null;
+    /**
+     * The sensitivity score of this resource.
+     */
+    sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
+     * State of a profile.
+     */
+    state?: string | null;
+  }
+  /**
+   * Information regarding the discovered InfoType.
+   */
+  export interface Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary {
+    /**
+     * The InfoType seen.
+     */
+    infoType?: Schema$GooglePrivacyDlpV2InfoType;
   }
   /**
    * Represents a piece of potentially sensitive content.
@@ -2944,6 +3117,19 @@ export namespace dlp_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * List of file store data profiles generated for a given organization or project.
+   */
+  export interface Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse {
+    /**
+     * List of data profiles.
+     */
+    fileStoreDataProfiles?: Schema$GooglePrivacyDlpV2FileStoreDataProfile[];
+    /**
+     * The next page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response to the ListInfoTypes request.
    */
   export interface Schema$GooglePrivacyDlpV2ListInfoTypesResponse {
@@ -3271,6 +3457,10 @@ export namespace dlp_v2 {
      */
     dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
     /**
+     * The number of file store data profiles generated for this project.
+     */
+    fileStoreDataProfileCount?: string | null;
+    /**
      * The resource name of the profile.
      */
     name?: string | null;
@@ -3290,6 +3480,10 @@ export namespace dlp_v2 {
      * The sensitivity score of this project.
      */
     sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
+    /**
+     * The number of table data profiles generated for this project.
+     */
+    tableDataProfileCount?: string | null;
   }
   /**
    * Message for specifying a window around a finding to apply a detection rule.
@@ -5957,6 +6151,7 @@ export namespace dlp_v2 {
     deidentifyTemplates: Resource$Organizations$Locations$Deidentifytemplates;
     discoveryConfigs: Resource$Organizations$Locations$Discoveryconfigs;
     dlpJobs: Resource$Organizations$Locations$Dlpjobs;
+    fileStoreDataProfiles: Resource$Organizations$Locations$Filestoredataprofiles;
     inspectTemplates: Resource$Organizations$Locations$Inspecttemplates;
     jobTriggers: Resource$Organizations$Locations$Jobtriggers;
     projectDataProfiles: Resource$Organizations$Locations$Projectdataprofiles;
@@ -5974,6 +6169,10 @@ export namespace dlp_v2 {
       this.discoveryConfigs =
         new Resource$Organizations$Locations$Discoveryconfigs(this.context);
       this.dlpJobs = new Resource$Organizations$Locations$Dlpjobs(this.context);
+      this.fileStoreDataProfiles =
+        new Resource$Organizations$Locations$Filestoredataprofiles(
+          this.context
+        );
       this.inspectTemplates =
         new Resource$Organizations$Locations$Inspecttemplates(this.context);
       this.jobTriggers = new Resource$Organizations$Locations$Jobtriggers(
@@ -7976,6 +8175,333 @@ export namespace dlp_v2 {
      * The type of job. Defaults to `DlpJobType.INSPECT`
      */
     type?: string;
+  }
+
+  export class Resource$Organizations$Locations$Filestoredataprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Delete a FileStoreDataProfile. Will not prevent the profile from being regenerated if the resource is still included in a discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a file store data profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Filestoredataprofiles$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Filestoredataprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Filestoredataprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists file store data profiles for an organization.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Filestoredataprofiles$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Filestoredataprofiles$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Filestoredataprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Filestoredataprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/fileStoreDataProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the file store data profile.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$List
+    extends StandardParameters {
+    /**
+     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like "gs://bucket". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` . * 'file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Optional. Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Only one order field at a time is allowed. Examples: * `project_id asc` * `name` * `sensitivity_level desc` Supported fields are: - `project_id`: The Google Cloud project ID. - `sensitivity_level`: How sensitive the data in a table is, at most. - `data_risk_level`: How much risk is associated with this data. - `profile_last_generated`: When the profile was last updated in epoch seconds. - `last_modified`: The last time the resource was modified. - `resource_visibility`: Visibility restriction for this resource. - `name`: The name of the profile. - `create_time`: The time the file store was first created.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Size of the page. This value can be limited by the server. If zero, server returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token to continue retrieval.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations$Locations$Inspecttemplates {
@@ -13469,6 +13995,7 @@ export namespace dlp_v2 {
     deidentifyTemplates: Resource$Projects$Locations$Deidentifytemplates;
     discoveryConfigs: Resource$Projects$Locations$Discoveryconfigs;
     dlpJobs: Resource$Projects$Locations$Dlpjobs;
+    fileStoreDataProfiles: Resource$Projects$Locations$Filestoredataprofiles;
     image: Resource$Projects$Locations$Image;
     inspectTemplates: Resource$Projects$Locations$Inspecttemplates;
     jobTriggers: Resource$Projects$Locations$Jobtriggers;
@@ -13489,6 +14016,8 @@ export namespace dlp_v2 {
         this.context
       );
       this.dlpJobs = new Resource$Projects$Locations$Dlpjobs(this.context);
+      this.fileStoreDataProfiles =
+        new Resource$Projects$Locations$Filestoredataprofiles(this.context);
       this.image = new Resource$Projects$Locations$Image(this.context);
       this.inspectTemplates = new Resource$Projects$Locations$Inspecttemplates(
         this.context
@@ -16547,6 +17076,333 @@ export namespace dlp_v2 {
      * The type of job. Defaults to `DlpJobType.INSPECT`
      */
     type?: string;
+  }
+
+  export class Resource$Projects$Locations$Filestoredataprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Delete a FileStoreDataProfile. Will not prevent the profile from being regenerated if the resource is still included in a discovery configuration.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Filestoredataprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Filestoredataprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Filestoredataprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a file store data profile.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>;
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$Get,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Filestoredataprofiles$Get
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2FileStoreDataProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Filestoredataprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Filestoredataprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2FileStoreDataProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists file store data profiles for an organization.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Filestoredataprofiles$List,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Filestoredataprofiles$List
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Filestoredataprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Filestoredataprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/fileStoreDataProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListFileStoreDataProfilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the file store data profile.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name, for example `organizations/12345/locations/us/fileStoreDataProfiles/53234423`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Filestoredataprofiles$List
+    extends StandardParameters {
+    /**
+     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like "gs://bucket". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` . * 'file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Optional. Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case insensitive. The default sorting order is ascending. Redundant space characters are insignificant. Only one order field at a time is allowed. Examples: * `project_id asc` * `name` * `sensitivity_level desc` Supported fields are: - `project_id`: The Google Cloud project ID. - `sensitivity_level`: How sensitive the data in a table is, at most. - `data_risk_level`: How much risk is associated with this data. - `profile_last_generated`: When the profile was last updated in epoch seconds. - `last_modified`: The last time the resource was modified. - `resource_visibility`: Visibility restriction for this resource. - `name`: The name of the profile. - `create_time`: The time the file store was first created.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Size of the page. This value can be limited by the server. If zero, server returns a page of max size 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token to continue retrieval.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the organization or project, for example `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Image {

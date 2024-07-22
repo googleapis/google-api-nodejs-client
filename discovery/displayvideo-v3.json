@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20240627",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -16718,6 +16718,14 @@
           },
           "type": "array"
         },
+        "adGroupQaIds": {
+          "description": "Optional. YouTube Ad Groups QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
         "campaignIds": {
           "description": "Campaigns to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
           "items": {
@@ -16736,6 +16744,14 @@
         },
         "lineItemIds": {
           "description": "Line Items to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lineItemQaIds": {
+          "description": "Optional. Line Items QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -19596,7 +19612,9 @@
               "FILE_TYPE_INSERTION_ORDER",
               "FILE_TYPE_LINE_ITEM",
               "FILE_TYPE_AD_GROUP",
-              "FILE_TYPE_AD"
+              "FILE_TYPE_AD",
+              "FILE_TYPE_LINE_ITEM_QA",
+              "FILE_TYPE_AD_GROUP_QA"
             ],
             "enumDescriptions": [
               "Default value when type is unspecified or is unknown in this version.",
@@ -19605,7 +19623,9 @@
               "Insertion Order.",
               "Line Item.",
               "YouTube Ad Group.",
-              "YouTube Ad."
+              "YouTube Ad.",
+              "Line Item QA.",
+              "YouTube Ad Group QA."
             ],
             "type": "string"
           },

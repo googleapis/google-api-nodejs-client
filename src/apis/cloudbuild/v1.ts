@@ -1134,23 +1134,6 @@ export namespace cloudbuild_v1 {
     fileHash?: Schema$Hash[];
   }
   /**
-   * Represents a storage location in Cloud Storage
-   */
-  export interface Schema$GCSLocation {
-    /**
-     * Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements
-     */
-    bucket?: string | null;
-    /**
-     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
-     */
-    generation?: string | null;
-    /**
-     * Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames
-     */
-    object?: string | null;
-  }
-  /**
    * GitConfig is a configuration for git operations.
    */
   export interface Schema$GitConfig {
@@ -1531,13 +1514,9 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$HttpConfig {
     /**
-     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     * SecretVersion resource of the HTTP proxy URL. The Service Account should have accessor permissions on this secret. The proxy URL should be in format protocol://@]proxyhost[:port].
      */
     proxySecretVersionName?: string | null;
-    /**
-     * Optional. Cloud Storage object storing the certificate to use with the HTTP proxy.
-     */
-    proxySslCaInfo?: Schema$GCSLocation;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -3943,7 +3922,7 @@ export namespace cloudbuild_v1 {
      */
     gheConfigId?: string;
     /**
-     * Required. Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
     parent?: string;
     /**
@@ -6087,7 +6066,7 @@ export namespace cloudbuild_v1 {
      */
     gheConfigId?: string;
     /**
-     * Required. Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
     parent?: string;
     /**

@@ -5185,7 +5185,7 @@
       }
     }
   },
-  "revision": "20240603",
+  "revision": "20240614",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {

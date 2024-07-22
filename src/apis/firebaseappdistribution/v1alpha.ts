@@ -143,6 +143,32 @@ export namespace firebaseappdistribution_v1alpha {
      */
     certificateHashSha256?: string | null;
   }
+  /**
+   * Instructions for AI driven test
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructions {
+    /**
+     * Optional. Describes the app to give the AI some context
+     */
+    appDescription?: string | null;
+    /**
+     * Required. Steps to be accomplished by the AI
+     */
+    steps?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep[];
+  }
+  /**
+   * A step to be accomplished by the AI
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep {
+    /**
+     * An assertion to be checked by the AI
+     */
+    assertion?: string | null;
+    /**
+     * A goal to be accomplished by the AI
+     */
+    goal?: string | null;
+  }
   export interface Schema$GoogleFirebaseAppdistroV1alphaApp {
     /**
      * App bundle test certificate generated for the app.
@@ -401,6 +427,10 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaReleaseTest {
     /**
+     * Optional. Input only. Instructions for AI driven test. Input only.
+     */
+    aiInstructions?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructions;
+    /**
      * Output only. Timestamp when the test was run.
      */
     createTime?: string | null;
@@ -421,6 +451,10 @@ export namespace firebaseappdistribution_v1alpha {
    * Configuration for Robo crawler
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaRoboCrawler {
+    /**
+     * Optional. Instructions for AI driven test
+     */
+    aiInstructions?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructions;
     /**
      * Optional. Login credential for automated tests
      */

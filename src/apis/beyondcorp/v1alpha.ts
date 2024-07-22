@@ -1263,6 +1263,10 @@ export namespace beyondcorp_v1alpha {
      */
     name?: string | null;
     /**
+     * Optional. Protocol config data for the Proxy.
+     */
+    proxyProtocolConfig?: Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig;
+    /**
      * Required. The URI of the proxy server.
      */
     proxyUri?: string | null;
@@ -1278,6 +1282,15 @@ export namespace beyondcorp_v1alpha {
      * Output only. Timestamp when the resource was last modified.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The protocol data that specifies how to communicate with Partner's Proxy.
+   */
+  export interface Schema$GoogleCloudBeyondcorpPartnerservicesV1alphaProxyProtocolConfig {
+    /**
+     * Optional. Untyped property bag to be sent back to the proxy using client specific mechanism.
+     */
+    metadata?: {[key: string]: string} | null;
   }
   /**
    * Message contains the routing information to direct traffic to the proxy server.
@@ -1579,7 +1592,7 @@ export namespace beyondcorp_v1alpha {
      */
     endTime?: string | null;
     /**
-     * Required. Unique resource name of the Subscription. The name is ignored when creating a subscription.
+     * Identifier. Unique resource name of the Subscription. The name is ignored when creating a subscription.
      */
     name?: string | null;
     /**
@@ -6212,7 +6225,7 @@ export namespace beyondcorp_v1alpha {
   export interface Params$Resource$Organizations$Locations$Subscriptions$Patch
     extends StandardParameters {
     /**
-     * Required. Unique resource name of the Subscription. The name is ignored when creating a subscription.
+     * Identifier. Unique resource name of the Subscription. The name is ignored when creating a subscription.
      */
     name?: string;
     /**

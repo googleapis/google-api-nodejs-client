@@ -1792,6 +1792,23 @@ export namespace gkehub_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * List of Membership RBACRoleBindings.
+   */
+  export interface Schema$ListMembershipRBACRoleBindingsResponse {
+    /**
+     * A token to request the next page of resources from the `ListMembershipRBACRoleBindings` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of Membership RBACRoleBindings.
+     */
+    rbacrolebindings?: Schema$RBACRoleBinding[];
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for the `GkeHub.ListMemberships` method.
    */
   export interface Schema$ListMembershipsResponse {
@@ -4573,11 +4590,16 @@ export namespace gkehub_v1 {
   export class Resource$Projects$Locations$Memberships {
     context: APIRequestContext;
     bindings: Resource$Projects$Locations$Memberships$Bindings;
+    rbacrolebindings: Resource$Projects$Locations$Memberships$Rbacrolebindings;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.bindings = new Resource$Projects$Locations$Memberships$Bindings(
         this.context
       );
+      this.rbacrolebindings =
+        new Resource$Projects$Locations$Memberships$Rbacrolebindings(
+          this.context
+        );
     }
 
     /**
@@ -6060,6 +6082,127 @@ export namespace gkehub_v1 {
      * Request body metadata
      */
     requestBody?: Schema$MembershipBinding;
+  }
+
+  export class Resource$Projects$Locations$Memberships$Rbacrolebindings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all Membership RBACRoleBindings.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMembershipRBACRoleBindingsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMembershipRBACRoleBindingsResponse>,
+      callback: BodyResponseCallback<Schema$ListMembershipRBACRoleBindingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List,
+      callback: BodyResponseCallback<Schema$ListMembershipRBACRoleBindingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMembershipRBACRoleBindingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List
+        | BodyResponseCallback<Schema$ListMembershipRBACRoleBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMembershipRBACRoleBindingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMembershipRBACRoleBindingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMembershipRBACRoleBindingsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/rbacrolebindings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMembershipRBACRoleBindingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMembershipRBACRoleBindingsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Memberships$Rbacrolebindings$List
+    extends StandardParameters {
+    /**
+     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to `ListMembershipRBACRoleBindings` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x/memberships/x`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Operations {

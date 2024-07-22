@@ -24,7 +24,8 @@ import * as http from 'http';
 
 describe(__filename, () => {
   nock.disableNetConnect();
-  const discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/';
+  const discoveryUrl =
+    'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries';
   const fakeIndexPath = 'test/fixtures/index.json';
   const sandbox = sinon.createSandbox();
 
@@ -79,12 +80,18 @@ describe(__filename, () => {
 
   it('should download the discovery docs', async () => {
     const scopes = [
-      nock('https://www.googleapis.com')
-        .get('/discovery/v1/apis/')
-        .replyWithFile(200, fakeIndexPath, {
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+      )
+        .get('/index.json')
+        .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
           'Content-Type': 'application/json',
         }),
-      nock('http://localhost:3030').get('/path').reply(200),
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+      )
+        .get('/fake.v1.json')
+        .reply(200),
     ];
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
@@ -99,14 +106,20 @@ describe(__filename, () => {
 
   it('should ignore changes to schemas that only have revision changes', async () => {
     const scopes = [
-      nock('https://www.googleapis.com')
-        .get('/discovery/v1/apis/')
-        .replyWithFile(200, fakeIndexPath, {
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+      )
+        .get('/index.json')
+        .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
           'Content-Type': 'application/json',
         }),
-      nock('http://localhost:3030').get('/path').reply(200, {
-        revision: '1234',
-      }),
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
+      )
+        .get('/fake.v1.json')
+        .reply(200, {
+          revision: '1234',
+        }),
     ];
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
     const readFileStub = sandbox.stub(dn.gfs, 'readFile').callsFake(() => {
@@ -136,7 +149,7 @@ describe(__filename, () => {
           __dirname,
           '../../test/fixtures/index.json'
         );
-        fs.readFile(indexPath, (err, data) => {
+        fs.readFile(indexPath, 'utf-8', (err, data) => {
           if (err) {
             res.writeHead(404, {
               'Content-Type': 'application/json',
@@ -144,7 +157,7 @@ describe(__filename, () => {
             res.end(JSON.stringify(err));
             return;
           }
-          res.end(data);
+          res.end(JSON.stringify(data));
         });
       })
       .listen(port);

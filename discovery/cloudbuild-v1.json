@@ -453,7 +453,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
+                  "description": "Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1384,7 +1384,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
+                      "description": "Name of the parent project. For example: projects/{$project_number} or projects/{$project_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2346,7 +2346,7 @@
       }
     }
   },
-  "revision": "20240618",
+  "revision": "20240627",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3810,26 +3810,6 @@
       },
       "type": "object"
     },
-    "GCSLocation": {
-      "description": "Represents a storage location in Cloud Storage",
-      "id": "GCSLocation",
-      "properties": {
-        "bucket": {
-          "description": "Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements",
-          "type": "string"
-        },
-        "generation": {
-          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
-          "format": "int64",
-          "type": "string"
-        },
-        "object": {
-          "description": "Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GitConfig": {
       "description": "GitConfig is a configuration for git operations.",
       "id": "GitConfig",
@@ -4315,12 +4295,8 @@
       "id": "HttpConfig",
       "properties": {
         "proxySecretVersionName": {
-          "description": "SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].",
+          "description": "SecretVersion resource of the HTTP proxy URL. The Service Account should have accessor permissions on this secret. The proxy URL should be in format protocol://@]proxyhost[:port].",
           "type": "string"
-        },
-        "proxySslCaInfo": {
-          "$ref": "GCSLocation",
-          "description": "Optional. Cloud Storage object storing the certificate to use with the HTTP proxy."
         }
       },
       "type": "object"

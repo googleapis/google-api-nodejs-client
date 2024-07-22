@@ -17,7 +17,7 @@ const {google} = require('googleapis');
 const compute = google.compute('v1');
 
 /**
- * The google.auth.getClient method creates the appropriate type of credential client for you,
+ * The `google.auth.getClient` method creates the appropriate type of credential client for you,
  * depending upon whether the client is running in Google App Engine, Google Compute Engine, a
  * Managed VM, or on a local developer machine. This allows you to write one set of auth code that
  * will work in all cases. It most situations, it is advisable to use the getClient method rather
@@ -27,7 +27,7 @@ const compute = google.compute('v1');
  * file to your machine, and to set a local environment variable pointing to the location of the
  * file. Create a service account using the Google Developers Console using the section APIs & Auth.
  * Select "Generate new JSON key" and download the resulting file. Once this is done, set the
- * GOOGLE_APPLICATION_CREDENTIALS environment variable to point to the location of the .json file.
+ * `GOOGLE_APPLICATION_CREDENTIALS` environment variable to point to the location of the .json file.
  *
  * See also:
  * https://developers.google.com/accounts/docs/application-default-credentials
