@@ -91,7 +91,10 @@ describe(__filename, () => {
         'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
       )
         .get('/fake.v1.json')
-        .reply(200),
+        .reply(
+          200,
+          '{"id": "fake:v1","discoveryRestUrl": "http://localhost:3030/path","name": "fake","version": "v1"}'
+        ),
     ];
     const mkdirpStub = sandbox.stub(dn.gfs, 'mkdir').resolves();
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
@@ -117,9 +120,7 @@ describe(__filename, () => {
         'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries'
       )
         .get('/fake.v1.json')
-        .reply(200, {
-          revision: '1234',
-        }),
+        .reply(200, '{"revision": "1234"}'),
     ];
     const writeFileStub = sandbox.stub(dn.gfs, 'writeFile');
     const readFileStub = sandbox.stub(dn.gfs, 'readFile').callsFake(() => {
