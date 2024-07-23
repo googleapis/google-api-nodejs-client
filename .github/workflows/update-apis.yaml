@@ -16,5 +16,5 @@ jobs:
       - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone --remote
       - run: npm run submit-prs
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CODE_BOT_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
