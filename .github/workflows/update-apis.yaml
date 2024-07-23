@@ -13,6 +13,7 @@ jobs:
           node-version: 14
       - run: npm install
       - run: npm run update-disclaimers
+      - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone --remote
       - run: npm run submit-prs
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
