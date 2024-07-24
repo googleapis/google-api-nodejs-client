@@ -17,6 +17,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
       - run: npm run submit-prs
+        working-directory: ./google-api-nodejs-client-autodisco
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CODE_BOT_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
