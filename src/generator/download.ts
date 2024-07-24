@@ -86,10 +86,10 @@ export async function downloadDiscoveryDocs(
       const url = `${options.discoveryUrl}/${api.name}.${api.version}.json`;
       const changeSet: ChangeSet = {api, changes: []};
       try {
-        const res = await request<{}>({url});
+        const res = await request({url});
         // The keys in the downloaded JSON come back in an arbitrary order from
         // request to request. Sort them before storing.
-        const newDoc = sortKeys(res.data);
+        const newDoc = sortKeys(JSON.parse(res.data as string));
         let updateFile = true;
 
         try {
