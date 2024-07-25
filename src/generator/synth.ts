@@ -56,10 +56,10 @@ export async function synth(options: SynthOptions = {}) {
     throw new Error('please include a CODE_BOT_TOKEN');
   }
   // only set these while running in the GitHub Actions environment
-  if (process.env.GITHUB_ACTIONS) {
-    await execa('git', ['config', 'user.email', 'yoshi-automation@google.com']);
-    await execa('git', ['config', 'user.name', 'Yoshi Automation']);
-  }
+  // if (process.env.GITHUB_ACTIONS) {
+  //   await execa('git', ['config', 'user.email', 'yoshi-automation@google.com']);
+  //   await execa('git', ['config', 'user.name', 'Yoshi Automation']);
+  // }
   const dirs = files.filter(f => {
     return (
       fs.statSync(path.join(apiDir, f)).isDirectory() &&
