@@ -97,6 +97,7 @@ export async function synth(options: SynthOptions = {}) {
   await execa('git', ['add', '-A']);
   await execa('git', ['commit', '-m', 'feat: regenerate index files']);
   const prefix = getPrefix(totalSemverity);
+  await execa('git', ['remote', 'add', 'origin', `https://${process.env.CODE_BOT_TOKEN}@github.com/yoshi-code-bot/google-api-nodejs-client-autodisco.git`]);
   await execa('git', ['push', 'origin', branch, '--force']);
   try {
     // Open the pull request with the YOSHI_CODE_BOT_TOKEN
