@@ -10,7 +10,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 14
-      - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone --force --remote
+      - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone --remote
+        env:
+          GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
+      - run: gh repo sync yoshi-code-bot/google-api-nodejs-client-autodisco -b main --force
         env:
           GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
       - run: npm install
