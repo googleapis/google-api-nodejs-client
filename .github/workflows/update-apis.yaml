@@ -16,6 +16,8 @@ jobs:
       - run: gh repo sync yoshi-code-bot/google-api-nodejs-client-autodisco --force
         env:
           GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
+      - run: git checkout -b createPRfromFork
+        working-directory: ./google-api-nodejs-client-autodisco
       - run: npm install
         working-directory: ./google-api-nodejs-client-autodisco
       - run: npm run update-disclaimers
