@@ -112,7 +112,7 @@ export async function synth(options: SynthOptions = {}) {
         title: `${prefix}: run the generator`,
         owner: 'googleapis',
         repo: 'google-api-nodejs-client',
-        head: branch,
+        head: `google-api-nodejs-client:${branch}`,
         base: 'main',
         body: changelogs.join('\n\n').slice(0, 65000),
       },
