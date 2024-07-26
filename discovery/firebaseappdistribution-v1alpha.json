@@ -1035,6 +1035,34 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppdistroV1alphaAiStepResult": {
+      "description": "Captures the results of an AiStep",
+      "id": "GoogleFirebaseAppdistroV1alphaAiStepResult",
+      "properties": {
+        "state": {
+          "description": "Output only. The current state of the step",
+          "enum": [
+            "STEP_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Step state unspecified",
+            "The step is in progress",
+            "The step has completed successfully",
+            "The step has failed"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "step": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaAiStep",
+          "description": "Required. The step performed by the AI"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppdistroV1alphaApp": {
       "description": "An app.",
       "id": "GoogleFirebaseAppdistroV1alphaApp",
