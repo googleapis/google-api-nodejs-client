@@ -4453,7 +4453,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240721",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4513,6 +4513,10 @@
       "description": "Define behaviors on logging.",
       "id": "GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings",
       "properties": {
+        "enableConsentBasedRedaction": {
+          "description": "Enables consent-based end-user input redaction, if true, a pre-defined session parameter `$session.params.conversation-redaction` will be used to determine if the utterance should be redacted.",
+          "type": "boolean"
+        },
         "enableInteractionLogging": {
           "description": "Enables DF Interaction logging.",
           "type": "boolean"
@@ -5273,6 +5277,10 @@
       "description": "Diagnostic info related to the answer generation model call.",
       "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerGenerationModelCallSignals",
       "properties": {
+        "model": {
+          "description": "Name of the generative model. For example, \"gemini-ultra\", \"gemini-pro\", \"gemini-1.5-flash\" etc. Defaults to \"Other\" if the model is unknown.",
+          "type": "string"
+        },
         "modelOutput": {
           "description": "Output of the generative model.",
           "type": "string"
@@ -5364,6 +5372,10 @@
       "description": "Diagnostic info related to the rewriter model call.",
       "id": "GoogleCloudDialogflowCxV3DataStoreConnectionSignalsRewriterModelCallSignals",
       "properties": {
+        "model": {
+          "description": "Name of the generative model. For example, \"gemini-ultra\", \"gemini-pro\", \"gemini-1.5-flash\" etc. Defaults to \"Other\" if the model is unknown.",
+          "type": "string"
+        },
         "modelOutput": {
           "description": "Output of the generative model.",
           "type": "string"
@@ -5825,6 +5837,10 @@
         },
         "targetPage": {
           "description": "The target page to transition to. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
+        "targetPlaybook": {
+          "description": "The target playbook to transition to. Format: `projects//locations//agents//playbooks/`.",
           "type": "string"
         },
         "triggerFulfillment": {
@@ -7864,6 +7880,7 @@
             "NO_MATCH",
             "NO_INPUT",
             "EVENT",
+            "KNOWLEDGE_CONNECTOR",
             "PLAYBOOK"
           ],
           "enumDescriptions": [
@@ -7874,6 +7891,7 @@
             "No match was found for the query.",
             "Indicates an empty query.",
             "The query directly triggered an event.",
+            "The query was matched to a Knowledge Connector answer.",
             "The query was handled by a `Playbook`."
           ],
           "type": "string"
@@ -9236,11 +9254,11 @@
       "id": "GoogleCloudDialogflowCxV3TestConfig",
       "properties": {
         "flow": {
-          "description": "Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.",
+          "description": "Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.",
           "type": "string"
         },
         "page": {
-          "description": "The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.",
+          "description": "The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.",
           "type": "string"
         },
         "trackingParameters": {
@@ -10260,6 +10278,10 @@
       "description": "Define behaviors on logging.",
       "id": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings",
       "properties": {
+        "enableConsentBasedRedaction": {
+          "description": "Enables consent-based end-user input redaction, if true, a pre-defined session parameter `$session.params.conversation-redaction` will be used to determine if the utterance should be redacted.",
+          "type": "boolean"
+        },
         "enableInteractionLogging": {
           "description": "Enables DF Interaction logging.",
           "type": "boolean"
@@ -10710,6 +10732,10 @@
         },
         "targetPage": {
           "description": "The target page to transition to. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
+        "targetPlaybook": {
+          "description": "The target playbook to transition to. Format: `projects//locations//agents//playbooks/`.",
           "type": "string"
         },
         "triggerFulfillment": {
@@ -12009,11 +12035,11 @@
       "id": "GoogleCloudDialogflowCxV3beta1TestConfig",
       "properties": {
         "flow": {
-          "description": "Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.",
+          "description": "Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.",
           "type": "string"
         },
         "page": {
-          "description": "The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.",
+          "description": "The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.",
           "type": "string"
         },
         "trackingParameters": {
@@ -13061,6 +13087,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2EncryptionSpec": {
+      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
+      "id": "GoogleCloudDialogflowV2EncryptionSpec",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2EntityType",
@@ -13300,6 +13341,29 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata": {
+      "description": "Metadata for initializing a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata",
+      "properties": {
+        "request": {
+          "$ref": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
+          "description": "Output only. The original request for initialization.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest": {
+      "description": "The request to initialize a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2InitializeEncryptionSpecRequest",
+      "properties": {
+        "encryptionSpec": {
+          "$ref": "GoogleCloudDialogflowV2EncryptionSpec",
+          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
         }
       },
       "type": "object"
@@ -15125,6 +15189,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1EncryptionSpec": {
+      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
+      "id": "GoogleCloudDialogflowV2beta1EncryptionSpec",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1EntityType": {
       "description": "Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).",
       "id": "GoogleCloudDialogflowV2beta1EntityType",
@@ -15325,6 +15404,29 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata": {
+      "description": "Metadata for initializing a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata",
+      "properties": {
+        "request": {
+          "$ref": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
+          "description": "Output only. The original request for initialization.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest": {
+      "description": "The request to initialize a location-level encryption specification.",
+      "id": "GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest",
+      "properties": {
+        "encryptionSpec": {
+          "$ref": "GoogleCloudDialogflowV2beta1EncryptionSpec",
+          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
         }
       },
       "type": "object"
@@ -16788,6 +16890,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "responseMessages": {
+          "description": "Optional. Automated agent responses.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1ResponseMessage"
+          },
+          "type": "array"
+        },
         "sendTime": {
           "description": "Optional. The time when the message was sent.",
           "format": "google-datetime",
@@ -16933,6 +17042,125 @@
         "webhookSource": {
           "description": "If the query was fulfilled by a webhook call, this field is set to the value of the `source` field returned in the webhook response.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessage": {
+      "description": "Response messages from an automated agent.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessage",
+      "properties": {
+        "endInteraction": {
+          "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction",
+          "description": "A signal that indicates the interaction with the Dialogflow agent has ended."
+        },
+        "liveAgentHandoff": {
+          "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff",
+          "description": "Hands off conversation to a live agent."
+        },
+        "mixedAudio": {
+          "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio",
+          "description": "An audio response message composed of both the synthesized Dialogflow agent responses and the audios hosted in places known to the client."
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Returns a response containing a custom, platform-specific payload.",
+          "type": "object"
+        },
+        "telephonyTransferCall": {
+          "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall",
+          "description": "A signal that the client should transfer the phone call connected to this agent to a third-party endpoint."
+        },
+        "text": {
+          "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageText",
+          "description": "Returns a text response."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction": {
+      "description": "Indicates that interaction with the Dialogflow agent has ended.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff": {
+      "description": "Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff",
+      "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio": {
+      "description": "Represents an audio message that is composed of both segments synthesized from the Dialogflow agent prompts and ones hosted externally at the specified URIs.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio",
+      "properties": {
+        "segments": {
+          "description": "Segments this audio response is composed of.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment": {
+      "description": "Represents one segment of audio.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment",
+      "properties": {
+        "allowPlaybackInterruption": {
+          "description": "Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.",
+          "type": "boolean"
+        },
+        "audio": {
+          "description": "Raw audio synthesized from the Dialogflow agent's response using the output config specified in the request.",
+          "format": "byte",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Client-specific URI that points to an audio clip accessible to the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall": {
+      "description": "Represents the signal that telles the client to transfer the phone call connected to the agent to a third-party endpoint.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall",
+      "properties": {
+        "phoneNumber": {
+          "description": "Transfer the call to a phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).",
+          "type": "string"
+        },
+        "sipUri": {
+          "description": "Transfer the call to a SIP endpoint.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ResponseMessageText": {
+      "description": "The text response message.",
+      "id": "GoogleCloudDialogflowV2beta1ResponseMessageText",
+      "properties": {
+        "text": {
+          "description": "A collection of text responses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -175,6 +175,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings {
     /**
+     * Enables consent-based end-user input redaction, if true, a pre-defined session parameter `$session.params.conversation-redaction` will be used to determine if the utterance should be redacted.
+     */
+    enableConsentBasedRedaction?: boolean | null;
+    /**
      * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
@@ -298,6 +302,10 @@ export namespace dialogflow_v2beta1 {
    * Define behaviors on logging.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings {
+    /**
+     * Enables consent-based end-user input redaction, if true, a pre-defined session parameter `$session.params.conversation-redaction` will be used to determine if the utterance should be redacted.
+     */
+    enableConsentBasedRedaction?: boolean | null;
     /**
      * Enables DF Interaction logging.
      */
@@ -632,6 +640,10 @@ export namespace dialogflow_v2beta1 {
      * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
      */
     targetPage?: string | null;
+    /**
+     * The target playbook to transition to. Format: `projects//locations//agents//playbooks/`.
+     */
+    targetPlaybook?: string | null;
     /**
      * The fulfillment to call when the event occurs. Handling webhook errors with a fulfillment enabled with webhook could cause infinite loop. It is invalid to specify such fulfillment for a handler handling webhooks.
      */
@@ -1602,11 +1614,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TestConfig {
     /**
-     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     flow?: string | null;
     /**
-     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     page?: string | null;
     /**
@@ -2326,6 +2338,10 @@ export namespace dialogflow_v2beta1 {
      * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
      */
     targetPage?: string | null;
+    /**
+     * The target playbook to transition to. Format: `projects//locations//agents//playbooks/`.
+     */
+    targetPlaybook?: string | null;
     /**
      * The fulfillment to call when the event occurs. Handling webhook errors with a fulfillment enabled with webhook could cause infinite loop. It is invalid to specify such fulfillment for a handler handling webhooks.
      */
@@ -3292,11 +3308,11 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3TestConfig {
     /**
-     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     flow?: string | null;
     /**
-     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     page?: string | null;
     /**
@@ -4116,7 +4132,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1AudioInput {
     /**
-     * Required. The natural language speech audio to be processed. A single request can contain up to 1 minute of speech audio data. The transcribed text cannot contain more than 256 bytes for virtual agent interactions.
+     * Required. The natural language speech audio to be processed. A single request can contain up to 2 minutes of speech audio data. The transcribed text cannot contain more than 256 bytes for virtual agent interactions.
      */
     audio?: string | null;
     /**
@@ -4718,6 +4734,19 @@ export namespace dialogflow_v2beta1 {
      * Indicates whether DTMF input can be handled in the next request.
      */
     acceptsDtmfInput?: boolean | null;
+  }
+  /**
+   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1EncryptionSpec {
+    /**
+     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKey?: string | null;
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string | null;
   }
   /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
@@ -5527,6 +5556,24 @@ export namespace dialogflow_v2beta1 {
      * Optional. Top-p changes how the model selects tokens for output. Tokens are selected from most K (see topK parameter) probable to least until the sum of their probabilities equals the top-p value. For example, if tokens A, B, and C have a probability of 0.3, 0.2, and 0.1 and the top-p value is 0.5, then the model will select either A or B as the next token (using temperature) and doesn't consider C. The default top-p value is 0.95. Specify a lower value for less random responses and a higher value for more random responses. Acceptable value is [0.0, 1.0], default to 0.95.
      */
     topP?: number | null;
+  }
+  /**
+   * Metadata for initializing a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata {
+    /**
+     * Output only. The original request for initialization.
+     */
+    request?: Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest;
+  }
+  /**
+   * The request to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest {
+    /**
+     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
+     */
+    encryptionSpec?: Schema$GoogleCloudDialogflowV2beta1EncryptionSpec;
   }
   /**
    * Instructs the speech recognizer on how to process the audio content.
@@ -6873,6 +6920,10 @@ export namespace dialogflow_v2beta1 {
      */
     participantRole?: string | null;
     /**
+     * Optional. Automated agent responses.
+     */
+    responseMessages?: Schema$GoogleCloudDialogflowV2beta1ResponseMessage[];
+    /**
      * Optional. The time when the message was sent.
      */
     sendTime?: string | null;
@@ -7465,9 +7516,29 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig {
     /**
+     * Defines the list of other language codes in addition to the one provided by the conversation profile that may be detected as the language code for the utterances over the conversation. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes.
+     */
+    alternativeLanguageCodes?: string[] | null;
+    /**
+     * Audio encoding of the audio content to process.
+     */
+    audioEncoding?: string | null;
+    /**
+     * If `true`, Dialogflow returns SpeechWordInfo in StreamingRecognitionResult with information about the recognized speech words, e.g. start and end time offsets. If false or unspecified, Speech doesn't return any word-level information.
+     */
+    enableWordInfo?: boolean | null;
+    /**
+     * The language of the supplied audio. Dialogflow does not do translations. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
+     */
+    languageCode?: string | null;
+    /**
      * Which Speech model to select. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then Dialogflow auto-selects a model based on other parameters in the SpeechToTextConfig and Agent settings. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search Leave this field unspecified to use [Agent Speech settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech) for model selection.
      */
     model?: string | null;
+    /**
+     * Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
+     */
+    sampleRateHertz?: number | null;
     /**
      * The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request. If enhanced model variant is specified and an enhanced version of the specified model for the language does not exist, then it would emit an error.
      */
@@ -8287,6 +8358,19 @@ export namespace dialogflow_v2beta1 {
     createTime?: string | null;
   }
   /**
+   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
+   */
+  export interface Schema$GoogleCloudDialogflowV2EncryptionSpec {
+    /**
+     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKey?: string | null;
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string | null;
+  }
+  /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2EntityType {
@@ -8460,6 +8544,24 @@ export namespace dialogflow_v2beta1 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Metadata for initializing a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata {
+    /**
+     * Output only. The original request for initialization.
+     */
+    request?: Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecRequest;
+  }
+  /**
+   * The request to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecRequest {
+    /**
+     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
+     */
+    encryptionSpec?: Schema$GoogleCloudDialogflowV2EncryptionSpec;
   }
   /**
    * InputDataset used to create model or do evaluation. NextID:5
@@ -22861,6 +22963,7 @@ export namespace dialogflow_v2beta1 {
     answerRecords: Resource$Projects$Locations$Answerrecords;
     conversationProfiles: Resource$Projects$Locations$Conversationprofiles;
     conversations: Resource$Projects$Locations$Conversations;
+    encryptionSpec: Resource$Projects$Locations$Encryptionspec;
     generators: Resource$Projects$Locations$Generators;
     knowledgeBases: Resource$Projects$Locations$Knowledgebases;
     operations: Resource$Projects$Locations$Operations;
@@ -22875,6 +22978,9 @@ export namespace dialogflow_v2beta1 {
       this.conversationProfiles =
         new Resource$Projects$Locations$Conversationprofiles(this.context);
       this.conversations = new Resource$Projects$Locations$Conversations(
+        this.context
+      );
+      this.encryptionSpec = new Resource$Projects$Locations$Encryptionspec(
         this.context
       );
       this.generators = new Resource$Projects$Locations$Generators(
@@ -23176,6 +23282,100 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
+     * Gets location-level encryption key specification.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEncryptionSpec(
+      params?: Params$Resource$Projects$Locations$Getencryptionspec,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>;
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>
+    ): void;
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>
+    ): void;
+    getEncryptionSpec(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>
+    ): void;
+    getEncryptionSpec(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getencryptionspec
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getencryptionspec;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getencryptionspec;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1EncryptionSpec>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      *
      * @param params - Parameters for request
@@ -23390,6 +23590,13 @@ export namespace dialogflow_v2beta1 {
      * Required. The project that the agent to fetch is associated with. Format: `projects/` or `projects//locations/`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getencryptionspec
+    extends StandardParameters {
+    /**
+     * Required. The name of the encryption spec resource to get.
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
@@ -33180,6 +33387,122 @@ export namespace dialogflow_v2beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2beta1SuggestConversationSummaryRequest;
+  }
+
+  export class Resource$Projects$Locations$Encryptionspec {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Initializes a location-level encryption key specification. An error will be thrown if the location has resources already created before the initialization. Once the encryption specification is initialized at a location, it is immutable and all newly created resources under the location will be encrypted with the existing specification.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    initialize(
+      params?: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    initialize(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    initialize(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Encryptionspec$Initialize
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Encryptionspec$Initialize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Encryptionspec$Initialize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}:initialize').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Encryptionspec$Initialize
+    extends StandardParameters {
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest;
   }
 
   export class Resource$Projects$Locations$Generators {
