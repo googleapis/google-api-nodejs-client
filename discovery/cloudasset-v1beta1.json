@@ -411,7 +411,7 @@
       }
     }
   },
-  "revision": "20240621",
+  "revision": "20240717",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningMetadata": {
@@ -925,6 +925,7 @@
       "properties": {
         "etag": {
           "description": "Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Policies will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
