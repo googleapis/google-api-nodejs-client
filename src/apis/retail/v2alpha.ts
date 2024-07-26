@@ -19174,6 +19174,18 @@ export namespace retail_v2alpha {
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaExportUserEventsRequest;
   }
+  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Export
+    extends StandardParameters {
+    /**
+     * Required. Resource name of a Catalog. For example `projects/1234/locations/global/catalogs/default_catalog`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaExportUserEventsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Import
     extends StandardParameters {
     /**
