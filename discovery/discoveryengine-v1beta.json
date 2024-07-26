@@ -16390,6 +16390,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse": {
+      "description": "Response message for SiteSearchEngineService.SetUriPatternDocumentData method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo": {
       "description": "Verification information for target sites in advanced site search.",
       "id": "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo",

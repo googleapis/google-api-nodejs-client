@@ -2895,6 +2895,28 @@ export namespace discoveryengine_v1 {
     vertexAiOrganicCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
   }
   /**
+   * Output result that stores the information about where the exported data is stored.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResult {
+    /**
+     * The BigQuery location where the result is stored.
+     */
+    bigqueryResult?: Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult;
+  }
+  /**
+   * A BigQuery output result.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult {
+    /**
+     * The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * The ID of a BigQuery Table.
+     */
+    tableId?: string | null;
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProject {
@@ -4014,6 +4036,23 @@ export namespace discoveryengine_v1 {
      */
     uri?: string | null;
   }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.SetUriPatternDocumentData method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse {}
   /**
    * Verification information for target sites in advanced site search.
    */
@@ -11121,6 +11160,19 @@ export namespace discoveryengine_v1 {
     modelScores?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1DoubleList;
     } | null;
+  }
+  /**
+   * Information about the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchResponseSessionInfo {
+    /**
+     * Name of the session. If the auto-session mode is used (when SearchRequest.session ends with "-"), this field holds the newly generated session name.
+     */
+    name?: string | null;
+    /**
+     * Query ID that corresponds to this search API call. One session can have multiple turns, each with a unique query ID. By specifying the session name and this query ID in the Answer API call, the answer generation happens in the context of the search results from this search call.
+     */
+    queryId?: string | null;
   }
   /**
    * Information about the session.

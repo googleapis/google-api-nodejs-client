@@ -13753,6 +13753,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1SearchResponseSessionInfo": {
+      "description": "Information about the session.",
+      "id": "GoogleCloudDiscoveryengineV1SearchResponseSessionInfo",
+      "properties": {
+        "name": {
+          "description": "Name of the session. If the auto-session mode is used (when SearchRequest.session ends with \"-\"), this field holds the newly generated session name.",
+          "type": "string"
+        },
+        "queryId": {
+          "description": "Query ID that corresponds to this search API call. One session can have multiple turns, each with a unique query ID. By specifying the session name and this query ID in the Answer API call, the answer generation happens in the context of the search results from this search call.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1SearchResponseSummary": {
       "description": "Summary of the top N search results specified by the summary spec.",
       "id": "GoogleCloudDiscoveryengineV1SearchResponseSummary",
@@ -20207,6 +20222,29 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse": {
+      "description": "Response message for SiteSearchEngineService.SetUriPatternDocumentData method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaSiteVerificationInfo": {

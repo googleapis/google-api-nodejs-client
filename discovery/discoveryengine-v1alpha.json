@@ -23216,6 +23216,59 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataRequest": {
+      "description": "Request message for SiteSearchEngineService.SetUriPatternDocumentData method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataRequest",
+      "properties": {
+        "documentDataMap": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Document data keyed by URI pattern. Each entry must be consistent with the Schema. For example: Schema = { \"type\": \"object\", \"properties\": { \"Categories\": { \"type\": \"array\", \"items\": { \"retrievable\": true, \"type\": \"string\" } } } document_data_map = { \"www.url1.com/*\": { \"Categories\": [\"category1\", \"category2\"] }, \"www.url2.com/*\": { \"Categories\": [\"category3\"] } }",
+          "type": "object"
+        },
+        "emptyDocumentDataMap": {
+          "description": "If true, clears the document data map. If true, SetUriPatternDocumentDataRequest.document_data_map must be empty.",
+          "type": "boolean"
+        },
+        "schema": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. If not provided, the current Schema is used. If provided, validates and updates the Schema. If validation fails, an error is returned.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse": {
+      "description": "Response message for SiteSearchEngineService.SetUriPatternDocumentData method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSiteSearchEngine": {
       "description": "SiteSearchEngine captures DataStore level site search persisting configurations. It is a singleton value per data store.",
       "id": "GoogleCloudDiscoveryengineV1alphaSiteSearchEngine",

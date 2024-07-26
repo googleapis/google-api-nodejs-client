@@ -8116,6 +8116,40 @@ export namespace discoveryengine_v1alpha {
     uri?: string | null;
   }
   /**
+   * Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for SiteSearchEngineService.SetUriPatternDocumentData method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataRequest {
+    /**
+     * Document data keyed by URI pattern. Each entry must be consistent with the Schema. For example: Schema = { "type": "object", "properties": { "Categories": { "type": "array", "items": { "retrievable": true, "type": "string" \} \} \} document_data_map = { "www.url1.com/x": { "Categories": ["category1", "category2"] \}, "www.url2.com/x": { "Categories": ["category3"] \} \}
+     */
+    documentDataMap?: {[key: string]: {[key: string]: any}} | null;
+    /**
+     * If true, clears the document data map. If true, SetUriPatternDocumentDataRequest.document_data_map must be empty.
+     */
+    emptyDocumentDataMap?: boolean | null;
+    /**
+     * Optional. If not provided, the current Schema is used. If provided, validates and updates the Schema. If validation fails, an error is returned.
+     */
+    schema?: {[key: string]: any} | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.SetUriPatternDocumentData method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse {}
+  /**
    * SiteSearchEngine captures DataStore level site search persisting configurations. It is a singleton value per data store.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSiteSearchEngine {
