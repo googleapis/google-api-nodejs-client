@@ -5786,6 +5786,25 @@
       },
       "type": "object"
     },
+    "ApplyAdminConsentsErrorDetail": {
+      "description": "Contains the error details of the unsupported admin Consent resources for when the ApplyAdminConsents method fails to apply one or more Consent resources.",
+      "id": "ApplyAdminConsentsErrorDetail",
+      "properties": {
+        "consentErrors": {
+          "description": "The list of Consent resources that are unsupported or cannot be applied and the error associated with each of them.",
+          "items": {
+            "$ref": "ConsentErrors"
+          },
+          "type": "array"
+        },
+        "existingOperationId": {
+          "description": "The currently in progress non-validate-only ApplyAdminConsents operation ID if exist.",
+          "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ApplyAdminConsentsRequest": {
       "description": "Request to apply the admin Consent resources for the specified FHIR store.",
       "id": "ApplyAdminConsentsRequest",
