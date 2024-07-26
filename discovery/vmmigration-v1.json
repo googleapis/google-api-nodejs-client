@@ -1180,6 +1180,66 @@
                     }
                   }
                 },
+                "diskMigrationJobs": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Cancels the disk migration job.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelDiskMigrationJobRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "run": {
+                      "description": "Runs the disk migration job.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:run",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.run",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:run",
+                      "request": {
+                        "$ref": "RunDiskMigrationJobRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "migratingVms": {
                   "methods": {
                     "create": {
@@ -2220,7 +2280,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20240712",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2873,13 +2933,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -2903,6 +2965,12 @@
     "CancelCutoverJobRequest": {
       "description": "Request message for 'CancelCutoverJob' request.",
       "id": "CancelCutoverJobRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CancelDiskMigrationJobRequest": {
+      "description": "Request message for 'CancelDiskMigrationJob' request.",
+      "id": "CancelDiskMigrationJobRequest",
       "properties": {},
       "type": "object"
     },
@@ -3137,13 +3205,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -3267,13 +3337,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -3713,7 +3785,7 @@
       "id": "DiskImageTargetDetails",
       "properties": {
         "additionalLicenses": {
-          "description": "Optional. Additional licenses to assign to the image.",
+          "description": "Optional. Additional licenses to assign to the image. Format: https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/licenses/LICENSE_NAME Or https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME",
           "items": {
             "type": "string"
           },
@@ -3984,6 +4056,10 @@
           "$ref": "Encryption",
           "description": "Immutable. The encryption details used by the image import process during the image adaptation for Compute Engine."
         },
+        "machineImageTargetDefaults": {
+          "$ref": "MachineImageTargetDetails",
+          "description": "Immutable. Target details for importing a machine image, will be used by ImageImportJob."
+        },
         "name": {
           "description": "Output only. The resource path of the ImageImport.",
           "readOnly": true,
@@ -4041,6 +4117,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "machineImageTargetDetails": {
+          "$ref": "MachineImageTargetDetails",
+          "description": "Output only. Target details used to import a machine image.",
+          "readOnly": true
         },
         "name": {
           "description": "Output only. The resource path of the ImageImportJob.",
@@ -4581,6 +4662,92 @@
       },
       "type": "object"
     },
+    "MachineImageParametersOverrides": {
+      "description": "Parameters overriding decisions based on the source machine image configurations.",
+      "id": "MachineImageParametersOverrides",
+      "properties": {
+        "machineType": {
+          "description": "Optional. The machine type to create the MachineImage with. If empty, the service will choose a relevant machine type based on the information from the source image. For more information about machine types, please refer to https://cloud.google.com/compute/docs/machine-resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineImageTargetDetails": {
+      "description": "The target details of the machine image resource that will be created by the image import job.",
+      "id": "MachineImageTargetDetails",
+      "properties": {
+        "additionalLicenses": {
+          "description": "Optional. Additional licenses to assign to the instance created by the machine image. Format: https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/licenses/LICENSE_NAME Or https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Optional. An optional description of the machine image.",
+          "type": "string"
+        },
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Immutable. The encryption to apply to the machine image."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels to apply to the instance created by the machine image.",
+          "type": "object"
+        },
+        "machineImageName": {
+          "description": "Required. The name of the machine image to be created.",
+          "type": "string"
+        },
+        "machineImageParametersOverrides": {
+          "$ref": "MachineImageParametersOverrides",
+          "description": "Optional. Parameters overriding decisions based on the source machine image configurations."
+        },
+        "networkInterfaces": {
+          "description": "Optional. The network interfaces to create with the instance created by the machine image. Internal and external IP addresses are ignored for machine image import.",
+          "items": {
+            "$ref": "NetworkInterface"
+          },
+          "type": "array"
+        },
+        "osAdaptationParameters": {
+          "$ref": "ImageImportOsAdaptationParameters",
+          "description": "Optional. Use to set the parameters relevant for the OS adaptation process."
+        },
+        "serviceAccount": {
+          "$ref": "ServiceAccount",
+          "description": "Optional. The service account to assign to the instance created by the machine image."
+        },
+        "shieldedInstanceConfig": {
+          "$ref": "ShieldedInstanceConfig",
+          "description": "Optional. Shielded instance configuration."
+        },
+        "singleRegionStorage": {
+          "description": "Optional. Set to true to set the machine image storageLocations to the single region of the import job. When false, the closest multi-region is selected.",
+          "type": "boolean"
+        },
+        "skipOsAdaptation": {
+          "$ref": "SkipOsAdaptation",
+          "description": "Optional. Use to skip OS adaptation process."
+        },
+        "tags": {
+          "description": "Optional. The tags to apply to the instance created by the machine image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetProject": {
+          "description": "Required. Reference to the TargetProject resource that represents the target project in which the imported machine image will be created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MigratingVm": {
       "description": "MigratingVm describes the VM that will be migrated from a Source environment and its replication state.",
       "id": "MigratingVm",
@@ -4873,8 +5040,22 @@
           "description": "The network to connect the NIC to.",
           "type": "string"
         },
+        "networkTier": {
+          "description": "Optional. The networking tier used for configuring network access configuration. If left empty, will default to PREMIUM.",
+          "enum": [
+            "COMPUTE_ENGINE_NETWORK_TIER_UNSPECIFIED",
+            "NETWORK_TIER_STANDARD",
+            "NETWORK_TIER_PREMIUM"
+          ],
+          "enumDescriptions": [
+            "An unspecified network tier. Will be used as PREMIUM.",
+            "A standard network tier.",
+            "A premium network tier."
+          ],
+          "type": "string"
+        },
         "subnetwork": {
-          "description": "The subnetwork to connect the NIC to.",
+          "description": "Optional. The subnetwork to connect the NIC to.",
           "type": "string"
         }
       },
@@ -5045,13 +5226,15 @@
             "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
             "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
             "COMPUTE_ENGINE_DISK_TYPE_SSD",
-            "COMPUTE_ENGINE_DISK_TYPE_BALANCED"
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
           ],
           "enumDescriptions": [
             "An unspecified disk type. Will be used as STANDARD.",
             "A Standard disk type.",
             "SSD hard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost."
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
           ],
           "type": "string"
         },
@@ -5066,7 +5249,7 @@
         },
         "vmAttachmentDetails": {
           "$ref": "VmAttachmentDetails",
-          "description": "Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attacked to a target VM."
+          "description": "Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attached to a target VM."
         }
       },
       "type": "object"
@@ -5214,6 +5397,12 @@
       "properties": {},
       "type": "object"
     },
+    "RunDiskMigrationJobRequest": {
+      "description": "Request message for 'RunDiskMigrationJobRequest' request.",
+      "id": "RunDiskMigrationJobRequest",
+      "properties": {},
+      "type": "object"
+    },
     "SchedulePolicy": {
       "description": "A policy for scheduling replications.",
       "id": "SchedulePolicy",
@@ -5262,9 +5451,62 @@
       },
       "type": "object"
     },
+    "ServiceAccount": {
+      "description": "Service account to assign to the instance created by the machine image.",
+      "id": "ServiceAccount",
+      "properties": {
+        "email": {
+          "description": "Required. The email address of the service account.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. The list of scopes to be made available for this service account.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ShieldedInstanceConfig": {
+      "description": "Shielded instance configuration.",
+      "id": "ShieldedInstanceConfig",
+      "properties": {
+        "enableIntegrityMonitoring": {
+          "description": "Optional. Defines whether the instance created by the machine image has integrity monitoring enabled. This can be set to true only if the image boot option is EFI, and vTPM is enabled.",
+          "type": "boolean"
+        },
+        "enableVtpm": {
+          "description": "Optional. Defines whether the instance created by the machine image has vTPM enabled. This can be set to true only if the image boot option is EFI.",
+          "type": "boolean"
+        },
+        "secureBoot": {
+          "description": "Optional. Defines whether the instance created by the machine image has Secure Boot enabled. This can be set to true only if the image boot option is EFI.",
+          "enum": [
+            "SECURE_BOOT_UNSPECIFIED",
+            "TRUE",
+            "FALSE"
+          ],
+          "enumDescriptions": [
+            "No explicit value is selected. Will use the configuration of the source (if exists, otherwise the default will be false).",
+            "Use secure boot. This can be set to true only if the image boot option is EFI.",
+            "Do not use secure boot."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ShuttingDownSourceVMStep": {
       "description": "ShuttingDownSourceVMStep contains specific step details.",
       "id": "ShuttingDownSourceVMStep",
+      "properties": {},
+      "type": "object"
+    },
+    "SkipOsAdaptation": {
+      "description": "Mentions that the machine image import is not using OS adaptation process.",
+      "id": "SkipOsAdaptation",
       "properties": {},
       "type": "object"
     },
