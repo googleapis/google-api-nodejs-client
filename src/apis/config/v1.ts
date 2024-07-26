@@ -957,11 +957,11 @@ export namespace config_v1 {
    */
   export interface Schema$TerraformBlueprint {
     /**
-     * Required. URI of an object in Google Cloud Storage. Format: `gs://{bucket\}/{object\}` URI may also specify an object version for zipped objects. Format: `gs://{bucket\}/{object\}#{version\}`
+     * URI of an object in Google Cloud Storage. Format: `gs://{bucket\}/{object\}` URI may also specify an object version for zipped objects. Format: `gs://{bucket\}/{object\}#{version\}`
      */
     gcsSource?: string | null;
     /**
-     * Required. URI of a public Git repo.
+     * URI of a public Git repo.
      */
     gitSource?: Schema$GitSource;
     /**
