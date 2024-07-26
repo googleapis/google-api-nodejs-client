@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/monitoring",
-  "version": "6.5.0",
+  "version": "7.0.0",
   "description": "monitoring",
   "main": "build/index.js",
   "types": "build/index.d.ts",

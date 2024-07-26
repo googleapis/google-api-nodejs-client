@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v17.0.0...serviceconsumermanagement-v17.1.0) (2024-07-26)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([b33d34d](https://github.com/googleapis/google-api-nodejs-client/commit/b33d34da84c146ffcef287445f6338a24beed669))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v16.0.0...serviceconsumermanagement-v17.0.0) (2024-06-21)
 
 

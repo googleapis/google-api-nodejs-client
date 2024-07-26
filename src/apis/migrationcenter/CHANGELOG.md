@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v5.0.0...migrationcenter-v5.1.0) (2024-07-26)
+
+
+### Features
+
+* **migrationcenter:** update the API ([405e4c0](https://github.com/googleapis/google-api-nodejs-client/commit/405e4c03478b2ff7876594d0656c7973d0b50871))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v4.0.0...migrationcenter-v5.0.0) (2024-06-03)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/androidenterprise",
-  "version": "5.5.2",
+  "version": "5.5.3",
   "description": "androidenterprise",
   "main": "build/index.js",
   "types": "build/index.d.ts",

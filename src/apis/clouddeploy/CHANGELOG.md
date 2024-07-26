@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v5.1.0...clouddeploy-v6.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **clouddeploy:** This release has breaking changes.
+
+### Features
+
+* **clouddeploy:** update the API ([2b0186c](https://github.com/googleapis/google-api-nodejs-client/commit/2b0186c09c3c391006c34ae466f87085d7769918))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v5.0.0...clouddeploy-v5.1.0) (2024-06-03)
 
 

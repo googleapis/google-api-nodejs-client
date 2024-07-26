@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v1.1.2...jobs-v2.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **jobs:** This release has breaking changes.
+
+### Features
+
+* **jobs:** update the API ([43eff01](https://github.com/googleapis/google-api-nodejs-client/commit/43eff019d402ad603053cd81767f06362de1f2f4))
+
 ## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v1.1.1...jobs-v1.1.2) (2024-05-02)
 
 

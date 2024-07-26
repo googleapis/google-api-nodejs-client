@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v6.2.0...metastore-v7.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **metastore:** This release has breaking changes.
+
+### Features
+
+* **metastore:** update the API ([ba9ee0a](https://github.com/googleapis/google-api-nodejs-client/commit/ba9ee0aba61c3520f8b3a0512557872e7b0e2d5b))
+* run the generator ([#3511](https://github.com/googleapis/google-api-nodejs-client/issues/3511)) ([957bc85](https://github.com/googleapis/google-api-nodejs-client/commit/957bc850439a639c5534957333b09598944952c3))
+
 ## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v6.1.0...metastore-v6.2.0) (2024-06-03)
 
 

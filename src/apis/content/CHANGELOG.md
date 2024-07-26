@@ -1,5 +1,12 @@
 # Changelog
 
+## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v27.0.0...content-v27.0.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* **content:** update the API ([ac953c4](https://github.com/googleapis/google-api-nodejs-client/commit/ac953c4eeed2577b6984bd55376788f8e7746d35))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v26.0.0...content-v27.0.0) (2024-06-21)
 
 

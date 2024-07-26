@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v9.1.0...firestore-v10.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firestore:** This release has breaking changes.
+
+### Features
+
+* **firestore:** update the API ([2bfb8aa](https://github.com/googleapis/google-api-nodejs-client/commit/2bfb8aa02c6cdc315cefeec3f60b914bf7cff974))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v9.0.0...firestore-v9.1.0) (2024-06-03)
 
 

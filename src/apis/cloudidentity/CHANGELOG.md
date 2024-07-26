@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v13.0.0...cloudidentity-v13.1.0) (2024-07-26)
+
+
+### Features
+
+* **cloudidentity:** update the API ([56888a3](https://github.com/googleapis/google-api-nodejs-client/commit/56888a31a1250ac6889dc95808e233cac42c62c2))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v12.4.0...cloudidentity-v13.0.0) (2024-05-10)
 
 
