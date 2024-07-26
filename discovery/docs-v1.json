@@ -1880,6 +1880,10 @@
           "description": "The ID of a tab in this document.",
           "type": "string"
         },
+        "tabId": {
+          "description": "The ID of a tab in this document.",
+          "type": "string"
+        },
         "url": {
           "description": "An external URL.",
           "type": "string"
