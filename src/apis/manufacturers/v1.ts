@@ -476,6 +476,10 @@ export namespace manufacturers_v1 {
    */
   export interface Schema$Issue {
     /**
+     * Output only. List of country codes (ISO 3166-1 alpha-2) where issue applies to the manufacturer product.
+     */
+    applicableCountries?: string[] | null;
+    /**
      * If present, the attribute that triggered the issue. For more information about attributes, see https://support.google.com/manufacturers/answer/6124116.
      */
     attribute?: string | null;
