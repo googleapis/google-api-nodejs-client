@@ -1,5 +1,16 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v11.0.4...civicinfo-v12.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **civicinfo:** This release has breaking changes.
+
+### Features
+
+* **civicinfo:** update the API ([0c4524a](https://github.com/googleapis/google-api-nodejs-client/commit/0c4524a4ab059da43e1eaa0d89d8f389b5ffb58c))
+
 ## [11.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v11.0.3...civicinfo-v11.0.4) (2024-05-02)
 
 
