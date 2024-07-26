@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20240417",
+  "revision": "20240710",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AllowlistedCertificate": {
@@ -1658,7 +1658,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location global: FIXED_RECORD.",
+          "description": "Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location `global`: FIXED_RECORD, - in other locations: PER_PROJECT_RECORD.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "FIXED_RECORD",

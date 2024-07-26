@@ -365,7 +365,7 @@ export namespace certificatemanager_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location global: FIXED_RECORD.
+     * Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location `global`: FIXED_RECORD, - in other locations: PER_PROJECT_RECORD.
      */
     type?: string | null;
     /**
