@@ -3947,6 +3947,14 @@
           "$ref": "GoogleBigtableAdminV2TypeAggregateMin",
           "description": "Min aggregator."
         },
+        "max": {
+          "$ref": "GoogleBigtableAdminV2TypeAggregateMax",
+          "description": "Max aggregator."
+        },
+        "min": {
+          "$ref": "GoogleBigtableAdminV2TypeAggregateMin",
+          "description": "Min aggregator."
+        },
         "stateType": {
           "$ref": "Type",
           "description": "Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen.",
@@ -4031,6 +4039,24 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeDate": {
+      "description": "Date Values of type `Date` are stored in `Value.date_value`.",
+      "id": "GoogleBigtableAdminV2TypeDate",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeFloat32": {
+      "description": "Float32 Values of type `Float32` are stored in `Value.float_value`.",
+      "id": "GoogleBigtableAdminV2TypeFloat32",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeFloat64": {
+      "description": "Float64 Values of type `Float64` are stored in `Value.float_value`.",
+      "id": "GoogleBigtableAdminV2TypeFloat64",
+      "properties": {},
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeDate": {
@@ -4251,6 +4277,84 @@
           "description": "Encodes the number of microseconds since the Unix epoch using the given `Int64` encoding. Values must be microsecond-aligned. Compatible with: - Java `Instant.truncatedTo()` with `ChronoUnit.MICROS`"
         }
       },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeMap": {
+      "description": "A mapping of keys to values of a given type. Values of type `Map` are stored in a `Value.array_value` where each entry is another `Value.array_value` with two elements (the key and the value, in that order). Normally encoded Map values won't have repeated keys, however, clients are expected to handle the case in which they do. If the same key appears multiple times, the _last_ value takes precedence.",
+      "id": "GoogleBigtableAdminV2TypeMap",
+      "properties": {
+        "keyType": {
+          "$ref": "Type",
+          "description": "The type of a map key. Only `Bytes`, `String`, and `Int64` are allowed as key types."
+        },
+        "valueType": {
+          "$ref": "Type",
+          "description": "The type of the values in a map."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeString": {
+      "description": "String Values of type `String` are stored in `Value.string_value`.",
+      "id": "GoogleBigtableAdminV2TypeString",
+      "properties": {
+        "encoding": {
+          "$ref": "GoogleBigtableAdminV2TypeStringEncoding",
+          "description": "The encoding to use when converting to/from lower level types."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStringEncoding": {
+      "description": "Rules used to convert to/from lower level types.",
+      "id": "GoogleBigtableAdminV2TypeStringEncoding",
+      "properties": {
+        "utf8Bytes": {
+          "$ref": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
+          "description": "Use `Utf8Bytes` encoding."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes": {
+      "description": "UTF-8 encoding * Order-preserving? Yes (code point order) * Self-delimiting? No * Compatibility? - BigQuery Federation `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
+      "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStruct": {
+      "description": "A structured data value, consisting of fields which map to dynamically typed values. Values of type `Struct` are stored in `Value.array_value` where entries are in the same order and number as `field_types`.",
+      "id": "GoogleBigtableAdminV2TypeStruct",
+      "properties": {
+        "fields": {
+          "description": "The names and types of the fields in this struct.",
+          "items": {
+            "$ref": "GoogleBigtableAdminV2TypeStructField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeStructField": {
+      "description": "A struct field and its type.",
+      "id": "GoogleBigtableAdminV2TypeStructField",
+      "properties": {
+        "fieldName": {
+          "description": "The field name (optional). Fields without a `field_name` are considered anonymous and cannot be referenced by name.",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "Type",
+          "description": "The type of values in this field."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeTimestamp": {
+      "description": "Timestamp Values of type `Timestamp` are stored in `Value.timestamp_value`.",
+      "id": "GoogleBigtableAdminV2TypeTimestamp",
+      "properties": {},
       "type": "object"
     },
     "HotTablet": {

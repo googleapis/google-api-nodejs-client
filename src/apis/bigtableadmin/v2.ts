@@ -986,6 +986,18 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeFloat64 {}
   /**
+   * Date Values of type `Date` are stored in `Value.date_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeDate {}
+  /**
+   * Float32 Values of type `Float32` are stored in `Value.float_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeFloat32 {}
+  /**
+   * Float64 Values of type `Float64` are stored in `Value.float_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeFloat64 {}
+  /**
    * Int64 Values of type `Int64` are stored in `Value.int_value`.
    */
   export interface Schema$GoogleBigtableAdminV2TypeInt64 {
