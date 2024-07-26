@@ -6219,7 +6219,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240723",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10806,6 +10806,10 @@
           "format": "int64",
           "type": "string"
         },
+        "memberPriceEffectiveDate": {
+          "description": "Optional. A date range during which the item is eligible for member price. If not specified, the member price is always applicable. The date range is represented by a pair of ISO 8601 dates separated by a space, comma, or slash.",
+          "type": "string"
+        },
         "price": {
           "$ref": "Price",
           "description": "Optional. The price for members of the given tier (instant discount price). Must be smaller or equal to the regular price."
@@ -14496,7 +14500,7 @@
           "type": "array"
         },
         "source": {
-          "description": "The source of the offer, that is, how the offer was created. Acceptable values are: - \"`api`\" - \"`crawl`\" - \"`feed`\" ",
+          "description": "Output only. The source of the offer, that is, how the offer was created. Acceptable values are: - \"`api`\" - \"`crawl`\" - \"`feed`\" ",
           "type": "string"
         },
         "structuredDescription": {
