@@ -17,204 +17,204 @@
   "documentationLink": "https://cloud.google.com/run/",
   "endpoints": [
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://africa-south1-run.googleapis.com/",
-      "location": "africa-south1",
-      "description": "Locational Endpoint"
+      "location": "africa-south1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east1-run.googleapis.com/",
-      "location": "asia-east1",
-      "description": "Locational Endpoint"
+      "location": "asia-east1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-east2-run.googleapis.com/",
-      "location": "asia-east2",
-      "description": "Locational Endpoint"
+      "location": "asia-east2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast1-run.googleapis.com/",
-      "location": "asia-northeast1",
-      "description": "Locational Endpoint"
+      "location": "asia-northeast1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast2-run.googleapis.com/",
-      "location": "asia-northeast2",
-      "description": "Locational Endpoint"
+      "location": "asia-northeast2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-northeast3-run.googleapis.com/",
-      "location": "asia-northeast3",
-      "description": "Locational Endpoint"
+      "location": "asia-northeast3"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-south1-run.googleapis.com/",
-      "location": "asia-south1",
-      "description": "Locational Endpoint"
+      "location": "asia-south1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-south2-run.googleapis.com/",
-      "location": "asia-south2",
-      "description": "Locational Endpoint"
+      "location": "asia-south2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast1-run.googleapis.com/",
-      "location": "asia-southeast1",
-      "description": "Locational Endpoint"
+      "location": "asia-southeast1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://asia-southeast2-run.googleapis.com/",
-      "location": "asia-southeast2",
-      "description": "Locational Endpoint"
+      "location": "asia-southeast2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast1-run.googleapis.com/",
-      "location": "australia-southeast1",
-      "description": "Locational Endpoint"
+      "location": "australia-southeast1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://australia-southeast2-run.googleapis.com/",
-      "location": "australia-southeast2",
-      "description": "Locational Endpoint"
+      "location": "australia-southeast2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-central2-run.googleapis.com/",
-      "location": "europe-central2",
-      "description": "Locational Endpoint"
+      "location": "europe-central2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-north1-run.googleapis.com/",
-      "location": "europe-north1",
-      "description": "Locational Endpoint"
+      "location": "europe-north1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-southwest1-run.googleapis.com/",
-      "location": "europe-southwest1",
-      "description": "Locational Endpoint"
+      "location": "europe-southwest1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west1-run.googleapis.com/",
-      "location": "europe-west1",
-      "description": "Locational Endpoint"
+      "location": "europe-west1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west10-run.googleapis.com/",
-      "location": "europe-west10",
-      "description": "Locational Endpoint"
+      "location": "europe-west10"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west12-run.googleapis.com/",
-      "location": "europe-west12",
-      "description": "Locational Endpoint"
+      "location": "europe-west12"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west2-run.googleapis.com/",
-      "location": "europe-west2",
-      "description": "Locational Endpoint"
+      "location": "europe-west2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west3-run.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Locational Endpoint"
+      "location": "europe-west3"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west4-run.googleapis.com/",
-      "location": "europe-west4",
-      "description": "Locational Endpoint"
+      "location": "europe-west4"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west6-run.googleapis.com/",
-      "location": "europe-west6",
-      "description": "Locational Endpoint"
+      "location": "europe-west6"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west8-run.googleapis.com/",
-      "location": "europe-west8",
-      "description": "Locational Endpoint"
+      "location": "europe-west8"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west9-run.googleapis.com/",
-      "location": "europe-west9",
-      "description": "Locational Endpoint"
+      "location": "europe-west9"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://me-central1-run.googleapis.com/",
-      "location": "me-central1",
-      "description": "Locational Endpoint"
+      "location": "me-central1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://me-central2-run.googleapis.com/",
-      "location": "me-central2",
-      "description": "Locational Endpoint"
+      "location": "me-central2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://me-west1-run.googleapis.com/",
-      "location": "me-west1",
-      "description": "Locational Endpoint"
+      "location": "me-west1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://northamerica-northeast1-run.googleapis.com/",
-      "location": "northamerica-northeast1",
-      "description": "Locational Endpoint"
+      "location": "northamerica-northeast1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://northamerica-northeast2-run.googleapis.com/",
-      "location": "northamerica-northeast2",
-      "description": "Locational Endpoint"
+      "location": "northamerica-northeast2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://southamerica-east1-run.googleapis.com/",
-      "location": "southamerica-east1",
-      "description": "Locational Endpoint"
+      "location": "southamerica-east1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://southamerica-west1-run.googleapis.com/",
-      "location": "southamerica-west1",
-      "description": "Locational Endpoint"
+      "location": "southamerica-west1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-central1-run.googleapis.com/",
-      "location": "us-central1",
-      "description": "Locational Endpoint"
+      "location": "us-central1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-east1-run.googleapis.com/",
-      "location": "us-east1",
-      "description": "Locational Endpoint"
+      "location": "us-east1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-east4-run.googleapis.com/",
-      "location": "us-east4",
-      "description": "Locational Endpoint"
+      "location": "us-east4"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-east5-run.googleapis.com/",
-      "location": "us-east5",
-      "description": "Locational Endpoint"
+      "location": "us-east5"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-south1-run.googleapis.com/",
-      "location": "us-south1",
-      "description": "Locational Endpoint"
+      "location": "us-south1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west1-run.googleapis.com/",
-      "location": "us-west1",
-      "description": "Locational Endpoint"
+      "location": "us-west1"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west2-run.googleapis.com/",
-      "location": "us-west2",
-      "description": "Locational Endpoint"
+      "location": "us-west2"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west3-run.googleapis.com/",
-      "location": "us-west3",
-      "description": "Locational Endpoint"
+      "location": "us-west3"
     },
     {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-west4-run.googleapis.com/",
-      "location": "us-west4",
-      "description": "Locational Endpoint"
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2614,7 +2614,7 @@
       }
     }
   },
-  "revision": "20240524",
+  "revision": "20240712",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -3229,6 +3229,26 @@
       "description": "Reference to an Execution. Use /Executions.GetExecution with the given name to get full execution including the latest status.",
       "id": "ExecutionReference",
       "properties": {
+        "completionStatus": {
+          "description": "Optional. Status for the execution completion.",
+          "enum": [
+            "COMPLETION_STATUS_UNSPECIFIED",
+            "EXECUTION_SUCCEEDED",
+            "EXECUTION_FAILED",
+            "EXECUTION_RUNNING",
+            "EXECUTION_PENDING",
+            "EXECUTION_CANCELLED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "Job execution has succeeded.",
+            "Job execution has failed.",
+            "Job execution is running normally.",
+            "Waiting for backing resources to be provisioned.",
+            "Job execution has been cancelled by the user."
+          ],
+          "type": "string"
+        },
         "completionTimestamp": {
           "description": "Optional. Completion timestamp of the execution.",
           "format": "google-datetime",
@@ -3236,6 +3256,11 @@
         },
         "creationTimestamp": {
           "description": "Optional. Creation timestamp of the execution.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "deletionTimestamp": {
+          "description": "Optional. The read-only soft deletion timestamp of the execution.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -4172,26 +4197,6 @@
       },
       "type": "object"
     },
-    "GoogleDevtoolsCloudbuildV1GCSLocation": {
-      "description": "Represents a storage location in Cloud Storage",
-      "id": "GoogleDevtoolsCloudbuildV1GCSLocation",
-      "properties": {
-        "bucket": {
-          "description": "Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements",
-          "type": "string"
-        },
-        "generation": {
-          "description": "Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
-          "format": "int64",
-          "type": "string"
-        },
-        "object": {
-          "description": "Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleDevtoolsCloudbuildV1GitConfig": {
       "description": "GitConfig is a configuration for git operations.",
       "id": "GoogleDevtoolsCloudbuildV1GitConfig",
@@ -4255,12 +4260,8 @@
       "id": "GoogleDevtoolsCloudbuildV1HttpConfig",
       "properties": {
         "proxySecretVersionName": {
-          "description": "SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].",
+          "description": "SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.",
           "type": "string"
-        },
-        "proxySslCaInfo": {
-          "$ref": "GoogleDevtoolsCloudbuildV1GCSLocation",
-          "description": "Optional. Cloud Storage object storing the certificate to use with the HTTP proxy."
         }
       },
       "type": "object"
@@ -5673,12 +5674,12 @@
       "id": "RevisionSpec",
       "properties": {
         "containerConcurrency": {
-          "description": "ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. If not specified, defaults to 80.",
+          "description": "ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. If not specified or 0, defaults to 80 when requested CPU >= 1 and defaults to 1 when requested CPU < 1.",
           "format": "int32",
           "type": "integer"
         },
         "containers": {
-          "description": "Required. Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided.",
+          "description": "Required. Containers holds the list which define the units of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle.",
           "items": {
             "$ref": "Container"
           },
