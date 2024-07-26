@@ -57,9 +57,19 @@ export async function synth(options: SynthOptions = {}) {
   }
   // only set these while running in the GitHub Actions environment
   if (process.env.GITHUB_ACTIONS) {
-    await execa('git', ['config', '--global', 'user.email', 'yoshi-automation@google.com']);
+    await execa('git', [
+      'config',
+      '--global',
+      'user.email',
+      'yoshi-automation@google.com',
+    ]);
     await execa('git', ['config', '--global', 'user.name', 'Yoshi Automation']);
-    await execa('git', ['config', '--global', `url.https://${process.env.CODE_BOT_TOKEN}@github.com/.insteadOf`, 'https://github.com/']);
+    await execa('git', [
+      'config',
+      '--global',
+      `url.https://${process.env.CODE_BOT_TOKEN}@github.com/.insteadOf`,
+      'https://github.com/',
+    ]);
   }
   const dirs = files.filter(f => {
     return (
