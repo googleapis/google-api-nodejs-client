@@ -644,7 +644,7 @@
           ]
         },
         "addServerCa": {
-          "description": "Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.",
+          "description": "Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use AddServerCertificate to add a new server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/addServerCa",
           "httpMethod": "POST",
           "id": "sql.instances.addServerCa",
@@ -1287,7 +1287,7 @@
           ]
         },
         "rotateServerCa": {
-          "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method.",
+          "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use RotateServerCertificate to rotate the server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCa",
           "httpMethod": "POST",
           "id": "sql.instances.rotateServerCa",
@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240618",
+  "revision": "20240711",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2915,6 +2915,20 @@
         "serverCaCert": {
           "$ref": "SslCert",
           "description": "SSL configuration."
+        },
+        "serverCaMode": {
+          "description": "Specify what type of CA is used for the server certificate.",
+          "enum": [
+            "CA_MODE_UNSPECIFIED",
+            "GOOGLE_MANAGED_INTERNAL_CA",
+            "GOOGLE_MANAGED_CAS_CA"
+          ],
+          "enumDescriptions": [
+            "CA mode is unknown.",
+            "Google-managed self-signed internal CA.",
+            "Google-managed regional CA part of root CA hierarchy hosted on Google Cloud's Certificate Authority Service (CAS)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3415,6 +3429,10 @@
           },
           "type": "array"
         },
+        "switchTransactionLogsToCloudStorageEnabled": {
+          "description": "Input only. Whether Cloud SQL is enabled to switch storing point-in-time recovery log files from a data disk to Cloud Storage.",
+          "type": "boolean"
+        },
         "upgradableDatabaseVersions": {
           "description": "Output only. All database versions that are available for upgrade.",
           "items": {
@@ -3710,6 +3728,20 @@
             "parallel": {
               "description": "Optional. Whether or not the export should be parallel.",
               "type": "boolean"
+            },
+            "postgresExportOptions": {
+              "description": "Options for exporting from a Cloud SQL for PostgreSQL instance.",
+              "properties": {
+                "clean": {
+                  "description": "Optional. Use this option to include DROP SQL statements. These statements are used to delete database objects before running the import operation.",
+                  "type": "boolean"
+                },
+                "ifExists": {
+                  "description": "Optional. Option to include an IF EXISTS SQL statement with each DROP statement produced by clean.",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
             },
             "schemaOnly": {
               "description": "Export only schemas.",
@@ -4193,6 +4225,20 @@
               "description": "Optional. Whether or not the import should be parallel.",
               "type": "boolean"
             },
+            "postgresImportOptions": {
+              "description": "Optional. Options for importing from a Cloud SQL for PostgreSQL instance.",
+              "properties": {
+                "clean": {
+                  "description": "Optional. The --clean flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel.",
+                  "type": "boolean"
+                },
+                "ifExists": {
+                  "description": "Optional. The --if-exists flag for the pg_restore utility. This flag applies only if you enabled Cloud SQL to import files in parallel.",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
             "threads": {
               "description": "Optional. The number of threads to use for parallel import.",
               "format": "int32",
@@ -4461,6 +4507,20 @@
         "requireSsl": {
           "description": "Use `ssl_mode` instead. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the `require_ssl` flag.",
           "type": "boolean"
+        },
+        "serverCaMode": {
+          "description": "Specify what type of CA is used for the server certificate.",
+          "enum": [
+            "CA_MODE_UNSPECIFIED",
+            "GOOGLE_MANAGED_INTERNAL_CA",
+            "GOOGLE_MANAGED_CAS_CA"
+          ],
+          "enumDescriptions": [
+            "CA mode is unknown.",
+            "Google-managed self-signed internal CA.",
+            "Google-managed regional CA part of root CA hierarchy hosted on Google Cloud's Certificate Authority Service (CAS)."
+          ],
+          "type": "string"
         },
         "sslMode": {
           "description": "Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections.",
@@ -4779,7 +4839,8 @@
             "RECONFIGURE_OLD_PRIMARY",
             "CLUSTER_MAINTENANCE",
             "SELF_SERVICE_MAINTENANCE",
-            "SWITCHOVER_TO_REPLICA"
+            "SWITCHOVER_TO_REPLICA",
+            "MAJOR_VERSION_UPGRADE"
           ],
           "enumDeprecated": [
             false,
@@ -4815,6 +4876,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -4873,7 +4935,8 @@
             "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica.",
             "Indicates that the instance, its read replicas, and its cascading replicas are in maintenance. Maintenance typically gets initiated on groups of replicas first, followed by the primary instance. For each instance, maintenance typically causes the instance to be unavailable for 1-3 minutes.",
             "Indicates that the instance (and any of its replicas) are currently in maintenance. This is initiated as a self-service request by using SSM. Maintenance typically causes the instance to be unavailable for 1-3 minutes.",
-            "Switches a primary instance to a replica. This operation runs as part of a switchover operation to the original primary instance."
+            "Switches a primary instance to a replica. This operation runs as part of a switchover operation to the original primary instance.",
+            "Updates the major version of a Cloud SQL instance."
           ],
           "type": "string"
         },
@@ -5551,7 +5614,8 @@
             "UNSUPPORTED_EXTENSIONS_NOT_MIGRATED",
             "EXTENSIONS_NOT_MIGRATED",
             "PG_CRON_FLAG_ENABLED_IN_REPLICA",
-            "EXTENSIONS_NOT_ENABLED_IN_REPLICA"
+            "EXTENSIONS_NOT_ENABLED_IN_REPLICA",
+            "UNSUPPORTED_COLUMNS"
           ],
           "enumDescriptions": [
             "",
@@ -5602,7 +5666,8 @@
             "The warning message indicates the unsupported extensions will not be migrated to the destination.",
             "The warning message indicates the pg_cron extension and settings will not be migrated to the destination.",
             "The error message indicates that pg_cron flags are enabled on the destination which is not supported during the migration.",
-            "This error message indicates that the specified extensions are not enabled on destination instance. For example, before you can migrate data to the destination instance, you must enable the PGAudit extension on the instance."
+            "This error message indicates that the specified extensions are not enabled on destination instance. For example, before you can migrate data to the destination instance, you must enable the PGAudit extension on the instance.",
+            "The source database has generated columns that can't be migrated. Please change them to regular columns before migration."
           ],
           "type": "string"
         }

@@ -491,6 +491,10 @@ export namespace sqladmin_v1beta4 {
      * SSL configuration.
      */
     serverCaCert?: Schema$SslCert;
+    /**
+     * Specify what type of CA is used for the server certificate.
+     */
+    serverCaMode?: string | null;
   }
   /**
    * Represents a SQL database on the Cloud SQL instance.
@@ -716,6 +720,10 @@ export namespace sqladmin_v1beta4 {
      */
     suspensionReason?: string[] | null;
     /**
+     * Input only. Whether Cloud SQL is enabled to switch storing point-in-time recovery log files from a data disk to Cloud Storage.
+     */
+    switchTransactionLogsToCloudStorageEnabled?: boolean | null;
+    /**
      * Output only. All database versions that are available for upgrade.
      */
     upgradableDatabaseVersions?: Schema$AvailableDatabaseVersion[];
@@ -919,6 +927,7 @@ export namespace sqladmin_v1beta4 {
     sqlExportOptions?: {
       mysqlExportOptions?: {masterData?: number};
       parallel?: boolean;
+      postgresExportOptions?: {clean?: boolean; ifExists?: boolean};
       schemaOnly?: boolean;
       tables?: string[];
       threads?: number;
@@ -1108,7 +1117,11 @@ export namespace sqladmin_v1beta4 {
     /**
      * Optional. Options for importing data from SQL statements.
      */
-    sqlImportOptions?: {parallel?: boolean; threads?: number} | null;
+    sqlImportOptions?: {
+      parallel?: boolean;
+      postgresImportOptions?: {clean?: boolean; ifExists?: boolean};
+      threads?: number;
+    } | null;
     /**
      * Path to the import file in Cloud Storage, in the form `gs://bucketName/fileName`. Compressed gzip files (.gz) are supported when `fileType` is `SQL`. The instance must have write permissions to the bucket and read access to the file.
      */
@@ -1322,6 +1335,10 @@ export namespace sqladmin_v1beta4 {
      * Use `ssl_mode` instead. Whether SSL/TLS connections over IP are enforced. If set to false, then allow both non-SSL/non-TLS and SSL/TLS connections. For SSL/TLS connections, the client certificate won't be verified. If set to true, then only allow connections encrypted with SSL/TLS and with valid client certificates. If you want to enforce SSL/TLS without enforcing the requirement for valid client certificates, then use the `ssl_mode` flag instead of the legacy `require_ssl` flag.
      */
     requireSsl?: boolean | null;
+    /**
+     * Specify what type of CA is used for the server certificate.
+     */
+    serverCaMode?: string | null;
     /**
      * Specify how SSL/TLS is enforced in database connections. If you must use the `require_ssl` flag for backward compatibility, then only the following value pairs are valid: For PostgreSQL and MySQL: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false` * `ssl_mode=TRUSTED_CLIENT_CERTIFICATE_REQUIRED` and `require_ssl=true` For SQL Server: * `ssl_mode=ALLOW_UNENCRYPTED_AND_ENCRYPTED` and `require_ssl=false` * `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=true` The value of `ssl_mode` has priority over the value of `require_ssl`. For example, for the pair `ssl_mode=ENCRYPTED_ONLY` and `require_ssl=false`, `ssl_mode=ENCRYPTED_ONLY` means accept only SSL connections, while `require_ssl=false` means accept both non-SSL and SSL connections. In this case, MySQL and PostgreSQL databases respect `ssl_mode` and accepts only SSL connections.
      */
@@ -3906,7 +3923,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Add a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.
+     * Add a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use AddServerCertificate to add a new server certificate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5587,7 +5604,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method.
+     * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use RotateServerCertificate to rotate the server certificate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
