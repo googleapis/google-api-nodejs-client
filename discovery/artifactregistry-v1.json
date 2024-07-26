@@ -20,219 +20,219 @@
   "documentationLink": "https://cloud.google.com/artifacts/docs/",
   "endpoints": [
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.africa-south1.rep.googleapis.com/",
-      "location": "africa-south1",
-      "description": "Regional Endpoint"
+      "location": "africa-south1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-east1.rep.googleapis.com/",
-      "location": "asia-east1",
-      "description": "Regional Endpoint"
+      "location": "asia-east1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-east2.rep.googleapis.com/",
-      "location": "asia-east2",
-      "description": "Regional Endpoint"
+      "location": "asia-east2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-northeast1.rep.googleapis.com/",
-      "location": "asia-northeast1",
-      "description": "Regional Endpoint"
+      "location": "asia-northeast1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-northeast2.rep.googleapis.com/",
-      "location": "asia-northeast2",
-      "description": "Regional Endpoint"
+      "location": "asia-northeast2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-northeast3.rep.googleapis.com/",
-      "location": "asia-northeast3",
-      "description": "Regional Endpoint"
+      "location": "asia-northeast3"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-south1.rep.googleapis.com/",
-      "location": "asia-south1",
-      "description": "Regional Endpoint"
+      "location": "asia-south1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-south2.rep.googleapis.com/",
-      "location": "asia-south2",
-      "description": "Regional Endpoint"
+      "location": "asia-south2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-southeast1.rep.googleapis.com/",
-      "location": "asia-southeast1",
-      "description": "Regional Endpoint"
+      "location": "asia-southeast1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.asia-southeast2.rep.googleapis.com/",
-      "location": "asia-southeast2",
-      "description": "Regional Endpoint"
+      "location": "asia-southeast2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.australia-southeast1.rep.googleapis.com/",
-      "location": "australia-southeast1",
-      "description": "Regional Endpoint"
+      "location": "australia-southeast1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.australia-southeast2.rep.googleapis.com/",
-      "location": "australia-southeast2",
-      "description": "Regional Endpoint"
+      "location": "australia-southeast2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-central2.rep.googleapis.com/",
-      "location": "europe-central2",
-      "description": "Regional Endpoint"
+      "location": "europe-central2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-north1.rep.googleapis.com/",
-      "location": "europe-north1",
-      "description": "Regional Endpoint"
+      "location": "europe-north1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-southwest1.rep.googleapis.com/",
-      "location": "europe-southwest1",
-      "description": "Regional Endpoint"
+      "location": "europe-southwest1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west1.rep.googleapis.com/",
-      "location": "europe-west1",
-      "description": "Regional Endpoint"
+      "location": "europe-west1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west10.rep.googleapis.com/",
-      "location": "europe-west10",
-      "description": "Regional Endpoint"
+      "location": "europe-west10"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west12.rep.googleapis.com/",
-      "location": "europe-west12",
-      "description": "Regional Endpoint"
+      "location": "europe-west12"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west2.rep.googleapis.com/",
-      "location": "europe-west2",
-      "description": "Regional Endpoint"
+      "location": "europe-west2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Regional Endpoint"
+      "location": "europe-west3"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west4.rep.googleapis.com/",
-      "location": "europe-west4",
-      "description": "Regional Endpoint"
+      "location": "europe-west4"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west6.rep.googleapis.com/",
-      "location": "europe-west6",
-      "description": "Regional Endpoint"
+      "location": "europe-west6"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west8.rep.googleapis.com/",
-      "location": "europe-west8",
-      "description": "Regional Endpoint"
+      "location": "europe-west8"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9",
-      "description": "Regional Endpoint"
+      "location": "europe-west9"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.me-central1.rep.googleapis.com/",
-      "location": "me-central1",
-      "description": "Regional Endpoint"
+      "location": "me-central1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.me-west1.rep.googleapis.com/",
-      "location": "me-west1",
-      "description": "Regional Endpoint"
+      "location": "me-west1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.northamerica-northeast1.rep.googleapis.com/",
-      "location": "northamerica-northeast1",
-      "description": "Regional Endpoint"
+      "location": "northamerica-northeast1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.northamerica-northeast2.rep.googleapis.com/",
-      "location": "northamerica-northeast2",
-      "description": "Regional Endpoint"
+      "location": "northamerica-northeast2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.southamerica-east1.rep.googleapis.com/",
-      "location": "southamerica-east1",
-      "description": "Regional Endpoint"
+      "location": "southamerica-east1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.southamerica-west1.rep.googleapis.com/",
-      "location": "southamerica-west1",
-      "description": "Regional Endpoint"
+      "location": "southamerica-west1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-central1.rep.googleapis.com/",
-      "location": "us-central1",
-      "description": "Regional Endpoint"
+      "location": "us-central1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-central2.rep.googleapis.com/",
-      "location": "us-central2",
-      "description": "Regional Endpoint"
+      "location": "us-central2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-east1.rep.googleapis.com/",
-      "location": "us-east1",
-      "description": "Regional Endpoint"
+      "location": "us-east1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-east4.rep.googleapis.com/",
-      "location": "us-east4",
-      "description": "Regional Endpoint"
+      "location": "us-east4"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-east5.rep.googleapis.com/",
-      "location": "us-east5",
-      "description": "Regional Endpoint"
+      "location": "us-east5"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-east7.rep.googleapis.com/",
-      "location": "us-east7",
-      "description": "Regional Endpoint"
+      "location": "us-east7"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-south1.rep.googleapis.com/",
-      "location": "us-south1",
-      "description": "Regional Endpoint"
+      "location": "us-south1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-west1.rep.googleapis.com/",
-      "location": "us-west1",
-      "description": "Regional Endpoint"
+      "location": "us-west1"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-west2.rep.googleapis.com/",
-      "location": "us-west2",
-      "description": "Regional Endpoint"
+      "location": "us-west2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-west3.rep.googleapis.com/",
-      "location": "us-west3",
-      "description": "Regional Endpoint"
+      "location": "us-west3"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-west4.rep.googleapis.com/",
-      "location": "us-west4",
-      "description": "Regional Endpoint"
+      "location": "us-west4"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-west8.rep.googleapis.com/",
-      "location": "us-west8",
-      "description": "Regional Endpoint"
+      "location": "us-west8"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
+      "location": "me-central2"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2013,7 +2013,7 @@
       }
     }
   },
-  "revision": "20240608",
+  "revision": "20240717",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -3351,8 +3351,19 @@
         "name": {
           "description": "The name of the project's settings. Always of the form: projects/{project-id}/projectSettings In update request: never set In response: always set",
           "type": "string"
+        },
+        "pullPercent": {
+          "description": "The percentage of pull traffic to redirect from GCR to AR when using partial redirection.",
+          "format": "int32",
+          "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "PromoteArtifactMetadata": {
+      "description": "The metadata for promote artifact long running operation.",
+      "id": "PromoteArtifactMetadata",
+      "properties": {},
       "type": "object"
     },
     "PythonPackage": {
@@ -3735,7 +3746,7 @@
           "type": "string"
         },
         "packageId": {
-          "description": "The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.",
+          "description": "The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` should start and end with a letter or number, only contain letters, numbers, hyphens, underscores, and periods, and not exceed 256 characters.",
           "type": "string"
         },
         "versionId": {

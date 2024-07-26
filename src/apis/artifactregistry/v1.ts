@@ -1049,7 +1049,15 @@ export namespace artifactregistry_v1 {
      * The name of the project's settings. Always of the form: projects/{project-id\}/projectSettings In update request: never set In response: always set
      */
     name?: string | null;
+    /**
+     * The percentage of pull traffic to redirect from GCR to AR when using partial redirection.
+     */
+    pullPercent?: number | null;
   }
+  /**
+   * The metadata for promote artifact long running operation.
+   */
+  export interface Schema$PromoteArtifactMetadata {}
   /**
    * PythonPackage represents a python artifact.
    */
@@ -1315,7 +1323,7 @@ export namespace artifactregistry_v1 {
      */
     filename?: string | null;
     /**
-     * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.
+     * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` should start and end with a letter or number, only contain letters, numbers, hyphens, underscores, and periods, and not exceed 256 characters.
      */
     packageId?: string | null;
     /**
