@@ -585,7 +585,7 @@
         "enrollmentTokens": {
           "methods": {
             "create": {
-              "description": "Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore. Once an enrollment token has been created, it's not possible to retrieve the token's content anymore using AM API. It is recommended for EMMs to securely store the token if it's intended to be reused.",
+              "description": "Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore.",
               "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens",
               "httpMethod": "POST",
               "id": "androidmanagement.enterprises.enrollmentTokens.create",
@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20240724",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -4248,9 +4248,9 @@
             "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
-            "This value is disallowed.",
+            "This value is not used.",
             "The setting is not supported in the API level of the Android version running on the device.",
-            "The management mode (profile owner, device owner, etc.) doesn't support the setting.",
+            "The management mode (such as fully managed or work profile) doesn't support the setting.",
             "The user has not taken required action to comply with the setting.",
             "The setting has an invalid value.",
             "The app required to implement the policy is not installed.",
@@ -4326,9 +4326,9 @@
             "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
-            "This value is disallowed.",
+            "This value is not used.",
             "The setting is not supported in the API level of the Android version running on the device.",
-            "The management mode (profile owner, device owner, etc.) doesn't support the setting.",
+            "The management mode (such as fully managed or work profile) doesn't support the setting.",
             "The user has not taken required action to comply with the setting.",
             "The setting has an invalid value.",
             "The app required to implement the policy is not installed.",
