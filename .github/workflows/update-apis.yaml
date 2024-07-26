@@ -7,13 +7,21 @@ jobs:
   update-apis:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4
       - uses: actions/setup-node@v4
         with:
           node-version: 14
+      - run: gh repo fork googleapis/google-api-nodejs-client --fork-name google-api-nodejs-client-autodisco --clone --remote
+        env:
+          GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
+      - run: gh repo sync yoshi-code-bot/google-api-nodejs-client-autodisco --force
+        env:
+          GH_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
       - run: npm install
+        working-directory: ./google-api-nodejs-client-autodisco
       - run: npm run update-disclaimers
+        working-directory: ./google-api-nodejs-client-autodisco
       - run: npm run submit-prs
+        working-directory: ./google-api-nodejs-client-autodisco
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CODE_BOT_TOKEN: ${{ secrets.YOSHI_CODE_BOT_TOKEN }}
