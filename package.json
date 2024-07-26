@@ -59,12 +59,12 @@
     "googleapis-common": "^7.0.0"
   },
   "devDependencies": {
-    "@compodoc/compodoc": "1.1.19",
+    "@compodoc/compodoc": "1.1.23",
     "@types/execa": "^2.0.0",
     "@types/mocha": "^9.0.0",
     "@types/mv": "^2.1.0",
     "@types/ncp": "^2.0.1",
-    "@types/node": "20.12.13",
+    "@types/node": "^20.4.5",
     "@types/nunjucks": "^3.1.1",
     "@types/prettier": "3.0.0",
     "@types/proxyquire": "^1.3.28",
