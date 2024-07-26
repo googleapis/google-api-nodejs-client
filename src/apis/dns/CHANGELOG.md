@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v3.0.0...dns-v4.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dns:** This release has breaking changes.
+
+### Features
+
+* **dns:** update the API ([a8a77e7](https://github.com/googleapis/google-api-nodejs-client/commit/a8a77e7368b23d51b251236c383a2fbdffb61db6))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v2.0.0...dns-v3.0.0) (2024-05-02)
 
 

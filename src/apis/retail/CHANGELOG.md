@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v8.1.1...retail-v9.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **retail:** This release has breaking changes.
+
+### Features
+
+* **retail:** update the API ([09a4398](https://github.com/googleapis/google-api-nodejs-client/commit/09a439819d4c787c89e30ae6afc6606b58300326))
+
 ## [8.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v8.1.0...retail-v8.1.1) (2024-06-03)
 
 

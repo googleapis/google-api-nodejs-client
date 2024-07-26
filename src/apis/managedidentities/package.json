@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/managedidentities",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "managedidentities",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,17 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v10.1.0...dlp-v11.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **dlp:** update the API ([8bf3a16](https://github.com/googleapis/google-api-nodejs-client/commit/8bf3a1604276df03350eb6f8646e8c3440e70ab3))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v10.0.0...dlp-v10.1.0) (2024-06-03)
 
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v4.0.0...pubsub-v5.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **pubsub:** update the API ([904f72d](https://github.com/googleapis/google-api-nodejs-client/commit/904f72d1bb060312aa37e2c7a18c44aeff7fe84e))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v3.1.0...pubsub-v4.0.0) (2024-05-02)
 
 
