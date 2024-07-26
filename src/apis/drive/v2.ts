@@ -1206,7 +1206,7 @@ export namespace drive_v2 {
      */
     sharingUser?: Schema$User;
     /**
-     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`.
+     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`. Can only be set on `files.insert` requests.
      */
     shortcutDetails?: {
       targetId?: string;

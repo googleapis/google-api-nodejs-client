@@ -2523,7 +2523,7 @@
       }
     }
   },
-  "revision": "20240521",
+  "revision": "20240628",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3851,10 +3851,10 @@
           "description": "Output only. The user who shared the file with the requesting user, if applicable."
         },
         "shortcutDetails": {
-          "description": "Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`.",
+          "description": "Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`. Can only be set on `files.create` requests.",
           "properties": {
             "targetId": {
-              "description": "The ID of the file that this shortcut points to.",
+              "description": "The ID of the file that this shortcut points to. Can only be set on `files.create` requests.",
               "type": "string"
             },
             "targetMimeType": {
