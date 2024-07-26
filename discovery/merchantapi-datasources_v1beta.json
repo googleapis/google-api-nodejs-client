@@ -290,7 +290,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240719",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -526,7 +526,7 @@
             "Not specified.",
             "Online product.",
             "Local product.",
-            "Unified data source for both local and online products."
+            "Unified data source for both local and online products. Note: Products management through the API is not possible for this channel."
           ],
           "type": "string"
         },
