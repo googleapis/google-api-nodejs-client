@@ -2259,6 +2259,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "export": {
+                      "description": "Exports user events. `Operation.response` is of type `ExportResponse`. `Operation.metadata` is of type `ExportMetadata`.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:export",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.userEvents.export",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Resource name of a Catalog. For example `projects/1234/locations/global/catalogs/default_catalog`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+parent}/userEvents:export",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaExportUserEventsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "import": {
                       "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. `Operation.response` is of type `ImportResponse`. Note that it is possible for a subset of the items to be successfully inserted. `Operation.metadata` is of type `ImportMetadata`.",
                       "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:import",
@@ -2557,7 +2585,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240711",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3610,16 +3638,6 @@
           "readOnly": true,
           "type": "array"
         },
-        "productCounts": {
-          "additionalProperties": {
-            "format": "int64",
-            "type": "string"
-          },
-          "deprecated": true,
-          "description": "Output only. The number of products in different groups that this branch has. The key is a group representing a set of products, and the value is the number of products in that group. Note: keys in this map may change over time. Possible keys: * \"primary-in-stock\", products have Product.Type.PRIMARY type and Product.Availability.IN_STOCK availability. * \"primary-out-of-stock\", products have Product.Type.PRIMARY type and Product.Availability.OUT_OF_STOCK availability. * \"primary-preorder\", products have Product.Type.PRIMARY type and Product.Availability.PREORDER availability. * \"primary-backorder\", products have Product.Type.PRIMARY type and Product.Availability.BACKORDER availability. * \"variant-in-stock\", products have Product.Type.VARIANT type and Product.Availability.IN_STOCK availability. * \"variant-out-of-stock\", products have Product.Type.VARIANT type and Product.Availability.OUT_OF_STOCK availability. * \"variant-preorder\", products have Product.Type.VARIANT type and Product.Availability.PREORDER availability. * \"variant-backorder\", products have Product.Type.VARIANT type and Product.Availability.BACKORDER availability. * \"price-discounted\", products have [Product.price_info.price] < [Product.price_info.original_price]. This field is not populated in BranchView.BASIC view.",
-          "readOnly": true,
-          "type": "object"
-        },
         "qualityMetrics": {
           "description": "Output only. The quality metrics measured among products of this branch. See QualityMetric.requirement_key for supported metrics. Metrics could be missing if failed to retrieve. This field is not populated in BranchView.BASIC view.",
           "items": {
@@ -3902,14 +3920,6 @@
         "mergedFacetKey": {
           "description": "The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.",
           "type": "string"
-        },
-        "mergedFacetValues": {
-          "deprecated": true,
-          "description": "Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.",
-          "items": {
-            "$ref": "GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -4050,7 +4060,7 @@
     },
     "GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult": {
       "deprecated": true,
-      "description": "Recent search of this user.",
+      "description": "Deprecated: Recent search of this user.",
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult",
       "properties": {
         "recentSearch": {
@@ -4497,6 +4507,21 @@
         "outputResult": {
           "$ref": "GoogleCloudRetailV2alphaOutputResult",
           "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaExportUserEventsRequest": {
+      "description": "Request message for the `ExportUserEvents` method.",
+      "id": "GoogleCloudRetailV2alphaExportUserEventsRequest",
+      "properties": {
+        "filter": {
+          "description": "A filtering expression to specify restrictions on returned events. The expression is a sequence of terms. Each term applies a restriction to the returned user events. Use this expression to restrict results to a specific time range or to filter events by eventType. For example, `eventTime > \"2012-04-23T18:25:43.511Z\" eventsMissingCatalogItems eventTime<\"2012-04-23T18:25:43.511Z\" eventType=search` We expect only three types of fields: * `eventTime`: This can be specified twice, once with a less than operator and once with a greater than operator. The `eventTime` restriction should result in one, contiguous, valid, `eventTime` range. * `eventType`: Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses and the operators are separated from the tag values by a space. * `eventsMissingCatalogItems`: This restricts results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: `eventTime > \"2012-04-23T18:25:43.511Z\" eventTime < \"2012-04-23T18:30:43.511Z\"` * Example 2: `eventTime > \"2012-04-23T18:25:43.511Z\" eventType = detail-page-view` * Example 3: `eventsMissingCatalogItems eventType = (NOT search) eventTime < \"2018-04-23T18:30:43.511Z\"` * Example 4: `eventTime > \"2012-04-23T18:25:43.511Z\"` * Example 5: `eventType = (detail-page-view OR search)` * Example 6: `eventsMissingCatalogItems`",
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudRetailV2alphaOutputConfig",
+          "description": "Required. The output location of the data."
         }
       },
       "type": "object"

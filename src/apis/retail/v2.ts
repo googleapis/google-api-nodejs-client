@@ -1473,10 +1473,6 @@ export namespace retail_v2 {
      * The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.
      */
     mergedFacetKey?: string | null;
-    /**
-     * Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.
-     */
-    mergedFacetValues?: Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue[];
   }
   /**
    * Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.
@@ -1550,7 +1546,7 @@ export namespace retail_v2 {
     suggestion?: string | null;
   }
   /**
-   * Recent search of this user.
+   * Deprecated: Recent search of this user.
    */
   export interface Schema$GoogleCloudRetailV2CompleteQueryResponseRecentSearchResult {
     /**

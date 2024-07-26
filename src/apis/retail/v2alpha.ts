@@ -495,10 +495,6 @@ export namespace retail_v2alpha {
      */
     name?: string | null;
     /**
-     * Output only. The number of products in different groups that this branch has. The key is a group representing a set of products, and the value is the number of products in that group. Note: keys in this map may change over time. Possible keys: * "primary-in-stock", products have Product.Type.PRIMARY type and Product.Availability.IN_STOCK availability. * "primary-out-of-stock", products have Product.Type.PRIMARY type and Product.Availability.OUT_OF_STOCK availability. * "primary-preorder", products have Product.Type.PRIMARY type and Product.Availability.PREORDER availability. * "primary-backorder", products have Product.Type.PRIMARY type and Product.Availability.BACKORDER availability. * "variant-in-stock", products have Product.Type.VARIANT type and Product.Availability.IN_STOCK availability. * "variant-out-of-stock", products have Product.Type.VARIANT type and Product.Availability.OUT_OF_STOCK availability. * "variant-preorder", products have Product.Type.VARIANT type and Product.Availability.PREORDER availability. * "variant-backorder", products have Product.Type.VARIANT type and Product.Availability.BACKORDER availability. * "price-discounted", products have [Product.price_info.price] < [Product.price_info.original_price]. This field is not populated in BranchView.BASIC view.
-     */
-    productCounts?: {[key: string]: string} | null;
-    /**
      * Output only. Statistics for number of products in the branch, provided for different scopes. This field is not populated in BranchView.BASIC view.
      */
     productCountStats?: Schema$GoogleCloudRetailV2alphaBranchProductCountStatistic[];
@@ -661,10 +657,6 @@ export namespace retail_v2alpha {
      * The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.
      */
     mergedFacetKey?: string | null;
-    /**
-     * Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.
-     */
-    mergedFacetValues?: Schema$GoogleCloudRetailV2alphaCatalogAttributeFacetConfigMergedFacetValue[];
   }
   /**
    * Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.
@@ -763,7 +755,7 @@ export namespace retail_v2alpha {
     totalProductCount?: number | null;
   }
   /**
-   * Recent search of this user.
+   * Deprecated: Recent search of this user.
    */
   export interface Schema$GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult {
     /**
@@ -1081,6 +1073,19 @@ export namespace retail_v2alpha {
      * Output result indicating where the data were exported to.
      */
     outputResult?: Schema$GoogleCloudRetailV2alphaOutputResult;
+  }
+  /**
+   * Request message for the `ExportUserEvents` method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaExportUserEventsRequest {
+    /**
+     * A filtering expression to specify restrictions on returned events. The expression is a sequence of terms. Each term applies a restriction to the returned user events. Use this expression to restrict results to a specific time range or to filter events by eventType. For example, `eventTime \> "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search` We expect only three types of fields: * `eventTime`: This can be specified twice, once with a less than operator and once with a greater than operator. The `eventTime` restriction should result in one, contiguous, valid, `eventTime` range. * `eventType`: Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses and the operators are separated from the tag values by a space. * `eventsMissingCatalogItems`: This restricts results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: `eventTime \> "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z"` * Example 2: `eventTime \> "2012-04-23T18:25:43.511Z" eventType = detail-page-view` * Example 3: `eventsMissingCatalogItems eventType = (NOT search) eventTime < "2018-04-23T18:30:43.511Z"` * Example 4: `eventTime \> "2012-04-23T18:25:43.511Z"` * Example 5: `eventType = (detail-page-view OR search)` * Example 6: `eventsMissingCatalogItems`
+     */
+    filter?: string | null;
+    /**
+     * Required. The output location of the data.
+     */
+    outputConfig?: Schema$GoogleCloudRetailV2alphaOutputConfig;
   }
   /**
    * Response of the ExportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
@@ -11564,6 +11569,102 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Exports user events. `Operation.response` is of type `ExportResponse`. `Operation.metadata` is of type `ExportMetadata`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Catalogs$Userevents$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Userevents$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Userevents$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/userEvents:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. `Operation.response` is of type `ImportResponse`. Note that it is possible for a subset of the items to be successfully inserted. `Operation.metadata` is of type `ImportMetadata`.
      *
      * @param params - Parameters for request
@@ -11976,6 +12077,18 @@ export namespace retail_v2alpha {
      * Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
      */
     userEvent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Export
+    extends StandardParameters {
+    /**
+     * Required. Resource name of a Catalog. For example `projects/1234/locations/global/catalogs/default_catalog`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaExportUserEventsRequest;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Userevents$Import
     extends StandardParameters {
