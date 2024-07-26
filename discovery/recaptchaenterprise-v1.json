@@ -1609,6 +1609,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecaptchaenterpriseV1IpOverrideData": {
+      "description": "Information about the IP or IP range override.",
+      "id": "GoogleCloudRecaptchaenterpriseV1IpOverrideData",
+      "properties": {
+        "ip": {
+          "description": "Required. The IP address to override (can be IPv4, IPv6 or CIDR). The IP override must be a valid IPv4 or IPv6 address, or a CIDR range. The IP override must be a public IP address. Example of IPv4: 168.192.5.6 Example of IPv6: 2001:0000:130F:0000:0000:09C0:876A:130B Example of IPv4 with CIDR: 168.192.5.0/24 Example of IPv6 with CIDR: 2001:0DB8:1234::/48",
+          "type": "string"
+        },
+        "overrideType": {
+          "description": "Required. Describes the type of IP override.",
+          "enum": [
+            "OVERRIDE_TYPE_UNSPECIFIED",
+            "ALLOW"
+          ],
+          "enumDescriptions": [
+            "Default override type that indicates this enum hasn't been specified.",
+            "Allowlist the IP address; i.e. give a `risk_analysis.score` of 0.9 for all valid assessments."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1Key": {
       "description": "A key used to identify and configure applications (web and/or mobile) that use reCAPTCHA Enterprise.",
       "id": "GoogleCloudRecaptchaenterpriseV1Key",
