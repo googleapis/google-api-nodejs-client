@@ -606,7 +606,7 @@ export namespace firestore_v1beta1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
-   * Nearest Neighbors search config.
+   * Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries.
    */
   export interface Schema$FindNearest {
     /**

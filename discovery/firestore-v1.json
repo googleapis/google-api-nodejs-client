@@ -1706,7 +1706,7 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240713",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2388,7 +2388,7 @@
       "type": "object"
     },
     "FindNearest": {
-      "description": "Nearest Neighbors search config.",
+      "description": "Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries.",
       "id": "FindNearest",
       "properties": {
         "distanceMeasure": {
@@ -2499,7 +2499,7 @@
           "type": "string"
         },
         "retention": {
-          "description": "At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days.",
+          "description": "At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days. The maximum supported retention period is 14 weeks.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2633,12 +2633,7 @@
     "GoogleFirestoreAdminV1DailyRecurrence": {
       "description": "Represents a recurring schedule that runs every day. The time zone is UTC.",
       "id": "GoogleFirestoreAdminV1DailyRecurrence",
-      "properties": {
-        "time": {
-          "$ref": "TimeOfDay",
-          "description": "Time of the day. The first run scheduled will be either on the same day if schedule creation time precedes time_of_day or the next day otherwise."
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleFirestoreAdminV1Database": {
@@ -3461,7 +3456,7 @@
       "id": "GoogleFirestoreAdminV1RestoreDatabaseRequest",
       "properties": {
         "backup": {
-          "description": "Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
+          "description": "Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
           "type": "string"
         },
         "databaseId": {
@@ -3469,7 +3464,7 @@
           "type": "string"
         },
         "kmsKeyName": {
-          "description": "Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.",
+          "description": "Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as the restored database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id}/locations/{kms_location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}`.",
           "type": "string"
         },
         "useBackupEncryption": {
@@ -3602,10 +3597,6 @@
             "Sunday"
           ],
           "type": "string"
-        },
-        "time": {
-          "$ref": "TimeOfDay",
-          "description": "Time of the day. If day is today, the first run will happen today if schedule creation time precedes time_of_day, and the next week otherwise."
         }
       },
       "type": "object"
@@ -4337,33 +4328,6 @@
             "type": "integer"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "TimeOfDay": {
-      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
-      "id": "TimeOfDay",
-      "properties": {
-        "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"

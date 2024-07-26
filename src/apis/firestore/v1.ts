@@ -606,7 +606,7 @@ export namespace firestore_v1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
-   * Nearest Neighbors search config.
+   * Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries.
    */
   export interface Schema$FindNearest {
     /**
@@ -676,7 +676,7 @@ export namespace firestore_v1 {
      */
     name?: string | null;
     /**
-     * At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days.
+     * At what relative time in the future, compared to its creation time, the backup should be deleted, e.g. keep backups for 7 days. The maximum supported retention period is 14 weeks.
      */
     retention?: string | null;
     /**
@@ -758,12 +758,7 @@ export namespace firestore_v1 {
   /**
    * Represents a recurring schedule that runs every day. The time zone is UTC.
    */
-  export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {
-    /**
-     * Time of the day. The first run scheduled will be either on the same day if schedule creation time precedes time_of_day or the next day otherwise.
-     */
-    time?: Schema$TimeOfDay;
-  }
+  export interface Schema$GoogleFirestoreAdminV1DailyRecurrence {}
   /**
    * A Cloud Firestore Database.
    */
@@ -1245,7 +1240,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseRequest {
     /**
-     * Backup to restore from. Must be from the same project as the parent. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
+     * Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
      */
     backup?: string | null;
     /**
@@ -1253,7 +1248,7 @@ export namespace firestore_v1 {
      */
     databaseId?: string | null;
     /**
-     * Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as this database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
+     * Use Customer Managed Encryption Keys (CMEK) for encryption. Only keys in the same location as the restored database are allowed to be used for encryption. For Firestore's nam5 multi-region, this corresponds to Cloud KMS multi-region us. For Firestore's eur3 multi-region, this corresponds to Cloud KMS multi-region europe. See https://cloud.google.com/kms/docs/locations. The expected format is `projects/{project_id\}/locations/{kms_location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`.
      */
     kmsKeyName?: string | null;
     /**
@@ -1325,10 +1320,6 @@ export namespace firestore_v1 {
      * The day of week to run. DAY_OF_WEEK_UNSPECIFIED is not allowed.
      */
     day?: string | null;
-    /**
-     * Time of the day. If day is today, the first run will happen today if schedule creation time precedes time_of_day, and the next week otherwise.
-     */
-    time?: Schema$TimeOfDay;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1876,27 +1867,6 @@ export namespace firestore_v1 {
      * The target IDs of targets that have changed. If empty, the change applies to all targets. The order of the target IDs is not defined.
      */
     targetIds?: number[] | null;
-  }
-  /**
-   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
-   */
-  export interface Schema$TimeOfDay {
-    /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
-     */
-    hours?: number | null;
-    /**
-     * Minutes of hour of day. Must be from 0 to 59.
-     */
-    minutes?: number | null;
-    /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
-     */
-    nanos?: number | null;
-    /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
-     */
-    seconds?: number | null;
   }
   /**
    * Options for creating a new transaction.

@@ -950,7 +950,7 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240713",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1632,7 +1632,7 @@
       "type": "object"
     },
     "FindNearest": {
-      "description": "Nearest Neighbors search config.",
+      "description": "Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries.",
       "id": "FindNearest",
       "properties": {
         "distanceMeasure": {
