@@ -1032,6 +1032,10 @@ export namespace walletobjects_v1 {
      */
     rotatingBarcode?: Schema$RotatingBarcode;
     /**
+     * Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass.
+     */
+    saveRestrictions?: Schema$SaveRestrictions;
+    /**
      * Seating details for this ticket.
      */
     seatInfo?: Schema$EventSeat;
@@ -1248,15 +1252,15 @@ export namespace walletobjects_v1 {
      */
     linksModuleData?: Schema$LinksModuleData;
     /**
-     * The boarding time as it would be printed on the boarding pass. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. If this is not set, Google will set it based on data from other sources.
+     * The boarding time as it would be printed on the boarding pass. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport.
      */
     localBoardingDateTime?: string | null;
     /**
-     * The estimated time the aircraft plans to reach the destination gate (not the runway) or the actual time it reached the gate. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already arrived at the gate. Google will use it to inform the user that the flight has arrived at the gate. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport. If this is not set, Google will set it based on data from other sources.
+     * The estimated time the aircraft plans to reach the destination gate (not the runway) or the actual time it reached the gate. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already arrived at the gate. Google will use it to inform the user that the flight has arrived at the gate. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport.
      */
     localEstimatedOrActualArrivalDateTime?: string | null;
     /**
-     * The estimated time the aircraft plans to pull from the gate or the actual time the aircraft already pulled from the gate. Note: This is not the runway time. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already pulled from the gate. Google will use it to inform the user when the flight actually departed. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport. If this is not set, Google will set it based on data from other sources.
+     * The estimated time the aircraft plans to pull from the gate or the actual time the aircraft already pulled from the gate. Note: This is not the runway time. This field should be set if at least one of the below is true: - It differs from the scheduled time. Google will use it to calculate the delay. - The aircraft already pulled from the gate. Google will use it to inform the user when the flight actually departed. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on departure airport.
      */
     localEstimatedOrActualDepartureDateTime?: string | null;
     /**
@@ -1268,7 +1272,7 @@ export namespace walletobjects_v1 {
      */
     localizedIssuerName?: Schema$LocalizedString;
     /**
-     * The scheduled time the aircraft plans to reach the destination gate (not the runway). Note: This field should not change too close to the flight time. For updates to departure times (delays, etc), please set `localEstimatedOrActualArrivalDateTime`. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport. If this is not set, Google will set it based on data from other sources.
+     * The scheduled time the aircraft plans to reach the destination gate (not the runway). Note: This field should not change too close to the flight time. For updates to departure times (delays, etc), please set `localEstimatedOrActualArrivalDateTime`. This is an ISO 8601 extended format date/time without an offset. Time may be specified up to millisecond precision. eg: `2027-03-05T06:30:00` This should be the local date/time at the airport (not a UTC time). Google will reject the request if UTC offset is provided. Time zones will be calculated by Google based on arrival airport.
      */
     localScheduledArrivalDateTime?: string | null;
     /**
@@ -1455,6 +1459,10 @@ export namespace walletobjects_v1 {
      * The rotating barcode type and value.
      */
     rotatingBarcode?: Schema$RotatingBarcode;
+    /**
+     * Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass.
+     */
+    saveRestrictions?: Schema$SaveRestrictions;
     /**
      * An image for the security program that applies to the passenger.
      */
@@ -1661,6 +1669,10 @@ export namespace walletobjects_v1 {
      * The rotating barcode settings/details.
      */
     rotatingBarcode?: Schema$RotatingBarcode;
+    /**
+     * Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass.
+     */
+    saveRestrictions?: Schema$SaveRestrictions;
     /**
      * The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported.
      */
@@ -1971,6 +1983,10 @@ export namespace walletobjects_v1 {
      * The rotating barcode type and value.
      */
     rotatingBarcode?: Schema$RotatingBarcode;
+    /**
+     * Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass.
+     */
+    saveRestrictions?: Schema$SaveRestrictions;
     /**
      * The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported.
      */
@@ -2502,6 +2518,10 @@ export namespace walletobjects_v1 {
      * The rotating barcode type and value.
      */
     rotatingBarcode?: Schema$RotatingBarcode;
+    /**
+     * Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass.
+     */
+    saveRestrictions?: Schema$SaveRestrictions;
     /**
      * The secondary loyalty reward points label, balance, and type. Shown in addition to the primary loyalty points.
      */
@@ -3094,6 +3114,10 @@ export namespace walletobjects_v1 {
      */
     rotatingBarcode?: Schema$RotatingBarcode;
     /**
+     * Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass.
+     */
+    saveRestrictions?: Schema$SaveRestrictions;
+    /**
      * The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported.
      */
     smartTapRedemptionValue?: string | null;
@@ -3354,6 +3378,15 @@ export namespace walletobjects_v1 {
      * Required. The values to encode in the barcode. At least one value is required.
      */
     values?: string[] | null;
+  }
+  /**
+   * Defines restrictions on the object that will be verified during save. Note: this is an advanced feature, please contact Google for implementation support.
+   */
+  export interface Schema$SaveRestrictions {
+    /**
+     * Restrict the save of the referencing object to the given email address only. This is the hex output of SHA256 sum of the email address, all lowercase and without any notations like "." or "+", except "@". For example, for example@example.com, this value will be 31c5543c1734d25c7206f5fd591525d0295bec6fe84ff82f946a34fe970a1e66 and for Example@example.com, this value will be bc34f262c93ad7122763684ccea6f07fb7f5d8a2d11e60ce15a6f43fe70ce632 If email address of the logged-in user who tries to save this pass does not match with the defined value here, users won't be allowed to save this pass. They will instead be prompted with an error to contact the issuer. This information should be gathered from the user with an explicit consent via Sign in with Google integration https://developers.google.com/identity/authentication. Please contact with support before using Save Restrictions.
+     */
+    restrictToEmailSha256?: string | null;
   }
   export interface Schema$SecurityAnimation {
     /**
@@ -3895,6 +3928,10 @@ export namespace walletobjects_v1 {
      * The rotating barcode type and value.
      */
     rotatingBarcode?: Schema$RotatingBarcode;
+    /**
+     * Restrictions on the object that needs to be verified before the user tries to save the pass. Note that this restrictions will only be applied during save time. If the restrictions changed after a user saves the pass, the new restrictions will not be applied to an already saved pass.
+     */
+    saveRestrictions?: Schema$SaveRestrictions;
     /**
      * The value that will be transmitted to a Smart Tap certified terminal over NFC for this object. The class level fields `enableSmartTap` and `redemptionIssuers` must also be set up correctly in order for the pass to support Smart Tap. Only ASCII characters are supported.
      */
