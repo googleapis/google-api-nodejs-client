@@ -1162,15 +1162,6 @@ export namespace analyticsadmin_v1beta {
     accountTicketId?: string | null;
   }
   /**
-   * Request message for ReorderEventEditRules RPC.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest {
-    /**
-     * Required. EventEditRule resource names for the specified data stream, in the needed processing order. All EventEditRules for the stream must be present in the list.
-     */
-    eventEditRules?: string[] | null;
-  }
-  /**
    * The request for a Data Access Record Report.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaRunAccessReportRequest {
@@ -1277,7 +1268,7 @@ export namespace analyticsadmin_v1beta {
      */
     pageToken?: string | null;
     /**
-     * Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId\} Example: "properties/100"
+     * Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId\} Example: `properties/100`
      */
     property?: string | null;
     /**
@@ -2083,7 +2074,7 @@ export namespace analyticsadmin_v1beta {
   export interface Params$Resource$Accounts$Getdatasharingsettings
     extends StandardParameters {
     /**
-     * Required. The name of the settings to lookup. Format: accounts/{account\}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
+     * Required. The name of the settings to lookup. Format: accounts/{account\}/dataSharingSettings Example: `accounts/1000/dataSharingSettings`
      */
     name?: string;
   }
@@ -2138,7 +2129,7 @@ export namespace analyticsadmin_v1beta {
   export interface Params$Resource$Accounts$Searchchangehistoryevents
     extends StandardParameters {
     /**
-     * Required. The account resource for which to return change history resources. Format: accounts/{account\} Example: "accounts/100"
+     * Required. The account resource for which to return change history resources. Format: accounts/{account\} Example: `accounts/100`
      */
     account?: string;
 
@@ -3257,7 +3248,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Creates a conversion event with the specified attributes.
+     * Deprecated: Use `CreateKeyEvent` instead. Creates a conversion event with the specified attributes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3355,7 +3346,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Deletes a conversion event in a property.
+     * Deprecated: Use `DeleteKeyEvent` instead. Deletes a conversion event in a property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3444,7 +3435,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Retrieve a single conversion event.
+     * Deprecated: Use `GetKeyEvent` instead. Retrieve a single conversion event.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3539,7 +3530,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.
+     * Deprecated: Use `ListKeyEvents` instead. Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3637,7 +3628,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Updates a conversion event with the specified attributes.
+     * Deprecated: Use `UpdateKeyEvent` instead. Updates a conversion event with the specified attributes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4888,13 +4879,9 @@ export namespace analyticsadmin_v1beta {
 
   export class Resource$Properties$Datastreams {
     context: APIRequestContext;
-    eventEditRules: Resource$Properties$Datastreams$Eventeditrules;
     measurementProtocolSecrets: Resource$Properties$Datastreams$Measurementprotocolsecrets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.eventEditRules = new Resource$Properties$Datastreams$Eventeditrules(
-        this.context
-      );
       this.measurementProtocolSecrets =
         new Resource$Properties$Datastreams$Measurementprotocolsecrets(
           this.context
@@ -5433,119 +5420,6 @@ export namespace analyticsadmin_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1betaDataStream;
-  }
-
-  export class Resource$Properties$Datastreams$Eventeditrules {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Changes the processing order of event edit rules on the specified stream.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    reorder(
-      params?: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    reorder(
-      params: Params$Resource$Properties$Datastreams$Eventeditrules$Reorder,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    reorder(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    reorder(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Datastreams$Eventeditrules$Reorder
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Datastreams$Eventeditrules$Reorder;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Datastreams$Eventeditrules$Reorder;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta/{+parent}/eventEditRules:reorder').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Properties$Datastreams$Eventeditrules$Reorder
-    extends StandardParameters {
-    /**
-     * Required. Example format: properties/123/dataStreams/456
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest;
   }
 
   export class Resource$Properties$Datastreams$Measurementprotocolsecrets {
@@ -6386,7 +6260,7 @@ export namespace analyticsadmin_v1beta {
   export interface Params$Resource$Properties$Firebaselinks$Create
     extends StandardParameters {
     /**
-     * Required. Format: properties/{property_id\} Example: properties/1234
+     * Required. Format: properties/{property_id\} Example: `properties/1234`
      */
     parent?: string;
 
@@ -6398,7 +6272,7 @@ export namespace analyticsadmin_v1beta {
   export interface Params$Resource$Properties$Firebaselinks$Delete
     extends StandardParameters {
     /**
-     * Required. Format: properties/{property_id\}/firebaseLinks/{firebase_link_id\} Example: properties/1234/firebaseLinks/5678
+     * Required. Format: properties/{property_id\}/firebaseLinks/{firebase_link_id\} Example: `properties/1234/firebaseLinks/5678`
      */
     name?: string;
   }
@@ -6413,7 +6287,7 @@ export namespace analyticsadmin_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. Format: properties/{property_id\} Example: properties/1234
+     * Required. Format: properties/{property_id\} Example: `properties/1234`
      */
     parent?: string;
   }
