@@ -183,6 +183,11 @@
               "required": true,
               "type": "string"
             },
+            "includeTabsContent": {
+              "description": "Whether to populate the Document.tabs field instead of the text content fields like body and documentStyle on Document. - When `True`: Document content populates in the Document.tabs field instead of the text content fields in Document. - When `False`: The content of the document's first tab populates the content fields in Document excluding Document.tabs. If a document has only one tab, then that tab is used to populate the document content. Document.tabs will be empty.",
+              "location": "query",
+              "type": "boolean"
+            },
             "suggestionsViewMode": {
               "description": "The suggestions view mode to apply to the document. This allows viewing the document with all suggestions inline, accepted or rejected. If one is not specified, DEFAULT_FOR_CURRENT_ACCESS is used.",
               "enum": [
@@ -216,7 +221,7 @@
       }
     }
   },
-  "revision": "20230929",
+  "revision": "20240722",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -337,6 +342,21 @@
             "$ref": "StructuralElement"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BookmarkLink": {
+      "description": "A reference to a bookmark in this document.",
+      "id": "BookmarkLink",
+      "properties": {
+        "id": {
+          "description": "The ID of a bookmark in this document.",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "The ID of the tab containing this bookmark.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -671,6 +691,10 @@
         "footerId": {
           "description": "The id of the footer to delete. If this footer is defined on DocumentStyle, the reference to this footer is removed, resulting in no footer of that type for the first section of the document. If this footer is defined on a SectionStyle, the reference to this footer is removed and the footer of that type is now continued from the previous section.",
           "type": "string"
+        },
+        "tabId": {
+          "description": "The tab that contains the footer to delete. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -681,6 +705,10 @@
       "properties": {
         "headerId": {
           "description": "The id of the header to delete. If this header is defined on DocumentStyle, the reference to this header is removed, resulting in no header of that type for the first section of the document. If this header is defined on a SectionStyle, the reference to this header is removed and the header of that type is now continued from the previous section.",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "The tab containing the header to delete. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
           "type": "string"
         }
       },
@@ -697,6 +725,10 @@
         "namedRangeId": {
           "description": "The ID of the named range to delete.",
           "type": "string"
+        },
+        "tabsCriteria": {
+          "$ref": "TabsCriteria",
+          "description": "Optional. The criteria used to specify which tab(s) the range deletion should occur in. When omitted, the range deletion is applied to all tabs. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the range deletion applies to the singular tab. In a document containing multiple tabs: - If provided, the range deletion applies to the specified tabs. - If not provided, the range deletion applies to all tabs."
         }
       },
       "type": "object"
@@ -718,6 +750,10 @@
       "properties": {
         "objectId": {
           "description": "The ID of the positioned object to delete.",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "The tab that the positioned object to delete is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
           "type": "string"
         }
       },
@@ -871,6 +907,13 @@
             "The returned document is a preview with all suggested changes rejected if there are any suggestions in the document."
           ],
           "type": "string"
+        },
+        "tabs": {
+          "description": "Tabs that are part of a document. Tabs can contain child tabs, a tab nested within another tab. Child tabs are represented by the Tab.child_tabs field.",
+          "items": {
+            "$ref": "Tab"
+          },
+          "type": "array"
         },
         "title": {
           "description": "The title of the document.",
@@ -1042,6 +1085,88 @@
         "useFirstPageHeaderFooterSuggested": {
           "description": "Indicates if there was a suggested change to use_first_page_header_footer.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DocumentTab": {
+      "description": "A tab with document contents.",
+      "id": "DocumentTab",
+      "properties": {
+        "body": {
+          "$ref": "Body",
+          "description": "The main body of the document tab."
+        },
+        "documentStyle": {
+          "$ref": "DocumentStyle",
+          "description": "The style of the document tab."
+        },
+        "footers": {
+          "additionalProperties": {
+            "$ref": "Footer"
+          },
+          "description": "The footers in the document tab, keyed by footer ID.",
+          "type": "object"
+        },
+        "footnotes": {
+          "additionalProperties": {
+            "$ref": "Footnote"
+          },
+          "description": "The footnotes in the document tab, keyed by footnote ID.",
+          "type": "object"
+        },
+        "headers": {
+          "additionalProperties": {
+            "$ref": "Header"
+          },
+          "description": "The headers in the document tab, keyed by header ID.",
+          "type": "object"
+        },
+        "inlineObjects": {
+          "additionalProperties": {
+            "$ref": "InlineObject"
+          },
+          "description": "The inline objects in the document tab, keyed by object ID.",
+          "type": "object"
+        },
+        "lists": {
+          "additionalProperties": {
+            "$ref": "List"
+          },
+          "description": "The lists in the document tab, keyed by list ID.",
+          "type": "object"
+        },
+        "namedRanges": {
+          "additionalProperties": {
+            "$ref": "NamedRanges"
+          },
+          "description": "The named ranges in the document tab, keyed by name.",
+          "type": "object"
+        },
+        "namedStyles": {
+          "$ref": "NamedStyles",
+          "description": "The named styles of the document tab."
+        },
+        "positionedObjects": {
+          "additionalProperties": {
+            "$ref": "PositionedObject"
+          },
+          "description": "The positioned objects in the document tab, keyed by object ID.",
+          "type": "object"
+        },
+        "suggestedDocumentStyleChanges": {
+          "additionalProperties": {
+            "$ref": "SuggestedDocumentStyle"
+          },
+          "description": "The suggested changes to the style of the document tab, keyed by suggestion ID.",
+          "type": "object"
+        },
+        "suggestedNamedStylesChanges": {
+          "additionalProperties": {
+            "$ref": "SuggestedNamedStyles"
+          },
+          "description": "The suggested changes to the named styles of the document tab, keyed by suggestion ID.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -1233,6 +1358,10 @@
         "segmentId": {
           "description": "The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body.",
           "type": "string"
+        },
+        "tabId": {
+          "description": "The tab that the location is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1347,6 +1476,21 @@
         },
         "headerId": {
           "description": "The ID of the header.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HeadingLink": {
+      "description": "A reference to a heading in this document.",
+      "id": "HeadingLink",
+      "properties": {
+        "id": {
+          "description": "The ID of a heading in this document.",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "The ID of the tab containing this heading.",
           "type": "string"
         }
       },
@@ -1716,12 +1860,24 @@
       "description": "A reference to another portion of a document or an external URL resource.",
       "id": "Link",
       "properties": {
+        "bookmark": {
+          "$ref": "BookmarkLink",
+          "description": "A bookmark in this document. In documents containing a single tab, links to bookmarks within the singular tab continue to return Link.bookmark_id when the includeTabsContent parameter is set to `false` or unset. Otherwise, this field is returned."
+        },
         "bookmarkId": {
           "description": "The ID of a bookmark in this document.",
           "type": "string"
         },
+        "heading": {
+          "$ref": "HeadingLink",
+          "description": "A heading in this document. In documents containing a single tab, links to headings within the singular tab continue to return Link.heading_id when the includeTabsContent parameter is set to `false` or unset. Otherwise, this field is returned."
+        },
         "headingId": {
           "description": "The ID of a heading in this document.",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "The ID of a tab in this document.",
           "type": "string"
         },
         "url": {
@@ -1821,6 +1977,10 @@
         },
         "segmentId": {
           "description": "The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body.",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "The tab that the location is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
           "type": "string"
         }
       },
@@ -2760,6 +2920,10 @@
           "description": "The zero-based start index of this range, in UTF-16 code units. In all current uses, a start index must be provided. This field is an Int32Value in order to accommodate future use cases with open-ended ranges.",
           "format": "int32",
           "type": "integer"
+        },
+        "tabId": {
+          "description": "The tab that contains this range. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2775,6 +2939,10 @@
         "replaceText": {
           "description": "The text that will replace the matched text.",
           "type": "string"
+        },
+        "tabsCriteria": {
+          "$ref": "TabsCriteria",
+          "description": "Optional. The criteria used to specify in which tabs the replacement occurs. When omitted, the replacement applies to all tabs. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the replacement applies to the singular tab. In a document containing multiple tabs: - If provided, the replacement applies to the specified tabs. - If omitted, the replacement applies to all tabs."
         }
       },
       "type": "object"
@@ -2811,6 +2979,10 @@
           ],
           "type": "string"
         },
+        "tabId": {
+          "description": "The tab that the image to be replaced is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.",
+          "type": "string"
+        },
         "uri": {
           "description": "The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URI can't surpass 2 KB in length. The URI is saved with the image, and exposed through the ImageProperties.source_uri field.",
           "type": "string"
@@ -2829,6 +3001,10 @@
         "namedRangeName": {
           "description": "The name of the NamedRanges whose content will be replaced. If there are multiple named ranges with the given name, then the content of each one will be replaced. If there are no named ranges with the given name, then the request will be a no-op.",
           "type": "string"
+        },
+        "tabsCriteria": {
+          "$ref": "TabsCriteria",
+          "description": "Optional. The criteria used to specify in which tabs the replacement occurs. When omitted, the replacement applies to all tabs. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the replacement applies to the singular tab. In a document containing multiple tabs: - If provided, the replacement applies to the specified tabs. - If omitted, the replacement applies to all tabs."
         },
         "text": {
           "description": "Replaces the content of the specified named range(s) with the given text.",
@@ -3535,6 +3711,57 @@
       },
       "type": "object"
     },
+    "Tab": {
+      "description": "A tab in a document.",
+      "id": "Tab",
+      "properties": {
+        "childTabs": {
+          "description": "The child tabs nested within this tab.",
+          "items": {
+            "$ref": "Tab"
+          },
+          "type": "array"
+        },
+        "documentTab": {
+          "$ref": "DocumentTab",
+          "description": "A tab with document contents, like text and images."
+        },
+        "tabProperties": {
+          "$ref": "TabProperties",
+          "description": "The properties of the tab, like ID and title."
+        }
+      },
+      "type": "object"
+    },
+    "TabProperties": {
+      "description": "Properties of a tab.",
+      "id": "TabProperties",
+      "properties": {
+        "index": {
+          "description": "The index of the tab within the parent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nestingLevel": {
+          "description": "Output only. The depth of the tab within the document. Root-level tabs start at 0.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "parentTabId": {
+          "description": "Optional. The ID of the parent tab. Empty when the current tab is a root-level tab, which means it doesn't have any parents.",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "Output only. The ID of the tab. This field can't be changed.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The user-visible name of the tab.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TabStop": {
       "description": "A tab stop within a paragraph.",
       "id": "TabStop",
@@ -3998,6 +4225,20 @@
       },
       "type": "object"
     },
+    "TabsCriteria": {
+      "description": "A criteria that specifies in which tabs a request executes.",
+      "id": "TabsCriteria",
+      "properties": {
+        "tabIds": {
+          "description": "The list of tab IDs in which the request executes.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TextRun": {
       "description": "A ParagraphElement that represents a run of text that all has the same styling.",
       "id": "TextRun",
@@ -4170,6 +4411,10 @@
         "fields": {
           "description": "The fields that should be updated. At least one field must be specified. The root `document_style` is implied and should not be specified. A single `\"*\"` can be used as short-hand for listing every field. For example to update the background, set `fields` to `\"background\"`.",
           "format": "google-fieldmask",
+          "type": "string"
+        },
+        "tabId": {
+          "description": "The tab that contains the style to update. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If not provided, the request applies to the first tab in the document.",
           "type": "string"
         }
       },

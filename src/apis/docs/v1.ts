@@ -209,6 +209,19 @@ export namespace docs_v1 {
     content?: Schema$StructuralElement[];
   }
   /**
+   * A reference to a bookmark in this document.
+   */
+  export interface Schema$BookmarkLink {
+    /**
+     * The ID of a bookmark in this document.
+     */
+    id?: string | null;
+    /**
+     * The ID of the tab containing this bookmark.
+     */
+    tabId?: string | null;
+  }
+  /**
    * Describes the bullet of a paragraph.
    */
   export interface Schema$Bullet {
@@ -442,6 +455,10 @@ export namespace docs_v1 {
      * The id of the footer to delete. If this footer is defined on DocumentStyle, the reference to this footer is removed, resulting in no footer of that type for the first section of the document. If this footer is defined on a SectionStyle, the reference to this footer is removed and the footer of that type is now continued from the previous section.
      */
     footerId?: string | null;
+    /**
+     * The tab that contains the footer to delete. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Deletes a Header from the document.
@@ -451,6 +468,10 @@ export namespace docs_v1 {
      * The id of the header to delete. If this header is defined on DocumentStyle, the reference to this header is removed, resulting in no header of that type for the first section of the document. If this header is defined on a SectionStyle, the reference to this header is removed and the header of that type is now continued from the previous section.
      */
     headerId?: string | null;
+    /**
+     * The tab containing the header to delete. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Deletes a NamedRange.
@@ -464,6 +485,10 @@ export namespace docs_v1 {
      * The ID of the named range to delete.
      */
     namedRangeId?: string | null;
+    /**
+     * Optional. The criteria used to specify which tab(s) the range deletion should occur in. When omitted, the range deletion is applied to all tabs. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the range deletion applies to the singular tab. In a document containing multiple tabs: - If provided, the range deletion applies to the specified tabs. - If not provided, the range deletion applies to all tabs.
+     */
+    tabsCriteria?: Schema$TabsCriteria;
   }
   /**
    * Deletes bullets from all of the paragraphs that overlap with the given range. The nesting level of each paragraph will be visually preserved by adding indent to the start of the corresponding paragraph.
@@ -482,6 +507,10 @@ export namespace docs_v1 {
      * The ID of the positioned object to delete.
      */
     objectId?: string | null;
+    /**
+     * The tab that the positioned object to delete is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Deletes a column from a table.
@@ -582,6 +611,10 @@ export namespace docs_v1 {
      * Output only. The suggestions view mode applied to the document. Note: When editing a document, changes must be based on a document with SUGGESTIONS_INLINE.
      */
     suggestionsViewMode?: string | null;
+    /**
+     * Tabs that are part of a document. Tabs can contain child tabs, a tab nested within another tab. Child tabs are represented by the Tab.child_tabs field.
+     */
+    tabs?: Schema$Tab[];
     /**
      * The title of the document.
      */
@@ -750,6 +783,63 @@ export namespace docs_v1 {
     useFirstPageHeaderFooterSuggested?: boolean | null;
   }
   /**
+   * A tab with document contents.
+   */
+  export interface Schema$DocumentTab {
+    /**
+     * The main body of the document tab.
+     */
+    body?: Schema$Body;
+    /**
+     * The style of the document tab.
+     */
+    documentStyle?: Schema$DocumentStyle;
+    /**
+     * The footers in the document tab, keyed by footer ID.
+     */
+    footers?: {[key: string]: Schema$Footer} | null;
+    /**
+     * The footnotes in the document tab, keyed by footnote ID.
+     */
+    footnotes?: {[key: string]: Schema$Footnote} | null;
+    /**
+     * The headers in the document tab, keyed by header ID.
+     */
+    headers?: {[key: string]: Schema$Header} | null;
+    /**
+     * The inline objects in the document tab, keyed by object ID.
+     */
+    inlineObjects?: {[key: string]: Schema$InlineObject} | null;
+    /**
+     * The lists in the document tab, keyed by list ID.
+     */
+    lists?: {[key: string]: Schema$List} | null;
+    /**
+     * The named ranges in the document tab, keyed by name.
+     */
+    namedRanges?: {[key: string]: Schema$NamedRanges} | null;
+    /**
+     * The named styles of the document tab.
+     */
+    namedStyles?: Schema$NamedStyles;
+    /**
+     * The positioned objects in the document tab, keyed by object ID.
+     */
+    positionedObjects?: {[key: string]: Schema$PositionedObject} | null;
+    /**
+     * The suggested changes to the style of the document tab, keyed by suggestion ID.
+     */
+    suggestedDocumentStyleChanges?: {
+      [key: string]: Schema$SuggestedDocumentStyle;
+    } | null;
+    /**
+     * The suggested changes to the named styles of the document tab, keyed by suggestion ID.
+     */
+    suggestedNamedStylesChanges?: {
+      [key: string]: Schema$SuggestedNamedStyles;
+    } | null;
+  }
+  /**
    * The properties of an embedded drawing and used to differentiate the object type. An embedded drawing is one that's created and edited within a document. Note that extensive details are not supported.
    */
   export interface Schema$EmbeddedDrawingProperties {}
@@ -905,6 +995,10 @@ export namespace docs_v1 {
      * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body.
      */
     segmentId?: string | null;
+    /**
+     * The tab that the location is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * A ParagraphElement representing an equation.
@@ -988,6 +1082,19 @@ export namespace docs_v1 {
      * The ID of the header.
      */
     headerId?: string | null;
+  }
+  /**
+   * A reference to a heading in this document.
+   */
+  export interface Schema$HeadingLink {
+    /**
+     * The ID of a heading in this document.
+     */
+    id?: string | null;
+    /**
+     * The ID of the tab containing this heading.
+     */
+    tabId?: string | null;
   }
   /**
    * A ParagraphElement representing a horizontal line.
@@ -1288,13 +1395,25 @@ export namespace docs_v1 {
    */
   export interface Schema$Link {
     /**
+     * A bookmark in this document. In documents containing a single tab, links to bookmarks within the singular tab continue to return Link.bookmark_id when the includeTabsContent parameter is set to `false` or unset. Otherwise, this field is returned.
+     */
+    bookmark?: Schema$BookmarkLink;
+    /**
      * The ID of a bookmark in this document.
      */
     bookmarkId?: string | null;
     /**
+     * A heading in this document. In documents containing a single tab, links to headings within the singular tab continue to return Link.heading_id when the includeTabsContent parameter is set to `false` or unset. Otherwise, this field is returned.
+     */
+    heading?: Schema$HeadingLink;
+    /**
      * The ID of a heading in this document.
      */
     headingId?: string | null;
+    /**
+     * The ID of a tab in this document.
+     */
+    tabId?: string | null;
     /**
      * An external URL.
      */
@@ -1371,6 +1490,10 @@ export namespace docs_v1 {
      * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body.
      */
     segmentId?: string | null;
+    /**
+     * The tab that the location is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Merges cells in a Table.
@@ -2031,6 +2154,10 @@ export namespace docs_v1 {
      * The zero-based start index of this range, in UTF-16 code units. In all current uses, a start index must be provided. This field is an Int32Value in order to accommodate future use cases with open-ended ranges.
      */
     startIndex?: number | null;
+    /**
+     * The tab that contains this range. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Replaces all instances of text matching a criteria with replace text.
@@ -2044,6 +2171,10 @@ export namespace docs_v1 {
      * The text that will replace the matched text.
      */
     replaceText?: string | null;
+    /**
+     * Optional. The criteria used to specify in which tabs the replacement occurs. When omitted, the replacement applies to all tabs. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the replacement applies to the singular tab. In a document containing multiple tabs: - If provided, the replacement applies to the specified tabs. - If omitted, the replacement applies to all tabs.
+     */
+    tabsCriteria?: Schema$TabsCriteria;
   }
   /**
    * The result of replacing text.
@@ -2067,6 +2198,10 @@ export namespace docs_v1 {
      */
     imageReplaceMethod?: string | null;
     /**
+     * The tab that the image to be replaced is in. When omitted, the request is applied to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
+    /**
      * The URI of the new image. The image is fetched once at insertion time and a copy is stored for display inside the document. Images must be less than 50MB, cannot exceed 25 megapixels, and must be in PNG, JPEG, or GIF format. The provided URI can't surpass 2 KB in length. The URI is saved with the image, and exposed through the ImageProperties.source_uri field.
      */
     uri?: string | null;
@@ -2083,6 +2218,10 @@ export namespace docs_v1 {
      * The name of the NamedRanges whose content will be replaced. If there are multiple named ranges with the given name, then the content of each one will be replaced. If there are no named ranges with the given name, then the request will be a no-op.
      */
     namedRangeName?: string | null;
+    /**
+     * Optional. The criteria used to specify in which tabs the replacement occurs. When omitted, the replacement applies to all tabs. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the replacement applies to the singular tab. In a document containing multiple tabs: - If provided, the replacement applies to the specified tabs. - If omitted, the replacement applies to all tabs.
+     */
+    tabsCriteria?: Schema$TabsCriteria;
     /**
      * Replaces the content of the specified named range(s) with the given text.
      */
@@ -2677,6 +2816,23 @@ export namespace docs_v1 {
     textStyleSuggestionState?: Schema$TextStyleSuggestionState;
   }
   /**
+   * A tab in a document.
+   */
+  export interface Schema$Tab {
+    /**
+     * The child tabs nested within this tab.
+     */
+    childTabs?: Schema$Tab[];
+    /**
+     * A tab with document contents, like text and images.
+     */
+    documentTab?: Schema$DocumentTab;
+    /**
+     * The properties of the tab, like ID and title.
+     */
+    tabProperties?: Schema$TabProperties;
+  }
+  /**
    * A StructuralElement representing a table.
    */
   export interface Schema$Table {
@@ -2998,6 +3154,40 @@ export namespace docs_v1 {
     tableColumnProperties?: Schema$TableColumnProperties[];
   }
   /**
+   * Properties of a tab.
+   */
+  export interface Schema$TabProperties {
+    /**
+     * The index of the tab within the parent.
+     */
+    index?: number | null;
+    /**
+     * Output only. The depth of the tab within the document. Root-level tabs start at 0.
+     */
+    nestingLevel?: number | null;
+    /**
+     * Optional. The ID of the parent tab. Empty when the current tab is a root-level tab, which means it doesn't have any parents.
+     */
+    parentTabId?: string | null;
+    /**
+     * Output only. The ID of the tab. This field can't be changed.
+     */
+    tabId?: string | null;
+    /**
+     * The user-visible name of the tab.
+     */
+    title?: string | null;
+  }
+  /**
+   * A criteria that specifies in which tabs a request executes.
+   */
+  export interface Schema$TabsCriteria {
+    /**
+     * The list of tab IDs in which the request executes.
+     */
+    tabIds?: string[] | null;
+  }
+  /**
    * A tab stop within a paragraph.
    */
   export interface Schema$TabStop {
@@ -3156,6 +3346,10 @@ export namespace docs_v1 {
      * The fields that should be updated. At least one field must be specified. The root `document_style` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example to update the background, set `fields` to `"background"`.
      */
     fields?: string | null;
+    /**
+     * The tab that contains the style to update. When omitted, the request applies to the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request applies to the specified tab. - If not provided, the request applies to the first tab in the document.
+     */
+    tabId?: string | null;
   }
   /**
    * Update the styling of all paragraphs that overlap with the given range.
@@ -3594,6 +3788,10 @@ export namespace docs_v1 {
      * The ID of the document to retrieve.
      */
     documentId?: string;
+    /**
+     * Whether to populate the Document.tabs field instead of the text content fields like body and documentStyle on Document. - When `True`: Document content populates in the Document.tabs field instead of the text content fields in Document. - When `False`: The content of the document's first tab populates the content fields in Document excluding Document.tabs. If a document has only one tab, then that tab is used to populate the document content. Document.tabs will be empty.
+     */
+    includeTabsContent?: boolean;
     /**
      * The suggestions view mode to apply to the document. This allows viewing the document with all suggestions inline, accepted or rejected. If one is not specified, DEFAULT_FOR_CURRENT_ACCESS is used.
      */
