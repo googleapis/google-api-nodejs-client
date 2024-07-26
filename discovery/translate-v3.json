@@ -1260,7 +1260,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-translation"
                   ]
                 }
               },
@@ -1395,7 +1396,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the entry. Format: \"projects/*/locations/*/glossaries/*/glossaryEntries/*\"",
+                          "description": "Identifier. The resource name of the entry. Format: \"projects/*/locations/*/glossaries/*/glossaryEntries/*\"",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/glossaryEntries/[^/]+$",
                           "required": true,
@@ -1706,7 +1707,7 @@
       }
     }
   },
-  "revision": "20240126",
+  "revision": "20240718",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "AdaptiveMtDataset": {
@@ -1817,7 +1818,7 @@
       "id": "AdaptiveMtTranslateRequest",
       "properties": {
         "content": {
-          "description": "Required. The content of the input in string format. For now only one sentence per request is supported.",
+          "description": "Required. The content of the input in string format.",
           "items": {
             "type": "string"
           },
@@ -1826,6 +1827,14 @@
         "dataset": {
           "description": "Required. The resource name for the dataset to use for adaptive MT. `projects/{project}/locations/{location-id}/adaptiveMtDatasets/{dataset}`",
           "type": "string"
+        },
+        "glossaryConfig": {
+          "$ref": "TranslateTextGlossaryConfig",
+          "description": "Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned."
+        },
+        "referenceSentenceConfig": {
+          "$ref": "ReferenceSentenceConfig",
+          "description": "Configuration for caller provided reference sentences."
         }
       },
       "type": "object"
@@ -1834,6 +1843,13 @@
       "description": "An AdaptiveMtTranslate response.",
       "id": "AdaptiveMtTranslateResponse",
       "properties": {
+        "glossaryTranslations": {
+          "description": "Text translation response if a glossary is provided in the request. This could be the same as 'translation' above if no terms apply.",
+          "items": {
+            "$ref": "AdaptiveMtTranslation"
+          },
+          "type": "array"
+        },
         "languageCode": {
           "description": "Output only. The translation's language code.",
           "readOnly": true,
@@ -2360,7 +2376,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The resource name of the entry. Format: \"projects/*/locations/*/glossaries/*/glossaryEntries/*\"",
+          "description": "Identifier. The resource name of the entry. Format: \"projects/*/locations/*/glossaries/*/glossaryEntries/*\"",
           "type": "string"
         },
         "termsPair": {
@@ -2848,6 +2864,57 @@
       },
       "type": "object"
     },
+    "ReferenceSentenceConfig": {
+      "description": "Message of caller-provided reference configuration.",
+      "id": "ReferenceSentenceConfig",
+      "properties": {
+        "referenceSentencePairLists": {
+          "description": "Reference sentences pair lists. Each list will be used as the references to translate the sentence under \"content\" field at the corresponding index. Length of the list is required to be equal to the length of \"content\" field.",
+          "items": {
+            "$ref": "ReferenceSentencePairList"
+          },
+          "type": "array"
+        },
+        "sourceLanguageCode": {
+          "description": "Source language code.",
+          "type": "string"
+        },
+        "targetLanguageCode": {
+          "description": "Target language code.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReferenceSentencePair": {
+      "description": "A pair of sentences used as reference in source and target languages.",
+      "id": "ReferenceSentencePair",
+      "properties": {
+        "sourceSentence": {
+          "description": "Source sentence in the sentence pair.",
+          "type": "string"
+        },
+        "targetSentence": {
+          "description": "Target sentence in the sentence pair.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReferenceSentencePairList": {
+      "description": "A list of reference sentence pairs.",
+      "id": "ReferenceSentencePairList",
+      "properties": {
+        "referenceSentencePairs": {
+          "description": "Reference sentence pairs.",
+          "items": {
+            "$ref": "ReferenceSentencePair"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Romanization": {
       "description": "A single romanization response.",
       "id": "Romanization",
@@ -3078,7 +3145,7 @@
           "type": "string"
         },
         "model": {
-          "description": "Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`. If not provided, the default Google model (NMT) will be used",
+          "description": "Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id}/locations/{location-id}/models/{model-id}` - General (built-in) models: `projects/{project-number-or-id}/locations/{location-id}/models/general/nmt`, - Translation LLM models: `projects/{project-number-or-id}/locations/{location-id}/models/general/translation-llm`, For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id}/locations/global/models/general/nmt`. If not provided, the default Google model (NMT) will be used",
           "type": "string"
         },
         "sourceLanguageCode": {

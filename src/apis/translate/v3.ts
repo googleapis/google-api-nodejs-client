@@ -212,18 +212,30 @@ export namespace translate_v3 {
    */
   export interface Schema$AdaptiveMtTranslateRequest {
     /**
-     * Required. The content of the input in string format. For now only one sentence per request is supported.
+     * Required. The content of the input in string format.
      */
     content?: string[] | null;
     /**
      * Required. The resource name for the dataset to use for adaptive MT. `projects/{project\}/locations/{location-id\}/adaptiveMtDatasets/{dataset\}`
      */
     dataset?: string | null;
+    /**
+     * Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned.
+     */
+    glossaryConfig?: Schema$TranslateTextGlossaryConfig;
+    /**
+     * Configuration for caller provided reference sentences.
+     */
+    referenceSentenceConfig?: Schema$ReferenceSentenceConfig;
   }
   /**
    * An AdaptiveMtTranslate response.
    */
   export interface Schema$AdaptiveMtTranslateResponse {
+    /**
+     * Text translation response if a glossary is provided in the request. This could be the same as 'translation' above if no terms apply.
+     */
+    glossaryTranslations?: Schema$AdaptiveMtTranslation[];
     /**
      * Output only. The translation's language code.
      */
@@ -628,7 +640,7 @@ export namespace translate_v3 {
      */
     description?: string | null;
     /**
-     * Required. The resource name of the entry. Format: "projects/x/locations/x/glossaries/x/glossaryEntries/x"
+     * Identifier. The resource name of the entry. Format: "projects/x/locations/x/glossaries/x/glossaryEntries/x"
      */
     name?: string | null;
     /**
@@ -998,6 +1010,45 @@ export namespace translate_v3 {
     gcsDestination?: Schema$GcsDestination;
   }
   /**
+   * Message of caller-provided reference configuration.
+   */
+  export interface Schema$ReferenceSentenceConfig {
+    /**
+     * Reference sentences pair lists. Each list will be used as the references to translate the sentence under "content" field at the corresponding index. Length of the list is required to be equal to the length of "content" field.
+     */
+    referenceSentencePairLists?: Schema$ReferenceSentencePairList[];
+    /**
+     * Source language code.
+     */
+    sourceLanguageCode?: string | null;
+    /**
+     * Target language code.
+     */
+    targetLanguageCode?: string | null;
+  }
+  /**
+   * A pair of sentences used as reference in source and target languages.
+   */
+  export interface Schema$ReferenceSentencePair {
+    /**
+     * Source sentence in the sentence pair.
+     */
+    sourceSentence?: string | null;
+    /**
+     * Target sentence in the sentence pair.
+     */
+    targetSentence?: string | null;
+  }
+  /**
+   * A list of reference sentence pairs.
+   */
+  export interface Schema$ReferenceSentencePairList {
+    /**
+     * Reference sentence pairs.
+     */
+    referenceSentencePairs?: Schema$ReferenceSentencePair[];
+  }
+  /**
    * A single romanization response.
    */
   export interface Schema$Romanization {
@@ -1183,7 +1234,7 @@ export namespace translate_v3 {
      */
     mimeType?: string | null;
     /**
-     * Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id\}/locations/global/models/general/nmt`. If not provided, the default Google model (NMT) will be used
+     * Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, - Translation LLM models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/translation-llm`, For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id\}/locations/global/models/general/nmt`. If not provided, the default Google model (NMT) will be used
      */
     model?: string | null;
     /**
@@ -5580,7 +5631,7 @@ export namespace translate_v3 {
   export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch
     extends StandardParameters {
     /**
-     * Required. The resource name of the entry. Format: "projects/x/locations/x/glossaries/x/glossaryEntries/x"
+     * Identifier. The resource name of the entry. Format: "projects/x/locations/x/glossaries/x/glossaryEntries/x"
      */
     name?: string;
 
