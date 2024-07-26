@@ -412,6 +412,36 @@ export namespace metastore_v1beta {
     subnetwork?: string | null;
   }
   /**
+   * Custom configuration used to specify regions that the metastore service runs in. Currently only supported in the us multi-region.
+   */
+  export interface Schema$CustomRegionConfig {
+    /**
+     * Optional. The list of read-only regions where the metastore service runs in. These regions should be part (or subset) of the multi-region.
+     */
+    readOnlyRegions?: string[] | null;
+    /**
+     * Required. The list of read-write regions where the metastore service runs in. These regions should be part (or subset) of the multi-region.
+     */
+    readWriteRegions?: string[] | null;
+  }
+  /**
+   * Metadata about a custom region. This is only populated if the region is a custom region. For single/multi regions, it will be empty.
+   */
+  export interface Schema$CustomRegionMetadata {
+    /**
+     * The read-only regions for this custom region.
+     */
+    optionalReadOnlyRegions?: string[] | null;
+    /**
+     * The read-write regions for this custom region.
+     */
+    requiredReadWriteRegions?: string[] | null;
+    /**
+     * The Spanner witness region for this custom region.
+     */
+    witnessRegion?: string | null;
+  }
+  /**
    * A specification of the location of and metadata about a database dump from a relational database management system.
    */
   export interface Schema$DatabaseDump {
@@ -794,6 +824,10 @@ export namespace metastore_v1beta {
    */
   export interface Schema$LocationMetadata {
     /**
+     * Possible configurations supported if the current region is a custom region.
+     */
+    customRegionMetadata?: Schema$CustomRegionMetadata[];
+    /**
      * The multi-region metadata if the current region is a multi-region.
      */
     multiRegionMetadata?: Schema$MultiRegionMetadata;
@@ -953,6 +987,16 @@ export namespace metastore_v1beta {
    * Response message for DataprocMetastore.MoveTableToDatabase.
    */
   export interface Schema$MoveTableToDatabaseResponse {}
+  /**
+   * The multi-region config for the Dataproc Metastore service.
+   */
+  export interface Schema$MultiRegionConfig {
+    /**
+     * Output only. The list of root CA certificates that a gRPC client uses to connect to a multi-regional Dataproc Metastore service.
+     */
+    certificates?: Schema$RootCACertificate[];
+    customRegionConfig?: Schema$CustomRegionConfig;
+  }
   /**
    * The metadata for the multi-region that includes the constituent regions. The metadata is only populated if the region is multi-region. For single region or custom dual region, it will be empty.
    */
@@ -1145,6 +1189,19 @@ export namespace metastore_v1beta {
     restoreType?: string | null;
   }
   /**
+   * A gRPC client must install all root CA certificates to connect to a multi-regional Dataproc Metastore service and achieve failover.
+   */
+  export interface Schema$RootCACertificate {
+    /**
+     * The root CA certificate in PEM format. The maximum length is 65536 bytes.
+     */
+    certificate?: string | null;
+    /**
+     * The certificate expiration time in timestamp format.
+     */
+    expirationTime?: string | null;
+  }
+  /**
    * Represents the scaling configuration of a metastore service.
    */
   export interface Schema$ScalingConfig {
@@ -1247,6 +1304,10 @@ export namespace metastore_v1beta {
      * Output only. The metadata management activities of the metastore service.
      */
     metadataManagementActivity?: Schema$MetadataManagementActivity;
+    /**
+     * Optional. Specifies the multi-region configuration information for the Hive metastore service.
+     */
+    multiRegionConfig?: Schema$MultiRegionConfig;
     /**
      * Immutable. The relative resource name of the metastore service, in the following format:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
