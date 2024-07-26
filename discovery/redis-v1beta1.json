@@ -821,7 +821,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20240711",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1231,8 +1231,7 @@
           "type": "string"
         },
         "observabilityMetricData": {
-          "$ref": "ObservabilityMetricData",
-          "description": "More feed data would be added in subsequent CLs"
+          "$ref": "ObservabilityMetricData"
         },
         "recommendationSignalData": {
           "$ref": "DatabaseResourceRecommendationSignalData"
