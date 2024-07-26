@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v13.0.0...workloadmanager-v13.1.0) (2024-07-26)
+
+
+### Features
+
+* **workloadmanager:** update the API ([26a7e73](https://github.com/googleapis/google-api-nodejs-client/commit/26a7e73fddbf233e2329577419849e2476806ed0))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v12.0.0...workloadmanager-v13.0.0) (2024-05-10)
 
 

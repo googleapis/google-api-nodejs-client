@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v16.0.0...networkservices-v16.0.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([e608c36](https://github.com/googleapis/google-api-nodejs-client/commit/e608c3674265c087655c14ca06f074b6b973df8f))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v15.0.0...networkservices-v16.0.0) (2024-06-21)
 
 
