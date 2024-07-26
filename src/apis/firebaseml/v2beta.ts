@@ -243,17 +243,25 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CountTokensRequest {
     /**
-     * Required. Input content.
+     * Optional. Input content.
      */
     contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
     /**
-     * Required. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.
+     * Optional. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.
      */
     instances?: any[] | null;
     /**
-     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     * Optional. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
      */
     model?: string | null;
+    /**
+     * Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph.
+     */
+    systemInstruction?: Schema$GoogleCloudAiplatformV1beta1Content;
+    /**
+     * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
+     */
+    tools?: Schema$GoogleCloudAiplatformV1beta1Tool[];
   }
   /**
    * Response message for PredictionService.CountTokens.
@@ -451,6 +459,10 @@ export namespace firebaseml_v2beta {
      */
     responseSchema?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
+     * Optional. Routing configuration.
+     */
+    routingConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig;
+    /**
      * Optional. Stop sequences.
      */
     stopSequences?: string[] | null;
@@ -468,56 +480,40 @@ export namespace firebaseml_v2beta {
     topP?: number | null;
   }
   /**
+   * Routing config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig {
+    /**
+     * Automated routing.
+     */
+    autoMode?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingMode;
+    /**
+     * Manual routing.
+     */
+    manualMode?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode;
+  }
+  /**
+   * When automated routing is specified, the routing will be determined by the pretrained routing model and customer provided model routing preference.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingMode {
+    /**
+     * The model routing preference.
+     */
+    modelRoutingPreference?: string | null;
+  }
+  /**
+   * When manual routing is set, the specified model will be used directly.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode {
+    /**
+     * The model name to use. Only the public LLM models are accepted. e.g. gemini-1.5-pro-001.
+     */
+    modelName?: string | null;
+  }
+  /**
    * Tool to retrieve public web data for grounding, powered by Google.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval {}
-  /**
-   * Grounding attribution.
-   */
-  export interface Schema$GoogleCloudAiplatformV1beta1GroundingAttribution {
-    /**
-     * Optional. Output only. Confidence score of the attribution. Ranges from 0 to 1. 1 is the most confident.
-     */
-    confidenceScore?: number | null;
-    /**
-     * Optional. Attribution from context retrieved by the retrieval tools.
-     */
-    retrievedContext?: Schema$GoogleCloudAiplatformV1beta1GroundingAttributionRetrievedContext;
-    /**
-     * Output only. Segment of the content this attribution belongs to.
-     */
-    segment?: Schema$GoogleCloudAiplatformV1beta1Segment;
-    /**
-     * Optional. Attribution from the web.
-     */
-    web?: Schema$GoogleCloudAiplatformV1beta1GroundingAttributionWeb;
-  }
-  /**
-   * Attribution from context retrieved by the retrieval tools.
-   */
-  export interface Schema$GoogleCloudAiplatformV1beta1GroundingAttributionRetrievedContext {
-    /**
-     * Output only. Title of the attribution.
-     */
-    title?: string | null;
-    /**
-     * Output only. URI reference of the attribution.
-     */
-    uri?: string | null;
-  }
-  /**
-   * Attribution from the web.
-   */
-  export interface Schema$GoogleCloudAiplatformV1beta1GroundingAttributionWeb {
-    /**
-     * Output only. Title of the attribution.
-     */
-    title?: string | null;
-    /**
-     * Output only. URI reference of the attribution.
-     */
-    uri?: string | null;
-  }
   /**
    * Grounding chunk.
    */
@@ -561,10 +557,6 @@ export namespace firebaseml_v2beta {
    * Metadata returned to client when grounding is enabled.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingMetadata {
-    /**
-     * Optional. List of grounding attributions.
-     */
-    groundingAttributions?: Schema$GoogleCloudAiplatformV1beta1GroundingAttribution[];
     /**
      * List of supporting references retrieved from specified grounding source.
      */
@@ -637,7 +629,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Retrieval {
     /**
-     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
+     * Optional. Deprecated. This option is no longer supported.
      */
     disableAttribution?: boolean | null;
     /**
