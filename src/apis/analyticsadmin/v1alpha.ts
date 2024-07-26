@@ -17725,16 +17725,12 @@ export namespace analyticsadmin_v1alpha {
   export class Resource$Properties$Datastreams {
     context: APIRequestContext;
     eventCreateRules: Resource$Properties$Datastreams$Eventcreaterules;
-    eventEditRules: Resource$Properties$Datastreams$Eventeditrules;
     measurementProtocolSecrets: Resource$Properties$Datastreams$Measurementprotocolsecrets;
     sKAdNetworkConversionValueSchema: Resource$Properties$Datastreams$Skadnetworkconversionvalueschema;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.eventCreateRules =
         new Resource$Properties$Datastreams$Eventcreaterules(this.context);
-      this.eventEditRules = new Resource$Properties$Datastreams$Eventeditrules(
-        this.context
-      );
       this.measurementProtocolSecrets =
         new Resource$Properties$Datastreams$Measurementprotocolsecrets(
           this.context
