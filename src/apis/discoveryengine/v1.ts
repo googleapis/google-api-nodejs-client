@@ -532,6 +532,10 @@ export namespace discoveryengine_v1 {
      */
     snippetInfo?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerStepActionObservationSearchResultSnippetInfo[];
     /**
+     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document , or the Chunk in search result .
+     */
+    structData?: {[key: string]: any} | null;
+    /**
      * Title.
      */
     title?: string | null;
@@ -760,6 +764,10 @@ export namespace discoveryengine_v1 {
     updateTime?: string | null;
   }
   /**
+   * Metadata for EvaluationService.CreateEvaluation method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCreateEvaluationMetadata {}
+  /**
    * Metadata for Create Schema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata {
@@ -786,6 +794,15 @@ export namespace discoveryengine_v1 {
     updateTime?: string | null;
   }
   /**
+   * Defines custom fine tuning spec.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec {
+    /**
+     * Whether or not to enable and include custom fine tuned search adaptor model.
+     */
+    enableSearchAdaptor?: boolean | null;
+  }
+  /**
    * Metadata that describes a custom tuned model.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel {
@@ -797,6 +814,10 @@ export namespace discoveryengine_v1 {
      * The display name of the model.
      */
     displayName?: string | null;
+    /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
     /**
      * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
      */
@@ -953,7 +974,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -1246,6 +1267,91 @@ export namespace discoveryengine_v1 {
     documentCount?: string | null;
   }
   /**
+   * An evaluation is a single execution (or run) of an evaluation process. It encapsulates the state of the evaluation and the resulting data.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEvaluation {
+    /**
+     * Output only. Timestamp the Evaluation was created at.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Timestamp the Evaluation was completed at.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The error that occurred during evaluation. Only populated when the evaluation's state is FAILED.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Required. The specification of the evaluation.
+     */
+    evaluationSpec?: Schema$GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpec;
+    /**
+     * Immutable. The full resource name of the Evaluation, in the format of `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Output only. The metrics produced by the evaluation, averaged across all SampleQuerys in the SampleQuerySet. Only populated when the evaluation's state is SUCCEEDED.
+     */
+    qualityMetrics?: Schema$GoogleCloudDiscoveryengineV1alphaQualityMetrics;
+    /**
+     * Output only. The state of the evaluation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Describes the specification of the evaluation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpec {
+    /**
+     * Required. The specification of the query set.
+     */
+    querySetSpec?: Schema$GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpecQuerySetSpec;
+    /**
+     * Required. The search request that is used to perform the evaluation. Only the following fields within SearchRequest are supported; if any other fields are provided, an UNSUPPORTED error will be returned: * SearchRequest.serving_config * SearchRequest.branch * SearchRequest.canonical_filter * SearchRequest.query_expansion_spec * SearchRequest.spell_correction_spec * SearchRequest.content_search_spec * SearchRequest.user_pseudo_id
+     */
+    searchRequest?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequest;
+  }
+  /**
+   * Describes the specification of the query set.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpecQuerySetSpec {
+    /**
+     * Required. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
+     */
+    sampleQuerySet?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportUserEventsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the ExportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportUserEventsResponse {
+    /**
+     * Output result indicating where the data were exported to.
+     */
+    outputResult?: Schema$GoogleCloudDiscoveryengineV1alphaOutputResult;
+    /**
+     * The status of the export operation.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
    * Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaFieldConfig {
@@ -1293,6 +1399,15 @@ export namespace discoveryengine_v1 {
      * If searchable_option is SEARCHABLE_ENABLED, field values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but field type is numerical, field values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical fields. If searchable_option is unset, the server behavior defaults to SEARCHABLE_DISABLED for fields that support setting searchable options. Only `string` fields that have no key property mapping support setting searchable_option. For those fields that do not support setting searchable options, the server will skip searchable option setting, and setting searchable_option for those fields will throw `INVALID_ARGUMENT` error.
      */
     searchableOption?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.GetUriPatternDocumentData method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGetUriPatternDocumentDataResponse {
+    /**
+     * Document data keyed by URI pattern. For example: document_data_map = { "www.url1.com/x": { "Categories": ["category1", "category2"] \}, "www.url2.com/x": { "Categories": ["category3"] \} \}
+     */
+    documentDataMap?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
    * Identity Provider Config.
@@ -1398,6 +1513,44 @@ export namespace discoveryengine_v1 {
     gcsPrefix?: string | null;
   }
   /**
+   * Metadata related to the progress of the ImportSampleQueries operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportSampleQueriesMetadata {
+    /**
+     * ImportSampleQueries operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of SampleQuerys that failed to be imported.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of SampleQuerys successfully imported.
+     */
+    successCount?: string | null;
+    /**
+     * Total count of SampleQuerys that were processed.
+     */
+    totalCount?: string | null;
+    /**
+     * ImportSampleQueries operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the SampleQueryService.ImportSampleQueries method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImportSampleQueriesResponse {
+    /**
+     * The desired location of errors incurred during the Import.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1alphaImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaImportSuggestionDenyListEntriesMetadata {
@@ -1470,6 +1623,27 @@ export namespace discoveryengine_v1 {
     unjoinedEventsCount?: string | null;
   }
   /**
+   * A floating point interval.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaInterval {
+    /**
+     * Exclusive upper bound.
+     */
+    exclusiveMaximum?: number | null;
+    /**
+     * Exclusive lower bound.
+     */
+    exclusiveMinimum?: number | null;
+    /**
+     * Inclusive upper bound.
+     */
+    maximum?: number | null;
+    /**
+     * Inclusive lower bound.
+     */
+    minimum?: number | null;
+  }
+  /**
    * Language info for DataStore.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo {
@@ -1498,6 +1672,28 @@ export namespace discoveryengine_v1 {
      * List of custom tuning models.
      */
     models?: Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel[];
+  }
+  /**
+   * Output result that stores the information about where the exported data is stored.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResult {
+    /**
+     * The BigQuery location where the result is stored.
+     */
+    bigqueryResult?: Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult;
+  }
+  /**
+   * A BigQuery output result.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputResultBigQueryOutputResult {
+    /**
+     * The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * The ID of a BigQuery Table.
+     */
+    tableId?: string | null;
   }
   /**
    * Metadata and configurations for a Google Cloud project in the service.
@@ -1674,6 +1870,52 @@ export namespace discoveryengine_v1 {
     purgeCount?: string | null;
   }
   /**
+   * Describes the metrics produced by the evaluation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQualityMetrics {
+    /**
+     * Normalized discounted cumulative gain (NDCG) per document, at various top-k cutoff levels. NDCG measures the ranking quality, giving higher relevance to top results. Example (top-3): Suppose SampleQuery with three retrieved documents (D1, D2, D3) and binary relevance judgements (1 for relevant, 0 for not relevant): Retrieved: [D3 (0), D1 (1), D2 (1)] Ideal: [D1 (1), D2 (1), D3 (0)] Calculate NDCG@3 for each SampleQuery: * DCG@3: 0/log2(1+1) + 1/log2(2+1) + 1/log2(3+1) = 1.13 * Ideal DCG@3: 1/log2(1+1) + 1/log2(2+1) + 0/log2(3+1) = 1.63 * NDCG@3: 1.13/1.63 = 0.693
+     */
+    docNdcg?: Schema$GoogleCloudDiscoveryengineV1alphaQualityMetricsTopkMetrics;
+    /**
+     * Precision per document, at various top-k cutoff levels. Precision is the fraction of retrieved documents that are relevant. Example (top-5): * For a single SampleQuery, If 4 out of 5 retrieved documents in the top-5 are relevant, precision@5 = 4/5 = 0.8
+     */
+    docPrecision?: Schema$GoogleCloudDiscoveryengineV1alphaQualityMetricsTopkMetrics;
+    /**
+     * Recall per document, at various top-k cutoff levels. Recall is the fraction of relevant documents retrieved out of all relevant documents. Example (top-5): * For a single SampleQuery, If 3 out of 5 relevant documents are retrieved in the top-5, recall@5 = 3/5 = 0.6
+     */
+    docRecall?: Schema$GoogleCloudDiscoveryengineV1alphaQualityMetricsTopkMetrics;
+    /**
+     * Normalized discounted cumulative gain (NDCG) per page, at various top-k cutoff levels. NDCG measures the ranking quality, giving higher relevance to top results. Example (top-3): Suppose SampleQuery with three retrieved pages (P1, P2, P3) and binary relevance judgements (1 for relevant, 0 for not relevant): Retrieved: [P3 (0), P1 (1), P2 (1)] Ideal: [P1 (1), P2 (1), P3 (0)] Calculate NDCG@3 for SampleQuery: * DCG@3: 0/log2(1+1) + 1/log2(2+1) + 1/log2(3+1) = 1.13 * Ideal DCG@3: 1/log2(1+1) + 1/log2(2+1) + 0/log2(3+1) = 1.63 * NDCG@3: 1.13/1.63 = 0.693
+     */
+    pageNdcg?: Schema$GoogleCloudDiscoveryengineV1alphaQualityMetricsTopkMetrics;
+    /**
+     * Recall per page, at various top-k cutoff levels. Recall is the fraction of relevant pages retrieved out of all relevant pages. Example (top-5): * For a single SampleQuery, if 3 out of 5 relevant pages are retrieved in the top-5, recall@5 = 3/5 = 0.6
+     */
+    pageRecall?: Schema$GoogleCloudDiscoveryengineV1alphaQualityMetricsTopkMetrics;
+  }
+  /**
+   * Stores the metric values at specific top-k levels.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaQualityMetricsTopkMetrics {
+    /**
+     * The top-1 value.
+     */
+    top1?: number | null;
+    /**
+     * The top-10 value.
+     */
+    top10?: number | null;
+    /**
+     * The top-3 value.
+     */
+    top3?: number | null;
+    /**
+     * The top-5 value.
+     */
+    top5?: number | null;
+  }
+  /**
    * Defines a user inputed query.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaQuery {
@@ -1780,6 +2022,481 @@ export namespace discoveryengine_v1 {
     structSchema?: {[key: string]: any} | null;
   }
   /**
+   * Request message for SearchService.Search method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequest {
+    /**
+     * Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     */
+    boostSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec;
+    /**
+     * The branch resource name, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/branches/0`. Use `default_branch` as the branch ID or leave this field empty, to search documents under the default branch.
+     */
+    branch?: string | null;
+    /**
+     * The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. In the case a query does not have a sufficient amount of results this filter will be used to determine whether or not to enable the query expansion flow. The original filter will still be used for the query expanded search. This field is strongly recommended to achieve high search quality. For more information about filter syntax, see SearchRequest.filter.
+     */
+    canonicalFilter?: string | null;
+    /**
+     * A specification for configuring the behavior of content search.
+     */
+    contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec;
+    /**
+     * Custom fine tuning configs. If set, it has higher priority than the configs set in ServingConfig.custom_fine_tuning_spec.
+     */
+    customFineTuningSpec?: Schema$GoogleCloudDiscoveryengineV1alphaCustomFineTuningSpec;
+    /**
+     * Specs defining dataStores to filter on in a search call and configurations for those dataStores. This is only considered for engines with multiple dataStores use case. For single dataStore within an engine, they should use the specs at the top level.
+     */
+    dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec[];
+    /**
+     * Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path.
+     */
+    embeddingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec;
+    /**
+     * Facet specifications for faceted search. If empty, no facets are returned. A maximum of 100 values are allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    facetSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestFacetSpec[];
+    /**
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
+    /**
+     * Raw image query.
+     */
+    imageQuery?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestImageQuery;
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.
+     */
+    languageCode?: string | null;
+    /**
+     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     */
+    naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
+    /**
+     * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     */
+    offset?: number | null;
+    /**
+     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering for retail search, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     */
+    orderBy?: string | null;
+    /**
+     * Maximum number of Documents to return. The maximum allowed value depends on the data type. Values above the maximum value are coerced to the maximum value. * Websites with basic indexing: Default `10`, Maximum `25`. * Websites with advanced indexing: Default `25`, Maximum `50`. * Other: Default `50`, Maximum `100`. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     */
+    pageSize?: number | null;
+    /**
+     * A page token received from a previous SearchService.Search call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SearchService.Search must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    pageToken?: string | null;
+    /**
+     * Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. For example, `user_country_code: "au"` For available codes see [Country Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes) * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching. For example, `search_type: 1`
+     */
+    params?: {[key: string]: any} | null;
+    /**
+     * Raw search query.
+     */
+    query?: string | null;
+    /**
+     * The query expansion specification that specifies the conditions under which query expansion occurs.
+     */
+    queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec;
+    /**
+     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     */
+    rankingExpression?: string | null;
+    /**
+     * The Unicode country/region code (CLDR) of a location, such as "US" and "419". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.
+     */
+    regionCode?: string | null;
+    /**
+     * The relevance threshold of the search results. Default to Google defined threshold, leveraging a balance of precision and recall to deliver both highly accurate results and comprehensive coverage of relevant information.
+     */
+    relevanceThreshold?: string | null;
+    /**
+     * Whether to turn on safe search. This is only supported for website search.
+     */
+    safeSearch?: boolean | null;
+    /**
+     * Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical.
+     */
+    searchAsYouTypeSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpec;
+    /**
+     * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     */
+    servingConfig?: string | null;
+    /**
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     */
+    session?: string | null;
+    /**
+     * Session specification. Can be used only when `session` is set.
+     */
+    sessionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSessionSpec;
+    /**
+     * The spell correction specification that specifies the mode under which spell correction takes effect.
+     */
+    spellCorrectionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec;
+    /**
+     * Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics.
+     */
+    userInfo?: Schema$GoogleCloudDiscoveryengineV1alphaUserInfo;
+    /**
+     * The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     */
+    userLabels?: {[key: string]: string} | null;
+    /**
+     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    userPseudoId?: string | null;
+  }
+  /**
+   * Boost specification to boost certain documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpec {
+    /**
+     * Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     */
+    conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec[];
+  }
+  /**
+   * Boost applies to documents which match a condition.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpec {
+    /**
+     * Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored. Only one of the (condition, boost) combination or the boost_control_spec below are set. If both are set then the global boost is ignored and the more fine-grained boost_control_spec is applied.
+     */
+    boost?: number | null;
+    /**
+     * Complex specification for custom ranking based on customer defined attribute value.
+     */
+    boostControlSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpecBoostControlSpec;
+    /**
+     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
+     */
+    condition?: string | null;
+  }
+  /**
+   * Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpecBoostControlSpec {
+    /**
+     * The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).
+     */
+    attributeType?: string | null;
+    /**
+     * The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.
+     */
+    controlPoints?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint[];
+    /**
+     * The name of the field whose value will be used to determine the boost amount.
+     */
+    fieldName?: string | null;
+    /**
+     * The interpolation type to be applied to connect the control points listed below.
+     */
+    interpolationType?: string | null;
+  }
+  /**
+   * The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
+    /**
+     * Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.
+     */
+    attributeValue?: string | null;
+    /**
+     * The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.
+     */
+    boostAmount?: number | null;
+  }
+  /**
+   * A specification for configuring the behavior of content search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpec {
+    /**
+     * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+     */
+    chunkSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecChunkSpec;
+    /**
+     * If there is no extractive_content_spec provided, there will be no extractive answer in the search response.
+     */
+    extractiveContentSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecExtractiveContentSpec;
+    /**
+     * Specifies the search result mode. If unspecified, the search result mode defaults to `DOCUMENTS`.
+     */
+    searchResultMode?: string | null;
+    /**
+     * If `snippetSpec` is not specified, snippets are not included in the search response.
+     */
+    snippetSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSnippetSpec;
+    /**
+     * If `summarySpec` is not specified, summaries are not included in the search response.
+     */
+    summarySpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec;
+  }
+  /**
+   * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecChunkSpec {
+    /**
+     * The number of next chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no next chunks will be returned.
+     */
+    numNextChunks?: number | null;
+    /**
+     * The number of previous chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no previous chunks will be returned.
+     */
+    numPreviousChunks?: number | null;
+  }
+  /**
+   * A specification for configuring the extractive content in a search response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecExtractiveContentSpec {
+    /**
+     * The maximum number of extractive answers returned in each search result. An extractive answer is a verbatim answer extracted from the original document, which provides a precise and contextually relevant answer to the search query. If the number of matching answers is less than the `max_extractive_answer_count`, return all of the answers. Otherwise, return the `max_extractive_answer_count`. At most five answers are returned for each SearchResult.
+     */
+    maxExtractiveAnswerCount?: number | null;
+    /**
+     * The max number of extractive segments returned in each search result. Only applied if the DataStore is set to DataStore.ContentConfig.CONTENT_REQUIRED or DataStore.solution_types is SOLUTION_TYPE_CHAT. An extractive segment is a text segment extracted from the original document that is relevant to the search query, and, in general, more verbose than an extractive answer. The segment could then be used as input for LLMs to generate summaries and answers. If the number of matching segments is less than `max_extractive_segment_count`, return all of the segments. Otherwise, return the `max_extractive_segment_count`.
+     */
+    maxExtractiveSegmentCount?: number | null;
+    /**
+     * Return at most `num_next_segments` segments after each selected segments.
+     */
+    numNextSegments?: number | null;
+    /**
+     * Specifies whether to also include the adjacent from each selected segments. Return at most `num_previous_segments` segments before each selected segments.
+     */
+    numPreviousSegments?: number | null;
+    /**
+     * Specifies whether to return the confidence score from the extractive segments in each search result. This feature is available only for new or allowlisted data stores. To allowlist your data store, contact your Customer Engineer. The default value is `false`.
+     */
+    returnExtractiveSegmentScore?: boolean | null;
+  }
+  /**
+   * A specification for configuring snippets in a search response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSnippetSpec {
+    /**
+     * [DEPRECATED] This field is deprecated. To control snippet return, use `return_snippet` field. For backwards compatibility, we will return snippet if max_snippet_count \> 0.
+     */
+    maxSnippetCount?: number | null;
+    /**
+     * [DEPRECATED] This field is deprecated and will have no affect on the snippet.
+     */
+    referenceOnly?: boolean | null;
+    /**
+     * If `true`, then return snippet. If no snippet can be generated, we return "No snippet is available for this page." A `snippet_status` with `SUCCESS` or `NO_SNIPPET_AVAILABLE` will also be returned.
+     */
+    returnSnippet?: boolean | null;
+  }
+  /**
+   * A specification for configuring a summary returned in a search response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpec {
+    /**
+     * Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No summary is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating summaries for adversarial queries and return fallback messages instead.
+     */
+    ignoreAdversarialQuery?: boolean | null;
+    /**
+     * Specifies whether to filter out queries that are not summary-seeking. The default value is `false`. Google employs search-query classification to detect summary-seeking queries. No summary is returned if the search query is classified as a non-summary seeking query. For example, `why is the sky blue` and `Who is the best soccer player in the world?` are summary-seeking queries, but `SFO airport` and `world cup 2026` are not. They are most likely navigational queries. If this field is set to `true`, we skip generating summaries for non-summary seeking queries and return fallback messages instead.
+     */
+    ignoreNonSummarySeekingQuery?: boolean | null;
+    /**
+     * Specifies whether to include citations in the summary. The default value is `false`. When this field is set to `true`, summaries include in-line citation numbers. Example summary including citations: BigQuery is Google Cloud's fully managed and completely serverless enterprise data warehouse [1]. BigQuery supports all data types, works across clouds, and has built-in machine learning and business intelligence, all within a unified platform [2, 3]. The citation numbers refer to the returned search results and are 1-indexed. For example, [1] means that the sentence is attributed to the first search result. [2, 3] means that the sentence is attributed to both the second and third search results.
+     */
+    includeCitations?: boolean | null;
+    /**
+     * Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.
+     */
+    languageCode?: string | null;
+    /**
+     * If specified, the spec will be used to modify the prompt provided to the LLM.
+     */
+    modelPromptSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelPromptSpec;
+    /**
+     * If specified, the spec will be used to modify the model specification provided to the LLM.
+     */
+    modelSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec;
+    /**
+     * The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results for documents mode, or 50 for chunks mode, can be used to generate a summary. The chunks mode is used when SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS.
+     */
+    summaryResultCount?: number | null;
+    /**
+     * If true, answer will be generated from most relevant chunks from top search results. This feature will improve summary quality. Note that with this feature enabled, not all top search results will be referenced and included in the reference list, so the citation source index only points to the search results listed in the reference list.
+     */
+    useSemanticChunks?: boolean | null;
+  }
+  /**
+   * Specification of the prompt to use with the model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelPromptSpec {
+    /**
+     * Text at the beginning of the prompt that instructs the assistant. Examples are available in the user guide.
+     */
+    preamble?: string | null;
+  }
+  /**
+   * Specification of the model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestContentSearchSpecSummarySpecModelSpec {
+    /**
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models). * `preview`: string. (Public preview) Uses a preview model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models).
+     */
+    version?: string | null;
+  }
+  /**
+   * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     */
+    dataStore?: string | null;
+  }
+  /**
+   * The specification that uses customized query embedding vector to do semantic document retrieval.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpec {
+    /**
+     * The embedding vector used for retrieval. Limit to 1.
+     */
+    embeddingVectors?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpecEmbeddingVector[];
+  }
+  /**
+   * Embedding vector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestEmbeddingSpecEmbeddingVector {
+    /**
+     * Embedding field path in schema.
+     */
+    fieldPath?: string | null;
+    /**
+     * Query embedding vector.
+     */
+    vector?: number[] | null;
+  }
+  /**
+   * A facet specification to perform faceted search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestFacetSpec {
+    /**
+     * Enables dynamic position for this facet. If set to true, the position of this facet among all facets in the response is determined automatically. If dynamic facets are enabled, it is ordered together. If set to false, the position of this facet in the response is the same as in the request, and it is ranked before the facets with dynamic position enable and all dynamic facets. For example, you may always want to have rating facet returned in the response, but it's not necessarily to always display the rating facet at the top. In that case, you can set enable_dynamic_position to true so that the position of rating facet in response is determined automatically. Another example, assuming you have the following facets in the request: * "rating", enable_dynamic_position = true * "price", enable_dynamic_position = false * "brands", enable_dynamic_position = false And also you have a dynamic facets enabled, which generates a facet `gender`. Then the final order of the facets in the response can be ("price", "brands", "rating", "gender") or ("price", "brands", "gender", "rating") depends on how API orders "gender" and "rating" facets. However, notice that "price" and "brands" are always ranked at first and second position because their enable_dynamic_position is false.
+     */
+    enableDynamicPosition?: boolean | null;
+    /**
+     * List of keys to exclude when faceting. By default, FacetKey.key is not excluded from the filter unless it is listed in this field. Listing a facet key in this field allows its values to appear as facet results, even when they are filtered out of search results. Using this field does not affect what search results are returned. For example, suppose there are 100 documents with the color facet "Red" and 200 documents with the color facet "Blue". A query containing the filter "color:ANY("Red")" and having "color" as FacetKey.key would by default return only "Red" documents in the search results, and also return "Red" with count 100 as the only color facet. Although there are also blue documents available, "Blue" would not be shown as an available facet value. If "color" is listed in "excludedFilterKeys", then the query returns the facet values "Red" with count 100 and "Blue" with count 200, because the "color" key is now excluded from the filter. Because this field doesn't affect search results, the search results are still correctly filtered to return only "Red" documents. A maximum of 100 values are allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    excludedFilterKeys?: string[] | null;
+    /**
+     * Required. The facet key specification.
+     */
+    facetKey?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestFacetSpecFacetKey;
+    /**
+     * Maximum facet values that are returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 are coerced to 300. For aggregation in healthcare search, when the [FacetKey.key] is "healthcare_aggregation_key", the limit will be overridden to 10,000 internally, regardless of the value set here. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     */
+    limit?: number | null;
+  }
+  /**
+   * Specifies how a facet is computed.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestFacetSpecFacetKey {
+    /**
+     * True to make facet keys case insensitive when getting faceting values with prefixes or contains; false otherwise.
+     */
+    caseInsensitive?: boolean | null;
+    /**
+     * Only get facet values that contain the given strings. For example, suppose "category" has three values "Action \> 2022", "Action \> 2021" and "Sci-Fi \> 2022". If set "contains" to "2022", the "category" facet only contains "Action \> 2022" and "Sci-Fi \> 2022". Only supported on textual fields. Maximum is 10.
+     */
+    contains?: string[] | null;
+    /**
+     * Set only if values should be bucketed into intervals. Must be set for facets with numerical values. Must not be set for facet with text values. Maximum number of intervals is 30.
+     */
+    intervals?: Schema$GoogleCloudDiscoveryengineV1alphaInterval[];
+    /**
+     * Required. Supported textual and numerical facet keys in Document object, over which the facet values are computed. Facet key is case-sensitive.
+     */
+    key?: string | null;
+    /**
+     * The order in which documents are returned. Allowed values are: * "count desc", which means order by SearchResponse.Facet.values.count descending. * "value desc", which means order by SearchResponse.Facet.values.value descending. Only applies to textual facets. If not set, textual values are sorted in [natural order](https://en.wikipedia.org/wiki/Natural_sort_order); numerical intervals are sorted in the order given by FacetSpec.FacetKey.intervals.
+     */
+    orderBy?: string | null;
+    /**
+     * Only get facet values that start with the given string prefix. For example, suppose "category" has three values "Action \> 2022", "Action \> 2021" and "Sci-Fi \> 2022". If set "prefixes" to "Action", the "category" facet only contains "Action \> 2022" and "Action \> 2021". Only supported on textual fields. Maximum is 10.
+     */
+    prefixes?: string[] | null;
+    /**
+     * Only get facet for the given restricted values. Only supported on textual fields. For example, suppose "category" has three values "Action \> 2022", "Action \> 2021" and "Sci-Fi \> 2022". If set "restricted_values" to "Action \> 2022", the "category" facet only contains "Action \> 2022". Only supported on textual fields. Maximum is 10.
+     */
+    restrictedValues?: string[] | null;
+  }
+  /**
+   * Specifies the image query input.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestImageQuery {
+    /**
+     * Base64 encoded image bytes. Supported image formats: JPEG, PNG, and BMP.
+     */
+    imageBytes?: string | null;
+  }
+  /**
+   * Specification to enable natural language understanding capabilities for search requests.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * The condition under which filter extraction should occur. Default to Condition.DISABLED.
+     */
+    filterExtractionCondition?: string | null;
+    /**
+     * Field names used for location-based filtering, where geolocation filters are detected in natural language search queries. Only valid when the FilterExtractionCondition is set to `ENABLED`. If this field is set, it overrides the field names set in ServingConfig.geo_search_query_detection_field_names.
+     */
+    geoSearchQueryDetectionFieldNames?: string[] | null;
+  }
+  /**
+   * Specification to determine under which conditions query expansion should occur.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec {
+    /**
+     * The condition under which query expansion should occur. Default to Condition.DISABLED.
+     */
+    condition?: string | null;
+    /**
+     * Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
+     */
+    pinUnexpandedResults?: boolean | null;
+  }
+  /**
+   * Specification for search as you type in search requests.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSearchAsYouTypeSpec {
+    /**
+     * The condition under which search as you type should occur. Default to Condition.DISABLED.
+     */
+    condition?: string | null;
+  }
+  /**
+   * Session specification. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSessionSpec {
+    /**
+     * If set, the search result gets stored to the "turn" specified by this query ID. Example: Let's say the session looks like this: session { name: ".../sessions/xxx" turns { query { text: "What is foo?" query_id: ".../questions/yyy" \} answer: "Foo is ..." \} turns { query { text: "How about bar then?" query_id: ".../questions/zzz" \} \} \} The user can call /search API with a request like this: session: ".../sessions/xxx" session_spec { query_id: ".../questions/zzz" \} Then, the API stores the search result, associated with the last turn. The stored search result can be used by a subsequent /answer API call (with the session ID and the query ID specified). Also, it is possible to call /search and /answer in parallel with the same session ID & query ID.
+     */
+    queryId?: string | null;
+    /**
+     * The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.
+     */
+    searchResultPersistenceCount?: number | null;
+  }
+  /**
+   * The specification for query spell correction.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec {
+    /**
+     * The mode under which spell correction replaces the original search query. Defaults to Mode.AUTO.
+     */
+    mode?: string | null;
+  }
+  /**
    * External session proto definition.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSession {
@@ -1821,6 +2538,23 @@ export namespace discoveryengine_v1 {
      */
     query?: Schema$GoogleCloudDiscoveryengineV1alphaQuery;
   }
+  /**
+   * Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for SiteSearchEngineService.SetUriPatternDocumentData method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse {}
   /**
    * Verification information for target sites in advanced site search.
    */
@@ -1973,6 +2707,19 @@ export namespace discoveryengine_v1 {
      * Operation last update time. If the operation is done, this is also the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Information of an end user.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUserInfo {
+    /**
+     * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
+     */
+    userAgent?: string | null;
+    /**
+     * Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. Don't set for anonymous users. Always use a hashed value for this ID. Don't set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    userId?: string | null;
   }
   /**
    * Defines an answer.
@@ -2175,6 +2922,10 @@ export namespace discoveryengine_v1 {
      * Disable query rephraser.
      */
     disable?: boolean | null;
+    /**
+     * Max rephrase steps. The max number is 5 steps. If not set or set to < 1, it will be set to 1 by default.
+     */
+    maxRephraseSteps?: number | null;
   }
   /**
    * Related questions specification.
@@ -2232,7 +2983,7 @@ export namespace discoveryengine_v1 {
      */
     orderBy?: string | null;
     /**
-     * Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`. See [parse and chunk documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
+     * Specifies the search result mode. If unspecified, the search result mode defaults to `DOCUMENTS`. See [parse and chunk documents](https://cloud.google.com/generative-ai-app-builder/docs/parse-chunk-documents)
      */
     searchResultMode?: string | null;
   }
@@ -2344,7 +3095,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AnswerQueryResponse {
     /**
-     * Answer resource object. If AnswerQueryRequest.StepSpec.max_step_count is greater than 1, use Answer.name to fetch answer information using ConversationalSearchService.GetAnswer API.
+     * Answer resource object. If AnswerQueryRequest.QueryUnderstandingSpec.QueryRephraserSpec.max_rephrase_steps is greater than 1, use Answer.name to fetch answer information using ConversationalSearchService.GetAnswer API.
      */
     answer?: Schema$GoogleCloudDiscoveryengineV1Answer;
     /**
@@ -2531,6 +3282,10 @@ export namespace discoveryengine_v1 {
      * If citation_type is DOCUMENT_LEVEL_CITATION, populate document level snippets.
      */
     snippetInfo?: Schema$GoogleCloudDiscoveryengineV1AnswerStepActionObservationSearchResultSnippetInfo[];
+    /**
+     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document , or the Chunk in search result .
+     */
+    structData?: {[key: string]: any} | null;
     /**
      * Title.
      */
@@ -2795,6 +3550,10 @@ export namespace discoveryengine_v1 {
     updateTime?: string | null;
   }
   /**
+   * Metadata for EvaluationService.CreateEvaluation method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaCreateEvaluationMetadata {}
+  /**
    * Metadata for Create Schema LRO.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaCreateSchemaMetadata {
@@ -2832,6 +3591,10 @@ export namespace discoveryengine_v1 {
      * The display name of the model.
      */
     displayName?: string | null;
+    /**
+     * The metrics of the trained model.
+     */
+    metrics?: {[key: string]: number} | null;
     /**
      * The state that the model is in (e.g.`TRAINING` or `TRAINING_FAILED`).
      */
@@ -2980,7 +3743,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -3180,6 +3943,65 @@ export namespace discoveryengine_v1 {
     searchTier?: string | null;
   }
   /**
+   * An evaluation is a single execution (or run) of an evaluation process. It encapsulates the state of the evaluation and the resulting data.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEvaluation {
+    /**
+     * Output only. Timestamp the Evaluation was created at.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Timestamp the Evaluation was completed at.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The error that occurred during evaluation. Only populated when the evaluation's state is FAILED.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * Required. The specification of the evaluation.
+     */
+    evaluationSpec?: Schema$GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpec;
+    /**
+     * Immutable. The full resource name of the Evaluation, in the format of `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Output only. The metrics produced by the evaluation, averaged across all SampleQuerys in the SampleQuerySet. Only populated when the evaluation's state is SUCCEEDED.
+     */
+    qualityMetrics?: Schema$GoogleCloudDiscoveryengineV1betaQualityMetrics;
+    /**
+     * Output only. The state of the evaluation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Describes the specification of the evaluation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpec {
+    /**
+     * Required. The specification of the query set.
+     */
+    querySetSpec?: Schema$GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpecQuerySetSpec;
+    /**
+     * Required. The search request that is used to perform the evaluation. Only the following fields within SearchRequest are supported; if any other fields are provided, an UNSUPPORTED error will be returned: * SearchRequest.serving_config * SearchRequest.branch * SearchRequest.canonical_filter * SearchRequest.query_expansion_spec * SearchRequest.spell_correction_spec * SearchRequest.content_search_spec * SearchRequest.user_pseudo_id
+     */
+    searchRequest?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequest;
+  }
+  /**
+   * Describes the specification of the query set.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpecQuerySetSpec {
+    /**
+     * Required. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
+     */
+    sampleQuerySet?: string | null;
+  }
+  /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportCompletionSuggestionsMetadata {
@@ -3261,6 +4083,44 @@ export namespace discoveryengine_v1 {
     gcsPrefix?: string | null;
   }
   /**
+   * Metadata related to the progress of the ImportSampleQueries operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaImportSampleQueriesMetadata {
+    /**
+     * ImportSampleQueries operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of SampleQuerys that failed to be imported.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of SampleQuerys successfully imported.
+     */
+    successCount?: string | null;
+    /**
+     * Total count of SampleQuerys that were processed.
+     */
+    totalCount?: string | null;
+    /**
+     * ImportSampleQueries operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the SampleQueryService.ImportSampleQueries method. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaImportSampleQueriesResponse {
+    /**
+     * The desired location of errors incurred during the Import.
+     */
+    errorConfig?: Schema$GoogleCloudDiscoveryengineV1betaImportErrorConfig;
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * Metadata related to the progress of the ImportSuggestionDenyListEntries operation. This is returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaImportSuggestionDenyListEntriesMetadata {
@@ -3331,6 +4191,27 @@ export namespace discoveryengine_v1 {
      * Count of user events imported, but with Document information not found in the existing Branch.
      */
     unjoinedEventsCount?: string | null;
+  }
+  /**
+   * A floating point interval.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaInterval {
+    /**
+     * Exclusive upper bound.
+     */
+    exclusiveMaximum?: number | null;
+    /**
+     * Exclusive lower bound.
+     */
+    exclusiveMinimum?: number | null;
+    /**
+     * Inclusive upper bound.
+     */
+    maximum?: number | null;
+    /**
+     * Inclusive lower bound.
+     */
+    minimum?: number | null;
   }
   /**
    * Language info for DataStore.
@@ -3479,6 +4360,52 @@ export namespace discoveryengine_v1 {
     purgeCount?: string | null;
   }
   /**
+   * Describes the metrics produced by the evaluation.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaQualityMetrics {
+    /**
+     * Normalized discounted cumulative gain (NDCG) per document, at various top-k cutoff levels. NDCG measures the ranking quality, giving higher relevance to top results. Example (top-3): Suppose SampleQuery with three retrieved documents (D1, D2, D3) and binary relevance judgements (1 for relevant, 0 for not relevant): Retrieved: [D3 (0), D1 (1), D2 (1)] Ideal: [D1 (1), D2 (1), D3 (0)] Calculate NDCG@3 for each SampleQuery: * DCG@3: 0/log2(1+1) + 1/log2(2+1) + 1/log2(3+1) = 1.13 * Ideal DCG@3: 1/log2(1+1) + 1/log2(2+1) + 0/log2(3+1) = 1.63 * NDCG@3: 1.13/1.63 = 0.693
+     */
+    docNdcg?: Schema$GoogleCloudDiscoveryengineV1betaQualityMetricsTopkMetrics;
+    /**
+     * Precision per document, at various top-k cutoff levels. Precision is the fraction of retrieved documents that are relevant. Example (top-5): * For a single SampleQuery, If 4 out of 5 retrieved documents in the top-5 are relevant, precision@5 = 4/5 = 0.8
+     */
+    docPrecision?: Schema$GoogleCloudDiscoveryengineV1betaQualityMetricsTopkMetrics;
+    /**
+     * Recall per document, at various top-k cutoff levels. Recall is the fraction of relevant documents retrieved out of all relevant documents. Example (top-5): * For a single SampleQuery, If 3 out of 5 relevant documents are retrieved in the top-5, recall@5 = 3/5 = 0.6
+     */
+    docRecall?: Schema$GoogleCloudDiscoveryengineV1betaQualityMetricsTopkMetrics;
+    /**
+     * Normalized discounted cumulative gain (NDCG) per page, at various top-k cutoff levels. NDCG measures the ranking quality, giving higher relevance to top results. Example (top-3): Suppose SampleQuery with three retrieved pages (P1, P2, P3) and binary relevance judgements (1 for relevant, 0 for not relevant): Retrieved: [P3 (0), P1 (1), P2 (1)] Ideal: [P1 (1), P2 (1), P3 (0)] Calculate NDCG@3 for SampleQuery: * DCG@3: 0/log2(1+1) + 1/log2(2+1) + 1/log2(3+1) = 1.13 * Ideal DCG@3: 1/log2(1+1) + 1/log2(2+1) + 0/log2(3+1) = 1.63 * NDCG@3: 1.13/1.63 = 0.693
+     */
+    pageNdcg?: Schema$GoogleCloudDiscoveryengineV1betaQualityMetricsTopkMetrics;
+    /**
+     * Recall per page, at various top-k cutoff levels. Recall is the fraction of relevant pages retrieved out of all relevant pages. Example (top-5): * For a single SampleQuery, if 3 out of 5 relevant pages are retrieved in the top-5, recall@5 = 3/5 = 0.6
+     */
+    pageRecall?: Schema$GoogleCloudDiscoveryengineV1betaQualityMetricsTopkMetrics;
+  }
+  /**
+   * Stores the metric values at specific top-k levels.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaQualityMetricsTopkMetrics {
+    /**
+     * The top-1 value.
+     */
+    top1?: number | null;
+    /**
+     * The top-10 value.
+     */
+    top10?: number | null;
+    /**
+     * The top-3 value.
+     */
+    top3?: number | null;
+    /**
+     * The top-5 value.
+     */
+    top5?: number | null;
+  }
+  /**
    * Defines the structure and layout of a type of document data.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSchema {
@@ -3494,6 +4421,473 @@ export namespace discoveryengine_v1 {
      * The structured representation of the schema.
      */
     structSchema?: {[key: string]: any} | null;
+  }
+  /**
+   * Request message for SearchService.Search method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequest {
+    /**
+     * Boost specification to boost certain documents. For more information on boosting, see [Boosting](https://cloud.google.com/generative-ai-app-builder/docs/boost-search-results)
+     */
+    boostSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec;
+    /**
+     * The branch resource name, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/branches/0`. Use `default_branch` as the branch ID or leave this field empty, to search documents under the default branch.
+     */
+    branch?: string | null;
+    /**
+     * The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. In the case a query does not have a sufficient amount of results this filter will be used to determine whether or not to enable the query expansion flow. The original filter will still be used for the query expanded search. This field is strongly recommended to achieve high search quality. For more information about filter syntax, see SearchRequest.filter.
+     */
+    canonicalFilter?: string | null;
+    /**
+     * A specification for configuring the behavior of content search.
+     */
+    contentSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec;
+    /**
+     * Specs defining dataStores to filter on in a search call and configurations for those dataStores. This is only considered for engines with multiple dataStores use case. For single dataStore within an engine, they should use the specs at the top level.
+     */
+    dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
+    /**
+     * Uses the provided embedding to do additional semantic document retrieval. The retrieval is based on the dot product of SearchRequest.EmbeddingSpec.EmbeddingVector.vector and the document embedding that is provided in SearchRequest.EmbeddingSpec.EmbeddingVector.field_path. If SearchRequest.EmbeddingSpec.EmbeddingVector.field_path is not provided, it will use ServingConfig.EmbeddingConfig.field_path.
+     */
+    embeddingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec;
+    /**
+     * Facet specifications for faceted search. If empty, no facets are returned. A maximum of 100 values are allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    facetSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpec[];
+    /**
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
+    /**
+     * Raw image query.
+     */
+    imageQuery?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestImageQuery;
+    /**
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). This field helps to better interpret the query. If a value isn't specified, the query language code is automatically detected, which may not be accurate.
+     */
+    languageCode?: string | null;
+    /**
+     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     */
+    naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
+    /**
+     * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     */
+    offset?: number | null;
+    /**
+     * The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering for retail search, see [Ordering](https://cloud.google.com/retail/docs/filter-and-order#order) If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.
+     */
+    orderBy?: string | null;
+    /**
+     * Maximum number of Documents to return. The maximum allowed value depends on the data type. Values above the maximum value are coerced to the maximum value. * Websites with basic indexing: Default `10`, Maximum `25`. * Websites with advanced indexing: Default `25`, Maximum `50`. * Other: Default `50`, Maximum `100`. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     */
+    pageSize?: number | null;
+    /**
+     * A page token received from a previous SearchService.Search call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SearchService.Search must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    pageToken?: string | null;
+    /**
+     * Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. For example, `user_country_code: "au"` For available codes see [Country Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes) * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching. For example, `search_type: 1`
+     */
+    params?: {[key: string]: any} | null;
+    /**
+     * Raw search query.
+     */
+    query?: string | null;
+    /**
+     * The query expansion specification that specifies the conditions under which query expansion occurs.
+     */
+    queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec;
+    /**
+     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The ranking expression is a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`.
+     */
+    rankingExpression?: string | null;
+    /**
+     * The Unicode country/region code (CLDR) of a location, such as "US" and "419". For more information, see [Standard fields](https://cloud.google.com/apis/design/standard_fields). If set, then results will be boosted based on the region_code provided.
+     */
+    regionCode?: string | null;
+    /**
+     * Whether to turn on safe search. This is only supported for website search.
+     */
+    safeSearch?: boolean | null;
+    /**
+     * Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical.
+     */
+    searchAsYouTypeSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec;
+    /**
+     * Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     */
+    servingConfig?: string | null;
+    /**
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     */
+    session?: string | null;
+    /**
+     * Session specification. Can be used only when `session` is set.
+     */
+    sessionSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSessionSpec;
+    /**
+     * The spell correction specification that specifies the mode under which spell correction takes effect.
+     */
+    spellCorrectionSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSpellCorrectionSpec;
+    /**
+     * Information about the end user. Highly recommended for analytics. UserInfo.user_agent is used to deduce `device_type` for analytics.
+     */
+    userInfo?: Schema$GoogleCloudDiscoveryengineV1betaUserInfo;
+    /**
+     * The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     */
+    userLabels?: {[key: string]: string} | null;
+    /**
+     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and CompleteQueryRequest.user_pseudo_id The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    userPseudoId?: string | null;
+  }
+  /**
+   * Boost specification to boost certain documents.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpec {
+    /**
+     * Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     */
+    conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec[];
+  }
+  /**
+   * Boost applies to documents which match a condition.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpec {
+    /**
+     * Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored. Only one of the (condition, boost) combination or the boost_control_spec below are set. If both are set then the global boost is ignored and the more fine-grained boost_control_spec is applied.
+     */
+    boost?: number | null;
+    /**
+     * Complex specification for custom ranking based on customer defined attribute value.
+     */
+    boostControlSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpecBoostControlSpec;
+    /**
+     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
+     */
+    condition?: string | null;
+  }
+  /**
+   * Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpecBoostControlSpec {
+    /**
+     * The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).
+     */
+    attributeType?: string | null;
+    /**
+     * The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.
+     */
+    controlPoints?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint[];
+    /**
+     * The name of the field whose value will be used to determine the boost amount.
+     */
+    fieldName?: string | null;
+    /**
+     * The interpolation type to be applied to connect the control points listed below.
+     */
+    interpolationType?: string | null;
+  }
+  /**
+   * The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
+    /**
+     * Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.
+     */
+    attributeValue?: string | null;
+    /**
+     * The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.
+     */
+    boostAmount?: number | null;
+  }
+  /**
+   * A specification for configuring the behavior of content search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpec {
+    /**
+     * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+     */
+    chunkSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecChunkSpec;
+    /**
+     * If there is no extractive_content_spec provided, there will be no extractive answer in the search response.
+     */
+    extractiveContentSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec;
+    /**
+     * Specifies the search result mode. If unspecified, the search result mode defaults to `DOCUMENTS`.
+     */
+    searchResultMode?: string | null;
+    /**
+     * If `snippetSpec` is not specified, snippets are not included in the search response.
+     */
+    snippetSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSnippetSpec;
+    /**
+     * If `summarySpec` is not specified, summaries are not included in the search response.
+     */
+    summarySpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec;
+  }
+  /**
+   * Specifies the chunk spec to be returned from the search response. Only available if the SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecChunkSpec {
+    /**
+     * The number of next chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no next chunks will be returned.
+     */
+    numNextChunks?: number | null;
+    /**
+     * The number of previous chunks to be returned of the current chunk. The maximum allowed value is 3. If not specified, no previous chunks will be returned.
+     */
+    numPreviousChunks?: number | null;
+  }
+  /**
+   * A specification for configuring the extractive content in a search response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecExtractiveContentSpec {
+    /**
+     * The maximum number of extractive answers returned in each search result. An extractive answer is a verbatim answer extracted from the original document, which provides a precise and contextually relevant answer to the search query. If the number of matching answers is less than the `max_extractive_answer_count`, return all of the answers. Otherwise, return the `max_extractive_answer_count`. At most five answers are returned for each SearchResult.
+     */
+    maxExtractiveAnswerCount?: number | null;
+    /**
+     * The max number of extractive segments returned in each search result. Only applied if the DataStore is set to DataStore.ContentConfig.CONTENT_REQUIRED or DataStore.solution_types is SOLUTION_TYPE_CHAT. An extractive segment is a text segment extracted from the original document that is relevant to the search query, and, in general, more verbose than an extractive answer. The segment could then be used as input for LLMs to generate summaries and answers. If the number of matching segments is less than `max_extractive_segment_count`, return all of the segments. Otherwise, return the `max_extractive_segment_count`.
+     */
+    maxExtractiveSegmentCount?: number | null;
+    /**
+     * Return at most `num_next_segments` segments after each selected segments.
+     */
+    numNextSegments?: number | null;
+    /**
+     * Specifies whether to also include the adjacent from each selected segments. Return at most `num_previous_segments` segments before each selected segments.
+     */
+    numPreviousSegments?: number | null;
+    /**
+     * Specifies whether to return the confidence score from the extractive segments in each search result. This feature is available only for new or allowlisted data stores. To allowlist your data store, contact your Customer Engineer. The default value is `false`.
+     */
+    returnExtractiveSegmentScore?: boolean | null;
+  }
+  /**
+   * A specification for configuring snippets in a search response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSnippetSpec {
+    /**
+     * [DEPRECATED] This field is deprecated. To control snippet return, use `return_snippet` field. For backwards compatibility, we will return snippet if max_snippet_count \> 0.
+     */
+    maxSnippetCount?: number | null;
+    /**
+     * [DEPRECATED] This field is deprecated and will have no affect on the snippet.
+     */
+    referenceOnly?: boolean | null;
+    /**
+     * If `true`, then return snippet. If no snippet can be generated, we return "No snippet is available for this page." A `snippet_status` with `SUCCESS` or `NO_SNIPPET_AVAILABLE` will also be returned.
+     */
+    returnSnippet?: boolean | null;
+  }
+  /**
+   * A specification for configuring a summary returned in a search response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpec {
+    /**
+     * Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No summary is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating summaries for adversarial queries and return fallback messages instead.
+     */
+    ignoreAdversarialQuery?: boolean | null;
+    /**
+     * Specifies whether to filter out queries that are not summary-seeking. The default value is `false`. Google employs search-query classification to detect summary-seeking queries. No summary is returned if the search query is classified as a non-summary seeking query. For example, `why is the sky blue` and `Who is the best soccer player in the world?` are summary-seeking queries, but `SFO airport` and `world cup 2026` are not. They are most likely navigational queries. If this field is set to `true`, we skip generating summaries for non-summary seeking queries and return fallback messages instead.
+     */
+    ignoreNonSummarySeekingQuery?: boolean | null;
+    /**
+     * Specifies whether to include citations in the summary. The default value is `false`. When this field is set to `true`, summaries include in-line citation numbers. Example summary including citations: BigQuery is Google Cloud's fully managed and completely serverless enterprise data warehouse [1]. BigQuery supports all data types, works across clouds, and has built-in machine learning and business intelligence, all within a unified platform [2, 3]. The citation numbers refer to the returned search results and are 1-indexed. For example, [1] means that the sentence is attributed to the first search result. [2, 3] means that the sentence is attributed to both the second and third search results.
+     */
+    includeCitations?: boolean | null;
+    /**
+     * Language code for Summary. Use language tags defined by [BCP47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). Note: This is an experimental feature.
+     */
+    languageCode?: string | null;
+    /**
+     * If specified, the spec will be used to modify the prompt provided to the LLM.
+     */
+    modelPromptSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelPromptSpec;
+    /**
+     * If specified, the spec will be used to modify the model specification provided to the LLM.
+     */
+    modelSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec;
+    /**
+     * The number of top results to generate the summary from. If the number of results returned is less than `summaryResultCount`, the summary is generated from all of the results. At most 10 results for documents mode, or 50 for chunks mode, can be used to generate a summary. The chunks mode is used when SearchRequest.ContentSearchSpec.search_result_mode is set to CHUNKS.
+     */
+    summaryResultCount?: number | null;
+    /**
+     * If true, answer will be generated from most relevant chunks from top search results. This feature will improve summary quality. Note that with this feature enabled, not all top search results will be referenced and included in the reference list, so the citation source index only points to the search results listed in the reference list.
+     */
+    useSemanticChunks?: boolean | null;
+  }
+  /**
+   * Specification of the prompt to use with the model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelPromptSpec {
+    /**
+     * Text at the beginning of the prompt that instructs the assistant. Examples are available in the user guide.
+     */
+    preamble?: string | null;
+  }
+  /**
+   * Specification of the model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestContentSearchSpecSummarySpecModelSpec {
+    /**
+     * The model version used to generate the summary. Supported values are: * `stable`: string. Default value when no value is specified. Uses a generally available, fine-tuned model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models). * `preview`: string. (Public preview) Uses a preview model. For more information, see [Answer generation model versions and lifecycle](https://cloud.google.com/generative-ai-app-builder/docs/answer-generation-models).
+     */
+    version?: string | null;
+  }
+  /**
+   * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec {
+    /**
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     */
+    dataStore?: string | null;
+  }
+  /**
+   * The specification that uses customized query embedding vector to do semantic document retrieval.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpec {
+    /**
+     * The embedding vector used for retrieval. Limit to 1.
+     */
+    embeddingVectors?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpecEmbeddingVector[];
+  }
+  /**
+   * Embedding vector.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestEmbeddingSpecEmbeddingVector {
+    /**
+     * Embedding field path in schema.
+     */
+    fieldPath?: string | null;
+    /**
+     * Query embedding vector.
+     */
+    vector?: number[] | null;
+  }
+  /**
+   * A facet specification to perform faceted search.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpec {
+    /**
+     * Enables dynamic position for this facet. If set to true, the position of this facet among all facets in the response is determined automatically. If dynamic facets are enabled, it is ordered together. If set to false, the position of this facet in the response is the same as in the request, and it is ranked before the facets with dynamic position enable and all dynamic facets. For example, you may always want to have rating facet returned in the response, but it's not necessarily to always display the rating facet at the top. In that case, you can set enable_dynamic_position to true so that the position of rating facet in response is determined automatically. Another example, assuming you have the following facets in the request: * "rating", enable_dynamic_position = true * "price", enable_dynamic_position = false * "brands", enable_dynamic_position = false And also you have a dynamic facets enabled, which generates a facet `gender`. Then the final order of the facets in the response can be ("price", "brands", "rating", "gender") or ("price", "brands", "gender", "rating") depends on how API orders "gender" and "rating" facets. However, notice that "price" and "brands" are always ranked at first and second position because their enable_dynamic_position is false.
+     */
+    enableDynamicPosition?: boolean | null;
+    /**
+     * List of keys to exclude when faceting. By default, FacetKey.key is not excluded from the filter unless it is listed in this field. Listing a facet key in this field allows its values to appear as facet results, even when they are filtered out of search results. Using this field does not affect what search results are returned. For example, suppose there are 100 documents with the color facet "Red" and 200 documents with the color facet "Blue". A query containing the filter "color:ANY("Red")" and having "color" as FacetKey.key would by default return only "Red" documents in the search results, and also return "Red" with count 100 as the only color facet. Although there are also blue documents available, "Blue" would not be shown as an available facet value. If "color" is listed in "excludedFilterKeys", then the query returns the facet values "Red" with count 100 and "Blue" with count 200, because the "color" key is now excluded from the filter. Because this field doesn't affect search results, the search results are still correctly filtered to return only "Red" documents. A maximum of 100 values are allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    excludedFilterKeys?: string[] | null;
+    /**
+     * Required. The facet key specification.
+     */
+    facetKey?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpecFacetKey;
+    /**
+     * Maximum facet values that are returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 are coerced to 300. For aggregation in healthcare search, when the [FacetKey.key] is "healthcare_aggregation_key", the limit will be overridden to 10,000 internally, regardless of the value set here. If this field is negative, an `INVALID_ARGUMENT` is returned.
+     */
+    limit?: number | null;
+  }
+  /**
+   * Specifies how a facet is computed.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestFacetSpecFacetKey {
+    /**
+     * True to make facet keys case insensitive when getting faceting values with prefixes or contains; false otherwise.
+     */
+    caseInsensitive?: boolean | null;
+    /**
+     * Only get facet values that contain the given strings. For example, suppose "category" has three values "Action \> 2022", "Action \> 2021" and "Sci-Fi \> 2022". If set "contains" to "2022", the "category" facet only contains "Action \> 2022" and "Sci-Fi \> 2022". Only supported on textual fields. Maximum is 10.
+     */
+    contains?: string[] | null;
+    /**
+     * Set only if values should be bucketed into intervals. Must be set for facets with numerical values. Must not be set for facet with text values. Maximum number of intervals is 30.
+     */
+    intervals?: Schema$GoogleCloudDiscoveryengineV1betaInterval[];
+    /**
+     * Required. Supported textual and numerical facet keys in Document object, over which the facet values are computed. Facet key is case-sensitive.
+     */
+    key?: string | null;
+    /**
+     * The order in which documents are returned. Allowed values are: * "count desc", which means order by SearchResponse.Facet.values.count descending. * "value desc", which means order by SearchResponse.Facet.values.value descending. Only applies to textual facets. If not set, textual values are sorted in [natural order](https://en.wikipedia.org/wiki/Natural_sort_order); numerical intervals are sorted in the order given by FacetSpec.FacetKey.intervals.
+     */
+    orderBy?: string | null;
+    /**
+     * Only get facet values that start with the given string prefix. For example, suppose "category" has three values "Action \> 2022", "Action \> 2021" and "Sci-Fi \> 2022". If set "prefixes" to "Action", the "category" facet only contains "Action \> 2022" and "Action \> 2021". Only supported on textual fields. Maximum is 10.
+     */
+    prefixes?: string[] | null;
+    /**
+     * Only get facet for the given restricted values. Only supported on textual fields. For example, suppose "category" has three values "Action \> 2022", "Action \> 2021" and "Sci-Fi \> 2022". If set "restricted_values" to "Action \> 2022", the "category" facet only contains "Action \> 2022". Only supported on textual fields. Maximum is 10.
+     */
+    restrictedValues?: string[] | null;
+  }
+  /**
+   * Specifies the image query input.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestImageQuery {
+    /**
+     * Base64 encoded image bytes. Supported image formats: JPEG, PNG, and BMP.
+     */
+    imageBytes?: string | null;
+  }
+  /**
+   * Specification to enable natural language understanding capabilities for search requests.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * The condition under which filter extraction should occur. Default to Condition.DISABLED.
+     */
+    filterExtractionCondition?: string | null;
+    /**
+     * Field names used for location-based filtering, where geolocation filters are detected in natural language search queries. Only valid when the FilterExtractionCondition is set to `ENABLED`. If this field is set, it overrides the field names set in ServingConfig.geo_search_query_detection_field_names.
+     */
+    geoSearchQueryDetectionFieldNames?: string[] | null;
+  }
+  /**
+   * Specification to determine under which conditions query expansion should occur.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec {
+    /**
+     * The condition under which query expansion should occur. Default to Condition.DISABLED.
+     */
+    condition?: string | null;
+    /**
+     * Whether to pin unexpanded results. If this field is set to true, unexpanded products are always at the top of the search results, followed by the expanded results.
+     */
+    pinUnexpandedResults?: boolean | null;
+  }
+  /**
+   * Specification for search as you type in search requests.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSearchAsYouTypeSpec {
+    /**
+     * The condition under which search as you type should occur. Default to Condition.DISABLED.
+     */
+    condition?: string | null;
+  }
+  /**
+   * Session specification. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSessionSpec {
+    /**
+     * If set, the search result gets stored to the "turn" specified by this query ID. Example: Let's say the session looks like this: session { name: ".../sessions/xxx" turns { query { text: "What is foo?" query_id: ".../questions/yyy" \} answer: "Foo is ..." \} turns { query { text: "How about bar then?" query_id: ".../questions/zzz" \} \} \} The user can call /search API with a request like this: session: ".../sessions/xxx" session_spec { query_id: ".../questions/zzz" \} Then, the API stores the search result, associated with the last turn. The stored search result can be used by a subsequent /answer API call (with the session ID and the query ID specified). Also, it is possible to call /search and /answer in parallel with the same session ID & query ID.
+     */
+    queryId?: string | null;
+    /**
+     * The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.
+     */
+    searchResultPersistenceCount?: number | null;
+  }
+  /**
+   * The specification for query spell correction.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestSpellCorrectionSpec {
+    /**
+     * The mode under which spell correction replaces the original search query. Defaults to Mode.AUTO.
+     */
+    mode?: string | null;
   }
   /**
    * Verification information for target sites in advanced site search.
@@ -3647,6 +5041,19 @@ export namespace discoveryengine_v1 {
      * Operation last update time. If the operation is done, this is also the finish time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Information of an end user.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaUserInfo {
+    /**
+     * User agent as included in the HTTP header. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if UserEvent.direct_user_request is set.
+     */
+    userAgent?: string | null;
+    /**
+     * Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. Don't set for anonymous users. Always use a hashed value for this ID. Don't set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     */
+    userId?: string | null;
   }
   /**
    * BigQuery source import data from.
@@ -4547,7 +5954,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and or layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and or layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -5777,6 +7184,18 @@ export namespace discoveryengine_v1 {
      */
     safeSearch?: boolean | null;
     /**
+     * Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical.
+     */
+    searchAsYouTypeSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec;
+    /**
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     */
+    session?: string | null;
+    /**
+     * Session specification. Can be used only when `session` is set.
+     */
+    sessionSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSessionSpec;
+    /**
      * The spell correction specification that specifies the mode under which spell correction takes effect.
      */
     spellCorrectionSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec;
@@ -5828,7 +7247,7 @@ export namespace discoveryengine_v1 {
      */
     extractiveContentSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestContentSearchSpecExtractiveContentSpec;
     /**
-     * Specifies the search result mode. If unspecified, the search result mode is based on DataStore.DocumentProcessingConfig.chunking_config: * If DataStore.DocumentProcessingConfig.chunking_config is specified, it defaults to `CHUNKS`. * Otherwise, it defaults to `DOCUMENTS`.
+     * Specifies the search result mode. If unspecified, the search result mode defaults to `DOCUMENTS`.
      */
     searchResultMode?: string | null;
     /**
@@ -5951,7 +7370,7 @@ export namespace discoveryengine_v1 {
     version?: string | null;
   }
   /**
-   * A struct to define data stores to filter on in a search call and configurations for those data stores. A maximum of 1 DataStoreSpec per data_store is allowed. Otherwise, an `INVALID_ARGUMENT` error is returned.
+   * A struct to define data stores to filter on in a search call and configurations for those data stores. Otherwise, an `INVALID_ARGUMENT` error is returned.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec {
     /**
@@ -6036,6 +7455,28 @@ export namespace discoveryengine_v1 {
     pinUnexpandedResults?: boolean | null;
   }
   /**
+   * Specification for search as you type in search requests.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec {
+    /**
+     * The condition under which search as you type should occur. Default to Condition.DISABLED.
+     */
+    condition?: string | null;
+  }
+  /**
+   * Session specification. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestSessionSpec {
+    /**
+     * If set, the search result gets stored to the "turn" specified by this query ID. Example: Let's say the session looks like this: session { name: ".../sessions/xxx" turns { query { text: "What is foo?" query_id: ".../questions/yyy" \} answer: "Foo is ..." \} turns { query { text: "How about bar then?" query_id: ".../questions/zzz" \} \} \} The user can call /search API with a request like this: session: ".../sessions/xxx" session_spec { query_id: ".../questions/zzz" \} Then, the API stores the search result, associated with the last turn. The stored search result can be used by a subsequent /answer API call (with the session ID and the query ID specified). Also, it is possible to call /search and /answer in parallel with the same session ID & query ID.
+     */
+    queryId?: string | null;
+    /**
+     * The number of top search results to persist. The persisted search results can be used for the subsequent /answer api call. This field is simliar to the `summary_result_count` field in SearchRequest.ContentSearchSpec.SummarySpec.summary_result_count. At most 10 results for documents mode, or 50 for chunks mode.
+     */
+    searchResultPersistenceCount?: number | null;
+  }
+  /**
    * The specification for query spell correction.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestSpellCorrectionSpec {
@@ -6076,6 +7517,10 @@ export namespace discoveryengine_v1 {
      * A list of matched documents. The order represents the ranking.
      */
     results?: Schema$GoogleCloudDiscoveryengineV1SearchResponseSearchResult[];
+    /**
+     * Session information. Only set if SearchRequest.session is provided. See its description for more details.
+     */
+    sessionInfo?: Schema$GoogleCloudDiscoveryengineV1SearchResponseSessionInfo;
     /**
      * A summary as part of the search results. This field is only returned if SearchRequest.ContentSearchSpec.summary_spec is set.
      */
@@ -6148,6 +7593,19 @@ export namespace discoveryengine_v1 {
      * Document.id of the searched Document.
      */
     id?: string | null;
+  }
+  /**
+   * Information about the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchResponseSessionInfo {
+    /**
+     * Name of the session. If the auto-session mode is used (when SearchRequest.session ends with "-"), this field holds the newly generated session name.
+     */
+    name?: string | null;
+    /**
+     * Query ID that corresponds to this search API call. One session can have multiple turns, each with a unique query ID. By specifying the session name and this query ID in the Answer API call, the answer generation happens in the context of the search results from this search call.
+     */
+    queryId?: string | null;
   }
   /**
    * Summary of the top N search results specified by the summary spec.
@@ -6808,6 +8266,7 @@ export namespace discoveryengine_v1 {
     collections: Resource$Projects$Locations$Collections;
     dataStores: Resource$Projects$Locations$Datastores;
     groundingConfigs: Resource$Projects$Locations$Groundingconfigs;
+    identity_mapping_stores: Resource$Projects$Locations$Identity_mapping_stores;
     operations: Resource$Projects$Locations$Operations;
     rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
     userEvents: Resource$Projects$Locations$Userevents;
@@ -6822,6 +8281,8 @@ export namespace discoveryengine_v1 {
       this.groundingConfigs = new Resource$Projects$Locations$Groundingconfigs(
         this.context
       );
+      this.identity_mapping_stores =
+        new Resource$Projects$Locations$Identity_mapping_stores(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -25341,6 +26802,245 @@ export namespace discoveryengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1CheckGroundingRequest;
+  }
+
+  export class Resource$Projects$Locations$Identity_mapping_stores {
+    context: APIRequestContext;
+    operations: Resource$Projects$Locations$Identity_mapping_stores$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Identity_mapping_stores$Operations(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Identity_mapping_stores$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    get(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Locations$Operations {
