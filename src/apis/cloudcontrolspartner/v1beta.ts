@@ -193,15 +193,15 @@ export namespace cloudcontrolspartner_v1beta {
    */
   export interface Schema$Customer {
     /**
-     * Container for customer onboarding steps
+     * Output only. Container for customer onboarding steps
      */
     customerOnboardingState?: Schema$CustomerOnboardingState;
     /**
-     * The customer organization's display name. E.g. "google.com".
+     * Output only. The customer organization's display name. E.g. "google.com".
      */
     displayName?: string | null;
     /**
-     * Indicates whether a customer is fully onboarded
+     * Output only. Indicates whether a customer is fully onboarded
      */
     isOnboarded?: boolean | null;
     /**

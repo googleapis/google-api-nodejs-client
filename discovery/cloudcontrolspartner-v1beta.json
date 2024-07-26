@@ -484,7 +484,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240717",
   "rootUrl": "https://cloudcontrolspartner.googleapis.com/",
   "schemas": {
     "AccessApprovalRequest": {
@@ -594,14 +594,17 @@
       "properties": {
         "customerOnboardingState": {
           "$ref": "CustomerOnboardingState",
-          "description": "Container for customer onboarding steps"
+          "description": "Output only. Container for customer onboarding steps",
+          "readOnly": true
         },
         "displayName": {
-          "description": "The customer organization's display name. E.g. \"google.com\".",
+          "description": "Output only. The customer organization's display name. E.g. \"google.com\".",
+          "readOnly": true,
           "type": "string"
         },
         "isOnboarded": {
-          "description": "Indicates whether a customer is fully onboarded",
+          "description": "Output only. Indicates whether a customer is fully onboarded",
+          "readOnly": true,
           "type": "boolean"
         },
         "name": {
