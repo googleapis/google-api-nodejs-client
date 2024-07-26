@@ -7349,21 +7349,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "transferStatus": {
-          "description": "Output only. Denotes the transfer status of the Aspect Type. It is unspecified for Aspect Types created from Dataplex API.",
-          "enum": [
-            "TRANSFER_STATUS_UNSPECIFIED",
-            "TRANSFER_STATUS_MIGRATED",
-            "TRANSFER_STATUS_TRANSFERRED"
-          ],
-          "enumDescriptions": [
-            "The default value. It is set for resources that were not subject for migration from Data Catalog service.",
-            "Indicates that a resource was migrated from Data Catalog service but it hasn't been transferred yet. In particular the resource cannot be updated from Dataplex API.",
-            "Indicates that a resource was transferred from Data Catalog service. The resource can only be updated from Dataplex API."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "uid": {
           "description": "Output only. System generated globally unique ID for the AspectType. If you delete and recreate the AspectType with the same name, then this ID will be different.",
           "readOnly": true,
@@ -10486,21 +10471,6 @@
         },
         "name": {
           "description": "Output only. The relative resource name of the EntryGroup, in the format projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "transferStatus": {
-          "description": "Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.",
-          "enum": [
-            "TRANSFER_STATUS_UNSPECIFIED",
-            "TRANSFER_STATUS_MIGRATED",
-            "TRANSFER_STATUS_TRANSFERRED"
-          ],
-          "enumDescriptions": [
-            "The default value. It is set for resources that were not subject for migration from Data Catalog service.",
-            "Indicates that a resource was migrated from Data Catalog service but it hasn't been transferred yet. In particular the resource cannot be updated from Dataplex API.",
-            "Indicates that a resource was transferred from Data Catalog service. The resource can only be updated from Dataplex API."
-          ],
           "readOnly": true,
           "type": "string"
         },
