@@ -1713,7 +1713,7 @@
       }
     }
   },
-  "revision": "20240518",
+  "revision": "20240626",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2415,7 +2415,7 @@
       "id": "GroupKind",
       "properties": {
         "resourceGroup": {
-          "description": "Optional. API group string of a Kubernetes resource, e.g. \"apiextensions.k8s.io\", \"storage.k8s.io\", etc. Note: use empty string for core API group",
+          "description": "Optional. API group string of a Kubernetes resource, e.g. \"apiextensions.k8s.io\", \"storage.k8s.io\", etc. Note: use empty string for core API group.",
           "type": "string"
         },
         "resourceKind": {
@@ -2651,11 +2651,11 @@
       "type": "object"
     },
     "Namespaces": {
-      "description": "A list of Kubernetes Namespaces",
+      "description": "A list of Kubernetes Namespaces.",
       "id": "Namespaces",
       "properties": {
         "namespaces": {
-          "description": "Optional. A list of Kubernetes Namespaces",
+          "description": "Optional. A list of Kubernetes Namespaces.",
           "items": {
             "type": "string"
           },
@@ -2826,7 +2826,7 @@
         },
         "filter": {
           "$ref": "Filter",
-          "description": "Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified, and no resources are matched by the `inclusion_filters` or everyting is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`."
+          "description": "Optional. Immutable. Filters resources for `Restore`. If not specified, the scope of the restore will remain the same as defined in the `RestorePlan`. If this is specified and no resources are matched by the `inclusion_filters` or everyting is excluded by the `exclusion_filters`, nothing will be restored. This filter can only be specified if the value of namespaced_resource_restore_mode is set to `MERGE_SKIP_ON_CONFLICT`, `MERGE_REPLACE_VOLUME_ON_CONFLICT` or `MERGE_REPLACE_ON_CONFLICT`."
         },
         "labels": {
           "additionalProperties": {
