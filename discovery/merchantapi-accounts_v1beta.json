@@ -667,6 +667,195 @@
             }
           }
         },
+        "businessIdentity": {
+          "methods": {
+            "getBusinessIdentity": {
+              "description": "Retrieves the business identity of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.businessIdentity.getBusinessIdentity",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/businessIdentity$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "BusinessIdentity"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateBusinessIdentity": {
+              "description": "Updates the business identity of an account. Executing this method requires admin access.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.businessIdentity.updateBusinessIdentity",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/businessIdentity$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "BusinessIdentity"
+              },
+              "response": {
+                "$ref": "BusinessIdentity"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
+        "businessInfo": {
+          "methods": {
+            "getBusinessInfo": {
+              "description": "Retrieves the business info of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.businessInfo.getBusinessInfo",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/businessInfo$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "BusinessInfo"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateBusinessInfo": {
+              "description": "Updates the business info of an account. Executing this method requires admin access.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.businessInfo.updateBusinessInfo",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/businessInfo$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "BusinessInfo"
+              },
+              "response": {
+                "$ref": "BusinessInfo"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
+        "emailpreferences": {
+          "methods": {
+            "getEmailPreferences": {
+              "description": "Returns the email preferences for a Merchant Center account user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.emailpreferences.getEmailPreferences",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the `EmailPreferences` resource. Format: `accounts/{account}/users/{email}/emailPreferences`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/users/[^/]+/emailPreferences$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "EmailPreferences"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateEmailPreferences": {
+              "description": "Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/*/users/me/emailPreferences alias to update preferences for the authenticated user.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.emailpreferences.updateEmailPreferences",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The name of the EmailPreferences. The endpoint is only supported for the authenticated user.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/users/[^/]+/emailPreferences$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "EmailPreferences"
+              },
+              "response": {
+                "$ref": "EmailPreferences"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
         "homepage": {
           "methods": {
             "claim": {
