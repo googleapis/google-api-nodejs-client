@@ -1918,7 +1918,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240722",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3948,7 +3948,8 @@
           "type": "object"
         },
         "id": {
-          "description": "Relative name of the service within the application. Example: default.@OutputOnly",
+          "description": "Output only. Relative name of the service within the application. Example: default.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {
@@ -3959,7 +3960,8 @@
           "type": "object"
         },
         "name": {
-          "description": "Full path to the Service resource in the API. Example: apps/myapp/services/default.@OutputOnly",
+          "description": "Output only. Full path to the Service resource in the API. Example: apps/myapp/services/default.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "networkSettings": {
@@ -4273,7 +4275,8 @@
           "type": "string"
         },
         "createdBy": {
-          "description": "Email address of the user who created this version.@OutputOnly",
+          "description": "Output only. Email address of the user who created this version.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "defaultExpiration": {
@@ -4286,8 +4289,9 @@
           "description": "Code and application artifacts that make up this version.Only returned in GET requests if view=FULL is set."
         },
         "diskUsageBytes": {
-          "description": "Total size in bytes of all the files that are included in this version and currently hosted on the App Engine disk.@OutputOnly",
+          "description": "Output only. Total size in bytes of all the files that are included in this version and currently hosted on the App Engine disk.@OutputOnly",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "endpointsApiService": {
@@ -4392,7 +4396,8 @@
           "description": "A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time. Manually scaled versions are sometimes referred to as \"backends\"."
         },
         "name": {
-          "description": "Full path to the Version resource in the API. Example: apps/myapp/services/default/versions/v1.@OutputOnly",
+          "description": "Output only. Full path to the Version resource in the API. Example: apps/myapp/services/default/versions/v1.@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "network": {
@@ -4450,7 +4455,8 @@
           "type": "boolean"
         },
         "versionUrl": {
-          "description": "Serving URL for this version. Example: \"https://myversion-dot-myservice-dot-myapp.appspot.com\"@OutputOnly",
+          "description": "Output only. Serving URL for this version. Example: \"https://myversion-dot-myservice-dot-myapp.appspot.com\"@OutputOnly",
+          "readOnly": true,
           "type": "string"
         },
         "vm": {
