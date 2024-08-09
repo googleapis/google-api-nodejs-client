@@ -1473,10 +1473,6 @@ export namespace retail_v2 {
      * The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.
      */
     mergedFacetKey?: string | null;
-    /**
-     * Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.
-     */
-    mergedFacetValues?: Schema$GoogleCloudRetailV2CatalogAttributeFacetConfigMergedFacetValue[];
   }
   /**
    * Replaces a set of textual facet values by the same (possibly different) merged facet value. Each facet value should appear at most once as a value per CatalogAttribute. This feature is available only for textual custom attributes.
@@ -1522,6 +1518,14 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2CompleteQueryResponse {
     /**
+     * A map of matched attribute suggestions. This field is only available for "cloud-retail" dataset. Current supported keys: * `brands` * `categories`
+     */
+    attributeResults?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudRetailV2CompleteQueryResponseAttributeResult;
+    } | null;
+    /**
      * A unique complete token. This should be included in the UserEvent.completion_detail for search events resulting from this completion, which enables accurate attribution of complete model performance.
      */
     attributionToken?: string | null;
@@ -1533,6 +1537,12 @@ export namespace retail_v2 {
      * Deprecated. Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. If you want to enable it, contact Retail Search support. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.
      */
     recentSearchResults?: Schema$GoogleCloudRetailV2CompleteQueryResponseRecentSearchResult[];
+  }
+  /**
+   * Resource that represents attribute results.
+   */
+  export interface Schema$GoogleCloudRetailV2CompleteQueryResponseAttributeResult {
+    suggestions?: string[] | null;
   }
   /**
    * Resource that represents completion results.
@@ -1550,7 +1560,7 @@ export namespace retail_v2 {
     suggestion?: string | null;
   }
   /**
-   * Recent search of this user.
+   * Deprecated: Recent search of this user.
    */
   export interface Schema$GoogleCloudRetailV2CompleteQueryResponseRecentSearchResult {
     /**

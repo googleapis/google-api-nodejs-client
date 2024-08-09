@@ -106,6 +106,67 @@
   "protocol": "rest",
   "resources": {
     "projects": {
+      "methods": {
+        "getAlertConfig": {
+          "description": "Get the AlertConfig of the requested project.",
+          "flatPath": "v2beta/projects/{projectsId}/alertConfig",
+          "httpMethod": "GET",
+          "id": "retail.projects.getAlertConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Full AlertConfig resource name. Format: projects/{project_number}/alertConfig",
+              "location": "path",
+              "pattern": "^projects/[^/]+/alertConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2beta/{+name}",
+          "response": {
+            "$ref": "GoogleCloudRetailV2betaAlertConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "updateAlertConfig": {
+          "description": "Update the alert config of the requested project.",
+          "flatPath": "v2beta/projects/{projectsId}/alertConfig",
+          "httpMethod": "PATCH",
+          "id": "retail.projects.updateAlertConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Immutable. The name of the AlertConfig singleton resource. Format: projects/*/alertConfig",
+              "location": "path",
+              "pattern": "^projects/[^/]+/alertConfig$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Indicates which fields in the provided AlertConfig to update. If not set, all supported fields are updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v2beta/{+name}",
+          "request": {
+            "$ref": "GoogleCloudRetailV2betaAlertConfig"
+          },
+          "response": {
+            "$ref": "GoogleCloudRetailV2betaAlertConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      },
       "resources": {
         "locations": {
           "resources": {
@@ -707,6 +768,34 @@
                           "path": "v2beta/{+name}",
                           "response": {
                             "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "export": {
+                          "description": "Exports multiple Products.",
+                          "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products:export",
+                          "httpMethod": "POST",
+                          "id": "retail.projects.locations.catalogs.branches.products.export",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Resource name of a Branch, and `default_branch` for branch_id component is supported. For example `projects/1234/locations/global/catalogs/default_catalog/branches/default_branch`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/branches/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2beta/{+parent}/products:export",
+                          "request": {
+                            "$ref": "GoogleCloudRetailV2betaExportProductsRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -1854,6 +1943,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "export": {
+                      "description": "Exports user events. `Operation.response` is of type `ExportResponse`. `Operation.metadata` is of type `ExportMetadata`.",
+                      "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:export",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.userEvents.export",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Resource name of a Catalog. For example `projects/1234/locations/global/catalogs/default_catalog`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2beta/{+parent}/userEvents:export",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2betaExportUserEventsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "import": {
                       "description": "Bulk import of User events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. `Operation.response` is of type `ImportResponse`. Note that it is possible for a subset of the items to be successfully inserted. `Operation.metadata` is of type `ImportMetadata`.",
                       "flatPath": "v2beta/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:import",
@@ -2120,7 +2237,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240801",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3769,6 +3886,67 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2betaAlertConfig": {
+      "description": "Project level alert config.",
+      "id": "GoogleCloudRetailV2betaAlertConfig",
+      "properties": {
+        "alertPolicies": {
+          "description": "Alert policies for a customer. They must be unique by [AlertPolicy.alert_group]",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaAlertConfigAlertPolicy"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Immutable. The name of the AlertConfig singleton resource. Format: projects/*/alertConfig",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaAlertConfigAlertPolicy": {
+      "description": "Alert policy for a customer.",
+      "id": "GoogleCloudRetailV2betaAlertConfigAlertPolicy",
+      "properties": {
+        "alertGroup": {
+          "description": "The feature that provides alerting capability. Supported value: - `search-data-quality` for retail search customers. - `conv-data-quality` for retail conversation customers.",
+          "type": "string"
+        },
+        "enrollStatus": {
+          "description": "The enrollment status of a customer.",
+          "enum": [
+            "ENROLL_STATUS_UNSPECIFIED",
+            "ENROLLED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "Default value. Used for customers who have not responded to the alert policy.",
+            "Customer is enrolled in this policy.",
+            "Customer declined this policy."
+          ],
+          "type": "string"
+        },
+        "recipients": {
+          "description": "Recipients for the alert policy. One alert policy should not exceed 20 recipients.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2betaAlertConfigAlertPolicyRecipient"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaAlertConfigAlertPolicyRecipient": {
+      "description": "Recipient contact information.",
+      "id": "GoogleCloudRetailV2betaAlertConfigAlertPolicyRecipient",
+      "properties": {
+        "emailAddress": {
+          "description": "Email address of the recipient.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaAttributesConfig": {
       "description": "Catalog level attribute config.",
       "id": "GoogleCloudRetailV2betaAttributesConfig",
@@ -4113,14 +4291,6 @@
         "mergedFacetKey": {
           "description": "The merged facet key should be a valid facet key that is different than the facet key of the current catalog attribute. We refer this is merged facet key as the child of the current catalog attribute. This merged facet key can't be a parent of another facet key (i.e. no directed path of length 2). This merged facet key needs to be either a textual custom attribute or a numerical custom attribute.",
           "type": "string"
-        },
-        "mergedFacetValues": {
-          "deprecated": true,
-          "description": "Each instance is a list of facet values that map into the same (possibly different) merged facet value. For the current attribute config, each facet value should map to at most one merged facet value.",
-          "items": {
-            "$ref": "GoogleCloudRetailV2betaCatalogAttributeFacetConfigMergedFacetValue"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -4186,6 +4356,13 @@
       "description": "Response of the autocomplete query.",
       "id": "GoogleCloudRetailV2betaCompleteQueryResponse",
       "properties": {
+        "attributeResults": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRetailV2betaCompleteQueryResponseAttributeResult"
+          },
+          "description": "A map of matched attribute suggestions. This field is only available for \"cloud-retail\" dataset. Current supported keys: * `brands` * `categories`",
+          "type": "object"
+        },
         "attributionToken": {
           "description": "A unique complete token. This should be included in the UserEvent.completion_detail for search events resulting from this completion, which enables accurate attribution of complete model performance.",
           "type": "string"
@@ -4202,6 +4379,19 @@
           "description": "Deprecated. Matched recent searches of this user. The maximum number of recent searches is 10. This field is a restricted feature. If you want to enable it, contact Retail Search support. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower case. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.",
           "items": {
             "$ref": "GoogleCloudRetailV2betaCompleteQueryResponseRecentSearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaCompleteQueryResponseAttributeResult": {
+      "description": "Resource that represents attribute results.",
+      "id": "GoogleCloudRetailV2betaCompleteQueryResponseAttributeResult",
+      "properties": {
+        "suggestions": {
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -4228,7 +4418,7 @@
     },
     "GoogleCloudRetailV2betaCompleteQueryResponseRecentSearchResult": {
       "deprecated": true,
-      "description": "Recent search of this user.",
+      "description": "Deprecated: Recent search of this user.",
       "id": "GoogleCloudRetailV2betaCompleteQueryResponseRecentSearchResult",
       "properties": {
         "recentSearch": {
@@ -4592,6 +4782,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2betaExportProductsRequest": {
+      "description": "Request message for ExportProducts method.",
+      "id": "GoogleCloudRetailV2betaExportProductsRequest",
+      "properties": {
+        "filter": {
+          "description": "A filtering expression to specify restrictions on returned events. The expression is a sequence of terms. Each term applies a restriction to the returned products. Use this expression to restrict results to a specific time range, tag, or stock state or to filter products by product type. For example, `lastModifiedTime > \"2012-04-23T18:25:43.511Z\" lastModifiedTime<\"2012-04-23T18:25:43.511Z\" productType=primary` We expect only four types of fields: * `lastModifiedTime`: This can be specified twice, once with a less than operator and once with a greater than operator. The `lastModifiedTime` restriction should result in one, contiguous, valid, last-modified, time range. * `productType`: Supported values are `primary` and `variant`. The Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses and must be separated from the `productType` values by a space. * `availability`: Supported values are `IN_STOCK`, `OUT_OF_STOCK`, `PREORDER`, and `BACKORDER`. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses and must be separated from the `availability` values by a space. * `Tag expressions`: Restricts output to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses and the operators are separated from the tag values by a space. Also supported is '`-\"tagA\"`', which is equivalent to '`NOT \"tagA\"`'. Tag values must be double-quoted, UTF-8 encoded strings and have a size limit of 1,000 characters. Some examples of valid filters expressions: * Example 1: `lastModifiedTime > \"2012-04-23T18:25:43.511Z\" lastModifiedTime < \"2012-04-23T18:30:43.511Z\"` * Example 2: `lastModifiedTime > \"2012-04-23T18:25:43.511Z\" productType = \"variant\"` * Example 3: `tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") productType = \"primary\" lastModifiedTime < \"2018-04-23T18:30:43.511Z\"` * Example 4: `lastModifiedTime > \"2012-04-23T18:25:43.511Z\"` * Example 5: `availability = (IN_STOCK OR BACKORDER)`",
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudRetailV2betaOutputConfig",
+          "description": "Required. The output location of the data."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2betaExportProductsResponse": {
       "description": "Response of the ExportProductsRequest. If the long running operation is done, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.",
       "id": "GoogleCloudRetailV2betaExportProductsResponse",
@@ -4610,6 +4815,21 @@
         "outputResult": {
           "$ref": "GoogleCloudRetailV2betaOutputResult",
           "description": "Output result indicating where the data were exported to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaExportUserEventsRequest": {
+      "description": "Request message for the `ExportUserEvents` method.",
+      "id": "GoogleCloudRetailV2betaExportUserEventsRequest",
+      "properties": {
+        "filter": {
+          "description": "A filtering expression to specify restrictions on returned events. The expression is a sequence of terms. Each term applies a restriction to the returned user events. Use this expression to restrict results to a specific time range or to filter events by eventType. For example, `eventTime > \"2012-04-23T18:25:43.511Z\" eventsMissingCatalogItems eventTime<\"2012-04-23T18:25:43.511Z\" eventType=search` We expect only three types of fields: * `eventTime`: This can be specified twice, once with a less than operator and once with a greater than operator. The `eventTime` restriction should result in one, contiguous, valid, `eventTime` range. * `eventType`: Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses and the operators are separated from the tag values by a space. * `eventsMissingCatalogItems`: This restricts results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: `eventTime > \"2012-04-23T18:25:43.511Z\" eventTime < \"2012-04-23T18:30:43.511Z\"` * Example 2: `eventTime > \"2012-04-23T18:25:43.511Z\" eventType = detail-page-view` * Example 3: `eventsMissingCatalogItems eventType = (NOT search) eventTime < \"2018-04-23T18:30:43.511Z\"` * Example 4: `eventTime > \"2012-04-23T18:25:43.511Z\"` * Example 5: `eventType = (detail-page-view OR search)` * Example 6: `eventsMissingCatalogItems`",
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudRetailV2betaOutputConfig",
+          "description": "Required. The output location of the data."
         }
       },
       "type": "object"
