@@ -20,24 +20,64 @@
   "documentationLink": "https://cloud.google.com/kms/",
   "endpoints": [
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Regional Endpoint"
+      "location": "europe-west3"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9",
-      "description": "Regional Endpoint"
+      "location": "europe-west9"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
+      "location": "me-central2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-east1.rep.googleapis.com/",
-      "location": "us-east1",
-      "description": "Regional Endpoint"
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -2061,7 +2101,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20240801",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2378,7 +2418,7 @@
           "type": "string"
         },
         "destroyScheduledDuration": {
-          "description": "Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 24 hours.",
+          "description": "Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 30 days.",
           "format": "google-duration",
           "type": "string"
         },
