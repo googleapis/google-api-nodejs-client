@@ -227,11 +227,11 @@ export namespace workstations_v1 {
     kmsKeyServiceAccount?: string | null;
   }
   /**
-   * Configuration options for private workstation clusters.
+   * Configuration options for a custom domain.
    */
   export interface Schema$DomainConfig {
     /**
-     * Immutable. Whether Workstations endpoint is private.
+     * Immutable. Domain used by Workstations for HTTP ingress.
      */
     domain?: string | null;
   }
@@ -303,7 +303,7 @@ export namespace workstations_v1 {
      */
     disableSsh?: boolean | null;
     /**
-     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.
+     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series.
      */
     enableNestedVirtualization?: boolean | null;
     /**
@@ -335,7 +335,7 @@ export namespace workstations_v1 {
      */
     tags?: string[] | null;
     /**
-     * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as https://cloud.google.com/resource-manager/docs/tags/tags-overview Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
+     * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as [resource manager tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview). Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
      */
     vmTags?: {[key: string]: string} | null;
   }
@@ -673,10 +673,38 @@ export namespace workstations_v1 {
      */
     version?: number | null;
   }
+  /**
+   * A PortRange defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.
+   */
+  export interface Schema$PortRange {
+    /**
+     * Required. Starting port number for the current range of ports. Valid ports are 22, 80, and ports within the range 1024-65535.
+     */
+    first?: number | null;
+    /**
+     * Required. Ending port number for the current range of ports. Valid ports are 22, 80, and ports within the range 1024-65535.
+     */
+    last?: number | null;
+  }
+  /**
+   * Configuration options for private workstation clusters.
+   */
   export interface Schema$PrivateClusterConfig {
+    /**
+     * Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.
+     */
     allowedProjects?: string[] | null;
+    /**
+     * Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
+     */
     clusterHostname?: string | null;
+    /**
+     * Immutable. Whether Workstations endpoint is private.
+     */
     enablePrivateEndpoint?: boolean | null;
+    /**
+     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
+     */
     serviceAttachmentUri?: string | null;
   }
   /**
@@ -909,6 +937,10 @@ export namespace workstations_v1 {
    */
   export interface Schema$WorkstationConfig {
     /**
+     * Optional. A list of PortRanges specifying single ports or ranges of ports that are externally accessible in the workstation. Allowed ports must be one of 22, 80, or within range 1024-65535. If not specified defaults to ports 22, 80, and ports 1024-65535.
+     */
+    allowedPorts?: Schema$PortRange[];
+    /**
      * Optional. Client-specified annotations.
      */
     annotations?: {[key: string]: string} | null;
@@ -941,7 +973,7 @@ export namespace workstations_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service account must also be specified that has `logging.buckets.write` permission on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging).
+     * Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service_account must also be specified that has `roles/logging.logWriter` and `roles/monitoring.metricWriter` on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging) and [Container output logging](http://cloud/workstations/docs/container-output-logging#overview). Operating system audit logs are available in the [Cloud Logging](https://cloud.google.com/logging/docs) console by querying: resource.type="gce_instance" log_name:"/logs/linux-auditd"
      */
     enableAuditAgent?: boolean | null;
     /**
