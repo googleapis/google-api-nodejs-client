@@ -195,6 +195,24 @@ export namespace apim_v1alpha {
     name?: string | null;
   }
   /**
+   * Message for requesting batch edit tags for ApiObservations
+   */
+  export interface Schema$BatchEditTagsApiObservationsRequest {
+    /**
+     * Required. The request message specifying the resources to update. A maximum of 1000 apiObservations can be modified in a batch.
+     */
+    requests?: Schema$EditTagsApiObservationsRequest[];
+  }
+  /**
+   * Message for response to edit Tags for ApiObservations
+   */
+  export interface Schema$BatchEditTagsApiObservationsResponse {
+    /**
+     * ApiObservations that were changed
+     */
+    apiObservations?: Schema$ApiObservation[];
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -202,6 +220,19 @@ export namespace apim_v1alpha {
    * Message for disabling an ObservationJob
    */
   export interface Schema$DisableObservationJobRequest {}
+  /**
+   * Message for requesting edit tags for ApiObservation
+   */
+  export interface Schema$EditTagsApiObservationsRequest {
+    /**
+     * Required. Identifier of ApiObservation need to be edit tags Format example: "apigee.googleapis.com|us-west1|443"
+     */
+    apiObservationId?: string | null;
+    /**
+     * Required. Tag actions to be applied
+     */
+    tagActions?: Schema$TagAction[];
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
@@ -338,6 +369,19 @@ export namespace apim_v1alpha {
      * The ApiObservation from the specified project and location and ObservationJobs.
      */
     apiObservations?: Schema$ApiObservation[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing tags
+   */
+  export interface Schema$ListApiObservationTagsResponse {
+    /**
+     * The tags from the specified project
+     */
+    apiObservationTags?: string[] | null;
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -566,6 +610,19 @@ export namespace apim_v1alpha {
      */
     message?: string | null;
   }
+  /**
+   * Message for edit tag action
+   */
+  export interface Schema$TagAction {
+    /**
+     * Required. Action to be applied
+     */
+    action?: string | null;
+    /**
+     * Required. Tag to be added or removed
+     */
+    tag?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -770,6 +827,103 @@ export namespace apim_v1alpha {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * ListApiObservationTags lists all extant tags on any observation in the given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listApiObservationTags(
+      params: Params$Resource$Projects$Locations$Listapiobservationtags,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listApiObservationTags(
+      params?: Params$Resource$Projects$Locations$Listapiobservationtags,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListApiObservationTagsResponse>;
+    listApiObservationTags(
+      params: Params$Resource$Projects$Locations$Listapiobservationtags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listApiObservationTags(
+      params: Params$Resource$Projects$Locations$Listapiobservationtags,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListApiObservationTagsResponse>,
+      callback: BodyResponseCallback<Schema$ListApiObservationTagsResponse>
+    ): void;
+    listApiObservationTags(
+      params: Params$Resource$Projects$Locations$Listapiobservationtags,
+      callback: BodyResponseCallback<Schema$ListApiObservationTagsResponse>
+    ): void;
+    listApiObservationTags(
+      callback: BodyResponseCallback<Schema$ListApiObservationTagsResponse>
+    ): void;
+    listApiObservationTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Listapiobservationtags
+        | BodyResponseCallback<Schema$ListApiObservationTagsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListApiObservationTagsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListApiObservationTagsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListApiObservationTagsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Listapiobservationtags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Listapiobservationtags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apim.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}:listApiObservationTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListApiObservationTagsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListApiObservationTagsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
@@ -797,6 +951,21 @@ export namespace apim_v1alpha {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Listapiobservationtags
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of tags to return. The service may return fewer than this value. If unspecified, at most 10 tags will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListApiObservationTags` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiObservationTags` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of tags. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Observationjobs {
@@ -1249,7 +1418,7 @@ export namespace apim_v1alpha {
     }
 
     /**
-     * ListObservationJobs gets all ObservationJobs for a given project and location
+     * ListObservationJobs gets all ObservationJobs for a given project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1430,6 +1599,103 @@ export namespace apim_v1alpha {
     }
 
     /**
+     * BatchEditTagsApiObservations adds or removes Tags for ApiObservations.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchEditTags(
+      params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchEditTags(
+      params?: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchEditTagsApiObservationsResponse>;
+    batchEditTags(
+      params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchEditTags(
+      params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchEditTagsApiObservationsResponse>,
+      callback: BodyResponseCallback<Schema$BatchEditTagsApiObservationsResponse>
+    ): void;
+    batchEditTags(
+      params: Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags,
+      callback: BodyResponseCallback<Schema$BatchEditTagsApiObservationsResponse>
+    ): void;
+    batchEditTags(
+      callback: BodyResponseCallback<Schema$BatchEditTagsApiObservationsResponse>
+    ): void;
+    batchEditTags(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags
+        | BodyResponseCallback<Schema$BatchEditTagsApiObservationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchEditTagsApiObservationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchEditTagsApiObservationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchEditTagsApiObservationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apim.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/apiObservations:batchEditTags'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchEditTagsApiObservationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchEditTagsApiObservationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * GetApiObservation retrieves a single ApiObservation by name.
      *
      * @param params - Parameters for request
@@ -1516,7 +1782,7 @@ export namespace apim_v1alpha {
     }
 
     /**
-     * ListApiObservations gets all ApiObservations for a given project and location and ObservationJob
+     * ListApiObservations gets all ApiObservations for a given project and location and ObservationJob.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1612,6 +1878,18 @@ export namespace apim_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Batchedittags
+    extends StandardParameters {
+    /**
+     * Required. The parent resource shared by all ApiObservations being edited. Format: projects/{project\}/locations/{location\}/observationJobs/{observation_job\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchEditTagsApiObservationsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Observationjobs$Apiobservations$Get
     extends StandardParameters {
     /**
@@ -1728,7 +2006,7 @@ export namespace apim_v1alpha {
     }
 
     /**
-     * ListApiOperations gets all ApiOperations for a given project and location and ObservationJob and ApiObservation
+     * ListApiOperations gets all ApiOperations for a given project and location and ObservationJob and ApiObservation.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2118,7 +2396,7 @@ export namespace apim_v1alpha {
     }
 
     /**
-     * ListObservationSources gets all ObservationSources for a given project and location
+     * ListObservationSources gets all ObservationSources for a given project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
