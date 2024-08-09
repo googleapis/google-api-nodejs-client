@@ -416,7 +416,7 @@
       }
     }
   },
-  "revision": "20231113",
+  "revision": "20240716",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -892,6 +892,14 @@
       "description": "Product issue.",
       "id": "Issue",
       "properties": {
+        "applicableCountries": {
+          "description": "Output only. List of country codes (ISO 3166-1 alpha-2) where issue applies to the manufacturer product.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "attribute": {
           "description": "If present, the attribute that triggered the issue. For more information about attributes, see https://support.google.com/manufacturers/answer/6124116.",
           "type": "string"
