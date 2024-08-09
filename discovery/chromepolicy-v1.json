@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20240131",
+  "revision": "20240729",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
@@ -966,7 +966,7 @@
           "type": "string"
         },
         "scheduledToDeprecatePolicies": {
-          "description": "Corresponding to deprecated_in_favor_of, the fully qualified namespace(s) of the old policies that will be deprecated because of introduction of this policy. This field should not be manually set but will be set and exposed through PolicyAPI automatically.",
+          "description": "Corresponding to deprecated_in_favor_of, the fully qualified namespace(s) of the old policies that will be deprecated because of introduction of this policy.",
           "items": {
             "type": "string"
           },
