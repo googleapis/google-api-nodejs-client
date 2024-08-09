@@ -206,7 +206,7 @@ export namespace cloudfunctions_v2 {
      */
     runtime?: string | null;
     /**
-     * [Preview] Service account to be used for building the container
+     * Service account to be used for building the container. The format of this field is `projects/{projectId\}/serviceAccounts/{serviceAccountEmail\}`.
      */
     serviceAccount?: string | null;
     /**
@@ -448,6 +448,10 @@ export namespace cloudfunctions_v2 {
      */
     apiVersion?: string | null;
     /**
+     * The build name of the function for create and update operations.
+     */
+    buildName?: string | null;
+    /**
      * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
@@ -552,6 +556,10 @@ export namespace cloudfunctions_v2 {
      */
     apiVersion?: string | null;
     /**
+     * The build name of the function for create and update operations.
+     */
+    buildName?: string | null;
+    /**
      * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
@@ -655,6 +663,10 @@ export namespace cloudfunctions_v2 {
      * API version used to start the operation.
      */
     apiVersion?: string | null;
+    /**
+     * The build name of the function for create and update operations.
+     */
+    buildName?: string | null;
     /**
      * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
@@ -2883,7 +2895,7 @@ export namespace cloudfunctions_v2 {
      */
     name?: string;
     /**
-     * The list of fields to be updated. If no field mask is provided, all provided fields in the request will be updated.
+     * The list of fields to be updated. If no field mask is provided, all fields will be updated.
      */
     updateMask?: string;
 

@@ -448,7 +448,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The list of fields to be updated. If no field mask is provided, all provided fields in the request will be updated.",
+                      "description": "The list of fields to be updated. If no field mask is provided, all fields will be updated.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -716,7 +716,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240725",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AbortFunctionUpgradeRequest": {
@@ -850,7 +850,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "[Preview] Service account to be used for building the container",
+          "description": "Service account to be used for building the container. The format of this field is `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.",
           "type": "string"
         },
         "source": {
@@ -1197,6 +1197,10 @@
           "description": "API version used to start the operation.",
           "type": "string"
         },
+        "buildName": {
+          "description": "The build name of the function for create and update operations.",
+          "type": "string"
+        },
         "cancelRequested": {
           "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
@@ -1398,6 +1402,10 @@
           "description": "API version used to start the operation.",
           "type": "string"
         },
+        "buildName": {
+          "description": "The build name of the function for create and update operations.",
+          "type": "string"
+        },
         "cancelRequested": {
           "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
@@ -1597,6 +1605,10 @@
       "properties": {
         "apiVersion": {
           "description": "API version used to start the operation.",
+          "type": "string"
+        },
+        "buildName": {
+          "description": "The build name of the function for create and update operations.",
           "type": "string"
         },
         "cancelRequested": {
