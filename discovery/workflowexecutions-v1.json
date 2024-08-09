@@ -457,7 +457,7 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240715",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "Callback": {
@@ -577,6 +577,20 @@
           "$ref": "Error",
           "description": "Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`.",
           "readOnly": true
+        },
+        "executionHistoryLevel": {
+          "description": "Optional. Describes the level of the execution history feature to apply to this execution. If not specified, the level of the execution history feature will be determined by its workflow's execution history level. If the value is different from its workflow's value, it will override the workflow's execution history level for this exeuction.",
+          "enum": [
+            "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
+            "EXECUTION_HISTORY_BASIC",
+            "EXECUTION_HISTORY_DETAILED"
+          ],
+          "enumDescriptions": [
+            "The default/unset value.",
+            "Enable execution history basic feature for this execution.",
+            "Enable execution history detailed feature for this execution."
+          ],
+          "type": "string"
         },
         "labels": {
           "additionalProperties": {

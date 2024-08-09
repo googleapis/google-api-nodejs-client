@@ -1284,7 +1284,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240716",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -9293,6 +9293,11 @@
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
           "description": "The schema of the processor version. Describes the output."
         },
+        "genAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo",
+          "description": "Output only. Information about Generative AI model-based processor versions.",
+          "readOnly": true
+        },
         "googleManaged": {
           "description": "Output only. Denotes that this `ProcessorVersion` is managed by Google.",
           "readOnly": true,
@@ -9396,6 +9401,62 @@
         "replacementProcessorVersion": {
           "description": "If set, the processor version that will be used as a replacement.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo": {
+      "description": "Information about Generative AI model-based processor versions.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo",
+      "properties": {
+        "customGenAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo",
+          "description": "Information for a custom Generative AI model created by the user."
+        },
+        "foundationGenAiModelInfo": {
+          "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo",
+          "description": "Information for a pretrained Google-managed foundation model."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo": {
+      "description": "Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo",
+      "properties": {
+        "baseProcessorVersionId": {
+          "description": "The base processor version ID for the custom model.",
+          "type": "string"
+        },
+        "customModelType": {
+          "description": "The type of custom model created by the user.",
+          "enum": [
+            "CUSTOM_MODEL_TYPE_UNSPECIFIED",
+            "VERSIONED_FOUNDATION",
+            "FINE_TUNED"
+          ],
+          "enumDescriptions": [
+            "The model type is unspecified.",
+            "The model is a versioned foundation model.",
+            "The model is a finetuned foundation model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo": {
+      "description": "Information for a pretrained Google-managed foundation model.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo",
+      "properties": {
+        "finetuningAllowed": {
+          "description": "Whether finetuning is allowed for this base processor version.",
+          "type": "boolean"
+        },
+        "minTrainLabeledDocuments": {
+          "description": "The minimum number of labeled documents in the training dataset required for finetuning.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

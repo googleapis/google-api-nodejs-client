@@ -667,9 +667,17 @@ export namespace gkehub_v1alpha {
      */
     monitor?: string | null;
     /**
+     * Deployment state of otel-collector
+     */
+    otelCollector?: string | null;
+    /**
      * Deployment state of reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Deployment state of resource-group-controller-manager
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Deployment state of root-reconciler
      */
@@ -726,7 +734,7 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementConfigSyncVersion {
     /**
-     * Version of the deployed admission_webhook pod
+     * Version of the deployed admission-webhook pod
      */
     admissionWebhook?: string | null;
     /**
@@ -742,9 +750,17 @@ export namespace gkehub_v1alpha {
      */
     monitor?: string | null;
     /**
+     * Version of the deployed otel-collector pod
+     */
+    otelCollector?: string | null;
+    /**
      * Version of the deployed reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Version of the deployed resource-group-controller-manager pod
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Version of the deployed reconciler container in root-reconciler pod
      */
@@ -936,7 +952,7 @@ export namespace gkehub_v1alpha {
      */
     management?: string | null;
     /**
-     * Policy Controller configuration for the cluster.
+     * Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead.
      */
     policyController?: Schema$ConfigManagementPolicyController;
     /**
@@ -1279,6 +1295,10 @@ export namespace gkehub_v1alpha {
      * Output only. The Hub-wide Feature state.
      */
     state?: Schema$CommonFeatureState;
+    /**
+     * Output only. List of locations that could not be reached while fetching this feature.
+     */
+    unreachable?: string[] | null;
     /**
      * Output only. When the Feature resource was last updated.
      */
@@ -3104,6 +3124,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ServiceMeshMembershipSpec {
     /**
+     * Optional. Specifies the API that will be used for configuring the mesh workloads.
+     */
+    configApi?: string | null;
+    /**
      * Deprecated: use `management` instead Enables automatic control plane management.
      */
     controlPlane?: string | null;
@@ -3112,7 +3136,7 @@ export namespace gkehub_v1alpha {
      */
     defaultChannel?: string | null;
     /**
-     * Enables automatic Service Mesh management.
+     * Optional. Enables automatic Service Mesh management.
      */
     management?: string | null;
   }
@@ -4387,6 +4411,10 @@ export namespace gkehub_v1alpha {
      * Required. The Feature resource name in the format `projects/x/locations/x/features/x`
      */
     name?: string;
+    /**
+     * Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field in Feature proto will be populated. If set to false, the request will fail when some regions are unreachable.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Features$Getiampolicy
     extends StandardParameters {
@@ -4421,6 +4449,10 @@ export namespace gkehub_v1alpha {
      * Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x`.
      */
     parent?: string;
+    /**
+     * Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field in Feature proto will be populated. If set to false, the request will fail when some regions are unreachable.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Features$Patch
     extends StandardParameters {

@@ -441,6 +441,14 @@ export namespace realtimebidding_v1 {
      */
     detectedAttributes?: string[] | null;
     /**
+     * Output only. IDs of the detected categories, if any. The taxonomy in which the categories are expressed is specified by the detected_categories_taxonomy field. Can be used to filter the response of the creatives.list method.
+     */
+    detectedCategories?: string[] | null;
+    /**
+     * Output only. The taxonomy in which the detected_categories field is expressed.
+     */
+    detectedCategoriesTaxonomy?: string | null;
+    /**
      * The set of detected destination URLs for the creative. Can be used to filter the response of the creatives.list method.
      */
     detectedClickThroughUrls?: string[] | null;

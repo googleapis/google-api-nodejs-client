@@ -2652,7 +2652,7 @@
       }
     }
   },
-  "revision": "20240521",
+  "revision": "20240801",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2861,9 +2861,11 @@
             "DOODLE_CBRS",
             "CW",
             "REDLINE",
-            "TARANA_WIRELESS"
+            "TARANA_WIRELESS",
+            "FAROS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

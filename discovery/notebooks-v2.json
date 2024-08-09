@@ -876,7 +876,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20240731",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1305,6 +1305,10 @@
           },
           "description": "Optional. Custom metadata to apply to this instance.",
           "type": "object"
+        },
+        "minCpuPlatform": {
+          "description": "Optional. The minimum CPU platform to use for this instance. The list of valid values can be found in https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones",
+          "type": "string"
         },
         "networkInterfaces": {
           "description": "Optional. The network interfaces for the VM. Supports only one interface.",

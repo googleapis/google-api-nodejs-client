@@ -526,7 +526,7 @@ export namespace healthcare_v1 {
      */
     text?: Schema$TextConfig;
     /**
-     * Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.
+     * Ensures in-flight data remains in the region of origin during de-identification. The default value is false. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.
      */
     useRegionalDataProcessing?: boolean | null;
   }
@@ -940,11 +940,11 @@ export namespace healthcare_v1 {
      */
     pubsubTopic?: string | null;
     /**
-     * Whether to send full FHIR resource to this Pub/Sub topic.
+     * Whether to send full FHIR resource to this Pub/Sub topic. The default value is false.
      */
     sendFullResource?: boolean | null;
     /**
-     * Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
+     * Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. The default value is false. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the "payloadType" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.
      */
     sendPreviousResourceOnDelete?: boolean | null;
   }
@@ -957,7 +957,7 @@ export namespace healthcare_v1 {
      */
     complexDataTypeReferenceParsing?: string | null;
     /**
-     * If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.
+     * If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`. Defaults to false.
      */
     defaultSearchHandlingStrict?: boolean | null;
     /**
@@ -965,11 +965,11 @@ export namespace healthcare_v1 {
      */
     disableReferentialIntegrity?: boolean | null;
     /**
-     * Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, which is the default behavior, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions.
+     * Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions. Defaults to false.
      */
     disableResourceVersioning?: boolean | null;
     /**
-     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources.
+     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources. Defaults to false.
      */
     enableUpdateCreate?: boolean | null;
     /**
@@ -1182,7 +1182,7 @@ export namespace healthcare_v1 {
      */
     datasetUri?: string | null;
     /**
-     * If this flag is `TRUE`, all tables are deleted from the dataset before the new exported tables are written. If the flag is not set and the destination dataset contains tables, the export call returns an error. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.
+     * The default value is false. If this flag is `TRUE`, all tables are deleted from the dataset before the new exported tables are written. If the flag is not set and the destination dataset contains tables, the export call returns an error. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.
      */
     force?: boolean | null;
     /**
@@ -1661,7 +1661,7 @@ export namespace healthcare_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The message type for this message. MSH-9.1.
+     * Output only. The message type for this message. MSH-9.1.
      */
     messageType?: string | null;
     /**
@@ -1673,19 +1673,19 @@ export namespace healthcare_v1 {
      */
     parsedData?: Schema$ParsedData;
     /**
-     * All patient IDs listed in the PID-2, PID-3, and PID-4 segments of this message.
+     * Output only. All patient IDs listed in the PID-2, PID-3, and PID-4 segments of this message.
      */
     patientIds?: Schema$PatientId[];
     /**
-     * The parsed version of the raw message data schematized according to this store's schemas and type definitions.
+     * Output only. The parsed version of the raw message data schematized according to this store's schemas and type definitions.
      */
     schematizedData?: Schema$SchematizedData;
     /**
-     * The hospital that this message came from. MSH-4.
+     * Output only. The hospital that this message came from. MSH-4.
      */
     sendFacility?: string | null;
     /**
-     * The datetime the sending application sent this message. MSH-7.
+     * Output only. The datetime the sending application sent this message. MSH-7.
      */
     sendTime?: string | null;
   }
@@ -1970,6 +1970,57 @@ export namespace healthcare_v1 {
      * The name of the FHIR store to rollback, in the format of "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\} /fhirStores/{fhir_store_id\}".
      */
     fhirStore?: string | null;
+  }
+  /**
+   * Filtering fields for an HL7 rollback. Currently only supports a list of operation ids to roll back.
+   */
+  export interface Schema$RollbackHL7MessagesFilteringFields {
+    /**
+     * Optional. A list of operation IDs to roll back.
+     */
+    operationIds?: string[] | null;
+  }
+  /**
+   * Point in time recovery rollback request.
+   */
+  export interface Schema$RollbackHl7V2MessagesRequest {
+    /**
+     * Optional. CREATE/UPDATE/DELETE/ALL for reverting all txns of a certain type.
+     */
+    changeType?: string | null;
+    /**
+     * Optional. Specifies whether to exclude earlier rollbacks.
+     */
+    excludeRollbacks?: boolean | null;
+    /**
+     * Optional. Parameters for filtering.
+     */
+    filteringFields?: Schema$RollbackHL7MessagesFilteringFields;
+    /**
+     * Optional. When enabled, changes will be reverted without explicit confirmation.
+     */
+    force?: boolean | null;
+    /**
+     * Optional. Cloud storage object containing list of {resourceId\} lines, identifying resources to be reverted
+     */
+    inputGcsObject?: string | null;
+    /**
+     * Required. Bucket to deposit result
+     */
+    resultGcsBucket?: string | null;
+    /**
+     * Required. Times point to rollback to.
+     */
+    rollbackTime?: string | null;
+  }
+  /**
+   * Final response of rollback HL7v2 messages request.
+   */
+  export interface Schema$RollbackHl7V2MessagesResponse {
+    /**
+     * The name of the HL7 store to rollback, in the format of "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\} /hl7v2Stores/{hl7v2_store_id\}".
+     */
+    hl7v2Store?: string | null;
   }
   /**
    * Configuration for the FHIR BigQuery schema. Determines how the server generates the schema.
@@ -2326,19 +2377,19 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ValidationConfig {
     /**
-     * Whether to disable FHIRPath validation for incoming resources. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Whether to disable FHIRPath validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableFhirpathValidation?: boolean | null;
     /**
-     * Whether to disable profile validation for this FHIR store. Set this to true to disable checking incoming resources for conformance against structure definitions in this FHIR store.
+     * Whether to disable profile validation for this FHIR store. The default value is false. Set this to true to disable checking incoming resources for conformance against structure definitions in this FHIR store.
      */
     disableProfileValidation?: boolean | null;
     /**
-     * Whether to disable reference type validation for incoming resources. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Whether to disable reference type validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableReferenceTypeValidation?: boolean | null;
     /**
-     * Whether to disable required fields validation for incoming resources. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableRequiredFieldValidation?: boolean | null;
     /**
@@ -14962,6 +15013,95 @@ export namespace healthcare_v1 {
     }
 
     /**
+     * Rolls back messages from the HL7 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollback(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollback(
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rollback(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(callback: BodyResponseCallback<Schema$Operation>): void;
+    rollback(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -15253,6 +15393,18 @@ export namespace healthcare_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Hl7V2Store;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Rollback
+    extends StandardParameters {
+    /**
+     * Required. The name of the HL7v2 store to rollback, in the format of "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\} /hl7V2Stores/{hl7v2_store_id\}".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackHl7V2MessagesRequest;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy
     extends StandardParameters {

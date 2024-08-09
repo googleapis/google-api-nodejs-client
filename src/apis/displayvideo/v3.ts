@@ -3458,7 +3458,7 @@ export namespace displayvideo_v3 {
      */
     adGroupIds?: string[] | null;
     /**
-     * Optional. YouTube Ad Groups QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     * Optional. YouTube Ad Groups, by ID, to download in QA format. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     adGroupQaIds?: string[] | null;
     /**
@@ -3474,7 +3474,7 @@ export namespace displayvideo_v3 {
      */
     lineItemIds?: string[] | null;
     /**
-     * Optional. Line Items QA to download by ID. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
+     * Optional. Line Items, by ID, to download in QA format. All IDs must belong to the same Advertiser or Partner specified in CreateSdfDownloadTaskRequest.
      */
     lineItemQaIds?: string[] | null;
     /**
@@ -5446,7 +5446,7 @@ export namespace displayvideo_v3 {
      */
     exchangeReviewStatuses?: Schema$ExchangeReviewStatus[];
     /**
-     * Publisher review statuses for the creative. **Warning:** This field will be deprecated on June 26th, 2024. After this date, this field will be empty. Read our [feature deprecation announcement](/display-video/api/deprecations#features.creative_publisher_review_statuses) for more information.
+     * Publisher review statuses for the creative.
      */
     publisherReviewStatuses?: Schema$PublisherReviewStatus[];
   }

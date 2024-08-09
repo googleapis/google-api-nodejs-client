@@ -5680,6 +5680,10 @@ export namespace documentai_v1beta3 {
      */
     documentSchema?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchema;
     /**
+     * Output only. Information about Generative AI model-based processor versions.
+     */
+    genAiModelInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo;
+    /**
      * Output only. Denotes that this `ProcessorVersion` is managed by Google.
      */
     googleManaged?: boolean | null;
@@ -5741,6 +5745,45 @@ export namespace documentai_v1beta3 {
      * If set, the processor version that will be used as a replacement.
      */
     replacementProcessorVersion?: string | null;
+  }
+  /**
+   * Information about Generative AI model-based processor versions.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo {
+    /**
+     * Information for a custom Generative AI model created by the user.
+     */
+    customGenAiModelInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo;
+    /**
+     * Information for a pretrained Google-managed foundation model.
+     */
+    foundationGenAiModelInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo;
+  }
+  /**
+   * Information for a custom Generative AI model created by the user. These are created with `Create New Version` in either the `Call foundation model` or `Fine tuning` tabs.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoCustomGenAiModelInfo {
+    /**
+     * The base processor version ID for the custom model.
+     */
+    baseProcessorVersionId?: string | null;
+    /**
+     * The type of custom model created by the user.
+     */
+    customModelType?: string | null;
+  }
+  /**
+   * Information for a pretrained Google-managed foundation model.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfoFoundationGenAiModelInfo {
+    /**
+     * Whether finetuning is allowed for this base processor version.
+     */
+    finetuningAllowed?: boolean | null;
+    /**
+     * The minimum number of labeled documents in the training dataset required for finetuning.
+     */
+    minTrainLabeledDocuments?: number | null;
   }
   /**
    * Request message for the ProcessDocument method.

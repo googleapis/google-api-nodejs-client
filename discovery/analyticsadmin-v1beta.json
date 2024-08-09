@@ -203,7 +203,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: \"accounts/1000/dataSharingSettings\"",
+              "description": "Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: `accounts/1000/dataSharingSettings`",
               "location": "path",
               "pattern": "^accounts/[^/]+/dataSharingSettings$",
               "required": true,
@@ -343,7 +343,7 @@
           ],
           "parameters": {
             "account": {
-              "description": "Required. The account resource for which to return change history resources. Format: accounts/{account} Example: \"accounts/100\"",
+              "description": "Required. The account resource for which to return change history resources. Format: accounts/{account} Example: `accounts/100`",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -630,7 +630,7 @@
           "methods": {
             "create": {
               "deprecated": true,
-              "description": "Creates a conversion event with the specified attributes.",
+              "description": "Deprecated: Use `CreateKeyEvent` instead. Creates a conversion event with the specified attributes.",
               "flatPath": "v1beta/properties/{propertiesId}/conversionEvents",
               "httpMethod": "POST",
               "id": "analyticsadmin.properties.conversionEvents.create",
@@ -659,7 +659,7 @@
             },
             "delete": {
               "deprecated": true,
-              "description": "Deletes a conversion event in a property.",
+              "description": "Deprecated: Use `DeleteKeyEvent` instead. Deletes a conversion event in a property.",
               "flatPath": "v1beta/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "DELETE",
               "id": "analyticsadmin.properties.conversionEvents.delete",
@@ -685,7 +685,7 @@
             },
             "get": {
               "deprecated": true,
-              "description": "Retrieve a single conversion event.",
+              "description": "Deprecated: Use `GetKeyEvent` instead. Retrieve a single conversion event.",
               "flatPath": "v1beta/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.conversionEvents.get",
@@ -712,7 +712,7 @@
             },
             "list": {
               "deprecated": true,
-              "description": "Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.",
+              "description": "Deprecated: Use `ListKeyEvents` instead. Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.",
               "flatPath": "v1beta/properties/{propertiesId}/conversionEvents",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.conversionEvents.list",
@@ -750,7 +750,7 @@
             },
             "patch": {
               "deprecated": true,
-              "description": "Updates a conversion event with the specified attributes.",
+              "description": "Deprecated: Use `UpdateKeyEvent` instead. Updates a conversion event with the specified attributes.",
               "flatPath": "v1beta/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "PATCH",
               "id": "analyticsadmin.properties.conversionEvents.patch",
@@ -1253,35 +1253,6 @@
             }
           },
           "resources": {
-            "eventEditRules": {
-              "methods": {
-                "reorder": {
-                  "description": "Changes the processing order of event edit rules on the specified stream.",
-                  "flatPath": "v1beta/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules:reorder",
-                  "httpMethod": "POST",
-                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.reorder",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. Example format: properties/123/dataStreams/456",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta/{+parent}/eventEditRules:reorder",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest"
-                  },
-                  "response": {
-                    "$ref": "GoogleProtobufEmpty"
-                  }
-                }
-              }
-            },
             "measurementProtocolSecrets": {
               "methods": {
                 "create": {
@@ -1450,7 +1421,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "description": "Required. Format: properties/{property_id} Example: `properties/1234`",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
@@ -1478,7 +1449,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: properties/1234/firebaseLinks/5678",
+                  "description": "Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: `properties/1234/firebaseLinks/5678`",
                   "location": "path",
                   "pattern": "^properties/[^/]+/firebaseLinks/[^/]+$",
                   "required": true,
@@ -1514,7 +1485,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "description": "Required. Format: properties/{property_id} Example: `properties/1234`",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
@@ -1817,7 +1788,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240722",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1betaAccessBetweenFilter": {
@@ -3352,20 +3323,6 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest": {
-      "description": "Request message for ReorderEventEditRules RPC.",
-      "id": "GoogleAnalyticsAdminV1betaReorderEventEditRulesRequest",
-      "properties": {
-        "eventEditRules": {
-          "description": "Required. EventEditRule resource names for the specified data stream, in the needed processing order. All EventEditRules for the stream must be present in the list.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1betaRunAccessReportRequest": {
       "description": "The request for a Data Access Record Report.",
       "id": "GoogleAnalyticsAdminV1betaRunAccessReportRequest",
@@ -3522,7 +3479,7 @@
           "type": "string"
         },
         "property": {
-          "description": "Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId} Example: \"properties/100\"",
+          "description": "Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId} Example: `properties/100`",
           "type": "string"
         },
         "resourceType": {

@@ -1027,8 +1027,35 @@
                     "parent"
                   ],
                   "parameters": {
+                    "aggregation": {
+                      "description": "Optional. Aggregation type. The default is 'DAILY'.",
+                      "enum": [
+                        "AGGREGATION_UNSPECIFIED",
+                        "HOURLY",
+                        "DAILY",
+                        "WEEKLY",
+                        "MONTHLY",
+                        "CUSTOM_DATE_RANGE"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified.",
+                        "Insight should be aggregated at hourly level.",
+                        "Insight should be aggregated at daily level.",
+                        "Insight should be aggregated at weekly level.",
+                        "Insight should be aggregated at monthly level.",
+                        "Insight should be aggregated at the custom date range passed in as the start and end time in the request."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "endTime": {
+                      "description": "Optional. Ending time for the duration for which insights are to be pulled. The default is the current time.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "filter": {
-                      "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * \"category = application AND type = count\" * \"category = application AND subCategory = iap\" * \"type = status\" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).",
+                      "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * \"category = application AND type = count\" * \"category = application AND subCategory = iap\" * \"type = status\" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, caa, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1053,6 +1080,12 @@
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "startTime": {
+                      "description": "Optional. Starting time for the duration for which insights are to be pulled. The default is 7 days before the current time.",
+                      "format": "google-datetime",
+                      "location": "query",
                       "type": "string"
                     },
                     "view": {
@@ -3533,8 +3566,35 @@
                     "parent"
                   ],
                   "parameters": {
+                    "aggregation": {
+                      "description": "Optional. Aggregation type. The default is 'DAILY'.",
+                      "enum": [
+                        "AGGREGATION_UNSPECIFIED",
+                        "HOURLY",
+                        "DAILY",
+                        "WEEKLY",
+                        "MONTHLY",
+                        "CUSTOM_DATE_RANGE"
+                      ],
+                      "enumDescriptions": [
+                        "Unspecified.",
+                        "Insight should be aggregated at hourly level.",
+                        "Insight should be aggregated at daily level.",
+                        "Insight should be aggregated at weekly level.",
+                        "Insight should be aggregated at monthly level.",
+                        "Insight should be aggregated at the custom date range passed in as the start and end time in the request."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "endTime": {
+                      "description": "Optional. Ending time for the duration for which insights are to be pulled. The default is the current time.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "filter": {
-                      "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * \"category = application AND type = count\" * \"category = application AND subCategory = iap\" * \"type = status\" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).",
+                      "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * \"category = application AND type = count\" * \"category = application AND subCategory = iap\" * \"type = status\" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, caa, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).",
                       "location": "query",
                       "type": "string"
                     },
@@ -3559,6 +3619,12 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "startTime": {
+                      "description": "Optional. Starting time for the duration for which insights are to be pulled. The default is 7 days before the current time.",
+                      "format": "google-datetime",
+                      "location": "query",
                       "type": "string"
                     },
                     "view": {
@@ -4080,7 +4146,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240724",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {

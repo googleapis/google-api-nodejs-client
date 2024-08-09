@@ -440,7 +440,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240731",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -2037,7 +2037,7 @@
           "type": "string"
         },
         "metricAggregations": {
-          "description": "Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to \"RESERVED_(MetricAggregation)\".",
+          "description": "Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to \"RESERVED_(MetricAggregation)\". Aggregates including both comparisons and multiple date ranges will be aggregated based on the date ranges.",
           "items": {
             "enum": [
               "METRIC_AGGREGATION_UNSPECIFIED",
@@ -2074,7 +2074,7 @@
           "type": "string"
         },
         "orderBys": {
-          "description": "Specifies how rows are ordered in the response.",
+          "description": "Specifies how rows are ordered in the response. Requests including both comparisons and multiple date ranges will have order bys applied on the comparisons.",
           "items": {
             "$ref": "OrderBy"
           },

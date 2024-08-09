@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20240806",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -1968,6 +1968,27 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "detectedCategories": {
+          "description": "Output only. IDs of the detected categories, if any. The taxonomy in which the categories are expressed is specified by the detected_categories_taxonomy field. Can be used to filter the response of the creatives.list method.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "detectedCategoriesTaxonomy": {
+          "description": "Output only. The taxonomy in which the detected_categories field is expressed.",
+          "enum": [
+            "AD_CATEGORY_TAXONOMY_UNSPECIFIED",
+            "IAB_CONTENT_1_0"
+          ],
+          "enumDescriptions": [
+            "Default value that should never be used.",
+            "IAB Content Taxonomy 1.0. See https://github.com/InteractiveAdvertisingBureau/Taxonomies/blob/main/Content%20Taxonomies/Content%20Taxonomy%201.0.tsv for more details."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "detectedClickThroughUrls": {
           "description": "The set of detected destination URLs for the creative. Can be used to filter the response of the creatives.list method.",
@@ -2898,14 +2919,16 @@
               "HOSTED_MATCH_DATA",
               "GOOGLE_COOKIE",
               "DEVICE_ID",
-              "PUBLISHER_PROVIDED_ID"
+              "PUBLISHER_PROVIDED_ID",
+              "PUBLISHER_FIRST_PARTY_ID"
             ],
             "enumDescriptions": [
               "Placeholder for unspecified user identifier.",
               "Hosted match data, referring to hosted_match_data in the bid request.",
               "Google cookie, referring to google_user_id in the bid request.",
               "Mobile device advertising ID.",
-              "The request has a publisher-provided ID available to the bidder."
+              "The request has a publisher-provided ID available to the bidder.",
+              "Publisher first party ID, scoped to a single site, app or vendor needs to be present on the bid request."
             ],
             "type": "string"
           },

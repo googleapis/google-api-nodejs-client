@@ -1372,7 +1372,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom {
     /**
-     * A list of identities that are allowed access through [EgressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
+     * A list of identities that are allowed access through [EgressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. For third-party identity, only single identities are supported and other identity types are not supported. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, and `principal` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
      */
     identities?: string[] | null;
     /**
@@ -1432,7 +1432,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom {
     /**
-     * A list of identities that are allowed access through [IngressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, `principal`, and `principalSet` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
+     * A list of identities that are allowed access through [IngressPolicy]. Identities can be an individual user, service account, Google group, or third-party identity. For third-party identity, only single identities are supported and other identity types are not supported. The `v1` identities that have the prefix `user`, `group`, `serviceAccount`, and `principal` in https://cloud.google.com/iam/docs/principal-identifiers#v1 are supported.
      */
     identities?: string[] | null;
     /**
@@ -2123,7 +2123,7 @@ export namespace cloudasset_v1 {
    */
   export interface Schema$QueryAssetsResponse {
     /**
-     * The query response, which can be either an `error` or a valid `response`. If `done` == `false` and the query result is being saved in a output, the output_config field will be set. If `done` == `true`, exactly one of `error`, `query_result` or `output_config` will be set.
+     * The query response, which can be either an `error` or a valid `response`. If `done` == `false` and the query result is being saved in an output, the output_config field will be set. If `done` == `true`, exactly one of `error`, `query_result` or `output_config` will be set. [done] is unset unless the [QueryAssetsResponse] contains a [QueryAssetsResponse.job_reference].
      */
     done?: boolean | null;
     /**
@@ -2135,7 +2135,7 @@ export namespace cloudasset_v1 {
      */
     jobReference?: string | null;
     /**
-     * Output configuration which indicates instead of being returned in API response on the fly, the query result will be saved in a specific output.
+     * Output configuration, which indicates that instead of being returned in an API response on the fly, the query result will be saved in a specific output.
      */
     outputConfig?: Schema$QueryAssetsOutputConfig;
     /**

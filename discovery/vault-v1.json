@@ -1203,7 +1203,7 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240806",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -2296,6 +2296,22 @@
             "$ref": "MatterPermission"
           },
           "type": "array"
+        },
+        "matterRegion": {
+          "description": "Optional. The requested data region for the matter.",
+          "enum": [
+            "MATTER_REGION_UNSPECIFIED",
+            "ANY",
+            "US",
+            "EUROPE"
+          ],
+          "enumDescriptions": [
+            "The region is unspecified. Defaults to ANY.",
+            "Any region.",
+            "United States region.",
+            "Europe region."
+          ],
+          "type": "string"
         },
         "name": {
           "description": "The name of the matter.",

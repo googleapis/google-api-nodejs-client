@@ -485,7 +485,7 @@
       }
     }
   },
-  "revision": "20240612",
+  "revision": "20240710",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -722,7 +722,7 @@
       "type": "object"
     },
     "Workflow": {
-      "description": "Workflow program to be executed by Workflows.",
+      "description": "LINT.IfChange Workflow program to be executed by Workflows.",
       "id": "Workflow",
       "properties": {
         "allKmsKeys": {

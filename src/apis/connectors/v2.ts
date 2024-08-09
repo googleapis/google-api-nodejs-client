@@ -175,6 +175,23 @@ export namespace connectors_v2 {
     resultMetadata?: Schema$ResultMetadata[];
   }
   /**
+   * AuthCodeData contains the data the runtime plane will give the connector backend in exchange for access and refresh tokens.
+   */
+  export interface Schema$AuthCodeData {
+    /**
+     * OAuth authorization code.
+     */
+    authCode?: string | null;
+    /**
+     * OAuth PKCE verifier, needed if PKCE is enabled for this particular connection.
+     */
+    pkceVerifier?: string | null;
+    /**
+     * OAuth redirect URI passed in during the auth code flow, required by some OAuth backends.
+     */
+    redirectUri?: string | null;
+  }
+  /**
    * Response containing status of the connector for readiness prober.
    */
   export interface Schema$CheckReadinessResponse {
@@ -276,9 +293,14 @@ export namespace connectors_v2 {
     operations?: string[] | null;
   }
   /**
-   * ExchangeAuthCodeRequest currently includes no fields.
+   * ExchangeAuthCodeRequest currently includes the auth code data.
    */
-  export interface Schema$ExchangeAuthCodeRequest {}
+  export interface Schema$ExchangeAuthCodeRequest {
+    /**
+     * Optional. AuthCodeData contains the data the runtime requires to exchange for access and refresh tokens. If the data is not provided, the runtime will read the data from the secret manager.
+     */
+    authCodeData?: Schema$AuthCodeData;
+  }
   /**
    * ExchangeAuthCodeResponse includes the returned access token and its associated credentials.
    */
@@ -737,9 +759,14 @@ export namespace connectors_v2 {
     type?: string | null;
   }
   /**
-   * RefreshAccessTokenRequest currently includes no fields.
+   * RefreshAccessTokenRequest includes the refresh token.
    */
-  export interface Schema$RefreshAccessTokenRequest {}
+  export interface Schema$RefreshAccessTokenRequest {
+    /**
+     * Optional. Refresh Token String. If the Refresh Token is not provided, the runtime will read the data from the secret manager.
+     */
+    refreshToken?: string | null;
+  }
   /**
    * RefreshAccessTokenResponse includes the returned access token and its associated credentials.
    */
@@ -755,6 +782,10 @@ export namespace connectors_v2 {
      */
     dataType?: string | null;
     /**
+     * The following field specifies the default value of the Parameter provided by the external system if a value is not provided.
+     */
+    defaultValue?: any | null;
+    /**
      * A brief description of the metadata field.
      */
     description?: string | null;
@@ -766,6 +797,10 @@ export namespace connectors_v2 {
      * Name of the metadata field.
      */
     name?: string | null;
+    /**
+     * Specifies whether a null value is allowed.
+     */
+    nullable?: boolean | null;
   }
   /**
    * Configure the schedule.

@@ -50,6 +50,10 @@ import {VERSIONS as admobVersions, admob} from './admob';
 import {VERSIONS as adsenseVersions, adsense} from './adsense';
 import {VERSIONS as adsensehostVersions, adsensehost} from './adsensehost';
 import {
+  VERSIONS as adsenseplatformVersions,
+  adsenseplatform,
+} from './adsenseplatform';
+import {
   VERSIONS as advisorynotificationsVersions,
   advisorynotifications,
 } from './advisorynotifications';
@@ -244,6 +248,7 @@ import {
   VERSIONS as contentwarehouseVersions,
   contentwarehouse,
 } from './contentwarehouse';
+import {VERSIONS as cssVersions, css} from './css';
 import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
 import {VERSIONS as datacatalogVersions, datacatalog} from './datacatalog';
 import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
@@ -396,6 +401,7 @@ import {VERSIONS as idsVersions, ids} from './ids';
 import {VERSIONS as indexingVersions, indexing} from './indexing';
 import {VERSIONS as integrationsVersions, integrations} from './integrations';
 import {VERSIONS as jobsVersions, jobs} from './jobs';
+import {VERSIONS as keepVersions, keep} from './keep';
 import {VERSIONS as kgsearchVersions, kgsearch} from './kgsearch';
 import {VERSIONS as kmsinventoryVersions, kmsinventory} from './kmsinventory';
 import {VERSIONS as languageVersions, language} from './language';
@@ -725,6 +731,7 @@ export const APIS: APIList = {
   admob: admobVersions,
   adsense: adsenseVersions,
   adsensehost: adsensehostVersions,
+  adsenseplatform: adsenseplatformVersions,
   advisorynotifications: advisorynotificationsVersions,
   aiplatform: aiplatformVersions,
   airquality: airqualityVersions,
@@ -806,6 +813,7 @@ export const APIS: APIList = {
   containeranalysis: containeranalysisVersions,
   content: contentVersions,
   contentwarehouse: contentwarehouseVersions,
+  css: cssVersions,
   customsearch: customsearchVersions,
   datacatalog: datacatalogVersions,
   dataflow: dataflowVersions,
@@ -880,6 +888,7 @@ export const APIS: APIList = {
   indexing: indexingVersions,
   integrations: integrationsVersions,
   jobs: jobsVersions,
+  keep: keepVersions,
   kgsearch: kgsearchVersions,
   kmsinventory: kmsinventoryVersions,
   language: languageVersions,
@@ -1025,6 +1034,7 @@ export class GeneratedAPIs {
   admob = admob;
   adsense = adsense;
   adsensehost = adsensehost;
+  adsenseplatform = adsenseplatform;
   advisorynotifications = advisorynotifications;
   aiplatform = aiplatform;
   airquality = airquality;
@@ -1106,6 +1116,7 @@ export class GeneratedAPIs {
   containeranalysis = containeranalysis;
   content = content;
   contentwarehouse = contentwarehouse;
+  css = css;
   customsearch = customsearch;
   datacatalog = datacatalog;
   dataflow = dataflow;
@@ -1180,6 +1191,7 @@ export class GeneratedAPIs {
   indexing = indexing;
   integrations = integrations;
   jobs = jobs;
+  keep = keep;
   kgsearch = kgsearch;
   kmsinventory = kmsinventory;
   language = language;

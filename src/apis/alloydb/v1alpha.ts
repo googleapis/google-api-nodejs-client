@@ -1010,7 +1010,7 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$ObservabilityInstanceConfig {
     /**
-     * Observability feature status for an instance. This is a read-only flag and modifiable only by producer API. This flag is turned "off" by default.
+     * Observability feature status for an instance. This flag is turned "off" by default.
      */
     enabled?: boolean | null;
     /**
@@ -1022,7 +1022,7 @@ export namespace alloydb_v1alpha {
      */
     preserveComments?: boolean | null;
     /**
-     * Number of query execution plans captured by Insights per minute for all queries combined. The default value is 5. Any integer between 0 to 20 is considered valid.
+     * Number of query execution plans captured by Insights per minute for all queries combined. The default value is 200. Any integer between 0 to 200 is considered valid.
      */
     queryPlansPerMinute?: number | null;
     /**

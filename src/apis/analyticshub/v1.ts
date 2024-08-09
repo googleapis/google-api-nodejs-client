@@ -1995,7 +1995,7 @@ export namespace analyticshub_v1 {
     }
 
     /**
-     * Creates a Subscription to a Data Exchange. This is a long-running operation as it will create one or more linked datasets.
+     * Creates a Subscription to a Data Clean Room. This is a long-running operation as it will create one or more linked datasets.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

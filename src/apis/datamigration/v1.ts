@@ -2456,6 +2456,10 @@ export namespace datamigration_v1 {
      */
     databaseBackups?: Schema$SqlServerDatabaseBackup[];
     /**
+     * Optional. Promote databases when ready.
+     */
+    promoteWhenReady?: boolean | null;
+    /**
      * Optional. Enable differential backups.
      */
     useDiffBackup?: boolean | null;

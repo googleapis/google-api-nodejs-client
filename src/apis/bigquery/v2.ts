@@ -458,7 +458,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$BigLakeConfiguration {
     /**
-     * Required. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection_id can have the form "<project\_id\>.<location\_id\>.<connection\_id\>" or "projects/<project\_id\>/locations/<location\_id\>/connections/<connection\_id\>".
+     * Required. The connection specifying the credentials to be used to read and write to external storage, such as Cloud Storage. The connection_id can have the form `{project\}.{location\}.{connection_id\}` or `projects/{project\}/locations/{location\}/connections/{connection_id\}".
      */
     connectionId?: string | null;
     /**
@@ -466,7 +466,7 @@ export namespace bigquery_v2 {
      */
     fileFormat?: string | null;
     /**
-     * Required. The fully qualified location prefix of the external folder where table data is stored. The '*' wildcard character is not allowed. The URI should be in the format "gs://bucket/path_to_table/"
+     * Required. The fully qualified location prefix of the external folder where table data is stored. The '*' wildcard character is not allowed. The URI should be in the format `gs://bucket/path_to_table/`
      */
     storageUri?: string | null;
     /**
@@ -501,7 +501,7 @@ export namespace bigquery_v2 {
      */
     onlyReadLatest?: boolean | null;
     /**
-     * [Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as . field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match a-zA-Z*, a valid identifier must be provided as field_name.
+     * [Required] Qualifier of the column. Columns in the parent column family that has this exact qualifier are exposed as `.` field. If the qualifier is valid UTF-8 string, it can be specified in the qualifier_string field. Otherwise, a base-64 encoded value must be set to qualifier_encoded. The column field name is the same as the column qualifier. However, if the qualifier is not a valid BigQuery field identifier i.e. does not match a-zA-Z*, a valid identifier must be provided as field_name.
      */
     qualifierEncoded?: string | null;
     /**
@@ -518,7 +518,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$BigtableColumnFamily {
     /**
-     * Optional. Lists of columns that should be exposed as individual fields as opposed to a list of (column name, value) pairs. All columns whose qualifier matches a qualifier in this list can be accessed as .. Other columns can be accessed as a list through .Column field.
+     * Optional. Lists of columns that should be exposed as individual fields as opposed to a list of (column name, value) pairs. All columns whose qualifier matches a qualifier in this list can be accessed as `.`. Other columns can be accessed as a list through the `.Column` field.
      */
     columns?: Schema$BigtableColumn[];
     /**
@@ -864,9 +864,12 @@ export namespace bigquery_v2 {
      */
     dataMaskingApplied?: boolean | null;
   }
+  /**
+   * Represents a BigQuery dataset.
+   */
   export interface Schema$Dataset {
     /**
-     * Optional. An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;
+     * Optional. An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER; If you patch a dataset, then this field is overwritten by the patched dataset's access field. To add entities, you must supply the entire existing access array in addition to any new entities that you want to add.
      */
     access?: Array<{
       dataset?: Schema$DatasetAccessEntry;
@@ -940,7 +943,7 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
     /**
-     * The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See Creating and Updating Dataset Labels for more information.
+     * The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See [Creating and Updating Dataset Labels](https://cloud.google.com/bigquery/docs/creating-managing-labels#creating_and_updating_dataset_labels) for more information.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -988,7 +991,7 @@ export namespace bigquery_v2 {
      */
     storageBillingModel?: string | null;
     /**
-     * Output only. Tags for the Dataset.
+     * Output only. Tags for the dataset. To provide tags as inputs, use the `resourceTags` field.
      */
     tags?: Array<{tagKey?: string; tagValue?: string}> | null;
     /**
@@ -1041,6 +1044,9 @@ export namespace bigquery_v2 {
      */
     unreachable?: string[] | null;
   }
+  /**
+   * Identifier for a dataset.
+   */
   export interface Schema$DatasetReference {
     /**
      * Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.
@@ -1187,6 +1193,9 @@ export namespace bigquery_v2 {
      */
     min?: number | null;
   }
+  /**
+   * Configuration for Cloud KMS encryption settings.
+   */
   export interface Schema$EncryptionConfiguration {
     /**
      * Optional. Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key.
@@ -1497,7 +1506,7 @@ export namespace bigquery_v2 {
      */
     compression?: string | null;
     /**
-     * Optional. The connection specifying the credentials to be used to read external storage, such as Azure Blob, Cloud Storage, or S3. The connection_id can have the form "<project\_id\>.<location\_id\>.<connection\_id\>" or "projects/<project\_id\>/locations/<location\_id\>/connections/<connection\_id\>".
+     * Optional. The connection specifying the credentials to be used to read external storage, such as Azure Blob, Cloud Storage, or S3. The connection_id can have the form `{project_id\}.{location_id\};{connection_id\}` or `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}`.
      */
     connectionId?: string | null;
     /**
@@ -1931,6 +1940,23 @@ export namespace bigquery_v2 {
      * 1-based index of the trial.
      */
     trialId?: string | null;
+  }
+  /**
+   * Metadata for value generation for an identity column.
+   */
+  export interface Schema$IdentityColumnInfo {
+    /**
+     * Optional. Dictates when system generated values are used to populate the field.
+     */
+    generatedMode?: string | null;
+    /**
+     * Optional. The minimum difference between two successive generated values. Should be INTEGER compatible. Can be negative or positive but not 0. The default value is 1 if the field is not specified.
+     */
+    increment?: string | null;
+    /**
+     * Optional. The first generated value. Should be INTEGER compatible. The default value is 1 if the field is not specified.
+     */
+    start?: string | null;
   }
   /**
    * Reason about why no search index was used in the search query (or sub-query).
@@ -2575,6 +2601,10 @@ export namespace bigquery_v2 {
      * Output only. Statistics for data-masking. Present only for query and extract jobs.
      */
     dataMaskingStatistics?: Schema$DataMaskingStatistics;
+    /**
+     * Output only. Name of edition corresponding to the reservation for this job at the time of this update.
+     */
+    edition?: string | null;
     /**
      * Output only. End time of this job, in milliseconds since the epoch. This field will be present whenever a job is in the DONE state.
      */
@@ -4654,6 +4684,10 @@ export namespace bigquery_v2 {
      */
     foreignTypeDefinition?: string | null;
     /**
+     * Optional. Definition of how values are generated for the field. Setting this option means that the field is an identity column. Only valid for top-level schema INTEGER fields (not nested fields).
+     */
+    identityColumnInfo?: Schema$IdentityColumnInfo;
+    /**
      * Optional. Maximum length of values of this field for STRINGS or BYTES. If max_length is not specified, no maximum length constraint is imposed on this field. If type = "STRING", then max_length represents the maximum UTF-8 length of strings in this field. If type = "BYTES", then max_length represents the maximum number of bytes in this field. It is invalid to set this field if type ≠ "STRING" and ≠ "BYTES".
      */
     maxLength?: string | null;
@@ -4737,6 +4771,10 @@ export namespace bigquery_v2 {
      * Free form human-readable reason metadata caching was unused for the job.
      */
     explanation?: string | null;
+    /**
+     * Duration since last refresh as of this job for managed tables (indicates metadata cache staleness as seen by this job).
+     */
+    staleness?: string | null;
     /**
      * Metadata caching eligible table referenced in the query.
      */
@@ -5987,7 +6025,7 @@ export namespace bigquery_v2 {
      */
     all?: boolean;
     /**
-     * An expression for filtering the results of the request by label. The syntax is \"labels.<name\>[:<value\>]\". Multiple filters can be ANDed together by connecting with a space. Example: \"labels.department:receiving labels.active\". See [Filtering datasets using labels](/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.
+     * An expression for filtering the results of the request by label. The syntax is `labels.[:]`. Multiple filters can be ANDed together by connecting with a space. Example: `labels.department:receiving labels.active`. See [Filtering datasets using labels](https://cloud.google.com/bigquery/docs/filtering-labels#filtering_datasets_using_labels) for details.
      */
     filter?: string;
     /**
@@ -6681,7 +6719,7 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     * The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -6709,7 +6747,7 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     * The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**
@@ -6728,7 +6766,7 @@ export namespace bigquery_v2 {
      */
     jobId?: string;
     /**
-     * The geographic location of the job. You must specify the location to run the job for the following scenarios: - If the location to run a job is not in the `us` or the `eu` multi-regional location - If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     * The geographic location of the job. You must specify the location to run the job for the following scenarios: * If the location to run a job is not in the `us` or the `eu` multi-regional location * If the job's location is in a single region (for example, `us-central1`) For more information, see https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      */
     location?: string;
     /**

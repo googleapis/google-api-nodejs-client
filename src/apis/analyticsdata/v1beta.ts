@@ -1210,7 +1210,7 @@ export namespace analyticsdata_v1beta {
      */
     limit?: string | null;
     /**
-     * Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)".
+     * Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)". Aggregates including both comparisons and multiple date ranges will be aggregated based on the date ranges.
      */
     metricAggregations?: string[] | null;
     /**
@@ -1226,7 +1226,7 @@ export namespace analyticsdata_v1beta {
      */
     offset?: string | null;
     /**
-     * Specifies how rows are ordered in the response.
+     * Specifies how rows are ordered in the response. Requests including both comparisons and multiple date ranges will have order bys applied on the comparisons.
      */
     orderBys?: Schema$OrderBy[];
     /**

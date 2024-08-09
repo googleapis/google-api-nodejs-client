@@ -585,7 +585,7 @@
         "enrollmentTokens": {
           "methods": {
             "create": {
-              "description": "Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore. Once an enrollment token has been created, it's not possible to retrieve the token's content anymore using AM API. It is recommended for EMMs to securely store the token if it's intended to be reused.",
+              "description": "Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore.",
               "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens",
               "httpMethod": "POST",
               "id": "androidmanagement.enterprises.enrollmentTokens.create",
@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20240805",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1193,7 +1193,7 @@
       "id": "AdvancedSecurityOverrides",
       "properties": {
         "commonCriteriaMode": {
-          "description": "Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.",
+          "description": "Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Common Criteria Mode is only supported on company-owned devices running Android 11 or above.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.",
           "enum": [
             "COMMON_CRITERIA_MODE_UNSPECIFIED",
             "COMMON_CRITERIA_MODE_DISABLED",
@@ -2506,7 +2506,7 @@
         },
         "commonCriteriaModeInfo": {
           "$ref": "CommonCriteriaModeInfo",
-          "description": "Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy."
+          "description": "Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy the device is company-owned."
         },
         "deviceSettings": {
           "$ref": "DeviceSettings",
@@ -4248,9 +4248,9 @@
             "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
-            "This value is disallowed.",
+            "This value is not used.",
             "The setting is not supported in the API level of the Android version running on the device.",
-            "The management mode (profile owner, device owner, etc.) doesn't support the setting.",
+            "The management mode (such as fully managed or work profile) doesn't support the setting.",
             "The user has not taken required action to comply with the setting.",
             "The setting has an invalid value.",
             "The app required to implement the policy is not installed.",
@@ -4326,9 +4326,9 @@
             "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
-            "This value is disallowed.",
+            "This value is not used.",
             "The setting is not supported in the API level of the Android version running on the device.",
-            "The management mode (profile owner, device owner, etc.) doesn't support the setting.",
+            "The management mode (such as fully managed or work profile) doesn't support the setting.",
             "The user has not taken required action to comply with the setting.",
             "The setting has an invalid value.",
             "The app required to implement the policy is not installed.",
@@ -5945,7 +5945,7 @@
           "type": "boolean"
         },
         "commonCriteriaModeEnabled": {
-          "description": "Whether Common Criteria Mode reporting is enabled.",
+          "description": "Whether Common Criteria Mode reporting is enabled. This is supported only on company-owned devices.",
           "type": "boolean"
         },
         "deviceSettingsEnabled": {

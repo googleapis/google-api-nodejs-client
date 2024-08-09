@@ -254,7 +254,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`
      */
     attackExposureResult?: string | null;
     /**
@@ -343,7 +343,7 @@ export namespace securitycenter_v1beta2 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     * The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.
      */
     id?: string | null;
   }
@@ -382,7 +382,7 @@ export namespace securitycenter_v1beta2 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
      */
     id?: string | null;
   }
@@ -655,11 +655,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$ContainerThreatDetectionSettings {
     /**
-     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string | null;
     /**
@@ -843,11 +843,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$EventThreatDetectionSettings {
     /**
-     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     * Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string | null;
     /**
@@ -1405,7 +1405,7 @@ export namespace securitycenter_v1beta2 {
      */
     mostRecentEditor?: string | null;
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string | null;
     /**
@@ -1642,7 +1642,7 @@ export namespace securitycenter_v1beta2 {
      */
     resourcePath?: Schema$ResourcePath;
     /**
-     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     * A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\}` where there can be any number of management groups.
      */
     resourcePathString?: string | null;
     /**
@@ -1684,11 +1684,11 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with `AND`. For example, `"resource_labels_selector": {"key": "value", "env": "prod"\}` will match resources with labels "key": "value" `AND` "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
@@ -1696,7 +1696,7 @@ export namespace securitycenter_v1beta2 {
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with `AND` of other resources.
      */
     scope?: string | null;
     /**
@@ -1704,7 +1704,7 @@ export namespace securitycenter_v1beta2 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -1897,7 +1897,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`
      */
     attackExposureResult?: string | null;
     /**
@@ -1986,7 +1986,7 @@ export namespace securitycenter_v1beta2 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     * The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.
      */
     id?: string | null;
   }
@@ -2025,7 +2025,7 @@ export namespace securitycenter_v1beta2 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
      */
     id?: string | null;
   }
@@ -2083,7 +2083,7 @@ export namespace securitycenter_v1beta2 {
      */
     createTime?: string | null;
     /**
-     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
+     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
      */
     dataset?: string | null;
     /**
@@ -2099,7 +2099,7 @@ export namespace securitycenter_v1beta2 {
      */
     mostRecentEditor?: string | null;
     /**
-     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `folders/{folder_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `projects/{project_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` This field is provided in responses, and is ignored when provided in create requests.
+     * Identifier. The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `folders/{folder_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `projects/{project_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` This field is provided in responses, and is ignored when provided in create requests.
      */
     name?: string | null;
     /**
@@ -3005,7 +3005,7 @@ export namespace securitycenter_v1beta2 {
      */
     mostRecentEditor?: string | null;
     /**
-     * This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization\}/muteConfigs/{mute_config\}` + `organizations/{organization\}locations/{location\}//muteConfigs/{mute_config\}` + `folders/{folder\}/muteConfigs/{mute_config\}` + `folders/{folder\}/locations/{location\}/muteConfigs/{mute_config\}` + `projects/{project\}/muteConfigs/{mute_config\}` + `projects/{project\}/locations/{location\}/muteConfigs/{mute_config\}`
+     * Identifier. This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization\}/muteConfigs/{mute_config\}` + `organizations/{organization\}locations/{location\}//muteConfigs/{mute_config\}` + `folders/{folder\}/muteConfigs/{mute_config\}` + `folders/{folder\}/locations/{location\}/muteConfigs/{mute_config\}` + `projects/{project\}/muteConfigs/{mute_config\}` + `projects/{project\}/locations/{location\}/muteConfigs/{mute_config\}`
      */
     name?: string | null;
     /**
@@ -3303,7 +3303,7 @@ export namespace securitycenter_v1beta2 {
      */
     resourcePath?: Schema$GoogleCloudSecuritycenterV2ResourcePath;
     /**
-     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     * A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\}` where there can be any number of management groups.
      */
     resourcePathString?: string | null;
     /**
@@ -3358,23 +3358,23 @@ export namespace securitycenter_v1beta2 {
      */
     description?: string | null;
     /**
-     * Name for the resource value configuration
+     * Identifier. Name for the resource value configuration
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with `AND`. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" `AND` "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
-     * Resource value level this expression represents Only required when there is no SDP mapping in the request
+     * Resource value level this expression represents Only required when there is no Sensitive Data Protection mapping in the request
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope and will be checked with `AND` of other resources.
      */
     scope?: string | null;
     /**
@@ -3382,7 +3382,7 @@ export namespace securitycenter_v1beta2 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -3576,7 +3576,7 @@ export namespace securitycenter_v1beta2 {
      */
     attackExposureScore?: number | null;
     /**
-     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     * List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.
      */
     relatedFindings?: string[] | null;
   }
@@ -4143,11 +4143,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$SecurityHealthAnalyticsSettings {
     /**
-     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
+     * Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string | null;
     /**
@@ -4319,7 +4319,7 @@ export namespace securitycenter_v1beta2 {
      */
     attackExposureScore?: number | null;
     /**
-     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     * List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.
      */
     relatedFindings?: string[] | null;
   }
@@ -4328,11 +4328,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$VirtualMachineThreatDetectionSettings {
     /**
-     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     * Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string | null;
     /**
@@ -4404,11 +4404,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$WebSecurityScannerSettings {
     /**
-     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
+     * Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string | null;
     /**
@@ -5747,7 +5747,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**
@@ -5763,7 +5763,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updateeventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     * Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
     /**
@@ -5795,7 +5795,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
+     * Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
     /**
@@ -5811,7 +5811,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     * Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
     /**
@@ -5827,7 +5827,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updatewebsecurityscannersettings
     extends StandardParameters {
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
+     * Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
     /**
@@ -7942,7 +7942,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**
@@ -7958,7 +7958,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updateeventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     * Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
     /**
@@ -7990,7 +7990,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
+     * Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
     /**
@@ -8006,7 +8006,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     * Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
     /**
@@ -8022,7 +8022,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updatewebsecurityscannersettings
     extends StandardParameters {
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
+     * Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
     /**
@@ -10038,7 +10038,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**
@@ -10054,7 +10054,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updateeventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     * Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
     /**
@@ -10086,7 +10086,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
+     * Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
     /**
@@ -10102,7 +10102,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     * Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
     /**
@@ -10118,7 +10118,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updatewebsecurityscannersettings
     extends StandardParameters {
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
+     * Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
     /**
@@ -10583,7 +10583,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     * Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**

@@ -2125,7 +2125,7 @@
       }
     }
   },
-  "revision": "20240615",
+  "revision": "20240721",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2531,6 +2531,7 @@
             "MYSQL_8_0_34",
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
             "POSTGRES_9_6",
             "POSTGRES_11",
             "POSTGRES_10",
@@ -2556,6 +2557,7 @@
             "The database major version is MySQL 8.0 and the minor version is 34.",
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
+            "The database major version is MySQL 8.0 and the minor version is 37.",
             "PostgreSQL 9.6.",
             "PostgreSQL 11.",
             "PostgreSQL 10.",
@@ -4479,8 +4481,7 @@
             "PROMOTE_IN_PROGRESS",
             "WAITING_FOR_SOURCE_WRITES_TO_STOP",
             "PREPARING_THE_DUMP",
-            "READY_FOR_PROMOTE",
-            "DIFF_BACKUP"
+            "READY_FOR_PROMOTE"
           ],
           "enumDescriptions": [
             "The phase of the migration job is unknown.",
@@ -4489,8 +4490,7 @@
             "The migration job is running the promote phase.",
             "Only RDS flow - waiting for source writes to stop",
             "Only RDS flow - the sources writes stopped, waiting for dump to begin",
-            "The migration job is ready to be promoted.",
-            "The migration job is in the differential backup phase."
+            "The migration job is ready to be promoted."
           ],
           "readOnly": true,
           "type": "string"
@@ -5733,6 +5733,10 @@
             "$ref": "SqlServerDatabaseBackup"
           },
           "type": "array"
+        },
+        "promoteWhenReady": {
+          "description": "Optional. Promote databases when ready.",
+          "type": "boolean"
         },
         "useDiffBackup": {
           "description": "Optional. Enable differential backups.",

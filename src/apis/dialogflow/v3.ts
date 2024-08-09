@@ -175,11 +175,15 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3AdvancedSettingsLoggingSettings {
     /**
+     * Enables consent-based end-user input redaction, if true, a pre-defined session parameter `$session.params.conversation-redaction` will be used to determine if the utterance should be redacted.
+     */
+    enableConsentBasedRedaction?: boolean | null;
+    /**
      * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * Enables StackDriver logging.
+     * Enables Google Cloud Logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -424,7 +428,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3BatchDeleteTestCasesRequest {
     /**
-     * Required. Format of test case names: `projects//locations/ /agents//testCases/`.
+     * Required. Format of test case names: `projects//locations//agents//testCases/`.
      */
     names?: string[] | null;
   }
@@ -510,11 +514,15 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings {
     /**
+     * Enables consent-based end-user input redaction, if true, a pre-defined session parameter `$session.params.conversation-redaction` will be used to determine if the utterance should be redacted.
+     */
+    enableConsentBasedRedaction?: boolean | null;
+    /**
      * Enables DF Interaction logging.
      */
     enableInteractionLogging?: boolean | null;
     /**
-     * Enables StackDriver logging.
+     * Enables Google Cloud Logging.
      */
     enableStackdriverLogging?: boolean | null;
   }
@@ -734,7 +742,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1DeployFlowResponse {
     /**
-     * The name of the flow version deployment. Format: `projects//locations//agents// environments//deployments/`.
+     * The name of the flow version deployment. Format: `projects//locations//agents//environments//deployments/`.
      */
     deployment?: string | null;
     /**
@@ -801,7 +809,7 @@ export namespace dialogflow_v3 {
      */
     enablePredeploymentRun?: boolean | null;
     /**
-     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`
+     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations//agents//testCases/`
      */
     testCases?: string[] | null;
   }
@@ -843,6 +851,10 @@ export namespace dialogflow_v3 {
      * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
      */
     targetPage?: string | null;
+    /**
+     * The target playbook to transition to. Format: `projects//locations//agents//playbooks/`.
+     */
+    targetPlaybook?: string | null;
     /**
      * The fulfillment to call when the event occurs. Handling webhook errors with a fulfillment enabled with webhook could cause infinite loop. It is invalid to specify such fulfillment for a handler handling webhooks.
      */
@@ -1750,7 +1762,7 @@ export namespace dialogflow_v3 {
      */
     lastTestResult?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult;
     /**
-     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents/ /testCases/`.
+     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents//testCases/`.
      */
     name?: string | null;
     /**
@@ -1796,7 +1808,7 @@ export namespace dialogflow_v3 {
      */
     environment?: string | null;
     /**
-     * The resource name for the test case result. Format: `projects//locations//agents//testCases/ /results/`.
+     * The resource name for the test case result. Format: `projects//locations//agents//testCases//results/`.
      */
     name?: string | null;
     /**
@@ -1813,11 +1825,11 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TestConfig {
     /**
-     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     flow?: string | null;
     /**
-     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     page?: string | null;
     /**
@@ -2574,6 +2586,10 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3DataStoreConnectionSignalsAnswerGenerationModelCallSignals {
     /**
+     * Name of the generative model. For example, "gemini-ultra", "gemini-pro", "gemini-1.5-flash" etc. Defaults to "Other" if the model is unknown.
+     */
+    model?: string | null;
+    /**
      * Output of the generative model.
      */
     modelOutput?: string | null;
@@ -2625,6 +2641,10 @@ export namespace dialogflow_v3 {
    * Diagnostic info related to the rewriter model call.
    */
   export interface Schema$GoogleCloudDialogflowCxV3DataStoreConnectionSignalsRewriterModelCallSignals {
+    /**
+     * Name of the generative model. For example, "gemini-ultra", "gemini-pro", "gemini-1.5-flash" etc. Defaults to "Other" if the model is unknown.
+     */
+    model?: string | null;
     /**
      * Output of the generative model.
      */
@@ -2691,7 +2711,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3DeployFlowRequest {
     /**
-     * Required. The flow version to deploy. Format: `projects//locations//agents// flows//versions/`.
+     * Required. The flow version to deploy. Format: `projects//locations//agents//flows//versions/`.
      */
     flowVersion?: string | null;
   }
@@ -2700,7 +2720,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3DeployFlowResponse {
     /**
-     * The name of the flow version Deployment. Format: `projects//locations//agents// environments//deployments/`.
+     * The name of the flow version Deployment. Format: `projects//locations//agents//environments//deployments/`.
      */
     deployment?: string | null;
     /**
@@ -2914,7 +2934,7 @@ export namespace dialogflow_v3 {
      */
     enablePredeploymentRun?: boolean | null;
     /**
-     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`
+     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations//agents//testCases/`
      */
     testCases?: string[] | null;
   }
@@ -2956,6 +2976,10 @@ export namespace dialogflow_v3 {
      * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
      */
     targetPage?: string | null;
+    /**
+     * The target playbook to transition to. Format: `projects//locations//agents//playbooks/`.
+     */
+    targetPlaybook?: string | null;
     /**
      * The fulfillment to call when the event occurs. Handling webhook errors with a fulfillment enabled with webhook could cause infinite loop. It is invalid to specify such fulfillment for a handler handling webhooks.
      */
@@ -3003,7 +3027,7 @@ export namespace dialogflow_v3 {
      */
     lastUpdateTime?: string | null;
     /**
-     * The name of the experiment. Format: projects//locations//agents//environments//experiments/..
+     * The name of the experiment. Format: projects//locations//agents//environments//experiments/.
      */
     name?: string | null;
     /**
@@ -3357,6 +3381,10 @@ export namespace dialogflow_v3 {
      */
     knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3KnowledgeConnectorSettings;
     /**
+     * Indicates whether the flow is locked for changes. If the flow is locked, modifications to the flow will be rejected.
+     */
+    locked?: boolean | null;
+    /**
      * Optional. Multi-lingual agent settings for this flow.
      */
     multiLanguageSettings?: Schema$GoogleCloudDialogflowCxV3FlowMultiLanguageSettings;
@@ -3369,7 +3397,7 @@ export namespace dialogflow_v3 {
      */
     nluSettings?: Schema$GoogleCloudDialogflowCxV3NluSettings;
     /**
-     * A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
+     * A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
      */
     transitionRouteGroups?: string[] | null;
     /**
@@ -5321,7 +5349,7 @@ export namespace dialogflow_v3 {
      */
     lastTestResult?: Schema$GoogleCloudDialogflowCxV3TestCaseResult;
     /**
-     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents/ /testCases/`.
+     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents//testCases/`.
      */
     name?: string | null;
     /**
@@ -5367,7 +5395,7 @@ export namespace dialogflow_v3 {
      */
     environment?: string | null;
     /**
-     * The resource name for the test case result. Format: `projects//locations//agents//testCases/ /results/`.
+     * The resource name for the test case result. Format: `projects//locations//agents//testCases//results/`.
      */
     name?: string | null;
     /**
@@ -5384,11 +5412,11 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3TestConfig {
     /**
-     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * Flow name to start the test case with. Format: `projects//locations//agents//flows/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     flow?: string | null;
     /**
-     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If both are set, `page` takes precedence over `flow`. If neither is set, the test case will start with start page on the default start flow.
+     * The page to start the test case with. Format: `projects//locations//agents//flows//pages/`. Only one of `flow` and `page` should be set to indicate the starting point of the test case. If neither is set, the test case will start with start page on the default start flow.
      */
     page?: string | null;
     /**
@@ -6265,6 +6293,19 @@ export namespace dialogflow_v3 {
     queryResult?: Schema$GoogleCloudDialogflowV2beta1QueryResult;
   }
   /**
+   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1EncryptionSpec {
+    /**
+     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKey?: string | null;
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string | null;
+  }
+  /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EntityType {
@@ -6408,6 +6449,24 @@ export namespace dialogflow_v3 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Metadata for initializing a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecMetadata {
+    /**
+     * Output only. The original request for initialization.
+     */
+    request?: Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest;
+  }
+  /**
+   * The request to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1InitializeEncryptionSpecRequest {
+    /**
+     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
+     */
+    encryptionSpec?: Schema$GoogleCloudDialogflowV2beta1EncryptionSpec;
   }
   /**
    * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
@@ -7450,6 +7509,10 @@ export namespace dialogflow_v3 {
      */
     participantRole?: string | null;
     /**
+     * Optional. Automated agent responses.
+     */
+    responseMessages?: Schema$GoogleCloudDialogflowV2beta1ResponseMessage[];
+    /**
      * Optional. The time when the message was sent.
      */
     sendTime?: string | null;
@@ -7560,6 +7623,96 @@ export namespace dialogflow_v3 {
      * If the query was fulfilled by a webhook call, this field is set to the value of the `source` field returned in the webhook response.
      */
     webhookSource?: string | null;
+  }
+  /**
+   * Response messages from an automated agent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessage {
+    /**
+     * A signal that indicates the interaction with the Dialogflow agent has ended.
+     */
+    endInteraction?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction;
+    /**
+     * Hands off conversation to a live agent.
+     */
+    liveAgentHandoff?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff;
+    /**
+     * An audio response message composed of both the synthesized Dialogflow agent responses and the audios hosted in places known to the client.
+     */
+    mixedAudio?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio;
+    /**
+     * Returns a response containing a custom, platform-specific payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * A signal that the client should transfer the phone call connected to this agent to a third-party endpoint.
+     */
+    telephonyTransferCall?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall;
+    /**
+     * Returns a text response.
+     */
+    text?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageText;
+  }
+  /**
+   * Indicates that interaction with the Dialogflow agent has ended.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction {}
+  /**
+   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff {
+    /**
+     * Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents an audio message that is composed of both segments synthesized from the Dialogflow agent prompts and ones hosted externally at the specified URIs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageMixedAudio {
+    /**
+     * Segments this audio response is composed of.
+     */
+    segments?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment[];
+  }
+  /**
+   * Represents one segment of audio.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageMixedAudioSegment {
+    /**
+     * Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.
+     */
+    allowPlaybackInterruption?: boolean | null;
+    /**
+     * Raw audio synthesized from the Dialogflow agent's response using the output config specified in the request.
+     */
+    audio?: string | null;
+    /**
+     * Client-specific URI that points to an audio clip accessible to the client.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents the signal that telles the client to transfer the phone call connected to the agent to a third-party endpoint.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall {
+    /**
+     * Transfer the call to a phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+     */
+    phoneNumber?: string | null;
+    /**
+     * Transfer the call to a SIP endpoint.
+     */
+    sipUri?: string | null;
+  }
+  /**
+   * The text response message.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageText {
+    /**
+     * A collection of text responses.
+     */
+    text?: string[] | null;
   }
   /**
    * The sentiment, such as positive/negative feeling or association, for a unit of analysis, such as the query text. See: https://cloud.google.com/natural-language/docs/basics#interpreting_sentiment_analysis_values for how to interpret the result.
@@ -7996,6 +8149,19 @@ export namespace dialogflow_v3 {
     createTime?: string | null;
   }
   /**
+   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
+   */
+  export interface Schema$GoogleCloudDialogflowV2EncryptionSpec {
+    /**
+     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKey?: string | null;
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string | null;
+  }
+  /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2EntityType {
@@ -8169,6 +8335,24 @@ export namespace dialogflow_v3 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Metadata for initializing a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecMetadata {
+    /**
+     * Output only. The original request for initialization.
+     */
+    request?: Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecRequest;
+  }
+  /**
+   * The request to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudDialogflowV2InitializeEncryptionSpecRequest {
+    /**
+     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
+     */
+    encryptionSpec?: Schema$GoogleCloudDialogflowV2EncryptionSpec;
   }
   /**
    * InputDataset used to create model or do evaluation. NextID:5
@@ -12814,7 +12998,7 @@ export namespace dialogflow_v3 {
   export interface Params$Resource$Projects$Locations$Agents$Environments$Deployflow
     extends StandardParameters {
     /**
-     * Required. The environment to deploy the flow to. Format: `projects//locations//agents// environments/`.
+     * Required. The environment to deploy the flow to. Format: `projects//locations//agents//environments/`.
      */
     environment?: string;
 
@@ -13005,7 +13189,7 @@ export namespace dialogflow_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The environment to list results for. Format: `projects//locations//agents// environments/`.
+     * Required. The environment to list results for. Format: `projects//locations//agents//environments/`.
      */
     parent?: string;
   }
@@ -13949,7 +14133,7 @@ export namespace dialogflow_v3 {
   export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch
     extends StandardParameters {
     /**
-     * The name of the experiment. Format: projects//locations//agents//environments//experiments/..
+     * The name of the experiment. Format: projects//locations//agents//environments//experiments/.
      */
     name?: string;
     /**
@@ -17871,7 +18055,7 @@ export namespace dialogflow_v3 {
   export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Compareversions
     extends StandardParameters {
     /**
-     * Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents/ /flows//versions/`.
+     * Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents//flows//versions/`.
      */
     baseVersion?: string;
 
@@ -21362,7 +21546,7 @@ export namespace dialogflow_v3 {
   export interface Params$Resource$Projects$Locations$Agents$Testcases$Batchrun
     extends StandardParameters {
     /**
-     * Required. Agent name. Format: `projects//locations//agents/ `.
+     * Required. Agent name. Format: `projects//locations//agents/`.
      */
     parent?: string;
 
@@ -21447,7 +21631,7 @@ export namespace dialogflow_v3 {
   export interface Params$Resource$Projects$Locations$Agents$Testcases$Patch
     extends StandardParameters {
     /**
-     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents/ /testCases/`.
+     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents//testCases/`.
      */
     name?: string;
     /**
@@ -21463,7 +21647,7 @@ export namespace dialogflow_v3 {
   export interface Params$Resource$Projects$Locations$Agents$Testcases$Run
     extends StandardParameters {
     /**
-     * Required. Format of test case name to run: `projects//locations/ /agents//testCases/`.
+     * Required. Format of test case name to run: `projects//locations//agents//testCases/`.
      */
     name?: string;
 
@@ -21695,7 +21879,7 @@ export namespace dialogflow_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The test case to list results for. Format: `projects//locations//agents// testCases/`. Specify a `-` as a wildcard for TestCase ID to list results across multiple test cases.
+     * Required. The test case to list results for. Format: `projects//locations//agents//testCases/`. Specify a `-` as a wildcard for TestCase ID to list results across multiple test cases.
      */
     parent?: string;
   }

@@ -276,6 +276,17 @@ export namespace storage_v1 {
      */
     id?: string | null;
     /**
+     * The bucket's IP filter configuration. Specifies the network sources that are allowed to access the operations on the bucket, as well as its underlying objects. Only enforced when the mode is set to 'Enabled'.
+     */
+    ipFilter?: {
+      mode?: string;
+      publicNetworkSource?: {allowedIpCidrRanges?: string[]};
+      vpcNetworkSources?: Array<{
+        allowedIpCidrRanges?: string[];
+        network?: string;
+      }>;
+    } | null;
+    /**
      * The kind of item this is. For buckets, this is always storage#bucket.
      */
     kind?: string | null;
