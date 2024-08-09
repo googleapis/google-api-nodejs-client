@@ -3610,6 +3610,10 @@ export namespace androidenterprise_v1 {
   export interface Params$Resource$Enterprises$Generatesignupurl
     extends StandardParameters {
     /**
+     * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user.
+     */
+    adminEmail?: string;
+    /**
      * The callback URL to which the Admin will be redirected after successfully creating an enterprise. Before redirecting there the system will add a single query parameter to this URL named "enterpriseToken" which will contain an opaque token to be used for the CompleteSignup request. Beware that this means that the URL will be parsed, the parameter added and then a new URL formatted, i.e. there may be some minor formatting changes and, more importantly, the URL must be well-formed so that it can be parsed.
      */
     callbackUrl?: string;
