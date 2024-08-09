@@ -798,6 +798,7 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of GKE clusters per response policy.
      */
     gkeClustersPerResponsePolicy?: number | null;
+    internetHealthChecksPerManagedZone?: number | null;
     /**
      * Maximum allowed number of items per routing policy.
      */
@@ -1034,6 +1035,10 @@ export namespace dns_v1beta2 {
   export interface Schema$RRSetRoutingPolicy {
     geo?: Schema$RRSetRoutingPolicyGeoPolicy;
     geoPolicy?: Schema$RRSetRoutingPolicyGeoPolicy;
+    /**
+     * The selfLink attribute of the HealthCheck resource to use for this RRSetRoutingPolicy. https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
+     */
+    healthCheck?: string | null;
     kind?: string | null;
     primaryBackup?: Schema$RRSetRoutingPolicyPrimaryBackupPolicy;
     wrr?: Schema$RRSetRoutingPolicyWrrPolicy;
@@ -1076,6 +1081,10 @@ export namespace dns_v1beta2 {
    * HealthCheckTargets describes endpoints to health-check when responding to Routing Policy queries. Only the healthy endpoints will be included in the response.
    */
   export interface Schema$RRSetRoutingPolicyHealthCheckTargets {
+    /**
+     * The Internet IP addresses to be health checked. The format matches the format of ResourceRecordSet.rrdata as defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1)
+     */
+    externalEndpoints?: string[] | null;
     /**
      * Configuration for internal load balancers to be health checked.
      */
