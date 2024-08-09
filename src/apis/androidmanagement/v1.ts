@@ -146,7 +146,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$AdvancedSecurityOverrides {
     /**
-     * Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.
+     * Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Common Criteria Mode is only supported on company-owned devices running Android 11 or above.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.
      */
     commonCriteriaMode?: string | null;
     /**
@@ -884,7 +884,7 @@ export namespace androidmanagement_v1 {
      */
     appliedState?: string | null;
     /**
-     * Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy.
+     * Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy the device is company-owned.
      */
     commonCriteriaModeInfo?: Schema$CommonCriteriaModeInfo;
     /**
@@ -2933,7 +2933,7 @@ export namespace androidmanagement_v1 {
      */
     applicationReportsEnabled?: boolean | null;
     /**
-     * Whether Common Criteria Mode reporting is enabled.
+     * Whether Common Criteria Mode reporting is enabled. This is supported only on company-owned devices.
      */
     commonCriteriaModeEnabled?: boolean | null;
     /**
@@ -4792,7 +4792,7 @@ export namespace androidmanagement_v1 {
     }
 
     /**
-     * Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore. Once an enrollment token has been created, it's not possible to retrieve the token's content anymore using AM API. It is recommended for EMMs to securely store the token if it's intended to be reused.
+     * Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
