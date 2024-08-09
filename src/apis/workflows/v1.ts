@@ -290,7 +290,7 @@ export namespace workflows_v1 {
     message?: string | null;
   }
   /**
-   * Workflow program to be executed by Workflows.
+   * LINT.IfChange Workflow program to be executed by Workflows.
    */
   export interface Schema$Workflow {
     /**
