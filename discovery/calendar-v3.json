@@ -1763,7 +1763,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240705",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2591,7 +2591,7 @@
           "type": "string"
         },
         "reminders": {
-          "description": "Information about the event's reminders for the authenticated user.",
+          "description": "Information about the event's reminders for the authenticated user. Note that changing reminders does not also change the updated property of the enclosing event.",
           "properties": {
             "overrides": {
               "description": "If the event doesn't use the default reminders, this lists the reminders specific to the event, or, if not set, indicates that no reminders are set for this event. The maximum number of override reminders is 5.",
@@ -2651,7 +2651,7 @@
           "type": "string"
         },
         "updated": {
-          "description": "Last modification time of the event (as a RFC3339 timestamp). Read-only.",
+          "description": "Last modification time of the main event data (as a RFC3339 timestamp). Updating event reminders will not cause this to change. Read-only.",
           "format": "date-time",
           "type": "string"
         },
