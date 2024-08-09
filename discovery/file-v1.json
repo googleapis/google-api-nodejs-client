@@ -902,7 +902,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240716",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1118,29 +1118,8 @@
           },
           "type": "array"
         },
-        "performanceConfig": {
-          "$ref": "PerformanceConfig",
-          "description": "Optional. Used to configure performance."
-        },
-        "performanceLimits": {
-          "$ref": "PerformanceLimits",
-          "description": "Output only. Used for getting performance limits.",
-          "readOnly": true
-        },
         "sourceBackup": {
           "description": "The resource name of the backup, in the format `projects/{project_number}/locations/{location_id}/backups/{backup_id}`, that this file share has been restored from.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "FixedIOPS": {
-      "description": "Fixed IOPS parameters.",
-      "id": "FixedIOPS",
-      "properties": {
-        "maxReadIops": {
-          "description": "Required. Maximum raw read IOPS.",
-          "format": "int64",
           "type": "string"
         }
       },
@@ -1416,18 +1395,6 @@
         },
         "tier": {
           "description": "Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "IOPSPerGB": {
-      "description": "IOPS per capacity parameters.",
-      "id": "IOPSPerGB",
-      "properties": {
-        "maxReadIopsPerGb": {
-          "description": "Required. Maximum read IOPS per GB.",
-          "format": "int64",
           "type": "string"
         }
       },
@@ -1965,56 +1932,6 @@
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PerformanceConfig": {
-      "description": "Performance configuration. Used for setting the performance configuration. Defaults to `iops_by_capacity` if unset in instance creation.",
-      "id": "PerformanceConfig",
-      "properties": {
-        "fixedIops": {
-          "$ref": "FixedIOPS",
-          "description": "Choose a fixed provisioned IOPS value for the instance, which will remain constant regardless of instance capacity. Value must be a multiple of 1000. If the chosen value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error."
-        },
-        "iopsByCapacity": {
-          "description": "Automatically provision maximum available IOPS based on the capacity of the instance. Larger instances will be granted more IOPS. If instance capacity is increased or decreased, IOPS will be automatically adjusted upwards or downwards accordingly. The maximum available IOPS for a given capacity is defined in Filestore documentation.",
-          "type": "boolean"
-        },
-        "iopsPerGb": {
-          "$ref": "IOPSPerGB",
-          "description": "Provision IOPS dynamically based on the capacity of the instance. Provisioned read IOPS will be calculated by by multiplying the capacity of the instance in GiB by the `iops_per_gb` value, and rounding to the nearest 1000. For example, for a 1 TiB instance with an `iops_per_gb` value of 15, the provisioned read IOPS would be `1024 * 15 = 15,360`, rounded to `15,000`. If the calculated value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error."
-        }
-      },
-      "type": "object"
-    },
-    "PerformanceLimits": {
-      "description": "The enforced performance limits, calculated from the instance's performance configuration.",
-      "id": "PerformanceLimits",
-      "properties": {
-        "maxReadIops": {
-          "description": "Output only. The max read IOPS.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "maxReadThroughput": {
-          "description": "Output only. The max read throughput.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "maxWriteIops": {
-          "description": "Output only. The max write IOPS.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "maxWriteThroughput": {
-          "description": "Output only. The max write throughput.",
-          "format": "int64",
           "readOnly": true,
           "type": "string"
         }
