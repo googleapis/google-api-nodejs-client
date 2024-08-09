@@ -166,7 +166,7 @@ export namespace essentialcontacts_v1 {
      */
     validateTime?: string | null;
     /**
-     * The validity of the contact. A contact is considered valid if it is the correct recipient for notifications for a particular resource.
+     * Output only. The validity of the contact. A contact is considered valid if it is the correct recipient for notifications for a particular resource.
      */
     validationState?: string | null;
   }
