@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240719",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -1084,6 +1084,10 @@
           "description": "The amount of loyalty points earned on a purchase.",
           "format": "int64",
           "type": "string"
+        },
+        "memberPriceEffectiveDate": {
+          "$ref": "Interval",
+          "description": "A date range during which the item is eligible for member price. If not specified, the member price is always applicable. The date range is represented by a pair of ISO 8601 dates separated by a space, comma, or slash."
         },
         "price": {
           "$ref": "Price",
