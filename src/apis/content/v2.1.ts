@@ -3438,6 +3438,10 @@ export namespace content_v2_1 {
      */
     loyaltyPoints?: string | null;
     /**
+     * Optional. A date range during which the item is eligible for member price. If not specified, the member price is always applicable. The date range is represented by a pair of ISO 8601 dates separated by a space, comma, or slash.
+     */
+    memberPriceEffectiveDate?: string | null;
+    /**
      * Optional. The price for members of the given tier (instant discount price). Must be smaller or equal to the regular price.
      */
     price?: Schema$Price;
@@ -6349,7 +6353,7 @@ export namespace content_v2_1 {
      */
     sizeType?: string | null;
     /**
-     * The source of the offer, that is, how the offer was created. Acceptable values are: - "`api`" - "`crawl`" - "`feed`"
+     * Output only. The source of the offer, that is, how the offer was created. Acceptable values are: - "`api`" - "`crawl`" - "`feed`"
      */
     source?: string | null;
     /**
