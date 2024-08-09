@@ -173,11 +173,11 @@ export namespace pollen_v1 {
      */
     date?: Schema$Date;
     /**
-     * This list will include (up to) 15 pollen species affecting the location specified in the request.
+     * This list will include up to 15 pollen species affecting the location specified in the request.
      */
     plantInfo?: Schema$PlantInfo[];
     /**
-     * This list will include (up to) three pollen types (grass, weed, tree) affecting the location specified in the request.
+     * This list will include up to three pollen types (GRASS, WEED, TREE) affecting the location specified in the request.
      */
     pollenTypeInfo?: Schema$PollenTypeInfo[];
   }
@@ -434,7 +434,7 @@ export namespace pollen_v1 {
      */
     days?: number;
     /**
-     * Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. Default value is "en".
+     * Optional. Allows the client to choose the language for the response. If data cannot be provided for that language, the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. The default value is "en".
      */
     languageCode?: string;
     /**
@@ -446,15 +446,15 @@ export namespace pollen_v1 {
      */
     'location.longitude'?: number;
     /**
-     * Optional. The maximum number of daily info records to return per page. The default and max value is 5 (5 days of data).
+     * Optional. The maximum number of daily info records to return per page. The default and max value is 5, indicating 5 days of data.
      */
     pageSize?: number;
     /**
-     * Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token all other request parameters provided must match the previous call that provided the page token.
+     * Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token, all other request parameters provided must match the previous call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos.
+     * Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. The default value is "true".
      */
     plantsDescription?: boolean;
   }
