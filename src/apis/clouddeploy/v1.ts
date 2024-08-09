@@ -774,6 +774,27 @@ export namespace clouddeploy_v1 {
     updateTime?: string | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/customtargettype_notification" Platform Log event that describes the failure to send a custom target type status change Pub/Sub notification.
+   */
+  export interface Schema$CustomTargetTypeNotificationEvent {
+    /**
+     * The name of the `CustomTargetType`.
+     */
+    customTargetType?: string | null;
+    /**
+     * Unique identifier of the `CustomTargetType`.
+     */
+    customTargetTypeUid?: string | null;
+    /**
+     * Debug message for when a notification fails to send.
+     */
+    message?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -967,6 +988,27 @@ export namespace clouddeploy_v1 {
     values?: {[key: string]: string} | null;
   }
   /**
+   * Payload proto for "clouddeploy.googleapis.com/deploypolicy_notification". Platform Log event that describes the failure to send a pub/sub notification when there is a DeployPolicy status change.
+   */
+  export interface Schema$DeployPolicyNotificationEvent {
+    /**
+     * The name of the `DeployPolicy`.
+     */
+    deployPolicy?: string | null;
+    /**
+     * Unique identifier of the deploy policy.
+     */
+    deployPolicyUid?: string | null;
+    /**
+     * Debug message for when a deploy policy fails to send a pub/sub notification.
+     */
+    message?: string | null;
+    /**
+     * Type of this notification, e.g. for a Pub/Sub failure.
+     */
+    type?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1040,6 +1082,10 @@ export namespace clouddeploy_v1 {
      * Required. Name of the Gateway API HTTPRoute.
      */
     httpRoute?: string | null;
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment and Service resources. This label must already be present in both resources.
+     */
+    podSelectorLabel?: string | null;
     /**
      * Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.
      */
@@ -1753,7 +1799,7 @@ export namespace clouddeploy_v1 {
     wait?: string | null;
   }
   /**
-   * `PromoteRelease` rule will automatically promote a release from the current target to a specified target.
+   * The `PromoteRelease` rule will automatically promote a release from the current target to a specified target.
    */
   export interface Schema$PromoteReleaseRule {
     /**
@@ -2334,6 +2380,10 @@ export namespace clouddeploy_v1 {
      * Optional. Whether to disable Pod overprovisioning. If Pod overprovisioning is disabled then Cloud Deploy will limit the number of total Pods used for the deployment strategy to the number of Pods the Deployment has on the cluster.
      */
     disablePodOverprovisioning?: boolean | null;
+    /**
+     * Optional. The label to use when selecting Pods for the Deployment resource. This label must already be present in the Deployment.
+     */
+    podSelectorLabel?: string | null;
     /**
      * Required. Name of the Kubernetes Service.
      */
@@ -3726,7 +3776,7 @@ export namespace clouddeploy_v1 {
      */
     customTargetTypeId?: string;
     /**
-     * Required. The parent collection in which the `CustomTargetType` should be created. Format should be `projects/{project_id\}/locations/{location_name\}`.
+     * Required. The parent collection in which the `CustomTargetType` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
      */
     parent?: string;
     /**
@@ -3822,7 +3872,7 @@ export namespace clouddeploy_v1 {
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the `CustomTargetType` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the update in the `CustomTargetType` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
      */
     updateMask?: string;
     /**
@@ -4691,7 +4741,7 @@ export namespace clouddeploy_v1 {
      */
     deliveryPipelineId?: string;
     /**
-     * Required. The parent collection in which the `DeliveryPipeline` should be created. Format should be `projects/{project_id\}/locations/{location_name\}`.
+     * Required. The parent collection in which the `DeliveryPipeline` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
      */
     parent?: string;
     /**
@@ -4723,7 +4773,7 @@ export namespace clouddeploy_v1 {
      */
     force?: boolean;
     /**
-     * Required. The name of the `DeliveryPipeline` to delete. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     * Required. The name of the `DeliveryPipeline` to delete. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     name?: string;
     /**
@@ -4791,7 +4841,7 @@ export namespace clouddeploy_v1 {
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the `DeliveryPipeline` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the update in the `DeliveryPipeline` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
      */
     updateMask?: string;
     /**
@@ -4807,7 +4857,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Rollbacktarget
     extends StandardParameters {
     /**
-     * Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     * Required. The `DeliveryPipeline` for which the rollback `Rollout` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     name?: string;
 
@@ -5621,7 +5671,7 @@ export namespace clouddeploy_v1 {
      */
     automationId?: string;
     /**
-     * Required. The parent collection in which the `Automation` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     * Required. The parent collection in which the `Automation` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     parent?: string;
     /**
@@ -5649,7 +5699,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string;
     /**
-     * Required. The name of the `Automation` to delete. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/automations/{automation_name\}`.
+     * Required. The name of the `Automation` to delete. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/automations/{automation_name\}`.
      */
     name?: string;
     /**
@@ -5706,7 +5756,7 @@ export namespace clouddeploy_v1 {
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the `Automation` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the update in the `Automation` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
      */
     updateMask?: string;
     /**
@@ -6112,7 +6162,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The parent collection in which the `Release` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
+     * Required. The parent collection in which the `Release` is created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     parent?: string;
     /**
@@ -6948,7 +6998,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create
     extends StandardParameters {
     /**
-     * Required. The parent collection in which the `Rollout` should be created. Format should be `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
+     * Required. The parent collection in which the `Rollout` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
      */
     parent?: string;
     /**
@@ -8469,7 +8519,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$Create
     extends StandardParameters {
     /**
-     * Required. The parent collection in which the `Target` should be created. Format should be `projects/{project_id\}/locations/{location_name\}`.
+     * Required. The parent collection in which the `Target` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
      */
     parent?: string;
     /**
@@ -8501,7 +8551,7 @@ export namespace clouddeploy_v1 {
      */
     etag?: string;
     /**
-     * Required. The name of the `Target` to delete. Format should be `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
+     * Required. The name of the `Target` to delete. The format is `projects/{project_id\}/locations/{location_name\}/targets/{target_name\}`.
      */
     name?: string;
     /**
@@ -8569,7 +8619,7 @@ export namespace clouddeploy_v1 {
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Target resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten by the update in the `Target` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
      */
     updateMask?: string;
     /**
