@@ -463,7 +463,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
+                              "description": "Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -500,7 +500,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "description": "Required. The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -537,7 +537,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "description": "Required. The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -574,7 +574,7 @@
                               "type": "string"
                             },
                             "name": {
-                              "description": "The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
+                              "description": "Required. The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.",
                               "location": "path",
                               "pattern": "^projects/[^/]+$",
                               "required": true,
@@ -669,7 +669,7 @@
                                   "type": "string"
                                 },
                                 "name": {
-                                  "description": "The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
+                                  "description": "Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+$",
                                   "required": true,
@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240623",
+  "revision": "20240721",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1119,7 +1119,8 @@
             "METRIC_LABEL",
             "USER_METADATA_LABEL",
             "SYSTEM_METADATA_LABEL",
-            "GROUP"
+            "GROUP",
+            "VALUE_ONLY"
           ],
           "enumDescriptions": [
             "Filter type is unspecified. This is not valid in a well-formed request.",
@@ -1127,20 +1128,47 @@
             "Filter on a metrics label value",
             "Filter on a user metadata label value",
             "Filter on a system metadata label value",
-            "Filter on a group id"
+            "Filter on a group id",
+            "Filter that only contains a value. The label_key field must be unset for filters of this type."
           ],
           "type": "string"
         },
         "labelKey": {
-          "description": "Required. The key for the label",
+          "description": "Optional. The key for the label. This must be omitted if the filter_type is VALUE_ONLY but is required otherwise.",
           "type": "string"
         },
+        "stringArray": {
+          "$ref": "StringArray",
+          "description": "A list of possible string values for the filter"
+        },
+        "stringArrayValue": {
+          "$ref": "StringArray",
+          "description": "An array of variable-length string values. If this field is set, value_type must be set to STRING_ARRAY or VALUE_TYPE_UNSPECIFIED"
+        },
         "stringValue": {
-          "description": "A variable-length string value.",
+          "description": "A variable-length string value. If this field is set, value_type must be set to STRING or VALUE_TYPE_UNSPECIFIED",
           "type": "string"
         },
         "templateVariable": {
           "description": "The placeholder text that can be referenced in a filter string or MQL query. If omitted, the dashboard filter will be applied to all relevant widgets in the dashboard.",
+          "type": "string"
+        },
+        "timeSeriesQuery": {
+          "$ref": "TimeSeriesQuery",
+          "description": "A query to run to fetch possible values for the filter. Only OpsAnalyticsQueries are supported"
+        },
+        "valueType": {
+          "description": "The type of the filter value. If value_type is not provided, it will be inferred from the default_value. If neither value_type nor default_value is provided, value_type will be set to STRING by default.",
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            "STRING",
+            "STRING_ARRAY"
+          ],
+          "enumDescriptions": [
+            "Value type is unspecified",
+            "String type",
+            "String array type"
+          ],
           "type": "string"
         }
       },
@@ -1356,7 +1384,9 @@
             "CLOUD_SQL_FAILOVER",
             "CLOUD_SQL_START_STOP",
             "CLOUD_SQL_STORAGE",
-            "UPTIME_CHECK_FAILURE"
+            "UPTIME_CHECK_FAILURE",
+            "CLOUD_ALERTING_ALERT",
+            "SERVICE_HEALTH_INCIDENT"
           ],
           "enumDescriptions": [
             "No event type specified.",
@@ -1378,7 +1408,9 @@
             "Failover of a Cloud SQL instance.",
             "Start/stop of a Cloud SQL instance.",
             "Storage event for a Cloud SQL instance.",
-            "Failure of a Cloud Monitoring uptime check."
+            "Failure of a Cloud Monitoring uptime check.",
+            "Alerts from Cloud Alerting",
+            "Incidents from Service Health"
           ],
           "type": "string"
         },
@@ -2293,6 +2325,20 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StringArray": {
+      "description": "An array of strings",
+      "id": "StringArray",
+      "properties": {
+        "values": {
+          "description": "The values of the array",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
