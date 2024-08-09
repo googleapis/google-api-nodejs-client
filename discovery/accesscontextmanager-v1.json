@@ -1290,7 +1290,7 @@
       }
     }
   },
-  "revision": "20240623",
+  "revision": "20240716",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1332,6 +1332,7 @@
       "properties": {
         "etag": {
           "description": "Output only. An opaque identifier for the current version of the `AccessPolicy`. This will always be a strongly validated etag, meaning that two Access Policies will be identical if and only if their etags are identical. Clients should not expect this to be in any specific format.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {

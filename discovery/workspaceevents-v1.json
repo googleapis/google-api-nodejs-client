@@ -6,25 +6,25 @@
           "description": "Private Service: https://www.googleapis.com/auth/chat.bot"
         },
         "https://www.googleapis.com/auth/chat.memberships": {
-          "description": "View, add, update, and remove members from conversations in Google Chat"
+          "description": "See, add, update, and remove members from conversations and spaces in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.memberships.readonly": {
           "description": "View members in Google Chat conversations."
         },
         "https://www.googleapis.com/auth/chat.messages": {
-          "description": "View, compose, send, update, and delete messages, and add, view, and delete reactions to messages."
+          "description": "See, compose, send, update, and delete messages and their associated attachments, and add, see, and delete reactions to messages."
         },
         "https://www.googleapis.com/auth/chat.messages.reactions": {
-          "description": "View, add, and delete reactions to messages in Google Chat"
+          "description": "See, add, and delete reactions to messages in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.messages.reactions.readonly": {
           "description": "View reactions to messages in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.messages.readonly": {
-          "description": "View messages and reactions in Google Chat"
+          "description": "See messages and their associated reactions and attachments in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.spaces": {
-          "description": "Create conversations and spaces and see or edit metadata (including history settings and access settings) in Google Chat"
+          "description": "Create conversations and spaces and see or update metadata (including history settings and access settings) in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.spaces.readonly": {
           "description": "View chat and spaces in Google Chat"
@@ -424,7 +424,7 @@
       }
     }
   },
-  "revision": "20240505",
+  "revision": "20240723",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "ListSubscriptionsResponse": {
