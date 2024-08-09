@@ -350,9 +350,6 @@ export namespace redis_v1 {
      * Required. Type feed to be ingested into condor
      */
     feedType?: string | null;
-    /**
-     * More feed data would be added in subsequent CLs
-     */
     observabilityMetricData?: Schema$ObservabilityMetricData;
     recommendationSignalData?: Schema$DatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$DatabaseResourceHealthSignalData;
