@@ -537,10 +537,6 @@ export namespace ondemandscanning_v1beta1 {
      * The status of an SBOM generation.
      */
     sbomStatus?: Schema$SBOMStatus;
-    /**
-     * The status of an vulnerability attestation generation.
-     */
-    vulnerabilityAttestation?: Schema$VulnerabilityAttestation;
   }
   /**
    * Deprecated. Prefer to use a regular Occurrence, and populate the Envelope at the top level of the Occurrence.
@@ -1648,23 +1644,6 @@ export namespace ondemandscanning_v1beta1 {
      * The vulnerability identifier for this Assessment. Will hold one of common identifiers e.g. CVE, GHSA etc.
      */
     vulnerabilityId?: string | null;
-  }
-  /**
-   * The status of an vulnerability attestation generation.
-   */
-  export interface Schema$VulnerabilityAttestation {
-    /**
-     * If failure, the error reason for why the attestation generation failed.
-     */
-    error?: string | null;
-    /**
-     * The last time we attempted to generate an attestation.
-     */
-    lastAttemptTime?: string | null;
-    /**
-     * The success/failure state of the latest attestation attempt.
-     */
-    state?: string | null;
   }
   /**
    * An occurrence of a severity vulnerability on a resource.
