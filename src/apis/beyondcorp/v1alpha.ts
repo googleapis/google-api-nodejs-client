@@ -5146,7 +5146,15 @@ export namespace beyondcorp_v1alpha {
   export interface Params$Resource$Organizations$Locations$Insights$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     * Optional. Aggregation type. The default is 'DAILY'.
+     */
+    aggregation?: string;
+    /**
+     * Optional. Ending time for the duration for which insights are to be pulled. The default is the current time.
+     */
+    endTime?: string;
+    /**
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, caa, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -5165,6 +5173,10 @@ export namespace beyondcorp_v1alpha {
      * Required. The resource name of InsightMetadata using the form: `organizations/{organization_id\}/locations/{location\}` `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
+    /**
+     * Optional. Starting time for the duration for which insights are to be pulled. The default is 7 days before the current time.
+     */
+    startTime?: string;
     /**
      * Required. List only metadata or full data.
      */
@@ -13170,7 +13182,15 @@ export namespace beyondcorp_v1alpha {
   export interface Params$Resource$Projects$Locations$Insights$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
+     * Optional. Aggregation type. The default is 'DAILY'.
+     */
+    aggregation?: string;
+    /**
+     * Optional. Ending time for the duration for which insights are to be pulled. The default is the current time.
+     */
+    endTime?: string;
+    /**
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `type` * `category` * `subCategory` Examples: * "category = application AND type = count" * "category = application AND subCategory = iap" * "type = status" Allowed values: * type: [count, latency, status, list] * category: [application, device, request, security] * subCategory: [iap, caa, webprotect] NOTE: Only equality based comparison is allowed. Only `AND` conjunction is allowed. NOTE: The 'AND' in the filter field needs to be in capital letters only. NOTE: Just filtering on `subCategory` is not allowed. It should be passed in with the parent `category` too. (These expressions are based on the filter language described at https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -13189,6 +13209,10 @@ export namespace beyondcorp_v1alpha {
      * Required. The resource name of InsightMetadata using the form: `organizations/{organization_id\}/locations/{location\}` `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
+    /**
+     * Optional. Starting time for the duration for which insights are to be pulled. The default is 7 days before the current time.
+     */
+    startTime?: string;
     /**
      * Required. List only metadata or full data.
      */
