@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240725",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1141,7 +1141,8 @@
             "LOAD_BALANCER_HAS_NO_PROXY_SUBNET",
             "CLOUD_NAT_NO_ADDRESSES",
             "ROUTING_LOOP",
-            "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE"
+            "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE",
+            "LOAD_BALANCER_BACKEND_INVALID_NETWORK"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1208,7 +1209,8 @@
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
             "Packet sent to Cloud Nat without active NAT IPs.",
             "Packet is stuck in a routing loop.",
-            "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces."
+            "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces.",
+            "Packet is dropped due to a load balancer backend instance not having a network interface in the network expected by the load balancer."
           ],
           "type": "string"
         },
@@ -1434,7 +1436,7 @@
       "type": "object"
     },
     "FirewallInfo": {
-      "description": "For display only. Metadata associated with a VPC firewall rule, an implied VPC firewall rule, or a hierarchical firewall policy rule.",
+      "description": "For display only. Metadata associated with a VPC firewall rule, an implied VPC firewall rule, or a firewall policy rule.",
       "id": "FirewallInfo",
       "properties": {
         "action": {
@@ -1446,7 +1448,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "The display name of the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.",
+          "description": "The display name of the firewall rule. This field might be empty for firewall policy rules.",
           "type": "string"
         },
         "firewallRuleType": {
@@ -1480,7 +1482,11 @@
           "type": "string"
         },
         "policy": {
-          "description": "The hierarchical firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules.",
+          "description": "The name of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.",
+          "type": "string"
+        },
+        "policyUri": {
+          "description": "The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.",
           "type": "string"
         },
         "priority": {
@@ -1496,14 +1502,14 @@
           "type": "array"
         },
         "targetTags": {
-          "description": "The target tags defined by the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.",
+          "description": "The target tags defined by the VPC firewall rule. This field is not applicable to firewall policy rules.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "uri": {
-          "description": "The URI of the VPC firewall rule. This field is not applicable to implied firewall rules or hierarchical firewall policy rules.",
+          "description": "The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.",
           "type": "string"
         }
       },
@@ -1700,6 +1706,10 @@
         },
         "networkUri": {
           "description": "URI of a Compute Engine network.",
+          "type": "string"
+        },
+        "pscNetworkAttachmentUri": {
+          "description": "URI of the PSC network attachment the NIC is attached to (if relevant).",
           "type": "string"
         },
         "serviceAccount": {
