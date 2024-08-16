@@ -221,7 +221,7 @@ export namespace cloudfunctions_v1 {
      */
     buildName?: string | null;
     /**
-     * Optional. A service account the user provides for use with Cloud Build.
+     * A service account the user provides for use with Cloud Build. The format of this field is `projects/{projectId\}/serviceAccounts/{serviceAccountEmail\}`.
      */
     buildServiceAccount?: string | null;
     /**
@@ -447,6 +447,10 @@ export namespace cloudfunctions_v1 {
      */
     apiVersion?: string | null;
     /**
+     * The build name of the function for create and update operations.
+     */
+    buildName?: string | null;
+    /**
      * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
@@ -551,6 +555,10 @@ export namespace cloudfunctions_v1 {
      */
     apiVersion?: string | null;
     /**
+     * The build name of the function for create and update operations.
+     */
+    buildName?: string | null;
+    /**
      * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
@@ -654,6 +662,10 @@ export namespace cloudfunctions_v1 {
      * API version used to start the operation.
      */
     apiVersion?: string | null;
+    /**
+     * The build name of the function for create and update operations.
+     */
+    buildName?: string | null;
     /**
      * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
@@ -995,7 +1007,7 @@ export namespace cloudfunctions_v1 {
      */
     deployedUrl?: string | null;
     /**
-     * The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats: To refer to a specific commit: `https://source.developers.google.com/projects/x/repos/x/revisions/x/paths/x` To refer to a moveable alias (branch): `https://source.developers.google.com/projects/x/repos/x/moveable-aliases/x/paths/x` In particular, to refer to HEAD use `master` moveable alias. To refer to a specific fixed alias (tag): `https://source.developers.google.com/projects/x/repos/x/fixed-aliases/x/paths/x` You may omit `paths/x` if you want to use the main directory.
+     * The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats: To refer to a specific commit: `https://source.developers.google.com/projects/x/repos/x/revisions/x/paths/x` To refer to a moveable alias (branch): `https://source.developers.google.com/projects/x/repos/x/moveable-aliases/x/paths/x` In particular, to refer to HEAD use `master` moveable alias. To refer to a specific fixed alias (tag): `https://source.developers.google.com/projects/x/repos/x/fixed-aliases/x/paths/x` You may omit `paths/x` if you want to use the main directory. The function response may add an empty `/paths/` to the URL.
      */
     url?: string | null;
   }
