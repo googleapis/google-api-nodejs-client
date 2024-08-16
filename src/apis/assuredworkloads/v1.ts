@@ -606,6 +606,10 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions {
     /**
+     * Optional. Allow partner to view support case details for an AXT log
+     */
+    accessTransparencyLogsSupportCaseViewer?: boolean | null;
+    /**
      * Optional. Allow partner to view violation alerts.
      */
     assuredWorkloadsMonitoring?: boolean | null;
