@@ -315,6 +315,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field in Feature proto will be populated. If set to false, the request will fail when some regions are unreachable.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta/{+name}",
@@ -392,6 +397,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "returnPartialSuccess": {
+                      "description": "Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field in Feature proto will be populated. If set to false, the request will fail when some regions are unreachable.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta/{+parent}/features",
@@ -2101,7 +2111,7 @@
       }
     }
   },
-  "revision": "20240519",
+  "revision": "20240809",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2617,6 +2627,44 @@
       },
       "type": "object"
     },
+    "CompliancePostureConfig": {
+      "description": "CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.",
+      "id": "CompliancePostureConfig",
+      "properties": {
+        "complianceStandards": {
+          "description": "List of enabled compliance standards.",
+          "items": {
+            "$ref": "ComplianceStandard"
+          },
+          "type": "array"
+        },
+        "mode": {
+          "description": "Defines the enablement mode for Compliance Posture.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value not specified.",
+            "Disables Compliance Posture features on the cluster.",
+            "Enables Compliance Posture features on the cluster."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComplianceStandard": {
+      "id": "ComplianceStandard",
+      "properties": {
+        "standard": {
+          "description": "Name of the compliance standard.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConfigManagementBinauthzConfig": {
       "description": "Configuration for Binauthz",
       "id": "ConfigManagementBinauthzConfig",
@@ -2780,8 +2828,44 @@
           ],
           "type": "string"
         },
+        "otelCollector": {
+          "description": "Deployment state of otel-collector",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
+          ],
+          "type": "string"
+        },
         "reconcilerManager": {
           "description": "Deployment state of reconciler-manager pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors",
+            "Deployment is installing or terminating"
+          ],
+          "type": "string"
+        },
+        "resourceGroupControllerManager": {
+          "description": "Deployment state of resource-group-controller-manager",
           "enum": [
             "DEPLOYMENT_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -2933,7 +3017,7 @@
       "id": "ConfigManagementConfigSyncVersion",
       "properties": {
         "admissionWebhook": {
-          "description": "Version of the deployed admission_webhook pod",
+          "description": "Version of the deployed admission-webhook pod",
           "type": "string"
         },
         "gitSync": {
@@ -2948,8 +3032,16 @@
           "description": "Version of the deployed monitor pod",
           "type": "string"
         },
+        "otelCollector": {
+          "description": "Version of the deployed otel-collector pod",
+          "type": "string"
+        },
         "reconcilerManager": {
           "description": "Version of the deployed reconciler-manager pod",
+          "type": "string"
+        },
+        "resourceGroupControllerManager": {
+          "description": "Version of the deployed resource-group-controller-manager pod",
           "type": "string"
         },
         "rootReconciler": {
@@ -3246,7 +3338,7 @@
         },
         "policyController": {
           "$ref": "ConfigManagementPolicyController",
-          "description": "Policy Controller configuration for the cluster."
+          "description": "Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead."
         },
         "version": {
           "description": "Version of ACM installed.",
@@ -3599,6 +3691,10 @@
           "$ref": "BinaryAuthorizationConfig",
           "description": "Optional. Enable/Disable binary authorization features for the cluster."
         },
+        "compliancePostureConfig": {
+          "$ref": "CompliancePostureConfig",
+          "description": "Optional. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask."
+        },
         "securityPostureConfig": {
           "$ref": "SecurityPostureConfig",
           "description": "Enable/Disable Security Posture features for the cluster."
@@ -3721,6 +3817,14 @@
           "$ref": "CommonFeatureState",
           "description": "Output only. The Hub-wide Feature state.",
           "readOnly": true
+        },
+        "unreachable": {
+          "description": "Output only. List of locations that could not be reached while fetching this feature.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. When the Feature resource was last updated.",
@@ -6330,7 +6434,7 @@
           "type": "string"
         },
         "management": {
-          "description": "Enables automatic Service Mesh management.",
+          "description": "Optional. Enables automatic Service Mesh management.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",
