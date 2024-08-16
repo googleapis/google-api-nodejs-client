@@ -127,6 +127,13 @@ export namespace firebaseappdistribution_v1alpha {
   }
 
   /**
+   * Point for describing bounding boxes tap locations Top left is 0,0
+   */
+  export interface Schema$AndroidxCrawlerOutputPoint {
+    xCoordinate?: number | null;
+    yCoordinate?: number | null;
+  }
+  /**
    * App bundle test certificate
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaAabCertificate {
@@ -154,12 +161,12 @@ export namespace firebaseappdistribution_v1alpha {
     /**
      * Required. Steps to be accomplished by the AI
      */
-    steps?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep[];
+    steps?: Schema$GoogleFirebaseAppdistroV1alphaAiStep[];
   }
   /**
    * A step to be accomplished by the AI
    */
-  export interface Schema$GoogleFirebaseAppdistroV1alphaAiInstructionsStep {
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiStep {
     /**
      * An assertion to be checked by the AI
      */
@@ -168,6 +175,27 @@ export namespace firebaseappdistribution_v1alpha {
      * A goal to be accomplished by the AI
      */
     goal?: string | null;
+  }
+  /**
+   * Captures the results of an AiStep
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAiStepResult {
+    /**
+     * Output only. Details for an assertion step.
+     */
+    assertionDetails?: Schema$GoogleFirebaseAppdistroV1alphaAssertionDetails;
+    /**
+     * Output only. Details for a goal step.
+     */
+    goalDetails?: Schema$GoogleFirebaseAppdistroV1alphaGoalDetails;
+    /**
+     * Output only. The current state of the step
+     */
+    state?: string | null;
+    /**
+     * Required. The step performed by the AI
+     */
+    step?: Schema$GoogleFirebaseAppdistroV1alphaAiStep;
   }
   export interface Schema$GoogleFirebaseAppdistroV1alphaApp {
     /**
@@ -212,6 +240,23 @@ export namespace firebaseappdistribution_v1alpha {
      */
     stackTrace?: string | null;
   }
+  /**
+   * Details for an assertion step.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaAssertionDetails {
+    /**
+     * Output only. An explanation justifying the assertion result.
+     */
+    explanation?: string | null;
+    /**
+     * Output only. The result of the assertion.
+     */
+    result?: boolean | null;
+    /**
+     * Output only. The screenshot used in the context of this assertion.
+     */
+    screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
+  }
   export interface Schema$GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest {
     /**
      * The actual release notes body from the user
@@ -220,9 +265,26 @@ export namespace firebaseappdistribution_v1alpha {
   }
   export interface Schema$GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponse {}
   /**
+   * A high level action taken by the AI on the device, potentially involving multiple taps, text entries, waits, etc.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceAction {
+    /**
+     * Output only. A short description of the high level action taken by the AI agent.
+     */
+    description?: string | null;
+    /**
+     * Output only. The interactions made with the device as part of this higher level action taken by the agent, such as taps, text entries, waits, etc.
+     */
+    deviceInteractions?: Schema$GoogleFirebaseAppdistroV1alphaDeviceInteraction[];
+  }
+  /**
    * The results of running an automated test on a particular device.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceExecution {
+    /**
+     * Output only. Results of the AI steps if passed in
+     */
+    aiStepResults?: Schema$GoogleFirebaseAppdistroV1alphaAiStepResult[];
     /**
      * Output only. An app crash, if any occurred during the test.
      */
@@ -263,6 +325,53 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. A URI to a video of the test run.
      */
     videoUri?: string | null;
+  }
+  /**
+   * An interaction with the device, such as a tap, text entry, wait, etc.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteraction {
+    /**
+     * Output only. The screenshot used in the context of this action. The screen may have changed before the action was actually taken.
+     */
+    screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
+    /**
+     * Output only. A swipe action.
+     */
+    swipe?: Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe;
+    /**
+     * Output only. A tap action.
+     */
+    tap?: Schema$AndroidxCrawlerOutputPoint;
+    /**
+     * Output only. Text entered for a text entry action.
+     */
+    textInput?: string | null;
+    /**
+     * Output only. A wait action.
+     */
+    wait?: Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionWait;
+  }
+  /**
+   * A swipe action.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe {
+    /**
+     * Output only. The end point of the swipe.
+     */
+    end?: Schema$AndroidxCrawlerOutputPoint;
+    /**
+     * Output only. The start point of the swipe.
+     */
+    start?: Schema$AndroidxCrawlerOutputPoint;
+  }
+  /**
+   * A wait action.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionWait {
+    /**
+     * Output only. The duration of the wait.
+     */
+    duration?: string | null;
   }
   export interface Schema$GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest {
     /**
@@ -318,6 +427,32 @@ export namespace firebaseappdistribution_v1alpha {
      * The status of the upload
      */
     status?: string | null;
+  }
+  /**
+   * An action taken by the AI agent while attempting to accomplish a goal.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaGoalAction {
+    /**
+     * Output only. A high level action taken by the AI on the device.
+     */
+    deviceAction?: Schema$GoogleFirebaseAppdistroV1alphaDeviceAction;
+    /**
+     * Output only. An explanation justifying why the action was taken.
+     */
+    explanation?: string | null;
+    /**
+     * Output only. An action taken by the AI to end the goal.
+     */
+    terminalAction?: Schema$GoogleFirebaseAppdistroV1alphaTerminalAction;
+  }
+  /**
+   * Details for a goal step.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaGoalDetails {
+    /**
+     * Output only. The actions taken by the AI while attempting to accomplish the goal.
+     */
+    goalActions?: Schema$GoogleFirebaseAppdistroV1alphaGoalAction[];
   }
   export interface Schema$GoogleFirebaseAppdistroV1alphaJwt {
     token?: string | null;
@@ -427,7 +562,7 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaReleaseTest {
     /**
-     * Optional. Input only. Instructions for AI driven test. Input only.
+     * Optional. Instructions for AI driven test.
      */
     aiInstructions?: Schema$GoogleFirebaseAppdistroV1alphaAiInstructions;
     /**
@@ -480,6 +615,36 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. Whether the main activity crawl timed out.
      */
     mainActivityCrawlTimedOut?: boolean | null;
+  }
+  /**
+   * A device screenshot taken during a test.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaScreenshot {
+    /**
+     * Output only. The height of the screenshot, in pixels.
+     */
+    height?: number | null;
+    /**
+     * Output only. The URI of the screenshot.
+     */
+    uri?: string | null;
+    /**
+     * Output only. The width of the screenshot, in pixels.
+     */
+    width?: number | null;
+  }
+  /**
+   * An action taken by the AI to end the goal.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaTerminalAction {
+    /**
+     * Output only. The reason why this goal was ended.
+     */
+    reason?: string | null;
+    /**
+     * Output only. The screenshot used in the context of this terminal action.
+     */
+    screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
   }
   /**
    * Configuration for automated tests
