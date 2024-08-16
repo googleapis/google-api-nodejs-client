@@ -831,19 +831,6 @@ export namespace iam_v1 {
     verb?: string | null;
   }
   /**
-   * The service account key patch request.
-   */
-  export interface Schema$PatchServiceAccountKeyRequest {
-    /**
-     * Required. The service account key to update.
-     */
-    serviceAccountKey?: Schema$ServiceAccountKey;
-    /**
-     * Required. The update mask to apply to the service account key. Only the following fields are eligible for patching: - contact - description
-     */
-    updateMask?: string | null;
-  }
-  /**
    * The service account patch request. You can patch only the `display_name` and `description` fields. You must use the `update_mask` field to specify which of these fields you want to patch. Only the fields specified in the request are guaranteed to be returned in the response. Other fields may be empty in the response.
    */
   export interface Schema$PatchServiceAccountRequest {
@@ -954,7 +941,7 @@ export namespace iam_v1 {
      */
     fullResourceName?: string | null;
     /**
-     * Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 1,000.
+     * Optional limit on the number of roles to include in the response. The default is 300, and the maximum is 2,000.
      */
     pageSize?: number | null;
     /**
@@ -1106,18 +1093,6 @@ export namespace iam_v1 {
    * Represents a service account key. A service account has two sets of key-pairs: user-managed, and system-managed. User-managed key-pairs can be created and deleted by users. Users are responsible for rotating these keys periodically to ensure security of their service accounts. Users retain the private key of these key-pairs, and Google retains ONLY the public key. System-managed keys are automatically rotated by Google, and are used for signing for a maximum of two weeks. The rotation process is probabilistic, and usage of the new key will gradually ramp up and down over the key's lifetime. If you cache the public key set for a service account, we recommend that you update the cache every 15 minutes. User-managed keys can be added and removed at any time, so it is important to update the cache frequently. For Google-managed keys, Google will publish a key at least 6 hours before it is first used for signing and will keep publishing it for at least 6 hours after it was last used for signing. Public keys for all service accounts are also published at the OAuth2 Service Account API.
    */
   export interface Schema$ServiceAccountKey {
-    /**
-     * Optional. A user provided email address as the point of contact for this service account key. Must be an email address. Limit 64 characters.
-     */
-    contact?: string | null;
-    /**
-     * Output only. The cloud identity that created this service account key. Populated automatically when the key is created and not editable by the user.
-     */
-    creator?: string | null;
-    /**
-     * Optional. A user provided description of this service account key.
-     */
-    description?: string | null;
     /**
      * The key status.
      */
@@ -4567,7 +4542,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Deletes a custom Role. When you delete a custom role, the following changes occur immediately: * You cannot bind a principal to the custom role in an IAM Policy. * Existing bindings to the custom role are not changed, but they have no effect. * By default, the response from ListRoles does not include the custom role. You have 7 days to undelete the custom role. After 7 days, the following changes occur: * The custom role is permanently deleted and cannot be recovered. * If an IAM policy contains a binding to the custom role, the binding is permanently removed.
+     * Deletes a custom Role. When you delete a custom role, the following changes occur immediately: * You cannot bind a principal to the custom role in an IAM Policy. * Existing bindings to the custom role are not changed, but they have no effect. * By default, the response from ListRoles does not include the custom role. A deleted custom role still counts toward the [custom role limit](https://cloud.google.com/iam/help/limits) until it is permanently deleted. You have 7 days to undelete the custom role. After 7 days, the following changes occur: * The custom role is permanently deleted and cannot be recovered. * If an IAM policy contains a binding to the custom role, the binding is permanently removed. * The custom role no longer counts toward your custom role limit.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8906,7 +8881,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Deletes a custom Role. When you delete a custom role, the following changes occur immediately: * You cannot bind a principal to the custom role in an IAM Policy. * Existing bindings to the custom role are not changed, but they have no effect. * By default, the response from ListRoles does not include the custom role. You have 7 days to undelete the custom role. After 7 days, the following changes occur: * The custom role is permanently deleted and cannot be recovered. * If an IAM policy contains a binding to the custom role, the binding is permanently removed.
+     * Deletes a custom Role. When you delete a custom role, the following changes occur immediately: * You cannot bind a principal to the custom role in an IAM Policy. * Existing bindings to the custom role are not changed, but they have no effect. * By default, the response from ListRoles does not include the custom role. A deleted custom role still counts toward the [custom role limit](https://cloud.google.com/iam/help/limits) until it is permanently deleted. You have 7 days to undelete the custom role. After 7 days, the following changes occur: * The custom role is permanently deleted and cannot be recovered. * If an IAM policy contains a binding to the custom role, the binding is permanently removed. * The custom role no longer counts toward your custom role limit.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11368,94 +11343,6 @@ export namespace iam_v1 {
     }
 
     /**
-     * Patches a ServiceAccountKey.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Serviceaccounts$Keys$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Serviceaccounts$Keys$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ServiceAccountKey>;
-    patch(
-      params: Params$Resource$Projects$Serviceaccounts$Keys$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Serviceaccounts$Keys$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$ServiceAccountKey>,
-      callback: BodyResponseCallback<Schema$ServiceAccountKey>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Serviceaccounts$Keys$Patch,
-      callback: BodyResponseCallback<Schema$ServiceAccountKey>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$ServiceAccountKey>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Serviceaccounts$Keys$Patch
-        | BodyResponseCallback<Schema$ServiceAccountKey>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ServiceAccountKey>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ServiceAccountKey>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ServiceAccountKey>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Serviceaccounts$Keys$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:patch').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ServiceAccountKey>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ServiceAccountKey>(parameters);
-      }
-    }
-
-    /**
      * Uploads the public key portion of a key pair that you manage, and associates the public key with a ServiceAccount. After you upload the public key, you can use the private key from the key pair as a service account key.
      *
      * @param params - Parameters for request
@@ -11611,18 +11498,6 @@ export namespace iam_v1 {
      * Required. The resource name of the service account. Use one of the following formats: * `projects/{PROJECT_ID\}/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/{PROJECT_ID\}/serviceAccounts/{UNIQUE_ID\}` As an alternative, you can use the `-` wildcard character instead of the project ID: * `projects/-/serviceAccounts/{EMAIL_ADDRESS\}` * `projects/-/serviceAccounts/{UNIQUE_ID\}` When possible, avoid using the `-` wildcard character, because it can cause response messages to contain misleading error codes. For example, if you try to access the service account `projects/-/serviceAccounts/fake@example.com`, which does not exist, the response contains an HTTP `403 Forbidden` error instead of a `404 Not Found` error.
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Serviceaccounts$Keys$Patch
-    extends StandardParameters {
-    /**
-     * The resource name of the service account key in the following format `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$PatchServiceAccountKeyRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Upload
     extends StandardParameters {
