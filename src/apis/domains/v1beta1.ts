@@ -478,6 +478,10 @@ export namespace domains_v1beta1 {
    */
   export interface Schema$HealthCheckTargets {
     /**
+     * The Internet IP addresses to be health checked. The format matches the format of ResourceRecordSet.rrdata as defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1)
+     */
+    externalEndpoints?: string[] | null;
+    /**
      * Configuration for internal load balancers to be health checked.
      */
     internalLoadBalancer?: Schema$LoadBalancerTarget[];
@@ -1004,6 +1008,10 @@ export namespace domains_v1beta1 {
   export interface Schema$RRSetRoutingPolicy {
     geo?: Schema$GeoPolicy;
     geoPolicy?: Schema$GeoPolicy;
+    /**
+     * The selfLink attribute of the HealthCheck resource to use for this RRSetRoutingPolicy. https://cloud.google.com/compute/docs/reference/rest/v1/healthChecks
+     */
+    healthCheck?: string | null;
     primaryBackup?: Schema$PrimaryBackupPolicy;
     wrr?: Schema$WrrPolicy;
     wrrPolicy?: Schema$WrrPolicy;
