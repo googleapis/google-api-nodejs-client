@@ -1,5 +1,20 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v11.1.0...discoveryengine-v12.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **discoveryengine:** This release has breaking changes.
+
+### Features
+
+* **discoveryengine:** update the API ([6915c82](https://github.com/googleapis/google-api-nodejs-client/commit/6915c82df056ea5813621e514ba2679b9ad9b770))
+* **discoveryengine:** update the API ([08736b6](https://github.com/googleapis/google-api-nodejs-client/commit/08736b6d9745ad9d0c42a39ef157234a2a626d66))
+* **discoveryengine:** update the API ([e03a113](https://github.com/googleapis/google-api-nodejs-client/commit/e03a1130dbf65c6bde2dc3050849a469e08f224c))
+* **discoveryengine:** update the API ([02437ec](https://github.com/googleapis/google-api-nodejs-client/commit/02437ec235f513321be4a12c3a028c33caf6775a))
+* **discoveryengine:** update the API ([32bea90](https://github.com/googleapis/google-api-nodejs-client/commit/32bea90c65cc4d01e2c5f15d759d776d9f428881))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v11.0.0...discoveryengine-v11.1.0) (2024-07-26)
 
 
