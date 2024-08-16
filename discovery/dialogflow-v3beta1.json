@@ -10730,7 +10730,7 @@
           "type": "string"
         },
         "flow": {
-          "description": "Required. The unique identifier of the flow. Format: `projects//locations//agents/`.",
+          "description": "Required. The unique identifier of the flow. Format: `projects//locations//agents//flows/`.",
           "type": "string"
         },
         "flowState": {
