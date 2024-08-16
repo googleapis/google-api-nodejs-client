@@ -193,7 +193,7 @@ export namespace workstations_v1beta {
      */
     bootDiskSizeGb?: number | null;
     /**
-     * Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on boost configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on boost configurations with accelerators. * **Operating System**: Because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image. Defaults to false.
+     * Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on boost configurations that specify a machine_type in the N1 or N2 machine series.
      */
     enableNestedVirtualization?: boolean | null;
     /**
@@ -256,11 +256,11 @@ export namespace workstations_v1beta {
     kmsKeyServiceAccount?: string | null;
   }
   /**
-   * Configuration options for private workstation clusters.
+   * Configuration options for a custom domain.
    */
   export interface Schema$DomainConfig {
     /**
-     * Immutable. Whether Workstations endpoint is private.
+     * Immutable. Domain used by Workstations for HTTP ingress.
      */
     domain?: string | null;
   }
@@ -336,7 +336,7 @@ export namespace workstations_v1beta {
      */
     disableSsh?: boolean | null;
     /**
-     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series. * **GPUs**: nested virtualization may not be enabled on workstation configurations with accelerators. * **Operating System**: because [Container-Optimized OS](https://cloud.google.com/compute/docs/images/os-details#container-optimized_os_cos) does not support nested virtualization, when nested virtualization is enabled, the underlying Compute Engine VM instances boot from an [Ubuntu LTS](https://cloud.google.com/compute/docs/images/os-details#ubuntu_lts) image.
+     * Optional. Whether to enable nested virtualization on Cloud Workstations VMs created using this workstation configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on workstation configurations that specify a machine_type in the N1 or N2 machine series.
      */
     enableNestedVirtualization?: boolean | null;
     /**
@@ -368,7 +368,7 @@ export namespace workstations_v1beta {
      */
     tags?: string[] | null;
     /**
-     * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as https://cloud.google.com/resource-manager/docs/tags/tags-overview Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
+     * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as [resource manager tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview). Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
      */
     vmTags?: {[key: string]: string} | null;
   }
@@ -479,7 +479,7 @@ export namespace workstations_v1beta {
     gceInstance?: Schema$GceInstance;
   }
   /**
-   * Http options for the running workstations.
+   * HTTP options for the running workstations.
    */
   export interface Schema$HttpOptions {
     /**
@@ -678,22 +678,37 @@ export namespace workstations_v1beta {
     version?: number | null;
   }
   /**
-   * A PortsConfig defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.
+   * A PortRange defines a range of ports. Both first and last are inclusive. To specify a single port, both first and last should be the same.
    */
   export interface Schema$PortRange {
     /**
-     * Required. Starting port number for the current range of ports.
+     * Required. Starting port number for the current range of ports. Valid ports are 22, 80, and ports within the range 1024-65535.
      */
     first?: number | null;
     /**
-     * Required. Ending port number for the current range of ports.
+     * Required. Ending port number for the current range of ports. Valid ports are 22, 80, and ports within the range 1024-65535.
      */
     last?: number | null;
   }
+  /**
+   * Configuration options for private workstation clusters.
+   */
   export interface Schema$PrivateClusterConfig {
+    /**
+     * Optional. Additional projects that are allowed to attach to the workstation cluster's service attachment. By default, the workstation cluster's project and the VPC host project (if different) are allowed.
+     */
     allowedProjects?: string[] | null;
+    /**
+     * Output only. Hostname for the workstation cluster. This field will be populated only when private endpoint is enabled. To access workstations in the workstation cluster, create a new DNS zone mapping this domain name to an internal IP address and a forwarding rule mapping that address to the service attachment.
+     */
     clusterHostname?: string | null;
+    /**
+     * Immutable. Whether Workstations endpoint is private.
+     */
     enablePrivateEndpoint?: boolean | null;
+    /**
+     * Output only. Service attachment URI for the workstation cluster. The service attachemnt is created when private endpoint is enabled. To access workstations in the workstation cluster, configure access to the managed service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).
+     */
     serviceAttachmentUri?: string | null;
   }
   /**
@@ -796,6 +811,10 @@ export namespace workstations_v1beta {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Output only. List of available boost configuration ids that this workstation can be boosted up to
+     */
+    boostConfigs?: Schema$WorkstationBoostConfig[];
+    /**
      * Output only. Time when this workstation was created.
      */
     createTime?: string | null;
@@ -836,7 +855,15 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
-     * Optional. The source workstation from which this workstations persistent directories were cloned on creation.
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * Optional. The source workstation from which this workstation's persistent directories were cloned on creation.
      */
     sourceWorkstation?: string | null;
     /**
@@ -855,6 +882,15 @@ export namespace workstations_v1beta {
      * Output only. Time when this workstation was most recently updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Boost config for this workstation. This object is populated from the parent workstation config.
+   */
+  export interface Schema$WorkstationBoostConfig {
+    /**
+     * Output only. Boost config id.
+     */
+    id?: string | null;
   }
   /**
    * A workstation cluster resource in the Cloud Workstations API. Defines a group of workstations in a particular region and the VPC network they're attached to.
@@ -917,6 +953,14 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.
      */
     subnetwork?: string | null;
@@ -934,7 +978,7 @@ export namespace workstations_v1beta {
    */
   export interface Schema$WorkstationConfig {
     /**
-     * Optional. A Single or Range of ports externally accessible in the workstation. If not specified defaults to ports 22, 80 and ports 1024-65535.
+     * Optional. A list of PortRanges specifying single ports or ranges of ports that are externally accessible in the workstation. Allowed ports must be one of 22, 80, or within range 1024-65535. If not specified defaults to ports 22, 80, and ports 1024-65535.
      */
     allowedPorts?: Schema$PortRange[];
     /**
@@ -970,7 +1014,7 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service account must also be specified that has `logging.buckets.write` permission on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging).
+     * Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service_account must also be specified that has `roles/logging.logWriter` and `roles/monitoring.metricWriter` on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging) and [Container output logging](http://cloud/workstations/docs/container-output-logging#overview). Operating system audit logs are available in the [Cloud Logging](https://cloud.google.com/logging/docs) console by querying: resource.type="gce_instance" log_name:"/logs/linux-auditd"
      */
     enableAuditAgent?: boolean | null;
     /**
@@ -990,7 +1034,7 @@ export namespace workstations_v1beta {
      */
     host?: Schema$Host;
     /**
-     * Optional. Http options that customize the behavior of the workstation service's http proxy.
+     * Optional. HTTP options that customize the behavior of the workstation service's HTTP proxy.
      */
     httpOptions?: Schema$HttpOptions;
     /**
@@ -1001,6 +1045,10 @@ export namespace workstations_v1beta {
      * Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation configuration and that are also propagated to the underlying Compute Engine resources.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Maximum number of workstations under this config a user can have `workstations.workstation.use` permission on. Only enforced on CreateWorkstation API calls on the user issuing the API request. Can be overridden by: - granting a user workstations.workstationConfigs.exemptMaxUsableWorkstationLimit permission, or - having a user with that permission create a workstation and granting another user `workstations.workstation.use` permission on that workstation. If not specified defaults to 0 which indicates unlimited.
+     */
+    maxUsableWorkstations?: number | null;
     /**
      * Identifier. Full name of this workstation configuration.
      */
@@ -1025,6 +1073,14 @@ export namespace workstations_v1beta {
      * Optional. Number of seconds that a workstation can run until it is automatically shut down. We recommend that workstations be shut down daily to reduce costs and so that security updates can be applied upon restart. The idle_timeout and running_timeout fields are independent of each other. Note that the running_timeout field shuts down VMs after the specified time, regardless of whether or not the VMs are idle. Provide duration terminated by `s` for seconds—for example, `"54000s"` (15 hours). Defaults to `"43200s"` (12 hours). A value of `"0s"` indicates that workstations using this configuration should never time out. If encryption_key is set, it must be greater than `"0s"` and less than `"86400s"` (24 hours). Warning: A value of `"0s"` indicates that Cloud Workstations VMs created with this configuration have no maximum running time. This is strongly discouraged because you incur costs and will not pick up security updates.
      */
     runningTimeout?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. A system-assigned unique identifier for this workstation configuration.
      */
