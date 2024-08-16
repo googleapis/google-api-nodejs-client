@@ -660,7 +660,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240729",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -720,6 +720,25 @@
             "$ref": "ResultMetadata"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthCodeData": {
+      "description": "AuthCodeData contains the data the runtime plane will give the connector backend in exchange for access and refresh tokens.",
+      "id": "AuthCodeData",
+      "properties": {
+        "authCode": {
+          "description": "OAuth authorization code.",
+          "type": "string"
+        },
+        "pkceVerifier": {
+          "description": "OAuth PKCE verifier, needed if PKCE is enabled for this particular connection.",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "OAuth redirect URI passed in during the auth code flow, required by some OAuth backends.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -888,9 +907,14 @@
       "type": "object"
     },
     "ExchangeAuthCodeRequest": {
-      "description": "ExchangeAuthCodeRequest currently includes no fields.",
+      "description": "ExchangeAuthCodeRequest currently includes the auth code data.",
       "id": "ExchangeAuthCodeRequest",
-      "properties": {},
+      "properties": {
+        "authCodeData": {
+          "$ref": "AuthCodeData",
+          "description": "Optional. AuthCodeData contains the data the runtime requires to exchange for access and refresh tokens. If the data is not provided, the runtime will read the data from the secret manager."
+        }
+      },
       "type": "object"
     },
     "ExchangeAuthCodeResponse": {
@@ -2105,9 +2129,14 @@
       "type": "object"
     },
     "RefreshAccessTokenRequest": {
-      "description": "RefreshAccessTokenRequest currently includes no fields.",
+      "description": "RefreshAccessTokenRequest includes the refresh token.",
       "id": "RefreshAccessTokenRequest",
-      "properties": {},
+      "properties": {
+        "refreshToken": {
+          "description": "Optional. Refresh Token String. If the Refresh Token is not provided, the runtime will read the data from the secret manager.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RefreshAccessTokenResponse": {
@@ -2269,6 +2298,10 @@
           ],
           "type": "string"
         },
+        "defaultValue": {
+          "description": "The following field specifies the default value of the Parameter provided by the external system if a value is not provided.",
+          "type": "any"
+        },
         "description": {
           "description": "A brief description of the metadata field.",
           "type": "string"
@@ -2280,6 +2313,10 @@
         "name": {
           "description": "Name of the metadata field.",
           "type": "string"
+        },
+        "nullable": {
+          "description": "Specifies whether a null value is allowed.",
+          "type": "boolean"
         }
       },
       "type": "object"

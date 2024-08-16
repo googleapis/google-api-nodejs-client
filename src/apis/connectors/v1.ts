@@ -227,7 +227,7 @@ export namespace connectors_v1 {
     /**
      * Optional. Omit query params from the redirect URI.
      */
-    omitQueryParams?: string | null;
+    omitQueryParams?: boolean | null;
     /**
      * The scopes for which the user will authorize Google Cloud Connectors on the connector data source.
      */
@@ -365,6 +365,10 @@ export namespace connectors_v1 {
    * Connection represents an instance of connector.
    */
   export interface Schema$Connection {
+    /**
+     * Optional. Async operations enabled for the connection. If Async Operations is enabled, Connection allows the customers to initiate async long running operations using the actions API.
+     */
+    asyncOperationsEnabled?: boolean | null;
     /**
      * Optional. Configuration for establishing the connection's authentication with an external system.
      */
@@ -610,6 +614,14 @@ export namespace connectors_v1 {
      */
     internalclientRatelimitThreshold?: string | null;
     /**
+     * Max Instance Request Conncurrency for Cloud Run service.
+     */
+    maxInstanceRequestConcurrency?: number | null;
+    /**
+     * Indicate whether connector is being migrated to cloud run deployment model.
+     */
+    migrateDeploymentModel?: boolean | null;
+    /**
      * Max QPS supported by the connector version before throttling of requests.
      */
     ratelimitThreshold?: string | null;
@@ -680,6 +692,14 @@ export namespace connectors_v1 {
      */
     eventingConfigTemplate?: Schema$EventingConfigTemplate;
     /**
+     * Output only. Is custom actions supported.
+     */
+    isCustomActionsSupported?: boolean | null;
+    /**
+     * Output only. Is custom entities supported.
+     */
+    isCustomEntitiesSupported?: boolean | null;
+    /**
      * Output only. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
@@ -716,6 +736,14 @@ export namespace connectors_v1 {
      */
     supportedRuntimeFeatures?: Schema$SupportedRuntimeFeatures;
     /**
+     * Output only. Supported standard actions.
+     */
+    supportedStandardActions?: Schema$StandardAction[];
+    /**
+     * Output only. Supported standard entities.
+     */
+    supportedStandardEntities?: Schema$StandardEntity[];
+    /**
      * Output only. Unsupported connection types.
      */
     unsupportedConnectionTypes?: string[] | null;
@@ -737,6 +765,10 @@ export namespace connectors_v1 {
      */
     deploymentModel?: string | null;
     /**
+     * Output only. Status of the deployment model migration.
+     */
+    deploymentModelMigrationState?: string | null;
+    /**
      * Output only. HPA autoscaling config.
      */
     hpaConfig?: Schema$HPAConfig;
@@ -744,6 +776,10 @@ export namespace connectors_v1 {
      * Output only. Max QPS supported for internal requests originating from Connd.
      */
     internalclientRatelimitThreshold?: string | null;
+    /**
+     * Output only. Max instance request concurrency.
+     */
+    maxInstanceRequestConcurrency?: number | null;
     /**
      * Output only. Max QPS supported by the connector version before throttling of requests.
      */
@@ -2134,7 +2170,7 @@ export namespace connectors_v1 {
      */
     multipleSelectOptions?: Schema$MultipleSelectOption[];
     /**
-     * Required. Value separator.
+     * Required. Value separator. Only "," can be used for OAuth auth code flow scope field.
      */
     valueSeparator?: string | null;
   }
@@ -2497,6 +2533,10 @@ export namespace connectors_v1 {
      */
     dataType?: string | null;
     /**
+     * The following field specifies the default value of the Parameter provided by the external system if a value is not provided.
+     */
+    defaultValue?: any | null;
+    /**
      * A brief description of the field.
      */
     description?: string | null;
@@ -2508,6 +2548,10 @@ export namespace connectors_v1 {
      * JsonSchema representation of this action's result
      */
     jsonSchema?: Schema$JsonSchema;
+    /**
+     * Specifies whether a null value is allowed.
+     */
+    nullable?: boolean | null;
   }
   /**
    * Request message for ConnectorsService.RefreshEventSubscription
@@ -2873,6 +2917,24 @@ export namespace connectors_v1 {
      * Controls the ssl type for the given connector version
      */
     sslType?: string | null;
+  }
+  /**
+   * Standard action
+   */
+  export interface Schema$StandardAction {
+    /**
+     * Name of the standard action.
+     */
+    name?: string | null;
+  }
+  /**
+   * Standard entity
+   */
+  export interface Schema$StandardEntity {
+    /**
+     * Name of the standard entity.
+     */
+    name?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
