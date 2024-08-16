@@ -343,7 +343,7 @@ export namespace bigqueryconnection_v1 {
      */
     hasCredential?: boolean | null;
     /**
-     * Optional. The Cloud KMS key that is used for encryption. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     * Optional. The Cloud KMS key that is used for credentials encryption. If omitted, internal Google owned encryption keys are used. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
      */
     kmsKeyName?: string | null;
     /**
