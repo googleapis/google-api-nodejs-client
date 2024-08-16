@@ -2,7 +2,7 @@
 
 # acmedns
 
-> Google Domains ACME DNS API that allows users to complete ACME DNS-01 challenges for a domain.
+> 
 
 ## Installation
 
