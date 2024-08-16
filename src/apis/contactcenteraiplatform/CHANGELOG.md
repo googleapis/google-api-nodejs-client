@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v6.0.0...contactcenteraiplatform-v7.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **contactcenteraiplatform:** This release has breaking changes.
+* **contactcenteraiplatform:** This release has breaking changes.
+
+### Features
+
+* **contactcenteraiplatform:** update the API ([939b273](https://github.com/googleapis/google-api-nodejs-client/commit/939b273988fead759461e5526955d51f1a1d15fe))
+* **contactcenteraiplatform:** update the API ([24d15c3](https://github.com/googleapis/google-api-nodejs-client/commit/24d15c3e6b94f207cae5c8a9e6c8de233f57242d))
+* **contactcenteraiplatform:** update the API ([3d2ec02](https://github.com/googleapis/google-api-nodejs-client/commit/3d2ec02a6473be05d95c5265b323e04de97eaccc))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v5.0.0...contactcenteraiplatform-v6.0.0) (2024-07-26)
 
 

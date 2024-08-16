@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/translate-v3.0.3...translate-v3.1.0) (2024-08-16)
+
+
+### Features
+
+* **translate:** update the API ([a9c6028](https://github.com/googleapis/google-api-nodejs-client/commit/a9c60282a88cbfc6fc87840dde50da1b60ce19f8))
+
 ## [3.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/translate-v3.0.2...translate-v3.0.3) (2024-05-02)
 
 

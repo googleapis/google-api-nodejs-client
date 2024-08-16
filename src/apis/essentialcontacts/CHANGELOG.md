@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/essentialcontacts-v1.0.5...essentialcontacts-v1.1.0) (2024-08-16)
+
+
+### Features
+
+* **essentialcontacts:** update the API ([9476919](https://github.com/googleapis/google-api-nodejs-client/commit/947691945917b1b50ddd91ac1c018da148dcdf0c))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/essentialcontacts-v1.0.4...essentialcontacts-v1.0.5) (2024-05-02)
 
 

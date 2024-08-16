@@ -1,5 +1,26 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v5.1.0...migrationcenter-v6.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **migrationcenter:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **migrationcenter:** update the API ([aad0bed](https://github.com/googleapis/google-api-nodejs-client/commit/aad0bedbca4b0d4df04bde82bcb33c1fbd22a21d))
+* **migrationcenter:** update the API ([405e4c0](https://github.com/googleapis/google-api-nodejs-client/commit/405e4c03478b2ff7876594d0656c7973d0b50871))
+* **migrationcenter:** update the API ([eea5046](https://github.com/googleapis/google-api-nodejs-client/commit/eea5046e2a16ccc02dd7a44fc16bfcb74106b7da))
+* run the generator ([181f2d5](https://github.com/googleapis/google-api-nodejs-client/commit/181f2d5118e33081dcd33a485ff79c5d6a7e1c43))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+
+### Bug Fixes
+
+* **migrationcenter:** update the API ([75aec49](https://github.com/googleapis/google-api-nodejs-client/commit/75aec49d87f32e8c35c509cb8116906690918cc2))
+
 ## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v5.0.0...migrationcenter-v5.1.0) (2024-07-26)
 
 
