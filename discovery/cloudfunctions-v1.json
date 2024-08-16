@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20240523",
+  "revision": "20240725",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -691,7 +691,7 @@
           "type": "string"
         },
         "buildServiceAccount": {
-          "description": "Optional. A service account the user provides for use with Cloud Build.",
+          "description": "A service account the user provides for use with Cloud Build. The format of this field is `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.",
           "type": "string"
         },
         "buildWorkerPool": {
@@ -1019,6 +1019,10 @@
           "description": "API version used to start the operation.",
           "type": "string"
         },
+        "buildName": {
+          "description": "The build name of the function for create and update operations.",
+          "type": "string"
+        },
         "cancelRequested": {
           "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
@@ -1220,6 +1224,10 @@
           "description": "API version used to start the operation.",
           "type": "string"
         },
+        "buildName": {
+          "description": "The build name of the function for create and update operations.",
+          "type": "string"
+        },
         "cancelRequested": {
           "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
@@ -1419,6 +1427,10 @@
       "properties": {
         "apiVersion": {
           "description": "API version used to start the operation.",
+          "type": "string"
+        },
+        "buildName": {
+          "description": "The build name of the function for create and update operations.",
           "type": "string"
         },
         "cancelRequested": {
@@ -1942,7 +1954,7 @@
           "type": "string"
         },
         "url": {
-          "description": "The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats: To refer to a specific commit: `https://source.developers.google.com/projects/*/repos/*/revisions/*/paths/*` To refer to a moveable alias (branch): `https://source.developers.google.com/projects/*/repos/*/moveable-aliases/*/paths/*` In particular, to refer to HEAD use `master` moveable alias. To refer to a specific fixed alias (tag): `https://source.developers.google.com/projects/*/repos/*/fixed-aliases/*/paths/*` You may omit `paths/*` if you want to use the main directory.",
+          "description": "The URL pointing to the hosted repository where the function is defined. There are supported Cloud Source Repository URLs in the following formats: To refer to a specific commit: `https://source.developers.google.com/projects/*/repos/*/revisions/*/paths/*` To refer to a moveable alias (branch): `https://source.developers.google.com/projects/*/repos/*/moveable-aliases/*/paths/*` In particular, to refer to HEAD use `master` moveable alias. To refer to a specific fixed alias (tag): `https://source.developers.google.com/projects/*/repos/*/fixed-aliases/*/paths/*` You may omit `paths/*` if you want to use the main directory. The function response may add an empty `/paths/` to the URL.",
           "type": "string"
         }
       },
