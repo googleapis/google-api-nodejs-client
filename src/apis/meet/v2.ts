@@ -391,15 +391,15 @@ export namespace meet_v2 {
      */
     config?: Schema$SpaceConfig;
     /**
-     * Output only. Type friendly code to join the meeting. Format: `[a-z]+-[a-z]+-[a-z]+` such as `abc-mnop-xyz`. The maximum length is 128 characters. Can only be used as an alias of the space ID to get the space.
+     * Output only. Type friendly unique string used to join the meeting. Format: `[a-z]+-[a-z]+-[a-z]+`. For example, `abc-mnop-xyz`. The maximum length is 128 characters. Can only be used as an alias of the space name to get the space.
      */
     meetingCode?: string | null;
     /**
-     * Output only. URI used to join meetings, such as `https://meet.google.com/abc-mnop-xyz`.
+     * Output only. URI used to join meetings consisting of `https://meet.google.com/` followed by the `meeting_code`. For example, `https://meet.google.com/abc-mnop-xyz`.
      */
     meetingUri?: string | null;
     /**
-     * Immutable. Resource name of the space. Format: `spaces/{space\}`
+     * Immutable. Resource name of the space. Format: `spaces/{space\}`. `{space\}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      */
     name?: string | null;
   }
@@ -1856,7 +1856,7 @@ export namespace meet_v2 {
     }
 
     /**
-     * Ends an active conference (if there's one).
+     * Ends an active conference (if there's one). For an example, see [End active conference](https://developers.google.com/meet/api/guides/meeting-spaces#end-active-conference).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1944,7 +1944,7 @@ export namespace meet_v2 {
     }
 
     /**
-     * Gets a space by `space_id` or `meeting_code`.
+     * Gets details about a meeting space. For an example, see [Get a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#get-meeting-space).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2028,7 +2028,7 @@ export namespace meet_v2 {
     }
 
     /**
-     * Updates a space.
+     * Updates details about a meeting space. For an example, see [Update a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#update-meeting-space).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2121,7 +2121,7 @@ export namespace meet_v2 {
   export interface Params$Resource$Spaces$Endactiveconference
     extends StandardParameters {
     /**
-     * Required. Resource name of the space.
+     * Required. Resource name of the space. Format: `spaces/{space\}`. `{space\}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      */
     name?: string;
 
@@ -2132,17 +2132,17 @@ export namespace meet_v2 {
   }
   export interface Params$Resource$Spaces$Get extends StandardParameters {
     /**
-     * Required. Resource name of the space.
+     * Required. Resource name of the space. Format: `spaces/{space\}` or `spaces/{meetingCode\}`. `{space\}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. `{meetingCode\}` is an alias for the space. It's a typeable, unique character string and is non-case sensitive. For example, `abc-mnop-xyz`. The maximum length is 128 characters. A `meetingCode` shouldn't be stored long term as it can become dissociated from a meeting space and can be reused for different meeting spaces in the future. Generally, a `meetingCode` expires 365 days after last use. For more information, see [Learn about meeting codes in Google Meet](https://support.google.com/meet/answer/10710509). For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Patch extends StandardParameters {
     /**
-     * Immutable. Resource name of the space. Format: `spaces/{space\}`
+     * Immutable. Resource name of the space. Format: `spaces/{space\}`. `{space\}` is the resource identifier for the space. It's a unique, server-generated ID and is case sensitive. For example, `jQCFfuBOdN5z`. For more information, see [How Meet identifies a meeting space](https://developers.google.com/meet/api/guides/meeting-spaces#identify-meeting-space).
      */
     name?: string;
     /**
-     * Optional. Field mask used to specify the fields to be updated in the space. If update_mask isn't provided, it defaults to '*' and updates all fields provided in the request, including deleting fields not set in the request.
+     * Optional. Field mask used to specify the fields to be updated in the space. If update_mask isn't provided(not set, set with empty paths, or only has "" as paths), it defaults to update all fields provided with values in the request. Using "*" as update_mask will update all fields, including deleting fields not set in the request.
      */
     updateMask?: string;
 
