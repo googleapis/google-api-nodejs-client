@@ -144,10 +144,6 @@ export namespace aiplatform_v1beta1 {
      * Returns rai failure reasons if any.
      */
     raiMediaFilteredReasons?: string[] | null;
-    /**
-     * Billable prediction metrics.
-     */
-    reportingMetrics?: Schema$IntelligenceCloudAutomlXpsReportingMetrics;
   }
   /**
    * Image.
@@ -157,6 +153,10 @@ export namespace aiplatform_v1beta1 {
      * Image encoding, encoded as "image/png" or "image/jpg".
      */
     encoding?: string | null;
+    /**
+     * Generation seed for the sampled image. This parameter is exposed to the user only if one of the following is true: 1. The user specified per-example seeds in the request. 2. The user doesn't specify the generation seed in the request.
+     */
+    generationSeed?: number | null;
     /**
      * Raw bytes.
      */
@@ -477,6 +477,15 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when AnnotationSpec was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The API secret.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig {
+    /**
+     * Required. The SecretManager secret version resource name storing API key. e.g. projects/{project\}/secrets/{secret\}/versions/{version\}
+     */
+    apiKeySecretVersion?: string | null;
   }
   /**
    * Instance of a general artifact.
@@ -1028,6 +1037,14 @@ export namespace aiplatform_v1beta1 {
      */
     resourcesConsumed?: Schema$GoogleCloudAiplatformV1beta1ResourcesConsumed;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * The service account that the DeployedModel's container runs as. If not specified, a system generated one will be used, which has minimal permissions and the custom container, if used, may not have enough permission to access other Google Cloud resources. Users deploying the Model must have the `iam.serviceAccounts.actAs` permission on this service account.
      */
     serviceAccount?: string | null;
@@ -1262,7 +1279,12 @@ export namespace aiplatform_v1beta1 {
   /**
    * Spec for bleu score metric - calculates the precision of n-grams in the prediction as compared to reference - returns a score ranging between 0 to 1.
    */
-  export interface Schema$GoogleCloudAiplatformV1beta1BleuSpec {}
+  export interface Schema$GoogleCloudAiplatformV1beta1BleuSpec {
+    /**
+     * Optional. Whether to use_effective_order to compute bleu score.
+     */
+    useEffectiveOrder?: boolean | null;
+  }
   /**
    * Content blob. It's preferred to send as text directly rather than raw bytes.
    */
@@ -1392,6 +1414,10 @@ export namespace aiplatform_v1beta1 {
    * A response candidate generated from the model.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Candidate {
+    /**
+     * Output only. Average log probability score of the candidate.
+     */
+    avgLogprobs?: number | null;
     /**
      * Output only. Source attribution of the generated content.
      */
@@ -1580,9 +1606,17 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ComputeTokensRequest {
     /**
-     * Required. The instances that are the input to token computing API call. Schema is identical to the prediction schema of the text model, even for the non-text models, like chat models, or Codey models.
+     * Optional. Input content.
+     */
+    contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
+    /**
+     * Optional. The instances that are the input to token computing API call. Schema is identical to the prediction schema of the text model, even for the non-text models, like chat models, or Codey models.
      */
     instances?: any[] | null;
+    /**
+     * Optional. The name of the publisher model requested to serve the prediction. Format: projects/{project\}/locations/{location\}/publishers/x/models/x
+     */
+    model?: string | null;
   }
   /**
    * Response message for ComputeTokens RPC call.
@@ -1733,17 +1767,25 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CountTokensRequest {
     /**
-     * Required. Input content.
+     * Optional. Input content.
      */
     contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
     /**
-     * Required. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.
+     * Optional. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.
      */
     instances?: any[] | null;
     /**
-     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     * Optional. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
      */
     model?: string | null;
+    /**
+     * Optional. The user provided system instructions for the model. Note: only text should be used in parts and content in each part will be in a separate paragraph.
+     */
+    systemInstruction?: Schema$GoogleCloudAiplatformV1beta1Content;
+    /**
+     * Optional. A list of `Tools` the model may use to generate the next response. A `Tool` is a piece of code that enables the system to interact with external systems to perform an action, or set of actions, outside of knowledge and scope of the model.
+     */
+    tools?: Schema$GoogleCloudAiplatformV1beta1Tool[];
   }
   /**
    * Response message for PredictionService.CountTokens.
@@ -2138,6 +2180,14 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. Time when the CustomJob for the first time entered the `JOB_STATE_RUNNING` state.
      */
     startTime?: string | null;
@@ -2239,6 +2289,14 @@ export namespace aiplatform_v1beta1 {
      * Required. The data that the DataItem represents (for example, an image or a text snippet). The schema of the payload is stored in the parent Dataset's metadata schema's dataItemSchemaUri field.
      */
     payload?: any | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Timestamp when this DataItem was last updated.
      */
@@ -2387,9 +2445,17 @@ export namespace aiplatform_v1beta1 {
      */
     modelReference?: string | null;
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * All SavedQueries belong to the Dataset will be returned in List/Get Dataset response. The annotation_specs field will not be populated except for UI cases which will only use annotation_spec_count. In CreateDataset request, a SavedQuery is created together if this field is set, up to one SavedQuery can be set in CreateDatasetRequest. The SavedQuery should not contain any AnnotationSpec.
      */
@@ -2398,6 +2464,97 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when this Dataset was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Distribution computed over a tuning dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DatasetDistribution {
+    /**
+     * Output only. Defines the histogram bucket.
+     */
+    buckets?: Schema$GoogleCloudAiplatformV1beta1DatasetDistributionDistributionBucket[];
+    /**
+     * Output only. The maximum of the population values.
+     */
+    max?: number | null;
+    /**
+     * Output only. The arithmetic mean of the values in the population.
+     */
+    mean?: number | null;
+    /**
+     * Output only. The median of the values in the population.
+     */
+    median?: number | null;
+    /**
+     * Output only. The minimum of the population values.
+     */
+    min?: number | null;
+    /**
+     * Output only. The 5th percentile of the values in the population.
+     */
+    p5?: number | null;
+    /**
+     * Output only. The 95th percentile of the values in the population.
+     */
+    p95?: number | null;
+    /**
+     * Output only. Sum of a given population of values.
+     */
+    sum?: number | null;
+  }
+  /**
+   * Dataset bucket used to create a histogram for the distribution given a population of values.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DatasetDistributionDistributionBucket {
+    /**
+     * Output only. Number of values in the bucket.
+     */
+    count?: string | null;
+    /**
+     * Output only. Left bound of the bucket.
+     */
+    left?: number | null;
+    /**
+     * Output only. Right bound of the bucket.
+     */
+    right?: number | null;
+  }
+  /**
+   * Statistics computed over a tuning dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DatasetStats {
+    /**
+     * Output only. Number of billable characters in the tuning dataset.
+     */
+    totalBillableCharacterCount?: string | null;
+    /**
+     * Output only. Number of tuning characters in the tuning dataset.
+     */
+    totalTuningCharacterCount?: string | null;
+    /**
+     * Output only. Number of examples in the tuning dataset.
+     */
+    tuningDatasetExampleCount?: string | null;
+    /**
+     * Output only. Number of tuning steps for this Tuning Job.
+     */
+    tuningStepCount?: string | null;
+    /**
+     * Output only. Sample user messages in the training dataset uri.
+     */
+    userDatasetExamples?: Schema$GoogleCloudAiplatformV1beta1Content[];
+    /**
+     * Output only. Dataset distributions for the user input tokens.
+     */
+    userInputTokenDistribution?: Schema$GoogleCloudAiplatformV1beta1DatasetDistribution;
+    /**
+     * Output only. Dataset distributions for the messages per example.
+     */
+    userMessagePerExampleDistribution?: Schema$GoogleCloudAiplatformV1beta1DatasetDistribution;
+    /**
+     * Output only. Dataset distributions for the user output tokens.
+     */
+    userOutputTokenDistribution?: Schema$GoogleCloudAiplatformV1beta1DatasetDistribution;
   }
   /**
    * Describes the dataset version.
@@ -2428,9 +2585,17 @@ export namespace aiplatform_v1beta1 {
      */
     modelReference?: string | null;
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Timestamp when this DatasetVersion was last updated.
      */
@@ -2456,6 +2621,10 @@ export namespace aiplatform_v1beta1 {
      * Required. Immutable. The minimum number of machine replicas this DeployedModel will be always deployed on. This value must be greater than or equal to 1. If traffic against the DeployedModel increases, it may dynamically be deployed onto more replicas, and as traffic decreases, some of these extra replicas may be freed.
      */
     minReplicaCount?: number | null;
+    /**
+     * Optional. If true, schedule the deployment workload on [spot VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).
+     */
+    spot?: boolean | null;
   }
   /**
    * Details of operations that delete Feature values.
@@ -2788,6 +2957,14 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * The service account that the DeploymentResourcePool's container(s) run as. Specify the email address of the service account. If this service account is not specified, the container(s) run as a service account that doesn't have access to the resource project. Users deploying the Models to this DeploymentResourcePool must have the `iam.serviceAccounts.actAs` permission on this service account.
      */
     serviceAccount?: string | null;
@@ -2908,6 +3085,65 @@ export namespace aiplatform_v1beta1 {
     bootDiskType?: string | null;
   }
   /**
+   * Statistics computed for datasets used for distillation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DistillationDataStats {
+    /**
+     * Output only. Statistics computed for the training dataset.
+     */
+    trainingDatasetStats?: Schema$GoogleCloudAiplatformV1beta1DatasetStats;
+  }
+  /**
+   * Hyperparameters for Distillation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DistillationHyperParameters {
+    /**
+     * Optional. Adapter size for distillation.
+     */
+    adapterSize?: string | null;
+    /**
+     * Optional. Number of complete passes the model makes over the entire training dataset during training.
+     */
+    epochCount?: string | null;
+    /**
+     * Optional. Multiplier for adjusting the default learning rate.
+     */
+    learningRateMultiplier?: number | null;
+  }
+  /**
+   * Tuning Spec for Distillation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DistillationSpec {
+    /**
+     * The base teacher model that is being distilled, e.g., "gemini-1.0-pro-002".
+     */
+    baseTeacherModel?: string | null;
+    /**
+     * Optional. Hyperparameters for Distillation.
+     */
+    hyperParameters?: Schema$GoogleCloudAiplatformV1beta1DistillationHyperParameters;
+    /**
+     * Required. A path in a Cloud Storage bucket, which will be treated as the root output directory of the distillation pipeline. It is used by the system to generate the paths of output artifacts.
+     */
+    pipelineRootDirectory?: string | null;
+    /**
+     * The student model that is being tuned, e.g., "google/gemma-2b-1.1-it".
+     */
+    studentModel?: string | null;
+    /**
+     * Required. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.
+     */
+    trainingDatasetUri?: string | null;
+    /**
+     * The resource name of the Tuned teacher model. Format: `projects/{project\}/locations/{location\}/models/{model\}`.
+     */
+    tunedTeacherModelSource?: string | null;
+    /**
+     * Optional. Cloud Storage path to file containing validation dataset for tuning. The dataset must be formatted as a JSONL file.
+     */
+    validationDatasetUri?: string | null;
+  }
+  /**
    * A list of double values.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1DoubleArray {
@@ -2933,6 +3169,14 @@ export namespace aiplatform_v1beta1 {
      * Output only. Timestamp when this Endpoint was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. DNS of the dedicated endpoint. Will only be populated if dedicated_endpoint_enabled is true. Format: `https://{endpoint_id\}.{region\}-{project_number\}.prediction.vertexai.goog`.
+     */
+    dedicatedEndpointDns?: string | null;
+    /**
+     * If true, the endpoint will be exposed through a dedicated DNS [Endpoint.dedicated_endpoint_dns]. Your request to the dedicated DNS will be isolated from other users' traffic and will have better performance and reliability. Note: Once you enabled dedicated endpoint, you won't be able to send request to the shared DNS {region\}-aiplatform.googleapis.com. The limitation will be removed soon.
+     */
+    dedicatedEndpointEnabled?: boolean | null;
     /**
      * Output only. The models deployed in this Endpoint. To add or remove DeployedModels use EndpointService.DeployModel and EndpointService.UndeployModel respectively.
      */
@@ -2981,6 +3225,14 @@ export namespace aiplatform_v1beta1 {
      * Optional. Configuration for private service connect. network and private_service_connect_config are mutually exclusive.
      */
     privateServiceConnectConfig?: Schema$GoogleCloudAiplatformV1beta1PrivateServiceConnectConfig;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * A map from a DeployedModel's ID to the percentage of this Endpoint's traffic that should be forwarded to that DeployedModel. If a DeployedModel's ID is not listed in this map, then it receives no traffic. The traffic percentage values must add up to 100, or map must be empty if the Endpoint is to not accept any traffic at a moment.
      */
@@ -3035,6 +3287,14 @@ export namespace aiplatform_v1beta1 {
      * Optional. Config for data retention policy in offline storage. TTL in days for feature values that will be stored in offline storage. The Feature Store offline storage periodically removes obsolete feature values older than `offline_storage_ttl_days` since the feature generation time. If unset (or explicitly set to 0), default to 4000 days TTL.
      */
     offlineStorageTtlDays?: number | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Timestamp when this EntityType was most recently updated.
      */
@@ -3162,6 +3422,10 @@ export namespace aiplatform_v1beta1 {
      */
     groundednessInput?: Schema$GoogleCloudAiplatformV1beta1GroundednessInput;
     /**
+     * Input for pairwise metric.
+     */
+    pairwiseMetricInput?: Schema$GoogleCloudAiplatformV1beta1PairwiseMetricInput;
+    /**
      * Input for pairwise question answering quality metric.
      */
     pairwiseQuestionAnsweringQualityInput?: Schema$GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInput;
@@ -3169,6 +3433,10 @@ export namespace aiplatform_v1beta1 {
      * Input for pairwise summarization quality metric.
      */
     pairwiseSummarizationQualityInput?: Schema$GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityInput;
+    /**
+     * Input for pointwise metric.
+     */
+    pointwiseMetricInput?: Schema$GoogleCloudAiplatformV1beta1PointwiseMetricInput;
     /**
      * Input for question answering correctness metric.
      */
@@ -3251,6 +3519,10 @@ export namespace aiplatform_v1beta1 {
      */
     groundednessResult?: Schema$GoogleCloudAiplatformV1beta1GroundednessResult;
     /**
+     * Result for pairwise metric.
+     */
+    pairwiseMetricResult?: Schema$GoogleCloudAiplatformV1beta1PairwiseMetricResult;
+    /**
      * Result for pairwise question answering quality metric.
      */
     pairwiseQuestionAnsweringQualityResult?: Schema$GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityResult;
@@ -3258,6 +3530,10 @@ export namespace aiplatform_v1beta1 {
      * Result for pairwise summarization quality metric.
      */
     pairwiseSummarizationQualityResult?: Schema$GoogleCloudAiplatformV1beta1PairwiseSummarizationQualityResult;
+    /**
+     * Generic metrics. Result for pointwise metric.
+     */
+    pointwiseMetricResult?: Schema$GoogleCloudAiplatformV1beta1PointwiseMetricResult;
     /**
      * Result for question answering correctness metric.
      */
@@ -4269,6 +4545,16 @@ export namespace aiplatform_v1beta1 {
      * Optional. Columns to construct entity_id / row keys. If not provided defaults to `entity_id`.
      */
     entityIdColumns?: string[] | null;
+    /**
+     * Optional. If the source is a time-series source, this can be set to control how downstream sources (ex: FeatureOnlineStore.FeatureView) will treat time series sources. If not set, will treat the source as a time-series source with feature_timestamp as timestamp column and no scan boundary.
+     */
+    timeSeries?: Schema$GoogleCloudAiplatformV1beta1FeatureGroupBigQueryTimeSeries;
+  }
+  export interface Schema$GoogleCloudAiplatformV1beta1FeatureGroupBigQueryTimeSeries {
+    /**
+     * Optional. Column hosting timestamp values for a time-series source. Will be used to determine the latest featureValues for each entity. Optional. If not provided, a feature_timestamp column of type TIMESTAMP will be used.
+     */
+    timestampColumn?: string | null;
   }
   /**
    * A list of historical SnapshotAnalysis or ImportFeaturesAnalysis stats requested by user, sorted by FeatureStatsAnomaly.start_time descending.
@@ -4345,6 +4631,14 @@ export namespace aiplatform_v1beta1 {
      * Contains settings for the Optimized store that will be created to serve featureValues for all FeatureViews under this FeatureOnlineStore. When choose Optimized storage type, need to set PrivateServiceConnectConfig.enable_private_service_connect to use private endpoint. Otherwise will use public endpoint by default.
      */
     optimized?: Schema$GoogleCloudAiplatformV1beta1FeatureOnlineStoreOptimized;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. State of the featureOnlineStore.
      */
@@ -4478,6 +4772,14 @@ export namespace aiplatform_v1beta1 {
      * Optional. TTL in days for feature values that will be stored in online serving storage. The Feature Store online storage periodically removes obsolete feature values older than `online_storage_ttl_days` since the feature generation time. Note that `online_storage_ttl_days` should be less than or equal to `offline_storage_ttl_days` for each EntityType under a featurestore. If not set, default to 4000 days
      */
     onlineStorageTtlDays?: number | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. State of the featurestore.
      */
@@ -4698,6 +5000,14 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. A Service Account unique to this FeatureView. The role bigquery.dataViewer should be granted to this service account to allow Vertex AI Feature Store to sync data to the online store.
      */
     serviceAccountEmail?: string | null;
@@ -4842,6 +5152,14 @@ export namespace aiplatform_v1beta1 {
      * Output only. Time when this FeatureViewSync is finished.
      */
     runTime?: Schema$GoogleTypeInterval;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Summary of the sync job.
      */
@@ -5394,10 +5712,27 @@ export namespace aiplatform_v1beta1 {
      */
     candidatesTokenCount?: number | null;
     /**
-     * Number of tokens in the request.
+     * Number of tokens in the request. When `cached_content` is set, this is still the total effective prompt size meaning this includes the number of tokens in the cached content.
      */
     promptTokenCount?: number | null;
     totalTokenCount?: number | null;
+  }
+  /**
+   * Generate video response.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerateVideoResponse {
+    /**
+     * The cloud storage uris of the generated videos.
+     */
+    generatedSamples?: string[] | null;
+    /**
+     * Returns if any videos were filtered due to RAI policies.
+     */
+    raiMediaFilteredCount?: number | null;
+    /**
+     * Returns rai failure reasons if any.
+     */
+    raiMediaFilteredReasons?: string[] | null;
   }
   /**
    * Generation config.
@@ -5428,6 +5763,14 @@ export namespace aiplatform_v1beta1 {
      */
     responseSchema?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
+     * Optional. Routing configuration.
+     */
+    routingConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig;
+    /**
+     * Optional. Seed.
+     */
+    seed?: number | null;
+    /**
      * Optional. Stop sequences.
      */
     stopSequences?: string[] | null;
@@ -5443,6 +5786,37 @@ export namespace aiplatform_v1beta1 {
      * Optional. If specified, nucleus sampling will be used.
      */
     topP?: number | null;
+  }
+  /**
+   * Routing config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig {
+    /**
+     * Automated routing.
+     */
+    autoMode?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingMode;
+    /**
+     * Manual routing.
+     */
+    manualMode?: Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode;
+  }
+  /**
+   * When automated routing is specified, the routing will be determined by the pretrained routing model and customer provided model routing preference.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigAutoRoutingMode {
+    /**
+     * The model routing preference.
+     */
+    modelRoutingPreference?: string | null;
+  }
+  /**
+   * When manual routing is set, the specified model will be used directly.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode {
+    /**
+     * The model name to use. Only the public LLM models are accepted. e.g. gemini-1.5-pro-001.
+     */
+    modelName?: string | null;
   }
   /**
    * Generic Metadata shared by all operations.
@@ -5549,9 +5923,56 @@ export namespace aiplatform_v1beta1 {
     version?: number | null;
   }
   /**
+   * Grounding chunk.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunk {
+    /**
+     * Grounding chunk from context retrieved by the retrieval tools.
+     */
+    retrievedContext?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext;
+    /**
+     * Grounding chunk from the web.
+     */
+    web?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkWeb;
+  }
+  /**
+   * Chunk from context retrieved by the retrieval tools.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext {
+    /**
+     * Title of the attribution.
+     */
+    title?: string | null;
+    /**
+     * URI reference of the attribution.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Chunk from the web.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkWeb {
+    /**
+     * Title of the chunk.
+     */
+    title?: string | null;
+    /**
+     * URI reference of the chunk.
+     */
+    uri?: string | null;
+  }
+  /**
    * Metadata returned to client when grounding is enabled.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingMetadata {
+    /**
+     * List of supporting references retrieved from specified grounding source.
+     */
+    groundingChunks?: Schema$GoogleCloudAiplatformV1beta1GroundingChunk[];
+    /**
+     * Optional. List of grounding support.
+     */
+    groundingSupports?: Schema$GoogleCloudAiplatformV1beta1GroundingSupport[];
     /**
      * Optional. Queries executed by the retrieval tools.
      */
@@ -5564,6 +5985,23 @@ export namespace aiplatform_v1beta1 {
      * Optional. Web search queries for the following-up web search.
      */
     webSearchQueries?: string[] | null;
+  }
+  /**
+   * Grounding support.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingSupport {
+    /**
+     * Confidence score of the support references. Ranges from 0 to 1. 1 is the most confident. This list must have the same size as the grounding_chunk_indices.
+     */
+    confidenceScores?: number[] | null;
+    /**
+     * A list of indices (into 'grounding_chunk') specifying the citations associated with the claim. For instance [1,3,4] means that grounding_chunk[1], grounding_chunk[3], grounding_chunk[4] are the retrieved content attributed to the claim.
+     */
+    groundingChunkIndices?: number[] | null;
+    /**
+     * Segment of the content this support belongs to.
+     */
+    segment?: Schema$GoogleCloudAiplatformV1beta1Segment;
   }
   /**
    * Represents a HyperparameterTuningJob. A HyperparameterTuningJob has a Study specification and multiple CustomJobs with identical CustomJob specification.
@@ -5609,6 +6047,14 @@ export namespace aiplatform_v1beta1 {
      * Required. The desired number of Trials to run in parallel.
      */
     parallelTrialCount?: number | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Time when the HyperparameterTuningJob for the first time entered the `JOB_STATE_RUNNING` state.
      */
@@ -5820,6 +6266,10 @@ export namespace aiplatform_v1beta1 {
      */
     googleDriveSource?: Schema$GoogleCloudAiplatformV1beta1GoogleDriveSource;
     /**
+     * Jira queries with their corresponding authentication.
+     */
+    jiraSource?: Schema$GoogleCloudAiplatformV1beta1JiraSource;
+    /**
      * Optional. The max number of queries per minute that this job is allowed to make to the embedding model specified on the corpus. This value is specific to this job and not shared across other import jobs. Consult the Quotas page on the project to set an appropriate value here. If unspecified, a default value of 1,000 QPM would be used.
      */
     maxEmbeddingRequestsPerMin?: number | null;
@@ -5827,6 +6277,14 @@ export namespace aiplatform_v1beta1 {
      * Specifies the size and overlap of chunks after importing RagFiles.
      */
     ragFileChunkingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileChunkingConfig;
+    /**
+     * Specifies the parsing config for RagFiles.
+     */
+    ragFileParsingConfig?: Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfig;
+    /**
+     * Slack channels with their corresponding access tokens.
+     */
+    slackSource?: Schema$GoogleCloudAiplatformV1beta1SlackSource;
   }
   /**
    * Request message for VertexRagDataService.ImportRagFiles.
@@ -5889,6 +6347,14 @@ export namespace aiplatform_v1beta1 {
      * Output only. The resource name of the Index.
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Timestamp when this Index was most recently updated. This also includes any update to the contents of the Index. Note that Operations working on this Index may have their Operations.metadata.generic_metadata.update_time a little after the value of this timestamp, yet that does not mean their results are not already reflected in the Index. Result of any successfully completed Operation on the Index is reflected in it.
      */
@@ -6044,6 +6510,14 @@ export namespace aiplatform_v1beta1 {
      */
     publicEndpointEnabled?: boolean | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. Timestamp when this IndexEndpoint was last updated. This timestamp is not updated when the endpoint's DeployedIndexes are updated, e.g. due to updates of the original Indexes they are the deployments of.
      */
     updateTime?: string | null;
@@ -6173,6 +6647,40 @@ export namespace aiplatform_v1beta1 {
      * Required. internal service state.
      */
     serviceState?: string | null;
+  }
+  /**
+   * The Jira source for the ImportRagFilesRequest.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1JiraSource {
+    /**
+     * Required. The Jira queries.
+     */
+    jiraQueries?: Schema$GoogleCloudAiplatformV1beta1JiraSourceJiraQueries[];
+  }
+  /**
+   * JiraQueries contains the Jira queries and corresponding authentication.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1JiraSourceJiraQueries {
+    /**
+     * Required. The SecretManager secret version resource name (e.g. projects/{project\}/secrets/{secret\}/versions/{version\}) storing the Jira API key (https://support.atlassian.com/atlassian-account/docs/manage-api-tokens-for-your-atlassian-account/).
+     */
+    apiKeyConfig?: Schema$GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig;
+    /**
+     * A list of custom Jira queries to import. For information about JQL (Jira Query Language), see https://support.atlassian.com/jira-service-management-cloud/docs/use-advanced-search-with-jira-query-language-jql/
+     */
+    customQueries?: string[] | null;
+    /**
+     * Required. The Jira email address.
+     */
+    email?: string | null;
+    /**
+     * A list of Jira projects to import in their entirety.
+     */
+    projects?: string[] | null;
+    /**
+     * Required. The Jira server URI.
+     */
+    serverUri?: string | null;
   }
   /**
    * Contains information about the Large Model.
@@ -6951,6 +7459,10 @@ export namespace aiplatform_v1beta1 {
      */
     machineType?: string | null;
     /**
+     * Optional. Immutable. Configuration controlling how this resource pool consumes reservation.
+     */
+    reservationAffinity?: Schema$GoogleCloudAiplatformV1beta1ReservationAffinity;
+    /**
      * Immutable. The topology of the TPUs. Corresponds to the TPU topologies available from GKE. (Example: tpu_topology: "2x2x1").
      */
     tpuTopology?: string | null;
@@ -7365,6 +7877,14 @@ export namespace aiplatform_v1beta1 {
      */
     predictSchemata?: Schema$GoogleCloudAiplatformV1beta1PredictSchemata;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. When this Model is deployed, its prediction resources are described by the `prediction_resources` field of the Endpoint.deployed_models object. Because not all Models support all resource configuration types, the configuration types this Model supports are listed here. If no configuration types are listed, the Model cannot be deployed to an Endpoint and does not support online predictions (PredictionService.Predict or PredictionService.Explain). Such a Model can serve predictions by using a BatchPredictionJob, if it has at least one entry each in supported_input_storage_formats and supported_output_storage_formats.
      */
     supportedDeploymentResourcesTypes?: string[] | null;
@@ -7576,6 +8096,14 @@ export namespace aiplatform_v1beta1 {
      * Sample Predict instance, same format as PredictRequest.instances, this can be set as a replacement of ModelDeploymentMonitoringJob.predict_instance_schema_uri. If not set, we will generate predict schema from collected predict requests.
      */
     samplePredictInstance?: any | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Schedule state when the monitoring job is in Running state.
      */
@@ -7869,6 +8397,14 @@ export namespace aiplatform_v1beta1 {
      * Optional default monitoring metrics/logs export spec, it can be overridden in the ModelMonitoringJob output spec. If not specified, a default Google Cloud Storage bucket will be created under your project.
      */
     outputSpec?: Schema$GoogleCloudAiplatformV1beta1ModelMonitoringOutputSpec;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Optional default tabular model monitoring objective.
      */
@@ -8765,6 +9301,14 @@ export namespace aiplatform_v1beta1 {
      */
     nasJobSpec?: Schema$GoogleCloudAiplatformV1beta1NasJobSpec;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. Time when the NasJob for the first time entered the `JOB_STATE_RUNNING` state.
      */
     startTime?: string | null;
@@ -8951,6 +9495,10 @@ export namespace aiplatform_v1beta1 {
      */
     neighborCount?: number | null;
     /**
+     * Optional. The list of numeric filters.
+     */
+    numericFilters?: Schema$GoogleCloudAiplatformV1beta1NearestNeighborQueryNumericFilter[];
+    /**
      * Optional. Parameters that can be set to tune query on the fly.
      */
     parameters?: Schema$GoogleCloudAiplatformV1beta1NearestNeighborQueryParameters;
@@ -8971,6 +9519,31 @@ export namespace aiplatform_v1beta1 {
      * Optional. Individual value in the embedding.
      */
     value?: number[] | null;
+  }
+  /**
+   * Numeric filter is used to search a subset of the entities by using boolean rules on numeric columns. For example: Database Point 0: {name: “a” value_int: 42\} {name: “b” value_float: 1.0\} Database Point 1: {name: “a” value_int: 10\} {name: “b” value_float: 2.0\} Database Point 2: {name: “a” value_int: -1\} {name: “b” value_float: 3.0\} Query: {name: “a” value_int: 12 operator: LESS\} // Matches Point 1, 2 {name: “b” value_float: 2.0 operator: EQUAL\} // Matches Point 1
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1NearestNeighborQueryNumericFilter {
+    /**
+     * Required. Column name in BigQuery that used as filters.
+     */
+    name?: string | null;
+    /**
+     * Optional. This MUST be specified for queries and must NOT be specified for database points.
+     */
+    op?: string | null;
+    /**
+     * double value type.
+     */
+    valueDouble?: number | null;
+    /**
+     * float value type.
+     */
+    valueFloat?: number | null;
+    /**
+     * int value type.
+     */
+    valueInt?: string | null;
   }
   /**
    * Parameters that can be overrided in each query to tune query latency and recall.
@@ -9169,6 +9742,10 @@ export namespace aiplatform_v1beta1 {
      * The display name of the NotebookExecutionJob. The name can be up to 128 characters long and can consist of any UTF-8 characters.
      */
     displayName?: string | null;
+    /**
+     * Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookRuntimeTemplate has an encryption spec.
+     */
+    encryptionSpec?: Schema$GoogleCloudAiplatformV1beta1EncryptionSpec;
     /**
      * Max running time of the execution job in seconds (default 86400s / 24 hrs).
      */
@@ -9442,6 +10019,50 @@ export namespace aiplatform_v1beta1 {
     notebookRuntimeTemplate?: string | null;
   }
   /**
+   * Input for pairwise metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PairwiseMetricInput {
+    /**
+     * Required. Pairwise metric instance.
+     */
+    instance?: Schema$GoogleCloudAiplatformV1beta1PairwiseMetricInstance;
+    /**
+     * Required. Spec for pairwise metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1PairwiseMetricSpec;
+  }
+  /**
+   * Pairwise metric instance. Usually one instance corresponds to one row in an evaluation dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PairwiseMetricInstance {
+    /**
+     * Instance specified as a json string. String key-value pairs are expected in the json_instance to render PairwiseMetricSpec.instance_prompt_template.
+     */
+    jsonInstance?: string | null;
+  }
+  /**
+   * Spec for pairwise metric result.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PairwiseMetricResult {
+    /**
+     * Output only. Explanation for pairwise metric score.
+     */
+    explanation?: string | null;
+    /**
+     * Output only. Pairwise metric choice.
+     */
+    pairwiseChoice?: string | null;
+  }
+  /**
+   * Spec for pairwise metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PairwiseMetricSpec {
+    /**
+     * Required. Metric prompt template for pairwise metric.
+     */
+    metricPromptTemplate?: string | null;
+  }
+  /**
    * Input for pairwise question answering quality metric.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1PairwiseQuestionAnsweringQualityInput {
@@ -9660,6 +10281,10 @@ export namespace aiplatform_v1beta1 {
      */
     network?: string | null;
     /**
+     * Optional. Configuration for PSC-I for PersistentResource.
+     */
+    pscInterfaceConfig?: Schema$GoogleCloudAiplatformV1beta1PscInterfaceConfig;
+    /**
      * Optional. A list of names for the reserved IP ranges under the VPC network that can be used for this persistent resource. If set, we will deploy the persistent resource within the provided IP ranges. Otherwise, the persistent resource is deployed to any IP ranges under the provided VPC network. Example: ['vertex-ai-ip-range'].
      */
     reservedIpRanges?: string[] | null;
@@ -9744,6 +10369,14 @@ export namespace aiplatform_v1beta1 {
      * Runtime config of the pipeline.
      */
     runtimeConfig?: Schema$GoogleCloudAiplatformV1beta1PipelineJobRuntimeConfig;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The schedule resource name. Only returned if the Pipeline is created by Schedule API.
      */
@@ -9978,6 +10611,50 @@ export namespace aiplatform_v1beta1 {
     version?: string | null;
   }
   /**
+   * Input for pointwise metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PointwiseMetricInput {
+    /**
+     * Required. Pointwise metric instance.
+     */
+    instance?: Schema$GoogleCloudAiplatformV1beta1PointwiseMetricInstance;
+    /**
+     * Required. Spec for pointwise metric.
+     */
+    metricSpec?: Schema$GoogleCloudAiplatformV1beta1PointwiseMetricSpec;
+  }
+  /**
+   * Pointwise metric instance. Usually one instance corresponds to one row in an evaluation dataset.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PointwiseMetricInstance {
+    /**
+     * Instance specified as a json string. String key-value pairs are expected in the json_instance to render PointwiseMetricSpec.instance_prompt_template.
+     */
+    jsonInstance?: string | null;
+  }
+  /**
+   * Spec for pointwise metric result.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PointwiseMetricResult {
+    /**
+     * Output only. Explanation for pointwise metric score.
+     */
+    explanation?: string | null;
+    /**
+     * Output only. Pointwise metric score.
+     */
+    score?: number | null;
+  }
+  /**
+   * Spec for pointwise metric.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PointwiseMetricSpec {
+    /**
+     * Required. Metric prompt template for pointwise metric.
+     */
+    metricPromptTemplate?: string | null;
+  }
+  /**
    * Represents a network port in a container.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Port {
@@ -9994,6 +10671,19 @@ export namespace aiplatform_v1beta1 {
      * Required. The key is a name of one of the Dataset's data columns. The value of the key (either the label's value or value in the column) must be one of {`training`, `validation`, `test`\}, and it defines to which set the given piece of data is assigned. If for a piece of data the key is not present or has an invalid value, that piece is ignored by the pipeline.
      */
     key?: string | null;
+  }
+  /**
+   * Metadata for PredictLongRunning long running operations.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PredictLongRunningMetadata {}
+  /**
+   * Response message for [PredictionService.PredictLongRunning]
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PredictLongRunningResponse {
+    /**
+     * The response of the video generation prediction.
+     */
+    generateVideoResponse?: Schema$GoogleCloudAiplatformV1beta1GenerateVideoResponse;
   }
   /**
    * Request message for PredictionService.Predict.
@@ -10117,6 +10807,10 @@ export namespace aiplatform_v1beta1 {
      * A list of Projects from which the forwarding rule will target the service attachment.
      */
     projectAllowlist?: string[] | null;
+    /**
+     * Output only. The name of the generated service attachment resource. This is only populated if the endpoint is deployed with PrivateServiceConnect.
+     */
+    serviceAttachment?: string | null;
   }
   /**
    * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.
@@ -10160,6 +10854,15 @@ export namespace aiplatform_v1beta1 {
      * Corresponding project_id in pscAutomationConfigs
      */
     projectId?: string | null;
+  }
+  /**
+   * Configuration for PSC-I.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PscInterfaceConfig {
+    /**
+     * Optional. The full name of the Compute Engine [network attachment](https://cloud.google.com/vpc/docs/about-network-attachments) to attach to the resource. For example, `projects/12345/regions/us-central1/networkAttachments/myNA`. is of the form `projects/{project\}/regions/{region\}/networkAttachments/{networkAttachment\}`. Where {project\} is a project number, as in `12345`, and {networkAttachment\} is a network attachment name. To specify this field, you must have already [created a network attachment] (https://cloud.google.com/vpc/docs/create-manage-network-attachments#create-network-attachments). This field is only used for resources using PSC-I.
+     */
+    networkAttachment?: string | null;
   }
   /**
    * A Model Garden Publisher Model.
@@ -10284,6 +10987,10 @@ export namespace aiplatform_v1beta1 {
      */
     dedicatedResources?: Schema$GoogleCloudAiplatformV1beta1DedicatedResources;
     /**
+     * Optional. Metadata information about this deployment config.
+     */
+    deployMetadata?: Schema$GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployDeployMetadata;
+    /**
      * Optional. The name of the deploy task (e.g., "text to image generation").
      */
     deployTaskName?: string | null;
@@ -10307,6 +11014,19 @@ export namespace aiplatform_v1beta1 {
      * Required. The title of the regional resource reference.
      */
     title?: string | null;
+  }
+  /**
+   * Metadata information about the deployment for managing deployment config.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployDeployMetadata {
+    /**
+     * Optional. Labels for the deployment. For managing deployment config like verifying, source of deployment config, etc.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Sample request for deployed endpoint.
+     */
+    sampleRequest?: string | null;
   }
   /**
    * Configurations for PublisherModel GKE deployment
@@ -10889,13 +11609,17 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagContextsContext {
     /**
-     * The distance between the query vector and the context text vector.
+     * The distance between the query dense embedding vector and the context text vector.
      */
     distance?: number | null;
     /**
      * For vertex RagStore, if the file is imported from Cloud Storage or Google Drive, source_uri will be original file URI in Cloud Storage or Google Drive; if file is uploaded, source_uri will be file display name.
      */
     sourceUri?: string | null;
+    /**
+     * The distance between the query sparse embedding vector and the context text vector.
+     */
+    sparseDistance?: number | null;
     /**
      * The text chunk.
      */
@@ -10935,9 +11659,52 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfig {
     /**
-     * The Vertex AI Prediction Endpoint that either refers to a publisher model or an endpoint that is hosting a 1P fine-tuned text embedding model. Endpoints hosting non-1P fine-tuned text embedding models are currently not supported.
+     * Configuration for hybrid search.
+     */
+    hybridSearchConfig?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigHybridSearchConfig;
+    /**
+     * The Vertex AI Prediction Endpoint that either refers to a publisher model or an endpoint that is hosting a 1P fine-tuned text embedding model. Endpoints hosting non-1P fine-tuned text embedding models are currently not supported. This is used for dense vector search.
      */
     vertexPredictionEndpoint?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigVertexPredictionEndpoint;
+  }
+  /**
+   * Config for hybrid search.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigHybridSearchConfig {
+    /**
+     * Required. The Vertex AI Prediction Endpoint that hosts the embedding model for dense embedding generations.
+     */
+    denseEmbeddingModelPredictionEndpoint?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigVertexPredictionEndpoint;
+    /**
+     * Optional. The configuration for sparse embedding generation. This field is optional the default behavior depends on the vector database choice on the RagCorpus.
+     */
+    sparseEmbeddingConfig?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigSparseEmbeddingConfig;
+  }
+  /**
+   * Configuration for sparse emebdding generation.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigSparseEmbeddingConfig {
+    /**
+     * Use BM25 scoring algorithm.
+     */
+    bm25?: Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigSparseEmbeddingConfigBm25;
+  }
+  /**
+   * Message for BM25 parameters.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagEmbeddingModelConfigSparseEmbeddingConfigBm25 {
+    /**
+     * Optional. The parameter to control document length normalization. It determines how much the document length affects the final score. b is in the range of [0, 1]. The default value is 0.75.
+     */
+    b?: number | null;
+    /**
+     * Optional. The parameter to control term frequency saturation. It determines the scaling between the matching term frequency and final score. k1 is in the range of [1.2, 3]. The default value is 1.2.
+     */
+    k1?: number | null;
+    /**
+     * Optional. Use multilingual tokenizer if set to true.
+     */
+    multilingual?: boolean | null;
   }
   /**
    * Config representing a model hosted on Vertex Prediction Endpoint.
@@ -10985,6 +11752,10 @@ export namespace aiplatform_v1beta1 {
      */
     googleDriveSource?: Schema$GoogleCloudAiplatformV1beta1GoogleDriveSource;
     /**
+     * The RagFile is imported from a Jira query.
+     */
+    jiraSource?: Schema$GoogleCloudAiplatformV1beta1JiraSource;
+    /**
      * Output only. The resource name of the RagFile.
      */
     name?: string | null;
@@ -10996,6 +11767,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. The size of the RagFile in bytes.
      */
     sizeBytes?: string | null;
+    /**
+     * The RagFile is imported from a Slack channel.
+     */
+    slackSource?: Schema$GoogleCloudAiplatformV1beta1SlackSource;
     /**
      * Output only. Timestamp when this RagFile was last updated.
      */
@@ -11015,6 +11790,19 @@ export namespace aiplatform_v1beta1 {
     chunkSize?: number | null;
   }
   /**
+   * Specifies the parsing config for RagFiles.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RagFileParsingConfig {
+    /**
+     * Whether to use OCR for PDFs.
+     */
+    parsePdfsUsingOcr?: boolean | null;
+    /**
+     * Whether to use advanced PDF parsing.
+     */
+    useAdvancedPdfParsing?: boolean | null;
+  }
+  /**
    * A query to retrieve relevant contexts.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1RagQuery {
@@ -11026,10 +11814,6 @@ export namespace aiplatform_v1beta1 {
      * Optional. The query in text format to get relevant contexts.
      */
     text?: string | null;
-    /**
-     * Optional. Only return contexts with vector distance smaller than the threshold.
-     */
-    vectorDistanceThreshold?: number | null;
   }
   /**
    * Request message for PredictionService.RawPredict.
@@ -11039,6 +11823,15 @@ export namespace aiplatform_v1beta1 {
      * The prediction input. Supports HTTP headers and arbitrary data payload. A DeployedModel may have an upper limit on the number of instances it supports per request. When this limit it is exceeded for an AutoML model, the RawPredict method returns an error. When this limit is exceeded for a custom-trained model, the behavior varies depending on the model. You can specify the schema for each instance in the predict_schemata.instance_schema_uri field when you create a Model. This schema applies when you deploy the `Model` as a `DeployedModel` to an Endpoint and use the `RawPredict` method.
      */
     httpBody?: Schema$GoogleApiHttpBody;
+  }
+  /**
+   * Configuration for the Ray OSS Logs.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RayLogsSpec {
+    /**
+     * Optional. Flag to disable the export of Ray OSS logs to Cloud Logging.
+     */
+    disabled?: boolean | null;
   }
   /**
    * Configuration for the Ray metrics.
@@ -11061,6 +11854,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. Default image for user to choose a preferred ML framework (for example, TensorFlow or Pytorch) by choosing from [Vertex prebuilt images](https://cloud.google.com/vertex-ai/docs/training/pre-built-containers). Either this or the resource_pool_images is required. Use this field if you need all the resource pools to have the same Ray image. Otherwise, use the {@code resource_pool_images\} field.
      */
     imageUri?: string | null;
+    /**
+     * Optional. OSS Ray logging configurations.
+     */
+    rayLogsSpec?: Schema$GoogleCloudAiplatformV1beta1RayLogsSpec;
     /**
      * Optional. Ray metrics configurations.
      */
@@ -11394,11 +12191,28 @@ export namespace aiplatform_v1beta1 {
     idleShutdownMessage?: string | null;
   }
   /**
+   * A ReservationAffinity can be used to configure a Vertex AI resource (e.g., a DeployedModel) to draw its Compute Engine resources from a Shared Reservation, or exclusively from on-demand capacity.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ReservationAffinity {
+    /**
+     * Optional. Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, use `compute.googleapis.com/reservation-name` as the key and specify the name of your reservation as its value.
+     */
+    key?: string | null;
+    /**
+     * Required. Specifies the reservation affinity type.
+     */
+    reservationAffinityType?: string | null;
+    /**
+     * Optional. Corresponds to the label values of a reservation resource. This must be the full resource name of the reservation.
+     */
+    values?: string[] | null;
+  }
+  /**
    * Represents the spec of a group of resources of the same type, for example machine type, disk, and accelerators, in a PersistentResource.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ResourcePool {
     /**
-     * Optional. Optional spec to configure GKE autoscaling
+     * Optional. Optional spec to configure GKE or Ray-on-Vertex autoscaling
      */
     autoscalingSpec?: Schema$GoogleCloudAiplatformV1beta1ResourcePoolAutoscalingSpec;
     /**
@@ -11431,7 +12245,7 @@ export namespace aiplatform_v1beta1 {
      */
     maxReplicaCount?: string | null;
     /**
-     * Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error
+     * Optional. min replicas in the node pool, must be ≤ replica_count and < max_replica_count or will throw error. For autoscaling enabled Ray-on-Vertex, we allow min_replica_count of a resource_pool to be 0 to match the OSS Ray behavior(https://docs.ray.io/en/latest/cluster/vms/user-guides/configuring-autoscaling.html#cluster-config-parameters). As for Persistent Resource, the min_replica_count must be \> 0, we added a corresponding validation inside CreatePersistentResourceRequestValidator.java.
      */
     minReplicaCount?: string | null;
   }
@@ -11497,7 +12311,7 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Retrieval {
     /**
-     * Optional. Disable using the result from this tool in detecting grounding attribution. This does not affect how the result is given to the model for generation.
+     * Optional. Deprecated. This option is no longer supported.
      */
     disableAttribution?: boolean | null;
     /**
@@ -11535,6 +12349,10 @@ export namespace aiplatform_v1beta1 {
      */
     ragResources?: Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRagResource[];
     /**
+     * Optional. Configurations for hybrid search results ranking.
+     */
+    ranking?: Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking;
+    /**
      * Optional. Only return contexts with vector distance smaller than the threshold.
      */
     vectorDistanceThreshold?: number | null;
@@ -11551,6 +12369,15 @@ export namespace aiplatform_v1beta1 {
      * Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.
      */
     ragFileIds?: string[] | null;
+  }
+  /**
+   * Configurations for hybrid search results ranking.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking {
+    /**
+     * Optional. Alpha value controls the weight between dense and sparse vector search results. The range is [0, 1], while 0 means sparse vector search only and 1 means dense vector search only. The default value is 0.5 which balances sparse and dense vector search equally.
+     */
+    alpha?: number | null;
   }
   /**
    * Response message for VertexRagService.RetrieveContexts.
@@ -11635,7 +12462,7 @@ export namespace aiplatform_v1beta1 {
      */
     defaultParams?: {[key: string]: any} | null;
     /**
-     * Runtime configuration for Vertext AI Search extension.
+     * Runtime configuration for Vertex AI Search extension.
      */
     vertexAiSearchRuntimeConfig?: Schema$GoogleCloudAiplatformV1beta1RuntimeConfigVertexAISearchRuntimeConfig;
   }
@@ -11961,6 +12788,10 @@ export namespace aiplatform_v1beta1 {
      * Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.
      */
     restartJobOnWorkerRestart?: boolean | null;
+    /**
+     * Optional. This determines which type of scheduling strategy to use.
+     */
+    strategy?: string | null;
     /**
      * The maximum job running time. The default is 7 days.
      */
@@ -14825,6 +15656,27 @@ export namespace aiplatform_v1beta1 {
     nearestNeighbors?: Schema$GoogleCloudAiplatformV1beta1NearestNeighbors;
   }
   /**
+   * Segment of the content.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1Segment {
+    /**
+     * Output only. End index in the given Part, measured in bytes. Offset from the start of the Part, exclusive, starting at zero.
+     */
+    endIndex?: number | null;
+    /**
+     * Output only. The index of a Part object within its parent Content object.
+     */
+    partIndex?: number | null;
+    /**
+     * Output only. Start index in the given Part, measured in bytes. Offset from the start of the Part, inclusive, starting at zero.
+     */
+    startIndex?: number | null;
+    /**
+     * Output only. The text corresponding to the segment from the response.
+     */
+    text?: string | null;
+  }
+  /**
    * Configuration for the use of custom service account to run the workloads.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ServiceAccountSpec {
@@ -14845,6 +15697,45 @@ export namespace aiplatform_v1beta1 {
      * Defines whether the instance has [Secure Boot](https://cloud.google.com/compute/shielded-vm/docs/shielded-vm#secure-boot) enabled. Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails.
      */
     enableSecureBoot?: boolean | null;
+  }
+  /**
+   * The Slack source for the ImportRagFilesRequest.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SlackSource {
+    /**
+     * Required. The Slack channels.
+     */
+    channels?: Schema$GoogleCloudAiplatformV1beta1SlackSourceSlackChannels[];
+  }
+  /**
+   * SlackChannels contains the Slack channels and corresponding access token.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SlackSourceSlackChannels {
+    /**
+     * Required. The SecretManager secret version resource name (e.g. projects/{project\}/secrets/{secret\}/versions/{version\}) storing the Slack channel access token that has access to the slack channel IDs. See: https://api.slack.com/tutorials/tracks/getting-a-token.
+     */
+    apiKeyConfig?: Schema$GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig;
+    /**
+     * Required. The Slack channel IDs.
+     */
+    channels?: Schema$GoogleCloudAiplatformV1beta1SlackSourceSlackChannelsSlackChannel[];
+  }
+  /**
+   * SlackChannel contains the Slack channel ID and the time range to import.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1SlackSourceSlackChannelsSlackChannel {
+    /**
+     * Required. The Slack channel ID.
+     */
+    channelId?: string | null;
+    /**
+     * Optional. The ending timestamp for messages to import.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. The starting timestamp for messages to import.
+     */
+    startTime?: string | null;
   }
   /**
    * Config for SmoothGrad approximation of gradients. When enabled, the gradients are approximated by averaging the gradients from noisy samples in the vicinity of the inputs. Adding noise can help improve the computed gradients. Refer to this paper for more details: https://arxiv.org/pdf/1706.03825.pdf
@@ -15679,6 +16570,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistribution {
     /**
+     * Output only. Sum of a given population of values that are billable.
+     */
+    billableSum?: string | null;
+    /**
      * Output only. Defines the histogram bucket.
      */
     buckets?: Schema$GoogleCloudAiplatformV1beta1SupervisedTuningDatasetDistributionDatasetBucket[];
@@ -15736,6 +16631,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. Number of billable characters in the tuning dataset.
      */
     totalBillableCharacterCount?: string | null;
+    /**
+     * Output only. Number of billable tokens in the tuning dataset.
+     */
+    totalBillableTokenCount?: string | null;
     /**
      * Output only. Number of tuning characters in the tuning dataset.
      */
@@ -15902,6 +16801,14 @@ export namespace aiplatform_v1beta1 {
      * Output only. The number of Runs stored in this Tensorboard.
      */
     runCount?: number | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Timestamp when this Tensorboard was last updated.
      */
@@ -16159,6 +17066,10 @@ export namespace aiplatform_v1beta1 {
    * Tokens info with a list of tokens and the corresponding list of token ids.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1TokensInfo {
+    /**
+     * Optional. Optional fields for the role from the corresponding Content.
+     */
+    role?: string | null;
     /**
      * A list of token ids from the input.
      */
@@ -16572,9 +17483,6 @@ export namespace aiplatform_v1beta1 {
      */
     webAccessUris?: {[key: string]: string} | null;
   }
-  /**
-   * Next ID: 3
-   */
   export interface Schema$GoogleCloudAiplatformV1beta1TrialContext {
     /**
      * A human-readable field which can store a description of this context. This will become part of the resulting Trial's description field.
@@ -16616,6 +17524,10 @@ export namespace aiplatform_v1beta1 {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1TuningDataStats {
     /**
+     * Output only. Statistics for distillation.
+     */
+    distillationDataStats?: Schema$GoogleCloudAiplatformV1beta1DistillationDataStats;
+    /**
      * The SFT Tuning data stats.
      */
     supervisedTuningDataStats?: Schema$GoogleCloudAiplatformV1beta1SupervisedTuningDataStats;
@@ -16636,6 +17548,10 @@ export namespace aiplatform_v1beta1 {
      * Optional. The description of the TuningJob.
      */
     description?: string | null;
+    /**
+     * Tuning Spec for Distillation.
+     */
+    distillationSpec?: Schema$GoogleCloudAiplatformV1beta1DistillationSpec;
     /**
      * Customer-managed encryption key options for a TuningJob. If this is set, then all resources created by the TuningJob will be encrypted with the provided encryption key.
      */
@@ -16660,6 +17576,10 @@ export namespace aiplatform_v1beta1 {
      * Output only. Identifier. Resource name of a TuningJob. Format: `projects/{project\}/locations/{location\}/tuningJobs/{tuning_job\}`
      */
     name?: string | null;
+    /**
+     * Output only. The resource name of the PipelineJob associated with the TuningJob. Format: `projects/{project\}/locations/{location\}/pipelineJobs/{pipeline_job\}`.
+     */
+    pipelineJob?: string | null;
     /**
      * Output only. Time when the TuningJob for the first time entered the `JOB_STATE_RUNNING` state.
      */
@@ -17475,48 +18395,6 @@ export namespace aiplatform_v1beta1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
-  }
-  export interface Schema$IntelligenceCloudAutomlXpsMetricEntry {
-    /**
-     * For billing metrics that are using legacy sku's, set the legacy billing metric id here. This will be sent to Chemist as the "cloudbilling.googleapis.com/argentum_metric_id" label. Otherwise leave empty.
-     */
-    argentumMetricId?: string | null;
-    /**
-     * A double value.
-     */
-    doubleValue?: number | null;
-    /**
-     * A signed 64-bit integer value.
-     */
-    int64Value?: string | null;
-    /**
-     * The metric name defined in the service configuration.
-     */
-    metricName?: string | null;
-    /**
-     * Billing system labels for this (metric, value) pair.
-     */
-    systemLabels?: Schema$IntelligenceCloudAutomlXpsMetricEntryLabel[];
-  }
-  export interface Schema$IntelligenceCloudAutomlXpsMetricEntryLabel {
-    /**
-     * The name of the label.
-     */
-    labelName?: string | null;
-    /**
-     * The value of the label.
-     */
-    labelValue?: string | null;
-  }
-  export interface Schema$IntelligenceCloudAutomlXpsReportingMetrics {
-    /**
-     * The effective time training used. If set, this is used for quota management and billing. Deprecated. AutoML BE doesn't use this. Don't set.
-     */
-    effectiveTrainingDuration?: string | null;
-    /**
-     * One entry per metric name. The values must be aggregated per metric name.
-     */
-    metricEntries?: Schema$IntelligenceCloudAutomlXpsMetricEntry[];
   }
 
   export class Resource$Media {
@@ -23618,7 +24496,7 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the Dataset.
+     * Output only. Identifier. The resource name of the Dataset.
      */
     name?: string;
     /**
@@ -26312,7 +27190,7 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Datasetversions$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the DatasetVersion.
+     * Output only. Identifier. The resource name of the DatasetVersion.
      */
     name?: string;
     /**
@@ -28017,6 +28895,99 @@ export namespace aiplatform_v1beta1 {
     }
 
     /**
+     * Update a DeploymentResourcePool.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Deploymentresourcepools$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploymentresourcepools$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploymentresourcepools$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Deploymentresourcepools$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * List DeployedModels that have been deployed on this DeploymentResourcePool.
      *
      * @param params - Parameters for request
@@ -28154,6 +29125,22 @@ export namespace aiplatform_v1beta1 {
      * Required. The parent Location which owns this collection of DeploymentResourcePools. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deploymentresourcepools$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. The resource name of the DeploymentResourcePool. Format: `projects/{project\}/locations/{location\}/deploymentResourcePools/{deployment_resource_pool\}`
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1beta1DeploymentResourcePool;
   }
   export interface Params$Resource$Projects$Locations$Deploymentresourcepools$Querydeployedmodels
     extends StandardParameters {
@@ -35626,7 +36613,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels`
+     * Field mask is used to specify the fields to be overwritten in the FeatureGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `big_query` * `big_query.entity_id_columns`
      */
     updateMask?: string;
 
@@ -36191,7 +37178,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
      */
     updateMask?: string;
 
@@ -37910,7 +38897,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `big_query_source` * `bigtable` * `labels` * `sync_config`
+     * Field mask is used to specify the fields to be overwritten in the FeatureOnlineStore resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `description` * `bigtable` * `bigtable.auto_scaling` * `bigtable.enable_multi_region_replica`
      */
     updateMask?: string;
 
@@ -39197,7 +40184,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `serviceAgentType`
+     * Field mask is used to specify the fields to be overwritten in the FeatureView resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `labels` * `service_agent_type` * `big_query_source` * `big_query_source.uri` * `big_query_source.entity_id_columns` * `feature_registry_source` * `feature_registry_source.feature_groups` * `sync_config` * `sync_config.cron`
      */
     updateMask?: string;
 
@@ -43665,7 +44652,7 @@ export namespace aiplatform_v1beta1 {
      */
     name?: string;
     /**
-     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistry Feature)
+     * Field mask is used to specify the fields to be overwritten in the Features resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then only the non-empty fields present in the request will be overwritten. Set the update_mask to `*` to override all fields. Updatable fields: * `description` * `labels` * `disable_monitoring` (Not supported for FeatureRegistryService Feature) * `point_of_contact` (Not supported for FeaturestoreService FeatureStore)
      */
     updateMask?: string;
 
@@ -86549,7 +87536,15 @@ export namespace aiplatform_v1beta1 {
   export interface Params$Resource$Publishers$Models$Get
     extends StandardParameters {
     /**
-     * Optional. The IETF BCP-47 language code representing the language in which the publisher model's text information should be written in (see go/bcp47).
+     * Optional. Token used to access Hugging Face gated models.
+     */
+    huggingFaceToken?: string;
+    /**
+     * Optional. Boolean indicates whether the requested model is a Hugging Face model.
+     */
+    isHuggingFaceModel?: boolean;
+    /**
+     * Optional. The IETF BCP-47 language code representing the language in which the publisher model's text information should be written in.
      */
     languageCode?: string;
     /**
@@ -86568,7 +87563,7 @@ export namespace aiplatform_v1beta1 {
      */
     filter?: string;
     /**
-     * Optional. The IETF BCP-47 language code representing the language in which the publisher models' text information should be written in (see go/bcp47). If not set, by default English (en).
+     * Optional. The IETF BCP-47 language code representing the language in which the publisher models' text information should be written in. If not set, by default English (en).
      */
     languageCode?: string;
     /**
