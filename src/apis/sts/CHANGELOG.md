@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v7.0.0...sts-v7.1.0) (2024-08-16)
+
+
+### Features
+
+* **sts:** update the API ([6e5182c](https://github.com/googleapis/google-api-nodejs-client/commit/6e5182cc6f93e9a509c94a92c5768a873828c811))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v6.0.0...sts-v7.0.0) (2024-05-10)
 
 

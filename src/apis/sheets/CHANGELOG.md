@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v9.0.0...sheets-v9.1.0) (2024-08-16)
+
+
+### Features
+
+* **sheets:** update the API ([056784e](https://github.com/googleapis/google-api-nodejs-client/commit/056784e5d38b0b12f2ef3cae43f853b318aa1b4e))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v8.0.0...sheets-v9.0.0) (2024-06-21)
 
 

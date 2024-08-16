@@ -1,5 +1,14 @@
 # Changelog
 
+## [4.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v4.0.4...sourcerepo-v4.0.5) (2024-08-16)
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([839c56f](https://github.com/googleapis/google-api-nodejs-client/commit/839c56f0431045fc63a97c468bff6cf499139022))
+* **sourcerepo:** update the API ([1ac4bf6](https://github.com/googleapis/google-api-nodejs-client/commit/1ac4bf6c0ef40d81666abf46578d49b343743e72))
+* **sourcerepo:** update the API ([0889507](https://github.com/googleapis/google-api-nodejs-client/commit/088950701aeffc7aa8e6f2f17f955023e05494e1))
+
 ## [4.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v4.0.3...sourcerepo-v4.0.4) (2024-07-26)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v27.0.1...content-v28.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **content:** update the API ([b288a2e](https://github.com/googleapis/google-api-nodejs-client/commit/b288a2ec84d39bc88f6567a387742a1039080d44))
+* **content:** update the API ([f36f6e2](https://github.com/googleapis/google-api-nodejs-client/commit/f36f6e2e9c952fcac4adb6893b5861455129a03f))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+
+
+### Bug Fixes
+
+* **content:** update the API ([ac953c4](https://github.com/googleapis/google-api-nodejs-client/commit/ac953c4eeed2577b6984bd55376788f8e7746d35))
+
 ## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v27.0.0...content-v27.0.1) (2024-07-26)
 
 
