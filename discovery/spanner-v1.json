@@ -23,9 +23,14 @@
   "documentationLink": "https://cloud.google.com/spanner/",
   "endpoints": [
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -123,7 +128,7 @@
         "instanceConfigOperations": {
           "methods": {
             "list": {
-              "description": "Lists the user-managed instance config long-running operations in the given project. An instance config operation has a name of the form `projects//instanceConfigs//operations/`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations. Operations returned are ordered by `operation.metadata.value.start_time` in descending order starting from the most recently started operation.",
+              "description": "Lists the user-managed instance configuration long-running operations in the given project. An instance configuration operation has a name of the form `projects//instanceConfigs//operations/`. The long-running operation metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that have completed/failed/canceled within the last 7 days, and pending operations. Operations returned are ordered by `operation.metadata.value.start_time` in descending order starting from the most recently started operation.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigOperations",
               "httpMethod": "GET",
               "id": "spanner.projects.instanceConfigOperations.list",
@@ -132,7 +137,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \\ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \\ `(metadata.instance_config.name:custom-config) AND` \\ `(metadata.progress.start_time < \\\"2021-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance config name contains \"custom-config\". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.",
+                  "description": "An expression that filters the list of returned operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateInstanceConfigMetadata is `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata`. * `metadata.` - any field in metadata.value. `metadata.@type` must be specified first, if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic. However, you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=` \\ `type.googleapis.com/google.spanner.admin.instance.v1.CreateInstanceConfigMetadata) AND` \\ `(metadata.instance_config.name:custom-config) AND` \\ `(metadata.progress.start_time < \\\"2021-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Return operations where: * The operation's metadata type is CreateInstanceConfigMetadata. * The instance configuration name contains \"custom-config\". * The operation started before 2021-03-28T14:50:00Z. * The operation resulted in an error.",
                   "location": "query",
                   "type": "string"
                 },
@@ -148,7 +153,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The project of the instance config operations. Values are of the form `projects/`.",
+                  "description": "Required. The project of the instance configuration operations. Values are of the form `projects/`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -169,7 +174,7 @@
         "instanceConfigs": {
           "methods": {
             "create": {
-              "description": "Creates an instance config and begins preparing it to be used. The returned long-running operation can be used to track the progress of preparing the new instance config. The instance config name is assigned by the caller. If the named instance config already exists, `CreateInstanceConfig` returns `ALREADY_EXISTS`. Immediately after the request returns: * The instance config is readable via the API, with all requested attributes. The instance config's reconciling field is set to true. Its state is `CREATING`. While the operation is pending: * Cancelling the operation renders the instance config immediately unreadable via the API. * Except for deleting the creating resource, all other attempts to modify the instance config are rejected. Upon completion of the returned operation: * Instances can be created using the instance configuration. * The instance config's reconciling field becomes false. Its state becomes `READY`. The returned long-running operation will have a name of the format `/operations/` and can be used to track creation of the instance config. The metadata field type is CreateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.create` permission on the resource parent.",
+              "description": "Creates an instance configuration and begins preparing it to be used. The returned long-running operation can be used to track the progress of preparing the new instance configuration. The instance configuration name is assigned by the caller. If the named instance configuration already exists, `CreateInstanceConfig` returns `ALREADY_EXISTS`. Immediately after the request returns: * The instance configuration is readable via the API, with all requested attributes. The instance configuration's reconciling field is set to true. Its state is `CREATING`. While the operation is pending: * Cancelling the operation renders the instance configuration immediately unreadable via the API. * Except for deleting the creating resource, all other attempts to modify the instance configuration are rejected. Upon completion of the returned operation: * Instances can be created using the instance configuration. * The instance configuration's reconciling field becomes false. Its state becomes `READY`. The returned long-running operation will have a name of the format `/operations/` and can be used to track creation of the instance configuration. The metadata field type is CreateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.create` permission on the resource parent.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs",
               "httpMethod": "POST",
               "id": "spanner.projects.instanceConfigs.create",
@@ -178,7 +183,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the project in which to create the instance config. Values are of the form `projects/`.",
+                  "description": "Required. The name of the project in which to create the instance configuration. Values are of the form `projects/`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -198,7 +203,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes the instance config. Deletion is only allowed when no instances are using the configuration. If any instances are using the config, returns `FAILED_PRECONDITION`. Only user managed configurations can be deleted. Authorization requires `spanner.instanceConfigs.delete` permission on the resource name.",
+              "description": "Deletes the instance configuration. Deletion is only allowed when no instances are using the configuration. If any instances are using the configuration, returns `FAILED_PRECONDITION`. Only user-managed configurations can be deleted. Authorization requires `spanner.instanceConfigs.delete` permission on the resource name.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}",
               "httpMethod": "DELETE",
               "id": "spanner.projects.instanceConfigs.delete",
@@ -207,7 +212,7 @@
               ],
               "parameters": {
                 "etag": {
-                  "description": "Used for optimistic concurrency control as a way to help prevent simultaneous deletes of an instance config from overwriting each other. If not empty, the API only deletes the instance config when the etag provided matches the current status of the requested instance config. Otherwise, deletes the instance config without checking the current status of the requested instance config.",
+                  "description": "Used for optimistic concurrency control as a way to help prevent simultaneous deletes of an instance configuration from overwriting each other. If not empty, the API only deletes the instance configuration when the etag provided matches the current status of the requested instance configuration. Otherwise, deletes the instance configuration without checking the current status of the requested instance configuration.",
                   "location": "query",
                   "type": "string"
                 },
@@ -260,7 +265,7 @@
               ]
             },
             "list": {
-              "description": "Lists the supported instance configurations for a given project. Returns both Google managed configs and user managed configs.",
+              "description": "Lists the supported instance configurations for a given project. Returns both Google-managed configurations and user-managed configurations.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs",
               "httpMethod": "GET",
               "id": "spanner.projects.instanceConfigs.list",
@@ -297,7 +302,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an instance config. The returned long-running operation can be used to track the progress of updating the instance. If the named instance config does not exist, returns `NOT_FOUND`. Only user managed configurations can be updated. Immediately after the request returns: * The instance config's reconciling field is set to true. While the operation is pending: * Cancelling the operation sets its metadata's cancel_time. The operation is guaranteed to succeed at undoing all changes, after which point it terminates with a `CANCELLED` status. * All other attempts to modify the instance config are rejected. * Reading the instance config via the API continues to give the pre-request values. Upon completion of the returned operation: * Creating instances using the instance configuration uses the new values. * The instance config's new values are readable via the API. * The instance config's reconciling field becomes false. The returned long-running operation will have a name of the format `/operations/` and can be used to track the instance config modification. The metadata field type is UpdateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.update` permission on the resource name.",
+              "description": "Updates an instance configuration. The returned long-running operation can be used to track the progress of updating the instance. If the named instance configuration does not exist, returns `NOT_FOUND`. Only user-managed configurations can be updated. Immediately after the request returns: * The instance configuration's reconciling field is set to true. While the operation is pending: * Cancelling the operation sets its metadata's cancel_time. The operation is guaranteed to succeed at undoing all changes, after which point it terminates with a `CANCELLED` status. * All other attempts to modify the instance configuration are rejected. * Reading the instance configuration via the API continues to give the pre-request values. Upon completion of the returned operation: * Creating instances using the instance configuration uses the new values. * The new values of the instance configuration are readable via the API. * The instance configuration's reconciling field becomes false. The returned long-running operation will have a name of the format `/operations/` and can be used to track the instance configuration modification. The metadata field type is UpdateInstanceConfigMetadata. The response field type is InstanceConfig, if successful. Authorization requires `spanner.instanceConfigs.update` permission on the resource name.",
               "flatPath": "v1/projects/{projectsId}/instanceConfigs/{instanceConfigsId}",
               "httpMethod": "PATCH",
               "id": "spanner.projects.instanceConfigs.patch",
@@ -306,7 +311,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance config must start with `custom-`.",
+                  "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance configuration must start with `custom-`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/instanceConfigs/[^/]+$",
                   "required": true,
@@ -748,7 +753,7 @@
               ]
             },
             "move": {
-              "description": "Moves the instance to the target instance config. The returned long-running operation can be used to track the progress of moving the instance. `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of the following criteria: * Has an ongoing move to a different instance config * Has backups * Has an ongoing update * Is under free trial * Contains any CMEK-enabled databases While the operation is pending: * All other attempts to modify the instance, including changes to its compute capacity, are rejected. * The following database and backup admin operations are rejected: * DatabaseAdmin.CreateDatabase, * DatabaseAdmin.UpdateDatabaseDdl (Disabled if default_leader is specified in the request.) * DatabaseAdmin.RestoreDatabase * DatabaseAdmin.CreateBackup * DatabaseAdmin.CopyBackup * Both the source and target instance configs are subject to hourly compute and storage charges. * The instance may experience higher read-write latencies and a higher transaction abort rate. However, moving an instance does not cause any downtime. The returned long-running operation will have a name of the format `/operations/` and can be used to track the move instance operation. The metadata field type is MoveInstanceMetadata. The response field type is Instance, if successful. Cancelling the operation sets its metadata's cancel_time. Cancellation is not immediate since it involves moving any data previously moved to target instance config back to the original instance config. The same operation can be used to track the progress of the cancellation. Upon successful completion of the cancellation, the operation terminates with CANCELLED status. Upon completion(if not cancelled) of the returned operation: * Instance would be successfully moved to the target instance config. * You are billed for compute and storage in target instance config. Authorization requires `spanner.instances.update` permission on the resource instance. For more details, please see [documentation](https://cloud.google.com/spanner/docs/move-instance).",
+              "description": "Moves an instance to the target instance configuration. You can use the returned long-running operation to track the progress of moving the instance. `MoveInstance` returns `FAILED_PRECONDITION` if the instance meets any of the following criteria: * Is undergoing a move to a different instance configuration * Has backups * Has an ongoing update * Contains any CMEK-enabled databases * Is a free trial instance While the operation is pending: * All other attempts to modify the instance, including changes to its compute capacity, are rejected. * The following database and backup admin operations are rejected: * `DatabaseAdmin.CreateDatabase` * `DatabaseAdmin.UpdateDatabaseDdl` (disabled if default_leader is specified in the request.) * `DatabaseAdmin.RestoreDatabase` * `DatabaseAdmin.CreateBackup` * `DatabaseAdmin.CopyBackup` * Both the source and target instance configurations are subject to hourly compute and storage charges. * The instance might experience higher read-write latencies and a higher transaction abort rate. However, moving an instance doesn't cause any downtime. The returned long-running operation has a name of the format `/operations/` and can be used to track the move instance operation. The metadata field type is MoveInstanceMetadata. The response field type is Instance, if successful. Cancelling the operation sets its metadata's cancel_time. Cancellation is not immediate because it involves moving any data previously moved to the target instance configuration back to the original instance configuration. You can use this operation to track the progress of the cancellation. Upon successful completion of the cancellation, the operation terminates with `CANCELLED` status. If not cancelled, upon completion of the returned operation: * The instance successfully moves to the target instance configuration. * You are billed for compute and storage in target instance configuration. Authorization requires the `spanner.instances.update` permission on the resource instance. For more details, see [Move an instance](https://cloud.google.com/spanner/docs/move-instance).",
               "flatPath": "v1/projects/{projectsId}/instances/{instancesId}:move",
               "httpMethod": "POST",
               "id": "spanner.projects.instances.move",
@@ -1397,7 +1402,7 @@
             "databases": {
               "methods": {
                 "changequorum": {
-                  "description": "ChangeQuorum is strictly restricted to databases that use dual region instance configurations. Initiates a background operation to change quorum a database from dual-region mode to single-region mode and vice versa. The returned long-running operation will have a name of the format `projects//instances//databases//operations/` and can be used to track execution of the ChangeQuorum. The metadata field type is ChangeQuorumMetadata. Authorization requires `spanner.databases.changequorum` permission on the resource database.",
+                  "description": "`ChangeQuorum` is strictly restricted to databases that use dual-region instance configurations. Initiates a background operation to change the quorum of a database from dual-region mode to single-region mode or vice versa. The returned long-running operation has a name of the format `projects//instances//databases//operations/` and can be used to track execution of the `ChangeQuorum`. The metadata field type is ChangeQuorumMetadata. Authorization requires `spanner.databases.changequorum` permission on the resource database.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}:changequorum",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.databases.changequorum",
@@ -1406,7 +1411,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the database in which to apply the ChangeQuorum. Values are of the form `projects//instances//databases/`.",
+                      "description": "Required. Name of the database in which to apply `ChangeQuorum`. Values are of the form `projects//instances//databases/`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+$",
                       "required": true,
@@ -1426,7 +1431,7 @@
                   ]
                 },
                 "create": {
-                  "description": "Creates a new Cloud Spanner database and starts to prepare it for serving. The returned long-running operation will have a name of the format `/operations/` and can be used to track preparation of the database. The metadata field type is CreateDatabaseMetadata. The response field type is Database, if successful.",
+                  "description": "Creates a new Spanner database and starts to prepare it for serving. The returned long-running operation will have a name of the format `/operations/` and can be used to track preparation of the database. The metadata field type is CreateDatabaseMetadata. The response field type is Database, if successful.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases",
                   "httpMethod": "POST",
                   "id": "spanner.projects.instances.databases.create",
@@ -1804,6 +1809,255 @@
                 }
               },
               "resources": {
+                "backupSchedules": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new backup schedule.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instances.databases.backupSchedules.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "backupScheduleId": {
+                          "description": "Required. The Id to use for the backup schedule. The `backup_schedule_id` appended to `parent` forms the full backup schedule name of the form `projects//instances//databases//backupSchedules/`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The name of the database that this backup schedule applies to.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/backupSchedules",
+                      "request": {
+                        "$ref": "BackupSchedule"
+                      },
+                      "response": {
+                        "$ref": "BackupSchedule"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a backup schedule.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}",
+                      "httpMethod": "DELETE",
+                      "id": "spanner.projects.instances.databases.backupSchedules.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the schedule to delete. Values are of the form `projects//instances//databases//backupSchedules/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets backup schedule for the input schedule name.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}",
+                      "httpMethod": "GET",
+                      "id": "spanner.projects.instances.databases.backupSchedules.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the schedule to retrieve. Values are of the form `projects//instances//databases//backupSchedules/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "BackupSchedule"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a database or backup resource. Returns an empty policy if a database or backup exists but does not have a policy set. Authorization requires `spanner.databases.getIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.getIamPolicy` permission on resource.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instances.databases.backupSchedules.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The Cloud Spanner resource for which the policy is being retrieved. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "request": {
+                        "$ref": "GetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the backup schedules for the database.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules",
+                      "httpMethod": "GET",
+                      "id": "spanner.projects.instances.databases.backupSchedules.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. Number of backup schedules to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. If non-empty, `page_token` should contain a next_page_token from a previous ListBackupSchedulesResponse to the same `parent`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Database is the parent resource whose backup schedules should be listed. Values are of the form projects//instances//databases/",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/backupSchedules",
+                      "response": {
+                        "$ref": "ListBackupSchedulesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a backup schedule.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}",
+                      "httpMethod": "PATCH",
+                      "id": "spanner.projects.instances.databases.backupSchedules.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. Output only for the CreateBackupSchedule operation. Required for the UpdateBackupSchedule operation. A globally unique identifier for the backup schedule which cannot be changed. Values are of the form `projects//instances//databases//backupSchedules/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. A mask specifying which fields in the BackupSchedule resource should be updated. This mask is relative to the BackupSchedule resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "BackupSchedule"
+                      },
+                      "response": {
+                        "$ref": "BackupSchedule"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on a database or backup resource. Replaces any existing policy. Authorization requires `spanner.databases.setIamPolicy` permission on resource. For backups, authorization requires `spanner.backups.setIamPolicy` permission on resource.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instances.databases.backupSchedules.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The Cloud Spanner resource for which the policy is being set. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for databases resources.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that the caller has on the specified database or backup resource. Attempting this RPC on a non-existent Cloud Spanner database will result in a NOT_FOUND error if the user has `spanner.databases.list` permission on the containing Cloud Spanner instance. Otherwise returns an empty set of permissions. Calling this method on a backup that does not exist will result in a NOT_FOUND error if the user has `spanner.backups.list` permission on the containing instance.",
+                      "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/backupSchedules/{backupSchedulesId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "spanner.projects.instances.databases.backupSchedules.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The Cloud Spanner resource for which permissions are being tested. The format is `projects//instances/` for instance resources and `projects//instances//databases/` for database resources.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+/backupSchedules/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/spanner.admin"
+                      ]
+                    }
+                  }
+                },
                 "databaseRoles": {
                   "methods": {
                     "list": {
@@ -3005,11 +3259,11 @@
       }
     }
   },
-  "revision": "20240612",
+  "revision": "20240807",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AutoscalingConfig": {
-      "description": "Autoscaling config for an instance.",
+      "description": "Autoscaling configuration for an instance.",
       "id": "AutoscalingConfig",
       "properties": {
         "autoscalingLimits": {
@@ -3071,6 +3325,14 @@
       "description": "A backup of a Cloud Spanner database.",
       "id": "Backup",
       "properties": {
+        "backupSchedules": {
+          "description": "Output only. List of backup schedule URIs that are associated with creating this backup. This is only applicable for scheduled backups, and is empty for on-demand backups. To optimize for storage, whenever possible, multiple schedules are collapsed together to create one backup. In such cases, this field captures the list of all backup schedule URIs that are associated with creating this backup. If collapsing is not done, then this field captures the single backup schedule URI associated with creating this backup.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. The time the CreateBackup request is received. If the request does not specify `version_time`, the `version_time` of the backup will be equivalent to the `create_time`.",
           "format": "google-datetime",
@@ -3109,9 +3371,26 @@
           "readOnly": true,
           "type": "array"
         },
+        "exclusiveSizeBytes": {
+          "description": "Output only. For a backup in an incremental backup chain, this is the storage space needed to keep the data that has changed since the previous backup. For all other backups, this is always the size of the backup. This value may change if backups on the same chain get deleted or expired. This field can be used to calculate the total storage space used by a set of backups. For example, the total space used by all backups of a database can be computed by summing up this field.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "expireTime": {
           "description": "Required for the CreateBackup operation. The expiration time of the backup, with microseconds granularity that must be at least 6 hours and at most 366 days from the time the CreateBackup request is processed. Once the `expire_time` has passed, the backup is eligible to be automatically deleted by Cloud Spanner to free the resources used by the backup.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "freeableSizeBytes": {
+          "description": "Output only. The number of bytes that will be freed by deleting this backup. This value will be zero if, for example, this backup is part of an incremental backup chain and younger backups in the chain require that we keep its data. For backups not in an incremental backup chain, this is always the size of the backup. This value may change if backups on the same chain get created, deleted or expired.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "incrementalBackupChainId": {
+          "description": "Output only. Populated only for backups in an incremental backup chain. Backups share the same chain id if and only if they belong to the same incremental backup chain. Use this field to determine which backups are part of the same incremental backup chain. The ordering of backups in the chain can be determined by ordering the backup `version_time`.",
+          "readOnly": true,
           "type": "string"
         },
         "maxExpireTime": {
@@ -3122,6 +3401,12 @@
         },
         "name": {
           "description": "Output only for the CreateBackup operation. Required for the UpdateBackup operation. A globally unique identifier for the backup which cannot be changed. Values are of the form `projects//instances//backups/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length. The backup is stored in the location(s) specified in the instance configuration of the instance containing the backup, identified by the prefix of the backup name of the form `projects//instances/`.",
+          "type": "string"
+        },
+        "oldestVersionTime": {
+          "description": "Output only. Data deleted at a time older than this is guaranteed not to be retained in order to support this backup. For a backup in an incremental backup chain, this is the version time of the oldest backup that exists or ever existed in the chain. For all other backups, this is the version time of the backup. This field can be used to understand what data is being retained by the backup system.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "referencingBackups": {
@@ -3141,7 +3426,7 @@
           "type": "array"
         },
         "sizeBytes": {
-          "description": "Output only. Size of the backup in bytes.",
+          "description": "Output only. Size of the backup in bytes. For a backup in an incremental backup chain, this is the sum of the `exclusive_size_bytes` of itself and all older backups in the chain.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -3190,6 +3475,55 @@
           "description": "The backup contains an externally consistent copy of `source_database` at the timestamp specified by `version_time`. If the CreateBackup request did not specify `version_time`, the `version_time` of the backup is equivalent to the `create_time`.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupSchedule": {
+      "description": "BackupSchedule expresses the automated backup creation specification for a Spanner database. Next ID: 10",
+      "id": "BackupSchedule",
+      "properties": {
+        "encryptionConfig": {
+          "$ref": "CreateBackupEncryptionConfig",
+          "description": "Optional. The encryption configuration that will be used to encrypt the backup. If this field is not specified, the backup will use the same encryption configuration as the database."
+        },
+        "fullBackupSpec": {
+          "$ref": "FullBackupSpec",
+          "description": "The schedule creates only full backups."
+        },
+        "incrementalBackupSpec": {
+          "$ref": "IncrementalBackupSpec",
+          "description": "The schedule creates incremental backup chains."
+        },
+        "name": {
+          "description": "Identifier. Output only for the CreateBackupSchedule operation. Required for the UpdateBackupSchedule operation. A globally unique identifier for the backup schedule which cannot be changed. Values are of the form `projects//instances//databases//backupSchedules/a-z*[a-z0-9]` The final segment of the name must be between 2 and 60 characters in length.",
+          "type": "string"
+        },
+        "retentionDuration": {
+          "description": "Optional. The retention duration of a backup that must be at least 6 hours and at most 366 days. The backup is eligible to be automatically deleted once the retention period has elapsed.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "spec": {
+          "$ref": "BackupScheduleSpec",
+          "description": "Optional. The schedule specification based on which the backup creations are triggered."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp at which the schedule was last updated. If the schedule has never been updated, this field contains the timestamp when the schedule was first created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupScheduleSpec": {
+      "description": "Defines specifications of the backup schedule.",
+      "id": "BackupScheduleSpec",
+      "properties": {
+        "cronSpec": {
+          "$ref": "CrontabSpec",
+          "description": "Cron style schedule specification."
         }
       },
       "type": "object"
@@ -3333,16 +3667,16 @@
       "id": "ChangeQuorumRequest",
       "properties": {
         "etag": {
-          "description": "Optional. The etag is the hash of the QuorumInfo. The ChangeQuorum operation will only be performed if the etag matches that of the QuorumInfo in the current database resource. Otherwise the API will return an `ABORTED` error. The etag is used for optimistic concurrency control as a way to help prevent simultaneous change quorum requests that could create a race condition.",
+          "description": "Optional. The etag is the hash of the `QuorumInfo`. The `ChangeQuorum` operation is only performed if the etag matches that of the `QuorumInfo` in the current database resource. Otherwise the API returns an `ABORTED` error. The etag is used for optimistic concurrency control as a way to help prevent simultaneous change quorum requests that could create a race condition.",
           "type": "string"
         },
         "name": {
-          "description": "Required. Name of the database in which to apply the ChangeQuorum. Values are of the form `projects//instances//databases/`.",
+          "description": "Required. Name of the database in which to apply `ChangeQuorum`. Values are of the form `projects//instances//databases/`.",
           "type": "string"
         },
         "quorumType": {
           "$ref": "QuorumType",
-          "description": "Required. The type of this Quorum."
+          "description": "Required. The type of this quorum."
         }
       },
       "type": "object"
@@ -3551,6 +3885,40 @@
       },
       "type": "object"
     },
+    "CreateBackupEncryptionConfig": {
+      "description": "Encryption configuration for the backup to create.",
+      "id": "CreateBackupEncryptionConfig",
+      "properties": {
+        "encryptionType": {
+          "description": "Required. The encryption type of the backup.",
+          "enum": [
+            "ENCRYPTION_TYPE_UNSPECIFIED",
+            "USE_DATABASE_ENCRYPTION",
+            "GOOGLE_DEFAULT_ENCRYPTION",
+            "CUSTOMER_MANAGED_ENCRYPTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Do not use.",
+            "Use the same encryption configuration as the database. This is the default option when encryption_config is empty. For example, if the database is using `Customer_Managed_Encryption`, the backup will be using the same Cloud KMS key as the database.",
+            "Use Google default encryption.",
+            "Use customer managed encryption. If specified, `kms_key_name` must contain a valid Cloud KMS key."
+          ],
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "Optional. The Cloud KMS key that will be used to protect the backup. This field should be set only when encryption_type is `CUSTOMER_MANAGED_ENCRYPTION`. Values are of the form `projects//locations//keyRings//cryptoKeys/`.",
+          "type": "string"
+        },
+        "kmsKeyNames": {
+          "description": "Optional. Specifies the KMS configuration for the one or more keys used to protect the backup. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the backup's instance configuration. Some examples: * For single region instance configs, specify a single regional location KMS key. * For multi-regional instance configs of type GOOGLE_MANAGED, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance config. * For an instance config of type USER_MANAGED, please specify only regional location KMS keys to cover each region in the instance config. Multi-regional location KMS keys are not supported for USER_MANAGED instance configs.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CreateBackupMetadata": {
       "description": "Metadata type for the operation returned by CreateBackup.",
       "id": "CreateBackupMetadata",
@@ -3620,7 +3988,7 @@
           "type": "array"
         },
         "protoDescriptors": {
-          "description": "Optional. Proto descriptors used by CREATE/ALTER PROTO BUNDLE statements in 'extra_statements' above. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto). To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "description": "Optional. Proto descriptors used by `CREATE/ALTER PROTO BUNDLE` statements in 'extra_statements'. Contains a protobuf-serialized [`google.protobuf.FileDescriptorSet`](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto) descriptor set. To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with --include_imports and --descriptor_set_out. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.data \\ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
           "format": "byte",
           "type": "string"
         }
@@ -3638,7 +4006,7 @@
         },
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "The target instance config end state."
+          "description": "The target instance configuration end state."
         },
         "progress": {
           "$ref": "InstanceOperationProgress",
@@ -3653,10 +4021,10 @@
       "properties": {
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "Required. The InstanceConfig proto of the configuration to create. instance_config.name must be `/instanceConfigs/`. instance_config.base_config must be a Google managed configuration name, e.g. /instanceConfigs/us-east1, /instanceConfigs/nam3."
+          "description": "Required. The `InstanceConfig` proto of the configuration to create. `instance_config.name` must be `/instanceConfigs/`. `instance_config.base_config` must be a Google-managed configuration name, e.g. /instanceConfigs/us-east1, /instanceConfigs/nam3."
         },
         "instanceConfigId": {
-          "description": "Required. The ID of the instance config to create. Valid identifiers are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in length. The `custom-` prefix is required to avoid name conflicts with Google managed configurations.",
+          "description": "Required. The ID of the instance configuration to create. Valid identifiers are of the form `custom-[-a-z0-9]*[a-z0-9]` and must be between 2 and 64 characters in length. The `custom-` prefix is required to avoid name conflicts with Google-managed configurations.",
           "type": "string"
         },
         "validateOnly": {
@@ -3773,6 +4141,28 @@
       },
       "type": "object"
     },
+    "CrontabSpec": {
+      "description": "CrontabSpec can be used to specify the version time and frequency at which the backup should be created.",
+      "id": "CrontabSpec",
+      "properties": {
+        "creationWindow": {
+          "description": "Output only. Schedule backups will contain an externally consistent copy of the database at the version time specified in `schedule_spec.cron_spec`. However, Spanner may not initiate the creation of the scheduled backups at that version time. Spanner will initiate the creation of scheduled backups within the time window bounded by the version_time specified in `schedule_spec.cron_spec` and version_time + `creation_window`.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "text": {
+          "description": "Required. Textual representation of the crontab. User can customize the backup frequency and the backup version time using the cron expression. The version time must be in UTC timzeone. The backup will contain an externally consistent copy of the database at the version time. Allowed frequencies are 12 hour, 1 day, 1 week and 1 month. Examples of valid cron specifications: * `0 2/12 * * * ` : every 12 hours at (2, 14) hours past midnight in UTC. * `0 2,14 * * * ` : every 12 hours at (2,14) hours past midnight in UTC. * `0 2 * * * ` : once a day at 2 past midnight in UTC. * `0 2 * * 0 ` : once a week every Sunday at 2 past midnight in UTC. * `0 2 8 * * ` : once a month on 8th day at 2 past midnight in UTC.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Output only. The time zone of the times in `CrontabSpec.text`. Currently only UTC is supported.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Database": {
       "description": "A Cloud Spanner database.",
       "id": "Database",
@@ -3810,7 +4200,7 @@
           "type": "string"
         },
         "enableDropProtection": {
-          "description": "Whether drop protection is enabled for this database. Defaults to false, if not set. For more details, please see how to [prevent accidental database deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).",
+          "description": "Optional. Whether drop protection is enabled for this database. Defaults to false, if not set. For more details, please see how to [prevent accidental database deletion](https://cloud.google.com/spanner/docs/prevent-database-deletion).",
           "type": "boolean"
         },
         "encryptionConfig": {
@@ -3832,7 +4222,7 @@
         },
         "quorumInfo": {
           "$ref": "QuorumInfo",
-          "description": "Output only. Applicable only for databases that use dual region instance configurations. Contains information about the quorum.",
+          "description": "Output only. Applicable only for databases that use dual-region instance configurations. Contains information about the quorum.",
           "readOnly": true
         },
         "reconciling": {
@@ -4152,7 +4542,7 @@
           "enumDescriptions": [
             "The default mode. Only the statement results are returned.",
             "This mode returns only the query plan, without any results or execution statistics information.",
-            "This mode returns both the query plan and the execution statistics along with the results."
+            "This mode returns both the query plan and the execution statistics along with the results. This has a performance overhead compared to the NORMAL mode. It is not recommended to use this mode for production traffic."
           ],
           "type": "string"
         },
@@ -4256,6 +4646,12 @@
       },
       "type": "object"
     },
+    "FullBackupSpec": {
+      "description": "The specification for full backups. A full backup stores the entire contents of the database at a given version time.",
+      "id": "FullBackupSpec",
+      "properties": {},
+      "type": "object"
+    },
     "GetDatabaseDdlResponse": {
       "description": "The response for GetDatabaseDdl.",
       "id": "GetDatabaseDdlResponse",
@@ -4314,6 +4710,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "IncrementalBackupSpec": {
+      "description": "The specification for incremental backup chains. An incremental backup stores the delta of changes between a previous backup and the database contents at a given version time. An incremental backup chain consists of a full backup and zero or more successive incremental backups. The first backup created for an incremental backup chain is always a full backup.",
+      "id": "IncrementalBackupSpec",
+      "properties": {},
       "type": "object"
     },
     "IndexAdvice": {
@@ -4386,6 +4788,22 @@
           "description": "Required. The descriptive name for this instance as it appears in UIs. Must be unique per project and between 4 and 30 characters in length.",
           "type": "string"
         },
+        "edition": {
+          "description": "Optional. The `Edition` of the current instance.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE",
+            "ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "Edition not specified.",
+            "Standard edition.",
+            "Enterprise edition.",
+            "Enterprise Plus edition."
+          ],
+          "type": "string"
+        },
         "endpointUris": {
           "description": "Deprecated. This field is not populated.",
           "items": {
@@ -4423,12 +4841,12 @@
           "type": "string"
         },
         "nodeCount": {
-          "description": "The number of nodes allocated to this instance. At most one of either node_count or processing_units should be present in the message. Users can set the node_count field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, node_count is treated as an OUTPUT_ONLY field and reflects the current number of nodes allocated to the instance. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.",
+          "description": "The number of nodes allocated to this instance. At most, one of either `node_count` or `processing_units` should be present in the message. Users can set the `node_count` field to specify the target number of nodes allocated to the instance. If autoscaling is enabled, `node_count` is treated as an `OUTPUT_ONLY` field and reflects the current number of nodes allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. For more information, see [Compute capacity, nodes, and processing units](https://cloud.google.com/spanner/docs/compute-capacity).",
           "format": "int32",
           "type": "integer"
         },
         "processingUnits": {
-          "description": "The number of processing units allocated to this instance. At most one of processing_units or node_count should be present in the message. Users can set the processing_units field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, processing_units is treated as an OUTPUT_ONLY field and reflects the current number of processing units allocated to the instance. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/compute-capacity) for more information about nodes and processing units.",
+          "description": "The number of processing units allocated to this instance. At most, one of either `processing_units` or `node_count` should be present in the message. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance. If autoscaling is enabled, `processing_units` is treated as an `OUTPUT_ONLY` field and reflects the current number of processing units allocated to the instance. This might be zero in API responses for instances that are not yet in the `READY` state. For more information, see [Compute capacity, nodes and processing units](https://cloud.google.com/spanner/docs/compute-capacity).",
           "format": "int32",
           "type": "integer"
         },
@@ -4461,11 +4879,11 @@
       "id": "InstanceConfig",
       "properties": {
         "baseConfig": {
-          "description": "Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user managed configurations. `base_config` must refer to a configuration of type GOOGLE_MANAGED in the same project as this configuration.",
+          "description": "Base configuration name, e.g. projects//instanceConfigs/nam3, based on which this configuration is created. Only set for user-managed configurations. `base_config` must refer to a configuration of type `GOOGLE_MANAGED` in the same project as this configuration.",
           "type": "string"
         },
         "configType": {
-          "description": "Output only. Whether this instance config is a Google or User Managed Configuration.",
+          "description": "Output only. Whether this instance configuration is a Google-managed or user-managed configuration.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "GOOGLE_MANAGED",
@@ -4473,8 +4891,8 @@
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Google managed configuration.",
-            "User managed configuration."
+            "Google-managed configuration.",
+            "User-managed configuration."
           ],
           "readOnly": true,
           "type": "string"
@@ -4484,11 +4902,11 @@
           "type": "string"
         },
         "etag": {
-          "description": "etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance config from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance config updates in order to avoid race conditions: An etag is returned in the response which contains instance configs, and systems are expected to put that etag in the request to update instance config to ensure that their change will be applied to the same version of the instance config. If no etag is provided in the call to update instance config, then the existing instance config is overwritten blindly.",
+          "description": "etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a instance configuration from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform instance configuration updates in order to avoid race conditions: An etag is returned in the response which contains instance configurations, and systems are expected to put that etag in the request to update instance configuration to ensure that their change is applied to the same version of the instance configuration. If no etag is provided in the call to update the instance configuration, then the existing instance configuration is overwritten blindly.",
           "type": "string"
         },
         "freeInstanceAvailability": {
-          "description": "Output only. Describes whether free instances are available to be created in this instance config.",
+          "description": "Output only. Describes whether free instances are available to be created in this instance configuration.",
           "enum": [
             "FREE_INSTANCE_AVAILABILITY_UNSPECIFIED",
             "AVAILABLE",
@@ -4498,10 +4916,10 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Indicates that free instances are available to be created in this instance config.",
-            "Indicates that free instances are not supported in this instance config.",
-            "Indicates that free instances are currently not available to be created in this instance config.",
-            "Indicates that additional free instances cannot be created in this instance config because the project has reached its limit of free instances."
+            "Indicates that free instances are available to be created in this instance configuration.",
+            "Indicates that free instances are not supported in this instance configuration.",
+            "Indicates that free instances are currently not available to be created in this instance configuration.",
+            "Indicates that additional free instances cannot be created in this instance configuration because the project has reached its limit of free instances."
           ],
           "readOnly": true,
           "type": "string"
@@ -4521,11 +4939,11 @@
           "type": "array"
         },
         "name": {
-          "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance config must start with `custom-`.",
+          "description": "A unique identifier for the instance configuration. Values are of the form `projects//instanceConfigs/a-z*`. User instance configuration must start with `custom-`.",
           "type": "string"
         },
         "optionalReplicas": {
-          "description": "Output only. The available optional replicas to choose from for user managed configurations. Populated for Google managed configurations.",
+          "description": "Output only. The available optional replicas to choose from for user-managed configurations. Populated for Google-managed configurations.",
           "items": {
             "$ref": "ReplicaInfo"
           },
@@ -4541,28 +4959,28 @@
             "MULTI_REGION"
           ],
           "enumDescriptions": [
-            "Not specified.",
-            "An instance configuration tagged with REGION quorum type forms a write quorum in a single region.",
-            "An instance configuration tagged with DUAL_REGION quorum type forms a write quorums with exactly two read-write regions in a multi-region configuration. This instance configurations requires reconfiguration in the event of regional failures.",
-            "An instance configuration tagged with MULTI_REGION quorum type forms a write quorums from replicas are spread across more than one region in a multi-region configuration."
+            "Quorum type not specified.",
+            "An instance configuration tagged with `REGION` quorum type forms a write quorum in a single region.",
+            "An instance configuration tagged with the `DUAL_REGION` quorum type forms a write quorum with exactly two read-write regions in a multi-region configuration. This instance configuration requires failover in the event of regional failures.",
+            "An instance configuration tagged with the `MULTI_REGION` quorum type forms a write quorum from replicas that are spread across more than one region in a multi-region configuration."
           ],
           "readOnly": true,
           "type": "string"
         },
         "reconciling": {
-          "description": "Output only. If true, the instance config is being created or updated. If false, there are no ongoing operations for the instance config.",
+          "description": "Output only. If true, the instance configuration is being created or updated. If false, there are no ongoing operations for the instance configuration.",
           "readOnly": true,
           "type": "boolean"
         },
         "replicas": {
-          "description": "The geographic placement of nodes in this instance configuration and their replication properties. To create user managed configurations, input `replicas` must include all replicas in `replicas` of the `base_config` and include one or more replicas in the `optional_replicas` of the `base_config`.",
+          "description": "The geographic placement of nodes in this instance configuration and their replication properties. To create user-managed configurations, input `replicas` must include all replicas in `replicas` of the `base_config` and include one or more replicas in the `optional_replicas` of the `base_config`.",
           "items": {
             "$ref": "ReplicaInfo"
           },
           "type": "array"
         },
         "state": {
-          "description": "Output only. The current instance config state. Applicable only for USER_MANAGED configs.",
+          "description": "Output only. The current instance configuration state. Applicable only for `USER_MANAGED` configurations.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CREATING",
@@ -4570,8 +4988,8 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "The instance config is still being created.",
-            "The instance config is fully created and ready to be used to create instances."
+            "The instance configuration is still being created.",
+            "The instance configuration is fully created and ready to be used to create instances."
           ],
           "readOnly": true,
           "type": "string"
@@ -4634,17 +5052,18 @@
           "type": "string"
         },
         "nodeCount": {
-          "description": "The number of nodes allocated to this instance partition. Users can set the node_count field to specify the target number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
+          "description": "The number of nodes allocated to this instance partition. Users can set the `node_count` field to specify the target number of nodes allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
           "format": "int32",
           "type": "integer"
         },
         "processingUnits": {
-          "description": "The number of processing units allocated to this instance partition. Users can set the processing_units field to specify the target number of processing units allocated to the instance partition. This may be zero in API responses for instance partitions that are not yet in state `READY`.",
+          "description": "The number of processing units allocated to this instance partition. Users can set the `processing_units` field to specify the target number of processing units allocated to the instance partition. This might be zero in API responses for instance partitions that are not yet in the `READY` state.",
           "format": "int32",
           "type": "integer"
         },
         "referencingBackups": {
-          "description": "Output only. The names of the backups that reference this instance partition. Referencing backups should share the parent instance. The existence of any referencing backup prevents the instance partition from being deleted.",
+          "deprecated": true,
+          "description": "Output only. Deprecated: This field is not populated. Output only. The names of the backups that reference this instance partition. Referencing backups should share the parent instance. The existence of any referencing backup prevents the instance partition from being deleted.",
           "items": {
             "type": "string"
           },
@@ -4834,6 +5253,24 @@
       },
       "type": "object"
     },
+    "ListBackupSchedulesResponse": {
+      "description": "The response for ListBackupSchedules.",
+      "id": "ListBackupSchedulesResponse",
+      "properties": {
+        "backupSchedules": {
+          "description": "The list of backup schedules for a database.",
+          "items": {
+            "$ref": "BackupSchedule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "`next_page_token` can be sent in a subsequent ListBackupSchedules call to fetch more of the schedules.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListBackupsResponse": {
       "description": "The response for ListBackups.",
       "id": "ListBackupsResponse",
@@ -4915,7 +5352,7 @@
           "type": "string"
         },
         "operations": {
-          "description": "The list of matching instance config long-running operations. Each operation's name will be prefixed by the instance config's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata.",
+          "description": "The list of matching instance configuration long-running operations. Each operation's name will be prefixed by the name of the instance configuration. The operation's metadata field type `metadata.type_url` describes the type of the metadata.",
           "items": {
             "$ref": "Operation"
           },
@@ -5199,7 +5636,7 @@
       "id": "MoveInstanceRequest",
       "properties": {
         "targetConfig": {
-          "description": "Required. The target instance config for the instance to move. Values are of the form `projects//instanceConfigs/`.",
+          "description": "Required. The target instance configuration where to move the instance. Values are of the form `projects//instanceConfigs/`.",
           "type": "string"
         }
       },
@@ -5402,7 +5839,7 @@
           "description": "Additional options that affect how many partitions are created."
         },
         "sql": {
-          "description": "Required. The query request to generate partitions for. The request will fail if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as INSERT, UPDATE, or DELETE. Use ExecuteStreamingSql with a PartitionedDml transaction for large, partition-friendly DML operations.",
+          "description": "Required. The query request to generate partitions for. The request fails if the query is not root partitionable. For a query to be root partitionable, it needs to satisfy a few conditions. For example, if the query execution plan contains a distributed union operator, then it must be the first operator in the plan. For more information about other conditions, see [Read data in parallel](https://cloud.google.com/spanner/docs/reads#read_data_in_parallel). The query request must not contain DML commands, such as `INSERT`, `UPDATE`, or `DELETE`. Use `ExecuteStreamingSql` with a PartitionedDml transaction for large, partition-friendly DML operations.",
           "type": "string"
         },
         "transaction": {
@@ -5629,16 +6066,16 @@
       "type": "object"
     },
     "QuorumInfo": {
-      "description": "Information about the dual region quorum.",
+      "description": "Information about the dual-region quorum.",
       "id": "QuorumInfo",
       "properties": {
         "etag": {
-          "description": "Output only. The etag is used for optimistic concurrency control as a way to help prevent simultaneous ChangeQuorum requests that could create a race condition.",
+          "description": "Output only. The etag is used for optimistic concurrency control as a way to help prevent simultaneous `ChangeQuorum` requests that might create a race condition.",
           "readOnly": true,
           "type": "string"
         },
         "initiator": {
-          "description": "Output only. Whether this ChangeQuorum is a Google or User initiated.",
+          "description": "Output only. Whether this `ChangeQuorum` is Google or User initiated.",
           "enum": [
             "INITIATOR_UNSPECIFIED",
             "GOOGLE",
@@ -5646,8 +6083,8 @@
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "ChangeQuorum initiated by Google.",
-            "ChangeQuorum initiated by User."
+            "`ChangeQuorum` initiated by Google.",
+            "`ChangeQuorum` initiated by User."
           ],
           "readOnly": true,
           "type": "string"
@@ -5667,16 +6104,16 @@
       "type": "object"
     },
     "QuorumType": {
-      "description": "Information about the database quorum type. this applies only for dual region instance configs.",
+      "description": "Information about the database quorum type. This only applies to dual-region instance configs.",
       "id": "QuorumType",
       "properties": {
         "dualRegion": {
           "$ref": "DualRegionQuorum",
-          "description": "Dual region quorum type."
+          "description": "Dual-region quorum type."
         },
         "singleRegion": {
           "$ref": "SingleRegionQuorum",
-          "description": "Single region quorum type."
+          "description": "Single-region quorum type."
         }
       },
       "type": "object"
@@ -5933,7 +6370,7 @@
           "type": "string"
         },
         "kmsKeyNames": {
-          "description": "Optional. Specifies the KMS configuration for the one or more keys used to encrypt the database. Values are of the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the database instance configuration. Some examples: * For single region database instance configs, specify a single regional location KMS key. * For multi-regional database instance configs of type GOOGLE_MANAGED, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance config. * For a database instance config of type USER_MANAGED, please specify only regional location KMS keys to cover each region in the instance config. Multi-regional location KMS keys are not supported for USER_MANAGED instance configs.",
+          "description": "Optional. Specifies the KMS configuration for the one or more keys used to encrypt the database. Values have the form `projects//locations//keyRings//cryptoKeys/`. The keys referenced by kms_key_names must fully cover all regions of the database instance configuration. Some examples: * For single region database instance configurations, specify a single regional location KMS key. * For multi-regional database instance configurations of type `GOOGLE_MANAGED`, either specify a multi-regional location KMS key or multiple regional location KMS keys that cover all regions in the instance configuration. * For a database instance configuration of type `USER_MANAGED`, please specify only regional location KMS keys to cover each region in the instance configuration. Multi-regional location KMS keys are not supported for USER_MANAGED instance configurations.",
           "items": {
             "type": "string"
           },
@@ -6238,7 +6675,7 @@
       "id": "SingleRegionQuorum",
       "properties": {
         "servingLocation": {
-          "description": "Required. The location of the serving region, e.g. \"us-central1\". The location must be one of the regions within the dual region instance configuration of your database. The list of valid locations is available via [GetInstanceConfig[InstanceAdmin.GetInstanceConfig] API. This should only be used if you plan to change quorum in single-region quorum type.",
+          "description": "Required. The location of the serving region, e.g. \"us-central1\". The location must be one of the regions within the dual-region instance configuration of your database. The list of valid locations is available using the GetInstanceConfig API. This should only be used if you plan to change quorum to the single-region quorum type.",
           "type": "string"
         }
       },
@@ -6585,7 +7022,7 @@
         },
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "The desired instance config after updating."
+          "description": "The desired instance configuration after updating."
         },
         "progress": {
           "$ref": "InstanceOperationProgress",
@@ -6600,7 +7037,7 @@
       "properties": {
         "instanceConfig": {
           "$ref": "InstanceConfig",
-          "description": "Required. The user instance config to update, which must always include the instance config name. Otherwise, only fields mentioned in update_mask need be included. To prevent conflicts of concurrent updates, etag can be used."
+          "description": "Required. The user instance configuration to update, which must always include the instance configuration name. Otherwise, only fields mentioned in update_mask need be included. To prevent conflicts of concurrent updates, etag can be used."
         },
         "updateMask": {
           "description": "Required. A mask specifying which fields in InstanceConfig should be updated. The field mask must always be specified; this prevents any future fields in InstanceConfig from being erased accidentally by clients that do not know about them. Only display_name and labels can be updated.",
