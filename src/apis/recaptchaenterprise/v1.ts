@@ -155,6 +155,19 @@ export namespace recaptchaenterprise_v1 {
     username?: string | null;
   }
   /**
+   * The AddIpOverride request message.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest {
+    /**
+     * Required. IP override added to the key.
+     */
+    ipOverrideData?: Schema$GoogleCloudRecaptchaenterpriseV1IpOverrideData;
+  }
+  /**
+   * Response for AddIpOverride.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse {}
+  /**
    * Settings specific to keys that can be used by Android apps.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AndroidKeySettings {
@@ -230,6 +243,10 @@ export namespace recaptchaenterprise_v1 {
      */
     accountVerification?: Schema$GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo;
     /**
+     * Optional. The environment creating the assessment. This describes your environment (the system invoking CreateAssessment), NOT the environment of your user.
+     */
+    assessmentEnvironment?: Schema$GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment;
+    /**
      * Optional. The event being assessed.
      */
     event?: Schema$GoogleCloudRecaptchaenterpriseV1Event;
@@ -265,6 +282,19 @@ export namespace recaptchaenterprise_v1 {
      * Output only. Properties of the provided event token.
      */
     tokenProperties?: Schema$GoogleCloudRecaptchaenterpriseV1TokenProperties;
+  }
+  /**
+   * The environment creating the assessment. This describes your environment (the system invoking CreateAssessment), NOT the environment of your user.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment {
+    /**
+     * Optional. Identifies the client module initiating the CreateAssessment request. This can be the link to the client module's project. Examples include: - "github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager" - "cloud.google.com/recaptcha/docs/implement-waf-akamai" - "cloud.google.com/recaptcha/docs/implement-waf-cloudflare" - "wordpress.org/plugins/recaptcha-something"
+     */
+    client?: string | null;
+    /**
+     * Optional. The version of the client module. For example, "1.0.0".
+     */
+    version?: string | null;
   }
   /**
    * Metrics related to challenges.
@@ -579,6 +609,19 @@ export namespace recaptchaenterprise_v1 {
     appleDeveloperId?: Schema$GoogleCloudRecaptchaenterpriseV1AppleDeveloperId;
   }
   /**
+   * Information about the IP or IP range override.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1IpOverrideData {
+    /**
+     * Required. The IP address to override (can be IPv4, IPv6 or CIDR). The IP override must be a valid IPv4 or IPv6 address, or a CIDR range. The IP override must be a public IP address. Example of IPv4: 168.192.5.6 Example of IPv6: 2001:0000:130F:0000:0000:09C0:876A:130B Example of IPv4 with CIDR: 168.192.5.0/24 Example of IPv6 with CIDR: 2001:0DB8:1234::/48
+     */
+    ip?: string | null;
+    /**
+     * Required. Describes the type of IP override.
+     */
+    overrideType?: string | null;
+  }
+  /**
    * A key used to identify and configure applications (web and/or mobile) that use reCAPTCHA Enterprise.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Key {
@@ -599,7 +642,7 @@ export namespace recaptchaenterprise_v1 {
      */
     iosSettings?: Schema$GoogleCloudRecaptchaenterpriseV1IOSKeySettings;
     /**
-     * Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha-enterprise/docs/labels).
+     * Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha/docs/labels).
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -697,7 +740,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {
     /**
-     * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha-enterprise/docs/billing-information.
+     * Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.
      */
     skipBillingCheck?: boolean | null;
   }
@@ -2092,6 +2135,104 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
+     * Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error will be returned.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addIpOverride(
+      params: Params$Resource$Projects$Keys$Addipoverride,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addIpOverride(
+      params?: Params$Resource$Projects$Keys$Addipoverride,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>;
+    addIpOverride(
+      params: Params$Resource$Projects$Keys$Addipoverride,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addIpOverride(
+      params: Params$Resource$Projects$Keys$Addipoverride,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+    ): void;
+    addIpOverride(
+      params: Params$Resource$Projects$Keys$Addipoverride,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+    ): void;
+    addIpOverride(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+    ): void;
+    addIpOverride(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Keys$Addipoverride
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Keys$Addipoverride;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Keys$Addipoverride;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:addIpOverride').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates a new reCAPTCHA Enterprise key.
      *
      * @param params - Parameters for request
@@ -2852,6 +2993,18 @@ export namespace recaptchaenterprise_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Keys$Addipoverride
+    extends StandardParameters {
+    /**
+     * Required. The name of the key to which the IP override is added, in the format `projects/{project\}/keys/{key\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest;
+  }
   export interface Params$Resource$Projects$Keys$Create
     extends StandardParameters {
     /**
