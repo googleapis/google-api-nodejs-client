@@ -760,7 +760,7 @@ export namespace calendar_v3 {
      */
     recurringEventId?: string | null;
     /**
-     * Information about the event's reminders for the authenticated user.
+     * Information about the event's reminders for the authenticated user. Note that changing reminders does not also change the updated property of the enclosing event.
      */
     reminders?: {
       overrides?: Schema$EventReminder[];
@@ -802,7 +802,7 @@ export namespace calendar_v3 {
      */
     transparency?: string | null;
     /**
-     * Last modification time of the event (as a RFC3339 timestamp). Read-only.
+     * Last modification time of the main event data (as a RFC3339 timestamp). Updating event reminders will not cause this to change. Read-only.
      */
     updated?: string | null;
     /**
