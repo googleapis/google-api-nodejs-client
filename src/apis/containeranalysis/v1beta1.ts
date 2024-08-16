@@ -5078,6 +5078,22 @@ export namespace containeranalysis_v1beta1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
+  export interface Params$Resource$Projects$Locations$Notes$Patch
+    extends StandardParameters {
+    /**
+     * Required. The name of the note in the form of `projects/[PROVIDER_ID]/notes/[NOTE_ID]`.
+     */
+    name?: string;
+    /**
+     * The fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Note;
+  }
 
   export class Resource$Projects$Locations$Notes$Occurrences {
     context: APIRequestContext;
@@ -7128,6 +7144,22 @@ export namespace containeranalysis_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Occurrences$Patch
+    extends StandardParameters {
+    /**
+     * Required. The name of the occurrence in the form of `projects/[PROJECT_ID]/occurrences/[OCCURRENCE_ID]`.
+     */
+    name?: string;
+    /**
+     * The fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Occurrence;
   }
 
   export class Resource$Projects$Locations$Resources {
