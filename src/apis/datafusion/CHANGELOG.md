@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v8.0.0...datafusion-v9.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datafusion:** This release has breaking changes.
+
+### Features
+
+* **datafusion:** update the API ([8bca4c5](https://github.com/googleapis/google-api-nodejs-client/commit/8bca4c55b7b5fd8b3ae916bfb0bd7b1157aa90ac))
+* **datafusion:** update the API ([eba93e9](https://github.com/googleapis/google-api-nodejs-client/commit/eba93e9970387c728410f57fb641e1c8b548afa0))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v7.0.0...datafusion-v8.0.0) (2024-08-16)
 
 

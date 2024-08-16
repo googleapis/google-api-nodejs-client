@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v3.0.0...jobs-v4.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **jobs:** This release has breaking changes.
+
+### Features
+
+* **jobs:** update the API ([43eff01](https://github.com/googleapis/google-api-nodejs-client/commit/43eff019d402ad603053cd81767f06362de1f2f4))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v2.0.0...jobs-v3.0.0) (2024-08-16)
 
 
