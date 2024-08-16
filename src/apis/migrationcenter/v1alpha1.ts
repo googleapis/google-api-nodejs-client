@@ -732,7 +732,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     machinePreferences?: Schema$MachinePreferences;
     /**
-     * Optional. Preferences for multithreading support.
+     * Optional. Preferences for multithreading support on Windows Server.
      */
     multithreading?: string | null;
     /**
@@ -2610,7 +2610,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     commitmentPlan?: string | null;
     /**
-     * Optional. License type of the OS image.
+     * Optional. License type for premium images (RHEL, RHEL for SAP, SLES, SLES for SAP, Windows Server).
      */
     licenseType?: string | null;
   }
@@ -3158,7 +3158,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     machinePreferences?: Schema$VirtualMachinePreferences;
     /**
-     * Compute monthly cost for this preference set.
+     * Output only. Compute monthly cost for this preference set.
      */
     monthlyCostCompute?: Schema$Money;
     /**
@@ -3170,23 +3170,23 @@ export namespace migrationcenter_v1alpha1 {
      */
     monthlyCostDatabaseLicensing?: Schema$Money;
     /**
-     * Network Egress monthly cost for this preference set. Only present for virtual machines.
+     * Output only. Network Egress monthly cost for this preference set. Only present for virtual machines.
      */
     monthlyCostNetworkEgress?: Schema$Money;
     /**
-     * Operating system licensing monthly cost for this preference set. Only present for virtual machines.
+     * Output only. Operating system licensing monthly cost for this preference set. Only present for virtual machines.
      */
     monthlyCostOsLicense?: Schema$Money;
     /**
-     * Miscellaneous monthly cost for this preference set.
+     * Output only. Miscellaneous monthly cost for this preference set.
      */
     monthlyCostOther?: Schema$Money;
     /**
-     * Storage monthly cost for this preference set.
+     * Output only. Storage monthly cost for this preference set.
      */
     monthlyCostStorage?: Schema$Money;
     /**
-     * Total monthly cost for this preference set.
+     * Output only. Total monthly cost for this preference set.
      */
     monthlyCostTotal?: Schema$Money;
     /**
