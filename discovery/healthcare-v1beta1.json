@@ -5174,6 +5174,35 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "rollback": {
+                      "description": "Rolls back messages from the HL7 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}:rollback",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.hl7V2Stores.rollback",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the HL7v2 store to rollback, in the format of \"projects/{project_id}/locations/{location_id}/datasets/{dataset_id} /hl7V2Stores/{hl7v2_store_id}\".",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:rollback",
+                      "request": {
+                        "$ref": "RollbackHl7V2MessagesRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}:setIamPolicy",
@@ -5672,7 +5701,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240731",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -5924,6 +5953,25 @@
         },
         "name": {
           "description": "Identifier. Resource name of the Annotation store, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/annotationStores/{annotation_store_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyAdminConsentsErrorDetail": {
+      "description": "Contains the error details of the unsupported admin Consent resources for when the ApplyAdminConsents method fails to apply one or more Consent resources.",
+      "id": "ApplyAdminConsentsErrorDetail",
+      "properties": {
+        "consentErrors": {
+          "description": "The list of Consent resources that are unsupported or cannot be applied and the error associated with each of them.",
+          "items": {
+            "$ref": "ConsentErrors"
+          },
+          "type": "array"
+        },
+        "existingOperationId": {
+          "description": "The currently in progress non-validate-only ApplyAdminConsents operation ID if exist.",
+          "format": "uint64",
           "type": "string"
         }
       },
@@ -6522,7 +6570,7 @@
           "description": "Optional. Specifies how the server logs the consent-aware requests. If not specified, the `AccessDeterminationLogConfig.LogLevel.MINIMUM` option is used."
         },
         "accessEnforced": {
-          "description": "Optional. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.",
+          "description": "Optional. The default value is false. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.",
           "type": "boolean"
         },
         "consentHeaderHandling": {
@@ -6546,6 +6594,21 @@
             "Users must specify an enforcement version or an error is returned.",
             "Enforcement version 1. See the [FHIR Consent resources in the Cloud Healthcare API](https://cloud.google.com/healthcare-api/docs/fhir-consent) guide for more details."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConsentErrors": {
+      "description": "The Consent resource name and error.",
+      "id": "ConsentErrors",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "The error code and message."
+        },
+        "name": {
+          "description": "The versioned name of the admin Consent resource, in the format `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}/_history/{version_id}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}`.",
           "type": "string"
         }
       },
@@ -6773,7 +6836,7 @@
           "description": "Configures de-identification of text wherever it is found in the source_dataset."
         },
         "useRegionalDataProcessing": {
-          "description": "Ensures in-flight data remains in the region of origin during de-identification. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated DicomConfig or FhirConfig are used, then `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.",
+          "description": "Ensures in-flight data remains in the region of origin during de-identification. The default value is false. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. If the deprecated DicomConfig or FhirConfig are used, then `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.",
           "type": "boolean"
         }
       },
@@ -7610,11 +7673,11 @@
           "type": "string"
         },
         "sendFullResource": {
-          "description": "Whether to send full FHIR resource to this Pub/Sub topic for Create and Update operation. Note that setting this to true does not guarantee that all resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the \"payloadType\" label from a Pub/Sub message to determine whether it needs to fetch the full resource as a separate operation.",
+          "description": "Whether to send full FHIR resource to this Pub/Sub topic for Create and Update operation. The default value is false. Note that setting this to true does not guarantee that all resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the \"payloadType\" label from a Pub/Sub message to determine whether it needs to fetch the full resource as a separate operation.",
           "type": "boolean"
         },
         "sendPreviousResourceOnDelete": {
-          "description": "Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the \"payloadType\" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.",
+          "description": "Whether to send full FHIR resource to this Pub/Sub topic for deleting FHIR resource. The default value is false. Note that setting this to true does not guarantee that all previous resources will be sent in the format of full FHIR resource. When a resource change is too large or during heavy traffic, only the resource name will be sent. Clients should always check the \"payloadType\" label from a Pub/Sub message to determine whether it needs to fetch the full previous resource as a separate operation.",
           "type": "boolean"
         }
       },
@@ -7654,7 +7717,7 @@
           "description": "Optional. Specifies whether this store has consent enforcement. Not available for DSTU2 FHIR version due to absence of Consent resources."
         },
         "defaultSearchHandlingStrict": {
-          "description": "If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.",
+          "description": "If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`. Defaults to false.",
           "type": "boolean"
         },
         "disableReferentialIntegrity": {
@@ -7662,15 +7725,15 @@
           "type": "boolean"
         },
         "disableResourceVersioning": {
-          "description": "Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, which is the default behavior, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions.",
+          "description": "Immutable. Whether to disable resource versioning for this FHIR store. This field can not be changed after the creation of FHIR store. If set to false, all write operations cause historical versions to be recorded automatically. The historical versions can be fetched through the history APIs, but cannot be updated. If set to true, no historical versions are kept. The server sends errors for attempts to read the historical versions. Defaults to false.",
           "type": "boolean"
         },
         "enableHistoryModifications": {
-          "description": "Optional. Whether to allow ExecuteBundle to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. If set to false, using history bundles fails with an error.",
+          "description": "Optional. Whether to allow ExecuteBundle to accept history bundles, and directly insert and overwrite historical resource versions into the FHIR store. If set to false, using history bundles fails with an error. Defaults to false.",
           "type": "boolean"
         },
         "enableUpdateCreate": {
-          "description": "Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources.",
+          "description": "Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources. Defaults to false.",
           "type": "boolean"
         },
         "labels": {
@@ -9573,6 +9636,82 @@
       },
       "type": "object"
     },
+    "RollbackHL7MessagesFilteringFields": {
+      "description": "Filtering fields for an HL7 rollback. Currently only supports a list of operation ids to roll back.",
+      "id": "RollbackHL7MessagesFilteringFields",
+      "properties": {
+        "operationIds": {
+          "description": "Optional. A list of operation IDs to roll back.",
+          "items": {
+            "format": "uint64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackHl7V2MessagesRequest": {
+      "description": "Point in time recovery rollback request.",
+      "id": "RollbackHl7V2MessagesRequest",
+      "properties": {
+        "changeType": {
+          "description": "Optional. CREATE/UPDATE/DELETE/ALL for reverting all txns of a certain type.",
+          "enum": [
+            "CHANGE_TYPE_UNSPECIFIED",
+            "ALL",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "When unspecified, revert all transactions",
+            "All transactions",
+            "Revert only CREATE transactions",
+            "Revert only Update transactions",
+            "Revert only Delete transactions"
+          ],
+          "type": "string"
+        },
+        "excludeRollbacks": {
+          "description": "Optional. Specifies whether to exclude earlier rollbacks.",
+          "type": "boolean"
+        },
+        "filteringFields": {
+          "$ref": "RollbackHL7MessagesFilteringFields",
+          "description": "Optional. Parameters for filtering."
+        },
+        "force": {
+          "description": "Optional. When enabled, changes will be reverted without explicit confirmation.",
+          "type": "boolean"
+        },
+        "inputGcsObject": {
+          "description": "Optional. Cloud storage object containing list of {resourceId} lines, identifying resources to be reverted",
+          "type": "string"
+        },
+        "resultGcsBucket": {
+          "description": "Required. Bucket to deposit result",
+          "type": "string"
+        },
+        "rollbackTime": {
+          "description": "Required. Times point to rollback to.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RollbackHl7V2MessagesResponse": {
+      "description": "Final response of rollback FHIR resources request.",
+      "id": "RollbackHl7V2MessagesResponse",
+      "properties": {
+        "hl7v2Store": {
+          "description": "The name of the HL7 store to rollback, in the format of \"projects/{project_id}/locations/{location_id}/datasets/{dataset_id} /hl7v2Stores/{fhir_store_id}\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SchemaConfig": {
       "description": "Configuration for the FHIR BigQuery schema. Determines how the server generates the schema.",
       "id": "SchemaConfig",
@@ -10227,19 +10366,19 @@
       "id": "ValidationConfig",
       "properties": {
         "disableFhirpathValidation": {
-          "description": "Whether to disable FHIRPath validation for incoming resources. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "description": "Whether to disable FHIRPath validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
           "type": "boolean"
         },
         "disableProfileValidation": {
-          "description": "Whether to disable profile validation for this FHIR store. Set this to true to disable checking incoming resources for conformance against StructureDefinitions in this FHIR store.",
+          "description": "Whether to disable profile validation for this FHIR store. The default value is false. Set this to true to disable checking incoming resources for conformance against StructureDefinitions in this FHIR store.",
           "type": "boolean"
         },
         "disableReferenceTypeValidation": {
-          "description": "Whether to disable reference type validation for incoming resources. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "description": "Whether to disable reference type validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
           "type": "boolean"
         },
         "disableRequiredFieldValidation": {
-          "description": "Whether to disable required fields validation for incoming resources. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "description": "Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
           "type": "boolean"
         },
         "enabledImplementationGuides": {
