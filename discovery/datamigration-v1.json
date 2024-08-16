@@ -1760,6 +1760,99 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "objects": {
+                  "methods": {
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}/objects/{objectsId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "datamigration.projects.locations.migrationJobs.objects.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+/objects/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}/objects/{objectsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "datamigration.projects.locations.migrationJobs.objects.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+/objects/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}/objects/{objectsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "datamigration.projects.locations.migrationJobs.objects.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+/objects/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "operations": {
@@ -2125,7 +2218,7 @@
       }
     }
   },
-  "revision": "20240615",
+  "revision": "20240812",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2531,6 +2624,8 @@
             "MYSQL_8_0_34",
             "MYSQL_8_0_35",
             "MYSQL_8_0_36",
+            "MYSQL_8_0_37",
+            "MYSQL_8_4",
             "POSTGRES_9_6",
             "POSTGRES_11",
             "POSTGRES_10",
@@ -2556,6 +2651,8 @@
             "The database major version is MySQL 8.0 and the minor version is 34.",
             "The database major version is MySQL 8.0 and the minor version is 35.",
             "The database major version is MySQL 8.0 and the minor version is 36.",
+            "The database major version is MySQL 8.0 and the minor version is 37.",
+            "MySQL 8.4.",
             "PostgreSQL 9.6.",
             "PostgreSQL 11.",
             "PostgreSQL 10.",
@@ -4479,8 +4576,7 @@
             "PROMOTE_IN_PROGRESS",
             "WAITING_FOR_SOURCE_WRITES_TO_STOP",
             "PREPARING_THE_DUMP",
-            "READY_FOR_PROMOTE",
-            "DIFF_BACKUP"
+            "READY_FOR_PROMOTE"
           ],
           "enumDescriptions": [
             "The phase of the migration job is unknown.",
@@ -4489,8 +4585,7 @@
             "The migration job is running the promote phase.",
             "Only RDS flow - waiting for source writes to stop",
             "Only RDS flow - the sources writes stopped, waiting for dump to begin",
-            "The migration job is ready to be promoted.",
-            "The migration job is in the differential backup phase."
+            "The migration job is ready to be promoted."
           ],
           "readOnly": true,
           "type": "string"
@@ -4820,6 +4915,43 @@
       },
       "type": "object"
     },
+    "OracleAsmConfig": {
+      "description": "Configuration for Oracle Automatic Storage Management (ASM) connection.",
+      "id": "OracleAsmConfig",
+      "properties": {
+        "asmService": {
+          "description": "Required. ASM service name for the Oracle ASM connection.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Required. Hostname for the Oracle ASM connection.",
+          "type": "string"
+        },
+        "password": {
+          "description": "Required. Input only. Password for the Oracle ASM connection.",
+          "type": "string"
+        },
+        "passwordSet": {
+          "description": "Output only. Indicates whether a new password is included in the request.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "port": {
+          "description": "Required. Port for the Oracle ASM connection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ssl": {
+          "$ref": "SslConfig",
+          "description": "Optional. SSL configuration for the Oracle connection."
+        },
+        "username": {
+          "description": "Required. Username for the Oracle ASM connection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OracleConnectionProfile": {
       "description": "Specifies connection parameters required specifically for Oracle databases.",
       "id": "OracleConnectionProfile",
@@ -4835,6 +4967,10 @@
         "host": {
           "description": "Required. The IP or hostname of the source Oracle database.",
           "type": "string"
+        },
+        "oracleAsmConfig": {
+          "$ref": "OracleAsmConfig",
+          "description": "Optional. Configuration for Oracle ASM connection."
         },
         "password": {
           "description": "Required. Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.",
@@ -5733,6 +5869,10 @@
             "$ref": "SqlServerDatabaseBackup"
           },
           "type": "array"
+        },
+        "promoteWhenReady": {
+          "description": "Optional. Promote databases when ready.",
+          "type": "boolean"
         },
         "useDiffBackup": {
           "description": "Optional. Enable differential backups.",
