@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20230806",
+  "revision": "20240811",
   "rootUrl": "https://apikeys.googleapis.com/",
   "schemas": {
     "Operation": {
@@ -502,7 +502,7 @@
           "type": "array"
         },
         "service": {
-          "description": "The service for this restriction. It should be the canonical service name, for example: `translate.googleapis.com`. You can use [`gcloud services list`](/sdk/gcloud/reference/services/list) to get a list of services that are enabled in the project.",
+          "description": "The service for this restriction. It should be the canonical service name, for example: `translate.googleapis.com`. You can use [`gcloud services list`](https://cloud.google.com/sdk/gcloud/reference/services/list) to get a list of services that are enabled in the project.",
           "type": "string"
         }
       },
