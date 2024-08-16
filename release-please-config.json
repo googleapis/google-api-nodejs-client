@@ -299,6 +299,9 @@
     "src/apis/meet": {},
     "src/apis/pollen": {},
     "src/apis/airquality": {},
-    "src/apis/apim": {}
+    "src/apis/apim": {},
+    "src/apis/adsenseplatform": {},
+    "src/apis/keep": {},
+    "src/apis/css": {}
   }
 }
