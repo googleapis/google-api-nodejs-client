@@ -201,6 +201,10 @@ export namespace manufacturers_v1 {
      */
     includedDestination?: string[] | null;
     /**
+     * Optional. List of countries to show this product in. Countries provided in this attribute will override any of the countries configured at feed level. The values should be: the [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the countries in which this item will be shown.
+     */
+    intendedCountry?: string[] | null;
+    /**
      * The item group id of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#itemgroupid.
      */
     itemGroupId?: string | null;
@@ -357,9 +361,21 @@ export namespace manufacturers_v1 {
    */
   export interface Schema$DestinationStatus {
     /**
+     * Output only. List of country codes (ISO 3166-1 alpha-2) where the offer is approved.
+     */
+    approvedCountries?: string[] | null;
+    /**
      * The name of the destination.
      */
     destination?: string | null;
+    /**
+     * Output only. List of country codes (ISO 3166-1 alpha-2) where the offer is disapproved.
+     */
+    disapprovedCountries?: string[] | null;
+    /**
+     * Output only. List of country codes (ISO 3166-1 alpha-2) where the offer is pending approval.
+     */
+    pendingCountries?: string[] | null;
     /**
      * The status of the destination.
      */
@@ -475,6 +491,10 @@ export namespace manufacturers_v1 {
    * Product issue.
    */
   export interface Schema$Issue {
+    /**
+     * Output only. List of country codes (ISO 3166-1 alpha-2) where issue applies to the manufacturer product.
+     */
+    applicableCountries?: string[] | null;
     /**
      * If present, the attribute that triggered the issue. For more information about attributes, see https://support.google.com/manufacturers/answer/6124116.
      */
@@ -734,6 +754,10 @@ export namespace manufacturers_v1 {
      * The status of the destinations.
      */
     destinationStatuses?: Schema$DestinationStatus[];
+    /**
+     * Optional. The feed label for the product.
+     */
+    feedLabel?: string | null;
     /**
      * A server-generated list of issues associated with the product.
      */
