@@ -215,6 +215,10 @@ export namespace redis_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Cross cluster replication config.
+     */
+    crossClusterReplicationConfig?: Schema$CrossClusterReplicationConfig;
+    /**
      * Optional. The delete operation will fail when the value is set to true.
      */
     deletionProtectionEnabled?: boolean | null;
@@ -255,7 +259,7 @@ export namespace redis_v1beta1 {
      */
     replicaCount?: number | null;
     /**
-     * Required. Number of shards for the Redis cluster.
+     * Optional. Number of shards for the Redis cluster.
      */
     shardCount?: number | null;
     /**
@@ -314,29 +318,38 @@ export namespace redis_v1beta1 {
     version?: string | null;
   }
   /**
-   * Any custom metadata associated with the resource. i.e. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
+   * Cross cluster replication config.
    */
-  export interface Schema$CustomMetadataData {
-    databaseMetadata?: Schema$DatabaseMetadata[];
+  export interface Schema$CrossClusterReplicationConfig {
+    /**
+     * The role of the cluster in cross cluster replication.
+     */
+    clusterRole?: string | null;
+    /**
+     * Output only. An output only view of all the member clusters participating in the cross cluster replication. This view will be provided by every member cluster irrespective of its cluster role(primary or secondary). A primary cluster can provide information about all the secondary clusters replicating from it. However, a secondary cluster only knows about the primary cluster from which it is replicating. However, for scenarios, where the primary cluster is unavailable(e.g. regional outage), a GetCluster request can be sent to any other member cluster and this field will list all the member clusters participating in cross cluster replication.
+     */
+    membership?: Schema$Membership;
+    /**
+     * Details of the primary cluster that is used as the replication source for this secondary cluster. This field is only set for a secondary cluster.
+     */
+    primaryCluster?: Schema$RemoteCluster;
+    /**
+     * List of secondary clusters that are replicating from this primary cluster. This field is only set for a primary cluster.
+     */
+    secondaryClusters?: Schema$RemoteCluster[];
+    /**
+     * Output only. The last time cross cluster replication config was updated.
+     */
+    updateTime?: string | null;
   }
   /**
-   * Metadata for individual databases created in an instance. i.e. spanner instance can have multiple databases with unique configuration settings.
+   * Any custom metadata associated with the resource. e.g. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
    */
-  export interface Schema$DatabaseMetadata {
+  export interface Schema$CustomMetadataData {
     /**
-     * Backup configuration for this database
+     * Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration.
      */
-    backupConfiguration?: Schema$BackupConfiguration;
-    /**
-     * Information about the last backup attempt for this database
-     */
-    backupRun?: Schema$BackupRun;
-    product?: Schema$Product;
-    resourceId?: Schema$DatabaseResourceId;
-    /**
-     * Required. Database name. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
-     */
-    resourceName?: string | null;
+    internalResourceMetadata?: Schema$InternalResourceMetadata[];
   }
   /**
    * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.
@@ -350,9 +363,6 @@ export namespace redis_v1beta1 {
      * Required. Type feed to be ingested into condor
      */
     feedType?: string | null;
-    /**
-     * More feed data would be added in subsequent CLs
-     */
     observabilityMetricData?: Schema$ObservabilityMetricData;
     recommendationSignalData?: Schema$DatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$DatabaseResourceHealthSignalData;
@@ -411,6 +421,10 @@ export namespace redis_v1beta1 {
      */
     signalId?: string | null;
     /**
+     * The severity of the signal, such as if it's a HIGH or LOW severity.
+     */
+    signalSeverity?: string | null;
+    /**
      * Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.
      */
     signalType?: string | null;
@@ -429,7 +443,7 @@ export namespace redis_v1beta1 {
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
+     * Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance, spanner.googleapis.com/Database, firestore.googleapis.com/Database, sqladmin.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -850,6 +864,25 @@ export namespace redis_v1beta1 {
     authString?: string | null;
   }
   /**
+   * Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration settings. Similarly bigtable can have multiple clusters within same bigtable instance.
+   */
+  export interface Schema$InternalResourceMetadata {
+    /**
+     * Backup configuration for this database
+     */
+    backupConfiguration?: Schema$BackupConfiguration;
+    /**
+     * Information about the last backup attempt for this database
+     */
+    backupRun?: Schema$BackupRun;
+    product?: Schema$Product;
+    resourceId?: Schema$DatabaseResourceId;
+    /**
+     * Required. internal resource name for spanner this will be database name e.g."spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1"
+     */
+    resourceName?: string | null;
+  }
+  /**
    * Response for ListClusters.
    */
   export interface Schema$ListClustersResponse {
@@ -994,6 +1027,19 @@ export namespace redis_v1beta1 {
      * The PEM encoded CA certificate chains for redis managed server authentication
      */
     caCerts?: Schema$CertChain[];
+  }
+  /**
+   * An output only view of all the member clusters participating in the cross cluster replication.
+   */
+  export interface Schema$Membership {
+    /**
+     * Output only. The primary cluster that acts as the source of replication for the secondary clusters.
+     */
+    primaryCluster?: Schema$RemoteCluster;
+    /**
+     * Output only. The list of secondary clusters replicating from the primary cluster.
+     */
+    secondaryClusters?: Schema$RemoteCluster[];
   }
   /**
    * Node specific properties.
@@ -1205,6 +1251,19 @@ export namespace redis_v1beta1 {
      * Excluisive action returned by the CLH.
      */
     exclusiveAction?: string | null;
+  }
+  /**
+   * Details of the remote cluster associated with this cluster in a cross cluster replication setup.
+   */
+  export interface Schema$RemoteCluster {
+    /**
+     * The full resource path of the remote cluster in the format: projects//locations//clusters/
+     */
+    cluster?: string | null;
+    /**
+     * Output only. The unique identifier of the remote cluster.
+     */
+    uid?: string | null;
   }
   /**
    * Request for RescheduleMaintenance.
