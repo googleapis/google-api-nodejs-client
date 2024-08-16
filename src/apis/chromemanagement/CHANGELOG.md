@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v15.0.0...chromemanagement-v15.0.1) (2024-08-16)
+
+
+### Bug Fixes
+
+* **chromemanagement:** update the API ([0680dd2](https://github.com/googleapis/google-api-nodejs-client/commit/0680dd2c22894c34d9699aa92f99d27ffe20691e))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromemanagement-v14.0.0...chromemanagement-v15.0.0) (2024-06-21)
 
 

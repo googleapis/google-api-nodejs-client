@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/tagmanager",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "tagmanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",

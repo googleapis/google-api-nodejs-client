@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v10.0.0...doubleclickbidmanager-v10.0.1) (2024-08-16)
+
+
+### Bug Fixes
+
+* **doubleclickbidmanager:** update the API ([c0965f3](https://github.com/googleapis/google-api-nodejs-client/commit/c0965f36bc154a103dbd76582dce5fe1d4447e1f))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v9.0.0...doubleclickbidmanager-v10.0.0) (2024-05-02)
 
 

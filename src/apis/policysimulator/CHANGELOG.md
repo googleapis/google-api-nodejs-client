@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v9.0.0...policysimulator-v10.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **policysimulator:** This release has breaking changes.
+
+### Features
+
+* **policysimulator:** update the API ([b195208](https://github.com/googleapis/google-api-nodejs-client/commit/b195208efc3d18c39f630350ec974812680c8397))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v8.0.0...policysimulator-v9.0.0) (2024-07-26)
 
 
