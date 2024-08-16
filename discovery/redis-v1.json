@@ -1886,6 +1886,12 @@
             "$ref": "InternalResourceMetadata"
           },
           "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last time cross cluster replication config was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
