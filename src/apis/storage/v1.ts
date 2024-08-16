@@ -260,6 +260,10 @@ export namespace storage_v1 {
      */
     etag?: string | null;
     /**
+     * The generation of this bucket.
+     */
+    generation?: string | null;
+    /**
      * The bucket's hierarchical namespace configuration.
      */
     hierarchicalNamespace?: {enabled?: boolean} | null;
@@ -276,6 +280,17 @@ export namespace storage_v1 {
      */
     id?: string | null;
     /**
+     * The bucket's IP filter configuration. Specifies the network sources that are allowed to access the operations on the bucket, as well as its underlying objects. Only enforced when the mode is set to 'Enabled'.
+     */
+    ipFilter?: {
+      mode?: string;
+      publicNetworkSource?: {allowedIpCidrRanges?: string[]};
+      vpcNetworkSources?: Array<{
+        allowedIpCidrRanges?: string[];
+        network?: string;
+      }>;
+    } | null;
+    /**
      * The kind of item this is. For buckets, this is always storage#bucket.
      */
     kind?: string | null;
@@ -284,7 +299,7 @@ export namespace storage_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The bucket's lifecycle configuration. See lifecycle management for more information.
+     * The bucket's lifecycle configuration. See [Lifecycle Management](https://cloud.google.com/storage/docs/lifecycle) for more information.
      */
     lifecycle?: {
       rule?: Array<{
@@ -306,7 +321,7 @@ export namespace storage_v1 {
       }>;
     } | null;
     /**
-     * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer's guide for the authoritative list.
+     * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the [Developer's Guide](https://cloud.google.com/storage/docs/locations) for the authoritative list.
      */
     location?: string | null;
     /**
@@ -352,6 +367,10 @@ export namespace storage_v1 {
     /**
      * Reserved for future use.
      */
+    satisfiesPZI?: boolean | null;
+    /**
+     * Reserved for future use.
+     */
     satisfiesPZS?: boolean | null;
     /**
      * The URI of this bucket.
@@ -365,7 +384,7 @@ export namespace storage_v1 {
       retentionDurationSeconds?: string;
     } | null;
     /**
-     * The bucket's default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
+     * The bucket's default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see [Storage Classes](https://cloud.google.com/storage/docs/storage-classes).
      */
     storageClass?: string | null;
     /**
@@ -381,7 +400,7 @@ export namespace storage_v1 {
      */
     versioning?: {enabled?: boolean} | null;
     /**
-     * The bucket's website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
+     * The bucket's website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the [Static Website Examples](https://cloud.google.com/storage/docs/static-website) for more information.
      */
     website?: {mainPageSuffix?: string; notFoundPage?: string} | null;
   }
@@ -965,7 +984,7 @@ export namespace storage_v1 {
      */
     contentType?: string | null;
     /**
-     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see Hashes and ETags: Best Practices.
+     * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see [Data Validation and Change Detection](https://cloud.google.com/storage/docs/data-validation).
      */
     crc32c?: string | null;
     /**
@@ -1008,7 +1027,7 @@ export namespace storage_v1 {
      */
     kmsKeyName?: string | null;
     /**
-     * MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see Hashes and ETags: Best Practices.
+     * MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see [Data Validation and Change Detection](https://cloud.google.com/storage/docs/data-validation).
      */
     md5Hash?: string | null;
     /**
@@ -2663,7 +2682,7 @@ export namespace storage_v1 {
     }
 
     /**
-     * Permanently deletes an empty bucket.
+     * Deletes an empty bucket. Deletions are permanent unless soft delete is enabled on the bucket.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3358,6 +3377,91 @@ export namespace storage_v1 {
     }
 
     /**
+     * Restores a soft-deleted bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Buckets$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Buckets$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    restore(
+      params: Params$Resource$Buckets$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Buckets$Restore,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    restore(
+      params: Params$Resource$Buckets$Restore,
+      callback: BodyResponseCallback<void>
+    ): void;
+    restore(callback: BodyResponseCallback<void>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Restore
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'generation'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * Updates an IAM policy for the specified bucket.
      *
      * @param params - Parameters for request
@@ -3651,6 +3755,10 @@ export namespace storage_v1 {
      */
     bucket?: string;
     /**
+     * If present, specifies the generation of the bucket. This is required if softDeleted is true.
+     */
+    generation?: string;
+    /**
      * Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
      */
     ifMetagenerationMatch?: string;
@@ -3662,6 +3770,10 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to noAcl.
      */
     projection?: string;
+    /**
+     * If true, return the soft-deleted version of this bucket. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
+     */
+    softDeleted?: boolean;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -3746,6 +3858,10 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
+     * If true, only soft-deleted bucket versions will be returned. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
+     */
+    softDeleted?: boolean;
+    /**
      * The project to be billed for this request.
      */
     userProject?: string;
@@ -3799,6 +3915,20 @@ export namespace storage_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Bucket;
+  }
+  export interface Params$Resource$Buckets$Restore extends StandardParameters {
+    /**
+     * Name of a bucket.
+     */
+    bucket?: string;
+    /**
+     * Generation of a bucket.
+     */
+    generation?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
+     */
+    userProject?: string;
   }
   export interface Params$Resource$Buckets$Setiampolicy
     extends StandardParameters {
@@ -8572,7 +8702,7 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * If true, only soft-deleted object versions will be listed. The default is false. For more information, see Soft Delete.
+     * If true, only soft-deleted object versions will be listed. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
      */
     softDeleted?: boolean;
     /**
@@ -8707,7 +8837,7 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
-     * If true, only soft-deleted object versions will be listed. The default is false. For more information, see Soft Delete.
+     * If true, only soft-deleted object versions will be listed. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
      */
     softDeleted?: boolean;
     /**
@@ -8719,7 +8849,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
     /**
-     * If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
+     * If true, lists all versions of an object as distinct results. The default is false. For more information, see [Object Versioning](https://cloud.google.com/storage/docs/object-versioning).
      */
     versions?: boolean;
   }
@@ -8804,7 +8934,7 @@ export namespace storage_v1 {
      */
     ifMetagenerationNotMatch?: string;
     /**
-     * Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
+     * Name of the object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
      */
     object?: string;
     /**
@@ -9039,7 +9169,7 @@ export namespace storage_v1 {
      */
     userProject?: string;
     /**
-     * If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
+     * If true, lists all versions of an object as distinct results. The default is false. For more information, see [Object Versioning](https://cloud.google.com/storage/docs/object-versioning).
      */
     versions?: boolean;
 
@@ -9734,7 +9864,7 @@ export namespace storage_v1 {
     }
 
     /**
-     * Updates the state of an HMAC key. See the HMAC Key resource descriptor for valid states.
+     * Updates the state of an HMAC key. See the [HMAC Key resource descriptor](https://cloud.google.com/storage/docs/json_api/v1/projects/hmacKeys/update#request-body) for valid states.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
