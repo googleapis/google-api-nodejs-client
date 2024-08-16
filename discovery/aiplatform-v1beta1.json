@@ -30358,6 +30358,90 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1DistillationDataStats": {
+      "description": "Statistics computed for datasets used for distillation.",
+      "id": "GoogleCloudAiplatformV1beta1DistillationDataStats",
+      "properties": {
+        "trainingDatasetStats": {
+          "$ref": "GoogleCloudAiplatformV1beta1DatasetStats",
+          "description": "Output only. Statistics computed for the training dataset.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DistillationHyperParameters": {
+      "description": "Hyperparameters for Distillation.",
+      "id": "GoogleCloudAiplatformV1beta1DistillationHyperParameters",
+      "properties": {
+        "adapterSize": {
+          "description": "Optional. Adapter size for distillation.",
+          "enum": [
+            "ADAPTER_SIZE_UNSPECIFIED",
+            "ADAPTER_SIZE_ONE",
+            "ADAPTER_SIZE_FOUR",
+            "ADAPTER_SIZE_EIGHT",
+            "ADAPTER_SIZE_SIXTEEN",
+            "ADAPTER_SIZE_THIRTY_TWO"
+          ],
+          "enumDescriptions": [
+            "Adapter size is unspecified.",
+            "Adapter size 1.",
+            "Adapter size 4.",
+            "Adapter size 8.",
+            "Adapter size 16.",
+            "Adapter size 32."
+          ],
+          "type": "string"
+        },
+        "epochCount": {
+          "description": "Optional. Number of complete passes the model makes over the entire training dataset during training.",
+          "format": "int64",
+          "type": "string"
+        },
+        "learningRateMultiplier": {
+          "description": "Optional. Multiplier for adjusting the default learning rate.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DistillationSpec": {
+      "description": "Tuning Spec for Distillation.",
+      "id": "GoogleCloudAiplatformV1beta1DistillationSpec",
+      "properties": {
+        "baseTeacherModel": {
+          "description": "The base teacher model that is being distilled, e.g., \"gemini-1.0-pro-002\".",
+          "type": "string"
+        },
+        "hyperParameters": {
+          "$ref": "GoogleCloudAiplatformV1beta1DistillationHyperParameters",
+          "description": "Optional. Hyperparameters for Distillation."
+        },
+        "pipelineRootDirectory": {
+          "description": "Required. A path in a Cloud Storage bucket, which will be treated as the root output directory of the distillation pipeline. It is used by the system to generate the paths of output artifacts.",
+          "type": "string"
+        },
+        "studentModel": {
+          "description": "The student model that is being tuned, e.g., \"google/gemma-2b-1.1-it\".",
+          "type": "string"
+        },
+        "trainingDatasetUri": {
+          "description": "Required. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.",
+          "type": "string"
+        },
+        "tunedTeacherModelSource": {
+          "description": "The resource name of the Tuned teacher model. Format: `projects/{project}/locations/{location}/models/{model}`.",
+          "type": "string"
+        },
+        "validationDatasetUri": {
+          "description": "Optional. Cloud Storage path to file containing validation dataset for tuning. The dataset must be formatted as a JSONL file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1DoubleArray": {
       "description": "A list of double values.",
       "id": "GoogleCloudAiplatformV1beta1DoubleArray",
@@ -35229,6 +35313,32 @@
         "mimeType": {
           "description": "The MIME type of the content of the video. - video/mp4",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateVideoResponse": {
+      "description": "Generate video response.",
+      "id": "GoogleCloudAiplatformV1beta1GenerateVideoResponse",
+      "properties": {
+        "generatedSamples": {
+          "description": "The cloud storage uris of the generated videos.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "raiMediaFilteredCount": {
+          "description": "Returns if any videos were filtered due to RAI policies.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "raiMediaFilteredReasons": {
+          "description": "Returns rai failure reasons if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -46623,6 +46733,10 @@
           },
           "type": "array"
         },
+        "ranking": {
+          "$ref": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking",
+          "description": "Optional. Configurations for hybrid search results ranking."
+        },
         "vectorDistanceThreshold": {
           "deprecated": true,
           "description": "Optional. Only return contexts with vector distance smaller than the threshold.",
@@ -46646,6 +46760,18 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking": {
+      "description": "Configurations for hybrid search results ranking.",
+      "id": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking",
+      "properties": {
+        "alpha": {
+          "description": "Optional. Alpha value controls the weight between dense and sparse vector search results. The range is [0, 1], while 0 means sparse vector search only and 1 means dense vector search only. The default value is 0.5 which balances sparse and dense vector search equally.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
