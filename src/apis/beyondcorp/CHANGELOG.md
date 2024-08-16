@@ -1,5 +1,22 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v13.0.0...beyondcorp-v14.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **beyondcorp:** This release has breaking changes.
+
+### Features
+
+* **beyondcorp:** update the API ([f926c3d](https://github.com/googleapis/google-api-nodejs-client/commit/f926c3d20b561c9a997d419a91eaa9472614ad1f))
+* **beyondcorp:** update the API ([34648c3](https://github.com/googleapis/google-api-nodejs-client/commit/34648c3cb57640b7c50540bc3edd57186e8f315a))
+* **beyondcorp:** update the API ([4776e27](https://github.com/googleapis/google-api-nodejs-client/commit/4776e27b1d8de46faa9d6747c6920517bd16a47a))
+* **beyondcorp:** update the API ([fb8a1bd](https://github.com/googleapis/google-api-nodejs-client/commit/fb8a1bd5083cd67b8c1a37808c1896da9149bc52))
+* **beyondcorp:** update the API ([739d6c2](https://github.com/googleapis/google-api-nodejs-client/commit/739d6c273a99446c919e78ac79ab3920a31af663))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v12.2.0...beyondcorp-v13.0.0) (2024-07-26)
 
 

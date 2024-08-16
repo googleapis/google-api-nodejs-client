@@ -1,5 +1,26 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v11.0.1...artifactregistry-v12.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **artifactregistry:** This release has breaking changes.
+* **artifactregistry:** This release has breaking changes.
+* **artifactregistry:** This release has breaking changes.
+
+### Features
+
+* **artifactregistry:** update the API ([972cc2a](https://github.com/googleapis/google-api-nodejs-client/commit/972cc2a1aa68755858b931500b4d9834714732d3))
+* **artifactregistry:** update the API ([cc1225e](https://github.com/googleapis/google-api-nodejs-client/commit/cc1225e0c6c873a6ebc888823c79a0109faca8ad))
+* **artifactregistry:** update the API ([4fba2fd](https://github.com/googleapis/google-api-nodejs-client/commit/4fba2fd0d25183c449f0dbeee2142a49408162b6))
+* **artifactregistry:** update the API ([2c2b2f8](https://github.com/googleapis/google-api-nodejs-client/commit/2c2b2f8723be04c3b0e3788bcd5ed94ea3a81549))
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([038c1f6](https://github.com/googleapis/google-api-nodejs-client/commit/038c1f660074316360a378a3ef2d8d061c12f788))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v11.0.0...artifactregistry-v11.0.1) (2024-07-26)
 
 
