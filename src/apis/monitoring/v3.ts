@@ -190,7 +190,7 @@ export namespace monitoring_v3 {
      */
     mutationRecord?: Schema$MutationRecord;
     /**
-     * Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
+     * Identifier. Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      */
     name?: string | null;
     /**
@@ -223,7 +223,7 @@ export namespace monitoring_v3 {
      */
     notificationChannelStrategy?: Schema$NotificationChannelStrategy[];
     /**
-     * Required for alert policies with a LogMatch condition.This limit is not implemented for alert policies that are not log-based.
+     * Required for log-based alert policies, i.e. policies with a LogMatch condition.This limit is not implemented for alert policies that do not have a LogMatch condition.
      */
     notificationRateLimit?: Schema$NotificationRateLimit;
   }
@@ -1584,7 +1584,7 @@ export namespace monitoring_v3 {
      */
     mutationRecords?: Schema$MutationRecord[];
     /**
-     * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+     * Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
     name?: string | null;
     /**
@@ -2089,6 +2089,10 @@ export namespace monitoring_v3 {
    */
   export interface Schema$TimeSeries {
     /**
+     * Input only. A detailed description of the time series that will be associated with the google.api.MetricDescriptor for the metric. Once set, this field cannot be changed through CreateTimeSeries.
+     */
+    description?: string | null;
+    /**
      * Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored.
      */
     metadata?: Schema$MonitoredResourceMetadata;
@@ -2109,7 +2113,7 @@ export namespace monitoring_v3 {
      */
     resource?: Schema$MonitoredResource;
     /**
-     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values. This field can only be changed through CreateTimeSeries when it is empty.
      */
     unit?: string | null;
     /**
@@ -3234,7 +3238,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Alertpolicies$List
     extends StandardParameters {
     /**
-     * If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
+     * Optional. If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
     filter?: string;
     /**
@@ -3242,22 +3246,22 @@ export namespace monitoring_v3 {
      */
     name?: string;
     /**
-     * A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
+     * Optional. A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
     orderBy?: string;
     /**
-     * The maximum number of results to return in a single response.
+     * Optional. The maximum number of results to return in a single response.
      */
     pageSize?: number;
     /**
-     * If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
+     * Optional. If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Alertpolicies$Patch
     extends StandardParameters {
     /**
-     * Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
+     * Identifier. Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
      */
     name?: string;
     /**
@@ -5662,7 +5666,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$List
     extends StandardParameters {
     /**
-     * If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
+     * Optional. If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
     filter?: string;
     /**
@@ -5670,26 +5674,26 @@ export namespace monitoring_v3 {
      */
     name?: string;
     /**
-     * A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
+     * Optional. A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      */
     orderBy?: string;
     /**
-     * The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.
+     * Optional. The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.
      */
     pageSize?: number;
     /**
-     * If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.
+     * Optional. If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Notificationchannels$Patch
     extends StandardParameters {
     /**
-     * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
+     * Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
     name?: string;
     /**
-     * The fields to update.
+     * Optional. The fields to update.
      */
     updateMask?: string;
 
