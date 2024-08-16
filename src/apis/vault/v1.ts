@@ -858,6 +858,10 @@ export namespace vault_v1 {
      */
     matterPermissions?: Schema$MatterPermission[];
     /**
+     * Optional. The requested data region for the matter.
+     */
+    matterRegion?: string | null;
+    /**
      * The name of the matter.
      */
     name?: string | null;
