@@ -112,6 +112,7 @@ export namespace dataplex_v1 {
    */
   export class Dataplex {
     context: APIRequestContext;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace dataplex_v1 {
         google,
       };
 
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -277,6 +279,9 @@ export namespace dataplex_v1 {
    * An aspect is a single piece of metadata describing an entry.
    */
   export interface Schema$GoogleCloudDataplexV1Aspect {
+    /**
+     * Optional. Information related to the source system of the aspect.
+     */
     aspectSource?: Schema$GoogleCloudDataplexV1AspectSource;
     /**
      * Output only. The resource name of the type used to create this Aspect.
@@ -287,7 +292,7 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. The content of the aspect, according to its aspect type schema. This will replace content. The maximum size of the field is 120KB (encoded as UTF-8).
+     * Required. The content of the aspect, according to its aspect type schema. The maximum size of the field is 120KB (encoded as UTF-8).
      */
     data?: {[key: string]: any} | null;
     /**
@@ -300,24 +305,24 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * AspectSource contains source system related information for the aspect.
+   * Information related to the source system of the aspect.
    */
   export interface Schema$GoogleCloudDataplexV1AspectSource {
     /**
-     * The create time of the aspect in the source system.
+     * The time the aspect was created in the source system.
      */
     createTime?: string | null;
     /**
-     * The update time of the aspect in the source system.
+     * The time the aspect was last updated in the source system.
      */
     updateTime?: string | null;
   }
   /**
-   * Aspect Type is a template for creating Aspects, and represents the JSON-schema for a given Entry, e.g., BigQuery Table Schema.
+   * AspectType is a template for creating Aspects, and represents the JSON-schema for a given Entry, for example, BigQuery Table Schema.
    */
   export interface Schema$GoogleCloudDataplexV1AspectType {
     /**
-     * Immutable. Authorization defined for this type.
+     * Immutable. Defines the Authorization for this type.
      */
     authorization?: Schema$GoogleCloudDataplexV1AspectTypeAuthorization;
     /**
@@ -333,7 +338,7 @@ export namespace dataplex_v1 {
      */
     displayName?: string | null;
     /**
-     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * The service computes this checksum. The client may send it on update and delete requests to ensure it has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -349,11 +354,7 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Denotes the transfer status of the Aspect Type. It is unspecified for Aspect Types created from Dataplex API.
-     */
-    transferStatus?: string | null;
-    /**
-     * Output only. System generated globally unique ID for the AspectType. This ID will be different if the AspectType is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the AspectType. If you delete and recreate the AspectType with the same name, then this ID will be different.
      */
     uid?: string | null;
     /**
@@ -362,16 +363,16 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Autorization for an Aspect Type.
+   * Autorization for an AspectType.
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeAuthorization {
     /**
-     * Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Aspects of Dataplex owned Aspect Types, only settable for Dataplex owned Types.
+     * Immutable. The IAM permission grantable on the EntryGroup to allow access to instantiate Aspects of Dataplex owned AspectTypes, only settable for Dataplex owned Types.
      */
     alternateUsePermission?: string | null;
   }
   /**
-   * MetadataTemplate definition for AspectType
+   * MetadataTemplate definition for an AspectType.
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate {
     /**
@@ -379,7 +380,7 @@ export namespace dataplex_v1 {
      */
     annotations?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations;
     /**
-     * Optional. array_items needs to be set if the type is array. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload.
+     * Optional. If the type is array, set array_items. array_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, you only need to set name and type in the nested MetadataTemplate. The recommended value for the name field is item, as this isn't used in the actual payload.
      */
     arrayItems?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate;
     /**
@@ -387,7 +388,7 @@ export namespace dataplex_v1 {
      */
     constraints?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints;
     /**
-     * Optional. The list of values for an enum type. Needs to be defined if the type is enum.
+     * Optional. The list of values for an enum type. You must define it if the type is enum.
      */
     enumValues?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue[];
     /**
@@ -395,7 +396,7 @@ export namespace dataplex_v1 {
      */
     index?: number | null;
     /**
-     * Optional. map_items needs to be set if the type is map. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, just name and type needs to be set in the nested MetadataTemplate. The recommended value for the name field is item, as this is not used in the actual payload.
+     * Optional. If the type is map, set map_items. map_items can refer to a primitive field or a complex (record only) field. To specify a primitive field, you only need to set name and type in the nested MetadataTemplate. The recommended value for the name field is item, as this isn't used in the actual payload.
      */
     mapItems?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate;
     /**
@@ -403,74 +404,74 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Field definition, needs to be specified if the type is record. Defines the nested fields.
+     * Optional. Field definition. You must specify it if the type is record. It defines the nested fields.
      */
     recordFields?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate[];
     /**
-     * Required. The datatype of this field. The following values are supported: Primitive types (string, integer, boolean, double, datetime); datetime must be of the format RFC3339 UTC "Zulu" (Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z"). Complex types (enum, array, map, record).
+     * Required. The datatype of this field. The following values are supported:Primitive types: string integer boolean double datetime. Must be of the format RFC3339 UTC "Zulu" (Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").Complex types: enum array map record
      */
     type?: string | null;
     /**
-     * Optional. Id can be used if this definition of the field needs to be reused later. Id needs to be unique across the entire template. Id can only be specified if the field type is record.
+     * Optional. You can use type id if this definition of the field needs to be reused later. The type id must be unique across the entire template. You can only specify it if the field type is record.
      */
     typeId?: string | null;
     /**
-     * Optional. A reference to another field definition (instead of an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with type as record can refer to other fields.
+     * Optional. A reference to another field definition (not an inline definition). The value must be equal to the value of an id field defined elsewhere in the MetadataTemplate. Only fields with record type can refer to other fields.
      */
     typeRef?: string | null;
   }
   /**
-   * Definition of the annotations of a field
+   * Definition of the annotations of a field.
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateAnnotations {
     /**
-     * Optional. Marks a field as deprecated, a deprecation message can be included.
+     * Optional. Marks a field as deprecated. You can include a deprecation message.
      */
     deprecated?: string | null;
     /**
-     * Optional. Specify a description for a field
+     * Optional. Description for a field.
      */
     description?: string | null;
     /**
-     * Optional. Specify a displayname for a field.
+     * Optional. Display name for a field.
      */
     displayName?: string | null;
     /**
-     * Optional. Specify a display order for a field. Display order can be used to reorder where a field is rendered
+     * Optional. Display order for a field. You can use this to reorder where a field is rendered.
      */
     displayOrder?: number | null;
     /**
-     * Optional. String Type annotations can be used to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified url link. resource: A service qualified resource reference.
+     * Optional. You can use String Type annotations to specify special meaning to string fields. The following values are supported: richText: The field must be interpreted as a rich text field. url: A fully qualified URL link. resource: A service qualified resource reference.
      */
     stringType?: string | null;
     /**
-     * Optional. Suggested hints for string fields. These can be used to suggest values to users, through an UI for example.
+     * Optional. Suggested hints for string fields. You can use them to suggest values to users through console.
      */
     stringValues?: string[] | null;
   }
   /**
-   * Definition of the constraints of a field
+   * Definition of the constraints of a field.
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateConstraints {
     /**
-     * Optional. Marks this as an optional/required field.
+     * Optional. Marks this field as optional or required.
      */
     required?: boolean | null;
   }
   /**
-   * Definition of Enumvalue (to be used by enum fields)
+   * Definition of Enumvalue, to be used for enum fields.
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplateEnumValue {
     /**
-     * Optional. Optional deprecation message to be set if an enum value needs to be deprecated.
+     * Optional. You can set this message if you need to deprecate an enum value.
      */
     deprecated?: string | null;
     /**
-     * Required. Index for the enum. Cannot be modified.
+     * Required. Index for the enum value. It can't be modified.
      */
     index?: number | null;
     /**
-     * Required. Name of the enumvalue. This is the actual value that the aspect will contain.
+     * Required. Name of the enumvalue. This is the actual value that the aspect can contain.
      */
     name?: string | null;
   }
@@ -720,6 +721,10 @@ export namespace dataplex_v1 {
    * Cancel task jobs.
    */
   export interface Schema$GoogleCloudDataplexV1CancelJobRequest {}
+  /**
+   * Cancel metadata job request.
+   */
+  export interface Schema$GoogleCloudDataplexV1CancelMetadataJobRequest {}
   /**
    * Content represents a user-visible notebook or a sql script
    */
@@ -985,7 +990,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo {
     /**
-     * Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.
+     * Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      */
     distinctRatio?: number | null;
     /**
@@ -1005,7 +1010,7 @@ export namespace dataplex_v1 {
      */
     stringProfile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo;
     /**
-     * The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type RECORD and fields with REPEATABLE mode.
+     * The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      */
     topNValues?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue[];
   }
@@ -1295,6 +1300,10 @@ export namespace dataplex_v1 {
      * Aggregate rule which evaluates whether the column aggregate statistic lies between a specified range.
      */
     statisticRangeExpectation?: Schema$GoogleCloudDataplexV1DataQualityRuleStatisticRangeExpectation;
+    /**
+     * Optional. Whether the Rule is active or suspended. Default is false.
+     */
+    suspended?: boolean | null;
     /**
      * Aggregate rule which evaluates whether the provided expression is true for a table.
      */
@@ -1854,6 +1863,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataScanJob {
     /**
+     * Output only. The time when the DataScanJob was created.
+     */
+    createTime?: string | null;
+    /**
      * Output only. The result of the data profile scan.
      */
     dataProfileResult?: Schema$GoogleCloudDataplexV1DataProfileResult;
@@ -2157,31 +2170,31 @@ export namespace dataplex_v1 {
     reason?: string | null;
   }
   /**
-   * An entry is a representation of a data asset which can be described by various metadata.
+   * An entry is a representation of a data resource that can be described by various metadata.
    */
   export interface Schema$GoogleCloudDataplexV1Entry {
     /**
-     * Optional. The Aspects attached to the Entry. The format for the key can be one of the following: 1. {projectId\}.{locationId\}.{aspectTypeId\} (if the aspect is attached directly to the entry) 2. {projectId\}.{locationId\}.{aspectTypeId\}@{path\} (if the aspect is attached to an entry's path)
+     * Optional. The aspects that are attached to the entry. Depending on how the aspect is attached to the entry, the format of the aspect key can be one of the following: If the aspect is attached directly to the entry: {project_id_or_number\}.{location_id\}.{aspect_type_id\} If the aspect is attached to an entry's path: {project_id_or_number\}.{location_id\}.{aspect_type_id\}@{path\}
      */
     aspects?: {[key: string]: Schema$GoogleCloudDataplexV1Aspect} | null;
     /**
-     * Output only. The time when the Entry was created.
+     * Output only. The time when the entry was created in Dataplex.
      */
     createTime?: string | null;
     /**
-     * Optional. Source system related information for an entry.
+     * Optional. Information related to the source system of the data resource that is represented by the entry.
      */
     entrySource?: Schema$GoogleCloudDataplexV1EntrySource;
     /**
-     * Required. Immutable. The resource name of the EntryType used to create this Entry.
+     * Required. Immutable. The relative resource name of the entry type that was used to create this entry, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
      */
     entryType?: string | null;
     /**
-     * Optional. A name for the entry that can reference it in an external system. The maximum size of the field is 4000 characters.
+     * Optional. A name for the entry that can be referenced by an external system. For more information, see Fully qualified names (https://cloud.google.com/data-catalog/docs/fully-qualified-names). The maximum size of the field is 4000 characters.
      */
     fullyQualifiedName?: string | null;
     /**
-     * Identifier. The relative resource name of the Entry, of the form: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     * Identifier. The relative resource name of the entry, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}.
      */
     name?: string | null;
     /**
@@ -2189,7 +2202,7 @@ export namespace dataplex_v1 {
      */
     parentEntry?: string | null;
     /**
-     * Output only. The time when the Entry was last updated.
+     * Output only. The time when the entry was last updated in Dataplex.
      */
     updateTime?: string | null;
   }
@@ -2210,7 +2223,7 @@ export namespace dataplex_v1 {
      */
     displayName?: string | null;
     /**
-     * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * This checksum is computed by the service, and might be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -2218,15 +2231,11 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The relative resource name of the EntryGroup, of the form: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     * Output only. The relative resource name of the EntryGroup, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
      */
     name?: string | null;
     /**
-     * Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.
-     */
-    transferStatus?: string | null;
-    /**
-     * Output only. System generated globally unique ID for the EntryGroup. This ID will be different if the EntryGroup is deleted and re-created with the same name.
+     * Output only. System generated globally unique ID for the EntryGroup. If you delete and recreate the EntryGroup with the same name, this ID will be different.
      */
     uid?: string | null;
     /**
@@ -2235,23 +2244,23 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * EntrySource contains source system related information for the entry.
+   * Information related to the source system of the data resource that is represented by the entry.
    */
   export interface Schema$GoogleCloudDataplexV1EntrySource {
     /**
-     * Immutable. The ancestors of the Entry in the source system.
+     * Immutable. The entries representing the ancestors of the data resource in the source system.
      */
     ancestors?: Schema$GoogleCloudDataplexV1EntrySourceAncestor[];
     /**
-     * The create time of the resource in the source system.
+     * The time when the resource was created in the source system.
      */
     createTime?: string | null;
     /**
-     * Description of the Entry. The maximum size of the field is 2000 characters.
+     * A description of the data resource. Maximum length is 2,000 characters.
      */
     description?: string | null;
     /**
-     * User friendly display name. The maximum size of the field is 500 characters.
+     * A user-friendly display name. Maximum length is 500 characters.
      */
     displayName?: string | null;
     /**
@@ -2259,28 +2268,28 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Location of the resource in the source system. Entry will be searchable by this location. By default, this should match the location of the EntryGroup containing this entry. A different value allows capturing source location for data external to GCP.
+     * Output only. Location of the resource in the source system. You can search the entry by this location. By default, this should match the location of the entry group containing this entry. A different value allows capturing the source location for data external to Google Cloud.
      */
     location?: string | null;
     /**
-     * The platform containing the source system. The maximum size of the field is 64 characters.
+     * The platform containing the source system. Maximum length is 64 characters.
      */
     platform?: string | null;
     /**
-     * The name of the resource in the source system. The maximum size of the field is 4000 characters.
+     * The name of the resource in the source system. Maximum length is 4,000 characters.
      */
     resource?: string | null;
     /**
-     * The name of the source system. The maximum size of the field is 64 characters.
+     * The name of the source system. Maximum length is 64 characters.
      */
     system?: string | null;
     /**
-     * The update time of the resource in the source system.
+     * The time when the resource was last updated in the source system. If the entry exists in the system and its EntrySource has update_time populated, further updates to the EntrySource of the entry must provide incremental updates to its update_time.
      */
     updateTime?: string | null;
   }
   /**
-   * Ancestor contains information about individual items in the hierarchy of an Entry.
+   * Information about individual items in the hierarchy that is associated with the data resource.
    */
   export interface Schema$GoogleCloudDataplexV1EntrySourceAncestor {
     /**
@@ -2313,7 +2322,7 @@ export namespace dataplex_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Optional. This checksum is computed by the service, and might be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -2337,7 +2346,7 @@ export namespace dataplex_v1 {
      */
     system?: string | null;
     /**
-     * Optional. Indicates the class this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.
+     * Optional. Indicates the classes this Entry Type belongs to, for example, TABLE, DATABASE, MODEL.
      */
     typeAliases?: string[] | null;
     /**
@@ -2547,6 +2556,23 @@ export namespace dataplex_v1 {
     entityType?: string | null;
   }
   /**
+   * An object that describes the values that you want to set for an entry and its attached aspects when you import metadata. Used when you run a metadata import job. See CreateMetadataJob.You provide a collection of import items in a metadata import file. For more information about how to create a metadata import file, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).
+   */
+  export interface Schema$GoogleCloudDataplexV1ImportItem {
+    /**
+     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference\}@*: matches aspects that belong to the specified aspect type for all paths.Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.
+     */
+    aspectKeys?: string[] | null;
+    /**
+     * Information about an entry and its attached aspects.
+     */
+    entry?: Schema$GoogleCloudDataplexV1Entry;
+    /**
+     * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
+     */
+    updateMask?: string | null;
+  }
+  /**
    * A job represents an instance of a task.
    */
   export interface Schema$GoogleCloudDataplexV1Job {
@@ -2741,11 +2767,11 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * List AspectTypes response
+   * List AspectTypes response.
    */
   export interface Schema$GoogleCloudDataplexV1ListAspectTypesResponse {
     /**
-     * ListAspectTypes under the given parent location.
+     * AspectTypes under the given parent location.
      */
     aspectTypes?: Schema$GoogleCloudDataplexV1AspectType[];
     /**
@@ -2753,7 +2779,7 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Locations that the service couldn't reach.
      */
     unreachableLocations?: string[] | null;
   }
@@ -2877,22 +2903,25 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * List Entries response.
+   */
   export interface Schema$GoogleCloudDataplexV1ListEntriesResponse {
     /**
-     * The list of entries.
+     * The list of entries under the given parent location.
      */
     entries?: Schema$GoogleCloudDataplexV1Entry[];
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
   /**
-   * List ListEntryGroups response.
+   * List entry groups response.
    */
   export interface Schema$GoogleCloudDataplexV1ListEntryGroupsResponse {
     /**
-     * ListEntryGroups under the given parent location.
+     * Entry groups under the given parent location.
      */
     entryGroups?: Schema$GoogleCloudDataplexV1EntryGroup[];
     /**
@@ -2900,16 +2929,16 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Locations that the service couldn't reach.
      */
     unreachableLocations?: string[] | null;
   }
   /**
-   * List EntryTypes response
+   * List EntryTypes response.
    */
   export interface Schema$GoogleCloudDataplexV1ListEntryTypesResponse {
     /**
-     * ListEntryTypes under the given parent location.
+     * EntryTypes under the given parent location.
      */
     entryTypes?: Schema$GoogleCloudDataplexV1EntryType[];
     /**
@@ -2917,7 +2946,7 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Locations that could not be reached.
+     * Locations that the service couldn't reach.
      */
     unreachableLocations?: string[] | null;
   }
@@ -2961,6 +2990,23 @@ export namespace dataplex_v1 {
     nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
+     */
+    unreachableLocations?: string[] | null;
+  }
+  /**
+   * List metadata jobs response.
+   */
+  export interface Schema$GoogleCloudDataplexV1ListMetadataJobsResponse {
+    /**
+     * Metadata jobs under the specified parent location.
+     */
+    metadataJobs?: Schema$GoogleCloudDataplexV1MetadataJob[];
+    /**
+     * A token to retrieve the next page of results. If there are no more results in the list, the value is empty.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that the service couldn't reach.
      */
     unreachableLocations?: string[] | null;
   }
@@ -3019,6 +3065,143 @@ export namespace dataplex_v1 {
      * Zones under the given parent lake.
      */
     zones?: Schema$GoogleCloudDataplexV1Zone[];
+  }
+  /**
+   * A metadata job resource.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJob {
+    /**
+     * Output only. The time when the metadata job was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Import job result.
+     */
+    importResult?: Schema$GoogleCloudDataplexV1MetadataJobImportJobResult;
+    /**
+     * Import job specification.
+     */
+    importSpec?: Schema$GoogleCloudDataplexV1MetadataJobImportJobSpec;
+    /**
+     * Optional. User-defined labels.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. The name of the resource that the configuration is applied to, in the format projects/{project_number\}/locations/{location_id\}/metadataJobs/{metadata_job_id\}.
+     */
+    name?: string | null;
+    /**
+     * Output only. Metadata job status.
+     */
+    status?: Schema$GoogleCloudDataplexV1MetadataJobStatus;
+    /**
+     * Required. Metadata job type.
+     */
+    type?: string | null;
+    /**
+     * Output only. A system-generated, globally unique ID for the metadata job. If the metadata job is deleted and then re-created with the same name, this ID is different.
+     */
+    uid?: string | null;
+    /**
+     * Output only. The time when the metadata job was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Results from a metadata import job.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobImportJobResult {
+    /**
+     * Output only. The total number of entries that were created.
+     */
+    createdEntries?: string | null;
+    /**
+     * Output only. The total number of entries that were deleted.
+     */
+    deletedEntries?: string | null;
+    /**
+     * Output only. The total number of entries that were recreated.
+     */
+    recreatedEntries?: string | null;
+    /**
+     * Output only. The total number of entries that were unchanged.
+     */
+    unchangedEntries?: string | null;
+    /**
+     * Output only. The total number of entries that were updated.
+     */
+    updatedEntries?: string | null;
+    /**
+     * Output only. The time when the status was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Job specification for a metadata import job
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobImportJobSpec {
+    /**
+     * Required. The sync mode for aspects. Only INCREMENTAL mode is supported for aspects. An aspect is modified only if the metadata import file includes a reference to the aspect in the update_mask field and the aspect_keys field.
+     */
+    aspectSyncMode?: string | null;
+    /**
+     * Required. The sync mode for entries. Only FULL mode is supported for entries. All entries in the job's scope are modified. If an entry exists in Dataplex but isn't included in the metadata import file, the entry is deleted when you run the metadata job.
+     */
+    entrySyncMode?: string | null;
+    /**
+     * Optional. The level of logs to write to Cloud Logging for this job.Debug-level logs provide highly-detailed information for troubleshooting, but their increased verbosity could incur additional costs (https://cloud.google.com/stackdriver/pricing) that might not be merited for all jobs.If unspecified, defaults to INFO.
+     */
+    logLevel?: string | null;
+    /**
+     * Required. A boundary on the scope of impact that the metadata import job can have.
+     */
+    scope?: Schema$GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope;
+    /**
+     * Optional. The time when the process that created the metadata import files began.
+     */
+    sourceCreateTime?: string | null;
+    /**
+     * Optional. The URI of a Cloud Storage bucket or folder (beginning with gs:// and ending with /) that contains the metadata import files for this job.A metadata import file defines the values to set for each of the entries and aspects in a metadata job. For more information about how to create a metadata import file and the file requirements, see Metadata import file (https://cloud.google.com/dataplex/docs/import-metadata#metadata-import-file).You can provide multiple metadata import files in the same metadata job. The bucket or folder must contain at least one metadata import file, in JSON Lines format (either .json or .jsonl file extension).In FULL entry sync mode, don't save the metadata import file in a folder named SOURCE_STORAGE_URI/deletions/.Caution: If the metadata import file contains no data, all entries and aspects that belong to the job's scope are deleted.
+     */
+    sourceStorageUri?: string | null;
+  }
+  /**
+   * A boundary on the scope of impact that the metadata import job can have.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobImportJobSpecImportJobScope {
+    /**
+     * Optional. The aspect types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}. The job modifies only the aspects that belong to these aspect types.If the metadata import file attempts to modify an aspect whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an aspect type must either match the location of the job, or the aspect type must be global.
+     */
+    aspectTypes?: string[] | null;
+    /**
+     * Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}. Only entries that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.
+     */
+    entryGroups?: string[] | null;
+    /**
+     * Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryTypes/{entry_type_id\}. The job modifies only the entries that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.
+     */
+    entryTypes?: string[] | null;
+  }
+  /**
+   * Metadata job status.
+   */
+  export interface Schema$GoogleCloudDataplexV1MetadataJobStatus {
+    /**
+     * Output only. Progress tracking.
+     */
+    completionPercent?: number | null;
+    /**
+     * Output only. Message relating to the progression of a metadata job.
+     */
+    message?: string | null;
+    /**
+     * Output only. State of the metadata job.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time when the status was updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Represents the metadata of a long-running operation.
@@ -3207,7 +3390,7 @@ export namespace dataplex_v1 {
   }
   export interface Schema$GoogleCloudDataplexV1SearchEntriesResponse {
     /**
-     * Pagination token.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
     /**
@@ -3215,11 +3398,11 @@ export namespace dataplex_v1 {
      */
     results?: Schema$GoogleCloudDataplexV1SearchEntriesResult[];
     /**
-     * The estimated total number of matching entries. Not guaranteed to be accurate.
+     * The estimated total number of matching entries. This number isn't guaranteed to be accurate.
      */
     totalSize?: number | null;
     /**
-     * Unreachable locations. Search results don't include data from those locations.
+     * Locations that the service couldn't reach. Search results don't include data from these locations.
      */
     unreachable?: string[] | null;
   }
@@ -4021,6 +4204,354 @@ export namespace dataplex_v1 {
     title?: string | null;
   }
 
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    encryptionConfigs: Resource$Organizations$Locations$Encryptionconfigs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.encryptionConfigs =
+        new Resource$Organizations$Locations$Encryptionconfigs(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations$Encryptionconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Encryptionconfigs$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -4038,8 +4569,10 @@ export namespace dataplex_v1 {
     dataTaxonomies: Resource$Projects$Locations$Datataxonomies;
     entryGroups: Resource$Projects$Locations$Entrygroups;
     entryTypes: Resource$Projects$Locations$Entrytypes;
+    glossaries: Resource$Projects$Locations$Glossaries;
     governanceRules: Resource$Projects$Locations$Governancerules;
     lakes: Resource$Projects$Locations$Lakes;
+    metadataJobs: Resource$Projects$Locations$Metadatajobs;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -4058,10 +4591,16 @@ export namespace dataplex_v1 {
       this.entryTypes = new Resource$Projects$Locations$Entrytypes(
         this.context
       );
+      this.glossaries = new Resource$Projects$Locations$Glossaries(
+        this.context
+      );
       this.governanceRules = new Resource$Projects$Locations$Governancerules(
         this.context
       );
       this.lakes = new Resource$Projects$Locations$Lakes(this.context);
+      this.metadataJobs = new Resource$Projects$Locations$Metadatajobs(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -4257,7 +4796,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Looks up a single entry.
+     * Looks up a single Entry by name using the permission on the source system.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4352,7 +4891,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Searches for entries matching given query and scope.
+     * Searches for Entries matching the given query and scope.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4478,7 +5017,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Lookupentry
     extends StandardParameters {
     /**
-     * Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.
+     * Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
      */
     aspectTypes?: string[];
     /**
@@ -4490,11 +5029,11 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.
+     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.
      */
     paths?: string[];
     /**
-     * Optional. View for controlling which parts of an entry are to be returned.
+     * Optional. View to control which parts of an entry the service should return.
      */
     view?: string;
   }
@@ -4505,15 +5044,15 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Ordering of the results. Supported options to be added later.
+     * Optional. Specifies the ordering of results.
      */
     orderBy?: string;
     /**
-     * Optional. Pagination.
+     * Optional. Number of results in the search page. If <=0, then defaults to 10. Max limit for page_size is 1000. Throws an invalid argument for page_size \> 1000.
      */
     pageSize?: number;
     /**
-     *
+     * Optional. Page token received from a previous SearchEntries call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
@@ -4521,7 +5060,7 @@ export namespace dataplex_v1 {
      */
     query?: string;
     /**
-     * Optional. The scope under which the search should be operating. Should either be organizations/ or projects/. If left unspecified, it will default to the organization where the project provided in name is located.
+     * Optional. The scope under which the search should be operating. It must either be organizations/ or projects/. If it is unspecified, it defaults to the organization where the project provided in name is located.
      */
     scope?: string;
   }
@@ -4533,7 +5072,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates an AspectType
+     * Creates an AspectType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4628,7 +5167,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a AspectType resource.
+     * Deletes an AspectType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4720,7 +5259,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a AspectType resource.
+     * Gets an AspectType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5005,7 +5544,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates a AspectType resource.
+     * Updates an AspectType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5296,11 +5835,11 @@ export namespace dataplex_v1 {
      */
     aspectTypeId?: string;
     /**
-     * Required. The resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     * Required. The resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
      */
     parent?: string;
     /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     * Optional. The service validates the request without performing any mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -5312,7 +5851,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Aspecttypes$Delete
     extends StandardParameters {
     /**
-     * Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response.
      */
     etag?: string;
     /**
@@ -5341,23 +5880,23 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Aspecttypes$List
     extends StandardParameters {
     /**
-     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 name = "value" These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      */
     filter?: string;
     /**
-     * Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
+     * Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, at most 10 AspectTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 AspectTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAspectTypes must match the call that provided the page token.
+     * Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListAspectTypes must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the AspectType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     * Required. The resource name of the AspectType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
      */
     parent?: string;
   }
@@ -9504,7 +10043,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates an EntryGroup
+     * Creates an EntryGroup.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9599,7 +10138,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a EntryGroup resource.
+     * Deletes an EntryGroup.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9691,7 +10230,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a EntryGroup resource.
+     * Gets an EntryGroup.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9976,7 +10515,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates a EntryGroup resource.
+     * Updates an EntryGroup.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10271,7 +10810,7 @@ export namespace dataplex_v1 {
      */
     parent?: string;
     /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     * Optional. The service validates the request without performing any mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -10283,7 +10822,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Delete
     extends StandardParameters {
     /**
-     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response.
      */
     etag?: string;
     /**
@@ -10320,22 +10859,22 @@ export namespace dataplex_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, at most 10 EntryGroups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryGroups. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryGroups must match the call that provided the page token.
+     * Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListEntryGroups must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the entryGroup location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     * Required. The resource name of the entryGroup location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Patch
     extends StandardParameters {
     /**
-     * Output only. The relative resource name of the EntryGroup, of the form: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     * Output only. The relative resource name of the EntryGroup, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
      */
     name?: string;
     /**
@@ -10343,7 +10882,7 @@ export namespace dataplex_v1 {
      */
     updateMask?: string;
     /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     * Optional. The service validates the request, without performing any mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -10573,7 +11112,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets a single entry.
+     * Gets an Entry.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10666,7 +11205,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists entries within an entry group.
+     * Lists Entries within an EntryGroup.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10860,7 +11399,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create
     extends StandardParameters {
     /**
-     * Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use Entry ID format based on Full Resource Names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a Full Resource Name of the resource without the prefix double slashes in the API Service Name part of Full Resource Name. This allows retrieval of entries using their associated resource name.For example if the Full Resource Name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from other providers or systems than Google Cloud.The maximum size of the field is 4000 characters.
+     * Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use an Entry ID format based on full resource names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a full resource name of the resource without the prefix double slashes in the API service name part of the full resource name. This allows retrieval of entries using their associated resource name.For example, if the full resource name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from providers or systems other than Google Cloud.The maximum size of the field is 4000 characters.
      */
     entryId?: string;
     /**
@@ -10883,7 +11422,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Get
     extends StandardParameters {
     /**
-     * Optional. Limits the aspects returned to the provided aspect types. Only works if the CUSTOM view is selected.
+     * Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
      */
     aspectTypes?: string[];
     /**
@@ -10891,26 +11430,26 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. Only works if the CUSTOM view is selected.
+     * Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.
      */
     paths?: string[];
     /**
-     * Optional. View for controlling which parts of an entry are to be returned.
+     * Optional. View to control which parts of an entry the service should return.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$List
     extends StandardParameters {
     /**
-     * Optional. A filter on the entries to return. Filters are case-sensitive. The request can be filtered by the following fields: entry_type, entry_source.display_name. The comparison operators are =, !=, <, \>, <=, \>= (strings are compared according to lexical order) The logical operators AND, OR, NOT can be used in the filter. Wildcard "*" can be used, but for entry_type the full project id or number needs to be provided. Example filter expressions: "entry_source.display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/x" "NOT entry_source.display_name=AnotherExampleDisplayName"
+     * Optional. A filter on the entries to return. Filters are case-sensitive. You can filter the request by the following fields: entry_type entry_source.display_nameThe comparison operators are =, !=, <, \>, <=, \>=. The service compares strings according to lexical order.You can use the logical operators AND, OR, NOT in the filter.You can use Wildcard "*", but for entry_type you need to provide the full project id or number.Example filter expressions: "entry_source.display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/x" "NOT entry_source.display_name=AnotherExampleDisplayName"
      */
     filter?: string;
     /**
-     *
+     * Optional. Number of items to return per page. If there are remaining results, the service returns a next_page_token. If unspecified, the service returns at most 10 Entries. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
-     * Optional. The pagination token returned by a previous request.
+     * Optional. Page token received from a previous ListEntries call. Provide this to retrieve the subsequent page.
      */
     pageToken?: string;
     /**
@@ -10921,23 +11460,23 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
-     * Optional. If set to true and the entry does not exist, it will be created.
+     * Optional. If set to true and the entry doesn't exist, the service will create it.
      */
     allowMissing?: boolean;
     /**
-     * Optional. The map keys of the Aspects which should be modified. Supports the following syntaxes: * - matches aspect on given type and empty path * @path - matches aspect on given type and specified path * * - matches aspects on given type for all paths * *@path - matches aspects of all types on the given pathExisting aspects matching the syntax will not be removed unless delete_missing_aspects is set to true.If this field is left empty, it will be treated as specifying exactly those Aspects present in the request.
+     * Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. * - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
      */
     aspectKeys?: string[];
     /**
-     * Optional. If set to true and the aspect_keys specify aspect ranges, any existing aspects from that range not provided in the request will be deleted.
+     * Optional. If set to true and the aspect_keys specify aspect ranges, the service deletes any existing aspects from that range that weren't provided in the request.
      */
     deleteMissingAspects?: boolean;
     /**
-     * Identifier. The relative resource name of the Entry, of the form: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     * Identifier. The relative resource name of the entry, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}.
      */
     name?: string;
     /**
-     * Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value "aspects".If the update_mask is empty, all modifiable fields present in the request will be updated.
+     * Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value "aspects".If the update_mask is empty, the service will update all modifiable fields present in the request.
      */
     updateMask?: string;
 
@@ -10954,7 +11493,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates an EntryType
+     * Creates an EntryType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11049,7 +11588,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a EntryType resource.
+     * Deletes an EntryType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11141,7 +11680,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a EntryType resource.
+     * Gets an EntryType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11426,7 +11965,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Updates a EntryType resource.
+     * Updates an EntryType.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11717,11 +12256,11 @@ export namespace dataplex_v1 {
      */
     entryTypeId?: string;
     /**
-     * Required. The resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     * Required. The resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
      */
     parent?: string;
     /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     * Optional. The service validates the request without performing any mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -11733,7 +12272,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrytypes$Delete
     extends StandardParameters {
     /**
-     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response
+     * Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response.
      */
     etag?: string;
     /**
@@ -11762,23 +12301,23 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrytypes$List
     extends StandardParameters {
     /**
-     * Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 name = "value" These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
      */
     filter?: string;
     /**
-     * Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
+     * Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, at most 10 EntryTypes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntryTypes must match the call that provided the page token.
+     * Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provided to ListEntryTypes must match the call that provided the page token.
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the EntryType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     * Required. The resource name of the EntryType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
      */
     parent?: string;
   }
@@ -11793,7 +12332,7 @@ export namespace dataplex_v1 {
      */
     updateMask?: string;
     /**
-     * Optional. Only validate the request, but do not perform mutations. The default is false.
+     * Optional. The service validates the request without performing any mutations. The default is false.
      */
     validateOnly?: boolean;
 
@@ -11815,6 +12354,335 @@ export namespace dataplex_v1 {
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Entrytypes$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Glossaries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Getiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Getiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleIamV1Policy>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Glossaries$Setiampolicy,
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      callback: BodyResponseCallback<Schema$GoogleIamV1Policy>
+    ): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Setiampolicy
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1Policy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1Policy>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Glossaries$Testiampermissions,
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Glossaries$Testiampermissions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIamV1TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIamV1TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Glossaries$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Glossaries$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIamV1TestIamPermissionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Glossaries$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Glossaries$Testiampermissions
     extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
@@ -20213,6 +21081,443 @@ export namespace dataplex_v1 {
     pageToken?: string;
     /**
      * Required. The resource name of the parent entity: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Metadatajobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels a metadata job.If you cancel a metadata import job that is in progress, the changes in the job might be partially applied. We recommend that you reset the state of the entry groups in your project by running another metadata job that reverts the changes from the canceled job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Metadatajobs$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Metadatajobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Metadatajobs$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Creates a metadata job. For example, use a metadata job to import Dataplex Catalog entries and aspects from a third-party system into Dataplex.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Metadatajobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Metadatajobs$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Metadatajobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Metadatajobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/metadataJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a metadata job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Metadatajobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1MetadataJob>;
+    get(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1MetadataJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1MetadataJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Metadatajobs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1MetadataJob>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1MetadataJob>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Metadatajobs$Get
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1MetadataJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1MetadataJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1MetadataJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1MetadataJob>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Metadatajobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Metadatajobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1MetadataJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1MetadataJob>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists metadata jobs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Metadatajobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Metadatajobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Metadatajobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Metadatajobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Metadatajobs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Metadatajobs$List
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Metadatajobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Metadatajobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataplex.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/metadataJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDataplexV1ListMetadataJobsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Metadatajobs$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the job, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataJobs/{metadata_job_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1CancelMetadataJobRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Metadatajobs$Create
+    extends StandardParameters {
+    /**
+     * Optional. The metadata job ID. If not provided, a unique ID is generated with the prefix metadata-job-.
+     */
+    metadataJobId?: string;
+    /**
+     * Required. The resource name of the parent location, in the format projects/{project_id_or_number\}/locations/{location_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDataplexV1MetadataJob;
+  }
+  export interface Params$Resource$Projects$Locations$Metadatajobs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the metadata job, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataJobs/{metadata_job_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Metadatajobs$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"You can combine filters with AND, OR, and NOT operators.
+     */
+    filter?: string;
+    /**
+     * Optional. The field to sort the results by, either name or create_time. If not specified, the ordering is undefined.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of metadata jobs to return. The service might return fewer jobs than this value. If unspecified, at most 10 jobs are returned. The maximum value is 1,000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token received from a previous ListMetadataJobs call. Provide this token to retrieve the subsequent page of results. When paginating, all other parameters that are provided to the ListMetadataJobs request must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the parent location, in the format projects/{project_id_or_number\}/locations/{location_id\}
      */
     parent?: string;
   }
