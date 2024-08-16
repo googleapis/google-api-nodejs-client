@@ -125,19 +125,19 @@ export namespace doubleclickbidmanager_v2 {
   }
 
   /**
-   * Report data range.
+   * The date range to be reported on.
    */
   export interface Schema$DataRange {
     /**
-     * The ending date for the data that is shown in the report. Note, `customEndDate` is required if `range` is `CUSTOM_DATES` and ignored otherwise.
+     * If `CUSTOM_DATES` is assigned to range, this field specifies the end date for the date range that is reported on. This field is required if using `CUSTOM_DATES` range and will be ignored otherwise.
      */
     customEndDate?: Schema$Date;
     /**
-     * The starting data for the data that is shown in the report. Note, `customStartDate` is required if `range` is `CUSTOM_DATES` and ignored otherwise.
+     * If `CUSTOM_DATES` is assigned to range, this field specifies the starting date for the date range that is reported on. This field is required if using `CUSTOM_DATES` range and will be ignored otherwise.
      */
     customStartDate?: Schema$Date;
     /**
-     * Report data range used to generate the report.
+     * The preset date range to be reported on. If `CUSTOM_DATES` is assigned to this field, fields custom_start_date and custom_end_date must be set to specify the custom date range.
      */
     range?: string | null;
   }
@@ -159,213 +159,213 @@ export namespace doubleclickbidmanager_v2 {
     year?: number | null;
   }
   /**
-   * Filter used to match traffic data in your report.
+   * Represents a single filter rule.
    */
   export interface Schema$FilterPair {
     /**
-     * Filter type.
+     * The type of value to filter by. Defined by a [Filter](/bid-manager/reference/rest/v2/filters-metrics#filters) value.
      */
     type?: string | null;
     /**
-     * Filter value.
+     * The identifying value to filter by, such as a relevant resource ID.
      */
     value?: string | null;
   }
   export interface Schema$ListQueriesResponse {
     /**
-     * A token, which can be sent as page_token to retrieve the next page of queries. If this field is omitted, there are no subsequent pages.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `queries.list` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
-     * The list of queries.
+     * The list of queries. This field will be absent if empty.
      */
     queries?: Schema$Query[];
   }
   export interface Schema$ListReportsResponse {
     /**
-     * A token, which can be sent as page_token to retrieve the next page of reports. If this field is omitted, there are no subsequent pages.
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `queries.reports.list` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
-     * Retrieved reports.
+     * The list of reports. This field will be absent if empty.
      */
     reports?: Schema$Report[];
   }
   /**
-   * Additional query options.
+   * Report parameter options.
    */
   export interface Schema$Options {
     /**
-     * Set to true and filter your report by `FILTER_INSERTION_ORDER` or `FILTER_LINE_ITEM` to include data for audience lists specifically targeted by those items.
+     * Whether to include data for audience lists specifically targeted by filtered line items or insertion orders. Requires the use of `FILTER_INSERTION_ORDER` or `FILTER_LINE_ITEM` filters.
      */
     includeOnlyTargetedUserLists?: boolean | null;
   }
   /**
-   * Parameters of a query or report.
+   * Parameters of a generated report.
    */
   export interface Schema$Parameters {
     /**
-     * Filters used to match traffic data in your report.
+     * Filters to limit the scope of reported data.
      */
     filters?: Schema$FilterPair[];
     /**
-     * Data is grouped by the filters listed in this field.
+     * Dimensions by which to segment and group the data. Defined by [Filter](/bid-manager/reference/rest/v2/filters-metrics#filters) values.
      */
     groupBys?: string[] | null;
     /**
-     * Metrics to include as columns in your report.
+     * Metrics to define the data populating the report. Defined by [Metric](/bid-manager/reference/rest/v2/filters-metrics#metrics) values.
      */
     metrics?: string[] | null;
     /**
-     * Additional query options.
+     * Additional report parameter options.
      */
     options?: Schema$Options;
     /**
-     * The type of the report. The type of the report will dictate what dimesions, filters, and metrics can be used.
+     * The type of the report. The type of the report determines the dimesions, filters, and metrics that can be used.
      */
     type?: string | null;
   }
   /**
-   * Represents a query.
+   * A single query used to generate a report.
    */
   export interface Schema$Query {
     /**
-     * Query metadata.
+     * The metadata of the query.
      */
     metadata?: Schema$QueryMetadata;
     /**
-     * Query parameters.
+     * The parameters of the report generated by the query.
      */
     params?: Schema$Parameters;
     /**
-     * Output only. Query ID.
+     * Output only. The unique ID of the query.
      */
     queryId?: string | null;
     /**
-     * Information on how often and when to run a query. If `ONE_TIME` is set to the frequency field, the query will only be run at the time of creation.
+     * When and how often the query is scheduled to run. If the frequency field is set to `ONE_TIME`, the query will only run when queries.run is called.
      */
     schedule?: Schema$QuerySchedule;
   }
   /**
-   * Query metadata.
+   * The metadata of the query.
    */
   export interface Schema$QueryMetadata {
     /**
-     * Range of report data. All reports will be based on the same time zone as used by the advertiser.
+     * The date range the report generated by the query will report on. This date range will be defined by the time zone as used by the advertiser.
      */
     dataRange?: Schema$DataRange;
     /**
-     * Format of the generated report.
+     * The format of the report generated by the query.
      */
     format?: string | null;
     /**
-     * Whether to send an email notification when a report is ready. Defaults to false.
+     * Whether an email notification is sent to the query creator when a report generated by the query is ready. This value is `false` by default.
      */
     sendNotification?: boolean | null;
     /**
-     * List of email addresses which are sent email notifications when the report is finished. Separate from send_notification.
+     * List of additional email addresses with which to share the query. If send_notification is `true`, these email addresses will receive a notification when a report generated by the query is ready. If these email addresses are connected to Display & Video 360 users, the query will be available to them in the Display & Video 360 interface.
      */
     shareEmailAddress?: string[] | null;
     /**
-     * Query title. It is used to name the reports generated from this query.
+     * The display name of the query. This value will be used in the file name of reports generated by the query.
      */
     title?: string | null;
   }
   /**
-   * Information on when and how frequently to run a query.
+   * Settings on when and how frequently to run a query.
    */
   export interface Schema$QuerySchedule {
     /**
-     * Date to periodically run the query until. Not applicable to `ONE_TIME` frequency.
+     * The date on which to end the scheduled runs. This field is required if frequency is not set to `ONE_TIME`. Otherwise, it will be ignored.
      */
     endDate?: Schema$Date;
     /**
-     * How often the query is run.
+     * How frequently to run the query. If set to `ONE_TIME`, the query will only be run when queries.run is called.
      */
     frequency?: string | null;
     /**
-     * Canonical timezone code for report generation time. Defaults to `America/New_York`.
+     * The canonical code for the timezone the query schedule is based on. Scheduled runs are usually conducted in the morning of a given day. Defaults to `America/New_York`.
      */
     nextRunTimezoneCode?: string | null;
     /**
-     * When to start running the query. Not applicable to `ONE_TIME` frequency.
+     * The date on which to begin the scheduled runs. This field is required if frequency is not set to `ONE_TIME`. Otherwise, it will be ignored.
      */
     startDate?: Schema$Date;
   }
   /**
-   * Represents a report.
+   * A single report generated by its parent report.
    */
   export interface Schema$Report {
     /**
-     * Key used to identify a report.
+     * The key information identifying the report.
      */
     key?: Schema$ReportKey;
     /**
-     * Report metadata.
+     * The metadata of the report.
      */
     metadata?: Schema$ReportMetadata;
     /**
-     * Report parameters.
+     * The parameters of the report.
      */
     params?: Schema$Parameters;
   }
   /**
-   * Key used to identify a report.
+   * Identifying information of a report.
    */
   export interface Schema$ReportKey {
     /**
-     * Output only. Query ID.
+     * Output only. The unique ID of the query that generated the report.
      */
     queryId?: string | null;
     /**
-     * Output only. Report ID.
+     * Output only. The unique ID of the report.
      */
     reportId?: string | null;
   }
   /**
-   * Report metadata.
+   * The metadata of a report.
    */
   export interface Schema$ReportMetadata {
     /**
-     * Output only. The path to the location in Google Cloud Storage where the report is stored.
+     * Output only. The location of the generated report file in Google Cloud Storage. This field will be absent if status.state is not `DONE`.
      */
     googleCloudStoragePath?: string | null;
     /**
-     * The ending time for the data that is shown in the report.
+     * The end date of the report data date range.
      */
     reportDataEndDate?: Schema$Date;
     /**
-     * The starting time for the data that is shown in the report.
+     * The start date of the report data date range.
      */
     reportDataStartDate?: Schema$Date;
     /**
-     * Report status.
+     * The status of the report.
      */
     status?: Schema$ReportStatus;
   }
   /**
-   * Report status.
+   * The status of a report.
    */
   export interface Schema$ReportStatus {
     /**
-     * Output only. The time when this report either completed successfully or failed.
+     * Output only. The timestamp of when report generation finished successfully or in failure. This field will not be set unless state is `DONE` or `FAILED`.
      */
     finishTime?: string | null;
     /**
-     * The file type of the report.
+     * The format of the generated report file.
      */
     format?: string | null;
     /**
-     * Output only. The state of the report.
+     * Output only. The state of the report generation.
      */
     state?: string | null;
   }
   /**
-   * Request to run a stored query to generate a report.
+   * Details specifying how to run a query.
    */
   export interface Schema$RunQueryRequest {
     /**
-     * Report data range used to generate the report. If unspecified, the original parent query's data range is used.
+     * The date range used by the query to generate the report. If unspecified, the query's original data_range is used.
      */
     dataRange?: Schema$DataRange;
   }
@@ -379,7 +379,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Creates a query.
+     * Creates a new query.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -464,7 +464,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Deletes a query as well as the associated reports.
+     * Deletes an existing query as well as its generated reports.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -726,7 +726,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Runs a stored query to generate a report.
+     * Runs an existing query to generate a report.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -822,19 +822,19 @@ export namespace doubleclickbidmanager_v2 {
   }
   export interface Params$Resource$Queries$Delete extends StandardParameters {
     /**
-     * Required. ID of query to delete.
+     * Required. The ID of the query to delete.
      */
     queryId?: string;
   }
   export interface Params$Resource$Queries$Get extends StandardParameters {
     /**
-     * Required. ID of query to retrieve.
+     * Required. The ID of the query to retrieve.
      */
     queryId?: string;
   }
   export interface Params$Resource$Queries$List extends StandardParameters {
     /**
-     * Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "metadata.title desc". Sorting is only supported for the following fields: * `queryId` * `metadata.title`
+     * Field to sort the list by. Accepts the following values: * `queryId` (default) * `metadata.title` The default sorting order is ascending. To specify descending order for a field, add the suffix `desc` to the field name. For example, `queryId desc`.
      */
     orderBy?: string;
     /**
@@ -842,17 +842,17 @@ export namespace doubleclickbidmanager_v2 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous list call. Provide this to retrieve the subsequent page of queries.
+     * A token identifying which page of results the server should return. Typically, this is the value of nextPageToken, returned from the previous call to the `queries.list` method. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Queries$Run extends StandardParameters {
     /**
-     * Required. ID of query to run.
+     * Required. The ID of the query to run.
      */
     queryId?: string;
     /**
-     * Whether the query should be run synchronously. When true, this method will not return until the query has finished running. When false or not specified, this method will return immediately.
+     * Whether the query should be run synchronously. When `true`, the request won't return until the resulting report has finished running. This parameter is `false` by default. Setting this parameter to `true` is **not recommended**.
      */
     synchronous?: boolean;
 
@@ -958,7 +958,7 @@ export namespace doubleclickbidmanager_v2 {
     }
 
     /**
-     * Lists reports associated with a query.
+     * Lists reports generated by the provided query.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1053,18 +1053,18 @@ export namespace doubleclickbidmanager_v2 {
   export interface Params$Resource$Queries$Reports$Get
     extends StandardParameters {
     /**
-     * Required. ID of the query the report is associated with.
+     * Required. The ID of the query that generated the report.
      */
     queryId?: string;
     /**
-     * Required. ID of the report to retrieve.
+     * Required. The ID of the query to retrieve.
      */
     reportId?: string;
   }
   export interface Params$Resource$Queries$Reports$List
     extends StandardParameters {
     /**
-     * Name of a field used to order results. The default sorting order is ascending. To specify descending order for a field, append a " desc" suffix. For example "key.reportId desc". Sorting is only supported for the following fields: * `key.reportId`
+     * Field to sort the list by. Accepts the following values: * `key.reportId` (default) The default sorting order is ascending. To specify descending order for a field, add the suffix `desc` to the field name. For example, `key.reportId desc`.
      */
     orderBy?: string;
     /**
@@ -1072,11 +1072,11 @@ export namespace doubleclickbidmanager_v2 {
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous list call. Provide this to retrieve the subsequent page of reports.
+     * A token identifying which page of results the server should return. Typically, this is the value of nextPageToken returned from the previous call to the `queries.reports.list` method. If unspecified, the first page of results is returned.
      */
     pageToken?: string;
     /**
-     * Required. ID of the query with which the reports are associated.
+     * Required. The ID of the query that generated the reports.
      */
     queryId?: string;
   }
