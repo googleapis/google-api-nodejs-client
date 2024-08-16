@@ -555,7 +555,7 @@ export namespace networkmanagement_v1 {
     title?: string | null;
   }
   /**
-   * For display only. Metadata associated with a VPC firewall rule, an implied VPC firewall rule, or a hierarchical firewall policy rule.
+   * For display only. Metadata associated with a VPC firewall rule, an implied VPC firewall rule, or a firewall policy rule.
    */
   export interface Schema$FirewallInfo {
     /**
@@ -567,7 +567,7 @@ export namespace networkmanagement_v1 {
      */
     direction?: string | null;
     /**
-     * The display name of the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.
+     * The display name of the firewall rule. This field might be empty for firewall policy rules.
      */
     displayName?: string | null;
     /**
@@ -579,9 +579,13 @@ export namespace networkmanagement_v1 {
      */
     networkUri?: string | null;
     /**
-     * The hierarchical firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules.
+     * The name of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.
      */
     policy?: string | null;
+    /**
+     * The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.
+     */
+    policyUri?: string | null;
     /**
      * The priority of the firewall rule.
      */
@@ -591,11 +595,11 @@ export namespace networkmanagement_v1 {
      */
     targetServiceAccounts?: string[] | null;
     /**
-     * The target tags defined by the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.
+     * The target tags defined by the VPC firewall rule. This field is not applicable to firewall policy rules.
      */
     targetTags?: string[] | null;
     /**
-     * The URI of the VPC firewall rule. This field is not applicable to implied firewall rules or hierarchical firewall policy rules.
+     * The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.
      */
     uri?: string | null;
   }
@@ -727,6 +731,10 @@ export namespace networkmanagement_v1 {
      * URI of a Compute Engine network.
      */
     networkUri?: string | null;
+    /**
+     * URI of the PSC network attachment the NIC is attached to (if relevant).
+     */
+    pscNetworkAttachmentUri?: string | null;
     /**
      * Service account authorized for the instance.
      */
