@@ -292,7 +292,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`
      */
     attackExposureResult?: string | null;
     /**
@@ -407,7 +407,7 @@ export namespace securitycenter_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     * The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.
      */
     id?: string | null;
   }
@@ -446,7 +446,7 @@ export namespace securitycenter_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
      */
     id?: string | null;
   }
@@ -735,6 +735,10 @@ export namespace securitycenter_v1beta1 {
      */
     exploitationActivity?: string | null;
     /**
+     * Date the first publicly available exploit or PoC was released.
+     */
+    exploitReleaseDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -854,6 +858,19 @@ export namespace securitycenter_v1beta1 {
      * Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh
      */
     relativePath?: string | null;
+  }
+  /**
+   * The record of a dynamic mute rule that matches the finding.
+   */
+  export interface Schema$DynamicMuteRecord {
+    /**
+     * When the dynamic mute rule first matched the finding.
+     */
+    matchTime?: string | null;
+    /**
+     * The relative resource name of the mute rule, represented by a mute config, that created this record, for example `organizations/123/muteConfigs/mymuteconfig` or `organizations/123/locations/global/muteConfigs/mymuteconfig`.
+     */
+    muteConfig?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1090,6 +1107,10 @@ export namespace securitycenter_v1beta1 {
      * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     mute?: string | null;
+    /**
+     * Output only. The mute information regarding this finding.
+     */
+    muteInfo?: Schema$MuteInfo;
     /**
      * Records additional information about the mute operation, for example, the [mute configuration](/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.
      */
@@ -1486,6 +1507,10 @@ export namespace securitycenter_v1beta1 {
      */
     displayName?: string | null;
     /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic configs. If the expiry is set, when the config expires, it is removed from all findings.
+     */
+    expiryTime?: string | null;
+    /**
      * Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`
      */
     filter?: string | null;
@@ -1494,9 +1519,13 @@ export namespace securitycenter_v1beta1 {
      */
     mostRecentEditor?: string | null;
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string | null;
+    /**
+     * Optional. The type of the mute config, which determines what type of mute state the config affects. The static mute state takes precedence over the dynamic mute state. Immutable after creation. STATIC by default if not set during creation.
+     */
+    type?: string | null;
     /**
      * Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.
      */
@@ -1731,7 +1760,7 @@ export namespace securitycenter_v1beta1 {
      */
     resourcePath?: Schema$ResourcePath;
     /**
-     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     * A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\}` where there can be any number of management groups.
      */
     resourcePathString?: string | null;
     /**
@@ -1773,11 +1802,11 @@ export namespace securitycenter_v1beta1 {
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with `AND`. For example, `"resource_labels_selector": {"key": "value", "env": "prod"\}` will match resources with labels "key": "value" `AND` "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
@@ -1785,7 +1814,7 @@ export namespace securitycenter_v1beta1 {
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with `AND` of other resources.
      */
     scope?: string | null;
     /**
@@ -1793,7 +1822,7 @@ export namespace securitycenter_v1beta1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -1986,7 +2015,7 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`
      */
     attackExposureResult?: string | null;
     /**
@@ -2075,7 +2104,7 @@ export namespace securitycenter_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     * The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.
      */
     id?: string | null;
   }
@@ -2114,7 +2143,7 @@ export namespace securitycenter_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
      */
     id?: string | null;
   }
@@ -2172,7 +2201,7 @@ export namespace securitycenter_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
+     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
      */
     dataset?: string | null;
     /**
@@ -2188,7 +2217,7 @@ export namespace securitycenter_v1beta1 {
      */
     mostRecentEditor?: string | null;
     /**
-     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `folders/{folder_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `projects/{project_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` This field is provided in responses, and is ignored when provided in create requests.
+     * Identifier. The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `folders/{folder_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `projects/{project_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` This field is provided in responses, and is ignored when provided in create requests.
      */
     name?: string | null;
     /**
@@ -2407,6 +2436,10 @@ export namespace securitycenter_v1beta1 {
      */
     exploitationActivity?: string | null;
     /**
+     * Date the first publicly available exploit or PoC was released.
+     */
+    exploitReleaseDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -2526,6 +2559,19 @@ export namespace securitycenter_v1beta1 {
      * Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh
      */
     relativePath?: string | null;
+  }
+  /**
+   * The record of a dynamic mute rule that matches the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DynamicMuteRecord {
+    /**
+     * When the dynamic mute rule first matched the finding.
+     */
+    matchTime?: string | null;
+    /**
+     * The relative resource name of the mute rule, represented by a mute config, that created this record, for example `organizations/123/muteConfigs/mymuteconfig` or `organizations/123/locations/global/muteConfigs/mymuteconfig`.
+     */
+    muteConfig?: string | null;
   }
   /**
    * A name-value pair representing an environment variable used in an operating system process.
@@ -2788,6 +2834,10 @@ export namespace securitycenter_v1beta1 {
      * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     mute?: string | null;
+    /**
+     * Output only. The mute information regarding this finding.
+     */
+    muteInfo?: Schema$GoogleCloudSecuritycenterV2MuteInfo;
     /**
      * Records additional information about the mute operation, for example, the [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.
      */
@@ -3086,6 +3136,10 @@ export namespace securitycenter_v1beta1 {
      */
     description?: string | null;
     /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic configs. If the expiry is set, when the config expires, it is removed from all findings.
+     */
+    expiryTime?: string | null;
+    /**
      * Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`
      */
     filter?: string | null;
@@ -3094,7 +3148,7 @@ export namespace securitycenter_v1beta1 {
      */
     mostRecentEditor?: string | null;
     /**
-     * This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization\}/muteConfigs/{mute_config\}` + `organizations/{organization\}locations/{location\}//muteConfigs/{mute_config\}` + `folders/{folder\}/muteConfigs/{mute_config\}` + `folders/{folder\}/locations/{location\}/muteConfigs/{mute_config\}` + `projects/{project\}/muteConfigs/{mute_config\}` + `projects/{project\}/locations/{location\}/muteConfigs/{mute_config\}`
+     * Identifier. This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization\}/muteConfigs/{mute_config\}` + `organizations/{organization\}locations/{location\}//muteConfigs/{mute_config\}` + `folders/{folder\}/muteConfigs/{mute_config\}` + `folders/{folder\}/locations/{location\}/muteConfigs/{mute_config\}` + `projects/{project\}/muteConfigs/{mute_config\}` + `projects/{project\}/locations/{location\}/muteConfigs/{mute_config\}`
      */
     name?: string | null;
     /**
@@ -3105,6 +3159,19 @@ export namespace securitycenter_v1beta1 {
      * Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Mute information about the finding, including whether the finding has a static mute or any matching dynamic mute rules.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2MuteInfo {
+    /**
+     * The list of dynamic mute rules that currently match the finding.
+     */
+    dynamicMuteRecords?: Schema$GoogleCloudSecuritycenterV2DynamicMuteRecord[];
+    /**
+     * If set, the static mute applied to this finding. Static mutes override dynamic mutes. If unset, there is no static mute.
+     */
+    staticMute?: Schema$GoogleCloudSecuritycenterV2StaticMute;
   }
   /**
    * Kubernetes nodes associated with the finding.
@@ -3392,7 +3459,7 @@ export namespace securitycenter_v1beta1 {
      */
     resourcePath?: Schema$GoogleCloudSecuritycenterV2ResourcePath;
     /**
-     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     * A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\}` where there can be any number of management groups.
      */
     resourcePathString?: string | null;
     /**
@@ -3447,23 +3514,23 @@ export namespace securitycenter_v1beta1 {
      */
     description?: string | null;
     /**
-     * Name for the resource value configuration
+     * Identifier. Name for the resource value configuration
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with `AND`. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" `AND` "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
-     * Resource value level this expression represents Only required when there is no SDP mapping in the request
+     * Resource value level this expression represents Only required when there is no Sensitive Data Protection mapping in the request
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope and will be checked with `AND` of other resources.
      */
     scope?: string | null;
     /**
@@ -3471,7 +3538,7 @@ export namespace securitycenter_v1beta1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -3611,6 +3678,19 @@ export namespace securitycenter_v1beta1 {
     principalSubject?: string | null;
   }
   /**
+   * Information about the static mute state. A static mute state overrides any dynamic mute rules that apply to this finding. The static mute state can be set by a static mute rule or by muting the finding directly.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2StaticMute {
+    /**
+     * When the static mute was applied.
+     */
+    applyTime?: string | null;
+    /**
+     * The static mute state. If the value is `MUTED` or `UNMUTED`, then the finding's overall mute state will have the same value.
+     */
+    state?: string | null;
+  }
+  /**
    * Represents a Kubernetes subject.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Subject {
@@ -3665,7 +3745,7 @@ export namespace securitycenter_v1beta1 {
      */
     attackExposureScore?: number | null;
     /**
-     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     * List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.
      */
     relatedFindings?: string[] | null;
   }
@@ -4074,6 +4154,19 @@ export namespace securitycenter_v1beta1 {
      * The MITRE ATT&CK version referenced by the above fields. E.g. "8".
      */
     version?: string | null;
+  }
+  /**
+   * Mute information about the finding, including whether the finding has a static mute or any matching dynamic mute rules.
+   */
+  export interface Schema$MuteInfo {
+    /**
+     * The list of dynamic mute rules that currently match the finding.
+     */
+    dynamicMuteRecords?: Schema$DynamicMuteRecord[];
+    /**
+     * If set, the static mute applied to this finding. Static mutes override dynamic mutes. If unset, there is no static mute.
+     */
+    staticMute?: Schema$StaticMute;
   }
   /**
    * Kubernetes nodes associated with the finding.
@@ -4587,6 +4680,19 @@ export namespace securitycenter_v1beta1 {
     name?: string | null;
   }
   /**
+   * Information about the static mute state. A static mute state overrides any dynamic mute rules that apply to this finding. The static mute state can be set by a static mute rule or by muting the finding directly.
+   */
+  export interface Schema$StaticMute {
+    /**
+     * When the static mute was applied.
+     */
+    applyTime?: string | null;
+    /**
+     * The static mute state. If the value is `MUTED` or `UNMUTED`, then the finding's overall mute state will have the same value.
+     */
+    state?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -4676,7 +4782,7 @@ export namespace securitycenter_v1beta1 {
      */
     attackExposureScore?: number | null;
     /**
-     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     * List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.
      */
     relatedFindings?: string[] | null;
   }
