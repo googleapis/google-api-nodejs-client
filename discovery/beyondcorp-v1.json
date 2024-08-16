@@ -1191,6 +1191,43 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "shouldThrottle": {
+                  "description": "Calls the Bouncer method ShouldThrottle to check if a request should be throttled.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appGateways/{appGatewaysId}:shouldThrottle",
+                  "httpMethod": "GET",
+                  "id": "beyondcorp.projects.locations.appGateways.shouldThrottle",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/appGateways/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "port": {
+                      "description": "Optional. The port that is being throttled",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "requestedAmount": {
+                      "description": "Optional. The current throughput through the port (mbps)",
+                      "format": "int64",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:shouldThrottle",
+                  "response": {
+                    "$ref": "ShouldThrottleResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/appGateways/{appGatewaysId}:testIamPermissions",
@@ -3751,6 +3788,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ShouldThrottleResponse": {
+      "description": "Response message for calling ShouldThrottle",
+      "id": "ShouldThrottleResponse",
+      "properties": {
+        "shouldThrottle": {
+          "description": "Whether the port should be throttled",
+          "type": "boolean"
         }
       },
       "type": "object"
