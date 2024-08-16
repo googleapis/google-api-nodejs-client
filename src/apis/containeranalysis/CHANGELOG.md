@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v8.3.0...containeranalysis-v8.4.0) (2024-07-26)
+
+
+### Features
+
+* **containeranalysis:** update the API ([433e2e8](https://github.com/googleapis/google-api-nodejs-client/commit/433e2e81ffeca68bb840ede84306e9b25744141a))
+
 ## [8.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v8.2.0...containeranalysis-v8.3.0) (2024-06-21)
 
 

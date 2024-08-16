@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v3.0.0...memcache-v3.1.0) (2024-07-26)
+
+
+### Features
+
+* **memcache:** update the API ([8207223](https://github.com/googleapis/google-api-nodejs-client/commit/82072230dc1016a8f68425348f8f57cb589889a6))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v2.0.1...memcache-v3.0.0) (2024-05-02)
 
 

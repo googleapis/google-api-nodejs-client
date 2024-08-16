@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v4.3.0...tasks-v5.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3511](https://github.com/googleapis/google-api-nodejs-client/issues/3511)) ([957bc85](https://github.com/googleapis/google-api-nodejs-client/commit/957bc850439a639c5534957333b09598944952c3))
+
 ## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v4.2.0...tasks-v4.3.0) (2024-06-21)
 
 

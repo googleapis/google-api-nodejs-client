@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v9.0.0...contactcenterinsights-v9.0.1) (2024-07-26)
+
+
+### Bug Fixes
+
+* **contactcenterinsights:** update the API ([e7c1bfb](https://github.com/googleapis/google-api-nodejs-client/commit/e7c1bfb2363e82e760731748a87f3ba52c327de4))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v8.0.1...contactcenterinsights-v9.0.0) (2024-06-06)
 
 

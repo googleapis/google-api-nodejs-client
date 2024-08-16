@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/redis",
-  "version": "10.1.0",
+  "version": "10.1.1",
   "description": "redis",
   "main": "build/index.js",
   "types": "build/index.d.ts",

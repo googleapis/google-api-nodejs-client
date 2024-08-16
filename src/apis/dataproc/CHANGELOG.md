@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v8.0.0...dataproc-v8.1.0) (2024-07-26)
+
+
+### Features
+
+* **dataproc:** update the API ([a3b46a3](https://github.com/googleapis/google-api-nodejs-client/commit/a3b46a36a374b236e43853e13064552d3e5f37dd))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v7.0.0...dataproc-v8.0.0) (2024-05-10)
 
 

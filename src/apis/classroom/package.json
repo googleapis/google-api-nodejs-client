@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/classroom",
-  "version": "4.0.9",
+  "version": "4.1.0",
   "description": "classroom",
   "main": "build/index.js",
   "types": "build/index.d.ts",

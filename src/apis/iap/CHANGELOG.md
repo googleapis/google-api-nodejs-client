@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v8.0.1...iap-v8.1.0) (2024-07-26)
+
+
+### Features
+
+* **iap:** update the API ([e0d0bce](https://github.com/googleapis/google-api-nodejs-client/commit/e0d0bcece58ca20dde0b16a0da1cf2ee4299d268))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v8.0.0...iap-v8.0.1) (2024-06-03)
 
 

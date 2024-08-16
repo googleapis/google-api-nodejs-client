@@ -1,5 +1,17 @@
 # Changelog
 
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v15.0.0...compute-v16.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([d891f41](https://github.com/googleapis/google-api-nodejs-client/commit/d891f411cf9500efb2b117387678c40c7e5f5415))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v14.0.0...compute-v15.0.0) (2024-06-06)
 
 

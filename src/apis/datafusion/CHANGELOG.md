@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v6.4.3...datafusion-v7.0.0) (2024-07-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datafusion:** This release has breaking changes.
+
+### Features
+
+* **datafusion:** update the API ([eba93e9](https://github.com/googleapis/google-api-nodejs-client/commit/eba93e9970387c728410f57fb641e1c8b548afa0))
+
 ## [6.4.3](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v6.4.2...datafusion-v6.4.3) (2024-05-02)
 
 
