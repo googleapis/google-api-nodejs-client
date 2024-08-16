@@ -145,6 +145,10 @@ export namespace file_v1beta1 {
      */
     downloadBytes?: string | null;
     /**
+     * Output only. The file system protocol of the source Filestore instance that this backup is created from.
+     */
+    fileSystemProtocol?: string | null;
+    /**
      * Immutable. KMS key name used for data encryption.
      */
     kmsKeyName?: string | null;
@@ -270,26 +274,9 @@ export namespace file_v1beta1 {
      */
     nfsExportOptions?: Schema$NfsExportOptions[];
     /**
-     * Optional. Used to configure performance.
-     */
-    performanceConfig?: Schema$PerformanceConfig;
-    /**
-     * Output only. Used for getting performance limits.
-     */
-    performanceLimits?: Schema$PerformanceLimits;
-    /**
      * The resource name of the backup, in the format `projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}`, that this file share has been restored from.
      */
     sourceBackup?: string | null;
-  }
-  /**
-   * Fixed IOPS parameters.
-   */
-  export interface Schema$FixedIOPS {
-    /**
-     * Required. Maximum raw read IOPS.
-     */
-    maxReadIops?: string | null;
   }
   /**
    * Instance represents the interface for SLM services to actuate the state of control plane resources. Example Instance in JSON, where consumer-project-number=123456, producer-project-id=cloud-sql: ```json Instance: { "name": "projects/123456/locations/us-east1/instances/prod-instance", "create_time": { "seconds": 1526406431, \}, "labels": { "env": "prod", "foo": "bar" \}, "state": READY, "software_versions": { "software_update": "cloud-sql-09-28-2018", \}, "maintenance_policy_names": { "UpdatePolicy": "projects/123456/locations/us-east1/maintenancePolicies/prod-update-policy", \} "tenant_project_id": "cloud-sql-test-tenant", "producer_metadata": { "cloud-sql-tier": "basic", "cloud-sql-instance-size": "1G", \}, "provisioned_resources": [ { "resource-type": "compute-instance", "resource-url": "https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1", \} ], "maintenance_schedules": { "csa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \}, "ncsa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \} \}, "consumer_defined_name": "my-sql-instance1", \} ``` LINT.IfChange
@@ -594,15 +581,6 @@ export namespace file_v1beta1 {
     tier?: string | null;
   }
   /**
-   * IOPS per capacity parameters.
-   */
-  export interface Schema$IOPSPerGB {
-    /**
-     * Required. Maximum read IOPS per GB.
-     */
-    maxReadIopsPerGb?: string | null;
-  }
-  /**
    * ListBackupsResponse is the result of ListBackupsRequest.
    */
   export interface Schema$ListBackupsResponse {
@@ -887,44 +865,6 @@ export namespace file_v1beta1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
-  }
-  /**
-   * Performance configuration. Used for setting the performance configuration. Defaults to `iops_by_capacity` if unset in instance creation.
-   */
-  export interface Schema$PerformanceConfig {
-    /**
-     * Choose a fixed provisioned IOPS value for the instance, which will remain constant regardless of instance capacity. Value must be a multiple of 1000. If the chosen value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error.
-     */
-    fixedIops?: Schema$FixedIOPS;
-    /**
-     * Automatically provision maximum available IOPS based on the capacity of the instance. Larger instances will be granted more IOPS. If instance capacity is increased or decreased, IOPS will be automatically adjusted upwards or downwards accordingly. The maximum available IOPS for a given capacity is defined in Filestore documentation.
-     */
-    iopsByCapacity?: boolean | null;
-    /**
-     * Provision IOPS dynamically based on the capacity of the instance. Provisioned read IOPS will be calculated by by multiplying the capacity of the instance in GiB by the `iops_per_gb` value, and rounding to the nearest 1000. For example, for a 1 TiB instance with an `iops_per_gb` value of 15, the provisioned read IOPS would be `1024 * 15 = 15,360`, rounded to `15,000`. If the calculated value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error.
-     */
-    iopsPerGb?: Schema$IOPSPerGB;
-  }
-  /**
-   * The enforced performance limits, calculated from the instance's performance configuration.
-   */
-  export interface Schema$PerformanceLimits {
-    /**
-     * Output only. The max read IOPS.
-     */
-    maxReadIops?: string | null;
-    /**
-     * Output only. The max read throughput.
-     */
-    maxReadThroughput?: string | null;
-    /**
-     * Output only. The max write IOPS.
-     */
-    maxWriteIops?: string | null;
-    /**
-     * Output only. The max write throughput.
-     */
-    maxWriteThroughput?: string | null;
   }
   /**
    * PromoteReplicaRequest promotes a Filestore standby instance (replica).
