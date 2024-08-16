@@ -2812,7 +2812,7 @@
       }
     }
   },
-  "revision": "20240618",
+  "revision": "20240807",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2963,13 +2963,15 @@
             "STATE_UNSPECIFIED",
             "VALID",
             "CONNECTION_POLICY_MISSING",
-            "POLICY_LIMIT_REACHED"
+            "POLICY_LIMIT_REACHED",
+            "CONSUMER_INSTANCE_PROJECT_NOT_ALLOWLISTED"
           ],
           "enumDescriptions": [
             "Default state, when Connection Map is created initially.",
             "Set when policy and map configuration is valid, and their matching can lead to allowing creation of PSC Connections subject to other constraints like connections limit.",
             "No Service Connection Policy found for this network and Service Class",
-            "Service Connection Policy limit reached for this network and Service Class"
+            "Service Connection Policy limit reached for this network and Service Class",
+            "The consumer instance project is not in AllowedGoogleProducersResourceHierarchyLevels of the matching ServiceConnectionPolicy."
           ],
           "readOnly": true,
           "type": "string"
@@ -3618,6 +3620,14 @@
           "items": {
             "type": "string"
           },
+          "type": "array"
+        },
+        "producerVpcSpokes": {
+          "description": "Output only. The list of Producer VPC spokes that this VPC spoke is a service consumer VPC spoke for. These producer VPCs are connected through VPC peering to this spoke's backing VPC network.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
           "type": "array"
         },
         "uri": {
@@ -4926,7 +4936,7 @@
           "type": "array"
         },
         "serviceClass": {
-          "description": "The service class identifier for which this ServiceConnectionPolicy is for. The service class identifier is a unique, symbolic representation of a ServiceClass. It is provided by the Service Producer. Google services have a prefix of gcp. For example, gcp-cloud-sql. 3rd party services do not. For example, test-service-a3dfcx.",
+          "description": "The service class identifier for which this ServiceConnectionPolicy is for. The service class identifier is a unique, symbolic representation of a ServiceClass. It is provided by the Service Producer. Google services have a prefix of gcp or google-cloud. For example, gcp-memorystore-redis or google-cloud-sql. 3rd party services do not. For example, test-service-a3dfcx.",
           "type": "string"
         },
         "updateTime": {
