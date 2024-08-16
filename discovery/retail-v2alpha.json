@@ -4349,7 +4349,6 @@
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult",
       "properties": {
         "suggestions": {
-          "description": "The list of suggestions for the attribute.",
           "items": {
             "type": "string"
           },
