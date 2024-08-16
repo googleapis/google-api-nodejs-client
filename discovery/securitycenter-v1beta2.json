@@ -15,6 +15,13 @@
   "description": "Security Command Center API provides access to temporal views of assets and findings within an organization.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/security-command-center",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://securitycenter.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -292,7 +299,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
+              "description": "Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
               "location": "path",
               "pattern": "^folders/[^/]+/containerThreatDetectionSettings$",
               "required": true,
@@ -326,7 +333,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
+              "description": "Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
               "location": "path",
               "pattern": "^folders/[^/]+/eventThreatDetectionSettings$",
               "required": true,
@@ -394,7 +401,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
+              "description": "Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
               "location": "path",
               "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
               "required": true,
@@ -428,7 +435,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "description": "Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
               "location": "path",
               "pattern": "^folders/[^/]+/virtualMachineThreatDetectionSettings$",
               "required": true,
@@ -462,7 +469,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
+              "description": "Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
               "location": "path",
               "pattern": "^folders/[^/]+/webSecurityScannerSettings$",
               "required": true,
@@ -876,7 +883,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
+              "description": "Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
               "location": "path",
               "pattern": "^organizations/[^/]+/containerThreatDetectionSettings$",
               "required": true,
@@ -910,7 +917,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
+              "description": "Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
               "location": "path",
               "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
               "required": true,
@@ -978,7 +985,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
+              "description": "Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
               "location": "path",
               "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
               "required": true,
@@ -1012,7 +1019,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "description": "Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
               "location": "path",
               "pattern": "^organizations/[^/]+/virtualMachineThreatDetectionSettings$",
               "required": true,
@@ -1046,7 +1053,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
+              "description": "Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
               "location": "path",
               "pattern": "^organizations/[^/]+/webSecurityScannerSettings$",
               "required": true,
@@ -1435,7 +1442,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
+              "description": "Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
               "location": "path",
               "pattern": "^projects/[^/]+/containerThreatDetectionSettings$",
               "required": true,
@@ -1469,7 +1476,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
+              "description": "Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
               "location": "path",
               "pattern": "^projects/[^/]+/eventThreatDetectionSettings$",
               "required": true,
@@ -1537,7 +1544,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
+              "description": "Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
               "location": "path",
               "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
               "required": true,
@@ -1571,7 +1578,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "description": "Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
               "location": "path",
               "pattern": "^projects/[^/]+/virtualMachineThreatDetectionSettings$",
               "required": true,
@@ -1605,7 +1612,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
+              "description": "Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
               "location": "path",
               "pattern": "^projects/[^/]+/webSecurityScannerSettings$",
               "required": true,
@@ -1728,7 +1735,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
+                      "description": "Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+/containerThreatDetectionSettings$",
                       "required": true,
@@ -1906,7 +1913,7 @@
       }
     }
   },
-  "revision": "20240622",
+  "revision": "20240809",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2051,7 +2058,7 @@
       "id": "AttackExposure",
       "properties": {
         "attackExposureResult": {
-          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789",
+          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`",
           "type": "string"
         },
         "exposedHighValueResourcesCount": {
@@ -2168,7 +2175,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure management group, for example, \"20000000-0001-0000-0000-000000000000\".",
+          "description": "The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.",
           "type": "string"
         }
       },
@@ -2216,7 +2223,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure subscription, for example, \"291bba3f-e0a5-47bc-a099-3bdcb2a50a05\".",
+          "description": "The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.",
           "type": "string"
         }
       },
@@ -2599,11 +2606,11 @@
           "additionalProperties": {
             "$ref": "Config"
           },
-          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.",
+          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
+          "description": "Identifier. The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings",
           "type": "string"
         },
         "serviceAccount": {
@@ -2643,6 +2650,11 @@
         "cvssv3": {
           "$ref": "Cvssv3",
           "description": "Describe Common Vulnerability Scoring System specified at https://www.first.org/cvss/v3.1/specification-document"
+        },
+        "exploitReleaseDate": {
+          "description": "Date the first publicly available exploit or PoC was released.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "exploitationActivity": {
           "description": "The exploitation activity of the vulnerability in the wild.",
@@ -2946,6 +2958,22 @@
       },
       "type": "object"
     },
+    "DynamicMuteRecord": {
+      "description": "The record of a dynamic mute rule that matches the finding.",
+      "id": "DynamicMuteRecord",
+      "properties": {
+        "matchTime": {
+          "description": "When the dynamic mute rule first matched the finding.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "muteConfig": {
+          "description": "The relative resource name of the mute rule, represented by a mute config, that created this record, for example `organizations/123/muteConfigs/mymuteconfig` or `organizations/123/locations/global/muteConfigs/mymuteconfig`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EnvironmentVariable": {
       "description": "A name-value pair representing an environment variable used in an operating system process.",
       "id": "EnvironmentVariable",
@@ -2969,11 +2997,11 @@
           "additionalProperties": {
             "$ref": "Config"
           },
-          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.",
+          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
+          "description": "Identifier. The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings",
           "type": "string"
         },
         "serviceEnablementState": {
@@ -3302,6 +3330,11 @@
             "Finding has never been muted/unmuted."
           ],
           "type": "string"
+        },
+        "muteInfo": {
+          "$ref": "MuteInfo",
+          "description": "Output only. The mute information regarding this finding.",
+          "readOnly": true
         },
         "muteInitiator": {
           "description": "Records additional information about the mute operation, for example, the [mute configuration](/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.",
@@ -3722,6 +3755,11 @@
           "description": "The human readable name to be displayed for the mute config.",
           "type": "string"
         },
+        "expiryTime": {
+          "description": "Optional. The expiry of the mute config. Only applicable for dynamic configs. If the expiry is set, when the config expires, it is removed from all findings.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "filter": {
           "description": "Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`",
           "type": "string"
@@ -3732,7 +3770,21 @@
           "type": "string"
         },
         "name": {
-          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\" \"organizations/{organization}/locations/global/muteConfigs/{mute_config}\" \"folders/{folder}/locations/global/muteConfigs/{mute_config}\" \"projects/{project}/locations/global/muteConfigs/{mute_config}\"",
+          "description": "This field will be ignored if provided on config creation. Format `organizations/{organization}/muteConfigs/{mute_config}` `folders/{folder}/muteConfigs/{mute_config}` `projects/{project}/muteConfigs/{mute_config}` `organizations/{organization}/locations/global/muteConfigs/{mute_config}` `folders/{folder}/locations/global/muteConfigs/{mute_config}` `projects/{project}/locations/global/muteConfigs/{mute_config}`",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. The type of the mute config, which determines what type of mute state the config affects. The static mute state takes precedence over the dynamic mute state. Immutable after creation. STATIC by default if not set during creation.",
+          "enum": [
+            "MUTE_CONFIG_TYPE_UNSPECIFIED",
+            "STATIC",
+            "DYNAMIC"
+          ],
+          "enumDescriptions": [
+            "Unused.",
+            "A static mute config, which sets the static mute state of future matching findings to muted. Once the static mute state has been set, finding or config modifications will not affect the state.",
+            "A dynamic mute config, which is applied to existing and future matching findings, setting their dynamic mute state to \"muted\". If the config is updated or deleted, or a matching finding is updated, such that the finding doesn't match the config, the config will be removed from the finding, and the finding's dynamic mute state may become \"unmuted\" (unless other configs still match)."
+          ],
           "type": "string"
         },
         "updateTime": {
@@ -3851,7 +3903,7 @@
           "description": "Provides the path to the resource within the resource hierarchy."
         },
         "resourcePathString": {
-          "description": "A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id} where there can be any number of folders. For AWS, it has the format of org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name} where there can be any number of management groups.",
+          "description": "A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}` where there can be any number of management groups.",
           "type": "string"
         },
         "service": {
@@ -3917,11 +3969,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "List of resource labels to search for, evaluated with AND. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "description": "List of resource labels to search for, evaluated with `AND`. For example, `\"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"}` will match resources with labels \"key\": \"value\" `AND` \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
           "type": "object"
         },
         "resourceType": {
-          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
           "type": "string"
         },
         "resourceValue": {
@@ -3943,7 +3995,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with AND of other resources.",
+          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with `AND` of other resources.",
           "type": "string"
         },
         "sensitiveDataProtectionMapping": {
@@ -3951,7 +4003,7 @@
           "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
         },
         "tagValues": {
-          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" Example: [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "description": "Required. Tag values combined with `AND` to check against. Values in the form \"tagValues/123\" Example: `[ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
             "type": "string"
           },
@@ -4462,7 +4514,7 @@
       "id": "GoogleCloudSecuritycenterV2AttackExposure",
       "properties": {
         "attackExposureResult": {
-          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789",
+          "description": "The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`",
           "type": "string"
         },
         "exposedHighValueResourcesCount": {
@@ -4580,7 +4632,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure management group, for example, \"20000000-0001-0000-0000-000000000000\".",
+          "description": "The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.",
           "type": "string"
         }
       },
@@ -4628,7 +4680,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The UUID of the Azure subscription, for example, \"291bba3f-e0a5-47bc-a099-3bdcb2a50a05\".",
+          "description": "The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.",
           "type": "string"
         }
       },
@@ -4702,7 +4754,7 @@
           "type": "string"
         },
         "dataset": {
-          "description": "The dataset to write findings' updates to. Its format is \"projects/[project_id]/datasets/[bigquery_dataset_id]\". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).",
+          "description": "The dataset to write findings' updates to. Its format is \"projects/[project_id]/datasets/[bigquery_dataset_id]\". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).",
           "type": "string"
         },
         "description": {
@@ -4719,7 +4771,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id}/locations/{location_id}/bigQueryExports/{export_id}` + `folders/{folder_id}/locations/{location_id}/bigQueryExports/{export_id}` + `projects/{project_id}/locations/{location_id}/bigQueryExports/{export_id}` This field is provided in responses, and is ignored when provided in create requests.",
+          "description": "Identifier. The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id}/locations/{location_id}/bigQueryExports/{export_id}` + `folders/{folder_id}/locations/{location_id}/bigQueryExports/{export_id}` + `projects/{project_id}/locations/{location_id}/bigQueryExports/{export_id}` This field is provided in responses, and is ignored when provided in create requests.",
           "type": "string"
         },
         "principal": {
@@ -5004,6 +5056,11 @@
           "$ref": "GoogleCloudSecuritycenterV2Cvssv3",
           "description": "Describe Common Vulnerability Scoring System specified at https://www.first.org/cvss/v3.1/specification-document"
         },
+        "exploitReleaseDate": {
+          "description": "Date the first publicly available exploit or PoC was released.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "exploitationActivity": {
           "description": "The exploitation activity of the vulnerability in the wild.",
           "enum": [
@@ -5264,6 +5321,22 @@
         },
         "relativePath": {
           "description": "Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2DynamicMuteRecord": {
+      "description": "The record of a dynamic mute rule that matches the finding.",
+      "id": "GoogleCloudSecuritycenterV2DynamicMuteRecord",
+      "properties": {
+        "matchTime": {
+          "description": "When the dynamic mute rule first matched the finding.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "muteConfig": {
+          "description": "The relative resource name of the mute rule, represented by a mute config, that created this record, for example `organizations/123/muteConfigs/mymuteconfig` or `organizations/123/locations/global/muteConfigs/mymuteconfig`.",
           "type": "string"
         }
       },
@@ -5622,6 +5695,11 @@
             "Finding has never been muted/unmuted."
           ],
           "type": "string"
+        },
+        "muteInfo": {
+          "$ref": "GoogleCloudSecuritycenterV2MuteInfo",
+          "description": "Output only. The mute information regarding this finding.",
+          "readOnly": true
         },
         "muteInitiator": {
           "description": "Records additional information about the mute operation, for example, the [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.",
@@ -6058,8 +6136,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -6123,8 +6203,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -6172,7 +6254,7 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613",
+              "T1609",
               "T1611",
               "T1613",
               "T1649"
@@ -6233,8 +6315,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -6298,8 +6382,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -6347,7 +6433,7 @@
               "T1588",
               "T1595",
               "T1595.001",
-              "T1613",
+              "T1609",
               "T1611",
               "T1613",
               "T1649"
@@ -6377,6 +6463,11 @@
           "description": "A description of the mute config.",
           "type": "string"
         },
+        "expiryTime": {
+          "description": "Optional. The expiry of the mute config. Only applicable for dynamic configs. If the expiry is set, when the config expires, it is removed from all findings.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "filter": {
           "description": "Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`",
           "type": "string"
@@ -6387,18 +6478,20 @@
           "type": "string"
         },
         "name": {
-          "description": "This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization}/muteConfigs/{mute_config}` + `organizations/{organization}locations/{location}//muteConfigs/{mute_config}` + `folders/{folder}/muteConfigs/{mute_config}` + `folders/{folder}/locations/{location}/muteConfigs/{mute_config}` + `projects/{project}/muteConfigs/{mute_config}` + `projects/{project}/locations/{location}/muteConfigs/{mute_config}`",
+          "description": "Identifier. This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization}/muteConfigs/{mute_config}` + `organizations/{organization}locations/{location}//muteConfigs/{mute_config}` + `folders/{folder}/muteConfigs/{mute_config}` + `folders/{folder}/locations/{location}/muteConfigs/{mute_config}` + `projects/{project}/muteConfigs/{mute_config}` + `projects/{project}/locations/{location}/muteConfigs/{mute_config}`",
           "type": "string"
         },
         "type": {
           "description": "Required. The type of the mute config, which determines what type of mute state the config affects. Immutable after creation.",
           "enum": [
             "MUTE_CONFIG_TYPE_UNSPECIFIED",
-            "STATIC"
+            "STATIC",
+            "DYNAMIC"
           ],
           "enumDescriptions": [
             "Unused.",
-            "A static mute config, which sets the static mute state of future matching findings to muted. Once the static mute state has been set, finding or config modifications will not affect the state."
+            "A static mute config, which sets the static mute state of future matching findings to muted. Once the static mute state has been set, finding or config modifications will not affect the state.",
+            "A dynamic mute config, which is applied to existing and future matching findings, setting their dynamic mute state to \"muted\". If the config is updated or deleted, or a matching finding is updated, such that the finding doesn't match the config, the config will be removed from the finding, and the finding's dynamic mute state may become \"unmuted\" (unless other configs still match)."
           ],
           "type": "string"
         },
@@ -6407,6 +6500,24 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2MuteInfo": {
+      "description": "Mute information about the finding, including whether the finding has a static mute or any matching dynamic mute rules.",
+      "id": "GoogleCloudSecuritycenterV2MuteInfo",
+      "properties": {
+        "dynamicMuteRecords": {
+          "description": "The list of dynamic mute rules that currently match the finding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2DynamicMuteRecord"
+          },
+          "type": "array"
+        },
+        "staticMute": {
+          "$ref": "GoogleCloudSecuritycenterV2StaticMute",
+          "description": "If set, the static mute applied to this finding. Static mutes override dynamic mutes. If unset, there is no static mute."
         }
       },
       "type": "object"
@@ -6773,7 +6884,7 @@
           "description": "Provides the path to the resource within the resource hierarchy."
         },
         "resourcePathString": {
-          "description": "A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id} where there can be any number of folders. For AWS, it has the format of org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name} where there can be any number of management groups.",
+          "description": "A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id}/folders/{folder_id}/folders/{folder_id}/projects/{project_id}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id}/ou/{organizational_unit_id}/ou/{organizational_unit_id}/account/{account_id}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id}/mg/{management_group_id}/subscription/{subscription_id}/rg/{resource_group_name}` where there can be any number of management groups.",
           "type": "string"
         },
         "service": {
@@ -6875,22 +6986,22 @@
           "type": "string"
         },
         "name": {
-          "description": "Name for the resource value configuration",
+          "description": "Identifier. Name for the resource value configuration",
           "type": "string"
         },
         "resourceLabelsSelector": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "List of resource labels to search for, evaluated with AND. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" AND \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
+          "description": "List of resource labels to search for, evaluated with `AND`. For example, \"resource_labels_selector\": {\"key\": \"value\", \"env\": \"prod\"} will match resources with labels \"key\": \"value\" `AND` \"env\": \"prod\" https://cloud.google.com/resource-manager/docs/creating-managing-labels",
           "type": "object"
         },
         "resourceType": {
-          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
+          "description": "Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, \"storage.googleapis.com/Bucket\" with resource_value \"HIGH\" will apply \"HIGH\" value only to \"storage.googleapis.com/Bucket\" resources.",
           "type": "string"
         },
         "resourceValue": {
-          "description": "Resource value level this expression represents Only required when there is no SDP mapping in the request",
+          "description": "Resource value level this expression represents Only required when there is no Sensitive Data Protection mapping in the request",
           "enum": [
             "RESOURCE_VALUE_UNSPECIFIED",
             "HIGH",
@@ -6908,7 +7019,7 @@
           "type": "string"
         },
         "scope": {
-          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope will be checked with AND of other resources.",
+          "description": "Project or folder to scope this configuration to. For example, \"project/456\" would apply this configuration only to resources in \"project/456\" scope and will be checked with `AND` of other resources.",
           "type": "string"
         },
         "sensitiveDataProtectionMapping": {
@@ -6916,7 +7027,7 @@
           "description": "A mapping of the sensitivity on Sensitive Data Protection finding to resource values. This mapping can only be used in combination with a resource_type that is related to BigQuery, e.g. \"bigquery.googleapis.com/Dataset\"."
         },
         "tagValues": {
-          "description": "Required. Tag values combined with AND to check against. Values in the form \"tagValues/123\" Example: [ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
+          "description": "Tag values combined with `AND` to check against. Values in the form \"tagValues/123\" Example: `[ \"tagValues/123\", \"tagValues/456\", \"tagValues/789\" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing",
           "items": {
             "type": "string"
           },
@@ -7121,6 +7232,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2StaticMute": {
+      "description": "Information about the static mute state. A static mute state overrides any dynamic mute rules that apply to this finding. The static mute state can be set by a static mute rule or by muting the finding directly.",
+      "id": "GoogleCloudSecuritycenterV2StaticMute",
+      "properties": {
+        "applyTime": {
+          "description": "When the static mute was applied.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The static mute state. If the value is `MUTED` or `UNMUTED`, then the finding's overall mute state will have the same value.",
+          "enum": [
+            "MUTE_UNSPECIFIED",
+            "MUTED",
+            "UNMUTED",
+            "UNDEFINED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Finding has been muted.",
+            "Finding has been unmuted.",
+            "Finding has never been muted/unmuted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Subject": {
       "description": "Represents a Kubernetes subject.",
       "id": "GoogleCloudSecuritycenterV2Subject",
@@ -7194,7 +7333,7 @@
           "type": "number"
         },
         "relatedFindings": {
-          "description": "List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.",
+          "description": "List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.",
           "items": {
             "type": "string"
           },
@@ -7537,8 +7676,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -7602,8 +7743,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -7712,8 +7855,10 @@
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
               "PYTHON",
+              "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL_FILE_DELETION",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -7777,8 +7922,10 @@
               "T1059",
               "T1059.004",
               "T1059.006",
+              "T1068",
               "T1069",
               "T1069.003",
+              "T1070.004",
               "T1071",
               "T1071.004",
               "T1072",
@@ -7838,6 +7985,24 @@
         "version": {
           "description": "The MITRE ATT&CK version referenced by the above fields. E.g. \"8\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MuteInfo": {
+      "description": "Mute information about the finding, including whether the finding has a static mute or any matching dynamic mute rules.",
+      "id": "MuteInfo",
+      "properties": {
+        "dynamicMuteRecords": {
+          "description": "The list of dynamic mute rules that currently match the finding.",
+          "items": {
+            "$ref": "DynamicMuteRecord"
+          },
+          "type": "array"
+        },
+        "staticMute": {
+          "$ref": "StaticMute",
+          "description": "If set, the static mute applied to this finding. Static mutes override dynamic mutes. If unset, there is no static mute."
         }
       },
       "type": "object"
@@ -8316,11 +8481,11 @@
           "additionalProperties": {
             "$ref": "Config"
           },
-          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.",
+          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
+          "description": "Identifier. The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings",
           "type": "string"
         },
         "serviceAccount": {
@@ -8451,6 +8616,34 @@
       },
       "type": "object"
     },
+    "StaticMute": {
+      "description": "Information about the static mute state. A static mute state overrides any dynamic mute rules that apply to this finding. The static mute state can be set by a static mute rule or by muting the finding directly.",
+      "id": "StaticMute",
+      "properties": {
+        "applyTime": {
+          "description": "When the static mute was applied.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The static mute state. If the value is `MUTED` or `UNMUTED`, then the finding's overall mute state will have the same value.",
+          "enum": [
+            "MUTE_UNSPECIFIED",
+            "MUTED",
+            "UNMUTED",
+            "UNDEFINED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Finding has been muted.",
+            "Finding has been unmuted.",
+            "Finding has never been muted/unmuted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Subject": {
       "description": "Represents a Kubernetes subject.",
       "id": "Subject",
@@ -8557,7 +8750,7 @@
           "type": "number"
         },
         "relatedFindings": {
-          "description": "List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.",
+          "description": "List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.",
           "items": {
             "type": "string"
           },
@@ -8574,11 +8767,11 @@
           "additionalProperties": {
             "$ref": "Config"
           },
-          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.",
+          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+          "description": "Identifier. The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
           "type": "string"
         },
         "serviceAccount": {
@@ -8693,11 +8886,11 @@
           "additionalProperties": {
             "$ref": "Config"
           },
-          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.",
+          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's configuration.",
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
+          "description": "Identifier. The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings",
           "type": "string"
         },
         "serviceEnablementState": {

@@ -308,7 +308,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`
      */
     attackExposureResult?: string | null;
     /**
@@ -383,11 +383,11 @@ export namespace securitycenter_v1 {
      */
     displayName?: string | null;
     /**
-     * The name of the resource at this point in the attack path. The format of the name follows the Cloud Asset Inventory [resource name format]("https://cloud.google.com/asset-inventory/docs/resource-name-format")
+     * The name of the resource at this point in the attack path. The format of the name follows the Cloud Asset Inventory [resource name format](https://cloud.google.com/asset-inventory/docs/resource-name-format)
      */
     resource?: string | null;
     /**
-     * The [supported resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types")
+     * The [supported resource type](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
      */
     resourceType?: string | null;
     /**
@@ -507,7 +507,7 @@ export namespace securitycenter_v1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     * The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.
      */
     id?: string | null;
   }
@@ -546,7 +546,7 @@ export namespace securitycenter_v1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
      */
     id?: string | null;
   }
@@ -642,6 +642,10 @@ export namespace securitycenter_v1 {
      * This can be a mute configuration name or any identifier for mute/unmute of findings based on the filter.
      */
     muteAnnotation?: string | null;
+    /**
+     * Optional. All findings matching the given filter will have their mute state set to this value. The default value is `MUTED`. Setting this to `UNDEFINED` will clear the mute state on all matching findings.
+     */
+    muteState?: string | null;
   }
   /**
    * Fields related to Google Cloud Armor findings.
@@ -902,6 +906,10 @@ export namespace securitycenter_v1 {
      */
     exploitationActivity?: string | null;
     /**
+     * Date the first publicly available exploit or PoC was released.
+     */
+    exploitReleaseDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -1023,6 +1031,19 @@ export namespace securitycenter_v1 {
     relativePath?: string | null;
   }
   /**
+   * The record of a dynamic mute rule that matches the finding.
+   */
+  export interface Schema$DynamicMuteRecord {
+    /**
+     * When the dynamic mute rule first matched the finding.
+     */
+    matchTime?: string | null;
+    /**
+     * The relative resource name of the mute rule, represented by a mute config, that created this record, for example `organizations/123/muteConfigs/mymuteconfig` or `organizations/123/locations/global/muteConfigs/mymuteconfig`.
+     */
+    muteConfig?: string | null;
+  }
+  /**
    * An EffectiveEventThreatDetectionCustomModule is the representation of an Event Threat Detection custom module at a specified level of the resource hierarchy: organization, folder, or project. If a custom module is inherited from a parent organization or folder, the value of the `enablement_state` property in EffectiveEventThreatDetectionCustomModule is set to the value that is effective in the parent, instead of `INHERITED`. For example, if the module is enabled in a parent organization or folder, the effective `enablement_state` for the module in all child folders or projects is also `enabled`. EffectiveEventThreatDetectionCustomModule is read-only.
    */
   export interface Schema$EffectiveEventThreatDetectionCustomModule {
@@ -1043,7 +1064,7 @@ export namespace securitycenter_v1 {
      */
     enablementState?: string | null;
     /**
-     * Output only. The resource name of the effective ETD custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     * Output only. The resource name of the effective ETD custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`.
      */
     name?: string | null;
     /**
@@ -1097,7 +1118,7 @@ export namespace securitycenter_v1 {
      */
     lastEditor?: string | null;
     /**
-     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string | null;
     /**
@@ -1327,6 +1348,10 @@ export namespace securitycenter_v1 {
      * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     mute?: string | null;
+    /**
+     * Output only. The mute information regarding this finding.
+     */
+    muteInfo?: Schema$MuteInfo;
     /**
      * Records additional information about the mute operation, for example, the [mute configuration](/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.
      */
@@ -1665,6 +1690,10 @@ export namespace securitycenter_v1 {
      */
     displayName?: string | null;
     /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic configs. If the expiry is set, when the config expires, it is removed from all findings.
+     */
+    expiryTime?: string | null;
+    /**
      * Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`
      */
     filter?: string | null;
@@ -1673,9 +1702,13 @@ export namespace securitycenter_v1 {
      */
     mostRecentEditor?: string | null;
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string | null;
+    /**
+     * Optional. The type of the mute config, which determines what type of mute state the config affects. The static mute state takes precedence over the dynamic mute state. Immutable after creation. STATIC by default if not set during creation.
+     */
+    type?: string | null;
     /**
      * Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.
      */
@@ -1910,7 +1943,7 @@ export namespace securitycenter_v1 {
      */
     resourcePath?: Schema$ResourcePath;
     /**
-     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     * A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\}` where there can be any number of management groups.
      */
     resourcePathString?: string | null;
     /**
@@ -1952,11 +1985,11 @@ export namespace securitycenter_v1 {
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with `AND`. For example, `"resource_labels_selector": {"key": "value", "env": "prod"\}` will match resources with labels "key": "value" `AND` "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
@@ -1964,7 +1997,7 @@ export namespace securitycenter_v1 {
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with `AND` of other resources.
      */
     scope?: string | null;
     /**
@@ -1972,7 +2005,7 @@ export namespace securitycenter_v1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -2165,7 +2198,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2AttackExposure {
     /**
-     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: organizations/123/simulations/456/attackExposureResults/789
+     * The resource name of the attack path simulation result that contains the details regarding this attack exposure score. Example: `organizations/123/simulations/456/attackExposureResults/789`
      */
     attackExposureResult?: string | null;
     /**
@@ -2254,7 +2287,7 @@ export namespace securitycenter_v1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure management group, for example, "20000000-0001-0000-0000-000000000000".
+     * The UUID of the Azure management group, for example, `20000000-0001-0000-0000-000000000000`.
      */
     id?: string | null;
   }
@@ -2293,7 +2326,7 @@ export namespace securitycenter_v1 {
      */
     displayName?: string | null;
     /**
-     * The UUID of the Azure subscription, for example, "291bba3f-e0a5-47bc-a099-3bdcb2a50a05".
+     * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
      */
     id?: string | null;
   }
@@ -2351,7 +2384,7 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
-     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
+     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
      */
     dataset?: string | null;
     /**
@@ -2367,7 +2400,7 @@ export namespace securitycenter_v1 {
      */
     mostRecentEditor?: string | null;
     /**
-     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `folders/{folder_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `projects/{project_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` This field is provided in responses, and is ignored when provided in create requests.
+     * Identifier. The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. The following list shows some examples: + `organizations/{organization_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `folders/{folder_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` + `projects/{project_id\}/locations/{location_id\}/bigQueryExports/{export_id\}` This field is provided in responses, and is ignored when provided in create requests.
      */
     name?: string | null;
     /**
@@ -2586,6 +2619,10 @@ export namespace securitycenter_v1 {
      */
     exploitationActivity?: string | null;
     /**
+     * Date the first publicly available exploit or PoC was released.
+     */
+    exploitReleaseDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -2705,6 +2742,19 @@ export namespace securitycenter_v1 {
      * Relative path of the file in the partition as a JSON encoded string. Example: /home/user1/executable_file.sh
      */
     relativePath?: string | null;
+  }
+  /**
+   * The record of a dynamic mute rule that matches the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DynamicMuteRecord {
+    /**
+     * When the dynamic mute rule first matched the finding.
+     */
+    matchTime?: string | null;
+    /**
+     * The relative resource name of the mute rule, represented by a mute config, that created this record, for example `organizations/123/muteConfigs/mymuteconfig` or `organizations/123/locations/global/muteConfigs/mymuteconfig`.
+     */
+    muteConfig?: string | null;
   }
   /**
    * A name-value pair representing an environment variable used in an operating system process.
@@ -2967,6 +3017,10 @@ export namespace securitycenter_v1 {
      * Indicates the mute state of a finding (either muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     mute?: string | null;
+    /**
+     * Output only. The mute information regarding this finding.
+     */
+    muteInfo?: Schema$GoogleCloudSecuritycenterV2MuteInfo;
     /**
      * Records additional information about the mute operation, for example, the [mute configuration](https://cloud.google.com/security-command-center/docs/how-to-mute-findings) that muted the finding and the user who muted the finding.
      */
@@ -3265,6 +3319,10 @@ export namespace securitycenter_v1 {
      */
     description?: string | null;
     /**
+     * Optional. The expiry of the mute config. Only applicable for dynamic configs. If the expiry is set, when the config expires, it is removed from all findings.
+     */
+    expiryTime?: string | null;
+    /**
      * Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`
      */
     filter?: string | null;
@@ -3273,7 +3331,7 @@ export namespace securitycenter_v1 {
      */
     mostRecentEditor?: string | null;
     /**
-     * This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization\}/muteConfigs/{mute_config\}` + `organizations/{organization\}locations/{location\}//muteConfigs/{mute_config\}` + `folders/{folder\}/muteConfigs/{mute_config\}` + `folders/{folder\}/locations/{location\}/muteConfigs/{mute_config\}` + `projects/{project\}/muteConfigs/{mute_config\}` + `projects/{project\}/locations/{location\}/muteConfigs/{mute_config\}`
+     * Identifier. This field will be ignored if provided on config creation. The following list shows some examples of the format: + `organizations/{organization\}/muteConfigs/{mute_config\}` + `organizations/{organization\}locations/{location\}//muteConfigs/{mute_config\}` + `folders/{folder\}/muteConfigs/{mute_config\}` + `folders/{folder\}/locations/{location\}/muteConfigs/{mute_config\}` + `projects/{project\}/muteConfigs/{mute_config\}` + `projects/{project\}/locations/{location\}/muteConfigs/{mute_config\}`
      */
     name?: string | null;
     /**
@@ -3284,6 +3342,19 @@ export namespace securitycenter_v1 {
      * Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Mute information about the finding, including whether the finding has a static mute or any matching dynamic mute rules.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2MuteInfo {
+    /**
+     * The list of dynamic mute rules that currently match the finding.
+     */
+    dynamicMuteRecords?: Schema$GoogleCloudSecuritycenterV2DynamicMuteRecord[];
+    /**
+     * If set, the static mute applied to this finding. Static mutes override dynamic mutes. If unset, there is no static mute.
+     */
+    staticMute?: Schema$GoogleCloudSecuritycenterV2StaticMute;
   }
   /**
    * Kubernetes nodes associated with the finding.
@@ -3571,7 +3642,7 @@ export namespace securitycenter_v1 {
      */
     resourcePath?: Schema$GoogleCloudSecuritycenterV2ResourcePath;
     /**
-     * A string representation of the resource path. For Google Cloud, it has the format of organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     * A string representation of the resource path. For Google Cloud, it has the format of `organizations/{organization_id\}/folders/{folder_id\}/folders/{folder_id\}/projects/{project_id\}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\}` where there can be any number of management groups.
      */
     resourcePathString?: string | null;
     /**
@@ -3626,23 +3697,23 @@ export namespace securitycenter_v1 {
      */
     description?: string | null;
     /**
-     * Name for the resource value configuration
+     * Identifier. Name for the resource value configuration
      */
     name?: string | null;
     /**
-     * List of resource labels to search for, evaluated with AND. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" AND "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
+     * List of resource labels to search for, evaluated with `AND`. For example, "resource_labels_selector": {"key": "value", "env": "prod"\} will match resources with labels "key": "value" `AND` "env": "prod" https://cloud.google.com/resource-manager/docs/creating-managing-labels
      */
     resourceLabelsSelector?: {[key: string]: string} | null;
     /**
-     * Apply resource_value only to resources that match resource_type. resource_type will be checked with AND of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
+     * Apply resource_value only to resources that match resource_type. resource_type will be checked with `AND` of other resources. For example, "storage.googleapis.com/Bucket" with resource_value "HIGH" will apply "HIGH" value only to "storage.googleapis.com/Bucket" resources.
      */
     resourceType?: string | null;
     /**
-     * Resource value level this expression represents Only required when there is no SDP mapping in the request
+     * Resource value level this expression represents Only required when there is no Sensitive Data Protection mapping in the request
      */
     resourceValue?: string | null;
     /**
-     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope will be checked with AND of other resources.
+     * Project or folder to scope this configuration to. For example, "project/456" would apply this configuration only to resources in "project/456" scope and will be checked with `AND` of other resources.
      */
     scope?: string | null;
     /**
@@ -3650,7 +3721,7 @@ export namespace securitycenter_v1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with AND to check against. Values in the form "tagValues/123" Example: [ "tagValues/123", "tagValues/456", "tagValues/789" ] https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -3790,6 +3861,19 @@ export namespace securitycenter_v1 {
     principalSubject?: string | null;
   }
   /**
+   * Information about the static mute state. A static mute state overrides any dynamic mute rules that apply to this finding. The static mute state can be set by a static mute rule or by muting the finding directly.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2StaticMute {
+    /**
+     * When the static mute was applied.
+     */
+    applyTime?: string | null;
+    /**
+     * The static mute state. If the value is `MUTED` or `UNMUTED`, then the finding's overall mute state will have the same value.
+     */
+    state?: string | null;
+  }
+  /**
    * Represents a Kubernetes subject.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Subject {
@@ -3844,7 +3928,7 @@ export namespace securitycenter_v1 {
      */
     attackExposureScore?: number | null;
     /**
-     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     * List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.
      */
     relatedFindings?: string[] | null;
   }
@@ -4453,6 +4537,19 @@ export namespace securitycenter_v1 {
     version?: string | null;
   }
   /**
+   * Mute information about the finding, including whether the finding has a static mute or any matching dynamic mute rules.
+   */
+  export interface Schema$MuteInfo {
+    /**
+     * The list of dynamic mute rules that currently match the finding.
+     */
+    dynamicMuteRecords?: Schema$DynamicMuteRecord[];
+    /**
+     * If set, the static mute applied to this finding. Static mutes override dynamic mutes. If unset, there is no static mute.
+     */
+    staticMute?: Schema$StaticMute;
+  }
+  /**
    * Kubernetes nodes associated with the finding.
    */
   export interface Schema$Node {
@@ -4622,7 +4719,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$PathNodeAssociatedFinding {
     /**
-     * Canonical name of the associated findings. Example: organizations/123/sources/456/findings/789
+     * Canonical name of the associated findings. Example: `organizations/123/sources/456/findings/789`
      */
     canonicalFinding?: string | null;
     /**
@@ -4853,7 +4950,7 @@ export namespace securitycenter_v1 {
      */
     resourcePath?: Schema$ResourcePath;
     /**
-     * A string representation of the resource path. For Google Cloud, it has the format of org/{organization_id\}/folder/{folder_id\}/folder/{folder_id\}/project/{project_id\} where there can be any number of folders. For AWS, it has the format of org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\} where there can be any number of organizational units. For Azure, it has the format of mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\} where there can be any number of management groups.
+     * A string representation of the resource path. For Google Cloud, it has the format of `org/{organization_id\}/folder/{folder_id\}/folder/{folder_id\}/project/{project_id\}` where there can be any number of folders. For AWS, it has the format of `org/{organization_id\}/ou/{organizational_unit_id\}/ou/{organizational_unit_id\}/account/{account_id\}` where there can be any number of organizational units. For Azure, it has the format of `mg/{management_group_id\}/mg/{management_group_id\}/subscription/{subscription_id\}/rg/{resource_group_name\}` where there can be any number of management groups.
      */
     resourcePathString?: string | null;
     /**
@@ -5167,7 +5264,7 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
-     * Full resource name of the Simulation: organizations/123/simulations/456
+     * Full resource name of the Simulation: `organizations/123/simulations/456`
      */
     name?: string | null;
     /**
@@ -5195,6 +5292,19 @@ export namespace securitycenter_v1 {
      * The relative resource name of this source. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}"
      */
     name?: string | null;
+  }
+  /**
+   * Information about the static mute state. A static mute state overrides any dynamic mute rules that apply to this finding. The static mute state can be set by a static mute rule or by muting the finding directly.
+   */
+  export interface Schema$StaticMute {
+    /**
+     * When the static mute was applied.
+     */
+    applyTime?: string | null;
+    /**
+     * The static mute state. If the value is `MUTED` or `UNMUTED`, then the finding's overall mute state will have the same value.
+     */
+    state?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -5295,7 +5405,7 @@ export namespace securitycenter_v1 {
      */
     attackExposureScore?: number | null;
     /**
-     * List of resource names of findings associated with this toxic combination. For example, organizations/123/sources/456/findings/789.
+     * List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.
      */
     relatedFindings?: string[] | null;
   }
@@ -5726,7 +5836,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Assets$Group
     extends StandardParameters {
     /**
-     * Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -5762,7 +5872,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
     /**
@@ -6275,7 +6385,7 @@ export namespace securitycenter_v1 {
      */
     bigQueryExportId?: string;
     /**
-     * Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource of the new BigQuery export. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -6287,14 +6397,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Bigqueryexports$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. The name of the BigQuery export to delete. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Bigqueryexports$Get
     extends StandardParameters {
     /**
-     * Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
@@ -6309,7 +6419,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of BigQuery exports. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
@@ -6449,7 +6559,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Eventthreatdetectionsettings$Validatecustommodule
     extends StandardParameters {
     /**
-     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
 
@@ -7044,7 +7154,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Create
     extends StandardParameters {
     /**
-     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. The new custom module's parent. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
 
@@ -7056,14 +7166,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to delete. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to get. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
@@ -7078,7 +7188,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
@@ -7093,14 +7203,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
   export interface Params$Resource$Folders$Eventthreatdetectionsettings$Custommodules$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
     /**
@@ -7319,7 +7429,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Eventthreatdetectionsettings$Effectivecustommodules$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`.
      */
     name?: string;
   }
@@ -7334,7 +7444,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules for. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules for. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
@@ -7438,7 +7548,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Findings$Bulkmute
     extends StandardParameters {
     /**
-     * Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
 
@@ -7938,7 +8048,7 @@ export namespace securitycenter_v1 {
      */
     muteConfigId?: string;
     /**
-     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -7950,14 +8060,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Locations$Muteconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Locations$Muteconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
@@ -7972,14 +8082,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Folders$Locations$Muteconfigs$Patch
     extends StandardParameters {
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string;
     /**
@@ -8475,7 +8585,7 @@ export namespace securitycenter_v1 {
      */
     muteConfigId?: string;
     /**
-     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -8487,14 +8597,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Muteconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Muteconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
@@ -8509,14 +8619,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Folders$Muteconfigs$Patch
     extends StandardParameters {
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string;
     /**
@@ -8998,7 +9108,7 @@ export namespace securitycenter_v1 {
      */
     configId?: string;
     /**
-     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new notification config's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -9010,14 +9120,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Notificationconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Notificationconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
@@ -9754,7 +9864,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Create
     extends StandardParameters {
     /**
-     * Required. Resource name of the new custom module's parent. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Resource name of the new custom module's parent. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
 
@@ -9766,14 +9876,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to delete. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}"
+     * Required. Name of the custom module to delete. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Securityhealthanalyticssettings$Custommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to get. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}"
+     * Required. Name of the custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
@@ -9788,7 +9898,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -9803,7 +9913,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list descendant custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list descendant custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -10041,7 +10151,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Securityhealthanalyticssettings$Effectivecustommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the effective custom module to get. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}"
+     * Required. Name of the effective custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`
      */
     name?: string;
   }
@@ -10056,7 +10166,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list effective custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list effective custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -10173,7 +10283,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
   }
@@ -10732,7 +10842,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Sources$Findings$Group
     extends StandardParameters {
     /**
-     * Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]", folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]. To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-, or projects/{project_id\}/sources/-
+     * Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-`, or `projects/{project_id\}/sources/-`
      */
     parent?: string;
 
@@ -10768,7 +10878,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id], folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/- or projects/{projects_id\}/sources/-
+     * Required. Name of the source the findings belong to. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To list across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-`, `folders/{folder_id\}/sources/-` or `projects/{projects_id\}/sources/-`
      */
     parent?: string;
     /**
@@ -10795,7 +10905,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Sources$Findings$Setmute
     extends StandardParameters {
     /**
-     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
     name?: string;
 
@@ -10807,7 +10917,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
     name?: string;
 
@@ -11186,7 +11296,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Getorganizationsettings
     extends StandardParameters {
     /**
-     * Required. Name of the organization to get organization settings for. Its format is "organizations/[organization_id]/organizationSettings".
+     * Required. Name of the organization to get organization settings for. Its format is `organizations/[organization_id]/organizationSettings`.
      */
     name?: string;
   }
@@ -11578,7 +11688,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Assets$Group
     extends StandardParameters {
     /**
-     * Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -11614,7 +11724,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
     /**
@@ -11625,7 +11735,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Assets$Rundiscovery
     extends StandardParameters {
     /**
-     * Required. Name of the organization to run asset discovery for. Its format is "organizations/[organization_id]".
+     * Required. Name of the organization to run asset discovery for. Its format is `organizations/[organization_id]`.
      */
     parent?: string;
 
@@ -12139,7 +12249,7 @@ export namespace securitycenter_v1 {
      */
     bigQueryExportId?: string;
     /**
-     * Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource of the new BigQuery export. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -12151,14 +12261,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Bigqueryexports$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. The name of the BigQuery export to delete. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Bigqueryexports$Get
     extends StandardParameters {
     /**
-     * Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
@@ -12173,7 +12283,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of BigQuery exports. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
@@ -12313,7 +12423,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Validatecustommodule
     extends StandardParameters {
     /**
-     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
 
@@ -12908,7 +13018,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Create
     extends StandardParameters {
     /**
-     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. The new custom module's parent. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
 
@@ -12920,14 +13030,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to delete. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to get. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
@@ -12942,7 +13052,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
@@ -12957,14 +13067,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Custommodules$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
     /**
@@ -13183,7 +13293,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Effectivecustommodules$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`.
      */
     name?: string;
   }
@@ -13198,7 +13308,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules for. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules for. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
@@ -13302,7 +13412,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Findings$Bulkmute
     extends StandardParameters {
     /**
-     * Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
 
@@ -13805,7 +13915,7 @@ export namespace securitycenter_v1 {
      */
     muteConfigId?: string;
     /**
-     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -13817,14 +13927,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Locations$Muteconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Muteconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
@@ -13839,14 +13949,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Muteconfigs$Patch
     extends StandardParameters {
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string;
     /**
@@ -14342,7 +14452,7 @@ export namespace securitycenter_v1 {
      */
     muteConfigId?: string;
     /**
-     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -14354,14 +14464,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Muteconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Muteconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
@@ -14376,14 +14486,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Muteconfigs$Patch
     extends StandardParameters {
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string;
     /**
@@ -14865,7 +14975,7 @@ export namespace securitycenter_v1 {
      */
     configId?: string;
     /**
-     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new notification config's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -14877,14 +14987,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Notificationconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Notificationconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
@@ -15819,7 +15929,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Resourcevalueconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the resource value config to retrieve. Its format is organizations/{organization\}/resourceValueConfigs/{config_id\}.
+     * Required. Name of the resource value config to retrieve. Its format is `organizations/{organization\}/resourceValueConfigs/{config_id\}`.
      */
     name?: string;
   }
@@ -15834,7 +15944,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of resource value configs. Its format is "organizations/[organization_id]"
+     * Required. The parent, which owns the collection of resource value configs. Its format is `organizations/[organization_id]`
      */
     parent?: string;
   }
@@ -16556,7 +16666,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Create
     extends StandardParameters {
     /**
-     * Required. Resource name of the new custom module's parent. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Resource name of the new custom module's parent. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
 
@@ -16568,14 +16678,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to delete. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}"
+     * Required. Name of the custom module to delete. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Custommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to get. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}"
+     * Required. Name of the custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
@@ -16590,7 +16700,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -16605,7 +16715,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list descendant custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list descendant custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -16843,7 +16953,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Effectivecustommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the effective custom module to get. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}"
+     * Required. Name of the effective custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`
      */
     name?: string;
   }
@@ -16858,7 +16968,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list effective custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list effective custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -16971,7 +17081,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Simulations$Get
     extends StandardParameters {
     /**
-     * Required. The organization name or simulation name of this simulation Valid format: "organizations/{organization\}/simulations/latest" "organizations/{organization\}/simulations/{simulation\}"
+     * Required. The organization name or simulation name of this simulation Valid format: `organizations/{organization\}/simulations/latest` `organizations/{organization\}/simulations/{simulation\}`
      */
     name?: string;
   }
@@ -17110,7 +17220,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     * Required. Name of parent to list attack paths. Valid formats: `organizations/{organization\}`, `organizations/{organization\}/simulations/{simulation\}` `organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}` `organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}`
      */
     parent?: string;
   }
@@ -17226,7 +17336,7 @@ export namespace securitycenter_v1 {
      */
     filter?: string;
     /**
-     * Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a " ASC" or a " DESC" suffix, respectively; for example: `exposed_score DESC`.
+     * Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a ` ASC` or a ` DESC` suffix, respectively; for example: `exposed_score DESC`.
      */
     orderBy?: string;
     /**
@@ -17238,7 +17348,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list valued resources. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}"
+     * Required. Name of parent to list valued resources. Valid formats: `organizations/{organization\}`, `organizations/{organization\}/simulations/{simulation\}` `organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}`
      */
     parent?: string;
   }
@@ -17360,7 +17470,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     * Required. Name of parent to list attack paths. Valid formats: `organizations/{organization\}`, `organizations/{organization\}/simulations/{simulation\}` `organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}` `organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}`
      */
     parent?: string;
   }
@@ -17564,7 +17674,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Simulations$Valuedresources$Get
     extends StandardParameters {
     /**
-     * Required. The name of this valued resource Valid format: "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     * Required. The name of this valued resource Valid format: `organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}`
      */
     name?: string;
   }
@@ -17575,7 +17685,7 @@ export namespace securitycenter_v1 {
      */
     filter?: string;
     /**
-     * Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a " ASC" or a " DESC" suffix, respectively; for example: `exposed_score DESC`.
+     * Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a ` ASC` or a ` DESC` suffix, respectively; for example: `exposed_score DESC`.
      */
     orderBy?: string;
     /**
@@ -17587,7 +17697,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list valued resources. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}"
+     * Required. Name of parent to list valued resources. Valid formats: `organizations/{organization\}`, `organizations/{organization\}/simulations/{simulation\}` `organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}`
      */
     parent?: string;
   }
@@ -17709,7 +17819,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list attack paths. Valid formats: "organizations/{organization\}", "organizations/{organization\}/simulations/{simulation\}" "organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}" "organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}"
+     * Required. Name of parent to list attack paths. Valid formats: `organizations/{organization\}`, `organizations/{organization\}/simulations/{simulation\}` `organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}` `organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}`
      */
     parent?: string;
   }
@@ -18353,7 +18463,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Create
     extends StandardParameters {
     /**
-     * Required. Resource name of the new source's parent. Its format should be "organizations/[organization_id]".
+     * Required. Resource name of the new source's parent. Its format should be `organizations/[organization_id]`.
      */
     parent?: string;
 
@@ -18365,7 +18475,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Get
     extends StandardParameters {
     /**
-     * Required. Relative resource name of the source. Its format is "organizations/[organization_id]/source/[source_id]".
+     * Required. Relative resource name of the source. Its format is `organizations/[organization_id]/source/[source_id]`.
      */
     name?: string;
   }
@@ -18392,7 +18502,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
   }
@@ -19086,7 +19196,7 @@ export namespace securitycenter_v1 {
      */
     findingId?: string;
     /**
-     * Required. Resource name of the new finding's parent. Its format should be "organizations/[organization_id]/sources/[source_id]".
+     * Required. Resource name of the new finding's parent. Its format should be `organizations/[organization_id]/sources/[source_id]`.
      */
     parent?: string;
 
@@ -19098,7 +19208,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Findings$Group
     extends StandardParameters {
     /**
-     * Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]", folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]. To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-, or projects/{project_id\}/sources/-
+     * Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-`, or `projects/{project_id\}/sources/-`
      */
     parent?: string;
 
@@ -19134,7 +19244,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id], folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/- or projects/{projects_id\}/sources/-
+     * Required. Name of the source the findings belong to. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To list across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-`, `folders/{folder_id\}/sources/-` or `projects/{projects_id\}/sources/-`
      */
     parent?: string;
     /**
@@ -19161,7 +19271,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Findings$Setmute
     extends StandardParameters {
     /**
-     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
     name?: string;
 
@@ -19173,7 +19283,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
     name?: string;
 
@@ -19636,7 +19746,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Assets$Group
     extends StandardParameters {
     /**
-     * Required. The name of the parent to group the assets by. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent to group the assets by. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -19672,7 +19782,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource that contains the assets. The value that you can specify on parent depends on the method in which you specify parent. You can specify one of the following values: `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
     /**
@@ -20185,7 +20295,7 @@ export namespace securitycenter_v1 {
      */
     bigQueryExportId?: string;
     /**
-     * Required. The name of the parent resource of the new BigQuery export. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. The name of the parent resource of the new BigQuery export. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -20197,14 +20307,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Bigqueryexports$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the BigQuery export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. The name of the BigQuery export to delete. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Bigqueryexports$Get
     extends StandardParameters {
     /**
-     * Required. Name of the BigQuery export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     * Required. Name of the BigQuery export to retrieve. Its format is `organizations/{organization\}/bigQueryExports/{export_id\}`, `folders/{folder\}/bigQueryExports/{export_id\}`, or `projects/{project\}/bigQueryExports/{export_id\}`
      */
     name?: string;
   }
@@ -20219,7 +20329,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of BigQuery exports. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
@@ -20359,7 +20469,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Eventthreatdetectionsettings$Validatecustommodule
     extends StandardParameters {
     /**
-     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Resource name of the parent to validate the Custom Module under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
 
@@ -20954,7 +21064,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Create
     extends StandardParameters {
     /**
-     * Required. The new custom module's parent. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. The new custom module's parent. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
 
@@ -20966,14 +21076,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to delete. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to delete. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to get. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Required. Name of the custom module to get. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
   }
@@ -20988,7 +21098,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
@@ -21003,14 +21113,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules under. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules under. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Eventthreatdetectionsettings$Custommodules$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/customModules/{module\}".
+     * Immutable. The resource name of the Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/customModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/customModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/customModules/{module\}`.
      */
     name?: string;
     /**
@@ -21229,7 +21339,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Eventthreatdetectionsettings$Effectivecustommodules$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}". * "projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}".
+     * Required. The resource name of the effective Event Threat Detection custom module. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `folders/{folder\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`. * `projects/{project\}/eventThreatDetectionSettings/effectiveCustomModules/{module\}`.
      */
     name?: string;
   }
@@ -21244,7 +21354,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent to list custom modules for. Its format is: * "organizations/{organization\}/eventThreatDetectionSettings". * "folders/{folder\}/eventThreatDetectionSettings". * "projects/{project\}/eventThreatDetectionSettings".
+     * Required. Name of the parent to list custom modules for. Its format is: * `organizations/{organization\}/eventThreatDetectionSettings`. * `folders/{folder\}/eventThreatDetectionSettings`. * `projects/{project\}/eventThreatDetectionSettings`.
      */
     parent?: string;
   }
@@ -21348,7 +21458,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Findings$Bulkmute
     extends StandardParameters {
     /**
-     * Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, at which bulk action needs to be applied. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
 
@@ -21848,7 +21958,7 @@ export namespace securitycenter_v1 {
      */
     muteConfigId?: string;
     /**
-     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -21860,14 +21970,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Locations$Muteconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Muteconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
@@ -21882,14 +21992,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Muteconfigs$Patch
     extends StandardParameters {
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string;
     /**
@@ -22385,7 +22495,7 @@ export namespace securitycenter_v1 {
      */
     muteConfigId?: string;
     /**
-     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -22397,14 +22507,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Muteconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to delete. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Muteconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, projects/{project\}/muteConfigs/{config_id\}, organizations/{organization\}/locations/global/muteConfigs/{config_id\}, folders/{folder\}/locations/global/muteConfigs/{config_id\}, or projects/{project\}/locations/global/muteConfigs/{config_id\}.
+     * Required. Name of the mute config to retrieve. Its format is `organizations/{organization\}/muteConfigs/{config_id\}`, `folders/{folder\}/muteConfigs/{config_id\}`, `projects/{project\}/muteConfigs/{config_id\}`, `organizations/{organization\}/locations/global/muteConfigs/{config_id\}`, `folders/{folder\}/locations/global/muteConfigs/{config_id\}`, or `projects/{project\}/locations/global/muteConfigs/{config_id\}`.
      */
     name?: string;
   }
@@ -22419,14 +22529,14 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     * Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Muteconfigs$Patch
     extends StandardParameters {
     /**
-     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}" "organizations/{organization\}/locations/global/muteConfigs/{mute_config\}" "folders/{folder\}/locations/global/muteConfigs/{mute_config\}" "projects/{project\}/locations/global/muteConfigs/{mute_config\}"
+     * This field will be ignored if provided on config creation. Format `organizations/{organization\}/muteConfigs/{mute_config\}` `folders/{folder\}/muteConfigs/{mute_config\}` `projects/{project\}/muteConfigs/{mute_config\}` `organizations/{organization\}/locations/global/muteConfigs/{mute_config\}` `folders/{folder\}/locations/global/muteConfigs/{mute_config\}` `projects/{project\}/locations/global/muteConfigs/{mute_config\}`
      */
     name?: string;
     /**
@@ -22908,7 +23018,7 @@ export namespace securitycenter_v1 {
      */
     configId?: string;
     /**
-     * Required. Resource name of the new notification config's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the new notification config's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
 
@@ -22920,14 +23030,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Notificationconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to delete. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Notificationconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]", "folders/[folder_id]/notificationConfigs/[config_id]", or "projects/[project_id]/notificationConfigs/[config_id]".
+     * Required. Name of the notification config to get. Its format is `organizations/[organization_id]/notificationConfigs/[config_id]`, `folders/[folder_id]/notificationConfigs/[config_id]`, or `projects/[project_id]/notificationConfigs/[config_id]`.
      */
     name?: string;
   }
@@ -23664,7 +23774,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Create
     extends StandardParameters {
     /**
-     * Required. Resource name of the new custom module's parent. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Resource name of the new custom module's parent. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
 
@@ -23676,14 +23786,14 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to delete. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}"
+     * Required. Name of the custom module to delete. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Securityhealthanalyticssettings$Custommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the custom module to get. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}"
+     * Required. Name of the custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/customModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/customModules/{customModule\}`
      */
     name?: string;
   }
@@ -23698,7 +23808,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -23713,7 +23823,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list descendant custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list descendant custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -23951,7 +24061,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Securityhealthanalyticssettings$Effectivecustommodules$Get
     extends StandardParameters {
     /**
-     * Required. Name of the effective custom module to get. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", "folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}", or "projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}"
+     * Required. Name of the effective custom module to get. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, `folders/{folder\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`, or `projects/{project\}/securityHealthAnalyticsSettings/effectiveCustomModules/{customModule\}`
      */
     name?: string;
   }
@@ -23966,7 +24076,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of parent to list effective custom modules. Its format is "organizations/{organization\}/securityHealthAnalyticsSettings", "folders/{folder\}/securityHealthAnalyticsSettings", or "projects/{project\}/securityHealthAnalyticsSettings"
+     * Required. Name of parent to list effective custom modules. Its format is `organizations/{organization\}/securityHealthAnalyticsSettings`, `folders/{folder\}/securityHealthAnalyticsSettings`, or `projects/{project\}/securityHealthAnalyticsSettings`
      */
     parent?: string;
   }
@@ -24083,7 +24193,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent of sources to list. Its format should be "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     * Required. Resource name of the parent of sources to list. Its format should be `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.
      */
     parent?: string;
   }
@@ -24642,7 +24752,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Sources$Findings$Group
     extends StandardParameters {
     /**
-     * Required. Name of the source to groupBy. Its format is "organizations/[organization_id]/sources/[source_id]", folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]. To groupBy across all sources provide a source_id of `-`. For example: organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-, or projects/{project_id\}/sources/-
+     * Required. Name of the source to groupBy. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To groupBy across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/-`, or `projects/{project_id\}/sources/-`
      */
     parent?: string;
 
@@ -24678,7 +24788,7 @@ export namespace securitycenter_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the source the findings belong to. Its format is "organizations/[organization_id]/sources/[source_id], folders/[folder_id]/sources/[source_id], or projects/[project_id]/sources/[source_id]". To list across all sources provide a source_id of `-`. For example: organizations/{organization_id\}/sources/-, folders/{folder_id\}/sources/- or projects/{projects_id\}/sources/-
+     * Required. Name of the source the findings belong to. Its format is `organizations/[organization_id]/sources/[source_id]`, `folders/[folder_id]/sources/[source_id]`, or `projects/[project_id]/sources/[source_id]`. To list across all sources provide a source_id of `-`. For example: `organizations/{organization_id\}/sources/-`, `folders/{folder_id\}/sources/-` or `projects/{projects_id\}/sources/-`
      */
     parent?: string;
     /**
@@ -24705,7 +24815,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Sources$Findings$Setmute
     extends StandardParameters {
     /**
-     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
     name?: string;
 
@@ -24717,7 +24827,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Sources$Findings$Setstate
     extends StandardParameters {
     /**
-     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}".
+     * Required. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. Example: `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}`, `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}`, `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}`.
      */
     name?: string;
 
