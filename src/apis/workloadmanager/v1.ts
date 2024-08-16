@@ -142,6 +142,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$AssetLocation {
     /**
+     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
+     */
+    ccfeRmsPath?: string | null;
+    /**
      * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
      */
     expected?: Schema$IsolationExpectations;
@@ -340,7 +344,7 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$ExternalDataSources {
     /**
-     * Required. The asset type of the external data source must be one of go/cai-asset-types
+     * Required. The asset type of the external data source this can be one of go/cai-asset-types to override the default asset type or it can be a custom type defined by the user custom type must match the asset type in the rule
      */
     assetType?: string | null;
     /**
@@ -400,6 +404,10 @@ export namespace workloadmanager_v1 {
     sqlserverValidation?: Schema$SqlserverValidation;
   }
   export interface Schema$IsolationExpectations {
+    /**
+     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
+     */
+    requirementOverride?: Schema$RequirementOverride;
     ziOrgPolicy?: string | null;
     ziRegionPolicy?: string | null;
     ziRegionState?: string | null;
@@ -629,6 +637,10 @@ export namespace workloadmanager_v1 {
      * Cloud zones used by regional MIG to create instances.
      */
     zones?: Schema$ZoneConfiguration[];
+  }
+  export interface Schema$RequirementOverride {
+    ziOverride?: string | null;
+    zsOverride?: string | null;
   }
   /**
    * Message represent resource in execution result
@@ -1083,6 +1095,13 @@ export namespace workloadmanager_v1 {
     timeoutSeconds?: number | null;
   }
   export interface Schema$SpannerLocation {
+    /**
+     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
+     */
+    backupName?: string[] | null;
+    /**
+     * Set of databases used by the resource in format /span//
+     */
     dbName?: string[] | null;
   }
   /**
