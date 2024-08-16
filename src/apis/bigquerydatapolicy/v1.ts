@@ -1169,6 +1169,10 @@ export namespace bigquerydatapolicy_v1 {
   export interface Params$Resource$Projects$Locations$Datapolicies$Delete
     extends StandardParameters {
     /**
+     * Optional. If true, the data policy will be deleted even when it is referenced by one or more table columns.
+     */
+    force?: boolean;
+    /**
      * Required. Resource name of the data policy to delete. Format is `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
      */
     name?: string;
@@ -1213,6 +1217,10 @@ export namespace bigquerydatapolicy_v1 {
   }
   export interface Params$Resource$Projects$Locations$Datapolicies$Patch
     extends StandardParameters {
+    /**
+     * Optional. If set to true, and the data policy is not found, a new data policy will be created. In this situation, update_mask is ignored.
+     */
+    allowMissing?: boolean;
     /**
      * Output only. Resource name of this data policy, in the format of `projects/{project_number\}/locations/{location_id\}/dataPolicies/{data_policy_id\}`.
      */

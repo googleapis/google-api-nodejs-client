@@ -152,6 +152,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If true, the data policy will be deleted even when it is referenced by one or more table columns.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. Resource name of the data policy to delete. Format is `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.",
                       "location": "path",
@@ -275,6 +280,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "allowMissing": {
+                      "description": "Optional. If set to true, and the data policy is not found, a new data policy will be created. In this situation, update_mask is ignored.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Output only. Resource name of this data policy, in the format of `projects/{project_number}/locations/{location_id}/dataPolicies/{data_policy_id}`.",
                       "location": "path",
@@ -395,7 +405,7 @@
       }
     }
   },
-  "revision": "20240122",
+  "revision": "20240806",
   "rootUrl": "https://bigquerydatapolicy.googleapis.com/",
   "schemas": {
     "AuditConfig": {
