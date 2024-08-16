@@ -1505,6 +1505,10 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$V1ResourceEvent {
     /**
+     * The ESF unique context id of the api request, from which this resource event originated. This field is only needed for CAIS integration via api annotation. See go/cais-lro-delete for more details.
+     */
+    contextId?: string | null;
+    /**
      * The destinations field determines which backend services should handle the event. This should be specified as a comma-delimited string.
      */
     destinations?: string | null;
