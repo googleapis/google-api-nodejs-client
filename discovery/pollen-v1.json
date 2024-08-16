@@ -121,7 +121,7 @@
               "type": "integer"
             },
             "languageCode": {
-              "description": "Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. Default value is \"en\".",
+              "description": "Optional. Allows the client to choose the language for the response. If data cannot be provided for that language, the API uses the closest match. Allowed values rely on the IETF BCP-47 standard. The default value is \"en\".",
               "location": "query",
               "type": "string"
             },
@@ -138,18 +138,18 @@
               "type": "number"
             },
             "pageSize": {
-              "description": "Optional. The maximum number of daily info records to return per page. The default and max value is 5 (5 days of data).",
+              "description": "Optional. The maximum number of daily info records to return per page. The default and max value is 5, indicating 5 days of data.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token all other request parameters provided must match the previous call that provided the page token.",
+              "description": "Optional. A page token received from a previous daily call. It is used to retrieve the subsequent page. Note that when providing a value for the page token, all other request parameters provided must match the previous call that provided the page token.",
               "location": "query",
               "type": "string"
             },
             "plantsDescription": {
-              "description": "Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos.",
+              "description": "Optional. Contains general information about plants, including details on their seasonality, special shapes and colors, information about allergic cross-reactions, and plant photos. The default value is \"true\".",
               "location": "query",
               "type": "boolean"
             }
@@ -192,7 +192,7 @@
                     "Unspecified map type.",
                     "The heatmap type will represent a tree index graphical map.",
                     "The heatmap type will represent a grass index graphical map.",
-                    "The heatmap type will represent a weed index graphically map."
+                    "The heatmap type will represent a weed index graphical map."
                   ],
                   "location": "path",
                   "required": true,
@@ -233,7 +233,7 @@
       }
     }
   },
-  "revision": "20240616",
+  "revision": "20240720",
   "rootUrl": "https://pollen.googleapis.com/",
   "schemas": {
     "Color": {
@@ -294,14 +294,14 @@
           "description": "The date in UTC at which the pollen forecast data is represented."
         },
         "plantInfo": {
-          "description": "This list will include (up to) 15 pollen species affecting the location specified in the request.",
+          "description": "This list will include up to 15 pollen species affecting the location specified in the request.",
           "items": {
             "$ref": "PlantInfo"
           },
           "type": "array"
         },
         "pollenTypeInfo": {
-          "description": "This list will include (up to) three pollen types (grass, weed, tree) affecting the location specified in the request.",
+          "description": "This list will include up to three pollen types (GRASS, WEED, TREE) affecting the location specified in the request.",
           "items": {
             "$ref": "PollenTypeInfo"
           },
