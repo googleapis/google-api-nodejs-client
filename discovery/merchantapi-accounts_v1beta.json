@@ -175,106 +175,6 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
-        "getBusinessIdentity": {
-          "description": "Retrieves the business identity of an account.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getBusinessIdentity",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/businessIdentity$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "response": {
-            "$ref": "BusinessIdentity"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
-        "getBusinessInfo": {
-          "description": "Retrieves the business info of an account.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getBusinessInfo",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/businessInfo$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "response": {
-            "$ref": "BusinessInfo"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
-        "getHomepage": {
-          "description": "Retrieves a store's homepage.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getHomepage",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the homepage to retrieve. Format: `accounts/{account}/homepage`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/homepage$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "response": {
-            "$ref": "Homepage"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
-        "getShippingSettings": {
-          "description": "Retrieve shipping setting information.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/shippingSettings",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getShippingSettings",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the shipping setting to retrieve. Format: `accounts/{account}/shippingsetting`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/shippingSettings$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "response": {
-            "$ref": "ShippingSettings"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
         "list": {
           "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on.",
           "flatPath": "accounts/v1beta/accounts",
@@ -376,192 +276,54 @@
           "scopes": [
             "https://www.googleapis.com/auth/content"
           ]
-        },
-        "updateBusinessIdentity": {
-          "description": "Updates the business identity of an account. Executing this method requires admin access.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
-          "httpMethod": "PATCH",
-          "id": "merchantapi.accounts.updateBusinessIdentity",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Identifier. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/businessIdentity$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Required. List of fields being updated.",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "request": {
-            "$ref": "BusinessIdentity"
-          },
-          "response": {
-            "$ref": "BusinessIdentity"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
-        "updateBusinessInfo": {
-          "description": "Updates the business info of an account. Executing this method requires admin access.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
-          "httpMethod": "PATCH",
-          "id": "merchantapi.accounts.updateBusinessInfo",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Identifier. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/businessInfo$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Required. List of fields being updated.",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "request": {
-            "$ref": "BusinessInfo"
-          },
-          "response": {
-            "$ref": "BusinessInfo"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
-        "updateHomepage": {
-          "description": "Updates a store's homepage. Executing this method requires admin access.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage",
-          "httpMethod": "PATCH",
-          "id": "merchantapi.accounts.updateHomepage",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Identifier. The resource name of the store's homepage. Format: `accounts/{account}/homepage`",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/homepage$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Required. List of fields being updated.",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "request": {
-            "$ref": "Homepage"
-          },
-          "response": {
-            "$ref": "Homepage"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
         }
       },
       "resources": {
-        "accounttax": {
+        "businessIdentity": {
           "methods": {
-            "get": {
-              "description": "Returns the tax rules that match the conditions of GetAccountTaxRequest",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/accounttax/{accounttaxId}",
+            "getBusinessIdentity": {
+              "description": "Retrieves the business identity of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
               "httpMethod": "GET",
-              "id": "merchantapi.accounts.accounttax.get",
+              "id": "merchantapi.accounts.businessIdentity.getBusinessIdentity",
               "parameterOrder": [
                 "name"
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name from which tax settings will be retrieved",
+                  "description": "Required. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
                   "location": "path",
-                  "pattern": "^accounts/[^/]+/accounttax/[^/]+$",
+                  "pattern": "^accounts/[^/]+/businessIdentity$",
                   "required": true,
                   "type": "string"
                 }
               },
               "path": "accounts/v1beta/{+name}",
               "response": {
-                "$ref": "AccountTax"
+                "$ref": "BusinessIdentity"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/content"
               ]
             },
-            "list": {
-              "description": "Lists the tax settings of the sub-accounts only in your Merchant Center account. This method can only be called on a multi-client account, otherwise it'll return an error.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/accounttax",
-              "httpMethod": "GET",
-              "id": "merchantapi.accounts.accounttax.list",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "pageSize": {
-                  "description": "The maximum number of tax settings to return in the response, used for paging.",
-                  "format": "int32",
-                  "location": "query",
-                  "type": "integer"
-                },
-                "pageToken": {
-                  "description": "The token returned by the previous request.",
-                  "location": "query",
-                  "type": "string"
-                },
-                "parent": {
-                  "description": "Required. The parent, which owns this collection of account tax. Format: accounts/{account}",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "accounts/v1beta/{+parent}/accounttax",
-              "response": {
-                "$ref": "ListAccountTaxResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/content"
-              ]
-            },
-            "patch": {
-              "description": "Updates the tax settings of the account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/accounttax/{accounttaxId}",
+            "updateBusinessIdentity": {
+              "description": "Updates the business identity of an account. Executing this method requires admin access.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
               "httpMethod": "PATCH",
-              "id": "merchantapi.accounts.accounttax.patch",
+              "id": "merchantapi.accounts.businessIdentity.updateBusinessIdentity",
               "parameterOrder": [
                 "name"
               ],
               "parameters": {
                 "name": {
-                  "description": "Identifier. The name of the tax setting. Format: \"{account_tax.name=accounts/{account}}\"",
+                  "description": "Identifier. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
                   "location": "path",
-                  "pattern": "^accounts/[^/]+/accounttax/[^/]+$",
+                  "pattern": "^accounts/[^/]+/businessIdentity$",
                   "required": true,
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "The list of fields to be updated",
+                  "description": "Required. List of fields being updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -569,10 +331,136 @@
               },
               "path": "accounts/v1beta/{+name}",
               "request": {
-                "$ref": "AccountTax"
+                "$ref": "BusinessIdentity"
               },
               "response": {
-                "$ref": "AccountTax"
+                "$ref": "BusinessIdentity"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
+        "businessInfo": {
+          "methods": {
+            "getBusinessInfo": {
+              "description": "Retrieves the business info of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.businessInfo.getBusinessInfo",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/businessInfo$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "BusinessInfo"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateBusinessInfo": {
+              "description": "Updates the business info of an account. Executing this method requires admin access.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.businessInfo.updateBusinessInfo",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/businessInfo$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "BusinessInfo"
+              },
+              "response": {
+                "$ref": "BusinessInfo"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
+        "emailpreferences": {
+          "methods": {
+            "getEmailPreferences": {
+              "description": "Returns the email preferences for a Merchant Center account user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.emailpreferences.getEmailPreferences",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the `EmailPreferences` resource. Format: `accounts/{account}/users/{email}/emailPreferences`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/users/[^/]+/emailPreferences$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "EmailPreferences"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateEmailPreferences": {
+              "description": "Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/*/users/me/emailPreferences alias to update preferences for the authenticated user.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.emailpreferences.updateEmailPreferences",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The name of the EmailPreferences. The endpoint is only supported for the authenticated user.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/users/[^/]+/emailPreferences$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "EmailPreferences"
+              },
+              "response": {
+                "$ref": "EmailPreferences"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/content"
@@ -610,6 +498,31 @@
                 "https://www.googleapis.com/auth/content"
               ]
             },
+            "getHomepage": {
+              "description": "Retrieves a store's homepage.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.homepage.getHomepage",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the homepage to retrieve. Format: `accounts/{account}/homepage`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/homepage$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "Homepage"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
             "unclaim": {
               "description": "Unclaims a store's homepage. Executing this method requires admin access.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage:unclaim",
@@ -630,6 +543,40 @@
               "path": "accounts/v1beta/{+name}:unclaim",
               "request": {
                 "$ref": "UnclaimHomepageRequest"
+              },
+              "response": {
+                "$ref": "Homepage"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateHomepage": {
+              "description": "Updates a store's homepage. Executing this method requires admin access.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.homepage.updateHomepage",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the store's homepage. Format: `accounts/{account}/homepage`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/homepage$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "Homepage"
               },
               "response": {
                 "$ref": "Homepage"
@@ -1040,6 +987,31 @@
         },
         "shippingSettings": {
           "methods": {
+            "getShippingSettings": {
+              "description": "Retrieve shipping setting information.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/shippingSettings",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.shippingSettings.getShippingSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the shipping setting to retrieve. Format: `accounts/{account}/shippingsetting`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/shippingSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "ShippingSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
             "insert": {
               "description": "Replace the shipping setting of a merchant with the request shipping setting. Executing this method requires admin access.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/shippingSettings:insert",
@@ -1082,7 +1054,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`",
+                  "description": "Required. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}` The identifier format is: `{TermsOfServiceKind}-{country}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/termsOfServiceAgreementStates/[^/]+$",
                   "required": true,
@@ -1209,31 +1181,6 @@
                 "https://www.googleapis.com/auth/content"
               ]
             },
-            "getEmailPreferences": {
-              "description": "Returns the email preferences for a Merchant Center account user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
-              "httpMethod": "GET",
-              "id": "merchantapi.accounts.users.getEmailPreferences",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the `EmailPreferences` resource. Format: `accounts/{account}/users/{email}/emailPreferences`",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+/users/[^/]+/emailPreferences$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "accounts/v1beta/{+name}",
-              "response": {
-                "$ref": "EmailPreferences"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/content"
-              ]
-            },
             "list": {
               "description": "Lists all users of a Merchant Center account.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users",
@@ -1299,40 +1246,6 @@
               },
               "response": {
                 "$ref": "User"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/content"
-              ]
-            },
-            "updateEmailPreferences": {
-              "description": "Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/*/users/me/emailPreferences alias to update preferences for the authenticated user.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
-              "httpMethod": "PATCH",
-              "id": "merchantapi.accounts.users.updateEmailPreferences",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Identifier. The name of the EmailPreferences. The endpoint is only supported for the authenticated user.",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+/users/[^/]+/emailPreferences$",
-                  "required": true,
-                  "type": "string"
-                },
-                "updateMask": {
-                  "description": "Required. List of fields being updated.",
-                  "format": "google-fieldmask",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "accounts/v1beta/{+name}",
-              "request": {
-                "$ref": "EmailPreferences"
-              },
-              "response": {
-                "$ref": "EmailPreferences"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/content"
@@ -1441,7 +1354,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240806",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AcceptTermsOfService": {
@@ -1558,30 +1471,6 @@
         "title": {
           "description": "The localized title of the issue.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "AccountTax": {
-      "description": "The tax settings of a merchant account. All methods require the admin role.",
-      "id": "AccountTax",
-      "properties": {
-        "account": {
-          "description": "Output only. The ID of the account to which these account tax settings belong.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "Identifier. The name of the tax setting. Format: \"{account_tax.name=accounts/{account}}\"",
-          "type": "string"
-        },
-        "taxRules": {
-          "description": "Tax rules. \"Define the tax rules in each region. No tax will be presented if a region has no rule.\"",
-          "items": {
-            "$ref": "TaxRule"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1796,7 +1685,7 @@
           "description": "Required. The account to be created."
         },
         "service": {
-          "description": "Optional. If specified, an account service between the account to be created and the provider account is initialized as part of the creation.",
+          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently only `account_aggregation` is supported which means the newly created account will be a subaccount of the provider defined in the `account_aggregation` service.",
           "items": {
             "$ref": "AddAccountService"
           },
@@ -2228,23 +2117,6 @@
       },
       "type": "object"
     },
-    "Interval": {
-      "description": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.",
-      "id": "Interval",
-      "properties": {
-        "endTime": {
-          "description": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "startTime": {
-          "description": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListAccountIssuesResponse": {
       "description": "Response message for the `ListAccountIssues` method.",
       "id": "ListAccountIssuesResponse",
@@ -2258,24 +2130,6 @@
         },
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListAccountTaxResponse": {
-      "description": "Response to account tax list request This method can only be called on a multi-client account, otherwise it'll return an error.",
-      "id": "ListAccountTaxResponse",
-      "properties": {
-        "accountTaxes": {
-          "description": "Page of accounttax settings",
-          "items": {
-            "$ref": "AccountTax"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "The token for the retrieval of the next page of account tax settings.",
           "type": "string"
         }
       },
@@ -3250,58 +3104,6 @@
       },
       "type": "object"
     },
-    "TaxPostalCodeRange": {
-      "description": "A range of postal codes that defines the area.",
-      "id": "TaxPostalCodeRange",
-      "properties": {
-        "end": {
-          "description": "The end of the postal code range. Will be the same as start if not specified.",
-          "type": "string"
-        },
-        "start": {
-          "description": "Required. The start of the postal code range, which is also the smallest in the range.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TaxRule": {
-      "description": "Primary type convension percent micro : 100% = 1 000 000 and 1% = 10 000 cannot be negative. Information about tax nexus and related parameters applicable to orders delivered to the area covered by a single tax admin. Nexus is created when a merchant is doing business in an area administered by tax admin (only US states are supported for nexus configuration). If merchant has nexus in a US state, merchant needs to pay tax to all tax authorities associated with the shipping destination. Next Id : 8",
-      "id": "TaxRule",
-      "properties": {
-        "effectiveTimePeriod": {
-          "$ref": "Interval",
-          "description": "Required. Time period when this rule is effective. If the duration is missing from effective_time listed, then it is open ended to the future. The start of this time period is inclusive, and the end is exclusive."
-        },
-        "locationId": {
-          "description": "The admin_id or criteria_id of the region in which this rule is applicable.",
-          "format": "int64",
-          "type": "string"
-        },
-        "postCodeRange": {
-          "$ref": "TaxPostalCodeRange",
-          "description": "The range of postal codes in which this rule is applicable."
-        },
-        "regionCode": {
-          "description": "Region code in which this rule is applicable",
-          "type": "string"
-        },
-        "selfSpecifiedRateMicros": {
-          "description": "A fixed rate specified in micros, where 100% = 1_000_000. Suitable for origin-based states.",
-          "format": "int64",
-          "type": "string"
-        },
-        "shippingTaxed": {
-          "description": "If set, shipping charge is taxed (at the same rate as product) when delivering to this admin's area. Can only be set on US states without category.",
-          "type": "boolean"
-        },
-        "useGoogleRate": {
-          "description": "Rate that depends on delivery location: if merchant has a nexus in corresponding US state, rates from authorities with jurisdiction over delivery area are added up.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "TermsOfService": {
       "description": "A `TermsOfService`.",
       "id": "TermsOfService",
@@ -3346,7 +3148,7 @@
           "description": "The accepted terms of service of this kind and for the associated region_code"
         },
         "name": {
-          "description": "Identifier. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}`",
+          "description": "Identifier. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}` The identifier format is: `{TermsOfServiceKind}-{country}` For example, an identifier could be: `MERCHANT_CENTER-US`",
           "type": "string"
         },
         "regionCode": {
