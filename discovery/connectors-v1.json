@@ -2427,7 +2427,7 @@
       }
     }
   },
-  "revision": "20240625",
+  "revision": "20240729",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2600,7 +2600,7 @@
         },
         "omitQueryParams": {
           "description": "Optional. Omit query params from the redirect URI.",
-          "type": "string"
+          "type": "boolean"
         },
         "scopes": {
           "description": "The scopes for which the user will authorize Google Cloud Connectors on the connector data source.",
@@ -2826,6 +2826,10 @@
       "description": "Connection represents an instance of connector.",
       "id": "Connection",
       "properties": {
+        "asyncOperationsEnabled": {
+          "description": "Optional. Async operations enabled for the connection. If Async Operations is enabled, Connection allows the customers to initiate async long running operations using the actions API.",
+          "type": "boolean"
+        },
         "authConfig": {
           "$ref": "AuthConfig",
           "description": "Optional. Configuration for establishing the connection's authentication with an external system."
@@ -3252,6 +3256,15 @@
           "format": "int64",
           "type": "string"
         },
+        "maxInstanceRequestConcurrency": {
+          "description": "Max Instance Request Conncurrency for Cloud Run service.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "migrateDeploymentModel": {
+          "description": "Indicate whether connector is being migrated to cloud run deployment model.",
+          "type": "boolean"
+        },
         "ratelimitThreshold": {
           "description": "Max QPS supported by the connector version before throttling of requests.",
           "format": "int64",
@@ -3331,6 +3344,16 @@
           "description": "Output only. Eventing configuration supported by the Connector.",
           "readOnly": true
         },
+        "isCustomActionsSupported": {
+          "description": "Output only. Is custom actions supported.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isCustomEntitiesSupported": {
+          "description": "Output only. Is custom entities supported.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3395,6 +3418,22 @@
           "description": "Output only. Information about the runtime features supported by the Connector.",
           "readOnly": true
         },
+        "supportedStandardActions": {
+          "description": "Output only. Supported standard actions.",
+          "items": {
+            "$ref": "StandardAction"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "supportedStandardEntities": {
+          "description": "Output only. Supported standard entities.",
+          "items": {
+            "$ref": "StandardEntity"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "unsupportedConnectionTypes": {
           "description": "Output only. Unsupported connection types.",
           "items": {
@@ -3448,6 +3487,25 @@
           ],
           "type": "string"
         },
+        "deploymentModelMigrationState": {
+          "description": "Output only. Status of the deployment model migration.",
+          "enum": [
+            "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "COMPLETED",
+            "ROLLEDBACK",
+            "ROLLBACK_IN_PROGRESS"
+          ],
+          "enumDescriptions": [
+            "Deployment model migration state is not specified.",
+            "Deployment model migration is in progress.",
+            "Deployment model migration is completed.",
+            "Deployment model migration rolledback.",
+            "Deployment model migration rollback in progress."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "hpaConfig": {
           "$ref": "HPAConfig",
           "description": "Output only. HPA autoscaling config.",
@@ -3458,6 +3516,12 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        },
+        "maxInstanceRequestConcurrency": {
+          "description": "Output only. Max instance request concurrency.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "ratelimitThreshold": {
           "description": "Output only. Max QPS supported by the connector version before throttling of requests.",
@@ -5892,7 +5956,7 @@
           "type": "array"
         },
         "valueSeparator": {
-          "description": "Required. Value separator.",
+          "description": "Required. Value separator. Only \",\" can be used for OAuth auth code flow scope field.",
           "type": "string"
         }
       },
@@ -6536,6 +6600,10 @@
           ],
           "type": "string"
         },
+        "defaultValue": {
+          "description": "The following field specifies the default value of the Parameter provided by the external system if a value is not provided.",
+          "type": "any"
+        },
         "description": {
           "description": "A brief description of the field.",
           "type": "string"
@@ -6547,6 +6615,10 @@
         "jsonSchema": {
           "$ref": "JsonSchema",
           "description": "JsonSchema representation of this action's result"
+        },
+        "nullable": {
+          "description": "Specifies whether a null value is allowed.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -7152,6 +7224,28 @@
             "TLS Handshake",
             "mutual TLS (MTLS) Handshake"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StandardAction": {
+      "description": "Standard action",
+      "id": "StandardAction",
+      "properties": {
+        "name": {
+          "description": "Name of the standard action.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StandardEntity": {
+      "description": "Standard entity",
+      "id": "StandardEntity",
+      "properties": {
+        "name": {
+          "description": "Name of the standard entity.",
           "type": "string"
         }
       },
