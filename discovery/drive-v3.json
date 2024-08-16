@@ -1253,7 +1253,7 @@
           "parameters": {
             "acknowledgeAbuse": {
               "default": "false",
-              "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
+              "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.",
               "location": "query",
               "type": "boolean"
             },
@@ -1612,7 +1612,7 @@
           "parameters": {
             "acknowledgeAbuse": {
               "default": "false",
-              "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
+              "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.",
               "location": "query",
               "type": "boolean"
             },
@@ -2247,7 +2247,7 @@
           "parameters": {
             "acknowledgeAbuse": {
               "default": "false",
-              "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.",
+              "description": "Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.",
               "location": "query",
               "type": "boolean"
             },
@@ -2523,7 +2523,7 @@
       }
     }
   },
-  "revision": "20240521",
+  "revision": "20240730",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3851,10 +3851,10 @@
           "description": "Output only. The user who shared the file with the requesting user, if applicable."
         },
         "shortcutDetails": {
-          "description": "Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`.",
+          "description": "Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`. Can only be set on `files.create` requests.",
           "properties": {
             "targetId": {
-              "description": "The ID of the file that this shortcut points to.",
+              "description": "The ID of the file that this shortcut points to. Can only be set on `files.create` requests.",
               "type": "string"
             },
             "targetMimeType": {
@@ -3890,7 +3890,7 @@
           "type": "string"
         },
         "thumbnailLink": {
-          "description": "Output only. A short-lived link to the file's thumbnail, if available. Typically lasts on the order of hours. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in `Files.thumbnailLink` must be fetched using a credentialed request.",
+          "description": "Output only. A short-lived link to the file's thumbnail, if available. Typically lasts on the order of hours. Not intended for direct usage on web applications due to [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies, consider using a proxy server. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in `Files.thumbnailLink` must be fetched using a credentialed request.",
           "type": "string"
         },
         "thumbnailVersion": {

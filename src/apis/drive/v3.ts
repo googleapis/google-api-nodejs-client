@@ -923,7 +923,7 @@ export namespace drive_v3 {
      */
     sharingUser?: Schema$User;
     /**
-     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`.
+     * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to `application/vnd.google-apps.shortcut`. Can only be set on `files.create` requests.
      */
     shortcutDetails?: {
       targetId?: string;
@@ -947,7 +947,7 @@ export namespace drive_v3 {
      */
     teamDriveId?: string | null;
     /**
-     * Output only. A short-lived link to the file's thumbnail, if available. Typically lasts on the order of hours. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in `Files.thumbnailLink` must be fetched using a credentialed request.
+     * Output only. A short-lived link to the file's thumbnail, if available. Typically lasts on the order of hours. Not intended for direct usage on web applications due to [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies, consider using a proxy server. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in `Files.thumbnailLink` must be fetched using a credentialed request.
      */
     thumbnailLink?: string | null;
     /**
@@ -4778,7 +4778,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Get extends StandardParameters {
     /**
-     * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+     * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.
      */
     acknowledgeAbuse?: boolean;
     /**
@@ -4958,7 +4958,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Watch extends StandardParameters {
     /**
-     * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+     * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.
      */
     acknowledgeAbuse?: boolean;
     /**
@@ -6473,7 +6473,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Revisions$Get extends StandardParameters {
     /**
-     * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when alt=media.
+     * Whether the user is acknowledging the risk of downloading known malware or other abusive files. This is only applicable when the `alt` parameter is set to `media` and the user is the owner of the file or an organizer of the shared drive in which the file resides.
      */
     acknowledgeAbuse?: boolean;
     /**
