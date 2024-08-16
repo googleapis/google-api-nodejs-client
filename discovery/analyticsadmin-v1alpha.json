@@ -209,7 +209,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: \"accounts/1000/dataSharingSettings\"",
+              "description": "Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: `accounts/1000/dataSharingSettings`",
               "location": "path",
               "pattern": "^accounts/[^/]+/dataSharingSettings$",
               "required": true,
@@ -349,7 +349,7 @@
           ],
           "parameters": {
             "account": {
-              "description": "Required. The account resource for which to return change history resources. Format: accounts/{account} Example: \"accounts/100\"",
+              "description": "Required. The account resource for which to return change history resources. Format: accounts/{account} Example: `accounts/100`",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -719,24 +719,6 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
-        "createSubproperty": {
-          "description": "Create a subproperty and a subproperty event filter that applies to the created subproperty.",
-          "flatPath": "v1alpha/properties:createSubproperty",
-          "httpMethod": "POST",
-          "id": "analyticsadmin.properties.createSubproperty",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha/properties:createSubproperty",
-          "request": {
-            "$ref": "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest"
-          },
-          "response": {
-            "$ref": "GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics.edit"
-          ]
-        },
         "delete": {
           "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
@@ -1011,6 +993,24 @@
           },
           "response": {
             "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "provisionSubproperty": {
+          "description": "Create a subproperty and a subproperty event filter that applies to the created subproperty.",
+          "flatPath": "v1alpha/properties:provisionSubproperty",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.provisionSubproperty",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/properties:provisionSubproperty",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
@@ -1710,6 +1710,59 @@
         },
         "bigQueryLinks": {
           "methods": {
+            "create": {
+              "description": "Creates a BigQueryLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.bigQueryLinks.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/bigQueryLinks",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a BigQueryLink on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.bigQueryLinks.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The BigQueryLink to delete. Example format: properties/1234/bigQueryLinks/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/bigQueryLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
             "get": {
               "description": "Lookup for a single BigQuery Link.",
               "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
@@ -1771,6 +1824,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit",
                 "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a BigQueryLink.",
+              "flatPath": "v1alpha/properties/{propertiesId}/bigQueryLinks/{bigQueryLinksId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.bigQueryLinks.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this BigQuery link. Format: 'properties/{property_id}/bigQueryLinks/{bigquery_link_id}' Format: 'properties/1234/bigQueryLinks/abc567'",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/bigQueryLinks/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaBigQueryLink"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
               ]
             }
           }
@@ -2093,7 +2180,7 @@
           "methods": {
             "create": {
               "deprecated": true,
-              "description": "Creates a conversion event with the specified attributes.",
+              "description": "Deprecated: Use `CreateKeyEvent` instead. Creates a conversion event with the specified attributes.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents",
               "httpMethod": "POST",
               "id": "analyticsadmin.properties.conversionEvents.create",
@@ -2122,7 +2209,7 @@
             },
             "delete": {
               "deprecated": true,
-              "description": "Deletes a conversion event in a property.",
+              "description": "Deprecated: Use `DeleteKeyEvent` instead. Deletes a conversion event in a property.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "DELETE",
               "id": "analyticsadmin.properties.conversionEvents.delete",
@@ -2148,7 +2235,7 @@
             },
             "get": {
               "deprecated": true,
-              "description": "Retrieve a single conversion event.",
+              "description": "Deprecated: Use `GetKeyEvent` instead. Retrieve a single conversion event.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.conversionEvents.get",
@@ -2175,7 +2262,7 @@
             },
             "list": {
               "deprecated": true,
-              "description": "Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.",
+              "description": "Deprecated: Use `ListKeyEvents` instead. Returns a list of conversion events in the specified parent property. Returns an empty list if no conversion events are found.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.conversionEvents.list",
@@ -2213,7 +2300,7 @@
             },
             "patch": {
               "deprecated": true,
-              "description": "Updates a conversion event with the specified attributes.",
+              "description": "Deprecated: Use `UpdateKeyEvent` instead. Updates a conversion event with the specified attributes.",
               "flatPath": "v1alpha/properties/{propertiesId}/conversionEvents/{conversionEventsId}",
               "httpMethod": "PATCH",
               "id": "analyticsadmin.properties.conversionEvents.patch",
@@ -2705,7 +2792,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag Example: \"properties/123/dataStreams/456/globalSiteTag\"",
+                  "description": "Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag Example: `properties/123/dataStreams/456/globalSiteTag`",
                   "location": "path",
                   "pattern": "^properties/[^/]+/dataStreams/[^/]+/globalSiteTag$",
                   "required": true,
@@ -3018,6 +3105,156 @@
             },
             "eventEditRules": {
               "methods": {
+                "create": {
+                  "description": "Creates an EventEditRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules",
+                  "httpMethod": "POST",
+                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventEditRules",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventEditRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventEditRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an EventEditRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules/{eventEditRulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Example format: properties/123/dataStreams/456/eventEditRules/789",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventEditRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "get": {
+                  "description": "Lookup for a single EventEditRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules/{eventEditRulesId}",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EventEditRule to get. Example format: properties/123/dataStreams/456/eventEditRules/789",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventEditRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventEditRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists EventEditRules on a web data stream.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListEventEditRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListEventEditRules` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Example format: properties/123/dataStreams/456",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/eventEditRules",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaListEventEditRulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an EventEditRule.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules/{eventEditRulesId}",
+                  "httpMethod": "PATCH",
+                  "id": "analyticsadmin.properties.dataStreams.eventEditRules.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Resource name for this EventEditRule resource. Format: properties/{property}/dataStreams/{data_stream}/eventEditRules/{event_edit_rule}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/eventEditRules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventEditRule"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaEventEditRule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
                 "reorder": {
                   "description": "Changes the processing order of event edit rules on the specified stream.",
                   "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/eventEditRules:reorder",
@@ -3041,7 +3278,10 @@
                   },
                   "response": {
                     "$ref": "GoogleProtobufEmpty"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
                 }
               }
             },
@@ -3851,7 +4091,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "description": "Required. Format: properties/{property_id} Example: `properties/1234`",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
@@ -3879,7 +4119,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: properties/1234/firebaseLinks/5678",
+                  "description": "Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: `properties/1234/firebaseLinks/5678`",
                   "location": "path",
                   "pattern": "^properties/[^/]+/firebaseLinks/[^/]+$",
                   "required": true,
@@ -3915,7 +4155,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Format: properties/{property_id} Example: properties/1234",
+                  "description": "Required. Format: properties/{property_id} Example: `properties/1234`",
                   "location": "path",
                   "pattern": "^properties/[^/]+$",
                   "required": true,
@@ -4646,7 +4886,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240731",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5765,6 +6005,10 @@
           "description": "If set true, enables daily data export to the linked Google Cloud project.",
           "type": "boolean"
         },
+        "datasetLocation": {
+          "description": "Required. Immutable. The geographic location where the created BigQuery dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
+          "type": "string"
+        },
         "excludedEvents": {
           "description": "The list of event names that will be excluded from exports.",
           "items": {
@@ -6415,36 +6659,6 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest": {
-      "description": "Request message for CreateSubproperty RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaCreateSubpropertyRequest",
-      "properties": {
-        "subproperty": {
-          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
-          "description": "Required. The subproperty to create."
-        },
-        "subpropertyEventFilter": {
-          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
-          "description": "Optional. The subproperty event filter to create on an ordinary property."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse": {
-      "description": "Response message for CreateSubproperty RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaCreateSubpropertyResponse",
-      "properties": {
-        "subproperty": {
-          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
-          "description": "The created subproperty."
-        },
-        "subpropertyEventFilter": {
-          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
-          "description": "The created subproperty event filter."
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1alphaCustomDimension": {
       "description": "A definition for a CustomDimension.",
       "id": "GoogleAnalyticsAdminV1alphaCustomDimension",
@@ -6959,6 +7173,41 @@
         "sourceCopyParameters": {
           "description": "If true, the source parameters are copied to the new event. If false, or unset, all non-internal parameters are not copied from the source event. Parameter mutations are applied after the parameters have been copied.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaEventEditRule": {
+      "description": "An Event Edit Rule defines conditions that will trigger the creation of an entirely new event based upon matched criteria of a source event. Additional mutations of the parameters from the source event can be defined. Unlike Event Create rules, Event Edit Rules are applied in their defined order. Event Edit rules can't be used to modify an event created from an Event Create rule.",
+      "id": "GoogleAnalyticsAdminV1alphaEventEditRule",
+      "properties": {
+        "displayName": {
+          "description": "Required. The display name of this event edit rule. Maximum of 255 characters.",
+          "type": "string"
+        },
+        "eventConditions": {
+          "description": "Required. Conditions on the source event must match for this rule to be applied. Must have at least one condition, and can have up to 10 max.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaMatchingCondition"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. Resource name for this EventEditRule resource. Format: properties/{property}/dataStreams/{data_stream}/eventEditRules/{event_edit_rule}",
+          "type": "string"
+        },
+        "parameterMutations": {
+          "description": "Required. Parameter mutations define parameter behavior on the new event, and are applied in order. A maximum of 20 mutations can be applied.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaParameterMutation"
+          },
+          "type": "array"
+        },
+        "processingOrder": {
+          "description": "Output only. The order for which this rule will be processed. Rules with an order value lower than this will be processed before this rule, rules with an order value higher than this will be processed after this rule. New event edit rules will be assigned an order value at the end of the order. This value does not apply to event create rules.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -7717,6 +7966,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListEventEditRulesResponse": {
+      "description": "Response message for ListEventEditRules RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListEventEditRulesResponse",
+      "properties": {
+        "eventEditRules": {
+          "description": "List of EventEditRules. These will be ordered stably, but in an arbitrary order.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaEventEditRule"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse": {
       "description": "Response message for ListExpandedDataSets RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListExpandedDataSetsResponse",
@@ -8235,6 +8502,36 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest": {
+      "description": "Request message for CreateSubproperty RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaProvisionSubpropertyRequest",
+      "properties": {
+        "subproperty": {
+          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
+          "description": "Required. The subproperty to create."
+        },
+        "subpropertyEventFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
+          "description": "Optional. The subproperty event filter to create on an ordinary property."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse": {
+      "description": "Response message for ProvisionSubproperty RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaProvisionSubpropertyResponse",
+      "properties": {
+        "subproperty": {
+          "$ref": "GoogleAnalyticsAdminV1alphaProperty",
+          "description": "The created subproperty."
+        },
+        "subpropertyEventFilter": {
+          "$ref": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
+          "description": "The created subproperty event filter."
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest": {
       "description": "Request message for ReorderEventEditRules RPC.",
       "id": "GoogleAnalyticsAdminV1alphaReorderEventEditRulesRequest",
@@ -8486,7 +8783,7 @@
           "type": "string"
         },
         "property": {
-          "description": "Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId} Example: \"properties/100\"",
+          "description": "Optional. Resource name for a child property. If set, only return changes made to this property or its child resources. Format: properties/{propertyId} Example: `properties/100`",
           "type": "string"
         },
         "resourceType": {
@@ -8511,6 +8808,7 @@
               "ATTRIBUTION_SETTINGS",
               "EXPANDED_DATA_SET",
               "CHANNEL_GROUP",
+              "BIGQUERY_LINK",
               "ENHANCED_MEASUREMENT_SETTINGS",
               "DATA_REDACTION_SETTINGS",
               "SKADNETWORK_CONVERSION_VALUE_SCHEMA",
@@ -8538,6 +8836,7 @@
               "AttributionSettings resource",
               "ExpandedDataSet resource",
               "ChannelGroup resource",
+              "BigQuery link resource",
               "EnhancedMeasurementSettings resource",
               "DataRedactionSettings resource",
               "SKAdNetworkConversionValueSchema resource",
