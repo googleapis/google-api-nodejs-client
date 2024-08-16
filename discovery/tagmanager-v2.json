@@ -374,14 +374,19 @@
               ]
             },
             "lookup": {
-              "description": "Looks up a Container by destination ID.",
+              "description": "Looks up a Container by destination ID or tag ID.",
               "flatPath": "tagmanager/v2/accounts/containers:lookup",
               "httpMethod": "GET",
               "id": "tagmanager.accounts.containers.lookup",
               "parameterOrder": [],
               "parameters": {
                 "destinationId": {
-                  "description": "Destination ID linked to a GTM Container, e.g. AW-123456789. Example: accounts/containers:lookup?destination_id={destination_id}.",
+                  "description": "Destination ID linked to a GTM Container, e.g. AW-123456789. Example: accounts/containers:lookup?destination_id={destination_id}. Only one of destination_id or tag_id should be set.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "tagId": {
+                  "description": "Tag ID for a GTM Container, e.g. GTM-123456789. Example: accounts/containers:lookup?tag_id={tag_id}. Only one of destination_id or tag_id should be set.",
                   "location": "query",
                   "type": "string"
                 }
@@ -3890,7 +3895,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240701",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
