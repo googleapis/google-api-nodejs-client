@@ -1049,7 +1049,15 @@ export namespace artifactregistry_v1 {
      * The name of the project's settings. Always of the form: projects/{project-id\}/projectSettings In update request: never set In response: always set
      */
     name?: string | null;
+    /**
+     * The percentage of pull traffic to redirect from GCR to AR when using partial redirection.
+     */
+    pullPercent?: number | null;
   }
+  /**
+   * The metadata for promote artifact long running operation.
+   */
+  export interface Schema$PromoteArtifactMetadata {}
   /**
    * PythonPackage represents a python artifact.
    */
@@ -1315,7 +1323,7 @@ export namespace artifactregistry_v1 {
      */
     filename?: string | null;
     /**
-     * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` must start with a letter, end with a letter or number, only contain letters, numbers, hyphens and periods i.e. [a-z0-9-.], and cannot exceed 256 characters.
+     * The ID of the package of the generic artifact. If the package does not exist, a new package will be created. The `package_id` should start and end with a letter or number, only contain letters, numbers, hyphens, underscores, and periods, and not exceed 256 characters.
      */
     packageId?: string | null;
     /**
@@ -5985,7 +5993,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$List
     extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`. * `name="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/a%2Fb%2F*"` --\> tags with an ID starting with "a/b/". * `name="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/x%2Fb%2Fc"` --\> tags with an ID ending with "/b/c". * `name="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/x%2Fb%2F*"` --\> tags with an ID containing "/b/".
+     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`.
      */
     filter?: string;
     /**
