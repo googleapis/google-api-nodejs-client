@@ -1187,7 +1187,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240710",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -2545,12 +2545,12 @@
       "id": "TerraformBlueprint",
       "properties": {
         "gcsSource": {
-          "description": "Required. URI of an object in Google Cloud Storage. Format: `gs://{bucket}/{object}` URI may also specify an object version for zipped objects. Format: `gs://{bucket}/{object}#{version}`",
+          "description": "URI of an object in Google Cloud Storage. Format: `gs://{bucket}/{object}` URI may also specify an object version for zipped objects. Format: `gs://{bucket}/{object}#{version}`",
           "type": "string"
         },
         "gitSource": {
           "$ref": "GitSource",
-          "description": "Required. URI of a public Git repo."
+          "description": "URI of a public Git repo."
         },
         "inputValues": {
           "additionalProperties": {
