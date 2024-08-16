@@ -109,6 +109,31 @@
       "resources": {
         "locations": {
           "methods": {
+            "getEncryptionSpec": {
+              "description": "Gets location-level encryption key specification.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/encryptionSpec",
+              "httpMethod": "GET",
+              "id": "contactcenterinsights.projects.locations.getEncryptionSpec",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the encryption spec resource to get.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/encryptionSpec$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudContactcenterinsightsV1EncryptionSpec"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getSettings": {
               "description": "Gets project-level settings.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/settings",
@@ -637,6 +662,38 @@
                       ]
                     }
                   }
+                }
+              }
+            },
+            "encryptionSpec": {
+              "methods": {
+                "initialize": {
+                  "description": "Initializes a location-level encryption key specification. An error will be thrown if the location has resources already created before the initialization. Once the encryption specification is initialized at a location, it is immutable and all newly created resources under the location will be encrypted with the existing specification.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/encryptionSpec:initialize",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.encryptionSpec.initialize",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/encryptionSpec$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:initialize",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -1474,7 +1531,7 @@
       }
     }
   },
-  "revision": "20240624",
+  "revision": "20240805",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2646,6 +2703,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1EncryptionSpec": {
+      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
+      "id": "GoogleCloudContactcenterinsightsV1EncryptionSpec",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1Entity": {
       "description": "The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.",
       "id": "GoogleCloudContactcenterinsightsV1Entity",
@@ -3193,6 +3265,54 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecMetadata": {
+      "description": "Metadata for initializing a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Partial errors during initialising operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest",
+          "description": "Output only. The original request for initialization.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest": {
+      "description": "The request to initialize a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest",
+      "properties": {
+        "encryptionSpec": {
+          "$ref": "GoogleCloudContactcenterinsightsV1EncryptionSpec",
+          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecResponse": {
+      "description": "The response to initialize a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1Intent": {
       "description": "The data for an intent. Represents a detected intent in the conversation, for example MAKES_PROMISE.",
       "id": "GoogleCloudContactcenterinsightsV1Intent",
@@ -3233,6 +3353,10 @@
           "description": "Output only. The time at which this issue was created.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "displayDescription": {
+          "description": "Representative description of the issue.",
           "type": "string"
         },
         "displayName": {
@@ -3805,6 +3929,20 @@
         },
         "query": {
           "description": "Query text. Article Search uses this to store the input query used to generate the search results.",
+          "type": "string"
+        },
+        "querySource": {
+          "description": "Query source for the answer.",
+          "enum": [
+            "QUERY_SOURCE_UNSPECIFIED",
+            "AGENT_QUERY",
+            "SUGGESTED_QUERY"
+          ],
+          "enumDescriptions": [
+            "Unknown query source.",
+            "The query is from agents.",
+            "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
+          ],
           "type": "string"
         }
       },
@@ -5166,6 +5304,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec": {
+      "description": "A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{key}`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1Entity": {
       "description": "The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1Entity",
@@ -5702,6 +5855,54 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecMetadata": {
+      "description": "Metadata for initializing a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "partialErrors": {
+          "description": "Partial errors during initialising operation that might cause the operation output to be incomplete.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "request": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecRequest",
+          "description": "Output only. The original request for initialization.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecRequest": {
+      "description": "The request to initialize a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecRequest",
+      "properties": {
+        "encryptionSpec": {
+          "$ref": "GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec",
+          "description": "Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecResponse": {
+      "description": "The response to initialize a location-level encryption specification.",
+      "id": "GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudContactcenterinsightsV1alpha1Intent": {
       "description": "The data for an intent. Represents a detected intent in the conversation, for example MAKES_PROMISE.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1Intent",
@@ -6036,6 +6237,20 @@
         },
         "query": {
           "description": "Query text. Article Search uses this to store the input query used to generate the search results.",
+          "type": "string"
+        },
+        "querySource": {
+          "description": "Query source for the answer.",
+          "enum": [
+            "QUERY_SOURCE_UNSPECIFIED",
+            "AGENT_QUERY",
+            "SUGGESTED_QUERY"
+          ],
+          "enumDescriptions": [
+            "Unknown query source.",
+            "The query is from agents.",
+            "The query is a query from previous suggestions, e.g. from a preceding SuggestKnowledgeAssist response."
+          ],
           "type": "string"
         }
       },

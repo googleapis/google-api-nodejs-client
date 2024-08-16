@@ -950,6 +950,19 @@ export namespace contactcenterinsights_v1 {
     dialogflowConversation?: string | null;
   }
   /**
+   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec {
+    /**
+     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKey?: string | null;
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string | null;
+  }
+  /**
    * The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1Entity {
@@ -1325,6 +1338,40 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsResponse {}
   /**
+   * Metadata for initializing a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Partial errors during initialising operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for initialization.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecRequest;
+  }
+  /**
+   * The request to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecRequest {
+    /**
+     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
+     */
+    encryptionSpec?: Schema$GoogleCloudContactcenterinsightsV1alpha1EncryptionSpec;
+  }
+  /**
+   * The response to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1alpha1InitializeEncryptionSpecResponse {}
+  /**
    * The data for an intent. Represents a detected intent in the conversation, for example MAKES_PROMISE.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1Intent {
@@ -1580,6 +1627,10 @@ export namespace contactcenterinsights_v1 {
      * Query text. Article Search uses this to store the input query used to generate the search results.
      */
     query?: string | null;
+    /**
+     * Query source for the answer.
+     */
+    querySource?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -2627,6 +2678,19 @@ export namespace contactcenterinsights_v1 {
     dialogflowConversation?: string | null;
   }
   /**
+   * A customer-managed encryption key specification that can be applied to all created resources (e.g. Conversation).
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec {
+    /**
+     * Required. The name of customer-managed encryption key that is used to secure a resource and its sub-resources. If empty, the resource is secured by the default Google encryption key. Only the key in the same location as this resource is allowed to be used for encryption. Format: `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{key\}`
+     */
+    kmsKey?: string | null;
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string | null;
+  }
+  /**
    * The data for an entity annotation. Represents a phrase in the conversation that is a known entity, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1Entity {
@@ -3011,6 +3075,40 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsResponse {}
   /**
+   * Metadata for initializing a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Partial errors during initialising operation that might cause the operation output to be incomplete.
+     */
+    partialErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Output only. The original request for initialization.
+     */
+    request?: Schema$GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest;
+  }
+  /**
+   * The request to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest {
+    /**
+     * Required. The encryption spec used for CMEK encryption. It is required that the kms key is in the same region as the endpoint. The same key will be used for all provisioned resources, if encryption is available. If the kms_key_name is left empty, no encryption will be enforced.
+     */
+    encryptionSpec?: Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec;
+  }
+  /**
+   * The response to initialize a location-level encryption specification.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecResponse {}
+  /**
    * The data for an intent. Represents a detected intent in the conversation, for example MAKES_PROMISE.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1Intent {
@@ -3044,6 +3142,10 @@ export namespace contactcenterinsights_v1 {
      * Output only. The time at which this issue was created.
      */
     createTime?: string | null;
+    /**
+     * Representative description of the issue.
+     */
+    displayDescription?: string | null;
     /**
      * The representative name for the issue.
      */
@@ -3449,6 +3551,10 @@ export namespace contactcenterinsights_v1 {
      * Query text. Article Search uses this to store the input query used to generate the search results.
      */
     query?: string | null;
+    /**
+     * Query source for the answer.
+     */
+    querySource?: string | null;
   }
   /**
    * The data for a sentiment annotation.
@@ -3753,6 +3859,7 @@ export namespace contactcenterinsights_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     conversations: Resource$Projects$Locations$Conversations;
+    encryptionSpec: Resource$Projects$Locations$Encryptionspec;
     insightsdata: Resource$Projects$Locations$Insightsdata;
     issueModels: Resource$Projects$Locations$Issuemodels;
     operations: Resource$Projects$Locations$Operations;
@@ -3761,6 +3868,9 @@ export namespace contactcenterinsights_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.conversations = new Resource$Projects$Locations$Conversations(
+        this.context
+      );
+      this.encryptionSpec = new Resource$Projects$Locations$Encryptionspec(
         this.context
       );
       this.insightsdata = new Resource$Projects$Locations$Insightsdata(
@@ -3776,6 +3886,101 @@ export namespace contactcenterinsights_v1 {
         this.context
       );
       this.views = new Resource$Projects$Locations$Views(this.context);
+    }
+
+    /**
+     * Gets location-level encryption key specification.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEncryptionSpec(
+      params?: Params$Resource$Projects$Locations$Getencryptionspec,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>;
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+    ): void;
+    getEncryptionSpec(
+      params: Params$Resource$Projects$Locations$Getencryptionspec,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+    ): void;
+    getEncryptionSpec(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+    ): void;
+    getEncryptionSpec(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getencryptionspec
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getencryptionspec;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getencryptionspec;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1EncryptionSpec>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -3969,6 +4174,13 @@ export namespace contactcenterinsights_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Getencryptionspec
+    extends StandardParameters {
+    /**
+     * Required. The name of the encryption spec resource to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Getsettings
     extends StandardParameters {
     /**
@@ -5537,6 +5749,123 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource of the analyses.
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Encryptionspec {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Initializes a location-level encryption key specification. An error will be thrown if the location has resources already created before the initialization. Once the encryption specification is initialized at a location, it is immutable and all newly created resources under the location will be encrypted with the existing specification.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    initialize(
+      params?: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    initialize(
+      params: Params$Resource$Projects$Locations$Encryptionspec$Initialize,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    initialize(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    initialize(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Encryptionspec$Initialize
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Encryptionspec$Initialize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Encryptionspec$Initialize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:initialize').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Encryptionspec$Initialize
+    extends StandardParameters {
+    /**
+     * Immutable. The resource name of the encryption key specification resource. Format: projects/{project\}/locations/{location\}/encryptionSpec
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest;
   }
 
   export class Resource$Projects$Locations$Insightsdata {
