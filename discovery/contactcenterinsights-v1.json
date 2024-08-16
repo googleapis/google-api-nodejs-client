@@ -3691,6 +3691,38 @@
                 }
               }
             },
+            "encryptionSpec": {
+              "methods": {
+                "initialize": {
+                  "description": "Initializes a location-level encryption key specification. An error will be thrown if the location has resources already created before the initialization. Once the encryption specification is initialized at a location, it is immutable and all newly created resources under the location will be encrypted with the existing specification.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/encryptionSpec:initialize",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.encryptionSpec.initialize",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the encryption key specification resource. Format: projects/{project}/locations/{location}/encryptionSpec",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/encryptionSpec$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:initialize",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1InitializeEncryptionSpecRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "insightsdata": {
               "methods": {
                 "export": {
