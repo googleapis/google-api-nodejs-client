@@ -3870,6 +3870,12 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1SourceEncryptionOptions": {
+      "description": "The configuration options for using the same encryption method as the source.",
+      "id": "GoogleFirestoreAdminV1SourceEncryptionOptions",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1Stats": {
       "description": "Backup specific statistics.",
       "id": "GoogleFirestoreAdminV1Stats",

@@ -1379,6 +1379,10 @@ export namespace firestore_v1 {
     operation?: string | null;
   }
   /**
+   * The configuration options for using the same encryption method as the source.
+   */
+  export interface Schema$GoogleFirestoreAdminV1SourceEncryptionOptions {}
+  /**
    * Backup specific statistics.
    */
   export interface Schema$GoogleFirestoreAdminV1Stats {
