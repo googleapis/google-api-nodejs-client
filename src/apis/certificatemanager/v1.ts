@@ -142,7 +142,7 @@ export namespace certificatemanager_v1 {
      */
     details?: string | null;
     /**
-     * Domain name of the authorization attempt.
+     * Output only. Domain name of the authorization attempt.
      */
     domain?: string | null;
     /**
@@ -167,7 +167,7 @@ export namespace certificatemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * One or more paragraphs of text description of a certificate.
+     * Optional. One or more paragraphs of text description of a certificate.
      */
     description?: string | null;
     /**
@@ -175,7 +175,7 @@ export namespace certificatemanager_v1 {
      */
     expireTime?: string | null;
     /**
-     * Set of labels associated with a Certificate.
+     * Optional. Set of labels associated with a Certificate.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -183,7 +183,7 @@ export namespace certificatemanager_v1 {
      */
     managed?: Schema$ManagedCertificate;
     /**
-     * A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/x/locations/x/certificates/x`.
+     * Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/x/locations/x/certificates/x`.
      */
     name?: string | null;
     /**
@@ -195,7 +195,7 @@ export namespace certificatemanager_v1 {
      */
     sanDnsnames?: string[] | null;
     /**
-     * Immutable. The scope of the certificate.
+     * Optional. Immutable. The scope of the certificate.
      */
     scope?: string | null;
     /**
@@ -238,7 +238,7 @@ export namespace certificatemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * One or more paragraphs of text description of a CertificateIssuanceConfig.
+     * Optional. One or more paragraphs of text description of a CertificateIssuanceConfig.
      */
     description?: string | null;
     /**
@@ -246,7 +246,7 @@ export namespace certificatemanager_v1 {
      */
     keyAlgorithm?: string | null;
     /**
-     * Set of labels associated with a CertificateIssuanceConfig.
+     * Optional. Set of labels associated with a CertificateIssuanceConfig.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -254,7 +254,7 @@ export namespace certificatemanager_v1 {
      */
     lifetime?: string | null;
     /**
-     * A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/x/locations/x/certificateIssuanceConfigs/x`.
+     * Identifier. A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/x/locations/x/certificateIssuanceConfigs/x`.
      */
     name?: string | null;
     /**
@@ -275,7 +275,7 @@ export namespace certificatemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * One or more paragraphs of text description of a certificate map.
+     * Optional. One or more paragraphs of text description of a certificate map.
      */
     description?: string | null;
     /**
@@ -283,11 +283,11 @@ export namespace certificatemanager_v1 {
      */
     gclbTargets?: Schema$GclbTarget[];
     /**
-     * Set of labels associated with a Certificate Map.
+     * Optional. Set of labels associated with a Certificate Map.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x`.
+     * Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x`.
      */
     name?: string | null;
     /**
@@ -300,7 +300,7 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$CertificateMapEntry {
     /**
-     * A set of Certificates defines for the given `hostname`. There can be defined up to four certificates in each Certificate Map Entry. Each certificate must match pattern `projects/x/locations/x/certificates/x`.
+     * Optional. A set of Certificates defines for the given `hostname`. There can be defined up to four certificates in each Certificate Map Entry. Each certificate must match pattern `projects/x/locations/x/certificates/x`.
      */
     certificates?: string[] | null;
     /**
@@ -308,7 +308,7 @@ export namespace certificatemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * One or more paragraphs of text description of a certificate map entry.
+     * Optional. One or more paragraphs of text description of a certificate map entry.
      */
     description?: string | null;
     /**
@@ -316,7 +316,7 @@ export namespace certificatemanager_v1 {
      */
     hostname?: string | null;
     /**
-     * Set of labels associated with a Certificate Map Entry.
+     * Optional. Set of labels associated with a Certificate Map Entry.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -324,7 +324,7 @@ export namespace certificatemanager_v1 {
      */
     matcher?: string | null;
     /**
-     * A user-defined name of the Certificate Map Entry. Certificate Map Entry names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x/certificateMapEntries/x`.
+     * Identifier. A user-defined name of the Certificate Map Entry. Certificate Map Entry names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x/certificateMapEntries/x`.
      */
     name?: string | null;
     /**
@@ -345,7 +345,7 @@ export namespace certificatemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * One or more paragraphs of text description of a DnsAuthorization.
+     * Optional. One or more paragraphs of text description of a DnsAuthorization.
      */
     description?: string | null;
     /**
@@ -357,15 +357,15 @@ export namespace certificatemanager_v1 {
      */
     domain?: string | null;
     /**
-     * Set of labels associated with a DnsAuthorization.
+     * Optional. Set of labels associated with a DnsAuthorization.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/x/locations/x/dnsAuthorizations/x`.
+     * Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/x/locations/x/dnsAuthorizations/x`.
      */
     name?: string | null;
     /**
-     * Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location global: FIXED_RECORD.
+     * Optional. Immutable. Type of DnsAuthorization. If unset during resource creation the following default will be used: - in location `global`: FIXED_RECORD, - in other locations: PER_PROJECT_RECORD.
      */
     type?: string | null;
     /**
@@ -595,15 +595,15 @@ export namespace certificatemanager_v1 {
      */
     authorizationAttemptInfo?: Schema$AuthorizationAttemptInfo[];
     /**
-     * Immutable. Authorizations that will be used for performing domain authorization.
+     * Optional. Immutable. Authorizations that will be used for performing domain authorization.
      */
     dnsAuthorizations?: string[] | null;
     /**
-     * Immutable. The domains for which a managed SSL certificate will be generated. Wildcard domains are only supported with DNS challenge resolution.
+     * Optional. Immutable. The domains for which a managed SSL certificate will be generated. Wildcard domains are only supported with DNS challenge resolution.
      */
     domains?: string[] | null;
     /**
-     * Immutable. The resource name for a CertificateIssuanceConfig used to configure private PKI certificates in the format `projects/x/locations/x/certificateIssuanceConfigs/x`. If this field is not set, the certificates will instead be publicly signed as documented at https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
+     * Optional. Immutable. The resource name for a CertificateIssuanceConfig used to configure private PKI certificates in the format `projects/x/locations/x/certificateIssuanceConfigs/x`. If this field is not set, the certificates will instead be publicly signed as documented at https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#caa.
      */
     issuanceConfig?: string | null;
     /**
@@ -691,11 +691,11 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$SelfManagedCertificate {
     /**
-     * Input only. The PEM-encoded certificate chain. Leaf certificate comes first, followed by intermediate ones if any.
+     * Optional. Input only. The PEM-encoded certificate chain. Leaf certificate comes first, followed by intermediate ones if any.
      */
     pemCertificate?: string | null;
     /**
-     * Input only. The PEM-encoded private key of the leaf certificate.
+     * Optional. Input only. The PEM-encoded private key of the leaf certificate.
      */
     pemPrivateKey?: string | null;
   }
@@ -738,7 +738,7 @@ export namespace certificatemanager_v1 {
      */
     createTime?: string | null;
     /**
-     * One or more paragraphs of text description of a TrustConfig.
+     * Optional. One or more paragraphs of text description of a TrustConfig.
      */
     description?: string | null;
     /**
@@ -746,15 +746,15 @@ export namespace certificatemanager_v1 {
      */
     etag?: string | null;
     /**
-     * Set of labels associated with a TrustConfig.
+     * Optional. Set of labels associated with a TrustConfig.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/x/locations/x/trustConfigs/x`.
+     * Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/x/locations/x/trustConfigs/x`.
      */
     name?: string | null;
     /**
-     * Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation. Only one TrustStore specified is currently allowed.
+     * Optional. Set of trust stores to perform validation against. This field is supported when TrustConfig is configured with Load Balancers, currently not supported for SPIFFE certificate validation. Only one TrustStore specified is currently allowed.
      */
     trustStores?: Schema$TrustStore[];
     /**
@@ -767,11 +767,11 @@ export namespace certificatemanager_v1 {
    */
   export interface Schema$TrustStore {
     /**
-     * Set of intermediate CA certificates used for the path building phase of chain validation. The field is currently not supported if TrustConfig is used for the workload certificate feature.
+     * Optional. Set of intermediate CA certificates used for the path building phase of chain validation. The field is currently not supported if TrustConfig is used for the workload certificate feature.
      */
     intermediateCas?: Schema$IntermediateCA[];
     /**
-     * List of Trust Anchors to be used while performing validation against a given TrustStore.
+     * Optional. List of Trust Anchors to be used while performing validation against a given TrustStore.
      */
     trustAnchors?: Schema$TrustAnchor[];
   }
@@ -1396,6 +1396,93 @@ export namespace certificatemanager_v1 {
         );
       }
     }
+
+    /**
+     * Updates a CertificateIssuanceConfig.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://certificatemanager.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Create
@@ -1431,25 +1518,41 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the Certificates Configs returned.
+     * Optional. Filter expression to restrict the Certificates Configs returned.
      */
     filter?: string;
     /**
-     * A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Certificate Config field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
      */
     orderBy?: string;
     /**
-     * Maximum number of certificate configs to return per call.
+     * Optional. Maximum number of certificate configs to return per call.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListCertificateIssuanceConfigsResponse`. Indicates that this is a continuation of a prior `ListCertificateIssuanceConfigs` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListCertificateIssuanceConfigsResponse`. Indicates that this is a continuation of a prior `ListCertificateIssuanceConfigs` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
      * Required. The project and location from which the certificate should be listed, specified in the format `projects/x/locations/x`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Certificateissuanceconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. A user-defined name of the certificate issuance config. CertificateIssuanceConfig names must be unique globally and match pattern `projects/x/locations/x/certificateIssuanceConfigs/x`.
+     */
+    name?: string;
+    /**
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CertificateIssuanceConfig;
   }
 
   export class Resource$Projects$Locations$Certificatemaps {
@@ -1942,19 +2045,19 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Certificatemaps$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the Certificates Maps returned.
+     * Optional. Filter expression to restrict the Certificates Maps returned.
      */
     filter?: string;
     /**
-     * A list of Certificate Map field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Certificate Map field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
      */
     orderBy?: string;
     /**
-     * Maximum number of certificate maps to return per call.
+     * Optional. Maximum number of certificate maps to return per call.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListCertificateMapsResponse`. Indicates that this is a continuation of a prior `ListCertificateMaps` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListCertificateMapsResponse`. Indicates that this is a continuation of a prior `ListCertificateMaps` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -1965,7 +2068,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Certificatemaps$Patch
     extends StandardParameters {
     /**
-     * A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x`.
+     * Identifier. A user-defined name of the Certificate Map. Certificate Map names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x`.
      */
     name?: string;
     /**
@@ -2472,19 +2575,19 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the returned Certificate Map Entries.
+     * Optional. Filter expression to restrict the returned Certificate Map Entries.
      */
     filter?: string;
     /**
-     * A list of Certificate Map Entry field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Certificate Map Entry field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
      */
     orderBy?: string;
     /**
-     * Maximum number of certificate map entries to return. The service may return fewer than this value. If unspecified, at most 50 certificate map entries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. Maximum number of certificate map entries to return. The service may return fewer than this value. If unspecified, at most 50 certificate map entries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListCertificateMapEntriesResponse`. Indicates that this is a continuation of a prior `ListCertificateMapEntries` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListCertificateMapEntriesResponse`. Indicates that this is a continuation of a prior `ListCertificateMapEntries` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -2495,7 +2598,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Certificatemaps$Certificatemapentries$Patch
     extends StandardParameters {
     /**
-     * A user-defined name of the Certificate Map Entry. Certificate Map Entry names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x/certificateMapEntries/x`.
+     * Identifier. A user-defined name of the Certificate Map Entry. Certificate Map Entry names must be unique globally and match pattern `projects/x/locations/x/certificateMaps/x/certificateMapEntries/x`.
      */
     name?: string;
     /**
@@ -2990,19 +3093,19 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Certificates$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the Certificates returned.
+     * Optional. Filter expression to restrict the Certificates returned.
      */
     filter?: string;
     /**
-     * A list of Certificate field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Certificate field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
      */
     orderBy?: string;
     /**
-     * Maximum number of certificates to return per call.
+     * Optional. Maximum number of certificates to return per call.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListCertificatesResponse`. Indicates that this is a continuation of a prior `ListCertificates` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListCertificatesResponse`. Indicates that this is a continuation of a prior `ListCertificates` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -3013,7 +3116,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Certificates$Patch
     extends StandardParameters {
     /**
-     * A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/x/locations/x/certificates/x`.
+     * Identifier. A user-defined name of the certificate. Certificate names must be unique globally and match pattern `projects/x/locations/x/certificates/x`.
      */
     name?: string;
     /**
@@ -3516,19 +3619,19 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Dnsauthorizations$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the Dns Authorizations returned.
+     * Optional. Filter expression to restrict the Dns Authorizations returned.
      */
     filter?: string;
     /**
-     * A list of Dns Authorization field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of Dns Authorization field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
      */
     orderBy?: string;
     /**
-     * Maximum number of dns authorizations to return per call.
+     * Optional. Maximum number of dns authorizations to return per call.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListDnsAuthorizationsResponse`. Indicates that this is a continuation of a prior `ListDnsAuthorizations` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListDnsAuthorizationsResponse`. Indicates that this is a continuation of a prior `ListDnsAuthorizations` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -3539,7 +3642,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Dnsauthorizations$Patch
     extends StandardParameters {
     /**
-     * A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/x/locations/x/dnsAuthorizations/x`.
+     * Identifier. A user-defined name of the dns authorization. DnsAuthorization names must be unique globally and match pattern `projects/x/locations/x/dnsAuthorizations/x`.
      */
     name?: string;
     /**
@@ -4425,7 +4528,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Trustconfigs$Delete
     extends StandardParameters {
     /**
-     * The current etag of the TrustConfig. If an etag is provided and does not match the current etag of the resource, deletion will be blocked and an ABORTED error will be returned.
+     * Optional. The current etag of the TrustConfig. If an etag is provided and does not match the current etag of the resource, deletion will be blocked and an ABORTED error will be returned.
      */
     etag?: string;
     /**
@@ -4443,19 +4546,19 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Trustconfigs$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the TrustConfigs returned.
+     * Optional. Filter expression to restrict the TrustConfigs returned.
      */
     filter?: string;
     /**
-     * A list of TrustConfig field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
+     * Optional. A list of TrustConfig field names used to specify the order of the returned results. The default sorting order is ascending. To specify descending order for a field, add a suffix `" desc"`.
      */
     orderBy?: string;
     /**
-     * Maximum number of TrustConfigs to return per call.
+     * Optional. Maximum number of TrustConfigs to return per call.
      */
     pageSize?: number;
     /**
-     * The value returned by the last `ListTrustConfigsResponse`. Indicates that this is a continuation of a prior `ListTrustConfigs` call, and that the system should return the next page of data.
+     * Optional. The value returned by the last `ListTrustConfigsResponse`. Indicates that this is a continuation of a prior `ListTrustConfigs` call, and that the system should return the next page of data.
      */
     pageToken?: string;
     /**
@@ -4466,7 +4569,7 @@ export namespace certificatemanager_v1 {
   export interface Params$Resource$Projects$Locations$Trustconfigs$Patch
     extends StandardParameters {
     /**
-     * A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/x/locations/x/trustConfigs/x`.
+     * Identifier. A user-defined name of the trust config. TrustConfig names must be unique globally and match pattern `projects/x/locations/x/trustConfigs/x`.
      */
     name?: string;
     /**
