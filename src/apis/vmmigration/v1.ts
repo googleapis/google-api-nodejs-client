@@ -550,6 +550,10 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$CancelCutoverJobRequest {}
   /**
+   * Request message for 'CancelDiskMigrationJob' request.
+   */
+  export interface Schema$CancelDiskMigrationJobRequest {}
+  /**
    * Request message for 'CancelImageImportJob' request.
    */
   export interface Schema$CancelImageImportJobRequest {}
@@ -1081,7 +1085,7 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$DiskImageTargetDetails {
     /**
-     * Optional. Additional licenses to assign to the image.
+     * Optional. Additional licenses to assign to the image. Format: https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/licenses/LICENSE_NAME Or https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME
      */
     additionalLicenses?: string[] | null;
     /**
@@ -1291,6 +1295,10 @@ export namespace vmmigration_v1 {
      */
     encryption?: Schema$Encryption;
     /**
+     * Immutable. Target details for importing a machine image, will be used by ImageImportJob.
+     */
+    machineImageTargetDefaults?: Schema$MachineImageTargetDetails;
+    /**
      * Output only. The resource path of the ImageImport.
      */
     name?: string | null;
@@ -1327,6 +1335,10 @@ export namespace vmmigration_v1 {
      * Output only. Provides details on the error that led to the image import state in case of an error.
      */
     errors?: Schema$Status[];
+    /**
+     * Output only. Target details used to import a machine image.
+     */
+    machineImageTargetDetails?: Schema$MachineImageTargetDetails;
     /**
      * Output only. The resource path of the ImageImportJob.
      */
@@ -1667,6 +1679,76 @@ export namespace vmmigration_v1 {
     name?: string | null;
   }
   /**
+   * Parameters overriding decisions based on the source machine image configurations.
+   */
+  export interface Schema$MachineImageParametersOverrides {
+    /**
+     * Optional. The machine type to create the MachineImage with. If empty, the service will choose a relevant machine type based on the information from the source image. For more information about machine types, please refer to https://cloud.google.com/compute/docs/machine-resource.
+     */
+    machineType?: string | null;
+  }
+  /**
+   * The target details of the machine image resource that will be created by the image import job.
+   */
+  export interface Schema$MachineImageTargetDetails {
+    /**
+     * Optional. Additional licenses to assign to the instance created by the machine image. Format: https://www.googleapis.com/compute/v1/projects/PROJECT_ID/global/licenses/LICENSE_NAME Or https://www.googleapis.com/compute/beta/projects/PROJECT_ID/global/licenses/LICENSE_NAME
+     */
+    additionalLicenses?: string[] | null;
+    /**
+     * Optional. An optional description of the machine image.
+     */
+    description?: string | null;
+    /**
+     * Immutable. The encryption to apply to the machine image.
+     */
+    encryption?: Schema$Encryption;
+    /**
+     * Optional. The labels to apply to the instance created by the machine image.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The name of the machine image to be created.
+     */
+    machineImageName?: string | null;
+    /**
+     * Optional. Parameters overriding decisions based on the source machine image configurations.
+     */
+    machineImageParametersOverrides?: Schema$MachineImageParametersOverrides;
+    /**
+     * Optional. The network interfaces to create with the instance created by the machine image. Internal and external IP addresses are ignored for machine image import.
+     */
+    networkInterfaces?: Schema$NetworkInterface[];
+    /**
+     * Optional. Use to set the parameters relevant for the OS adaptation process.
+     */
+    osAdaptationParameters?: Schema$ImageImportOsAdaptationParameters;
+    /**
+     * Optional. The service account to assign to the instance created by the machine image.
+     */
+    serviceAccount?: Schema$ServiceAccount;
+    /**
+     * Optional. Shielded instance configuration.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
+     * Optional. Set to true to set the machine image storageLocations to the single region of the import job. When false, the closest multi-region is selected.
+     */
+    singleRegionStorage?: boolean | null;
+    /**
+     * Optional. Use to skip OS adaptation process.
+     */
+    skipOsAdaptation?: Schema$SkipOsAdaptation;
+    /**
+     * Optional. The tags to apply to the instance created by the machine image.
+     */
+    tags?: string[] | null;
+    /**
+     * Required. Reference to the TargetProject resource that represents the target project in which the imported machine image will be created.
+     */
+    targetProject?: string | null;
+  }
+  /**
    * MigratingVm describes the VM that will be migrated from a Source environment and its replication state.
    */
   export interface Schema$MigratingVm {
@@ -1843,7 +1925,11 @@ export namespace vmmigration_v1 {
      */
     network?: string | null;
     /**
-     * The subnetwork to connect the NIC to.
+     * Optional. The networking tier used for configuring network access configuration. If left empty, will default to PREMIUM.
+     */
+    networkTier?: string | null;
+    /**
+     * Optional. The subnetwork to connect the NIC to.
      */
     subnetwork?: string | null;
   }
@@ -1985,7 +2071,7 @@ export namespace vmmigration_v1 {
      */
     sourceDiskNumber?: number | null;
     /**
-     * Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attacked to a target VM.
+     * Optional. Details for attachment of the disk to a VM. Used when the disk is set to be attached to a target VM.
      */
     vmAttachmentDetails?: Schema$VmAttachmentDetails;
   }
@@ -2086,6 +2172,10 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$ResumeMigrationRequest {}
   /**
+   * Request message for 'RunDiskMigrationJobRequest' request.
+   */
+  export interface Schema$RunDiskMigrationJobRequest {}
+  /**
    * A policy for scheduling replications.
    */
   export interface Schema$SchedulePolicy {
@@ -2116,9 +2206,43 @@ export namespace vmmigration_v1 {
     values?: string[] | null;
   }
   /**
+   * Service account to assign to the instance created by the machine image.
+   */
+  export interface Schema$ServiceAccount {
+    /**
+     * Required. The email address of the service account.
+     */
+    email?: string | null;
+    /**
+     * Optional. The list of scopes to be made available for this service account.
+     */
+    scopes?: string[] | null;
+  }
+  /**
+   * Shielded instance configuration.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Optional. Defines whether the instance created by the machine image has integrity monitoring enabled. This can be set to true only if the image boot option is EFI, and vTPM is enabled.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Optional. Defines whether the instance created by the machine image has vTPM enabled. This can be set to true only if the image boot option is EFI.
+     */
+    enableVtpm?: boolean | null;
+    /**
+     * Optional. Defines whether the instance created by the machine image has Secure Boot enabled. This can be set to true only if the image boot option is EFI.
+     */
+    secureBoot?: string | null;
+  }
+  /**
    * ShuttingDownSourceVMStep contains specific step details.
    */
   export interface Schema$ShuttingDownSourceVMStep {}
+  /**
+   * Mentions that the machine image import is not using OS adaptation process.
+   */
+  export interface Schema$SkipOsAdaptation {}
   /**
    * Source message describes a specific vm migration Source resource. It contains the source environment information.
    */
@@ -4611,6 +4735,7 @@ export namespace vmmigration_v1 {
   export class Resource$Projects$Locations$Sources {
     context: APIRequestContext;
     datacenterConnectors: Resource$Projects$Locations$Sources$Datacenterconnectors;
+    diskMigrationJobs: Resource$Projects$Locations$Sources$Diskmigrationjobs;
     migratingVms: Resource$Projects$Locations$Sources$Migratingvms;
     utilizationReports: Resource$Projects$Locations$Sources$Utilizationreports;
     constructor(context: APIRequestContext) {
@@ -4619,6 +4744,8 @@ export namespace vmmigration_v1 {
         new Resource$Projects$Locations$Sources$Datacenterconnectors(
           this.context
         );
+      this.diskMigrationJobs =
+        new Resource$Projects$Locations$Sources$Diskmigrationjobs(this.context);
       this.migratingVms = new Resource$Projects$Locations$Sources$Migratingvms(
         this.context
       );
@@ -5789,6 +5916,210 @@ export namespace vmmigration_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UpgradeApplianceRequest;
+  }
+
+  export class Resource$Projects$Locations$Sources$Diskmigrationjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels the disk migration job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Runs the disk migration job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    run(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiskMigrationJob.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelDiskMigrationJobRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiskMigrationJob.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunDiskMigrationJobRequest;
   }
 
   export class Resource$Projects$Locations$Sources$Migratingvms {
