@@ -174,7 +174,7 @@ export namespace sheets_v4 {
     rule?: Schema$ConditionalFormatRule;
   }
   /**
-   * Adds a data source. After the data source is added successfully, an associated DATA_SOURCE sheet is created and an execution is triggered to refresh the sheet to read data from the data source. The request requires an additional `bigquery.readonly` OAuth scope.
+   * Adds a data source. After the data source is added successfully, an associated DATA_SOURCE sheet is created and an execution is triggered to refresh the sheet to read data from the data source. The request requires an additional `bigquery.readonly` OAuth scope if you are adding a BigQuery data source.
    */
   export interface Schema$AddDataSourceRequest {
     /**
@@ -1055,7 +1055,7 @@ export namespace sheets_v4 {
     series?: Schema$ChartData;
   }
   /**
-   * Cancels one or multiple refreshes of data source objects in the spreadsheet by the specified references.
+   * Cancels one or multiple refreshes of data source objects in the spreadsheet by the specified references. The request requires an additional `bigquery.readonly` OAuth scope if you are cancelling a refresh on a BigQuery data source.
    */
   export interface Schema$CancelDataSourceRefreshRequest {
     /**
@@ -1908,6 +1908,10 @@ export namespace sheets_v4 {
      * A BigQueryDataSourceSpec.
      */
     bigQuery?: Schema$BigQueryDataSourceSpec;
+    /**
+     * A LookerDatasourceSpec.
+     */
+    looker?: Schema$LookerDataSourceSpec;
     /**
      * The parameters of the data source, used when querying the data source.
      */
@@ -2880,6 +2884,23 @@ export namespace sheets_v4 {
     uri?: string | null;
   }
   /**
+   * The specification of a Looker data source.
+   */
+  export interface Schema$LookerDataSourceSpec {
+    /**
+     * Name of a Looker model explore.
+     */
+    explore?: string | null;
+    /**
+     * A Looker instance URL.
+     */
+    instanceUri?: string | null;
+    /**
+     * Name of a Looker model.
+     */
+    model?: string | null;
+  }
+  /**
    * Allows you to manually organize the values in a source data column into buckets with names of your choosing. For example, a pivot table that aggregates population by state: +-------+-------------------+ | State | SUM of Population | +-------+-------------------+ | AK | 0.7 | | AL | 4.8 | | AR | 2.9 | ... +-------+-------------------+ could be turned into a pivot table that aggregates population by time zone by providing a list of groups (for example, groupName = 'Central', items = ['AL', 'AR', 'IA', ...]) to a manual group rule. Note that a similar effect could be achieved by adding a time zone column to the source data and adjusting the pivot table. +-----------+-------------------+ | Time Zone | SUM of Population | +-----------+-------------------+ | Central | 106.3 | | Eastern | 151.9 | | Mountain | 17.4 | ... +-----------+-------------------+
    */
   export interface Schema$ManualRule {
@@ -3407,7 +3428,7 @@ export namespace sheets_v4 {
     reference?: Schema$DataSourceObjectReference;
   }
   /**
-   * Refreshes one or multiple data source objects in the spreadsheet by the specified references. The request requires an additional `bigquery.readonly` OAuth scope. If there are multiple refresh requests referencing the same data source objects in one batch, only the last refresh request is processed, and all those requests will have the same response accordingly.
+   * Refreshes one or multiple data source objects in the spreadsheet by the specified references. The request requires an additional `bigquery.readonly` OAuth scope if you are refreshing a BigQuery data source. If there are multiple refresh requests referencing the same data source objects in one batch, only the last refresh request is processed, and all those requests will have the same response accordingly.
    */
   export interface Schema$RefreshDataSourceRequest {
     /**
@@ -4590,7 +4611,7 @@ export namespace sheets_v4 {
     oldRule?: Schema$ConditionalFormatRule;
   }
   /**
-   * Updates a data source. After the data source is updated successfully, an execution is triggered to refresh the associated DATA_SOURCE sheet to read data from the updated data source. The request requires an additional `bigquery.readonly` OAuth scope.
+   * Updates a data source. After the data source is updated successfully, an execution is triggered to refresh the associated DATA_SOURCE sheet to read data from the updated data source. The request requires an additional `bigquery.readonly` OAuth scope if you are updating a BigQuery data source.
    */
   export interface Schema$UpdateDataSourceRequest {
     /**
