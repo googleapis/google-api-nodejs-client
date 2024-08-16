@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v2.0.0...kmsinventory-v3.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **kmsinventory:** update the API ([b67b72a](https://github.com/googleapis/google-api-nodejs-client/commit/b67b72abc50ff94dc73970e06bc0c55ba93a256e))
+* run the generator ([#3511](https://github.com/googleapis/google-api-nodejs-client/issues/3511)) ([957bc85](https://github.com/googleapis/google-api-nodejs-client/commit/957bc850439a639c5534957333b09598944952c3))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v1.1.4...kmsinventory-v2.0.0) (2024-07-26)
 
 

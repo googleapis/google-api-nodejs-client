@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v13.0.0...gkehub-v14.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **gkehub:** update the API ([43b15cf](https://github.com/googleapis/google-api-nodejs-client/commit/43b15cf3f10eca5389f4a4feb6624db619a53205))
+* **gkehub:** update the API ([ca13d15](https://github.com/googleapis/google-api-nodejs-client/commit/ca13d15f5f0f5dee61a020b70ecf8fb0ace18973))
+* **gkehub:** update the API ([70f9e09](https://github.com/googleapis/google-api-nodejs-client/commit/70f9e0917e7e42e17b45faec46f3ad74fa6a46a3))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v12.0.0...gkehub-v13.0.0) (2024-07-26)
 
 

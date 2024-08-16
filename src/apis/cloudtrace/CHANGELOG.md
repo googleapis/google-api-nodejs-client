@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtrace-v1.1.2...cloudtrace-v1.1.3) (2024-08-16)
+
+
+### Bug Fixes
+
+* **cloudtrace:** update the API ([ea38ab2](https://github.com/googleapis/google-api-nodejs-client/commit/ea38ab2b860107ac10f0df0c9081c9d69a7df3d3))
+
 ## [1.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtrace-v1.1.1...cloudtrace-v1.1.2) (2024-05-02)
 
 

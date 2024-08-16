@@ -1,5 +1,24 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v6.0.0...logging-v7.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **logging:** update the API ([92a6cc5](https://github.com/googleapis/google-api-nodejs-client/commit/92a6cc5b462272034fddab3b727b29cffc65ba34))
+* run the generator ([#3487](https://github.com/googleapis/google-api-nodejs-client/issues/3487)) ([673c364](https://github.com/googleapis/google-api-nodejs-client/commit/673c364a557c466c34052bef761d00e542f96516))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
+
+### Bug Fixes
+
+* **logging:** update the API ([0492f02](https://github.com/googleapis/google-api-nodejs-client/commit/0492f020bca2c500308848aeb25ee484c9614914))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v5.0.0...logging-v6.0.0) (2024-07-26)
 
 

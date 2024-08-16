@@ -1,5 +1,28 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v16.0.0...compute-v17.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **compute:** This release has breaking changes.
+* This release has breaking changes.
+* **compute:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([91e92db](https://github.com/googleapis/google-api-nodejs-client/commit/91e92dbb819c5d7579ea82b798659c5845b5a0c1))
+* **compute:** update the API ([d891f41](https://github.com/googleapis/google-api-nodejs-client/commit/d891f411cf9500efb2b117387678c40c7e5f5415))
+* **compute:** update the API ([8071314](https://github.com/googleapis/google-api-nodejs-client/commit/8071314dc1aa0b19aaec3acfa66604cd268bad65))
+* **compute:** update the API ([3b89812](https://github.com/googleapis/google-api-nodejs-client/commit/3b89812f20e32bb394197c632569df304b9045ec))
+* **compute:** update the API ([899847d](https://github.com/googleapis/google-api-nodejs-client/commit/899847dfccc952548adaad6f337a3a5020cfb305))
+* **compute:** update the API ([0ef7bad](https://github.com/googleapis/google-api-nodejs-client/commit/0ef7badccb8299d4412873505bbba8e402a53b88))
+* run the generator ([181f2d5](https://github.com/googleapis/google-api-nodejs-client/commit/181f2d5118e33081dcd33a485ff79c5d6a7e1c43))
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v15.0.0...compute-v16.0.0) (2024-07-26)
 
 

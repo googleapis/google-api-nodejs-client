@@ -1,5 +1,22 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v11.0.0...bigquery-v12.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **bigquery:** This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([e4d60b1](https://github.com/googleapis/google-api-nodejs-client/commit/e4d60b1b12fe4b9592485d0b80429ef747147f9f))
+* **bigquery:** update the API ([80f27f2](https://github.com/googleapis/google-api-nodejs-client/commit/80f27f2db6b99a5322aeaba25e1f18b9a299a536))
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([bb98a47](https://github.com/googleapis/google-api-nodejs-client/commit/bb98a472120eeed02fc4c510ec416325d7c9003e))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v10.0.1...bigquery-v11.0.0) (2024-07-26)
 
 

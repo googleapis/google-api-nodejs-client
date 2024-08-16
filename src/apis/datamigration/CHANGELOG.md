@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v6.1.0...datamigration-v6.2.0) (2024-08-16)
+
+
+### Features
+
+* **datamigration:** update the API ([7c055eb](https://github.com/googleapis/google-api-nodejs-client/commit/7c055eb70adac4d00882890d47ec84e537a6de9b))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v6.0.0...datamigration-v6.1.0) (2024-06-03)
 
 
