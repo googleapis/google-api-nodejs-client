@@ -422,7 +422,7 @@
                   ]
                 },
                 "subscribe": {
-                  "description": "Creates a Subscription to a Data Exchange. This is a long-running operation as it will create one or more linked datasets.",
+                  "description": "Creates a Subscription to a Data Clean Room. This is a long-running operation as it will create one or more linked datasets.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataExchanges/{dataExchangesId}:subscribe",
                   "httpMethod": "POST",
                   "id": "analyticshub.projects.locations.dataExchanges.subscribe",
@@ -1022,7 +1022,7 @@
       }
     }
   },
-  "revision": "20240624",
+  "revision": "20240715",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
