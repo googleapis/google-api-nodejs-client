@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.7.0...androidenterprise-v5.8.0) (2024-08-16)
+
+
+### Features
+
+* **androidenterprise:** update the API ([36ecebf](https://github.com/googleapis/google-api-nodejs-client/commit/36ecebf6a3e3a68b9bcf8cf0dd6a2e34992cb5b3))
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([9aa218d](https://github.com/googleapis/google-api-nodejs-client/commit/9aa218d41eb209b164c3d49d2b69c9948d3c604c))
+
 ## [5.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v5.6.0...androidenterprise-v5.7.0) (2024-08-16)
 
 

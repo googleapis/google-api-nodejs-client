@@ -1,5 +1,24 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v8.0.0...sts-v9.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **sts:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3484](https://github.com/googleapis/google-api-nodejs-client/issues/3484)) ([99b6c8d](https://github.com/googleapis/google-api-nodejs-client/commit/99b6c8de5beb8447d177048a64a977ee39ee5ee6))
+* **sts:** update the API ([6e5182c](https://github.com/googleapis/google-api-nodejs-client/commit/6e5182cc6f93e9a509c94a92c5768a873828c811))
+* **sts:** update the API ([9f4b7de](https://github.com/googleapis/google-api-nodejs-client/commit/9f4b7de7dbccee7440ecafcd10f869c8ff30c2ff))
+
+
+### Bug Fixes
+
+* **sts:** update the API ([bce176a](https://github.com/googleapis/google-api-nodejs-client/commit/bce176a17c9e5ff821d2e6a058720f9f744e18b4))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v7.1.0...sts-v8.0.0) (2024-08-16)
 
 

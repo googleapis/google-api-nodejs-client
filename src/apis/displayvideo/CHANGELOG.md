@@ -1,5 +1,23 @@
 # Changelog
 
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v23.0.0...displayvideo-v24.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **displayvideo:** update the API ([8c45506](https://github.com/googleapis/google-api-nodejs-client/commit/8c4550636faaf3b647f8353b6415c1f8965f062a))
+* **displayvideo:** update the API ([1ee2703](https://github.com/googleapis/google-api-nodejs-client/commit/1ee27035a31441946e28358528ba12fd7fffbeb3))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([0c441a6](https://github.com/googleapis/google-api-nodejs-client/commit/0c441a66526c8d921758e82bd4dcf8817fe293e8))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v22.0.0...displayvideo-v23.0.0) (2024-08-16)
 
 

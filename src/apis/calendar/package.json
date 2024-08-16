@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/calendar",
-  "version": "9.7.8",
+  "version": "9.7.9",
   "description": "calendar",
   "main": "build/index.js",
   "types": "build/index.d.ts",
