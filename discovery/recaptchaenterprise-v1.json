@@ -349,6 +349,34 @@
         },
         "keys": {
           "methods": {
+            "addIpOverride": {
+              "description": "Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error will be returned.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}:addIpOverride",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.keys.addIpOverride",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the key to which the IP override is added, in the format `projects/{project}/keys/{key}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:addIpOverride",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "create": {
               "description": "Creates a new reCAPTCHA Enterprise key.",
               "flatPath": "v1/projects/{projectsId}/keys",
@@ -694,7 +722,7 @@
       }
     }
   },
-  "revision": "20240526",
+  "revision": "20240804",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -776,6 +804,23 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest": {
+      "description": "The AddIpOverride request message.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AddIpOverrideRequest",
+      "properties": {
+        "ipOverrideData": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1IpOverrideData",
+          "description": "Required. IP override added to the key."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse": {
+      "description": "Response for AddIpOverride.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AddIpOverrideResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
@@ -924,6 +969,10 @@
           "$ref": "GoogleCloudRecaptchaenterpriseV1AccountVerificationInfo",
           "description": "Optional. Account verification information for identity verification. The assessment event must include a token and site key to use this feature."
         },
+        "assessmentEnvironment": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment",
+          "description": "Optional. The environment creating the assessment. This describes your environment (the system invoking CreateAssessment), NOT the environment of your user."
+        },
         "event": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
           "description": "Optional. The event being assessed."
@@ -966,6 +1015,21 @@
           "$ref": "GoogleCloudRecaptchaenterpriseV1TokenProperties",
           "description": "Output only. Properties of the provided event token.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment": {
+      "description": "The environment creating the assessment. This describes your environment (the system invoking CreateAssessment), NOT the environment of your user.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AssessmentEnvironment",
+      "properties": {
+        "client": {
+          "description": "Optional. Identifies the client module initiating the CreateAssessment request. This can be the link to the client module's project. Examples include: - \"github.com/GoogleCloudPlatform/recaptcha-enterprise-google-tag-manager\" - \"cloud.google.com/recaptcha/docs/implement-waf-akamai\" - \"cloud.google.com/recaptcha/docs/implement-waf-cloudflare\" - \"wordpress.org/plugins/recaptcha-something\"",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. The version of the client module. For example, \"1.0.0\".",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1385,6 +1449,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecaptchaenterpriseV1IpOverrideData": {
+      "description": "Information about the IP or IP range override.",
+      "id": "GoogleCloudRecaptchaenterpriseV1IpOverrideData",
+      "properties": {
+        "ip": {
+          "description": "Required. The IP address to override (can be IPv4, IPv6 or CIDR). The IP override must be a valid IPv4 or IPv6 address, or a CIDR range. The IP override must be a public IP address. Example of IPv4: 168.192.5.6 Example of IPv6: 2001:0000:130F:0000:0000:09C0:876A:130B Example of IPv4 with CIDR: 168.192.5.0/24 Example of IPv6 with CIDR: 2001:0DB8:1234::/48",
+          "type": "string"
+        },
+        "overrideType": {
+          "description": "Required. Describes the type of IP override.",
+          "enum": [
+            "OVERRIDE_TYPE_UNSPECIFIED",
+            "ALLOW"
+          ],
+          "enumDescriptions": [
+            "Default override type that indicates this enum hasn't been specified.",
+            "Allowlist the IP address; i.e. give a `risk_analysis.score` of 0.9 for all valid assessments."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1Key": {
       "description": "A key used to identify and configure applications (web and/or mobile) that use reCAPTCHA Enterprise.",
       "id": "GoogleCloudRecaptchaenterpriseV1Key",
@@ -1411,7 +1498,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha-enterprise/docs/labels).",
+          "description": "Optional. See [Creating and managing labels] (https://cloud.google.com/recaptcha/docs/labels).",
           "type": "object"
         },
         "name": {
@@ -1541,7 +1628,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
       "properties": {
         "skipBillingCheck": {
-          "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha-enterprise/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha-enterprise/docs/billing-information.",
+          "description": "Optional. If true, skips the billing check. A reCAPTCHA Enterprise key or migrated key behaves differently than a reCAPTCHA (non-Enterprise version) key when you reach a quota limit (see https://cloud.google.com/recaptcha/quotas#quota_limit). To avoid any disruption of your usage, we check that a billing account is present. If your usage of reCAPTCHA is under the free quota, you can safely skip the billing check and proceed with the migration. See https://cloud.google.com/recaptcha/docs/billing-information.",
           "type": "boolean"
         }
       },
