@@ -2236,7 +2236,7 @@
       }
     }
   },
-  "revision": "20240615",
+  "revision": "20240629",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2542,6 +2542,12 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp of when the compilation result was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "dataEncryptionState": {
           "$ref": "DataEncryptionState",
@@ -3983,6 +3989,12 @@
       "description": "Represents a Dataform workflow configuration.",
       "id": "WorkflowConfig",
       "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp of when the WorkflowConfig was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "cronSchedule": {
           "description": "Optional. Optional schedule (in cron format) for automatic execution of this workflow config.",
           "type": "string"
@@ -4009,6 +4021,12 @@
         },
         "timeZone": {
           "description": "Optional. Specifies the time zone to be used when interpreting cron_schedule. Must be a time zone name from the time zone database (https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). If left unspecified, the default is UTC.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp of when the WorkflowConfig was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
