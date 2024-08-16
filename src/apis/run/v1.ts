@@ -604,6 +604,10 @@ export namespace run_v1 {
    */
   export interface Schema$ExecutionReference {
     /**
+     * Optional. Status for the execution completion.
+     */
+    completionStatus?: string | null;
+    /**
      * Optional. Completion timestamp of the execution.
      */
     completionTimestamp?: string | null;
@@ -611,6 +615,10 @@ export namespace run_v1 {
      * Optional. Creation timestamp of the execution.
      */
     creationTimestamp?: string | null;
+    /**
+     * Optional. The read-only soft deletion timestamp of the execution.
+     */
+    deletionTimestamp?: string | null;
     /**
      * Optional. Name of the execution.
      */
@@ -1184,23 +1192,6 @@ export namespace run_v1 {
     fileHash?: Schema$GoogleDevtoolsCloudbuildV1Hash[];
   }
   /**
-   * Represents a storage location in Cloud Storage
-   */
-  export interface Schema$GoogleDevtoolsCloudbuildV1GCSLocation {
-    /**
-     * Cloud Storage bucket. See https://cloud.google.com/storage/docs/naming#requirements
-     */
-    bucket?: string | null;
-    /**
-     * Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
-     */
-    generation?: string | null;
-    /**
-     * Cloud Storage object. See https://cloud.google.com/storage/docs/naming#objectnames
-     */
-    object?: string | null;
-  }
-  /**
    * GitConfig is a configuration for git operations.
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1GitConfig {
@@ -1244,13 +1235,9 @@ export namespace run_v1 {
    */
   export interface Schema$GoogleDevtoolsCloudbuildV1HttpConfig {
     /**
-     * SecretVersion resource of the HTTP proxy URL. The proxy URL should be in format protocol://@]proxyhost[:port].
+     * SecretVersion resource of the HTTP proxy URL. The Service Account used in the build (either the default Service Account or user-specified Service Account) should have `secretmanager.versions.access` permissions on this secret. The proxy URL should be in format `protocol://@]proxyhost[:port]`.
      */
     proxySecretVersionName?: string | null;
-    /**
-     * Optional. Cloud Storage object storing the certificate to use with the HTTP proxy.
-     */
-    proxySslCaInfo?: Schema$GoogleDevtoolsCloudbuildV1GCSLocation;
   }
   /**
    * Pairs a set of secret environment variables mapped to encrypted values with the Cloud KMS key to use to decrypt the value.
@@ -2124,7 +2111,7 @@ export namespace run_v1 {
    */
   export interface Schema$ObjectMeta {
     /**
-     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service (ALPHA) * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
+     * Unstructured key value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. In Cloud Run, annotations with 'run.googleapis.com/' and 'autoscaling.knative.dev' are restricted, and the accepted annotations will be different depending on the resource type. * `autoscaling.knative.dev/maxScale`: Revision. * `autoscaling.knative.dev/minScale`: Revision. * `run.googleapis.com/base-images`: Service, Revision. * `run.googleapis.com/binary-authorization-breakglass`: Service, Job, * `run.googleapis.com/binary-authorization`: Service, Job, Execution. * `run.googleapis.com/build-base-image`: Service. * `run.googleapis.com/build-environment-variables`: Service. * `run.googleapis.com/build-id`: Service. * `run.googleapis.com/build-name`: Service. * `run.googleapis.com/build-service-account`: Service. * `run.googleapis.com/build-worker-pool`: Service. * `run.googleapis.com/client-name`: All resources. * `run.googleapis.com/cloudsql-instances`: Revision, Execution. * `run.googleapis.com/container-dependencies`: Revision . * `run.googleapis.com/cpu-throttling`: Revision. * `run.googleapis.com/custom-audiences`: Service. * `run.googleapis.com/default-url-disabled`: Service. * `run.googleapis.com/description`: Service. * `run.googleapis.com/enable-automatic-updates`: Service. * `run.googleapis.com/encryption-key-shutdown-hours`: Revision * `run.googleapis.com/encryption-key`: Revision, Execution. * `run.googleapis.com/execution-environment`: Revision, Execution. * `run.googleapis.com/function-target`: Service. * `run.googleapis.com/gc-traffic-tags`: Service. * `run.googleapis.com/image-uri`: Service. * `run.googleapis.com/ingress`: Service. * `run.googleapis.com/launch-stage`: Service, Job. * `run.googleapis.com/minScale`: Service (ALPHA) * `run.googleapis.com/network-interfaces`: Revision, Execution. * `run.googleapis.com/post-key-revocation-action-type`: Revision. * `run.googleapis.com/secrets`: Revision, Execution. * `run.googleapis.com/secure-session-agent`: Revision. * `run.googleapis.com/sessionAffinity`: Revision. * `run.googleapis.com/source-location`: Service. * `run.googleapis.com/startup-cpu-boost`: Revision. * `run.googleapis.com/vpc-access-connector`: Revision, Execution. * `run.googleapis.com/vpc-access-egress`: Revision, Execution.
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -2352,11 +2339,11 @@ export namespace run_v1 {
    */
   export interface Schema$RevisionSpec {
     /**
-     * ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. If not specified, defaults to 80.
+     * ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. If not specified or 0, defaults to 80 when requested CPU \>= 1 and defaults to 1 when requested CPU < 1.
      */
     containerConcurrency?: number | null;
     /**
-     * Required. Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided.
+     * Required. Containers holds the list which define the units of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle.
      */
     containers?: Schema$Container[];
     /**
