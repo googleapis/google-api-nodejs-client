@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v4.1.0...certificatemanager-v4.2.0) (2024-08-16)
+
+
+### Features
+
+* **certificatemanager:** update the API ([057b9bd](https://github.com/googleapis/google-api-nodejs-client/commit/057b9bd6aaf74121d1e25110509f095f402d6b98))
+
 ## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v4.0.0...certificatemanager-v4.1.0) (2024-08-16)
 
 

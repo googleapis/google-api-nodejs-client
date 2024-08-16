@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.0](https://github.com/googleapis/google-api-nodejs-client/compare/accessapproval-v1.8.0...accessapproval-v1.9.0) (2024-08-16)
+
+
+### Features
+
+* **accessapproval:** update the API ([dc57f63](https://github.com/googleapis/google-api-nodejs-client/commit/dc57f636744e74930205353158d4dcf891ee3cf8))
+
 ## [1.8.0](https://github.com/googleapis/google-api-nodejs-client/compare/accessapproval-v1.7.0...accessapproval-v1.8.0) (2024-08-16)
 
 

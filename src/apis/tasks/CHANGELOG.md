@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v6.0.0...tasks-v7.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3511](https://github.com/googleapis/google-api-nodejs-client/issues/3511)) ([957bc85](https://github.com/googleapis/google-api-nodejs-client/commit/957bc850439a639c5534957333b09598944952c3))
+* **tasks:** update the API ([a493ffb](https://github.com/googleapis/google-api-nodejs-client/commit/a493ffbefaa6b7cd934ddc801e36dc9db4188dc5))
+
+
+### Bug Fixes
+
+* **tasks:** update the API ([4203139](https://github.com/googleapis/google-api-nodejs-client/commit/4203139d06bd3b8487d1d0e2d29b92ba7d9a6975))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v5.0.0...tasks-v6.0.0) (2024-08-16)
 
 

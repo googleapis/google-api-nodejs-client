@@ -1,5 +1,18 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v9.0.0...containeranalysis-v10.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **containeranalysis:** This release has breaking changes.
+
+### Features
+
+* **containeranalysis:** update the API ([0701168](https://github.com/googleapis/google-api-nodejs-client/commit/0701168c80335298735cd00539d937ea0b29c741))
+* **containeranalysis:** update the API ([433e2e8](https://github.com/googleapis/google-api-nodejs-client/commit/433e2e81ffeca68bb840ede84306e9b25744141a))
+* **containeranalysis:** update the API ([a7ae38a](https://github.com/googleapis/google-api-nodejs-client/commit/a7ae38a5759487e352c07ab7ff9413eee3bbb40f))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v8.4.0...containeranalysis-v9.0.0) (2024-08-16)
 
 
