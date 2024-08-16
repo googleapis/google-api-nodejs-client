@@ -1112,6 +1112,23 @@ export namespace alloydb_v1alpha {
     upgradeStatus?: string | null;
   }
   /**
+   * Details regarding the upgrade of instaces associated with a cluster.
+   */
+  export interface Schema$InstanceUpgradeDetails {
+    /**
+     * Instance type.
+     */
+    instanceType?: string | null;
+    /**
+     * Normalized name of the instance.
+     */
+    name?: string | null;
+    /**
+     * Upgrade status of the instance.
+     */
+    upgradeStatus?: string | null;
+  }
+  /**
    * Restrictions on INTEGER type values.
    */
   export interface Schema$IntegerRestrictions {

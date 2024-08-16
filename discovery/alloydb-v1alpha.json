@@ -3192,6 +3192,49 @@
       },
       "type": "object"
     },
+    "InstanceUpgradeDetails": {
+      "description": "Details regarding the upgrade of instaces associated with a cluster.",
+      "id": "InstanceUpgradeDetails",
+      "properties": {
+        "instanceType": {
+          "description": "Instance type.",
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "READ_POOL",
+            "SECONDARY"
+          ],
+          "enumDescriptions": [
+            "The type of the instance is unknown.",
+            "PRIMARY instances support read and write operations.",
+            "READ POOL instances support read operations only. Each read pool instance consists of one or more homogeneous nodes. * Read pool of size 1 can only have zonal availability. * Read pools with node count of 2 or more can have regional availability (nodes are present in 2 or more zones in a region).",
+            "SECONDARY instances support read operations only. SECONDARY instance is a cross-region read replica"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Normalized name of the instance.",
+          "type": "string"
+        },
+        "upgradeStatus": {
+          "description": "Upgrade status of the instance.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL_SUCCESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation partially succeeded."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IntegerRestrictions": {
       "description": "Restrictions on INTEGER type values.",
       "id": "IntegerRestrictions",
