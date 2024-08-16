@@ -1327,7 +1327,7 @@ export namespace androidpublisher_v3 {
      */
     testPurchase?: Schema$ExternalTransactionTestPurchase;
     /**
-     * Optional. The transaction program code, used to help determine service fee for apps partcipating in special partner programs. This field can not be used for external offers transactions. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing external transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field.
+     * Optional. The transaction program code, used to help determine service fee for eligible apps participating in partner programs. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field. Note: this field can not be used for external offers transactions.
      */
     transactionProgramCode?: number | null;
     /**
@@ -2083,7 +2083,7 @@ export namespace androidpublisher_v3 {
     units?: string | null;
   }
   /**
-   * Represents a list of apis.
+   * Represents a list of ABIs.
    */
   export interface Schema$MultiAbi {
     /**
@@ -2419,15 +2419,15 @@ export namespace androidpublisher_v3 {
     regionCode?: string | null;
   }
   /**
-   * Configuration for a price migration.
+   * Configuration for migration of a legacy price cohort.
    */
   export interface Schema$RegionalPriceMigrationConfig {
     /**
-     * Required. The cutoff time for historical prices that subscribers can remain paying. Subscribers on prices which were available at this cutoff time or later will stay on their existing price. Subscribers on older prices will be migrated to the currently-offered price. The migrated subscribers will receive a notification that they will be paying a different price. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.
+     * Required. Subscribers in all legacy price cohorts before this time will be migrated to the current price. Subscribers in any newer price cohorts are unaffected. Affected subscribers will receive one or more notifications from Google Play about the price change. Price decreases occur at the subscriber's next billing date. Price increases occur at the subscriber's next billing date following a notification period that varies by region and price increase type.
      */
     oldestAllowedPriceVersionTime?: string | null;
     /**
-     * Optional. The behavior the caller wants users to see when there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN. Note that the first opt-out price increase migration for each app must be initiated in Play Console.
+     * Optional. The requested type of price increase
      */
     priceIncreaseType?: string | null;
     /**
@@ -2630,10 +2630,18 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$RevocationContext {
     /**
+     * Optional. Used when users should be refunded the full amount of the latest order of the subscription.
+     */
+    fullRefund?: Schema$RevocationContextFullRefund;
+    /**
      * Optional. Used when users should be refunded a prorated amount they paid for their subscription based on the amount of time remaining in a subscription.
      */
     proratedRefund?: Schema$RevocationContextProratedRefund;
   }
+  /**
+   * Used to determine if the refund type in the RevocationContext is a full refund.
+   */
+  export interface Schema$RevocationContextFullRefund {}
   /**
    * Used to determine if the refund type in the RevocationContext is a prorated refund.
    */
@@ -4379,102 +4387,6 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * List all app recovery action resources associated with a particular package name and app version.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    appRecoveries(
-      params: Params$Resource$Apprecovery$Apprecoveries,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    appRecoveries(
-      params?: Params$Resource$Apprecovery$Apprecoveries,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAppRecoveriesResponse>;
-    appRecoveries(
-      params: Params$Resource$Apprecovery$Apprecoveries,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    appRecoveries(
-      params: Params$Resource$Apprecovery$Apprecoveries,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>,
-      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-    ): void;
-    appRecoveries(
-      params: Params$Resource$Apprecovery$Apprecoveries,
-      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-    ): void;
-    appRecoveries(
-      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-    ): void;
-    appRecoveries(
-      paramsOrCallback?:
-        | Params$Resource$Apprecovery$Apprecoveries
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListAppRecoveriesResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Apprecovery$Apprecoveries;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Apprecovery$Apprecoveries;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://androidpublisher.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/androidpublisher/v3/applications/{packageName}/appRecoveries'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['packageName'],
-        pathParams: ['packageName'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListAppRecoveriesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListAppRecoveriesResponse>(parameters);
-      }
-    }
-
-    /**
      * Cancel an already executing app recovery action. Note that this action changes status of the recovery action to CANCELED.
      *
      * @param params - Parameters for request
@@ -4757,6 +4669,101 @@ export namespace androidpublisher_v3 {
         return createAPIRequest<Schema$DeployAppRecoveryResponse>(parameters);
       }
     }
+
+    /**
+     * List all app recovery action resources associated with a particular package name and app version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Apprecovery$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Apprecovery$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAppRecoveriesResponse>;
+    list(
+      params: Params$Resource$Apprecovery$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Apprecovery$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>,
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Apprecovery$List,
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Apprecovery$List
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAppRecoveriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAppRecoveriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Apprecovery$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Apprecovery$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/appRecoveries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAppRecoveriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAppRecoveriesResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Apprecovery$Addtargeting
@@ -4774,17 +4781,6 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$AddTargetingRequest;
-  }
-  export interface Params$Resource$Apprecovery$Apprecoveries
-    extends StandardParameters {
-    /**
-     * Required. Package name of the app for which list of recovery actions is requested.
-     */
-    packageName?: string;
-    /**
-     * Required. Version code targeted by the list of recovery actions.
-     */
-    versionCode?: string;
   }
   export interface Params$Resource$Apprecovery$Cancel
     extends StandardParameters {
@@ -4829,6 +4825,16 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$DeployAppRecoveryRequest;
+  }
+  export interface Params$Resource$Apprecovery$List extends StandardParameters {
+    /**
+     * Required. Package name of the app for which list of recovery actions is requested.
+     */
+    packageName?: string;
+    /**
+     * Required. Version code targeted by the list of recovery actions.
+     */
+    versionCode?: string;
   }
 
   export class Resource$Edits {
@@ -12615,7 +12621,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Migrates subscribers who are receiving an historical subscription price to the currently-offered price for the specified region. Requests will cause price change notifications to be sent to users who are currently receiving an historical price older than the supplied timestamp. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.
+     * Migrates subscribers from one or more legacy price cohorts to the current price. Requests result in Google Play notifying affected subscribers. Only up to 250 simultaneous legacy price cohorts are supported.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

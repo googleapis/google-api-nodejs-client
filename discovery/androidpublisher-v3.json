@@ -277,36 +277,6 @@
             "https://www.googleapis.com/auth/androidpublisher"
           ]
         },
-        "appRecoveries": {
-          "description": "List all app recovery action resources associated with a particular package name and app version.",
-          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries",
-          "httpMethod": "POST",
-          "id": "androidpublisher.apprecovery.appRecoveries",
-          "parameterOrder": [
-            "packageName"
-          ],
-          "parameters": {
-            "packageName": {
-              "description": "Required. Package name of the app for which list of recovery actions is requested.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "versionCode": {
-              "description": "Required. Version code targeted by the list of recovery actions.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries",
-          "response": {
-            "$ref": "ListAppRecoveriesResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/androidpublisher"
-          ]
-        },
         "cancel": {
           "description": "Cancel an already executing app recovery action. Note that this action changes status of the recovery action to CANCELED.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries/{appRecoveryId}:cancel",
@@ -399,6 +369,36 @@
           },
           "response": {
             "$ref": "DeployAppRecoveryResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "list": {
+          "description": "List all app recovery action resources associated with a particular package name and app version.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "httpMethod": "GET",
+          "id": "androidpublisher.apprecovery.list",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Required. Package name of the app for which list of recovery actions is requested.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "versionCode": {
+              "description": "Required. Version code targeted by the list of recovery actions.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/appRecoveries",
+          "response": {
+            "$ref": "ListAppRecoveriesResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/androidpublisher"
@@ -3276,7 +3276,7 @@
                   ]
                 },
                 "migratePrices": {
-                  "description": "Migrates subscribers who are receiving an historical subscription price to the currently-offered price for the specified region. Requests will cause price change notifications to be sent to users who are currently receiving an historical price older than the supplied timestamp. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.",
+                  "description": "Migrates subscribers from one or more legacy price cohorts to the current price. Requests result in Google Play notifying affected subscribers. Only up to 250 simultaneous legacy price cohorts are supported.",
                   "flatPath": "androidpublisher/v3/applications/{packageName}/subscriptions/{productId}/basePlans/{basePlanId}:migratePrices",
                   "httpMethod": "POST",
                   "id": "androidpublisher.monetization.subscriptions.basePlans.migratePrices",
@@ -4731,7 +4731,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20240814",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6299,7 +6299,7 @@
           "readOnly": true
         },
         "transactionProgramCode": {
-          "description": "Optional. The transaction program code, used to help determine service fee for apps partcipating in special partner programs. This field can not be used for external offers transactions. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing external transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field.",
+          "description": "Optional. The transaction program code, used to help determine service fee for eligible apps participating in partner programs. Developers participating in the Play Media Experience Program (https://play.google.com/console/about/programs/mediaprogram/) must provide the program code when reporting alternative billing transactions. If you are an eligible developer, please contact your BDM for more information on how to set this field. Note: this field can not be used for external offers transactions.",
           "format": "int32",
           "type": "integer"
         },
@@ -7513,7 +7513,7 @@
       "type": "object"
     },
     "MultiAbi": {
-      "description": "Represents a list of apis.",
+      "description": "Represents a list of ABIs.",
       "id": "MultiAbi",
       "properties": {
         "abi": {
@@ -7941,16 +7941,16 @@
       "type": "object"
     },
     "RegionalPriceMigrationConfig": {
-      "description": "Configuration for a price migration.",
+      "description": "Configuration for migration of a legacy price cohort.",
       "id": "RegionalPriceMigrationConfig",
       "properties": {
         "oldestAllowedPriceVersionTime": {
-          "description": "Required. The cutoff time for historical prices that subscribers can remain paying. Subscribers on prices which were available at this cutoff time or later will stay on their existing price. Subscribers on older prices will be migrated to the currently-offered price. The migrated subscribers will receive a notification that they will be paying a different price. Subscribers who do not agree to the new price will have their subscription ended at the next renewal.",
+          "description": "Required. Subscribers in all legacy price cohorts before this time will be migrated to the current price. Subscribers in any newer price cohorts are unaffected. Affected subscribers will receive one or more notifications from Google Play about the price change. Price decreases occur at the subscriber's next billing date. Price increases occur at the subscriber's next billing date following a notification period that varies by region and price increase type.",
           "format": "google-datetime",
           "type": "string"
         },
         "priceIncreaseType": {
-          "description": "Optional. The behavior the caller wants users to see when there is a price increase during migration. If left unset, the behavior defaults to PRICE_INCREASE_TYPE_OPT_IN. Note that the first opt-out price increase migration for each app must be initiated in Play Console.",
+          "description": "Optional. The requested type of price increase",
           "enum": [
             "PRICE_INCREASE_TYPE_UNSPECIFIED",
             "PRICE_INCREASE_TYPE_OPT_IN",
@@ -7958,8 +7958,8 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "Price increase will be presented to users on an opt-in basis.",
-            "Price increase will be presented to users on an opt-out basis."
+            "Subscribers must accept the price increase or their subscription is canceled.",
+            "Subscribers are notified but do not have to accept the price increase. Opt-out price increases not meeting regional, frequency, and amount limits will proceed as opt-in price increase. The first opt-out price increase for each app must be initiated in the Google Play Console."
           ],
           "type": "string"
         },
@@ -8249,11 +8249,21 @@
       "description": "Revocation context of the purchases.subscriptionsv2.revoke API.",
       "id": "RevocationContext",
       "properties": {
+        "fullRefund": {
+          "$ref": "RevocationContextFullRefund",
+          "description": "Optional. Used when users should be refunded the full amount of the latest order of the subscription."
+        },
         "proratedRefund": {
           "$ref": "RevocationContextProratedRefund",
           "description": "Optional. Used when users should be refunded a prorated amount they paid for their subscription based on the amount of time remaining in a subscription."
         }
       },
+      "type": "object"
+    },
+    "RevocationContextFullRefund": {
+      "description": "Used to determine if the refund type in the RevocationContext is a full refund.",
+      "id": "RevocationContextFullRefund",
+      "properties": {},
       "type": "object"
     },
     "RevocationContextProratedRefund": {
