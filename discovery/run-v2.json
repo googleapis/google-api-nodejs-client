@@ -4027,6 +4027,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2ServiceMesh": {
+      "description": "Service mesh configuration.",
+      "id": "GoogleCloudRunV2ServiceMesh",
+      "properties": {
+        "mesh": {
+          "description": "The service mesh resource name. Format: projects/{project_number}/locations/global/meshes/{mesh}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2ServiceScaling": {
       "description": "Scaling settings applied at the service level rather than at the revision level.",
       "id": "GoogleCloudRunV2ServiceScaling",

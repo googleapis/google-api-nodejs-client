@@ -1519,6 +1519,15 @@ export namespace run_v2 {
     mesh?: string | null;
   }
   /**
+   * Service mesh configuration.
+   */
+  export interface Schema$GoogleCloudRunV2ServiceMesh {
+    /**
+     * The service mesh resource name. Format: projects/{project_number\}/locations/global/meshes/{mesh\}.
+     */
+    mesh?: string | null;
+  }
+  /**
    * Scaling settings applied at the service level rather than at the revision level.
    */
   export interface Schema$GoogleCloudRunV2ServiceScaling {
