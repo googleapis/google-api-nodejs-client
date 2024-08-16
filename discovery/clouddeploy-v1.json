@@ -219,7 +219,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent collection in which the `CustomTargetType` should be created. Format should be `projects/{project_id}/locations/{location_name}`.",
+                      "description": "Required. The parent collection in which the `CustomTargetType` must be created. The format is `projects/{project_id}/locations/{location_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -421,7 +421,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the `CustomTargetType` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
+                      "description": "Required. Field mask is used to specify the fields to be overwritten by the update in the `CustomTargetType` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -490,7 +490,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent collection in which the `DeliveryPipeline` should be created. Format should be `projects/{project_id}/locations/{location_name}`.",
+                      "description": "Required. The parent collection in which the `DeliveryPipeline` must be created. The format is `projects/{project_id}/locations/{location_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -543,7 +543,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. The name of the `DeliveryPipeline` to delete. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
+                      "description": "Required. The name of the `DeliveryPipeline` to delete. The format is `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                       "required": true,
@@ -697,7 +697,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the `DeliveryPipeline` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
+                      "description": "Required. Field mask is used to specify the fields to be overwritten by the update in the `DeliveryPipeline` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -729,7 +729,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The `DeliveryPipeline` for which the rollback `Rollout` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
+                      "description": "Required. The `DeliveryPipeline` for which the rollback `Rollout` must be created. The format is `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                       "required": true,
@@ -925,7 +925,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent collection in which the `Automation` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
+                          "description": "Required. The parent collection in which the `Automation` must be created. The format is `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                           "required": true,
@@ -973,7 +973,7 @@
                           "type": "string"
                         },
                         "name": {
-                          "description": "Required. The name of the `Automation` to delete. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.",
+                          "description": "Required. The name of the `Automation` to delete. The format is `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/automations/{automation_name}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/automations/[^/]+$",
                           "required": true,
@@ -1096,7 +1096,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Field mask is used to specify the fields to be overwritten in the `Automation` resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
+                          "description": "Required. Field mask is used to specify the fields to be overwritten by the update in the `Automation` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1160,7 +1160,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent collection in which the `Release` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
+                          "description": "Required. The parent collection in which the `Release` is created. The format is `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                           "required": true,
@@ -1362,7 +1362,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The parent collection in which the `Rollout` should be created. Format should be `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.",
+                              "description": "Required. The parent collection in which the `Rollout` must be created. The format is `projects/{project_id}/locations/{location_name}/deliveryPipelines/{pipeline_name}/releases/{release_name}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+/releases/[^/]+$",
                               "required": true,
@@ -1773,7 +1773,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent collection in which the `Target` should be created. Format should be `projects/{project_id}/locations/{location_name}`.",
+                      "description": "Required. The parent collection in which the `Target` must be created. The format is `projects/{project_id}/locations/{location_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1826,7 +1826,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the `Target` to delete. Format should be `projects/{project_id}/locations/{location_name}/targets/{target_name}`.",
+                      "description": "Required. The name of the `Target` to delete. The format is `projects/{project_id}/locations/{location_name}/targets/{target_name}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/targets/[^/]+$",
                       "required": true,
@@ -1980,7 +1980,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Target resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
+                      "description": "Required. Field mask is used to specify the fields to be overwritten by the update in the `Target` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2065,7 +2065,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240809",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -3020,6 +3020,59 @@
       },
       "type": "object"
     },
+    "CustomTargetTypeNotificationEvent": {
+      "description": "Payload proto for \"clouddeploy.googleapis.com/customtargettype_notification\" Platform Log event that describes the failure to send a custom target type status change Pub/Sub notification.",
+      "id": "CustomTargetTypeNotificationEvent",
+      "properties": {
+        "customTargetType": {
+          "description": "The name of the `CustomTargetType`.",
+          "type": "string"
+        },
+        "customTargetTypeUid": {
+          "description": "Unique identifier of the `CustomTargetType`.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Debug message for when a notification fails to send.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of this notification, e.g. for a Pub/Sub failure.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+            "TYPE_RESOURCE_STATE_CHANGE",
+            "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
+            "TYPE_ROLLOUT_UPDATE",
+            "TYPE_RENDER_STATUES_CHANGE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "A Pub/Sub notification failed to be sent.",
+            "Resource state changed.",
+            "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
+            "Rollout updated.",
+            "Deprecated: This field is never used. Use release_render log type instead."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Date": {
       "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
@@ -3292,6 +3345,59 @@
       },
       "type": "object"
     },
+    "DeployPolicyNotificationEvent": {
+      "description": "Payload proto for \"clouddeploy.googleapis.com/deploypolicy_notification\". Platform Log event that describes the failure to send a pub/sub notification when there is a DeployPolicy status change.",
+      "id": "DeployPolicyNotificationEvent",
+      "properties": {
+        "deployPolicy": {
+          "description": "The name of the `DeployPolicy`.",
+          "type": "string"
+        },
+        "deployPolicyUid": {
+          "description": "Unique identifier of the deploy policy.",
+          "type": "string"
+        },
+        "message": {
+          "description": "Debug message for when a deploy policy fails to send a pub/sub notification.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of this notification, e.g. for a Pub/Sub failure.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "TYPE_PUBSUB_NOTIFICATION_FAILURE",
+            "TYPE_RESOURCE_STATE_CHANGE",
+            "TYPE_PROCESS_ABORTED",
+            "TYPE_RESTRICTION_VIOLATED",
+            "TYPE_RESOURCE_DELETED",
+            "TYPE_ROLLOUT_UPDATE",
+            "TYPE_RENDER_STATUES_CHANGE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "enumDescriptions": [
+            "Type is unspecified.",
+            "A Pub/Sub notification failed to be sent.",
+            "Resource state changed.",
+            "A process aborted.",
+            "Restriction check failed.",
+            "Resource deleted.",
+            "Rollout updated.",
+            "Deprecated: This field is never used. Use release_render log type instead."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeploymentJobs": {
       "description": "Deployment job composition.",
       "id": "DeploymentJobs",
@@ -3417,6 +3523,10 @@
         },
         "httpRoute": {
           "description": "Required. Name of the Gateway API HTTPRoute.",
+          "type": "string"
+        },
+        "podSelectorLabel": {
+          "description": "Optional. The label to use when selecting Pods for the Deployment and Service resources. This label must already be present in both resources.",
           "type": "string"
         },
         "routeUpdateWaitTime": {
@@ -4479,7 +4589,7 @@
       "type": "object"
     },
     "PromoteReleaseRule": {
-      "description": "`PromoteRelease` rule will automatically promote a release from the current target to a specified target.",
+      "description": "The `PromoteRelease` rule will automatically promote a release from the current target to a specified target.",
       "id": "PromoteReleaseRule",
       "properties": {
         "condition": {
@@ -4492,7 +4602,7 @@
           "type": "string"
         },
         "destinationTargetId": {
-          "description": "Optional. The ID of the stage in the pipeline to which this `Release` is deploying. If unspecified, default it to the next stage in the promotion flow. The value of this field could be one of the following: * The last segment of a target name. It only needs the ID to determine if the target is one of the stages in the promotion sequence defined in the pipeline. * \"@next\", the next target in the promotion sequence.",
+          "description": "Optional. The ID of the stage in the pipeline to which this `Release` is deploying. If unspecified, default it to the next stage in the promotion flow. The value of this field could be one of the following: * The last segment of a target name * \"@next\", the next target in the promotion sequence",
           "type": "string"
         },
         "id": {
@@ -5499,6 +5609,10 @@
           "description": "Optional. Whether to disable Pod overprovisioning. If Pod overprovisioning is disabled then Cloud Deploy will limit the number of total Pods used for the deployment strategy to the number of Pods the Deployment has on the cluster.",
           "type": "boolean"
         },
+        "podSelectorLabel": {
+          "description": "Optional. The label to use when selecting Pods for the Deployment resource. This label must already be present in the Deployment.",
+          "type": "string"
+        },
         "service": {
           "description": "Required. Name of the Kubernetes Service.",
           "type": "string"
@@ -5881,7 +5995,7 @@
       "id": "TargetAttribute",
       "properties": {
         "id": {
-          "description": "ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name. It only needs the ID to determine which target is being referred to * \"*\", all targets in a location.",
+          "description": "ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name * \"*\", all targets in a location",
           "type": "string"
         },
         "labels": {
