@@ -2,7 +2,7 @@
 
 # domainsrdap
 
-> Read-only public API that lets users search for information about domain names.
+> 
 
 ## Installation
 
