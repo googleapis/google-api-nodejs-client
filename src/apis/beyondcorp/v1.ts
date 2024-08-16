@@ -1260,6 +1260,15 @@ export namespace beyondcorp_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response message for calling ShouldThrottle
+   */
+  export interface Schema$ShouldThrottleResponse {
+    /**
+     * Whether the port should be throttled
+     */
+    shouldThrottle?: boolean | null;
+  }
+  /**
    * TunnelerError is an error proto for errors returned by the connection manager.
    */
   export interface Schema$Tunnelv1ProtoTunnelerError {
@@ -5675,6 +5684,102 @@ export namespace beyondcorp_v1 {
     }
 
     /**
+     * Calls the Bouncer method ShouldThrottle to check if a request should be throttled.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    shouldThrottle(
+      params: Params$Resource$Projects$Locations$Appgateways$Shouldthrottle,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    shouldThrottle(
+      params?: Params$Resource$Projects$Locations$Appgateways$Shouldthrottle,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShouldThrottleResponse>;
+    shouldThrottle(
+      params: Params$Resource$Projects$Locations$Appgateways$Shouldthrottle,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    shouldThrottle(
+      params: Params$Resource$Projects$Locations$Appgateways$Shouldthrottle,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShouldThrottleResponse>,
+      callback: BodyResponseCallback<Schema$ShouldThrottleResponse>
+    ): void;
+    shouldThrottle(
+      params: Params$Resource$Projects$Locations$Appgateways$Shouldthrottle,
+      callback: BodyResponseCallback<Schema$ShouldThrottleResponse>
+    ): void;
+    shouldThrottle(
+      callback: BodyResponseCallback<Schema$ShouldThrottleResponse>
+    ): void;
+    shouldThrottle(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Appgateways$Shouldthrottle
+        | BodyResponseCallback<Schema$ShouldThrottleResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShouldThrottleResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShouldThrottleResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ShouldThrottleResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Appgateways$Shouldthrottle;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Appgateways$Shouldthrottle;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:shouldThrottle').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShouldThrottleResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShouldThrottleResponse>(parameters);
+      }
+    }
+
+    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      *
      * @param params - Parameters for request
@@ -5864,6 +5969,21 @@ export namespace beyondcorp_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Appgateways$Shouldthrottle
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. The port that is being throttled
+     */
+    port?: number;
+    /**
+     * Optional. The current throughput through the port (mbps)
+     */
+    requestedAmount?: string;
   }
   export interface Params$Resource$Projects$Locations$Appgateways$Testiampermissions
     extends StandardParameters {
