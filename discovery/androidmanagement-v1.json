@@ -585,7 +585,7 @@
         "enrollmentTokens": {
           "methods": {
             "create": {
-              "description": "Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore. Once an enrollment token has been created, it's not possible to retrieve the token's content anymore using AM API. It is recommended for EMMs to securely store the token if it's intended to be reused.",
+              "description": "Creates an enrollment token for a given enterprise. It's up to the caller's responsibility to manage the lifecycle of newly created tokens and deleting them when they're not intended to be used anymore.",
               "flatPath": "v1/enterprises/{enterprisesId}/enrollmentTokens",
               "httpMethod": "POST",
               "id": "androidmanagement.enterprises.enrollmentTokens.create",
@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20240808",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1193,7 +1193,7 @@
       "id": "AdvancedSecurityOverrides",
       "properties": {
         "commonCriteriaMode": {
-          "description": "Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.",
+          "description": "Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Common Criteria Mode is only supported on company-owned devices running Android 11 or above.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.",
           "enum": [
             "COMMON_CRITERIA_MODE_UNSPECIFIED",
             "COMMON_CRITERIA_MODE_DISABLED",
@@ -2506,7 +2506,7 @@
         },
         "commonCriteriaModeInfo": {
           "$ref": "CommonCriteriaModeInfo",
-          "description": "Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy."
+          "description": "Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy the device is company-owned."
         },
         "deviceSettings": {
           "$ref": "DeviceSettings",
@@ -4248,9 +4248,9 @@
             "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
-            "This value is disallowed.",
+            "This value is not used.",
             "The setting is not supported in the API level of the Android version running on the device.",
-            "The management mode (profile owner, device owner, etc.) doesn't support the setting.",
+            "The management mode (such as fully managed or work profile) doesn't support the setting.",
             "The user has not taken required action to comply with the setting.",
             "The setting has an invalid value.",
             "The app required to implement the policy is not installed.",
@@ -4326,9 +4326,9 @@
             "DEVICE_INCOMPATIBLE"
           ],
           "enumDescriptions": [
-            "This value is disallowed.",
+            "This value is not used.",
             "The setting is not supported in the API level of the Android version running on the device.",
-            "The management mode (profile owner, device owner, etc.) doesn't support the setting.",
+            "The management mode (such as fully managed or work profile) doesn't support the setting.",
             "The user has not taken required action to comply with the setting.",
             "The setting has an invalid value.",
             "The app required to implement the policy is not installed.",
@@ -5751,6 +5751,20 @@
           ],
           "type": "string"
         },
+        "defaultStatus": {
+          "description": "Optional. Whether the sign-in URL should be used by default for the enterprise. The SigninDetail with defaultStatus set to SIGNIN_DETAIL_IS_DEFAULT is used for Google account enrollment method. Only one of an enterprise's signinDetails can have defaultStatus set to SIGNIN_DETAIL_IS_DEFAULT. If an Enterprise has at least one signinDetails and none of them have defaultStatus set to SIGNIN_DETAIL_IS_DEFAULT then the first one from the list is selected and has set defaultStatus to SIGNIN_DETAIL_IS_DEFAULT. If no signinDetails specified for the Enterprise then the Google Account device enrollment will fail.",
+          "enum": [
+            "SIGNIN_DETAIL_DEFAULT_STATUS_UNSPECIFIED",
+            "SIGNIN_DETAIL_IS_DEFAULT",
+            "SIGNIN_DETAIL_IS_NOT_DEFAULT"
+          ],
+          "enumDescriptions": [
+            "Equivalent to SIGNIN_DETAIL_IS_NOT_DEFAULT.",
+            "The sign-in URL will be used by default for the enterprise.",
+            "The sign-in URL will not be used by default for the enterprise."
+          ],
+          "type": "string"
+        },
         "qrCode": {
           "description": "A JSON string whose UTF-8 representation can be used to generate a QR code to enroll a device with this enrollment token. To enroll a device using NFC, the NFC record must contain a serialized java.util.Properties representation of the properties in the JSON. This is a read-only field generated by the server.",
           "type": "string"
@@ -5945,7 +5959,7 @@
           "type": "boolean"
         },
         "commonCriteriaModeEnabled": {
-          "description": "Whether Common Criteria Mode reporting is enabled.",
+          "description": "Whether Common Criteria Mode reporting is enabled. This is supported only on company-owned devices.",
           "type": "boolean"
         },
         "deviceSettingsEnabled": {
