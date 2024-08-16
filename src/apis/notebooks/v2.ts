@@ -390,6 +390,10 @@ export namespace notebooks_v2 {
      */
     metadata?: {[key: string]: string} | null;
     /**
+     * Optional. The minimum CPU platform to use for this instance. The list of valid values can be found in https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones
+     */
+    minCpuPlatform?: string | null;
+    /**
      * Optional. The network interfaces for the VM. Supports only one interface.
      */
     networkInterfaces?: Schema$NetworkInterface[];
