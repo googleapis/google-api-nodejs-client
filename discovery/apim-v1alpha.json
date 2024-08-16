@@ -174,6 +174,42 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "listApiObservationTags": {
+              "description": "ListApiObservationTags lists all extant tags on any observation in the given project.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:listApiObservationTags",
+              "httpMethod": "GET",
+              "id": "apim.projects.locations.listApiObservationTags",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of tags to return. The service may return fewer than this value. If unspecified, at most 10 tags will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListApiObservationTags` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiObservationTags` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns this collection of tags. Format: projects/{project}/locations/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}:listApiObservationTags",
+              "response": {
+                "$ref": "ListApiObservationTagsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
@@ -324,7 +360,7 @@
                   ]
                 },
                 "list": {
-                  "description": "ListObservationJobs gets all ObservationJobs for a given project and location",
+                  "description": "ListObservationJobs gets all ObservationJobs for a given project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/observationJobs",
                   "httpMethod": "GET",
                   "id": "apim.projects.locations.observationJobs.list",
@@ -363,6 +399,34 @@
               "resources": {
                 "apiObservations": {
                   "methods": {
+                    "batchEditTags": {
+                      "description": "BatchEditTagsApiObservations adds or removes Tags for ApiObservations.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/observationJobs/{observationJobsId}/apiObservations:batchEditTags",
+                      "httpMethod": "POST",
+                      "id": "apim.projects.locations.observationJobs.apiObservations.batchEditTags",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource shared by all ApiObservations being edited. Format: projects/{project}/locations/{location}/observationJobs/{observation_job}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/observationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/apiObservations:batchEditTags",
+                      "request": {
+                        "$ref": "BatchEditTagsApiObservationsRequest"
+                      },
+                      "response": {
+                        "$ref": "BatchEditTagsApiObservationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "GetApiObservation retrieves a single ApiObservation by name.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/observationJobs/{observationJobsId}/apiObservations/{apiObservationsId}",
@@ -389,7 +453,7 @@
                       ]
                     },
                     "list": {
-                      "description": "ListApiObservations gets all ApiObservations for a given project and location and ObservationJob",
+                      "description": "ListApiObservations gets all ApiObservations for a given project and location and ObservationJob.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/observationJobs/{observationJobsId}/apiObservations",
                       "httpMethod": "GET",
                       "id": "apim.projects.locations.observationJobs.apiObservations.list",
@@ -454,7 +518,7 @@
                           ]
                         },
                         "list": {
-                          "description": "ListApiOperations gets all ApiOperations for a given project and location and ObservationJob and ApiObservation",
+                          "description": "ListApiOperations gets all ApiOperations for a given project and location and ObservationJob and ApiObservation.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/observationJobs/{observationJobsId}/apiObservations/{apiObservationsId}/apiOperations",
                           "httpMethod": "GET",
                           "id": "apim.projects.locations.observationJobs.apiObservations.apiOperations.list",
@@ -586,7 +650,7 @@
                   ]
                 },
                 "list": {
-                  "description": "ListObservationSources gets all ObservationSources for a given project and location",
+                  "description": "ListObservationSources gets all ObservationSources for a given project and location.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/observationSources",
                   "httpMethod": "GET",
                   "id": "apim.projects.locations.observationSources.list",
@@ -751,7 +815,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240717",
   "rootUrl": "https://apim.googleapis.com/",
   "schemas": {
     "ApiObservation": {
@@ -856,6 +920,34 @@
       },
       "type": "object"
     },
+    "BatchEditTagsApiObservationsRequest": {
+      "description": "Message for requesting batch edit tags for ApiObservations",
+      "id": "BatchEditTagsApiObservationsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The request message specifying the resources to update. A maximum of 1000 apiObservations can be modified in a batch.",
+          "items": {
+            "$ref": "EditTagsApiObservationsRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchEditTagsApiObservationsResponse": {
+      "description": "Message for response to edit Tags for ApiObservations",
+      "id": "BatchEditTagsApiObservationsResponse",
+      "properties": {
+        "apiObservations": {
+          "description": "ApiObservations that were changed",
+          "items": {
+            "$ref": "ApiObservation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -866,6 +958,24 @@
       "description": "Message for disabling an ObservationJob",
       "id": "DisableObservationJobRequest",
       "properties": {},
+      "type": "object"
+    },
+    "EditTagsApiObservationsRequest": {
+      "description": "Message for requesting edit tags for ApiObservation",
+      "id": "EditTagsApiObservationsRequest",
+      "properties": {
+        "apiObservationId": {
+          "description": "Required. Identifier of ApiObservation need to be edit tags Format example: \"apigee.googleapis.com|us-west1|443\"",
+          "type": "string"
+        },
+        "tagActions": {
+          "description": "Required. Tag actions to be applied",
+          "items": {
+            "$ref": "TagAction"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -1105,6 +1215,24 @@
         },
         "name": {
           "description": "Name of query param",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListApiObservationTagsResponse": {
+      "description": "Message for response to listing tags",
+      "id": "ListApiObservationTagsResponse",
+      "properties": {
+        "apiObservationTags": {
+          "description": "The tags from the specified project",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -1468,6 +1596,31 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TagAction": {
+      "description": "Message for edit tag action",
+      "id": "TagAction",
+      "properties": {
+        "action": {
+          "description": "Required. Action to be applied",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ADD",
+            "REMOVE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Addition of a Tag.",
+            "Removal of a Tag."
+          ],
+          "type": "string"
+        },
+        "tag": {
+          "description": "Required. Tag to be added or removed",
           "type": "string"
         }
       },
