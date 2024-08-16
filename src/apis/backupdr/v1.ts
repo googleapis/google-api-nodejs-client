@@ -896,9 +896,371 @@ export namespace backupdr_v1 {
     role?: string | null;
   }
   /**
+   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
+   */
+  export interface Schema$BlobstoreLocation {
+    policyId?: string[] | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  export interface Schema$CloudAsset {
+    assetName?: string | null;
+    assetType?: string | null;
+  }
+  export interface Schema$CloudAssetComposition {
+    childAsset?: Schema$CloudAsset[];
+  }
+  /**
+   * ComputeInstanceBackupProperties represents Compute Engine instance backup properties.
+   */
+  export interface Schema$ComputeInstanceBackupProperties {
+    /**
+     * Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify `true`. If unsure, leave this set to `false`. See the https://cloud.google.com/vpc/docs/using-routes#canipforward documentation for more information.
+     */
+    canIpForward?: boolean | null;
+    /**
+     * An optional text description for the instances that are created from these properties.
+     */
+    description?: string | null;
+    /**
+     * An array of disks that are associated with the instances that are created from these properties.
+     */
+    disk?: Schema$AttachedDisk[];
+    /**
+     * A list of guest accelerator cards' type and count to use for instances created from these properties.
+     */
+    guestAccelerator?: Schema$AcceleratorConfig[];
+    /**
+     * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
+     */
+    keyRevocationActionType?: string | null;
+    /**
+     * The machine type to use for instances that are created from these properties.
+     */
+    machineType?: string | null;
+    /**
+     * The metadata key/value pairs to assign to instances that are created from these properties. These pairs can consist of custom metadata or predefined keys. See https://cloud.google.com/compute/docs/metadata/overview for more information.
+     */
+    metadata?: Schema$Metadata;
+    /**
+     * Minimum cpu/platform to be used by instances. The instance may be scheduled on the specified or newer cpu/platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: Intel Haswell` or `minCpuPlatform: Intel Sandy Bridge`. For more information, read https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
+     */
+    minCpuPlatform?: string | null;
+    /**
+     * An array of network access configurations for this interface.
+     */
+    networkInterface?: Schema$NetworkInterface[];
+    /**
+     * Specifies the scheduling options for the instances that are created from these properties.
+     */
+    scheduling?: Schema$Scheduling;
+    /**
+     * A list of service accounts with specified scopes. Access tokens for these service accounts are available to the instances that are created from these properties. Use metadata queries to obtain the access tokens for these instances.
+     */
+    serviceAccount?: Schema$ServiceAccount[];
+    /**
+     * The source instance used to create this backup. This can be a partial or full URL to the resource. For example, the following are valid values: -https://www.googleapis.com/compute/v1/projects/project/zones/zone/instances/instance -projects/project/zones/zone/instances/instance
+     */
+    sourceInstance?: string | null;
+    /**
+     * A list of tags to apply to the instances that are created from these properties. The tags identify valid sources or targets for network firewalls. The setTags method can modify this list of tags. Each tag within the list must comply with RFC1035 (https://www.ietf.org/rfc/rfc1035.txt).
+     */
+    tags?: Schema$Tags;
+  }
+  /**
+   * ComputeInstanceDataSourceProperties represents the properties of a ComputeEngine resource that are stored in the DataSource.
+   */
+  export interface Schema$ComputeInstanceDataSourceProperties {
+    /**
+     * The description of the Compute Engine instance.
+     */
+    description?: string | null;
+    /**
+     * The machine type of the instance.
+     */
+    machineType?: string | null;
+    /**
+     * Name of the compute instance backed up by the datasource.
+     */
+    name?: string | null;
+    /**
+     * The total number of disks attached to the Instance.
+     */
+    totalDiskCount?: string | null;
+    /**
+     * The sum of all the disk sizes.
+     */
+    totalDiskSizeGb?: string | null;
+  }
+  /**
+   * ComputeInstanceRestoreProperties represents Compute Engine instance properties to be overridden during restore.
+   */
+  export interface Schema$ComputeInstanceRestoreProperties {
+    /**
+     * Optional. Controls for advanced machine-related behavior features.
+     */
+    advancedMachineFeatures?: Schema$AdvancedMachineFeatures;
+    /**
+     * Optional. Allows this instance to send and receive packets with non-matching destination or source IPs.
+     */
+    canIpForward?: boolean | null;
+    /**
+     * Optional. Controls Confidential compute options on the instance
+     */
+    confidentialInstanceConfig?: Schema$ConfidentialInstanceConfig;
+    /**
+     * Optional. Whether the resource should be protected against deletion.
+     */
+    deletionProtection?: boolean | null;
+    /**
+     * Optional. An optional description of this resource. Provide this property when you create the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Array of disks associated with this instance. Persistent disks must be created before you can assign them.
+     */
+    disks?: Schema$AttachedDisk[];
+    /**
+     * Optional. Enables display device for the instance.
+     */
+    displayDevice?: Schema$DisplayDevice;
+    /**
+     * Optional. A list of the type and count of accelerator cards attached to the instance.
+     */
+    guestAccelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Optional. Specifies the hostname of the instance. The specified hostname must be RFC1035 compliant. If hostname is not specified, the default hostname is [INSTANCE_NAME].c.[PROJECT_ID].internal when using the global DNS, and [INSTANCE_NAME].[ZONE].c.[PROJECT_ID].internal when using zonal DNS.
+     */
+    hostname?: string | null;
+    /**
+     * Optional. Encrypts suspended data for an instance with a customer-managed encryption key.
+     */
+    instanceEncryptionKey?: Schema$CustomerEncryptionKey;
+    /**
+     * Optional. KeyRevocationActionType of the instance.
+     */
+    keyRevocationActionType?: string | null;
+    /**
+     * Optional. Labels to apply to this instance.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Full or partial URL of the machine type resource to use for this instance.
+     */
+    machineType?: string | null;
+    /**
+     * Optional. This includes custom metadata and predefined keys.
+     */
+    metadata?: Schema$Metadata;
+    /**
+     * Optional. Minimum CPU platform to use for this instance.
+     */
+    minCpuPlatform?: string | null;
+    /**
+     * Required. Name of the compute instance.
+     */
+    name?: string | null;
+    /**
+     * Optional. An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
+     */
+    networkInterfaces?: Schema$NetworkInterface[];
+    /**
+     * Optional. Configure network performance such as egress bandwidth tier.
+     */
+    networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
+    /**
+     * Input only. Additional params passed with the request, but not persisted as part of resource payload.
+     */
+    params?: Schema$InstanceParams;
+    /**
+     * Optional. The private IPv6 google access type for the VM. If not specified, use INHERIT_FROM_SUBNETWORK as default.
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
+     * Optional. Specifies the reservations that this instance can consume from.
+     */
+    reservationAffinity?: Schema$AllocationAffinity;
+    /**
+     * Optional. Resource policies applied to this instance.
+     */
+    resourcePolicies?: string[] | null;
+    /**
+     * Optional. Sets the scheduling options for this instance.
+     */
+    scheduling?: Schema$Scheduling;
+    /**
+     * Optional. A list of service accounts, with their specified scopes, authorized for this instance. Only one service account per VM instance is supported.
+     */
+    serviceAccounts?: Schema$ServiceAccount[];
+    /**
+     * Optional. Tags to apply to this instance. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during instance creation.
+     */
+    tags?: Schema$Tags;
+  }
+  /**
+   * ComputeInstanceTargetEnvironment represents Compute Engine target environment to be used during restore.
+   */
+  export interface Schema$ComputeInstanceTargetEnvironment {
+    /**
+     * Required. Target project for the Compute Engine instance.
+     */
+    project?: string | null;
+    /**
+     * Required. The zone of the Compute Engine instance.
+     */
+    zone?: string | null;
+  }
+  /**
+   * A set of Confidential Instance options.
+   */
+  export interface Schema$ConfidentialInstanceConfig {
+    /**
+     * Optional. Defines whether the instance should have confidential compute enabled.
+     */
+    enableConfidentialCompute?: boolean | null;
+  }
+  /**
+   * A customer-supplied encryption key.
+   */
+  export interface Schema$CustomerEncryptionKey {
+    /**
+     * Optional. The name of the encryption key that is stored in Google Cloud KMS.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Optional. The service account being used for the encryption request for the given KMS key. If absent, the Compute Engine default service account is used.
+     */
+    kmsKeyServiceAccount?: string | null;
+    /**
+     * Optional. Specifies a 256-bit customer-supplied encryption key.
+     */
+    rawKey?: string | null;
+    /**
+     * Optional. RSA-wrapped 2048-bit customer-supplied encryption key to either encrypt or decrypt this resource.
+     */
+    rsaEncryptedKey?: string | null;
+  }
+  /**
+   * Message describing a DataSource object. Datasource object used to represent Datasource details for both admin and basic view.
+   */
+  export interface Schema$DataSource {
+    /**
+     * Output only. Details of how the resource is configured for backup.
+     */
+    backupConfigInfo?: Schema$BackupConfigInfo;
+    /**
+     * Number of backups in the data source.
+     */
+    backupCount?: string | null;
+    /**
+     * Output only. The backup configuration state.
+     */
+    configState?: string | null;
+    /**
+     * Output only. The time when the instance was created.
+     */
+    createTime?: string | null;
+    /**
+     * The backed up resource is a backup appliance application.
+     */
+    dataSourceBackupApplianceApplication?: Schema$DataSourceBackupApplianceApplication;
+    /**
+     * The backed up resource is a Google Cloud resource. The word 'DataSource' was included in the names to indicate that this is the representation of the Google Cloud resource used within the DataSource object.
+     */
+    dataSourceGcpResource?: Schema$DataSourceGcpResource;
+    /**
+     * Server specified ETag for the ManagementServer resource to prevent simultaneous updates from overwiting each other.
+     */
+    etag?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. No labels currently defined:
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Identifier. The resource name.
+     */
+    name?: string | null;
+    /**
+     * Output only. The DataSource resource instance state.
+     */
+    state?: string | null;
+    /**
+     * The number of bytes (metadata and data) stored in this datasource.
+     */
+    totalStoredBytes?: string | null;
+    /**
+     * Output only. The time when the instance was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * BackupApplianceApplication describes a Source Resource when it is an application backed up by a BackupAppliance.
+   */
+  export interface Schema$DataSourceBackupApplianceApplication {
+    /**
+     * Appliance Id of the Backup Appliance.
+     */
+    applianceId?: string | null;
+    /**
+     * The appid field of the application within the Backup Appliance.
+     */
+    applicationId?: string | null;
+    /**
+     * The name of the Application as known to the Backup Appliance.
+     */
+    applicationName?: string | null;
+    /**
+     * Appliance name.
+     */
+    backupAppliance?: string | null;
+    /**
+     * Hostid of the application host.
+     */
+    hostId?: string | null;
+    /**
+     * Hostname of the host where the application is running.
+     */
+    hostname?: string | null;
+    /**
+     * The type of the application. e.g. VMBackup
+     */
+    type?: string | null;
+  }
+  /**
+   * DataSourceGcpResource is used for protected resources that are Google Cloud Resources. This name is easeier to understand than GcpResourceDataSource or GcpDataSourceResource
+   */
+  export interface Schema$DataSourceGcpResource {
+    /**
+     * ComputeInstanceDataSourceProperties has a subset of Compute Instance properties that are useful at the Datasource level.
+     */
+    computeInstanceDatasourceProperties?: Schema$ComputeInstanceDataSourceProperties;
+    /**
+     * Output only. Full resource pathname URL of the source Google Cloud resource.
+     */
+    gcpResourcename?: string | null;
+    /**
+     * Location of the resource: //"global"/"unspecified".
+     */
+    location?: string | null;
+    /**
+     * The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
+     */
+    type?: string | null;
+  }
+  export interface Schema$DirectLocationAssignment {
+    location?: Schema$LocationAssignment[];
+  }
+  /**
+   * A set of Display Device options
+   */
+  export interface Schema$DisplayDevice {
+    /**
+     * Optional. Enables display for the Compute Engine VM
+     */
+    enableDisplay?: boolean | null;
+  }
   /**
    * ComputeInstanceBackupProperties represents Compute Engine instance backup properties.
    */
@@ -1851,6 +2213,18 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
   }
+  export interface Schema$LocationAssignment {
+    location?: string | null;
+    locationType?: string | null;
+  }
+  export interface Schema$LocationData {
+    blobstoreLocation?: Schema$BlobstoreLocation;
+    childAssetLocation?: Schema$CloudAssetComposition;
+    directLocation?: Schema$DirectLocationAssignment;
+    gcpProjectProxy?: Schema$TenantProjectProxy;
+    placerLocation?: Schema$PlacerLocation;
+    spannerLocation?: Schema$SpannerLocation;
+  }
   /**
    * ManagementServer describes a single BackupDR ManagementServer instance.
    */
@@ -2507,6 +2881,9 @@ export namespace backupdr_v1 {
      * Output only. Third party OAuth Client ID for External Identity Providers.
      */
     thirdPartyOauth2ClientId?: string | null;
+  }
+  export interface Schema$ZoneConfiguration {
+    zone?: string | null;
   }
 
   export class Resource$Projects {
