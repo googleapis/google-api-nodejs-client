@@ -849,6 +849,10 @@ export namespace cloudbuild_v2 {
      */
     arrayVal?: string[] | null;
     /**
+     * Optional. Value of the parameter if type is object.
+     */
+    objectVal?: {[key: string]: string} | null;
+    /**
      * Value of the parameter if type is string.
      */
     stringVal?: string | null;
@@ -862,7 +866,7 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$PipelineRef {
     /**
-     * Name of the Pipeline.
+     * Optional. Name of the Pipeline.
      */
     name?: string | null;
     /**
@@ -1272,7 +1276,7 @@ export namespace cloudbuild_v2 {
      */
     secretName?: string | null;
     /**
-     * Output only. Resource name of the SecretVersion. In format: projects/x/secrets/x/versions/x
+     * Optional. Resource name of the SecretVersion. In format: projects/x/secrets/x/versions/x
      */
     secretVersion?: string | null;
   }
@@ -1502,7 +1506,7 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$TaskRef {
     /**
-     * Name of the task.
+     * Optional. Name of the task.
      */
     name?: string | null;
     /**
