@@ -309,6 +309,10 @@ export namespace networkconnectivity_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. Should be present if usage is set to FOR_MIGRATION.
+     */
+    migration?: Schema$Migration;
+    /**
      * Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      */
     name?: string | null;
@@ -433,6 +437,19 @@ export namespace networkconnectivity_v1alpha1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Specification for migration with source and target resource names.
+   */
+  export interface Schema$Migration {
+    /**
+     * Immutable. Resource path as an URI of the source resource, for example a subnet. The project for the source resource should match the project for the InternalRange. An example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
+     */
+    source?: string | null;
+    /**
+     * Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
+     */
+    target?: string | null;
   }
   /**
    * Represents the metadata of the long-running operation.

@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20240807",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1393,6 +1393,10 @@
           "description": "User-defined labels.",
           "type": "object"
         },
+        "migration": {
+          "$ref": "Migration",
+          "description": "Optional. Should be present if usage is set to FOR_MIGRATION."
+        },
         "name": {
           "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
           "type": "string"
@@ -1456,12 +1460,14 @@
           "enum": [
             "USAGE_UNSPECIFIED",
             "FOR_VPC",
-            "EXTERNAL_TO_VPC"
+            "EXTERNAL_TO_VPC",
+            "FOR_MIGRATION"
           ],
           "enumDescriptions": [
             "Unspecified usage is allowed in calls which identify the resource by other fields and do not need Usage set to complete. These are, i.e.: GetInternalRange and DeleteInternalRange. Usage needs to be specified explicitly in CreateInternalRange or UpdateInternalRange calls.",
             "A VPC resource can use the reserved CIDR block by associating it with the internal range resource if usage is set to FOR_VPC.",
-            "Ranges created with EXTERNAL_TO_VPC cannot be associated with VPC resources and are meant to block out address ranges for various use cases such as usage on-premises, with dynamic route announcements via Interconnect."
+            "Ranges created with EXTERNAL_TO_VPC cannot be associated with VPC resources and are meant to block out address ranges for various use cases such as usage on-premises, with dynamic route announcements via Interconnect.",
+            "Ranges created FOR_MIGRATION can be used to lock a CIDR range between a source and target subnet. If usage is set to FOR_MIGRATION the peering value has to be set to FOR_SELF or default to FOR_SELF when unset."
           ],
           "type": "string"
         },
@@ -1598,6 +1604,21 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Migration": {
+      "description": "Specification for migration with source and target resource names.",
+      "id": "Migration",
+      "properties": {
+        "source": {
+          "description": "Immutable. Resource path as an URI of the source resource, for example a subnet. The project for the source resource should match the project for the InternalRange. An example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
+          "type": "string"
+        },
+        "target": {
+          "description": "Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
           "type": "string"
         }
       },
