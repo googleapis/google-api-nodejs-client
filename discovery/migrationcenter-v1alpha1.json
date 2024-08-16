@@ -2473,7 +2473,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20240711",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3443,7 +3443,7 @@
           "enumDescriptions": [
             "Unspecified (default value).",
             "Default Google Cloud licensing plan. Licensing is charged per usage. This a good value to start with.",
-            "Bring-your-own-license (BYOL) plan. User provides the OS license."
+            "Bring-your-own-license (BYOL) plan. User provides the license."
           ],
           "type": "string"
         },
@@ -3452,7 +3452,7 @@
           "description": "Preferences concerning the machine types to consider on Compute Engine."
         },
         "multithreading": {
-          "description": "Optional. Preferences for multithreading support.",
+          "description": "Optional. Preferences for multithreading support on Windows Server.",
           "enum": [
             "MULTITHREADING_UNSPECIFIED",
             "MULTITHREADING_DISABLED",
@@ -3460,10 +3460,10 @@
             "MULTITHREADING_DISABLED_WITH_COMPENSATION"
           ],
           "enumDescriptions": [
-            "Same as MULTITHREADING_DISABLED_WITH_COMPENSATION.",
-            "Disable simultaneous multithreading if doing so is advantageous.",
-            "Always enable simultaneous multithreading.",
-            "Disable simultaneous multithreading and increase number of VCPUs to compensate, if doing so is advantageous."
+            "Same as MULTITHREADING_AUTO.",
+            "Disable simultaneous multithreading.",
+            "Enable simultaneous multithreading.",
+            "Disable simultaneous multithreading and increase number of VCPUs to compensate."
           ],
           "type": "string"
         },
@@ -4070,10 +4070,10 @@
             "MULTITHREADING_DISABLED_WITH_COMPENSATION"
           ],
           "enumDescriptions": [
-            "Same as MULTITHREADING_DISABLED_WITH_COMPENSATION.",
-            "Disable simultaneous multithreading if doing so is lower cost.",
-            "Always enable simultaneous multithreading.",
-            "Disable simultaneous multithreading and increase number of VCPUs to compensate, if doing so is lower cost."
+            "Same as MULTITHREADING_AUTO.",
+            "Disable simultaneous multithreading.",
+            "Enable simultaneous multithreading.",
+            "Disable simultaneous multithreading and increase number of VCPUs to compensate."
           ],
           "type": "string"
         },
@@ -6255,7 +6255,7 @@
           "type": "string"
         },
         "licenseType": {
-          "description": "Optional. License type of the OS image.",
+          "description": "Optional. License type for premium images (RHEL, RHEL for SAP, SLES, SLES for SAP, Windows Server).",
           "enum": [
             "LICENSE_TYPE_UNSPECIFIED",
             "LICENSE_TYPE_DEFAULT",
@@ -6264,7 +6264,7 @@
           "enumDescriptions": [
             "Unspecified (default value).",
             "Default Google Cloud licensing plan. Licensing is charged per usage. This a good value to start with.",
-            "Bring-your-own-license (BYOL) plan. User provides the OS license."
+            "Bring-your-own-license (BYOL) plan. User provides the license."
           ],
           "type": "string"
         }
@@ -6991,7 +6991,8 @@
         },
         "monthlyCostCompute": {
           "$ref": "Money",
-          "description": "Compute monthly cost for this preference set."
+          "description": "Output only. Compute monthly cost for this preference set.",
+          "readOnly": true
         },
         "monthlyCostDatabaseBackup": {
           "$ref": "Money",
@@ -7005,23 +7006,28 @@
         },
         "monthlyCostNetworkEgress": {
           "$ref": "Money",
-          "description": "Network Egress monthly cost for this preference set. Only present for virtual machines."
+          "description": "Output only. Network Egress monthly cost for this preference set. Only present for virtual machines.",
+          "readOnly": true
         },
         "monthlyCostOsLicense": {
           "$ref": "Money",
-          "description": "Operating system licensing monthly cost for this preference set. Only present for virtual machines."
+          "description": "Output only. Operating system licensing monthly cost for this preference set. Only present for virtual machines.",
+          "readOnly": true
         },
         "monthlyCostOther": {
           "$ref": "Money",
-          "description": "Miscellaneous monthly cost for this preference set."
+          "description": "Output only. Miscellaneous monthly cost for this preference set.",
+          "readOnly": true
         },
         "monthlyCostStorage": {
           "$ref": "Money",
-          "description": "Storage monthly cost for this preference set."
+          "description": "Output only. Storage monthly cost for this preference set.",
+          "readOnly": true
         },
         "monthlyCostTotal": {
           "$ref": "Money",
-          "description": "Total monthly cost for this preference set."
+          "description": "Output only. Total monthly cost for this preference set.",
+          "readOnly": true
         },
         "preferenceSet": {
           "$ref": "PreferenceSet",
@@ -8296,7 +8302,9 @@
             "COMMITMENT_1_YEAR_MONTHLY_PAYMENTS",
             "COMMITMENT_3_YEAR_MONTHLY_PAYMENTS",
             "COMMITMENT_1_YEAR_UPFRONT_PAYMENT",
-            "COMMITMENT_3_YEAR_UPFRONT_PAYMENT"
+            "COMMITMENT_3_YEAR_UPFRONT_PAYMENT",
+            "COMMITMENT_FLEXIBLE_3_YEAR_MONTHLY_PAYMENTS",
+            "COMMITMENT_FLEXIBLE_3_YEAR_UPFRONT_PAYMENT"
           ],
           "enumDescriptions": [
             "Unspecified commitment plan.",
@@ -8304,7 +8312,9 @@
             "1 year commitment (monthly payments).",
             "3 year commitment (monthly payments).",
             "1 year commitment (upfront payment).",
-            "3 years commitment (upfront payment)."
+            "3 years commitment (upfront payment).",
+            "3-year flexible commitment (monthly payments). While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API.",
+            "3-year flexible commitment (upfront payment). While not supported in the v1 API, this value is converted to UNSPECIFIED in conversions to the v1 API."
           ],
           "type": "string"
         },
