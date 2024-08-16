@@ -1,5 +1,21 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v17.0.0...connectors-v18.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **connectors:** This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([2a34ce1](https://github.com/googleapis/google-api-nodejs-client/commit/2a34ce16bdcffe9152bf5ea663e48f5f6f9814a0))
+* **connectors:** update the API ([d9c65f6](https://github.com/googleapis/google-api-nodejs-client/commit/d9c65f633aa866dd41cb12285c77455514f28be5))
+* **connectors:** update the API ([99eb514](https://github.com/googleapis/google-api-nodejs-client/commit/99eb514cede51267f297e4f1edb1fba28a7f56e0))
+* **connectors:** update the API ([28688f6](https://github.com/googleapis/google-api-nodejs-client/commit/28688f6f92866dd5de9a904ebda2162f547775ae))
+* run the generator ([#3511](https://github.com/googleapis/google-api-nodejs-client/issues/3511)) ([957bc85](https://github.com/googleapis/google-api-nodejs-client/commit/957bc850439a639c5534957333b09598944952c3))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v16.0.0...connectors-v17.0.0) (2024-08-16)
 
 

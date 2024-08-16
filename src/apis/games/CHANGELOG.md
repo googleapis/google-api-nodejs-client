@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v6.0.0...games-v7.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **games:** This release has breaking changes.
+
+### Features
+
+* **games:** update the API ([3bffea5](https://github.com/googleapis/google-api-nodejs-client/commit/3bffea594de56c01439f41ca76fbcc4c34c1483b))
+* **games:** update the API ([360f01f](https://github.com/googleapis/google-api-nodejs-client/commit/360f01f66da803af0fbc5b1b09047dd4288de9ef))
+* **games:** update the API ([1d0f489](https://github.com/googleapis/google-api-nodejs-client/commit/1d0f48983d81059a1a9252a28d2baebc26b31ab1))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v5.10.0...games-v6.0.0) (2024-08-16)
 
 

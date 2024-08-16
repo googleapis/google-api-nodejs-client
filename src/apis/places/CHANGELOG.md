@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v9.3.1...places-v9.4.0) (2024-08-16)
+
+
+### Features
+
+* **places:** update the API ([ee15b8c](https://github.com/googleapis/google-api-nodejs-client/commit/ee15b8ca686d431e8edd5a6e74e5bd87ccb2e09b))
+
+
+### Bug Fixes
+
+* **places:** update the API ([f607d7c](https://github.com/googleapis/google-api-nodejs-client/commit/f607d7cb48ea58d901e83fc9b51441ece71a43e0))
+
 ## [9.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v9.3.0...places-v9.3.1) (2024-08-16)
 
 
