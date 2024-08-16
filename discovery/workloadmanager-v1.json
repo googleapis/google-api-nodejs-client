@@ -772,7 +772,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240717",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -797,6 +797,10 @@
       "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
       "id": "AssetLocation",
       "properties": {
+        "ccfeRmsPath": {
+          "description": "Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.",
+          "type": "string"
+        },
         "expected": {
           "$ref": "IsolationExpectations",
           "description": "Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation."
@@ -1108,7 +1112,7 @@
       "id": "ExternalDataSources",
       "properties": {
         "assetType": {
-          "description": "Required. The asset type of the external data source must be one of go/cai-asset-types",
+          "description": "Required. The asset type of the external data source this can be one of go/cai-asset-types to override the default asset type or it can be a custom type defined by the user custom type must match the asset type in the rule",
           "type": "string"
         },
         "name": {
@@ -1191,6 +1195,10 @@
     "IsolationExpectations": {
       "id": "IsolationExpectations",
       "properties": {
+        "requirementOverride": {
+          "$ref": "RequirementOverride",
+          "description": "Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic."
+        },
         "ziOrgPolicy": {
           "enum": [
             "ZI_UNSPECIFIED",
@@ -1646,6 +1654,44 @@
             "$ref": "ZoneConfiguration"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RequirementOverride": {
+      "id": "RequirementOverride",
+      "properties": {
+        "ziOverride": {
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsOverride": {
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2124,14 +2170,36 @@
             "INSTANCE_ROLE_ASCS",
             "INSTANCE_ROLE_ERS",
             "INSTANCE_ROLE_APP_SERVER",
-            "INSTANCE_ROLE_DATABASE"
+            "INSTANCE_ROLE_DATABASE",
+            "INSTANCE_ROLE_ASCS_ERS",
+            "INSTANCE_ROLE_ASCS_APP_SERVER",
+            "INSTANCE_ROLE_ASCS_DATABASE",
+            "INSTANCE_ROLE_ERS_APP_SERVER",
+            "INSTANCE_ROLE_ERS_DATABASE",
+            "INSTANCE_ROLE_APP_SERVER_DATABASE",
+            "INSTANCE_ROLE_ASCS_ERS_APP_SERVER",
+            "INSTANCE_ROLE_ASCS_ERS_DATABASE",
+            "INSTANCE_ROLE_ASCS_APP_SERVER_DATABASE",
+            "INSTANCE_ROLE_ERS_APP_SERVER_DATABASE",
+            "INSTANCE_ROLE_ASCS_ERS_APP_SERVER_DATABASE"
           ],
           "enumDescriptions": [
             "Unspecified instance role.",
             "Application central services.",
             "Enqueue replication server.",
             "Application server.",
-            "Database node."
+            "Database node.",
+            "Combinations of roles. Application central services and enqueue replication server.",
+            "Application central services and application server.",
+            "Application central services and database.",
+            "Enqueue replication server and application server.",
+            "Enqueue replication server and database.",
+            "Application server and database.",
+            "Application central services, enqueue replication server and application server.",
+            "Application central services, enqueue replication server and database.",
+            "Application central services, application server and database.",
+            "Enqueue replication server, application server and database.",
+            "Application central services, enqueue replication server, application server and database."
           ],
           "type": "string"
         },
@@ -2318,7 +2386,15 @@
     "SpannerLocation": {
       "id": "SpannerLocation",
       "properties": {
+        "backupName": {
+          "description": "Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "dbName": {
+          "description": "Set of databases used by the resource in format /span//",
           "items": {
             "type": "string"
           },
