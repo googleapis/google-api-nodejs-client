@@ -858,6 +858,10 @@ export namespace workloadmanager_v1 {
      */
     version?: string | null;
   }
+  export interface Schema$RequirementOverride {
+    ziOverride?: string | null;
+    zsOverride?: string | null;
+  }
   /**
    * Message represent resource in execution result
    */
