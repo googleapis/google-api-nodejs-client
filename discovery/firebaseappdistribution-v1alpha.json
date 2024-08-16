@@ -585,9 +585,24 @@
       }
     }
   },
-  "revision": "20240628",
+  "revision": "20240726",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
+    "AndroidxCrawlerOutputPoint": {
+      "description": "Point for describing bounding boxes tap locations Top left is 0,0",
+      "id": "AndroidxCrawlerOutputPoint",
+      "properties": {
+        "xCoordinate": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "yCoordinate": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppdistroV1Release": {
       "description": "A release of a Firebase app.",
       "id": "GoogleFirebaseAppdistroV1Release",
@@ -708,16 +723,16 @@
         "steps": {
           "description": "Required. Steps to be accomplished by the AI",
           "items": {
-            "$ref": "GoogleFirebaseAppdistroV1alphaAiInstructionsStep"
+            "$ref": "GoogleFirebaseAppdistroV1alphaAiStep"
           },
           "type": "array"
         }
       },
       "type": "object"
     },
-    "GoogleFirebaseAppdistroV1alphaAiInstructionsStep": {
+    "GoogleFirebaseAppdistroV1alphaAiStep": {
       "description": "A step to be accomplished by the AI",
-      "id": "GoogleFirebaseAppdistroV1alphaAiInstructionsStep",
+      "id": "GoogleFirebaseAppdistroV1alphaAiStep",
       "properties": {
         "assertion": {
           "description": "An assertion to be checked by the AI",
@@ -726,6 +741,44 @@
         "goal": {
           "description": "A goal to be accomplished by the AI",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaAiStepResult": {
+      "description": "Captures the results of an AiStep",
+      "id": "GoogleFirebaseAppdistroV1alphaAiStepResult",
+      "properties": {
+        "assertionDetails": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaAssertionDetails",
+          "description": "Output only. Details for an assertion step.",
+          "readOnly": true
+        },
+        "goalDetails": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaGoalDetails",
+          "description": "Output only. Details for a goal step.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The current state of the step",
+          "enum": [
+            "STEP_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Step state unspecified",
+            "The step is in progress",
+            "The step has completed successfully",
+            "The step has failed"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "step": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaAiStep",
+          "description": "Required. The step performed by the AI"
         }
       },
       "type": "object"
@@ -799,6 +852,28 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppdistroV1alphaAssertionDetails": {
+      "description": "Details for an assertion step.",
+      "id": "GoogleFirebaseAppdistroV1alphaAssertionDetails",
+      "properties": {
+        "explanation": {
+          "description": "Output only. An explanation justifying the assertion result.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "result": {
+          "description": "Output only. The result of the assertion.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "screenshot": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaScreenshot",
+          "description": "Output only. The screenshot used in the context of this assertion.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest": {
       "id": "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest",
       "properties": {
@@ -814,10 +889,38 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleFirebaseAppdistroV1alphaDeviceAction": {
+      "description": "A high level action taken by the AI on the device, potentially involving multiple taps, text entries, waits, etc.",
+      "id": "GoogleFirebaseAppdistroV1alphaDeviceAction",
+      "properties": {
+        "description": {
+          "description": "Output only. A short description of the high level action taken by the AI agent.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceInteractions": {
+          "description": "Output only. The interactions made with the device as part of this higher level action taken by the agent, such as taps, text entries, waits, etc.",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteraction"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppdistroV1alphaDeviceExecution": {
       "description": "The results of running an automated test on a particular device.",
       "id": "GoogleFirebaseAppdistroV1alphaDeviceExecution",
       "properties": {
+        "aiStepResults": {
+          "description": "Output only. Results of the AI steps if passed in",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaAiStepResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "appCrash": {
           "$ref": "GoogleFirebaseAppdistroV1alphaAppCrash",
           "description": "Output only. An app crash, if any occurred during the test.",
@@ -839,14 +942,16 @@
             "CRASHED",
             "NOT_INSTALLED",
             "UNABLE_TO_CRAWL",
-            "DEVICE_OUT_OF_MEMORY"
+            "DEVICE_OUT_OF_MEMORY",
+            "FAILED_AI_STEP"
           ],
           "enumDescriptions": [
             "Reason unspecified.",
             "The app crashed during the test.",
             "If an app is not installed and thus no test can be run with the app. This might be caused by trying to run a test on an unsupported platform.",
             "If the app could not be crawled (possibly because the app did not start).",
-            "If the device ran out of memory during the test."
+            "If the device ran out of memory during the test.",
+            "At least one AI step failed."
           ],
           "readOnly": true,
           "type": "string"
@@ -919,6 +1024,68 @@
         },
         "videoUri": {
           "description": "Output only. A URI to a video of the test run.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaDeviceInteraction": {
+      "description": "An interaction with the device, such as a tap, text entry, wait, etc.",
+      "id": "GoogleFirebaseAppdistroV1alphaDeviceInteraction",
+      "properties": {
+        "screenshot": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaScreenshot",
+          "description": "Output only. The screenshot used in the context of this action. The screen may have changed before the action was actually taken.",
+          "readOnly": true
+        },
+        "swipe": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe",
+          "description": "Output only. A swipe action.",
+          "readOnly": true
+        },
+        "tap": {
+          "$ref": "AndroidxCrawlerOutputPoint",
+          "description": "Output only. A tap action.",
+          "readOnly": true
+        },
+        "textInput": {
+          "description": "Output only. Text entered for a text entry action.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "wait": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionWait",
+          "description": "Output only. A wait action.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe": {
+      "description": "A swipe action.",
+      "id": "GoogleFirebaseAppdistroV1alphaDeviceInteractionSwipe",
+      "properties": {
+        "end": {
+          "$ref": "AndroidxCrawlerOutputPoint",
+          "description": "Output only. The end point of the swipe.",
+          "readOnly": true
+        },
+        "start": {
+          "$ref": "AndroidxCrawlerOutputPoint",
+          "description": "Output only. The start point of the swipe.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaDeviceInteractionWait": {
+      "description": "A wait action.",
+      "id": "GoogleFirebaseAppdistroV1alphaDeviceInteractionWait",
+      "properties": {
+        "duration": {
+          "description": "Output only. The duration of the wait.",
+          "format": "google-duration",
           "readOnly": true,
           "type": "string"
         }
@@ -1069,6 +1236,43 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppdistroV1alphaGoalAction": {
+      "description": "An action taken by the AI agent while attempting to accomplish a goal.",
+      "id": "GoogleFirebaseAppdistroV1alphaGoalAction",
+      "properties": {
+        "deviceAction": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaDeviceAction",
+          "description": "Output only. A high level action taken by the AI on the device.",
+          "readOnly": true
+        },
+        "explanation": {
+          "description": "Output only. An explanation justifying why the action was taken.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "terminalAction": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaTerminalAction",
+          "description": "Output only. An action taken by the AI to end the goal.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaGoalDetails": {
+      "description": "Details for a goal step.",
+      "id": "GoogleFirebaseAppdistroV1alphaGoalDetails",
+      "properties": {
+        "goalActions": {
+          "description": "Output only. The actions taken by the AI while attempting to accomplish the goal.",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaGoalAction"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppdistroV1alphaJwt": {
       "id": "GoogleFirebaseAppdistroV1alphaJwt",
       "properties": {
@@ -1212,7 +1416,7 @@
       "properties": {
         "aiInstructions": {
           "$ref": "GoogleFirebaseAppdistroV1alphaAiInstructions",
-          "description": "Optional. Input only. Instructions for AI driven test. Input only."
+          "description": "Optional. Instructions for AI driven test."
         },
         "createTime": {
           "description": "Output only. Timestamp when the test was run.",
@@ -1279,6 +1483,57 @@
           "description": "Output only. Whether the main activity crawl timed out.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaScreenshot": {
+      "description": "A device screenshot taken during a test.",
+      "id": "GoogleFirebaseAppdistroV1alphaScreenshot",
+      "properties": {
+        "height": {
+          "description": "Output only. The height of the screenshot, in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uri": {
+          "description": "Output only. The URI of the screenshot.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "width": {
+          "description": "Output only. The width of the screenshot, in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaTerminalAction": {
+      "description": "An action taken by the AI to end the goal.",
+      "id": "GoogleFirebaseAppdistroV1alphaTerminalAction",
+      "properties": {
+        "reason": {
+          "description": "Output only. The reason why this goal was ended.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "GOAL_IMPOSSIBLE",
+            "GOAL_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Reason unspecified.",
+            "The goal was impossible to accomplish.",
+            "The goal was completed successfully."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "screenshot": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaScreenshot",
+          "description": "Output only. The screenshot used in the context of this terminal action.",
+          "readOnly": true
         }
       },
       "type": "object"
