@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v13.0.0...ondemandscanning-v14.0.0) (2024-08-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **ondemandscanning:** This release has breaking changes.
+
+### Features
+
+* **ondemandscanning:** update the API ([a99f13a](https://github.com/googleapis/google-api-nodejs-client/commit/a99f13a2c222e2f0045263fd211ada30bda7e345))
+* **ondemandscanning:** update the API ([f9fcce4](https://github.com/googleapis/google-api-nodejs-client/commit/f9fcce46594c8890f4f5a531239ff69974b552b0))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v12.3.0...ondemandscanning-v13.0.0) (2024-08-16)
 
 

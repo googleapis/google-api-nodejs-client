@@ -1,5 +1,14 @@
 # Changelog
 
+## [9.7.8](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.7.7...calendar-v9.7.8) (2024-08-16)
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([3193f6b](https://github.com/googleapis/google-api-nodejs-client/commit/3193f6bd934d16a58771472be28b941f0467b8bb))
+* **calendar:** update the API ([d81ae21](https://github.com/googleapis/google-api-nodejs-client/commit/d81ae21726dc09ea67a3cff50f6eafbef3851853))
+* **calendar:** update the API ([2510e81](https://github.com/googleapis/google-api-nodejs-client/commit/2510e81cc7dd16b74aad5c5ae93cf53daab3272b))
+
 ## [9.7.7](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v9.7.6...calendar-v9.7.7) (2024-08-16)
 
 

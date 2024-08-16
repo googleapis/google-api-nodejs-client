@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/domainsrdap",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "domainsrdap",
   "main": "build/index.js",
   "types": "build/index.d.ts",
