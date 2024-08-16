@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20240607",
+  "revision": "20240802",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -2178,6 +2178,11 @@
       "description": "Report v2 extension proto for passing the resource metadata associated with a resource create/update/delete/undelete event from ESF to Chemist. ResourceEvent proto should be serialized into the ReportRequest.operations.extensions.",
       "id": "V1ResourceEvent",
       "properties": {
+        "contextId": {
+          "description": "The ESF unique context id of the api request, from which this resource event originated. This field is only needed for CAIS integration via api annotation. See go/cais-lro-delete for more details.",
+          "format": "int64",
+          "type": "string"
+        },
         "destinations": {
           "description": "The destinations field determines which backend services should handle the event. This should be specified as a comma-delimited string.",
           "type": "string"
