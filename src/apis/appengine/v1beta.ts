@@ -1495,7 +1495,7 @@ export namespace appengine_v1beta {
      */
     generatedCustomerMetadata?: {[key: string]: any} | null;
     /**
-     * Relative name of the service within the application. Example: default.@OutputOnly
+     * Output only. Relative name of the service within the application. Example: default.@OutputOnly
      */
     id?: string | null;
     /**
@@ -1503,7 +1503,7 @@ export namespace appengine_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Full path to the Service resource in the API. Example: apps/myapp/services/default.@OutputOnly
+     * Output only. Full path to the Service resource in the API. Example: apps/myapp/services/default.@OutputOnly
      */
     name?: string | null;
     /**
@@ -1699,7 +1699,7 @@ export namespace appengine_v1beta {
      */
     buildEnvVariables?: {[key: string]: string} | null;
     /**
-     * Email address of the user who created this version.@OutputOnly
+     * Output only. Email address of the user who created this version.@OutputOnly
      */
     createdBy?: string | null;
     /**
@@ -1715,7 +1715,7 @@ export namespace appengine_v1beta {
      */
     deployment?: Schema$Deployment;
     /**
-     * Total size in bytes of all the files that are included in this version and currently hosted on the App Engine disk.@OutputOnly
+     * Output only. Total size in bytes of all the files that are included in this version and currently hosted on the App Engine disk.@OutputOnly
      */
     diskUsageBytes?: string | null;
     /**
@@ -1779,7 +1779,7 @@ export namespace appengine_v1beta {
      */
     manualScaling?: Schema$ManualScaling;
     /**
-     * Full path to the Version resource in the API. Example: apps/myapp/services/default/versions/v1.@OutputOnly
+     * Output only. Full path to the Version resource in the API. Example: apps/myapp/services/default/versions/v1.@OutputOnly
      */
     name?: string | null;
     /**
@@ -1827,7 +1827,7 @@ export namespace appengine_v1beta {
      */
     threadsafe?: boolean | null;
     /**
-     * Serving URL for this version. Example: "https://myversion-dot-myservice-dot-myapp.appspot.com"@OutputOnly
+     * Output only. Serving URL for this version. Example: "https://myversion-dot-myservice-dot-myapp.appspot.com"@OutputOnly
      */
     versionUrl?: string | null;
     /**
