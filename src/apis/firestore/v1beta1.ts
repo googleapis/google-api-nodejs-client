@@ -384,7 +384,7 @@ export namespace firestore_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected. For PipelineQueryTargets, `document` will be in the new pipeline format, For a Listen stream with both QueryTargets and PipelineQueryTargets present, if a document matches both types of queries, then a separate DocumentChange messages will be sent out one for each set.
+   * A Document has changed. May be the result of multiple writes, including deletes, that ultimately resulted in a new value for the Document. Multiple DocumentChange messages may be returned for the same logical change, if multiple targets are affected.
    */
   export interface Schema$DocumentChange {
     /**
@@ -606,7 +606,7 @@ export namespace firestore_v1beta1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
-   * Nearest Neighbors search config.
+   * Nearest Neighbors search config. The ordering provided by FindNearest supersedes the order_by stage. If multiple documents have the same vector distance, the returned document order is not guaranteed to be stable between queries.
    */
   export interface Schema$FindNearest {
     /**
