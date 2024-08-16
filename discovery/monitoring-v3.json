@@ -756,7 +756,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
+                  "description": "Optional. If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
                   "location": "query",
                   "type": "string"
                 },
@@ -768,18 +768,18 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
+                  "description": "Optional. A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return in a single response.",
+                  "description": "Optional. The maximum number of results to return in a single response.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.",
+                  "description": "Optional. If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.",
                   "location": "query",
                   "type": "string"
                 }
@@ -804,7 +804,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.",
+                  "description": "Identifier. Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/alertPolicies/[^/]+$",
                   "required": true,
@@ -1514,7 +1514,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
+                  "description": "Optional. If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
                   "location": "query",
                   "type": "string"
                 },
@@ -1526,18 +1526,18 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
+                  "description": "Optional. A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.",
+                  "description": "Optional. The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.",
+                  "description": "Optional. If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1562,14 +1562,14 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
+                  "description": "Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/notificationChannels/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "The fields to update.",
+                  "description": "Optional. The fields to update.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -2714,7 +2714,7 @@
       }
     }
   },
-  "revision": "20240616",
+  "revision": "20240804",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2870,7 +2870,7 @@
           "description": "A read-only record of the most recent change to the alerting policy. If provided in a call to create or update, this field will be ignored."
         },
         "name": {
-          "description": "Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.",
+          "description": "Identifier. Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Cloud Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.",
           "type": "string"
         },
         "notificationChannels": {
@@ -2928,7 +2928,7 @@
         },
         "notificationRateLimit": {
           "$ref": "NotificationRateLimit",
-          "description": "Required for alert policies with a LogMatch condition.This limit is not implemented for alert policies that are not log-based."
+          "description": "Required for log-based alert policies, i.e. policies with a LogMatch condition.This limit is not implemented for alert policies that do not have a LogMatch condition."
         }
       },
       "type": "object"
@@ -4905,7 +4905,7 @@
           "type": "array"
         },
         "name": {
-          "description": "The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
+          "description": "Identifier. The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.",
           "type": "string"
         },
         "type": {
@@ -5639,6 +5639,10 @@
       "description": "A collection of data points that describes the time-varying values of a metric. A time series is identified by a combination of a fully-specified monitored resource and a fully-specified metric. This type is used for both listing and creating time series.",
       "id": "TimeSeries",
       "properties": {
+        "description": {
+          "description": "Input only. A detailed description of the time series that will be associated with the google.api.MetricDescriptor for the metric. Once set, this field cannot be changed through CreateTimeSeries.",
+          "type": "string"
+        },
         "metadata": {
           "$ref": "MonitoredResourceMetadata",
           "description": "Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored."
@@ -5675,7 +5679,7 @@
           "description": "The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data. For more information, see Monitored resources for custom metrics (https://cloud.google.com/monitoring/custom-metrics/creating-metrics#custom-metric-resources)."
         },
         "unit": {
-          "description": "The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.",
+          "description": "The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values. This field can only be changed through CreateTimeSeries when it is empty.",
           "type": "string"
         },
         "valueType": {
