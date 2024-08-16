@@ -503,6 +503,25 @@ export namespace gkehub_v1beta {
     policycontroller?: Schema$PolicyControllerMembershipSpec;
   }
   /**
+   * CompliancePostureConfig defines the settings needed to enable/disable features for the Compliance Posture.
+   */
+  export interface Schema$CompliancePostureConfig {
+    /**
+     * List of enabled compliance standards.
+     */
+    complianceStandards?: Schema$ComplianceStandard[];
+    /**
+     * Defines the enablement mode for Compliance Posture.
+     */
+    mode?: string | null;
+  }
+  export interface Schema$ComplianceStandard {
+    /**
+     * Name of the compliance standard.
+     */
+    standard?: string | null;
+  }
+  /**
    * Configuration for Binauthz
    */
   export interface Schema$ConfigManagementBinauthzConfig {
@@ -587,9 +606,17 @@ export namespace gkehub_v1beta {
      */
     monitor?: string | null;
     /**
+     * Deployment state of otel-collector
+     */
+    otelCollector?: string | null;
+    /**
      * Deployment state of reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Deployment state of resource-group-controller-manager
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Deployment state of root-reconciler
      */
@@ -646,7 +673,7 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$ConfigManagementConfigSyncVersion {
     /**
-     * Version of the deployed admission_webhook pod
+     * Version of the deployed admission-webhook pod
      */
     admissionWebhook?: string | null;
     /**
@@ -662,9 +689,17 @@ export namespace gkehub_v1beta {
      */
     monitor?: string | null;
     /**
+     * Version of the deployed otel-collector pod
+     */
+    otelCollector?: string | null;
+    /**
      * Version of the deployed reconciler-manager pod
      */
     reconcilerManager?: string | null;
+    /**
+     * Version of the deployed resource-group-controller-manager pod
+     */
+    resourceGroupControllerManager?: string | null;
     /**
      * Version of the deployed reconciler container in root-reconciler pod
      */
@@ -856,7 +891,7 @@ export namespace gkehub_v1beta {
      */
     management?: string | null;
     /**
-     * Policy Controller configuration for the cluster.
+     * Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead.
      */
     policyController?: Schema$ConfigManagementPolicyController;
     /**
@@ -1109,6 +1144,10 @@ export namespace gkehub_v1beta {
      */
     binaryAuthorizationConfig?: Schema$BinaryAuthorizationConfig;
     /**
+     * Optional. Enable/Disable Compliance Posture features for the cluster. Note that on UpdateFleet, only full replacement of this field is allowed. Users are not allowed for partial updates through field mask.
+     */
+    compliancePostureConfig?: Schema$CompliancePostureConfig;
+    /**
      * Enable/Disable Security Posture features for the cluster.
      */
     securityPostureConfig?: Schema$SecurityPostureConfig;
@@ -1199,6 +1238,10 @@ export namespace gkehub_v1beta {
      * Output only. The Hub-wide Feature state.
      */
     state?: Schema$CommonFeatureState;
+    /**
+     * Output only. List of locations that could not be reached while fetching this feature.
+     */
+    unreachable?: string[] | null;
     /**
      * Output only. When the Feature resource was last updated.
      */
@@ -2913,7 +2956,7 @@ export namespace gkehub_v1beta {
      */
     controlPlane?: string | null;
     /**
-     * Enables automatic Service Mesh management.
+     * Optional. Enables automatic Service Mesh management.
      */
     management?: string | null;
   }
@@ -4128,6 +4171,10 @@ export namespace gkehub_v1beta {
      * Required. The Feature resource name in the format `projects/x/locations/x/features/x`
      */
     name?: string;
+    /**
+     * Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field in Feature proto will be populated. If set to false, the request will fail when some regions are unreachable.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Features$Getiampolicy
     extends StandardParameters {
@@ -4162,6 +4209,10 @@ export namespace gkehub_v1beta {
      * Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x`.
      */
     parent?: string;
+    /**
+     * Optional. If set to true, the response will return partial results when some regions are unreachable and the unreachable field in Feature proto will be populated. If set to false, the request will fail when some regions are unreachable.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Features$Patch
     extends StandardParameters {

@@ -20,6 +20,7 @@ import {gkehub_v1alpha2} from './v1alpha2';
 import {gkehub_v1beta} from './v1beta';
 import {gkehub_v1beta1} from './v1beta1';
 import {gkehub_v2alpha} from './v2alpha';
+import {gkehub_v2beta} from './v2beta';
 
 export const VERSIONS = {
   v1: gkehub_v1.Gkehub,
@@ -28,6 +29,7 @@ export const VERSIONS = {
   v1beta: gkehub_v1beta.Gkehub,
   v1beta1: gkehub_v1beta1.Gkehub,
   v2alpha: gkehub_v2alpha.Gkehub,
+  v2beta: gkehub_v2beta.Gkehub,
 };
 
 export function gkehub(version: 'v1'): gkehub_v1.Gkehub;
@@ -44,6 +46,8 @@ export function gkehub(version: 'v1beta1'): gkehub_v1beta1.Gkehub;
 export function gkehub(options: gkehub_v1beta1.Options): gkehub_v1beta1.Gkehub;
 export function gkehub(version: 'v2alpha'): gkehub_v2alpha.Gkehub;
 export function gkehub(options: gkehub_v2alpha.Options): gkehub_v2alpha.Gkehub;
+export function gkehub(version: 'v2beta'): gkehub_v2beta.Gkehub;
+export function gkehub(options: gkehub_v2beta.Options): gkehub_v2beta.Gkehub;
 export function gkehub<
   T =
     | gkehub_v1.Gkehub
@@ -51,7 +55,8 @@ export function gkehub<
     | gkehub_v1alpha2.Gkehub
     | gkehub_v1beta.Gkehub
     | gkehub_v1beta1.Gkehub
-    | gkehub_v2alpha.Gkehub,
+    | gkehub_v2alpha.Gkehub
+    | gkehub_v2beta.Gkehub,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -67,6 +72,8 @@ export function gkehub<
     | gkehub_v1beta1.Options
     | 'v2alpha'
     | gkehub_v2alpha.Options
+    | 'v2beta'
+    | gkehub_v2beta.Options
 ) {
   return getAPI<T>('gkehub', versionOrOptions, VERSIONS, this);
 }
@@ -79,6 +86,7 @@ export {gkehub_v1alpha2};
 export {gkehub_v1beta};
 export {gkehub_v1beta1};
 export {gkehub_v2alpha};
+export {gkehub_v2beta};
 export {
   AuthPlus,
   GlobalOptions,
