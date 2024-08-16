@@ -20,19 +20,74 @@
   "documentationLink": "https://cloud.google.com/pubsub/docs",
   "endpoints": [
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
-      "location": "me-central2",
-      "description": "Regional Endpoint"
+      "location": "me-central2"
     },
     {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.europe-west3.rep.googleapis.com/",
-      "location": "europe-west3",
-      "description": "Regional Endpoint"
+      "location": "europe-west3"
     },
     {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.europe-west9.rep.googleapis.com/",
-      "location": "europe-west9",
-      "description": "Regional Endpoint"
+      "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
     }
   ],
   "icons": {
@@ -474,7 +529,7 @@
       }
     }
   },
-  "revision": "20240227",
+  "revision": "20240730",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
