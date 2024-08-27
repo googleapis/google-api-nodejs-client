@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudcontrolspartner",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "cloudcontrolspartner",
   "main": "build/index.js",
   "types": "build/index.d.ts",
