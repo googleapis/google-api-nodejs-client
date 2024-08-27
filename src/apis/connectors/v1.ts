@@ -211,6 +211,10 @@ export namespace connectors_v1 {
      * Display name for authentication template.
      */
     displayName?: string | null;
+    /**
+     * Whether the auth config is the default one.
+     */
+    isDefault?: boolean | null;
   }
   /**
    * This configuration captures the details required to render an authorization link for the OAuth Authorization Code Flow.
@@ -426,6 +430,10 @@ export namespace connectors_v1 {
      */
     eventingRuntimeData?: Schema$EventingRuntimeData;
     /**
+     * Output only. The name of the Hostname of the Service Directory service with TLS.
+     */
+    host?: string | null;
+    /**
      * Output only. GCR location where the runtime image is stored. formatted like: gcr.io/{bucketName\}/{imageName\}
      */
     imageLocation?: string | null;
@@ -477,6 +485,10 @@ export namespace connectors_v1 {
      * Optional. Suspended indicates if a user has suspended a connection or not.
      */
     suspended?: boolean | null;
+    /**
+     * Output only. The name of the Service Directory service with TLS.
+     */
+    tlsServiceDirectory?: string | null;
     /**
      * Output only. Updated time.
      */
@@ -691,6 +703,10 @@ export namespace connectors_v1 {
      * Output only. Eventing configuration supported by the Connector.
      */
     eventingConfigTemplate?: Schema$EventingConfigTemplate;
+    /**
+     * Output only. Is async operations supported.
+     */
+    isAsyncOperationsSupported?: boolean | null;
     /**
      * Output only. Is custom actions supported.
      */
@@ -1119,6 +1135,10 @@ export namespace connectors_v1 {
      * Required. The path of the service attachment
      */
     serviceAttachment?: string | null;
+    /**
+     * Output only. The Private Service Connect Connection Endpoint State. This value is only available in the Full view.
+     */
+    state?: string | null;
     /**
      * Output only. Updated time.
      */
@@ -7131,6 +7151,10 @@ export namespace connectors_v1 {
      * Required. Resource name of the form: `projects/x/locations/x/endpointAttachments/x`
      */
     name?: string;
+    /**
+     * Optional. Specifies which fields of the EndpointAttachment are returned in the response. Defaults to `ENDPOINT_ATTACHMENT_VIEW_BASIC` view.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Endpointattachments$List
     extends StandardParameters {
@@ -7154,6 +7178,10 @@ export namespace connectors_v1 {
      * Required. Parent resource od the EndpointAttachment, of the form: `projects/x/locations/x`
      */
     parent?: string;
+    /**
+     * Optional. Specifies which fields of the EndpointAttachment are returned in the response. Defaults to `ENDPOINT_ATTACHMENT_VIEW_BASIC` view.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Endpointattachments$Patch
     extends StandardParameters {

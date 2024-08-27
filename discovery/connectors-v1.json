@@ -1320,6 +1320,21 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpointAttachments/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Specifies which fields of the EndpointAttachment are returned in the response. Defaults to `ENDPOINT_ATTACHMENT_VIEW_BASIC` view.",
+                      "enum": [
+                        "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
+                        "ENDPOINT_ATTACHMENT_VIEW_BASIC",
+                        "ENDPOINT_ATTACHMENT_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED.",
+                        "Do not include status.",
+                        "Includes Status."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+name}",
@@ -1365,6 +1380,21 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Specifies which fields of the EndpointAttachment are returned in the response. Defaults to `ENDPOINT_ATTACHMENT_VIEW_BASIC` view.",
+                      "enum": [
+                        "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED",
+                        "ENDPOINT_ATTACHMENT_VIEW_BASIC",
+                        "ENDPOINT_ATTACHMENT_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "ENDPOINT_ATTACHMENT_VIEW_UNSPECIFIED.",
+                        "Do not include status.",
+                        "Includes Status."
+                      ],
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -2427,7 +2457,7 @@
       }
     }
   },
-  "revision": "20240729",
+  "revision": "20240822",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2582,6 +2612,10 @@
         "displayName": {
           "description": "Display name for authentication template.",
           "type": "string"
+        },
+        "isDefault": {
+          "description": "Whether the auth config is the default one.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2925,6 +2959,11 @@
           "description": "Output only. Eventing Runtime Data.",
           "readOnly": true
         },
+        "host": {
+          "description": "Output only. The name of the Hostname of the Service Directory service with TLS.",
+          "readOnly": true,
+          "type": "string"
+        },
         "imageLocation": {
           "description": "Output only. GCR location where the runtime image is stored. formatted like: gcr.io/{bucketName}/{imageName}",
           "readOnly": true,
@@ -2995,6 +3034,11 @@
         "suspended": {
           "description": "Optional. Suspended indicates if a user has suspended a connection or not.",
           "type": "boolean"
+        },
+        "tlsServiceDirectory": {
+          "description": "Output only. The name of the Service Directory service with TLS.",
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. Updated time.",
@@ -3343,6 +3387,11 @@
           "$ref": "EventingConfigTemplate",
           "description": "Output only. Eventing configuration supported by the Connector.",
           "readOnly": true
+        },
+        "isAsyncOperationsSupported": {
+          "description": "Output only. Is async operations supported.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "isCustomActionsSupported": {
           "description": "Output only. Is custom actions supported.",
@@ -4037,6 +4086,31 @@
         },
         "serviceAttachment": {
           "description": "Required. The path of the service attachment",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The Private Service Connect Connection Endpoint State. This value is only available in the Full view.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "ACCEPTED",
+            "REJECTED",
+            "CLOSED",
+            "FROZEN",
+            "NEEDS_ATTENTION",
+            "ACCEPTED_NOT_PROGRAMMED"
+          ],
+          "enumDescriptions": [
+            "STATE_UNSPECIFIED.",
+            "The endpoint is pending acceptance by the producer.",
+            "The endpoint has been accepted by the producer.",
+            "The endpoint has been rejected by the producer.",
+            "The endpoint has been closed by the producer and will not serve traffic going forward.",
+            "The endpoint has been frozen by the producer and will not serve traffic.",
+            "The endpoint has been accepted by the producer, but it is not ready to serve the traffic due to producer side issues.",
+            "The endpoint has been accepted by the producer, but it cannot be programmed to the data plane due to invariant violation."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
