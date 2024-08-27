@@ -2408,7 +2408,7 @@
       }
     }
   },
-  "revision": "20240721",
+  "revision": "20240818",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2814,6 +2814,18 @@
           },
           "type": "array"
         },
+        "routingMode": {
+          "description": "Optional. The routing mode of the Gateway. This field is configurable only for gateways of type SECURE_WEB_GATEWAY. This field is required for gateways of type SECURE_WEB_GATEWAY.",
+          "enum": [
+            "EXPLICIT_ROUTING_MODE",
+            "NEXT_HOP_ROUTING_MODE"
+          ],
+          "enumDescriptions": [
+            "The routing mode is explicit; clients are configured to send traffic through the gateway. This is the default routing mode.",
+            "The routing mode is next-hop. Clients are unaware of the gateway, and a route (advanced route or other route type) can be configured to direct traffic from client to gateway. The gateway then acts as a next-hop to the destination."
+          ],
+          "type": "string"
+        },
         "scope": {
           "description": "Optional. Scope determines how configuration across multiple Gateway instances are merged. The configuration for multiple Gateway instances with the same scope will be merged as presented as a single coniguration to the proxy/load balancer. Max length 64 characters. Scope should start with a letter and can only have letters, numbers, hyphens.",
           "type": "string"
@@ -3049,7 +3061,7 @@
       "type": "object"
     },
     "GrpcRouteRetryPolicy": {
-      "description": "The specifications for retries.",
+      "description": "The specifications for retries. Specifies one or more conditions for which this retry rule applies. Valid values are:",
       "id": "GrpcRouteRetryPolicy",
       "properties": {
         "numRetries": {
