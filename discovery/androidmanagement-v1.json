@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240808",
+  "revision": "20240821",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -6121,6 +6121,11 @@
       "properties": {
         "carrierName": {
           "description": "The carrier name associated with this SIM card.",
+          "type": "string"
+        },
+        "iccId": {
+          "description": "Output only. The ICCID associated with this SIM card.",
+          "readOnly": true,
           "type": "string"
         },
         "phoneNumber": {
