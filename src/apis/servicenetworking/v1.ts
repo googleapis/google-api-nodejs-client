@@ -276,6 +276,10 @@ export namespace servicenetworking_v1 {
      */
     secondaryIpRangeSpecs?: Schema$SecondaryIpRangeSpec[];
     /**
+     * Optional. Skips validating if the requested_address is in use by SN VPC’s peering group. Compute Engine will still perform this check and fail the request if the requested_address is in use. Note that Compute Engine does not check for the existence of dynamic routes when performing this check. Caller of this API should make sure that there are no dynamic routes overlapping with the requested_address/prefix_length IP address range otherwise the created subnet could cause misrouting.
+     */
+    skipRequestedAddressValidation?: boolean | null;
+    /**
      * Required. A name for the new subnet. For information about the naming requirements, see [subnetwork](/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.
      */
     subnetwork?: string | null;
@@ -1670,7 +1674,7 @@ export namespace servicenetworking_v1 {
      */
     member?: string | null;
     /**
-     * Required. Role to apply. Only allowlisted roles can be used at the specified granularity. The role must be one of the following: - 'roles/container.hostServiceAgentUser' applied on the shared VPC host project - 'roles/compute.securityAdmin' applied on the shared VPC host project - 'roles/compute.networkAdmin' applied on the shared VPC host project - 'roles/compute.xpnAdmin' applied on the shared VPC host project - 'roles/dns.admin' applied on the shared VPC host project - 'roles/logging.admin' applied on the shared VPC host project
+     * Required. Role to apply. Only allowlisted roles can be used at the specified granularity. The role must be one of the following: - 'roles/container.hostServiceAgentUser' applied on the shared VPC host project - 'roles/compute.securityAdmin' applied on the shared VPC host project - 'roles/compute.networkAdmin' applied on the shared VPC host project - 'roles/tpu.xpnAgent' applied on the shared VPC host project - 'roles/dns.admin' applied on the shared VPC host project - 'roles/logging.admin' applied on the shared VPC host project - 'roles/monitoring.viewer' applied on the shared VPC host project
      */
     role?: string | null;
   }
