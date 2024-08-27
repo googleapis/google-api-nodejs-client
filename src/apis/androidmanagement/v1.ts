@@ -3038,6 +3038,10 @@ export namespace androidmanagement_v1 {
      */
     carrierName?: string | null;
     /**
+     * Output only. The ICCID associated with this SIM card.
+     */
+    iccId?: string | null;
+    /**
      * The phone number associated with this SIM card.
      */
     phoneNumber?: string | null;
