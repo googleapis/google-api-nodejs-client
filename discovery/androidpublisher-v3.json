@@ -6351,6 +6351,17 @@
       },
       "type": "object"
     },
+    "ExternalOfferInitialAcquisitionDetails": {
+      "description": "Details about the first time a user/device completed a transaction using external offers.",
+      "id": "ExternalOfferInitialAcquisitionDetails",
+      "properties": {
+        "externalTransactionId": {
+          "description": "Required. The external transaction id of the first completed purchase made by the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExternalSubscription": {
       "description": "Details of an external subscription.",
       "id": "ExternalSubscription",
@@ -6391,6 +6402,10 @@
           "$ref": "Price",
           "description": "Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.",
           "readOnly": true
+        },
+        "externalOfferInitialAcquisitionDetails": {
+          "$ref": "ExternalOfferInitialAcquisitionDetails",
+          "description": "Optional. Details about the first time a user/device completed a transaction using external offers. Not required for transactions made using user choice billing or alternative billing only."
         },
         "externalTransactionId": {
           "description": "Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.",
