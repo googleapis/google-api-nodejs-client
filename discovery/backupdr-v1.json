@@ -1598,7 +1598,7 @@
       }
     }
   },
-  "revision": "20240808",
+  "revision": "20240815",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2484,11 +2484,6 @@
         "effectiveTime": {
           "description": "Optional. Time after which the BackupVault resource is locked.",
           "format": "google-datetime",
-          "type": "string"
-        },
-        "enforcedRetentionDuration": {
-          "description": "Required. The default retention period for each backup in the backup vault (Deprecated).",
-          "format": "google-duration",
           "type": "string"
         },
         "etag": {
