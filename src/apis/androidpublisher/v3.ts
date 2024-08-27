@@ -1274,6 +1274,15 @@ export namespace androidpublisher_v3 {
     versionName?: string | null;
   }
   /**
+   * Details about the first time a user/device completed a transaction using external offers.
+   */
+  export interface Schema$ExternalOfferInitialAcquisitionDetails {
+    /**
+     * Required. The external transaction id of the first completed purchase made by the user.
+     */
+    externalTransactionId?: string | null;
+  }
+  /**
    * Details of an external subscription.
    */
   export interface Schema$ExternalSubscription {
@@ -1298,6 +1307,10 @@ export namespace androidpublisher_v3 {
      * Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.
      */
     currentTaxAmount?: Schema$Price;
+    /**
+     * Optional. Details about the first time a user/device completed a transaction using external offers. Not required for transactions made using user choice billing or alternative billing only.
+     */
+    externalOfferInitialAcquisitionDetails?: Schema$ExternalOfferInitialAcquisitionDetails;
     /**
      * Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.
      */
@@ -5911,7 +5924,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Bundles$Upload
     extends StandardParameters {
     /**
-     * Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
+     * Deprecated. The installation warning has been removed, it's not necessary to set this field anymore.
      */
     ackBundleInstallationWarning?: boolean;
     /**
