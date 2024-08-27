@@ -772,6 +772,10 @@ export namespace container_v1 {
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
     /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings that can be created.
+     */
+    rbacBindingConfig?: Schema$RBACBindingConfig;
+    /**
      * Release channel configuration. If left unspecified on cluster creation and a version is specified, the cluster is enrolled in the most mature release channel where the version is available (first checking STABLE, then REGULAR, and finally RAPID). Otherwise, if no release channel configuration and no version is specified, the cluster is enrolled in the REGULAR channel with its default version.
      */
     releaseChannel?: Schema$ReleaseChannel;
@@ -791,6 +795,10 @@ export namespace container_v1 {
      * Output only. Reserved for future use.
      */
     satisfiesPzs?: boolean | null;
+    /**
+     * Secret CSI driver configuration.
+     */
+    secretManagerConfig?: Schema$SecretManagerConfig;
     /**
      * Enable/Disable Security Posture API features for the cluster.
      */
@@ -1059,6 +1067,10 @@ export namespace container_v1 {
      */
     desiredPrivateIpv6GoogleAccess?: string | null;
     /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings that can be created.
+     */
+    desiredRbacBindingConfig?: Schema$RBACBindingConfig;
+    /**
      * The desired release channel configuration.
      */
     desiredReleaseChannel?: Schema$ReleaseChannel;
@@ -1066,6 +1078,10 @@ export namespace container_v1 {
      * The desired configuration for exporting resource usage.
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
+    /**
+     * Enable/Disable Secret Manager Config.
+     */
+    desiredSecretManagerConfig?: Schema$SecretManagerConfig;
     /**
      * Enable/Disable Security Posture API features for the cluster.
      */
@@ -1870,7 +1886,7 @@ export namespace container_v1 {
    */
   export interface Schema$MasterAuth {
     /**
-     * Output only. Base64-encoded public certificate used by clients to authenticate to the cluster endpoint.
+     * Output only. Base64-encoded public certificate used by clients to authenticate to the cluster endpoint. Issued only if client_certificate_config is set.
      */
     clientCertificate?: string | null;
     /**
@@ -2242,6 +2258,10 @@ export namespace container_v1 {
      * Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.
      */
     spot?: boolean | null;
+    /**
+     * List of Storage Pools where boot disks are provisioned.
+     */
+    storagePools?: string[] | null;
     /**
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.
      */
@@ -2840,6 +2860,19 @@ export namespace container_v1 {
     rayClusterMonitoringConfig?: Schema$RayClusterMonitoringConfig;
   }
   /**
+   * RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings that can be created.
+   */
+  export interface Schema$RBACBindingConfig {
+    /**
+     * Setting this to true will allow any ClusterRoleBinding and RoleBinding with subjects system:authenticated.
+     */
+    enableInsecureBindingSystemAuthenticated?: boolean | null;
+    /**
+     * Setting this to true will allow any ClusterRoleBinding and RoleBinding with subjets system:anonymous or system:unauthenticated.
+     */
+    enableInsecureBindingSystemUnauthenticated?: boolean | null;
+  }
+  /**
    * Represents an arbitrary window of time that recurs.
    */
   export interface Schema$RecurringTimeWindow {
@@ -3002,6 +3035,15 @@ export namespace container_v1 {
    * SecondaryBootDiskUpdateStrategy is a placeholder which will be extended in the future to define different options for updating secondary boot disks.
    */
   export interface Schema$SecondaryBootDiskUpdateStrategy {}
+  /**
+   * SecretManagerConfig is config for secret manager enablement.
+   */
+  export interface Schema$SecretManagerConfig {
+    /**
+     * Enable/Disable Secret Manager Config.
+     */
+    enabled?: boolean | null;
+  }
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
    */
@@ -3714,6 +3756,10 @@ export namespace container_v1 {
      * Desired resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Existing tags will be replaced with new values.
      */
     resourceManagerTags?: Schema$ResourceManagerTags;
+    /**
+     * List of Storage Pools where boot disks are provisioned. Existing Storage Pools will be replaced with storage-pools.
+     */
+    storagePools?: string[] | null;
     /**
      * The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags.
      */
