@@ -1396,7 +1396,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Identifier. The resource name of the entry. Format: \"projects/*/locations/*/glossaries/*/glossaryEntries/*\"",
+                          "description": "Identifier. The resource name of the entry. Format: `projects/*/locations/*/glossaries/*/glossaryEntries/*`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/glossaryEntries/[^/]+$",
                           "required": true,
@@ -1707,7 +1707,7 @@
       }
     }
   },
-  "revision": "20240718",
+  "revision": "20240821",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "AdaptiveMtDataset": {
@@ -1829,7 +1829,7 @@
           "type": "string"
         },
         "glossaryConfig": {
-          "$ref": "TranslateTextGlossaryConfig",
+          "$ref": "GlossaryConfig",
           "description": "Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned."
         },
         "referenceSentenceConfig": {
@@ -2227,7 +2227,7 @@
       "id": "Example",
       "properties": {
         "name": {
-          "description": "Output only. The resource name of the example, in form of `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}'",
+          "description": "Output only. The resource name of the example, in form of `projects/{project-number-or-id}/locations/{location_id}/datasets/{dataset_id}/examples/{example_id}`",
           "readOnly": true,
           "type": "string"
         },
@@ -2367,6 +2367,21 @@
       },
       "type": "object"
     },
+    "GlossaryConfig": {
+      "description": "Configures which glossary is used for a specific target language and defines options for applying that glossary.",
+      "id": "GlossaryConfig",
+      "properties": {
+        "glossary": {
+          "description": "Required. The `glossary` to be applied for this translation. The format depends on the glossary: - User-provided custom glossary: `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`",
+          "type": "string"
+        },
+        "ignoreCase": {
+          "description": "Optional. Indicates match is case insensitive. The default value is `false` if missing.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GlossaryEntry": {
       "description": "Represents a single entry in a glossary.",
       "id": "GlossaryEntry",
@@ -2376,7 +2391,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the entry. Format: \"projects/*/locations/*/glossaries/*/glossaryEntries/*\"",
+          "description": "Identifier. The resource name of the entry. Format: `projects/*/locations/*/glossaries/*/glossaryEntries/*`",
           "type": "string"
         },
         "termsPair": {
