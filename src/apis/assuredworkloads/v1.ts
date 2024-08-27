@@ -526,6 +526,10 @@ export namespace assuredworkloads_v1 {
      */
     partnerPermissions?: Schema$GoogleCloudAssuredworkloadsV1WorkloadPartnerPermissions;
     /**
+     * Optional. Billing account necessary for purchasing services from Sovereign Partners. This field is required for creating SIA/PSN partner workloads. The caller should have 'billing.resourceAssociations.create' IAM permission on this billing-account. The format of this string is billingAccounts/AAAAAA-BBBBBB-CCCCCC
+     */
+    partnerServicesBillingAccount?: string | null;
+    /**
      * Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id\}
      */
     provisionedResourcesParent?: string | null;
