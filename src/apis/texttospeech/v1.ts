@@ -300,7 +300,7 @@ export namespace texttospeech_v1 {
      */
     audioConfig?: Schema$AudioConfig;
     /**
-     * Required. The Synthesizer requires either plain text or SSML as input. While Long Audio is in preview, SSML is temporarily unsupported.
+     * Required. The Synthesizer requires either plain text or SSML as input.
      */
     input?: Schema$SynthesisInput;
     /**
