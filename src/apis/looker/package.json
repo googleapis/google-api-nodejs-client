@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/looker",
-  "version": "2.0.3",
+  "version": "2.1.0",
   "description": "looker",
   "main": "build/index.js",
   "types": "build/index.d.ts",

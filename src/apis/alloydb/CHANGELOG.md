@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v10.0.0...alloydb-v11.0.0) (2024-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **alloydb:** This release has breaking changes.
+
+### Features
+
+* **alloydb:** update the API ([a65f1c6](https://github.com/googleapis/google-api-nodejs-client/commit/a65f1c6b3afc77831875f13ff365f81446ce20b1))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v9.0.0...alloydb-v10.0.0) (2024-08-16)
 
 
