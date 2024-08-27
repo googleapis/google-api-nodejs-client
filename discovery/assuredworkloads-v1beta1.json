@@ -588,7 +588,7 @@
       }
     }
   },
-  "revision": "20240801",
+  "revision": "20240821",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -1296,20 +1296,28 @@
             "LOCAL_CONTROLS_BY_S3NS",
             "SOVEREIGN_CONTROLS_BY_T_SYSTEMS",
             "SOVEREIGN_CONTROLS_BY_SIA_MINSAIT",
-            "SOVEREIGN_CONTROLS_BY_PSN"
+            "SOVEREIGN_CONTROLS_BY_PSN",
+            "SOVEREIGN_CONTROLS_BY_CNTXT",
+            "SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM"
           ],
           "enumDescriptions": [
             "",
             "Enum representing S3NS (Thales) partner.",
             "Enum representing T_SYSTEM (TSI) partner.",
             "Enum representing SIA_MINSAIT (Indra) partner.",
-            "Enum representing PSN (TIM) partner."
+            "Enum representing PSN (TIM) partner.",
+            "Enum representing CNTXT (Kingdom of Saudi Arabia) partner.",
+            "Enum representing CNTXT (Kingdom of Saudi Arabia) partner offering without EKM."
           ],
           "type": "string"
         },
         "partnerPermissions": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions",
           "description": "Optional. Permissions granted to the AW Partner SA account for the customer workload"
+        },
+        "partnerServicesBillingAccount": {
+          "description": "Optional. Billing account necessary for purchasing services from Sovereign Partners. This field is required for creating SIA/PSN partner workloads. The caller should have 'billing.resourceAssociations.create' IAM permission on this billing-account. The format of this string is billingAccounts/AAAAAA-BBBBBB-CCCCCC",
+          "type": "string"
         },
         "provisionedResourcesParent": {
           "description": "Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id}",
