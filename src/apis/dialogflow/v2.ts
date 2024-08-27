@@ -478,15 +478,6 @@ export namespace dialogflow_v2 {
     triggeredIntent?: Schema$GoogleCloudDialogflowCxV3beta1Intent;
   }
   /**
-   * Metadata for CreateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1CreateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
-  }
-  /**
    * Metadata associated with the long running operation for Versions.CreateVersion.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata {
@@ -507,15 +498,6 @@ export namespace dialogflow_v2 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
-  }
-  /**
-   * Metadata for DeleteDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
   }
   /**
    * Metadata returned for the Environments.DeployFlow long running operation.
@@ -891,33 +873,6 @@ export namespace dialogflow_v2 {
      * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
      */
     uri?: string | null;
-  }
-  /**
-   * Metadata in google::longrunning::Operation for Knowledge operations.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata {
-    /**
-     * Required. Output only. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
-   * Metadata for ImportDocuments operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportDocumentsOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
   }
   /**
    * Metadata returned for the EntityTypes.ImportEntityTypes long running operation.
@@ -1325,15 +1280,6 @@ export namespace dialogflow_v2 {
     toolCallResult?: Schema$GoogleCloudDialogflowCxV3beta1ToolCallResult;
   }
   /**
-   * Metadata for ReloadDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
-  }
-  /**
    * Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage {
@@ -1486,7 +1432,7 @@ export namespace dialogflow_v2 {
      */
     allowPlaybackInterruption?: boolean | null;
     /**
-     * Required. A collection of text responses.
+     * Required. A collection of text response variants. If multiple variants are defined, only one text response variant is returned at runtime.
      */
     text?: string[] | null;
   }
@@ -1789,15 +1735,6 @@ export namespace dialogflow_v2 {
      * Human-readable statuses of the webhooks triggered during this turn.
      */
     webhookStatuses?: string[] | null;
-  }
-  /**
-   * Metadata for UpdateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
   }
   /**
    * Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.
@@ -2176,15 +2113,6 @@ export namespace dialogflow_v2 {
     triggeredIntent?: Schema$GoogleCloudDialogflowCxV3Intent;
   }
   /**
-   * Metadata for CreateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3CreateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
    * Metadata associated with the long running operation for Versions.CreateVersion.
    */
   export interface Schema$GoogleCloudDialogflowCxV3CreateVersionOperationMetadata {
@@ -2205,15 +2133,6 @@ export namespace dialogflow_v2 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
-  }
-  /**
-   * Metadata for DeleteDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
   }
   /**
    * Metadata returned for the Environments.DeployFlow long running operation.
@@ -2589,33 +2508,6 @@ export namespace dialogflow_v2 {
      * Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.
      */
     uri?: string | null;
-  }
-  /**
-   * Metadata in google::longrunning::Operation for Knowledge operations.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata {
-    /**
-     * Required. Output only. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
-   * Metadata for ImportDocuments operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ImportDocumentsOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
   }
   /**
    * Metadata returned for the EntityTypes.ImportEntityTypes long running operation.
@@ -3019,15 +2911,6 @@ export namespace dialogflow_v2 {
     text?: Schema$GoogleCloudDialogflowCxV3TextInput;
   }
   /**
-   * Metadata for ReloadDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ReloadDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
    * Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ResponseMessage {
@@ -3180,7 +3063,7 @@ export namespace dialogflow_v2 {
      */
     allowPlaybackInterruption?: boolean | null;
     /**
-     * Required. A collection of text responses.
+     * Required. A collection of text response variants. If multiple variants are defined, only one text response variant is returned at runtime.
      */
     text?: string[] | null;
   }
@@ -3436,15 +3319,6 @@ export namespace dialogflow_v2 {
      * Human-readable statuses of the webhooks triggered during this turn.
      */
     webhookStatuses?: string[] | null;
-  }
-  /**
-   * Metadata for UpdateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
   }
   /**
    * Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.
@@ -5761,7 +5635,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageText {
     /**
-     * A collection of text responses.
+     * A collection of text response variants. If multiple variants are defined, only one text response variant is returned at runtime.
      */
     text?: string[] | null;
   }
@@ -8961,7 +8835,7 @@ export namespace dialogflow_v2 {
      */
     query?: Schema$GoogleCloudDialogflowV2TextInput;
     /**
-     * Optional. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
+     * Required. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
      */
     sessionId?: string | null;
   }
@@ -9675,60 +9549,6 @@ export namespace dialogflow_v2 {
     turnSignals?: Schema$GoogleCloudDialogflowV3alpha1TurnSignals;
   }
   /**
-   * Metadata for CreateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Metadata for DeleteDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1DeleteDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Metadata in google::longrunning::Operation for Knowledge operations.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata {
-    /**
-     * Required. Output only. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
-   * Metadata for ImportDocuments operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ImportDocumentsOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * Metadata for ReloadDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ReloadDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
    * Collection of all signals that were extracted for a single turn of the conversation.
    */
   export interface Schema$GoogleCloudDialogflowV3alpha1TurnSignals {
@@ -9776,15 +9596,6 @@ export namespace dialogflow_v2 {
      * Human-readable statuses of the webhooks triggered during this turn.
      */
     webhookStatuses?: string[] | null;
-  }
-  /**
-   * Metadata for UpdateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
   }
   /**
    * The response message for Locations.ListLocations.
