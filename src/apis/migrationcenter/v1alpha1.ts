@@ -527,6 +527,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     allowMissing?: boolean | null;
     /**
+     * Optional. Optional cascading rules for deleting related assets.
+     */
+    cascadingRules?: Schema$CascadingRule[];
+    /**
      * Required. The IDs of the assets to delete. A maximum of 1000 assets can be deleted in a batch. Format: projects/{project\}/locations/{location\}/assets/{name\}.
      */
     names?: string[] | null;
@@ -578,6 +582,19 @@ export namespace migrationcenter_v1alpha1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Cascading rule for related logical DBs.
+   */
+  export interface Schema$CascadeLogicalDBsRule {}
+  /**
+   * Specifies cascading rules for traversing relations.
+   */
+  export interface Schema$CascadingRule {
+    /**
+     * Cascading rule for related logical DBs.
+     */
+    cascadeLogicalDbs?: Schema$CascadeLogicalDBsRule;
+  }
   /**
    * Cloud database migration target.
    */
@@ -979,6 +996,14 @@ export namespace migrationcenter_v1alpha1 {
      * Optional. Total memory in bytes limited by db deployment.
      */
     memoryLimitBytes?: string | null;
+    /**
+     * Optional. Number of total physical cores.
+     */
+    physicalCoreCount?: number | null;
+    /**
+     * Optional. Number of total physical cores limited by db deployment.
+     */
+    physicalCoreLimit?: number | null;
   }
   /**
    * Details of a logical database.
@@ -1023,9 +1048,30 @@ export namespace migrationcenter_v1alpha1 {
      */
     instanceName?: string | null;
     /**
+     * Optional. Networking details.
+     */
+    network?: Schema$DatabaseInstanceNetwork;
+    /**
      * The instance role in the database engine.
      */
     role?: string | null;
+  }
+  /**
+   * Network details of a database instance.
+   */
+  export interface Schema$DatabaseInstanceNetwork {
+    /**
+     * Optional. The instance's host names.
+     */
+    hostNames?: string[] | null;
+    /**
+     * Optional. The instance's IP addresses.
+     */
+    ipAddresses?: string[] | null;
+    /**
+     * Optional. The instance's primary MAC address.
+     */
+    primaryMacAddress?: string | null;
   }
   /**
    * Details of a group of database objects.
@@ -2162,6 +2208,19 @@ export namespace migrationcenter_v1alpha1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response message for listing relations.
+   */
+  export interface Schema$ListRelationsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of relations.
+     */
+    relations?: Schema$Relation[];
+  }
+  /**
    * Response message for listing report configs.
    */
   export interface Schema$ListReportConfigsResponse {
@@ -2880,6 +2939,31 @@ export namespace migrationcenter_v1alpha1 {
     preferredRegions?: string[] | null;
   }
   /**
+   * Message representing a relation between 2 resource.
+   */
+  export interface Schema$Relation {
+    /**
+     * Output only. The timestamp when the relation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The destination asset name in the relation.
+     */
+    dstAsset?: string | null;
+    /**
+     * Output only. Identifier. The identifier of the relation.
+     */
+    name?: string | null;
+    /**
+     * Output only. The source asset name in the relation.
+     */
+    srcAsset?: string | null;
+    /**
+     * Optional. The type of the relation.
+     */
+    type?: string | null;
+  }
+  /**
    * A request to remove assets from a group.
    */
   export interface Schema$RemoveAssetsFromGroupRequest {
@@ -3170,6 +3254,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     monthlyCostDatabaseLicensing?: Schema$Money;
     /**
+     * Output only. GCVE Protected nodes cost for this preference set.
+     */
+    monthlyCostGcveProtected?: Schema$Money;
+    /**
      * Output only. Network Egress monthly cost for this preference set. Only present for virtual machines.
      */
     monthlyCostNetworkEgress?: Schema$Money;
@@ -3181,6 +3269,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. Miscellaneous monthly cost for this preference set.
      */
     monthlyCostOther?: Schema$Money;
+    /**
+     * Output only. VMware portable license monthly cost for this preference set. Only present for VMware target with portable license service type. This cost is not paid to google, but is an estimate of license costs paid to VMware.
+     */
+    monthlyCostPortableVmwareLicense?: Schema$Money;
     /**
      * Output only. Storage monthly cost for this preference set.
      */
@@ -3678,7 +3770,12 @@ export namespace migrationcenter_v1alpha1 {
   /**
    * Specific details for a SqlServer database.
    */
-  export interface Schema$SqlServerSchemaDetails {}
+  export interface Schema$SqlServerSchemaDetails {
+    /**
+     * Optional. SqlServer number of CLR objects.
+     */
+    clrObjectCount?: number | null;
+  }
   /**
    * SQL Server server flag details.
    */
@@ -4048,6 +4145,23 @@ export namespace migrationcenter_v1alpha1 {
     vmdkDiskMode?: string | null;
   }
   /**
+   * The type of machines to consider when calculating virtual machine migration insights and recommendations for VMware Engine. Not all machine types are available in all zones and regions.
+   */
+  export interface Schema$VMwareEngineMachinePreferences {
+    /**
+     * Optional. VMware Engine on Google Cloud machine series to consider for insights and recommendations. If empty, no restriction is applied on the machine series.
+     */
+    allowedMachineSeries?: Schema$MachineSeries[];
+    /**
+     * Optional. Whether to use VMware Engine Protected offering.
+     */
+    protectedNodes?: string | null;
+    /**
+     * Optional. Whether to use storage-only nodes, if those are available.
+     */
+    storageOnlyNodes?: string | null;
+  }
+  /**
    * VMWare engine migration target.
    */
   export interface Schema$VmwareEngineMigrationTarget {}
@@ -4064,9 +4178,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     cpuOvercommitRatio?: number | null;
     /**
+     * Optional. Discount percentage for the license type offered to you by Broadcom. Must be between 0 and 100. Only valid when service_type is set to SERVICE_TYPE_PORTABLE_LICENSE.
+     */
+    licenseDiscountPercentage?: number | null;
+    /**
+     * Optional. Preferences concerning the machine types to consider on Google Cloud VMware Engine.
+     */
+    machinePreferences?: Schema$VMwareEngineMachinePreferences;
+    /**
      * Memory overcommit ratio. Acceptable values are 1.0, 1.25, 1.5, 1.75 and 2.0.
      */
     memoryOvercommitRatio?: number | null;
+    /**
+     * Optional. VMWare Service Type (Fully Licensed or Portable License).
+     */
+    serviceType?: string | null;
     /**
      * The Deduplication and Compression ratio is based on the logical (Used Before) space required to store data before applying deduplication and compression, in relation to the physical (Used After) space required after applying deduplication and compression. Specifically, the ratio is the Used Before space divided by the Used After space. For example, if the Used Before space is 3 GB, but the physical Used After space is 1 GB, the deduplication and compression ratio is 3x. Acceptable values are between 1.0 and 4.0.
      */
@@ -4108,6 +4234,7 @@ export namespace migrationcenter_v1alpha1 {
     importJobs: Resource$Projects$Locations$Importjobs;
     operations: Resource$Projects$Locations$Operations;
     preferenceSets: Resource$Projects$Locations$Preferencesets;
+    relations: Resource$Projects$Locations$Relations;
     reportConfigs: Resource$Projects$Locations$Reportconfigs;
     sources: Resource$Projects$Locations$Sources;
     constructor(context: APIRequestContext) {
@@ -4129,6 +4256,7 @@ export namespace migrationcenter_v1alpha1 {
       this.preferenceSets = new Resource$Projects$Locations$Preferencesets(
         this.context
       );
+      this.relations = new Resource$Projects$Locations$Relations(this.context);
       this.reportConfigs = new Resource$Projects$Locations$Reportconfigs(
         this.context
       );
@@ -9405,6 +9533,224 @@ export namespace migrationcenter_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$PreferenceSet;
+  }
+
+  export class Resource$Projects$Locations$Relations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the details of an relation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Relations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Relation>;
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Relation>,
+      callback: BodyResponseCallback<Schema$Relation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      callback: BodyResponseCallback<Schema$Relation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Relation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Relations$Get
+        | BodyResponseCallback<Schema$Relation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Relation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Relation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Relation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Relations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Relations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Relation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Relation>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the relations in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Relations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRelationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRelationsResponse>,
+      callback: BodyResponseCallback<Schema$ListRelationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      callback: BodyResponseCallback<Schema$ListRelationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRelationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Relations$List
+        | BodyResponseCallback<Schema$ListRelationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRelationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRelationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRelationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Relations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Relations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/relations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRelationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRelationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Relations$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Relations$List
+    extends StandardParameters {
+    /**
+     * Filtering results.
+     */
+    filter?: string;
+    /**
+     * Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for `ListRelationsRequest`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Reportconfigs {
