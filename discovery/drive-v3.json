@@ -2523,7 +2523,7 @@
       }
     }
   },
-  "revision": "20240730",
+  "revision": "20240809",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3735,7 +3735,7 @@
         },
         "lastModifyingUser": {
           "$ref": "User",
-          "description": "Output only. The last user to modify the file."
+          "description": "Output only. The last user to modify the file. This field is only populated when the last modification was performed by a signed-in user."
         },
         "linkShareMetadata": {
           "description": "Contains details about the link URLs that clients are using to refer to this item.",
@@ -3793,7 +3793,7 @@
           "type": "array"
         },
         "parents": {
-          "description": "The IDs of the parent folders which contain the file. If not specified as part of a create request, the file is placed directly in the user's My Drive folder. If not specified as part of a copy request, the file inherits any discoverable parents of the source file. Update requests must use the `addParents` and `removeParents` parameters to modify the parents list.",
+          "description": "The ID of the parent folder containing the file. A file can only have one parent folder; specifying multiple parents isn't supported. If not specified as part of a create request, the file is placed directly in the user's My Drive folder. If not specified as part of a copy request, the file inherits any discoverable parent of the source file. Update requests must use the `addParents` and `removeParents` parameters to modify the parents list.",
           "items": {
             "type": "string"
           },
@@ -4494,7 +4494,7 @@
         },
         "lastModifyingUser": {
           "$ref": "User",
-          "description": "Output only. The last user to modify this revision."
+          "description": "Output only. The last user to modify this revision. This field is only populated when the last modification was performed by a signed-in user."
         },
         "md5Checksum": {
           "description": "Output only. The MD5 checksum of the revision's content. This is only applicable to files with binary content in Drive.",
