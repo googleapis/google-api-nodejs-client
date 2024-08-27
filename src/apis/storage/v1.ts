@@ -264,6 +264,10 @@ export namespace storage_v1 {
      */
     generation?: string | null;
     /**
+     * The hard delete time of the bucket in RFC 3339 format.
+     */
+    hardDeleteTime?: string | null;
+    /**
      * The bucket's hierarchical namespace configuration.
      */
     hierarchicalNamespace?: {enabled?: boolean} | null;
@@ -383,6 +387,10 @@ export namespace storage_v1 {
       effectiveTime?: string;
       retentionDurationSeconds?: string;
     } | null;
+    /**
+     * The soft delete time of the bucket in RFC 3339 format.
+     */
+    softDeleteTime?: string | null;
     /**
      * The bucket's default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see [Storage Classes](https://cloud.google.com/storage/docs/storage-classes).
      */
