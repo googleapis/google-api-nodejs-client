@@ -199,6 +199,129 @@
                   ]
                 }
               }
+            },
+            "operations": {
+              "methods": {
+                "cancel": {
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "dataplex.organizations.locations.operations.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be cancelled.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:cancel",
+                  "request": {
+                    "$ref": "GoogleLongrunningCancelOperationRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "DELETE",
+                  "id": "dataplex.organizations.locations.operations.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource to be deleted.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.organizations.locations.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listOperations": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.",
+                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "dataplex.organizations.locations.operations.listOperations",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "The name of the operation's parent resource.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
@@ -2396,6 +2519,97 @@
                 }
               }
             },
+            "entryLinkTypes": {
+              "methods": {
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryLinkTypes/{entryLinkTypesId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "dataplex.projects.locations.entryLinkTypes.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryLinkTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryLinkTypes/{entryLinkTypesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.entryLinkTypes.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryLinkTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryLinkTypes/{entryLinkTypesId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "dataplex.projects.locations.entryLinkTypes.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/entryLinkTypes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "entryTypes": {
               "methods": {
                 "create": {
@@ -2753,6 +2967,190 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "categories": {
+                  "methods": {
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.glossaries.categories.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.glossaries.categories.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.glossaries.categories.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "terms": {
+                  "methods": {
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "dataplex.projects.locations.glossaries.terms.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.glossaries.terms.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "dataplex.projects.locations.glossaries.terms.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -5599,9 +5997,397 @@
       }
     }
   },
-  "revision": "20240802",
+  "revision": "20240820",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
+    "CloudReliabilityZicyWs3DataplaneProtosAssetLocation": {
+      "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
+      "id": "CloudReliabilityZicyWs3DataplaneProtosAssetLocation",
+      "properties": {
+        "ccfeRmsPath": {
+          "description": "Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.",
+          "type": "string"
+        },
+        "expected": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectations",
+          "description": "Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation."
+        },
+        "extraParameters": {
+          "description": "Defines extra parameters required for specific asset types.",
+          "items": {
+            "$ref": "CloudReliabilityZicyWs3DataplaneProtosExtraParameter"
+          },
+          "type": "array"
+        },
+        "locationData": {
+          "description": "Contains all kinds of physical location definitions for this asset.",
+          "items": {
+            "$ref": "CloudReliabilityZicyWs3DataplaneProtosLocationData"
+          },
+          "type": "array"
+        },
+        "parentAsset": {
+          "description": "Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.",
+          "items": {
+            "$ref": "CloudReliabilityZicyWs3DataplaneProtosCloudAsset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectations": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectations",
+      "properties": {
+        "requirementOverride": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectationsRequirementOverride",
+          "description": "Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic."
+        },
+        "ziOrgPolicy": {
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "ziRegionPolicy": {
+          "enum": [
+            "ZI_REGION_POLICY_UNSPECIFIED",
+            "ZI_REGION_POLICY_UNKNOWN",
+            "ZI_REGION_POLICY_NOT_SET",
+            "ZI_REGION_POLICY_FAIL_OPEN",
+            "ZI_REGION_POLICY_FAIL_CLOSED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "ziRegionState": {
+          "enum": [
+            "ZI_REGION_UNSPECIFIED",
+            "ZI_REGION_UNKNOWN",
+            "ZI_REGION_NOT_ENABLED",
+            "ZI_REGION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zoneIsolation": {
+          "deprecated": true,
+          "description": "Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.",
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zoneSeparation": {
+          "deprecated": true,
+          "description": "Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.",
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsOrgPolicy": {
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsRegionState": {
+          "enum": [
+            "ZS_REGION_UNSPECIFIED",
+            "ZS_REGION_UNKNOWN",
+            "ZS_REGION_NOT_ENABLED",
+            "ZS_REGION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking of the asset ZS-bit is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectationsRequirementOverride": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectationsRequirementOverride",
+      "properties": {
+        "ziOverride": {
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsOverride": {
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosBlobstoreLocation": {
+      "description": "Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains",
+      "id": "CloudReliabilityZicyWs3DataplaneProtosBlobstoreLocation",
+      "properties": {
+        "policyId": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosCloudAsset": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosCloudAsset",
+      "properties": {
+        "assetName": {
+          "type": "string"
+        },
+        "assetType": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosCloudAssetComposition": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosCloudAssetComposition",
+      "properties": {
+        "childAsset": {
+          "items": {
+            "$ref": "CloudReliabilityZicyWs3DataplaneProtosCloudAsset"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosDirectLocationAssignment": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosDirectLocationAssignment",
+      "properties": {
+        "location": {
+          "items": {
+            "$ref": "CloudReliabilityZicyWs3DataplaneProtosLocationAssignment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosExtraParameter": {
+      "description": "Defines parameters that should only be used for specific asset types.",
+      "id": "CloudReliabilityZicyWs3DataplaneProtosExtraParameter",
+      "properties": {
+        "regionalMigDistributionPolicy": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosRegionalMigDistributionPolicy",
+          "description": "Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances."
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosLocationAssignment": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosLocationAssignment",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "locationType": {
+          "enum": [
+            "UNSPECIFIED",
+            "CLUSTER",
+            "POP",
+            "CLOUD_ZONE",
+            "CLOUD_REGION",
+            "MULTI_REGION_GEO",
+            "MULTI_REGION_JURISDICTION",
+            "GLOBAL",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "1-10: Physical failure domains.",
+            "",
+            "11-20: Logical failure domains.",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosLocationData": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosLocationData",
+      "properties": {
+        "blobstoreLocation": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosBlobstoreLocation"
+        },
+        "childAssetLocation": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosCloudAssetComposition"
+        },
+        "directLocation": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosDirectLocationAssignment"
+        },
+        "gcpProjectProxy": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosTenantProjectProxy"
+        },
+        "placerLocation": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosPlacerLocation"
+        },
+        "spannerLocation": {
+          "$ref": "CloudReliabilityZicyWs3DataplaneProtosSpannerLocation"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosPlacerLocation": {
+      "description": "Message describing that the location of the customer resource is tied to placer allocations",
+      "id": "CloudReliabilityZicyWs3DataplaneProtosPlacerLocation",
+      "properties": {
+        "placerConfig": {
+          "description": "Directory with a config related to it in placer (e.g. \"/placer/prod/home/my-root/my-dir\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosRegionalMigDistributionPolicy": {
+      "description": "To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances",
+      "id": "CloudReliabilityZicyWs3DataplaneProtosRegionalMigDistributionPolicy",
+      "properties": {
+        "targetShape": {
+          "description": "The shape in which the group converges around distribution of resources. Instance of proto2 enum",
+          "format": "int32",
+          "type": "integer"
+        },
+        "zones": {
+          "description": "Cloud zones used by regional MIG to create instances.",
+          "items": {
+            "$ref": "CloudReliabilityZicyWs3DataplaneProtosZoneConfiguration"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosSpannerLocation": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosSpannerLocation",
+      "properties": {
+        "backupName": {
+          "description": "Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dbName": {
+          "description": "Set of databases used by the resource in format /span//",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosTenantProjectProxy": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosTenantProjectProxy",
+      "properties": {
+        "projectNumbers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudReliabilityZicyWs3DataplaneProtosZoneConfiguration": {
+      "id": "CloudReliabilityZicyWs3DataplaneProtosZoneConfiguration",
+      "properties": {
+        "zone": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } ",
       "id": "Empty",
