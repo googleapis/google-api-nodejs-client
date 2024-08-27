@@ -1656,6 +1656,10 @@ export namespace dataflow_v1b3 {
      */
     location?: string | null;
     /**
+     * Optional. The project number of the project this worker belongs to.
+     */
+    projectNumber?: string | null;
+    /**
      * The initial lease period.
      */
     requestedLeaseDuration?: string | null;
@@ -2345,6 +2349,10 @@ export namespace dataflow_v1b3 {
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the WorkItem's job.
      */
     location?: string | null;
+    /**
+     * Optional. The project number of the project which owns the WorkItem's job.
+     */
+    projectNumber?: string | null;
     /**
      * Untranslated bag-of-bytes WorkProgressUpdateRequest from UnifiedWorker.
      */
@@ -3253,6 +3261,14 @@ export namespace dataflow_v1b3 {
      * Map from user step names to state families.
      */
     userStepToStateFamilyNameMap?: {[key: string]: string} | null;
+    /**
+     * Binary encoded proto to control runtime behavior of the java runner v1 user worker.
+     */
+    userWorkerRunnerV1Settings?: string | null;
+    /**
+     * Binary encoded proto to control runtime behavior of the runner v2 user worker.
+     */
+    userWorkerRunnerV2Settings?: string | null;
     /**
      * If present, the worker must use this endpoint to communicate with Windmill Service dispatchers, otherwise the worker must continue to use whatever endpoint it had been using.
      */
@@ -8034,7 +8050,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.
+     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8122,7 +8138,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Get the template associated with a template.
+     * Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8213,7 +8229,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Launch a template.
+     * Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8599,7 +8615,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API.
+     * Creates a Cloud Dataflow job from a template. Do not enter confidential information when you supply string values using the API. To create a job, we recommend using `projects.locations.templates.create` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.create` is not recommended, because your job will always start in `us-central1`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8687,7 +8703,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Get the template associated with a template.
+     * Get the template associated with a template. To get the template, we recommend using `projects.locations.templates.get` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.get` is not recommended, because only templates that are running in `us-central1` are retrieved.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8778,7 +8794,7 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Launch a template.
+     * Launches a template. To launch a template, we recommend using `projects.locations.templates.launch` with a [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints). Using `projects.templates.launch` is not recommended, because jobs launched from the template will always start in `us-central1`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
