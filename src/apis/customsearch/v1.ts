@@ -504,6 +504,10 @@ export namespace customsearch_v1 {
      */
     dateRestrict?: string;
     /**
+     * Optional. Enables routing of Programmable Search Engine requests to an alternate search handler.
+     */
+    enableAlternateSearchHandler?: boolean;
+    /**
      * Identifies a phrase that all documents in the search results must contain.
      */
     exactTerms?: string;
@@ -730,6 +734,10 @@ export namespace customsearch_v1 {
      * Restricts results to URLs based on date. Supported values include: * `d[number]`: requests results from the specified number of past days. * `w[number]`: requests results from the specified number of past weeks. * `m[number]`: requests results from the specified number of past months. * `y[number]`: requests results from the specified number of past years.
      */
     dateRestrict?: string;
+    /**
+     * Optional. Enables routing of Programmable Search Engine requests to an alternate search handler.
+     */
+    enableAlternateSearchHandler?: boolean;
     /**
      * Identifies a phrase that all documents in the search results must contain.
      */
