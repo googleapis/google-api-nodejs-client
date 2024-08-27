@@ -1382,6 +1382,44 @@ export namespace dfareporting_v4 {
     totalAmountMicros?: string | null;
   }
   /**
+   * Contains additional information about cart data.
+   */
+  export interface Schema$CartData {
+    /**
+     * Data of the items purchased.
+     */
+    items?: Schema$CartDataItem[];
+    /**
+     * The feed labels associated with the feed where your items are uploaded. For more information, please refer to ​​ https://support.google.com/merchants/answer/12453549. This is a required field.
+     */
+    merchantFeedLabel?: string | null;
+    /**
+     * The language associated with the feed where your items are uploaded. Use ISO 639-1 language codes. This field is needed only when item IDs are not unique across multiple Merchant Center feeds.
+     */
+    merchantFeedLanguage?: string | null;
+    /**
+     * The Merchant Center ID where the items are uploaded.
+     */
+    merchantId?: string | null;
+  }
+  /**
+   * Contains data of the items purchased.
+   */
+  export interface Schema$CartDataItem {
+    /**
+     * The shopping id of the item. Must be equal to the Merchant Center product identifier. This is a required field.
+     */
+    itemId?: string | null;
+    /**
+     * Number of items sold. This is a required field.
+     */
+    quantity?: number | null;
+    /**
+     * Unit price excluding tax, shipping, and any transaction level discounts. Interpreted in CM360 Floodlight config parent advertiser's currency code. This is a required field.
+     */
+    unitPrice?: number | null;
+  }
+  /**
    * Describes a change that a user has made to a resource.
    */
   export interface Schema$ChangeLog {
@@ -1697,6 +1735,10 @@ export namespace dfareporting_v4 {
      * This represents consent for ad user data.
      */
     adUserDataConsent?: string | null;
+    /**
+     * The cart data associated with this conversion.
+     */
+    cartData?: Schema$CartData;
     /**
      * Whether this particular request may come from a user under the age of 13, under COPPA compliance.
      */
@@ -3135,6 +3177,10 @@ export namespace dfareporting_v4 {
      * Name of this directory site.
      */
     name?: string | null;
+    /**
+     * Output only. Default publisher specification ID of video placements under this directory site. Possible values are: * `1`, Hulu * `2`, NBC * `3`, CBS * `4`, CBS Desktop * `5`, Discovery * `6`, VEVO HD * `7`, VEVO Vertical * `8`, Fox * `9`, CW Network * `10`, Disney * `11`, IGN * `12`, NFL.com * `13`, Turner Broadcasting * `14`, Tubi on Fox * `15`, Hearst Corporation * `16`, Twitch Desktop * `17`, ABC * `18`, Univision * `19`, MLB.com * `20`, MLB.com Mobile * `21`, MLB.com OTT * `22`, Polsat * `23`, TVN * `24`, Mediaset * `25`, Antena 3 * `26`, Mediamond * `27`, Sky Italia * `28`, Tubi on CBS * `29`, Spotify * `30`, Paramount * `31`, Max
+     */
+    publisherSpecificationId?: string | null;
     /**
      * Directory site settings.
      */
@@ -4796,6 +4842,10 @@ export namespace dfareporting_v4 {
      */
     additionalSizes?: Schema$Size[];
     /**
+     * Optional. Ad serving platform ID to identify the ad serving platform used by the placement. Measurement partners can use this field to add ad-server specific macros. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv
+     */
+    adServingPlatformId?: string | null;
+    /**
      * Advertiser ID of this placement. This field can be left blank.
      */
     advertiserId?: string | null;
@@ -4915,6 +4965,10 @@ export namespace dfareporting_v4 {
      * Dimension value for the ID of the site. This is a read-only, auto-generated field.
      */
     siteIdDimensionValue?: Schema$DimensionValue;
+    /**
+     * Optional. Whether the ads in the placement are served by another platform and CM is only used for tracking or they are served by CM. A false value indicates the ad is served by CM.
+     */
+    siteServed?: boolean | null;
     /**
      * Size associated with this placement. When inserting or updating a placement, only the size ID field is used. This field is required on insertion.
      */
@@ -5907,6 +5961,10 @@ export namespace dfareporting_v4 {
      */
     accountId?: string | null;
     /**
+     * Optional. Ad serving platform ID to identify the ad serving platform used by the site. Measurement partners can use this field to add ad-server specific macros. If set, this value acts as the default during placement creation. Possible values are: * `1`, Adelphic * `2`, Adform * `3`, Adobe * `4`, Amobee * `5`, Basis (Centro) * `6`, Beeswax * `7`, Amazon * `8`, DV360 (DBM) * `9`, Innovid * `10`, MediaMath * `11`, Roku OneView DSP * `12`, TabMo Hawk * `13`, The Trade Desk * `14`, Xandr Invest DSP * `15`, Yahoo DSP * `16`, Zeta Global * `17`, Scaleout * `18`, Bidtellect * `19`, Unicorn * `20`, Teads * `21`, Quantcast * `22`, Cognitiv
+     */
+    adServingPlatformId?: string | null;
+    /**
      * Whether this site is approved.
      */
     approved?: boolean | null;
@@ -6118,7 +6176,7 @@ export namespace dfareporting_v4 {
      */
     orientation?: string | null;
     /**
-     * Publisher specification ID used to identify site-associated publisher requirements and automatically populate transcode settings. If publisher specification ID is specified, it will take precedence over transcode settings.
+     * Publisher specification ID used to identify site-associated publisher requirements and automatically populate transcode settings. If publisher specification ID is specified, it will take precedence over transcode settings. Possible values are: * `1`, Hulu * `2`, NBC * `3`, CBS * `4`, CBS Desktop * `5`, Discovery * `6`, VEVO HD * `7`, VEVO Vertical * `8`, Fox * `9`, CW Network * `10`, Disney * `11`, IGN * `12`, NFL.com * `13`, Turner Broadcasting * `14`, Tubi on Fox * `15`, Hearst Corporation * `16`, Twitch Desktop * `17`, ABC * `18`, Univision * `19`, MLB.com * `20`, MLB.com Mobile * `21`, MLB.com OTT * `22`, Polsat * `23`, TVN * `24`, Mediaset * `25`, Antena 3 * `26`, Mediamond * `27`, Sky Italia * `28`, Tubi on CBS * `29`, Spotify * `30`, Paramount * `31`, Max
      */
     publisherSpecificationId?: string | null;
     /**
@@ -6835,7 +6893,7 @@ export namespace dfareporting_v4 {
      */
     orientation?: string | null;
     /**
-     * Publisher specification ID of a video placement.
+     * Publisher specification ID of a video placement. Possible values are: * `1`, Hulu * `2`, NBC * `3`, CBS * `4`, CBS Desktop * `5`, Discovery * `6`, VEVO HD * `7`, VEVO Vertical * `8`, Fox * `9`, CW Network * `10`, Disney * `11`, IGN * `12`, NFL.com * `13`, Turner Broadcasting * `14`, Tubi on Fox * `15`, Hearst Corporation * `16`, Twitch Desktop * `17`, ABC * `18`, Univision * `19`, MLB.com * `20`, MLB.com Mobile * `21`, MLB.com OTT * `22`, Polsat * `23`, TVN * `24`, Mediaset * `25`, Antena 3 * `26`, Mediamond * `27`, Sky Italia * `28`, Tubi on CBS * `29`, Spotify * `30`, Paramount * `31`, Max
      */
     publisherSpecificationId?: string | null;
     /**

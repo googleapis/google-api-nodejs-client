@@ -161,7 +161,7 @@
       }
     }
   },
-  "revision": "20240625",
+  "revision": "20240821",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "ClickTag": {
@@ -399,12 +399,6 @@
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#creativeAssetMetadata\".",
           "type": "string"
         },
-        "mediaRequestInfo": {
-          "$ref": "MediaRequestInfo"
-        },
-        "mediaResponseInfo": {
-          "$ref": "MediaResponseInfo"
-        },
         "richMedia": {
           "description": "True if the uploaded asset is a rich media asset. This is a read-only, auto-generated field.",
           "type": "boolean"
@@ -626,154 +620,6 @@
         "value": {
           "description": "The value of the dimension.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "MediaRequestInfo": {
-      "description": "Extra information added to operations that support Scotty media requests.",
-      "id": "MediaRequestInfo",
-      "properties": {
-        "currentBytes": {
-          "description": "The number of current bytes uploaded or downloaded.",
-          "format": "int64",
-          "type": "string"
-        },
-        "customData": {
-          "description": "Data to be copied to backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.",
-          "type": "string"
-        },
-        "diffObjectVersion": {
-          "description": "Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary's mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information.",
-          "type": "string"
-        },
-        "finalStatus": {
-          "description": "The existence of the final_status field indicates that this is the last call to the agent for this request_id. http://google3/uploader/agent/scotty_agent.proto?l=737&rcl=347601929",
-          "format": "int32",
-          "type": "integer"
-        },
-        "notificationType": {
-          "description": "The type of notification received from Scotty.",
-          "enum": [
-            "START",
-            "PROGRESS",
-            "END",
-            "RESPONSE_SENT",
-            "ERROR"
-          ],
-          "enumDescriptions": [
-            "Such requests signals the start of a request containing media upload. Only the media field(s) in the inserted/updated resource are set. The response should either return an error or succeed. On success, responses don't need to contain anything.",
-            "Such requests signals that the upload has progressed and that the backend might want to access the media file specified in relevant fields in the resource. Only the media field(s) in the inserted/updated resource are set. The response should either return an error or succeed. On success, responses don't need to contain anything.",
-            "Such requests signals the end of a request containing media upload. END should be handled just like normal Insert/Upload requests, that is, they should process the request and return a complete resource in the response. Pointers to media data (a GFS path usually) appear in the relevant fields in the inserted/updated resource. See gdata.Media in data.proto.",
-            "Such requests occur after an END and signal that the response has been sent back to the client. RESPONSE_SENT is only sent to the backend if it is configured to receive them. The response does not need to contain anything.",
-            "Such requests indicate that an error occurred while processing the request. ERROR is only sent to the backend if it is configured to receive them. It is not guaranteed that all errors will result in this notification to the backend, even if the backend requests them. Since these requests are just for informational purposes, the response does not need to contain anything."
-          ],
-          "type": "string"
-        },
-        "requestId": {
-          "description": "The Scotty request ID.",
-          "type": "string"
-        },
-        "requestReceivedParamsServingInfo": {
-          "description": "The partition of the Scotty server handling this request. type is uploader_service.RequestReceivedParamsServingInfo LINT.IfChange(request_received_params_serving_info_annotations) LINT.ThenChange()",
-          "format": "byte",
-          "type": "string"
-        },
-        "totalBytes": {
-          "description": "The total size of the file.",
-          "format": "int64",
-          "type": "string"
-        },
-        "totalBytesIsEstimated": {
-          "description": "Whether the total bytes field contains an estimated data.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "MediaResponseInfo": {
-      "description": "This message is for backends to pass their scotty media specific fields to ESF. Backend will include this in their response message to ESF. Example: ExportFile is an rpc defined for upload using scotty from ESF. rpc ExportFile(ExportFileRequest) returns (ExportFileResponse) Message ExportFileResponse will include apiserving.MediaResponseInfo to tell ESF about data like dynamic_dropzone it needs to pass to Scotty. message ExportFileResponse { optional gdata.Media blob = 1; optional apiserving.MediaResponseInfo media_response_info = 2 }",
-      "id": "MediaResponseInfo",
-      "properties": {
-        "customData": {
-          "description": "Data to copy from backend response to the next backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.",
-          "type": "string"
-        },
-        "dataStorageTransform": {
-          "description": "Specifies any transformation to be applied to data before persisting it or retrieving from storage. E.g., encryption options for blobstore2. This should be of the form uploader_service.DataStorageTransform.",
-          "format": "byte",
-          "type": "string"
-        },
-        "dynamicDropTarget": {
-          "description": "Specifies the Scotty Drop Target to use for uploads. If present in a media response, Scotty does not upload to a standard drop zone. Instead, Scotty saves the upload directly to the location specified in this drop target. Unlike drop zones, the drop target is the final storage location for an upload. So, the agent does not need to clone the blob at the end of the upload. The agent is responsible for garbage collecting any orphaned blobs that may occur due to aborted uploads. For more information, see the drop target design doc here: http://goto/ScottyDropTarget This field will be preferred to dynamicDropzone. If provided, the identified field in the response must be of the type uploader.agent.DropTarget.",
-          "format": "byte",
-          "type": "string"
-        },
-        "dynamicDropzone": {
-          "description": "Specifies the Scotty dropzone to use for uploads.",
-          "type": "string"
-        },
-        "requestClass": {
-          "description": "Request class to use for all Blobstore operations for this request.",
-          "enum": [
-            "UNKNOWN_REQUEST_CLASS",
-            "LATENCY_SENSITIVE",
-            "PRODUCTION_BATCH",
-            "BEST_EFFORT"
-          ],
-          "enumDescriptions": [
-            "Unpopulated request_class in log files will be taken as 0 in dremel query. GoogleSQL will try to cast it to enum by default. An unused 0 value is added to avoid GoogleSQL casting error. Please refer to b/69677280.",
-            "A latency-sensitive request.",
-            "A request generated by a batch process.",
-            "A best-effort request."
-          ],
-          "type": "string"
-        },
-        "scottyAgentUserId": {
-          "description": "Requester ID passed along to be recorded in the Scotty logs",
-          "format": "int64",
-          "type": "string"
-        },
-        "scottyCustomerLog": {
-          "description": "Customer-specific data to be recorded in the Scotty logs type is logs_proto_scotty.CustomerLog",
-          "format": "byte",
-          "type": "string"
-        },
-        "trafficClassField": {
-          "description": "Specifies the TrafficClass that Scotty should use for any RPCs to fetch the response bytes. Will override the traffic class GTOS of the incoming http request. This is a temporary field to facilitate whitelisting and experimentation by the bigstore agent only. For instance, this does not apply to RTMP reads. WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.",
-          "enum": [
-            "BE1",
-            "AF1",
-            "AF2",
-            "AF3",
-            "AF4",
-            "NC1",
-            "NC0",
-            "BE0",
-            "LLQ",
-            "LLQ1",
-            "LLQ2",
-            "LLQ3"
-          ],
-          "enumDescriptions": [
-            "Application-selectable traffic classes Best effort",
-            "Assured forwarding priority 1",
-            "Assured forwarding priority 2",
-            "Assured forwarding priority 3",
-            "Assured forwarding priority 4",
-            "Network control",
-            "Network control",
-            "Best effort at high packet loss",
-            "Low-latency queue (LLQ) best effort (go/llq)",
-            "LLQ assured forwarding priority 1 (go/llq2)",
-            "LLQ assured forwarding priority 2 (go/llq2)",
-            "LLQ assured forwarding priority 3 (go/llq3)"
-          ],
-          "type": "string"
-        },
-        "verifyHashFromHeader": {
-          "description": "Tells Scotty to verify hashes on the agent's behalf by parsing out the X-Goog-Hash header.",
-          "type": "boolean"
         }
       },
       "type": "object"
