@@ -114,6 +114,20 @@
           "id": "solar.buildingInsights.findClosest",
           "parameterOrder": [],
           "parameters": {
+            "experiments": {
+              "description": "Optional. Specifies the pre-GA features to enable.",
+              "enum": [
+                "EXPERIMENT_UNSPECIFIED",
+                "EXPANDED_COVERAGE"
+              ],
+              "enumDescriptions": [
+                "No experiments are specified.",
+                "Expands the geographic region available for querying solar data."
+              ],
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
             "location.latitude": {
               "description": "The latitude in degrees. It must be in the range [-90.0, +90.0].",
               "format": "double",
@@ -132,12 +146,14 @@
                 "IMAGERY_QUALITY_UNSPECIFIED",
                 "HIGH",
                 "MEDIUM",
-                "LOW"
+                "LOW",
+                "BASE"
               ],
               "enumDescriptions": [
                 "No quality is known.",
                 "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
                 "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
                 "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
               ],
               "location": "query",
@@ -167,6 +183,20 @@
               "description": "Optional. Whether to require exact quality of the imagery. If set to false, the `required_quality` field is interpreted as the minimum required quality, such that HIGH quality imagery may be returned when `required_quality` is set to MEDIUM. If set to true, `required_quality` is interpreted as the exact required quality and only `MEDIUM` quality imagery is returned if `required_quality` is set to `MEDIUM`.",
               "location": "query",
               "type": "boolean"
+            },
+            "experiments": {
+              "description": "Optional. Specifies the pre-GA experiments to enable.",
+              "enum": [
+                "EXPERIMENT_UNSPECIFIED",
+                "EXPANDED_COVERAGE"
+              ],
+              "enumDescriptions": [
+                "No experiments are specified.",
+                "Expands the geographic region available for querying solar data."
+              ],
+              "location": "query",
+              "repeated": true,
+              "type": "string"
             },
             "location.latitude": {
               "description": "The latitude in degrees. It must be in the range [-90.0, +90.0].",
@@ -198,12 +228,14 @@
                 "IMAGERY_QUALITY_UNSPECIFIED",
                 "HIGH",
                 "MEDIUM",
-                "LOW"
+                "LOW",
+                "BASE"
               ],
               "enumDescriptions": [
                 "No quality is known.",
                 "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
                 "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
                 "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
               ],
               "location": "query",
@@ -267,7 +299,7 @@
       }
     }
   },
-  "revision": "20240630",
+  "revision": "20240820",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
@@ -300,12 +332,14 @@
             "IMAGERY_QUALITY_UNSPECIFIED",
             "HIGH",
             "MEDIUM",
-            "LOW"
+            "LOW",
+            "BASE"
           ],
           "enumDescriptions": [
             "No quality is known.",
             "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
             "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
             "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
           ],
           "type": "string"
@@ -394,12 +428,14 @@
             "IMAGERY_QUALITY_UNSPECIFIED",
             "HIGH",
             "MEDIUM",
-            "LOW"
+            "LOW",
+            "BASE"
           ],
           "enumDescriptions": [
             "No quality is known.",
             "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
             "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
+            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
             "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
           ],
           "type": "string"
