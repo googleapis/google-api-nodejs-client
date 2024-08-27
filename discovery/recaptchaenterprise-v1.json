@@ -516,6 +516,42 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "listIpOverrides": {
+              "description": "Lists all IP overrides for a key.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}:listIpOverrides",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.keys.listIpOverrides",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of overrides to return. Default is 10. Max limit is 100. If the number of overrides is less than the page_size, all overrides are returned. If the page size is more than 100, it is coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The next_page_token value returned from a previous ListIpOverridesRequest, if any.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent key for which the IP overrides are listed, in the format `projects/{project}/keys/{key}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}:listIpOverrides",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "migrate": {
               "description": "Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.",
               "flatPath": "v1/projects/{projectsId}/keys/{keysId}:migrate",
@@ -573,6 +609,34 @@
               },
               "response": {
                 "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "removeIpOverride": {
+              "description": "Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error will be returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error will be returned.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}:removeIpOverride",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.keys.removeIpOverride",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the key from which the IP override is removed, in the format `projects/{project}/keys/{key}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:removeIpOverride",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -722,7 +786,7 @@
       }
     }
   },
-  "revision": "20240804",
+  "revision": "20240811",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1538,6 +1602,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse": {
+      "description": "Response for ListIpOverrides.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse",
+      "properties": {
+        "ipOverrides": {
+          "description": "IP Overrides details.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1IpOverrideData"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results. If this field is empty, no keys remain in the results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1ListKeysResponse": {
       "description": "Response to request to list keys in a project.",
       "id": "GoogleCloudRecaptchaenterpriseV1ListKeysResponse",
@@ -1708,6 +1790,23 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest": {
+      "description": "The removeIpOverride request message.",
+      "id": "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest",
+      "properties": {
+        "ipOverrideData": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1IpOverrideData",
+          "description": "Required. IP override to be removed from the key."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse": {
+      "description": "Response for RemoveIpOverride.",
+      "id": "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1ReorderFirewallPoliciesRequest": {
