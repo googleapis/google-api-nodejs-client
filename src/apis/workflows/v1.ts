@@ -322,6 +322,10 @@ export namespace workflows_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Describes the level of the execution history feature to apply to this workflow.
+     */
+    executionHistoryLevel?: string | null;
+    /**
      * Labels associated with this workflow. Labels can contain at most 64 entries. Keys and values can be no longer than 63 characters and can only contain lowercase letters, numeric characters, underscores, and dashes. Label keys must start with a letter. International characters are allowed. This is a workflow-wide field and is not tied to a specific revision.
      */
     labels?: {[key: string]: string} | null;

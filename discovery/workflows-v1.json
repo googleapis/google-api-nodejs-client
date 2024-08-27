@@ -485,7 +485,7 @@
       }
     }
   },
-  "revision": "20240710",
+  "revision": "20240814",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -774,6 +774,20 @@
         },
         "description": {
           "description": "Description of the workflow provided by the user. Must be at most 1000 Unicode characters long. This is a workflow-wide field and is not tied to a specific revision.",
+          "type": "string"
+        },
+        "executionHistoryLevel": {
+          "description": "Optional. Describes the level of the execution history feature to apply to this workflow.",
+          "enum": [
+            "EXECUTION_HISTORY_LEVEL_UNSPECIFIED",
+            "EXECUTION_HISTORY_BASIC",
+            "EXECUTION_HISTORY_DETAILED"
+          ],
+          "enumDescriptions": [
+            "The default/unset value.",
+            "Enable execution history basic feature.",
+            "Enable execution history detailed feature."
+          ],
           "type": "string"
         },
         "labels": {
