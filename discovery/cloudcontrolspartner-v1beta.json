@@ -484,7 +484,7 @@
       }
     }
   },
-  "revision": "20240731",
+  "revision": "20240814",
   "rootUrl": "https://cloudcontrolspartner.googleapis.com/",
   "schemas": {
     "AccessApprovalRequest": {
@@ -598,7 +598,7 @@
           "readOnly": true
         },
         "displayName": {
-          "description": "Optional. The customer organization's display name. E.g. \"Google\".",
+          "description": "The customer organization's display name. E.g. \"Google\".",
           "type": "string"
         },
         "isOnboarded": {

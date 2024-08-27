@@ -197,7 +197,7 @@ export namespace cloudcontrolspartner_v1 {
      */
     customerOnboardingState?: Schema$CustomerOnboardingState;
     /**
-     * Optional. The customer organization's display name. E.g. "Google".
+     * The customer organization's display name. E.g. "Google".
      */
     displayName?: string | null;
     /**
