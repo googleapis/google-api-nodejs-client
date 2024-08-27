@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240725",
+  "revision": "20240807",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1142,7 +1142,9 @@
             "CLOUD_NAT_NO_ADDRESSES",
             "ROUTING_LOOP",
             "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE",
-            "LOAD_BALANCER_BACKEND_INVALID_NETWORK"
+            "LOAD_BALANCER_BACKEND_INVALID_NETWORK",
+            "BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED",
+            "DESTINATION_IS_PRIVATE_NAT_IP_RANGE"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1210,7 +1212,9 @@
             "Packet sent to Cloud Nat without active NAT IPs.",
             "Packet is stuck in a routing loop.",
             "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces.",
-            "Packet is dropped due to a load balancer backend instance not having a network interface in the network expected by the load balancer."
+            "Packet is dropped due to a load balancer backend instance not having a network interface in the network expected by the load balancer.",
+            "Packet is dropped due to a backend service named port not being defined on the instance group level.",
+            "Packet is dropped due to a destination IP range being part of a Private NAT IP range."
           ],
           "type": "string"
         },
