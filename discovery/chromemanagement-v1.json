@@ -1104,7 +1104,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report ",
+                      "description": "Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report - user_device.app_report ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1151,7 +1151,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report ",
+                      "description": "Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report - user_device.app_report ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20240709",
+  "revision": "20240815",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
