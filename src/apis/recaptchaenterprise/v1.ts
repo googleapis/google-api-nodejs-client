@@ -676,6 +676,19 @@ export namespace recaptchaenterprise_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response for ListIpOverrides.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse {
+    /**
+     * IP Overrides details.
+     */
+    ipOverrides?: Schema$GoogleCloudRecaptchaenterpriseV1IpOverrideData[];
+    /**
+     * Token to retrieve the next page of results. If this field is empty, no keys remain in the results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response to request to list keys in a project.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1ListKeysResponse {
@@ -800,6 +813,19 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
   }
+  /**
+   * The removeIpOverride request message.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest {
+    /**
+     * Required. IP override to be removed from the key.
+     */
+    ipOverrideData?: Schema$GoogleCloudRecaptchaenterpriseV1IpOverrideData;
+  }
+  /**
+   * Response for RemoveIpOverride.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse {}
   /**
    * The reorder firewall policies request message.
    */
@@ -2702,6 +2728,104 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
+     * Lists all IP overrides for a key.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listIpOverrides(
+      params: Params$Resource$Projects$Keys$Listipoverrides,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listIpOverrides(
+      params?: Params$Resource$Projects$Keys$Listipoverrides,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>;
+    listIpOverrides(
+      params: Params$Resource$Projects$Keys$Listipoverrides,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listIpOverrides(
+      params: Params$Resource$Projects$Keys$Listipoverrides,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+    ): void;
+    listIpOverrides(
+      params: Params$Resource$Projects$Keys$Listipoverrides,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+    ): void;
+    listIpOverrides(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+    ): void;
+    listIpOverrides(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Keys$Listipoverrides
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Keys$Listipoverrides;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Keys$Listipoverrides;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:listIpOverrides').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListIpOverridesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.
      *
      * @param params - Parameters for request
@@ -2895,6 +3019,104 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
+     * Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error will be returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error will be returned.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeIpOverride(
+      params: Params$Resource$Projects$Keys$Removeipoverride,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeIpOverride(
+      params?: Params$Resource$Projects$Keys$Removeipoverride,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>;
+    removeIpOverride(
+      params: Params$Resource$Projects$Keys$Removeipoverride,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeIpOverride(
+      params: Params$Resource$Projects$Keys$Removeipoverride,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+    ): void;
+    removeIpOverride(
+      params: Params$Resource$Projects$Keys$Removeipoverride,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+    ): void;
+    removeIpOverride(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+    ): void;
+    removeIpOverride(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Keys$Removeipoverride
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Keys$Removeipoverride;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Keys$Removeipoverride;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:removeIpOverride').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns the secret key related to the specified public key. You must use the legacy secret key only in a 3rd party integration with legacy reCAPTCHA.
      *
      * @param params - Parameters for request
@@ -3053,6 +3275,21 @@ export namespace recaptchaenterprise_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Keys$Listipoverrides
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of overrides to return. Default is 10. Max limit is 100. If the number of overrides is less than the page_size, all overrides are returned. If the page size is more than 100, it is coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous ListIpOverridesRequest, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent key for which the IP overrides are listed, in the format `projects/{project\}/keys/{key\}`.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Keys$Migrate
     extends StandardParameters {
     /**
@@ -3080,6 +3317,18 @@ export namespace recaptchaenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1Key;
+  }
+  export interface Params$Resource$Projects$Keys$Removeipoverride
+    extends StandardParameters {
+    /**
+     * Required. The name of the key from which the IP override is removed, in the format `projects/{project\}/keys/{key\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest;
   }
   export interface Params$Resource$Projects$Keys$Retrievelegacysecretkey
     extends StandardParameters {
