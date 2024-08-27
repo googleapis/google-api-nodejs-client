@@ -416,6 +416,38 @@
             }
           },
           "resources": {
+            "builds": {
+              "methods": {
+                "submit": {
+                  "description": "Submits a build in a given project.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/builds:submit",
+                  "httpMethod": "POST",
+                  "id": "run.projects.locations.builds.submit",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/builds:submit",
+                  "request": {
+                    "$ref": "GoogleCloudRunV2SubmitBuildRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRunV2SubmitBuildResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "jobs": {
               "methods": {
                 "create": {
@@ -1494,7 +1526,7 @@
       }
     }
   },
-  "revision": "20240802",
+  "revision": "20240816",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1512,6 +1544,41 @@
         "useDefault": {
           "description": "Optional. If True, indicates to use the default project's binary authorization policy. If False, binary authorization will be disabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2BuildpacksBuild": {
+      "description": "Build the source using Buildpacks.",
+      "id": "GoogleCloudRunV2BuildpacksBuild",
+      "properties": {
+        "baseImage": {
+          "description": "Optional. The base image used to opt into automatic base image updates.",
+          "type": "string"
+        },
+        "cacheImageUri": {
+          "description": "Optional. cache_image_uri is the GCR/AR URL where the cache image will be stored. cache_image_uri is optional and omitting it will disable caching. This URL must be stable across builds. It is used to derive a build-specific temporary URL by substituting the tag with the build ID. The build will clean up the temporary image on a best-effort basis.",
+          "type": "string"
+        },
+        "enableAutomaticUpdates": {
+          "description": "Optional. Whether or not the application container will be enrolled in automatic base image updates. When true, the application will be built on a scratch base image, so the base layers can be appended at run time.",
+          "type": "boolean"
+        },
+        "environmentVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-provided build-time environment variables.",
+          "type": "object"
+        },
+        "functionTarget": {
+          "description": "Optional. Name of the function target if the source is a function source. Required for function builds.",
+          "type": "string"
+        },
+        "runtime": {
+          "deprecated": true,
+          "description": "The runtime name, e.g. 'go113'. Leave blank for generic builds.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1812,6 +1879,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2DockerBuild": {
+      "description": "Build the source using Docker. This means the source has a Dockerfile.",
+      "id": "GoogleCloudRunV2DockerBuild",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudRunV2EmptyDirVolumeSource": {
       "description": "In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).",
       "id": "GoogleCloudRunV2EmptyDirVolumeSource",
@@ -1844,7 +1917,7 @@
           "type": "string"
         },
         "value": {
-          "description": "Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to \"\", and the maximum length is 32768 bytes.",
+          "description": "Literal value of the environment variable. Defaults to \"\", and the maximum length is 32768 bytes. Variable references are not supported in Cloud Run.",
           "type": "string"
         },
         "valueSource": {
@@ -3294,6 +3367,14 @@
           "description": "Output only. The main URI in which this Service is serving traffic.",
           "readOnly": true,
           "type": "string"
+        },
+        "urls": {
+          "description": "Output only. All URLs serving traffic for this Service.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3317,6 +3398,79 @@
           "description": "Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2StorageSource": {
+      "description": "Location of the source in an archive file in Google Cloud Storage.",
+      "id": "GoogleCloudRunV2StorageSource",
+      "properties": {
+        "bucket": {
+          "description": "Required. Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
+          "type": "string"
+        },
+        "generation": {
+          "description": "Optional. Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "format": "int64",
+          "type": "string"
+        },
+        "object": {
+          "description": "Required. Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2SubmitBuildRequest": {
+      "description": "Request message for submitting a Build.",
+      "id": "GoogleCloudRunV2SubmitBuildRequest",
+      "properties": {
+        "buildpackBuild": {
+          "$ref": "GoogleCloudRunV2BuildpacksBuild",
+          "description": "Build the source using Buildpacks."
+        },
+        "dockerBuild": {
+          "$ref": "GoogleCloudRunV2DockerBuild",
+          "description": "Build the source using Docker. This means the source has a Dockerfile."
+        },
+        "imageUri": {
+          "description": "Required. Artifact Registry URI to store the built image.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account to use for the build. If not set, the default Cloud Build service account for the project will be used.",
+          "type": "string"
+        },
+        "storageSource": {
+          "$ref": "GoogleCloudRunV2StorageSource",
+          "description": "Required. Source for the build."
+        },
+        "tags": {
+          "description": "Optional. Additional tags to annotate the build.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "workerPool": {
+          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where {project} and {region} are the project id and region respectively where the worker pool is defined and {workerPool} is the short name of the worker pool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2SubmitBuildResponse": {
+      "description": "Response message for submitting a Build.",
+      "id": "GoogleCloudRunV2SubmitBuildResponse",
+      "properties": {
+        "baseImageUri": {
+          "description": "URI of the base builder image in Artifact Registry being used in the build. Used to opt into automatic base image updates.",
+          "type": "string"
+        },
+        "buildOperation": {
+          "$ref": "GoogleLongrunningOperation",
+          "description": "Cloud Build operation to be polled via CloudBuild API."
         }
       },
       "type": "object"

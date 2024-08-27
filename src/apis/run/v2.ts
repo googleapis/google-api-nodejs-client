@@ -142,6 +142,35 @@ export namespace run_v2 {
     useDefault?: boolean | null;
   }
   /**
+   * Build the source using Buildpacks.
+   */
+  export interface Schema$GoogleCloudRunV2BuildpacksBuild {
+    /**
+     * Optional. The base image used to opt into automatic base image updates.
+     */
+    baseImage?: string | null;
+    /**
+     * Optional. cache_image_uri is the GCR/AR URL where the cache image will be stored. cache_image_uri is optional and omitting it will disable caching. This URL must be stable across builds. It is used to derive a build-specific temporary URL by substituting the tag with the build ID. The build will clean up the temporary image on a best-effort basis.
+     */
+    cacheImageUri?: string | null;
+    /**
+     * Optional. Whether or not the application container will be enrolled in automatic base image updates. When true, the application will be built on a scratch base image, so the base layers can be appended at run time.
+     */
+    enableAutomaticUpdates?: boolean | null;
+    /**
+     * Optional. User-provided build-time environment variables.
+     */
+    environmentVariables?: {[key: string]: string} | null;
+    /**
+     * Optional. Name of the function target if the source is a function source. Required for function builds.
+     */
+    functionTarget?: string | null;
+    /**
+     * The runtime name, e.g. 'go113'. Leave blank for generic builds.
+     */
+    runtime?: string | null;
+  }
+  /**
    * Request message for deleting an Execution.
    */
   export interface Schema$GoogleCloudRunV2CancelExecutionRequest {
@@ -288,6 +317,10 @@ export namespace run_v2 {
     name?: string | null;
   }
   /**
+   * Build the source using Docker. This means the source has a Dockerfile.
+   */
+  export interface Schema$GoogleCloudRunV2DockerBuild {}
+  /**
    * In memory (tmpfs) ephemeral storage. It is ephemeral in the sense that when the sandbox is taken down, the data is destroyed with it (it does not persist across sandbox runs).
    */
   export interface Schema$GoogleCloudRunV2EmptyDirVolumeSource {
@@ -309,7 +342,7 @@ export namespace run_v2 {
      */
     name?: string | null;
     /**
-     * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "", and the maximum length is 32768 bytes.
+     * Literal value of the environment variable. Defaults to "", and the maximum length is 32768 bytes. Variable references are not supported in Cloud Run.
      */
     value?: string | null;
     /**
@@ -1297,6 +1330,10 @@ export namespace run_v2 {
      * Output only. The main URI in which this Service is serving traffic.
      */
     uri?: string | null;
+    /**
+     * Output only. All URLs serving traffic for this Service.
+     */
+    urls?: string[] | null;
   }
   /**
    * Service mesh configuration.
@@ -1315,6 +1352,69 @@ export namespace run_v2 {
      * Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)
      */
     minInstanceCount?: number | null;
+  }
+  /**
+   * Location of the source in an archive file in Google Cloud Storage.
+   */
+  export interface Schema$GoogleCloudRunV2StorageSource {
+    /**
+     * Required. Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string | null;
+    /**
+     * Optional. Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Required. Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
+     */
+    object?: string | null;
+  }
+  /**
+   * Request message for submitting a Build.
+   */
+  export interface Schema$GoogleCloudRunV2SubmitBuildRequest {
+    /**
+     * Build the source using Buildpacks.
+     */
+    buildpackBuild?: Schema$GoogleCloudRunV2BuildpacksBuild;
+    /**
+     * Build the source using Docker. This means the source has a Dockerfile.
+     */
+    dockerBuild?: Schema$GoogleCloudRunV2DockerBuild;
+    /**
+     * Required. Artifact Registry URI to store the built image.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. The service account to use for the build. If not set, the default Cloud Build service account for the project will be used.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Required. Source for the build.
+     */
+    storageSource?: Schema$GoogleCloudRunV2StorageSource;
+    /**
+     * Optional. Additional tags to annotate the build.
+     */
+    tags?: string[] | null;
+    /**
+     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where {project\} and {region\} are the project id and region respectively where the worker pool is defined and {workerPool\} is the short name of the worker pool.
+     */
+    workerPool?: string | null;
+  }
+  /**
+   * Response message for submitting a Build.
+   */
+  export interface Schema$GoogleCloudRunV2SubmitBuildResponse {
+    /**
+     * URI of the base builder image in Artifact Registry being used in the build. Used to opt into automatic base image updates.
+     */
+    baseImageUri?: string | null;
+    /**
+     * Cloud Build operation to be polled via CloudBuild API.
+     */
+    buildOperation?: Schema$GoogleLongrunningOperation;
   }
   /**
    * Task represents a single run of a container to completion.
@@ -2719,11 +2819,13 @@ export namespace run_v2 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    builds: Resource$Projects$Locations$Builds;
     jobs: Resource$Projects$Locations$Jobs;
     operations: Resource$Projects$Locations$Operations;
     services: Resource$Projects$Locations$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.builds = new Resource$Projects$Locations$Builds(this.context);
       this.jobs = new Resource$Projects$Locations$Jobs(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
@@ -3146,6 +3248,123 @@ export namespace run_v2 {
      * Required. The name of the project of which metadata should be exported. Format: `projects/{project_id_or_number\}/locations/{location\}` for Project in a given location.
      */
     name?: string;
+  }
+
+  export class Resource$Projects$Locations$Builds {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Submits a build in a given project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    submit(
+      params: Params$Resource$Projects$Locations$Builds$Submit,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    submit(
+      params?: Params$Resource$Projects$Locations$Builds$Submit,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRunV2SubmitBuildResponse>;
+    submit(
+      params: Params$Resource$Projects$Locations$Builds$Submit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    submit(
+      params: Params$Resource$Projects$Locations$Builds$Submit,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2SubmitBuildResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2SubmitBuildResponse>
+    ): void;
+    submit(
+      params: Params$Resource$Projects$Locations$Builds$Submit,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2SubmitBuildResponse>
+    ): void;
+    submit(
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2SubmitBuildResponse>
+    ): void;
+    submit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Builds$Submit
+        | BodyResponseCallback<Schema$GoogleCloudRunV2SubmitBuildResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRunV2SubmitBuildResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRunV2SubmitBuildResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRunV2SubmitBuildResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Builds$Submit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Builds$Submit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/builds:submit').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRunV2SubmitBuildResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRunV2SubmitBuildResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Builds$Submit
+    extends StandardParameters {
+    /**
+     * Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRunV2SubmitBuildRequest;
   }
 
   export class Resource$Projects$Locations$Jobs {
