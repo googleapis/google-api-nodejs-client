@@ -455,6 +455,10 @@ export namespace sqladmin_v1beta4 {
      */
     pointInTime?: string | null;
     /**
+     * Optional. Copy clone and point-in-time recovery clone of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field.
+     */
+    preferredSecondaryZone?: string | null;
+    /**
      * Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance.
      */
     preferredZone?: string | null;
