@@ -2459,7 +2459,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaRuleForceReturnFacetAction {
     /**
-     * Each instance corresponds to a force return attribute for the given condition. There can't be more 3 instances here.
+     * Each instance corresponds to a force return attribute for the given condition. There can't be more 15 instances here.
      */
     facetPositionAdjustments?: Schema$GoogleCloudRetailV2alphaRuleForceReturnFacetActionFacetPositionAdjustment[];
   }
