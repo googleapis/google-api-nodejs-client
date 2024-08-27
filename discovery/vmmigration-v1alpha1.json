@@ -1180,66 +1180,6 @@
                     }
                   }
                 },
-                "diskMigrationJobs": {
-                  "methods": {
-                    "cancel": {
-                      "description": "Cancels the disk migration job.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:cancel",
-                      "httpMethod": "POST",
-                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.cancel",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the DiskMigrationJob.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha1/{+name}:cancel",
-                      "request": {
-                        "$ref": "CancelDiskMigrationJobRequest"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "run": {
-                      "description": "Runs the disk migration job.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:run",
-                      "httpMethod": "POST",
-                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.run",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The name of the DiskMigrationJob.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1alpha1/{+name}:run",
-                      "request": {
-                        "$ref": "RunDiskMigrationJobRequest"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                },
                 "migratingVms": {
                   "methods": {
                     "create": {
@@ -2280,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240712",
+  "revision": "20240808",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2460,11 +2400,6 @@
           },
           "description": "User specified tags to add to every M2VM generated resource in AWS. These tags will be set in addition to the default tags that are set as part of the migration process. The tags must not begin with the reserved prefix `m2vm`.",
           "type": "object"
-        },
-        "networkInsights": {
-          "$ref": "NetworkInsights",
-          "description": "Output only. Information about the network coniguration of the source. Only gatherred upon request.",
-          "readOnly": true
         },
         "publicIp": {
           "description": "Output only. The source's public IP. All communication initiated by this source will originate from this IP.",
@@ -2968,12 +2903,6 @@
       "properties": {},
       "type": "object"
     },
-    "CancelDiskMigrationJobRequest": {
-      "description": "Request message for 'CancelDiskMigrationJob' request.",
-      "id": "CancelDiskMigrationJobRequest",
-      "properties": {},
-      "type": "object"
-    },
     "CancelImageImportJobRequest": {
       "description": "Request message for 'CancelImageImportJob' request.",
       "id": "CancelImageImportJobRequest",
@@ -3192,6 +3121,20 @@
           "description": "Output only. The OS license returned from the adaptation module report.",
           "readOnly": true
         },
+        "bootConversion": {
+          "description": "Optional. By default the virtual machine will keep its existing boot option. Setting this property will trigger an internal process which will convert the virtual machine from using the existing boot option to another.",
+          "enum": [
+            "BOOT_CONVERSION_UNSPECIFIED",
+            "NONE",
+            "BIOS_TO_EFI"
+          ],
+          "enumDescriptions": [
+            "Unspecified conversion type.",
+            "No conversion.",
+            "Convert from BIOS to EFI."
+          ],
+          "type": "string"
+        },
         "bootOption": {
           "description": "Output only. The VM Boot Option, as set in the source VM.",
           "enum": [
@@ -3228,6 +3171,14 @@
             "Hyperdisk balanced disk type."
           ],
           "type": "string"
+        },
+        "enableIntegrityMonitoring": {
+          "description": "Optional. Defines whether the instance has integrity monitoring enabled. This can be set to true only if the VM boot option is EFI, and vTPM is enabled.",
+          "type": "boolean"
+        },
+        "enableVtpm": {
+          "description": "Optional. Defines whether the instance has vTPM enabled. This can be set to true only if the VM boot option is EFI.",
+          "type": "boolean"
         },
         "encryption": {
           "$ref": "Encryption",
@@ -3325,6 +3276,20 @@
           "$ref": "AppliedLicense",
           "description": "The OS license returned from the adaptation module report."
         },
+        "bootConversion": {
+          "description": "Optional. By default the virtual machine will keep its existing boot option. Setting this property will trigger an internal process which will convert the virtual machine from using the existing boot option to another.",
+          "enum": [
+            "BOOT_CONVERSION_UNSPECIFIED",
+            "NONE",
+            "BIOS_TO_EFI"
+          ],
+          "enumDescriptions": [
+            "Unspecified conversion type.",
+            "No conversion.",
+            "Convert from BIOS to EFI."
+          ],
+          "type": "string"
+        },
         "bootOption": {
           "description": "The VM Boot Option, as set in the source VM.",
           "enum": [
@@ -3360,6 +3325,14 @@
             "Hyperdisk balanced disk type."
           ],
           "type": "string"
+        },
+        "enableIntegrityMonitoring": {
+          "description": "Optional. Defines whether the instance has integrity monitoring enabled.",
+          "type": "boolean"
+        },
+        "enableVtpm": {
+          "description": "Optional. Defines whether the instance has vTPM enabled.",
+          "type": "boolean"
         },
         "encryption": {
           "$ref": "Encryption",
@@ -3898,6 +3871,14 @@
         "computeScheduling": {
           "$ref": "ComputeScheduling",
           "description": "Optional. Compute instance scheduling information (if empty default is used)."
+        },
+        "enableIntegrityMonitoring": {
+          "description": "Optional. Defines whether the instance has integrity monitoring enabled.",
+          "type": "boolean"
+        },
+        "enableVtpm": {
+          "description": "Optional. Defines whether the instance has vTPM enabled.",
+          "type": "boolean"
         },
         "encryption": {
           "$ref": "Encryption",
@@ -5052,23 +5033,6 @@
       },
       "type": "object"
     },
-    "NetworkInsights": {
-      "description": "Information about the network coniguration of the source.",
-      "id": "NetworkInsights",
-      "properties": {
-        "sourceNetworkConfig": {
-          "description": "Output only. The gathered network configuration of the source. Presented in json format.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "sourceNetworkTerraform": {
-          "description": "Output only. The gathered network configuration of the source. Presented in terraform format.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "NetworkInterface": {
       "description": "NetworkInterface represents a NIC of a VM.",
       "id": "NetworkInterface",
@@ -5086,7 +5050,7 @@
           "type": "string"
         },
         "networkTier": {
-          "description": "Optional. The networking tier used for configuring network access configuration. If left empty, will default to PREMIUM.",
+          "description": "Optional. The networking tier used for optimizing connectivity between instances and systems on the internet. Applies only for external ephemeral IP addresses. If left empty, will default to PREMIUM.",
           "enum": [
             "COMPUTE_ENGINE_NETWORK_TIER_UNSPECIFIED",
             "NETWORK_TIER_STANDARD",
@@ -5445,12 +5409,6 @@
     "ResumeMigrationRequest": {
       "description": "Request message for 'ResumeMigration' request.",
       "id": "ResumeMigrationRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "RunDiskMigrationJobRequest": {
-      "description": "Request message for 'RunDiskMigrationJobRequest' request.",
-      "id": "RunDiskMigrationJobRequest",
       "properties": {},
       "type": "object"
     },
