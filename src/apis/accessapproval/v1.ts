@@ -234,6 +234,10 @@ export namespace accessapproval_v1 {
      */
     name?: string | null;
     /**
+     * This field contains the augmented information of the request.
+     */
+    requestedAugmentedInfo?: Schema$AugmentedInfo;
+    /**
      * The requested access duration.
      */
     requestedDuration?: string | null;
@@ -295,6 +299,15 @@ export namespace accessapproval_v1 {
      * The signature for the ApprovalRequest and details on how it was signed.
      */
     signatureInfo?: Schema$SignatureInfo;
+  }
+  /**
+   * This field contains the augmented information of the request.
+   */
+  export interface Schema$AugmentedInfo {
+    /**
+     * For command-line tools, the full command-line exactly as entered by the actor without adding any additional characters (such as quotation marks).
+     */
+    command?: string | null;
   }
   /**
    * Request to dismiss an approval request.
