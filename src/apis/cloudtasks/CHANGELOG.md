@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v15.0.0...cloudtasks-v15.0.1) (2024-08-27)
+
+
+### Bug Fixes
+
+* **cloudtasks:** update the API ([ab3a2bc](https://github.com/googleapis/google-api-nodejs-client/commit/ab3a2bc0892c51516b473e7c20f7cd8978e9b883))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v14.0.1...cloudtasks-v15.0.0) (2024-05-02)
 
 

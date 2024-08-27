@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v9.0.0...firebaseml-v9.1.0) (2024-08-27)
+
+
+### Features
+
+* **firebaseml:** update the API ([b6ef740](https://github.com/googleapis/google-api-nodejs-client/commit/b6ef740ae5920f2d8fcb1260c144063c6c5bd250))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v8.0.0...firebaseml-v9.0.0) (2024-08-16)
 
 

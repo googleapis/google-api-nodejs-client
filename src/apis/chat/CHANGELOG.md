@@ -1,5 +1,12 @@
 # Changelog
 
+## [31.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v31.0.0...chat-v31.1.0) (2024-08-27)
+
+
+### Features
+
+* **chat:** update the API ([24087bb](https://github.com/googleapis/google-api-nodejs-client/commit/24087bba4d4c8841e04f97fd87d075bfcbfd91c7))
+
 ## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v30.0.0...chat-v31.0.0) (2024-08-16)
 
 

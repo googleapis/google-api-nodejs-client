@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v19.0.0...youtube-v19.1.0) (2024-08-27)
+
+
+### Features
+
+* **youtube:** update the API ([3d838e7](https://github.com/googleapis/google-api-nodejs-client/commit/3d838e7dc4a5fa26933a0042355cad3f63d8b9a6))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v18.0.0...youtube-v19.0.0) (2024-06-21)
 
 

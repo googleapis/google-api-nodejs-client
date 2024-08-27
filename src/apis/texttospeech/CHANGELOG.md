@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/googleapis/google-api-nodejs-client/compare/texttospeech-v1.4.0...texttospeech-v1.4.1) (2024-08-27)
+
+
+### Bug Fixes
+
+* **texttospeech:** update the API ([c9e1e37](https://github.com/googleapis/google-api-nodejs-client/commit/c9e1e374cc6c6e578d81c57c41b6b95e6e21c4f1))
+
 ## [1.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/texttospeech-v1.3.1...texttospeech-v1.4.0) (2024-05-02)
 
 

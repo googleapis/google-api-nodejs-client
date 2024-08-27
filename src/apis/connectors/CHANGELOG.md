@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v19.0.0...connectors-v19.1.0) (2024-08-27)
+
+
+### Features
+
+* **connectors:** update the API ([e313580](https://github.com/googleapis/google-api-nodejs-client/commit/e313580d2d6bdcb4a90a00376b12b6dba101300b))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v18.0.0...connectors-v19.0.0) (2024-08-16)
 
 

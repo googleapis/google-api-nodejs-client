@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v10.0.0...dataplex-v10.1.0) (2024-08-27)
+
+
+### Features
+
+* **dataplex:** update the API ([ed2ce18](https://github.com/googleapis/google-api-nodejs-client/commit/ed2ce18e28fd05eff735da24b0af68437ccae0a8))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v9.0.0...dataplex-v10.0.0) (2024-08-16)
 
 
