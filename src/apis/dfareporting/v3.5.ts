@@ -190,8 +190,6 @@ export namespace dfareporting_v3_5 {
      * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeAssetMetadata".
      */
     kind?: string | null;
-    mediaRequestInfo?: Schema$MediaRequestInfo;
-    mediaResponseInfo?: Schema$MediaResponseInfo;
     /**
      * True if the uploaded asset is a rich media asset. This is a read-only, auto-generated field.
      */
@@ -295,88 +293,6 @@ export namespace dfareporting_v3_5 {
      * The value of the dimension.
      */
     value?: string | null;
-  }
-  /**
-   * Extra information added to operations that support Scotty media requests.
-   */
-  export interface Schema$MediaRequestInfo {
-    /**
-     * The number of current bytes uploaded or downloaded.
-     */
-    currentBytes?: string | null;
-    /**
-     * Data to be copied to backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.
-     */
-    customData?: string | null;
-    /**
-     * Set if the http request info is diff encoded. The value of this field is the version number of the base revision. This is corresponding to Apiary's mediaDiffObjectVersion (//depot/google3/java/com/google/api/server/media/variable/DiffObjectVersionVariable.java). See go/esf-scotty-diff-upload for more information.
-     */
-    diffObjectVersion?: string | null;
-    /**
-     * The existence of the final_status field indicates that this is the last call to the agent for this request_id. http://google3/uploader/agent/scotty_agent.proto?l=737&rcl=347601929
-     */
-    finalStatus?: number | null;
-    /**
-     * The type of notification received from Scotty.
-     */
-    notificationType?: string | null;
-    /**
-     * The Scotty request ID.
-     */
-    requestId?: string | null;
-    /**
-     * The partition of the Scotty server handling this request. type is uploader_service.RequestReceivedParamsServingInfo LINT.IfChange(request_received_params_serving_info_annotations) LINT.ThenChange()
-     */
-    requestReceivedParamsServingInfo?: string | null;
-    /**
-     * The total size of the file.
-     */
-    totalBytes?: string | null;
-    /**
-     * Whether the total bytes field contains an estimated data.
-     */
-    totalBytesIsEstimated?: boolean | null;
-  }
-  /**
-   * This message is for backends to pass their scotty media specific fields to ESF. Backend will include this in their response message to ESF. Example: ExportFile is an rpc defined for upload using scotty from ESF. rpc ExportFile(ExportFileRequest) returns (ExportFileResponse) Message ExportFileResponse will include apiserving.MediaResponseInfo to tell ESF about data like dynamic_dropzone it needs to pass to Scotty. message ExportFileResponse { optional gdata.Media blob = 1; optional apiserving.MediaResponseInfo media_response_info = 2 \}
-   */
-  export interface Schema$MediaResponseInfo {
-    /**
-     * Data to copy from backend response to the next backend requests. Custom data is returned to Scotty in the agent_state field, which Scotty will then provide in subsequent upload notifications.
-     */
-    customData?: string | null;
-    /**
-     * Specifies any transformation to be applied to data before persisting it or retrieving from storage. E.g., encryption options for blobstore2. This should be of the form uploader_service.DataStorageTransform.
-     */
-    dataStorageTransform?: string | null;
-    /**
-     * Specifies the Scotty Drop Target to use for uploads. If present in a media response, Scotty does not upload to a standard drop zone. Instead, Scotty saves the upload directly to the location specified in this drop target. Unlike drop zones, the drop target is the final storage location for an upload. So, the agent does not need to clone the blob at the end of the upload. The agent is responsible for garbage collecting any orphaned blobs that may occur due to aborted uploads. For more information, see the drop target design doc here: http://goto/ScottyDropTarget This field will be preferred to dynamicDropzone. If provided, the identified field in the response must be of the type uploader.agent.DropTarget.
-     */
-    dynamicDropTarget?: string | null;
-    /**
-     * Specifies the Scotty dropzone to use for uploads.
-     */
-    dynamicDropzone?: string | null;
-    /**
-     * Request class to use for all Blobstore operations for this request.
-     */
-    requestClass?: string | null;
-    /**
-     * Requester ID passed along to be recorded in the Scotty logs
-     */
-    scottyAgentUserId?: string | null;
-    /**
-     * Customer-specific data to be recorded in the Scotty logs type is logs_proto_scotty.CustomerLog
-     */
-    scottyCustomerLog?: string | null;
-    /**
-     * Specifies the TrafficClass that Scotty should use for any RPCs to fetch the response bytes. Will override the traffic class GTOS of the incoming http request. This is a temporary field to facilitate whitelisting and experimentation by the bigstore agent only. For instance, this does not apply to RTMP reads. WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.
-     */
-    trafficClassField?: string | null;
-    /**
-     * Tells Scotty to verify hashes on the agent's behalf by parsing out the X-Goog-Hash header.
-     */
-    verifyHashFromHeader?: boolean | null;
   }
   /**
    * Offset Position.
