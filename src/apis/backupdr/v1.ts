@@ -696,10 +696,6 @@ export namespace backupdr_v1 {
      */
     effectiveTime?: string | null;
     /**
-     * Required. The default retention period for each backup in the backup vault (Deprecated).
-     */
-    enforcedRetentionDuration?: string | null;
-    /**
      * Optional. Server specified ETag for the backup vault resource to prevent simultaneous updates from overwiting each other.
      */
     etag?: string | null;
