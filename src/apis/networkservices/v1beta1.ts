@@ -419,6 +419,10 @@ export namespace networkservices_v1beta1 {
      */
     ports?: number[] | null;
     /**
+     * Optional. The routing mode of the Gateway. This field is configurable only for gateways of type SECURE_WEB_GATEWAY. This field is required for gateways of type SECURE_WEB_GATEWAY.
+     */
+    routingMode?: string | null;
+    /**
      * Optional. Scope determines how configuration across multiple Gateway instances are merged. The configuration for multiple Gateway instances with the same scope will be merged as presented as a single coniguration to the proxy/load balancer. Max length 64 characters. Scope should start with a letter and can only have letters, numbers, hyphens.
      */
     scope?: string | null;
@@ -579,7 +583,7 @@ export namespace networkservices_v1beta1 {
     type?: string | null;
   }
   /**
-   * The specifications for retries.
+   * The specifications for retries. Specifies one or more conditions for which this retry rule applies. Valid values are:
    */
   export interface Schema$GrpcRouteRetryPolicy {
     /**
