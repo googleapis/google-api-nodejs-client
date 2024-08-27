@@ -350,6 +350,10 @@ export namespace firebasedynamiclinks_v1 {
      * Dynamic Link event stats.
      */
     linkEventStats?: Schema$DynamicLinkEventStat[];
+    /**
+     * Optional warnings associated this API request.
+     */
+    warnings?: Schema$DynamicLinkWarning[];
   }
   /**
    * Dynamic Links warning messages.
@@ -531,6 +535,10 @@ export namespace firebasedynamiclinks_v1 {
      * Scion term value to be propagated by iSDK to Scion at app-reopen.
      */
     utmTerm?: string | null;
+    /**
+     * Optional warnings associated this API request.
+     */
+    warning?: Schema$DynamicLinkWarning[];
   }
   /**
    * Parameters for Google Play Campaign Measurements. [Learn more](https://developers.google.com/analytics/devguides/collection/android/v4/campaigns#campaign-params)
