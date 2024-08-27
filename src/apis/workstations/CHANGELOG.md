@@ -1,5 +1,21 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v10.1.0...workstations-v11.0.0) (2024-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **workstations:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+* **workstations:** update the API ([4b60597](https://github.com/googleapis/google-api-nodejs-client/commit/4b6059747dd903095babcd69a7f56f7d3d076ec2))
+* **workstations:** update the API ([2cabd9e](https://github.com/googleapis/google-api-nodejs-client/commit/2cabd9e1f1135c15602ee4c023bcc227a7559ba8))
+* **workstations:** update the API ([9757a61](https://github.com/googleapis/google-api-nodejs-client/commit/9757a6183f6b6e06b85c3f2863d8e48dd39d3af0))
+* **workstations:** update the API ([cbba066](https://github.com/googleapis/google-api-nodejs-client/commit/cbba066bc520702ff1e75ab80f8653648d96f133))
+
 ## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v10.0.0...workstations-v10.1.0) (2024-08-27)
 
 
