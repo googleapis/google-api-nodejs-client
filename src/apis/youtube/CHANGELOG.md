@@ -1,5 +1,18 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v19.1.0...youtube-v20.0.0) (2024-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **youtube:** This release has breaking changes.
+
+### Features
+
+* **youtube:** update the API ([3d838e7](https://github.com/googleapis/google-api-nodejs-client/commit/3d838e7dc4a5fa26933a0042355cad3f63d8b9a6))
+* **youtube:** update the API ([2860943](https://github.com/googleapis/google-api-nodejs-client/commit/28609437b604103f78b8a8ad873304543940cede))
+* **youtube:** update the API ([f596fa7](https://github.com/googleapis/google-api-nodejs-client/commit/f596fa7393c37e0554abd6884e676fc66c9ca3ec))
+
 ## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v19.0.0...youtube-v19.1.0) (2024-08-27)
 
 
