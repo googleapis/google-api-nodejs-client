@@ -318,6 +318,11 @@
               "pattern": "^spaces/[^/]+$",
               "required": true,
               "type": "string"
+            },
+            "useAdminAccess": {
+              "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.delete` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1/{+name}",
@@ -368,6 +373,11 @@
               "pattern": "^spaces/[^/]+$",
               "required": true,
               "type": "string"
+            },
+            "useAdminAccess": {
+              "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.spaces` or `chat.admin.spaces.readonly` [OAuth 2.0 scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1/{+name}",
@@ -437,6 +447,11 @@
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
+            },
+            "useAdminAccess": {
+              "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Some `FieldMask` values are not supported using admin access. For details, see the description of `update_mask`.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "v1/{+name}",
@@ -450,6 +465,49 @@
             "https://www.googleapis.com/auth/chat.admin.spaces",
             "https://www.googleapis.com/auth/chat.import",
             "https://www.googleapis.com/auth/chat.spaces"
+          ]
+        },
+        "search": {
+          "description": "[Developer Preview](https://developers.google.com/workspace/preview). Returns a list of spaces based on a user's search. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). The user must be an administrator for the Google Workspace organization. In the request, set `use_admin_access` to `true`.",
+          "flatPath": "v1/spaces:search",
+          "httpMethod": "GET",
+          "id": "chat.spaces.search",
+          "parameterOrder": [],
+          "parameters": {
+            "orderBy": {
+              "description": "Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC`",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token, received from the previous search spaces call. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.",
+              "location": "query",
+              "type": "string"
+            },
+            "query": {
+              "description": "Required. A search query. You can search by using the following parameters: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `>`, `<=`, `>=`. `customer` is required and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = \"SPACE\" AND display_name:\"Hello\"` and an invalid example is `space_type = \"SPACE\" OR display_name:\"Hello\"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < \"2022-01-01T00:00:00+00:00\" AND last_active_time > \"2023-01-01T00:00:00+00:00\"`. The following example queries are valid: ``` customer = \"customers/my_customer\" AND space_type = \"SPACE\" customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND display_name:\"Hello World\" customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (last_active_time < \"2020-01-01T00:00:00+00:00\" OR last_active_time > \"2022-01-01T00:00:00+00:00\") customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (display_name:\"Hello World\" OR display_name:\"Fun event\") AND (last_active_time > \"2020-01-01T00:00:00+00:00\" AND last_active_time < \"2022-01-01T00:00:00+00:00\") customer = \"customers/my_customer\" AND space_type = \"SPACE\" AND (create_time > \"2019-01-01T00:00:00+00:00\" AND create_time < \"2020-01-01T00:00:00+00:00\") AND (external_user_allowed = \"true\") AND (space_history_state = \"HISTORY_ON\" OR space_history_state = \"HISTORY_OFF\") ```",
+              "location": "query",
+              "type": "string"
+            },
+            "useAdminAccess": {
+              "description": "When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). This method currently only supports admin access, thus only `true` is accepted for this field.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v1/spaces:search",
+          "response": {
+            "$ref": "SearchSpacesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/chat.admin.spaces",
+            "https://www.googleapis.com/auth/chat.admin.spaces.readonly"
           ]
         },
         "setup": {
@@ -476,7 +534,7 @@
         "members": {
           "methods": {
             "create": {
-              "description": "Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [Invite or add a user or a Google Chat app to a space](https://developers.google.com/workspace/chat/create-members). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). To specify the member to add, set the `membership.member.name` for the human or app member, or set the `membership.group_member.name` for the group member. - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user}`, where `{user}` can be the email address for the user. For users in the same Workspace organization `{user}` can also be the `id` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. - To add or invite a Google group in a named space, use `groups/{group}`, where `{group}` is the `id` for the group from the Cloud Identity Groups API. For example, you can use [Cloud Identity Groups lookup API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup) to retrieve the ID `123456789` for group email `group@example.com`, then you can add or invite the group to a named space by setting the `membership.group_member.name` to `groups/123456789`. Group email is not supported, and Google groups can only be added as members in named spaces.",
+              "description": "Creates a membership for the calling Chat app, a user, or a Google Group. Creating memberships for other Chat apps isn't supported. When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). For example usage, see: - [Invite or add a user to a space](https://developers.google.com/workspace/chat/create-members#create-user-membership). - [Invite or add a Google Group to a space](https://developers.google.com/workspace/chat/create-members#create-group-membership). - [Add the Chat app to a space](https://developers.google.com/workspace/chat/create-members#create-membership-calling-api).",
               "flatPath": "v1/spaces/{spacesId}/members",
               "httpMethod": "POST",
               "id": "chat.spaces.members.create",
@@ -490,6 +548,11 @@
                   "pattern": "^spaces/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "useAdminAccess": {
+                  "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Creating app memberships or creating memberships for users outside the administrator's Google Workspace organization isn't supported using admin access.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/members",
@@ -521,6 +584,11 @@
                   "pattern": "^spaces/[^/]+/members/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "useAdminAccess": {
+                  "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Deleting app memberships in a space isn't supported using admin access.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+name}",
@@ -549,6 +617,11 @@
                   "pattern": "^spaces/[^/]+/members/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "useAdminAccess": {
+                  "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` or `chat.admin.memberships.readonly` [OAuth 2.0 scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Getting app memberships in a space isn't supported when using admin access.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+name}",
@@ -604,6 +677,11 @@
                   "description": "Optional. When `true`, also returns memberships associated with invited members, in addition to other types of memberships. If a filter is set, invited memberships that don't match the filter criteria aren't returned. Currently requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
                   "location": "query",
                   "type": "boolean"
+                },
+                "useAdminAccess": {
+                  "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.memberships.readonly` or `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Listing app memberships in a space isn't supported when using admin access.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/members",
@@ -640,6 +718,11 @@
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
+                },
+                "useAdminAccess": {
+                  "description": "[Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+name}",
@@ -781,7 +864,7 @@
               ]
             },
             "list": {
-              "description": "Lists messages in a space that the caller is a member of, including messages from blocked members and spaces. For an example, see [List messages](/chat/api/guides/v1/messages/list). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
+              "description": "Lists messages in a space that the caller is a member of, including messages from blocked members and spaces. If you list messages from a space with no messages, the response is an empty object. When using a REST/HTTP interface, the response contains an empty JSON object, `{}`. For an example, see [List messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/list). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).",
               "flatPath": "v1/spaces/{spacesId}/messages",
               "httpMethod": "GET",
               "id": "chat.spaces.messages.list",
@@ -1241,7 +1324,7 @@
       }
     }
   },
-  "revision": "20240808",
+  "revision": "20240818",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -2227,8 +2310,8 @@
           ],
           "enumDescriptions": [
             "Don't use. Unspecified.",
-            "Default option. Render a solid divider between sections.",
-            "If set, no divider is rendered between sections."
+            "Default option. Render a solid divider.",
+            "If set, no divider is rendered. This style completely removes the divider from the layout. The result is equivalent to not adding a divider at all."
           ],
           "type": "string"
         },
@@ -2754,7 +2837,7 @@
         },
         "hostAppDataSource": {
           "$ref": "HostAppDataSourceMarkup",
-          "description": "A data source that's unique to a Google Workspace host application, such spaces in Google Chat."
+          "description": "A data source that's unique to a Google Workspace host application, such spaces in Google Chat. This field supports the Google API Client Libraries but isn't available in the Cloud Client Libraries. To learn more, see [Install the client libraries](https://developers.google.com/workspace/chat/libraries)."
         }
       },
       "type": "object"
@@ -3571,6 +3654,23 @@
       },
       "type": "object"
     },
+    "MembershipCount": {
+      "description": "[Developer Preview](https://developers.google.com/workspace/preview). Represents the count of memberships of a space, grouped into categories.",
+      "id": "MembershipCount",
+      "properties": {
+        "joinedDirectHumanUserCount": {
+          "description": "Count of human users that have directly joined the space, not counting users joined by having membership in a joined group.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "joinedGroupCount": {
+          "description": "Count of all groups that have directly joined the space.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "MembershipCreatedEventData": {
       "description": "Event payload for a new membership. Event type: `google.workspace.chat.membership.v1.created`.",
       "id": "MembershipCreatedEventData",
@@ -3969,6 +4069,29 @@
       },
       "type": "object"
     },
+    "SearchSpacesResponse": {
+      "description": "Response with a list of spaces corresponding to the search spaces request.",
+      "id": "SearchSpacesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be used to retrieve the next page. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "spaces": {
+          "description": "A page of the requested spaces.",
+          "items": {
+            "$ref": "Space"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of spaces that match the query, across all pages. If the result is over 10,000 spaces, this value is an estimate.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Section": {
       "description": "A section contains a collection of widgets that are rendered (vertically) in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there's currently no need for layout properties (for example, float).",
       "id": "Section",
@@ -4102,6 +4225,17 @@
         "importMode": {
           "description": "Optional. Whether this space is created in `Import Mode` as part of a data migration into Google Workspace. While spaces are being imported, they aren't visible to users until the import is complete.",
           "type": "boolean"
+        },
+        "lastActiveTime": {
+          "description": "Output only. Timestamp of the last message in the space. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "membershipCount": {
+          "$ref": "MembershipCount",
+          "description": "Output only. The count of joined memberships grouped by member type. Populated when the `space_type` is `SPACE`, `DIRECT_MESSAGE` or `GROUP_CHAT`. [Developer Preview](https://developers.google.com/workspace/preview).",
+          "readOnly": true
         },
         "name": {
           "description": "Resource name of the space. Format: `spaces/{space}`",

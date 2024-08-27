@@ -1123,7 +1123,7 @@ export namespace chat_v1 {
      */
     commonDataSource?: string | null;
     /**
-     * A data source that's unique to a Google Workspace host application, such spaces in Google Chat.
+     * A data source that's unique to a Google Workspace host application, such spaces in Google Chat. This field supports the Google API Client Libraries but isn't available in the Cloud Client Libraries. To learn more, see [Install the client libraries](https://developers.google.com/workspace/chat/libraries).
      */
     hostAppDataSource?: Schema$HostAppDataSourceMarkup;
   }
@@ -1647,6 +1647,19 @@ export namespace chat_v1 {
     memberships?: Schema$MembershipUpdatedEventData[];
   }
   /**
+   * [Developer Preview](https://developers.google.com/workspace/preview). Represents the count of memberships of a space, grouped into categories.
+   */
+  export interface Schema$MembershipCount {
+    /**
+     * Count of human users that have directly joined the space, not counting users joined by having membership in a joined group.
+     */
+    joinedDirectHumanUserCount?: number | null;
+    /**
+     * Count of all groups that have directly joined the space.
+     */
+    joinedGroupCount?: number | null;
+  }
+  /**
    * Event payload for a new membership. Event type: `google.workspace.chat.membership.v1.created`.
    */
   export interface Schema$MembershipCreatedEventData {
@@ -1942,6 +1955,23 @@ export namespace chat_v1 {
     uri?: string | null;
   }
   /**
+   * Response with a list of spaces corresponding to the search spaces request.
+   */
+  export interface Schema$SearchSpacesResponse {
+    /**
+     * A token that can be used to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A page of the requested spaces.
+     */
+    spaces?: Schema$Space[];
+    /**
+     * The total number of spaces that match the query, across all pages. If the result is over 10,000 spaces, this value is an estimate.
+     */
+    totalSize?: number | null;
+  }
+  /**
    * A section contains a collection of widgets that are rendered (vertically) in the order that they are specified. Across all platforms, cards have a narrow fixed width, so there's currently no need for layout properties (for example, float).
    */
   export interface Schema$Section {
@@ -2042,6 +2072,14 @@ export namespace chat_v1 {
      * Optional. Whether this space is created in `Import Mode` as part of a data migration into Google Workspace. While spaces are being imported, they aren't visible to users until the import is complete.
      */
     importMode?: boolean | null;
+    /**
+     * Output only. Timestamp of the last message in the space. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    lastActiveTime?: string | null;
+    /**
+     * Output only. The count of joined memberships grouped by member type. Populated when the `space_type` is `SPACE`, `DIRECT_MESSAGE` or `GROUP_CHAT`. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    membershipCount?: Schema$MembershipCount;
     /**
      * Resource name of the space. Format: `spaces/{space\}`
      */
@@ -3253,6 +3291,95 @@ export namespace chat_v1 {
     }
 
     /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). Returns a list of spaces based on a user's search. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). The user must be an administrator for the Google Workspace organization. In the request, set `use_admin_access` to `true`.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Spaces$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Spaces$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSpacesResponse>;
+    search(
+      params: Params$Resource$Spaces$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Spaces$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSpacesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSpacesResponse>
+    ): void;
+    search(
+      params: Params$Resource$Spaces$Search,
+      callback: BodyResponseCallback<Schema$SearchSpacesResponse>
+    ): void;
+    search(callback: BodyResponseCallback<Schema$SearchSpacesResponse>): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Search
+        | BodyResponseCallback<Schema$SearchSpacesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSpacesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSpacesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSpacesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/spaces:search').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSpacesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSpacesResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a space and adds specified users to it. The calling user is automatically added to the space, and shouldn't be specified as a membership in the request. For an example, see [Set up a space with initial members](https://developers.google.com/workspace/chat/set-up-spaces). To specify the human members to add, add memberships with the appropriate `membership.member.name`. To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `id` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. To specify the Google groups to add, add memberships with the appropriate `membership.group_member.name`. To add or invite a Google group, use `groups/{group\}`, where `{group\}` is the `id` for the group from the Cloud Identity Groups API. For example, you can use [Cloud Identity Groups lookup API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup) to retrieve the ID `123456789` for group email `group@example.com`, then you can add the group to the space by setting the `membership.group_member.name` to `groups/123456789`. Group email is not supported, and Google groups can only be added as members in named spaces. For a named space or group chat, if the caller blocks, or is blocked by some members, or doesn't have permission to add some members, then those members aren't added to the created space. To create a direct message (DM) between the calling user and another human user, specify exactly one membership to represent the human user. If one user blocks the other, the request fails and the DM isn't created. To create a DM between the calling user and the calling app, set `Space.singleUserBotDm` to `true` and don't specify any memberships. You can only use this method to set up a DM with the calling app. To add the calling app as a member of a space or an existing DM between two human users, see [Invite or add a user or app to a space](https://developers.google.com/workspace/chat/create-members). If a DM already exists between two users, even when one user blocks the other at the time a request is made, then the existing DM is returned. Spaces with threaded replies aren't supported. If you receive the error message `ALREADY_EXISTS` when setting up a space, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * @param params - Parameters for request
@@ -3365,6 +3492,10 @@ export namespace chat_v1 {
      * Required. Resource name of the space to delete. Format: `spaces/{space\}`
      */
     name?: string;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.delete` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     */
+    useAdminAccess?: boolean;
   }
   export interface Params$Resource$Spaces$Finddirectmessage
     extends StandardParameters {
@@ -3378,6 +3509,10 @@ export namespace chat_v1 {
      * Required. Resource name of the space, in the form `spaces/{space\}`. Format: `spaces/{space\}`
      */
     name?: string;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.spaces` or `chat.admin.spaces.readonly` [OAuth 2.0 scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     */
+    useAdminAccess?: boolean;
   }
   export interface Params$Resource$Spaces$List extends StandardParameters {
     /**
@@ -3402,11 +3537,37 @@ export namespace chat_v1 {
      * Required. The updated field paths, comma separated if there are multiple. You can update the following fields for a space: - `space_details` - `display_name`: Only supports updating the display name for spaces where `spaceType` field is `SPACE`. If you receive the error message `ALREADY_EXISTS`, try a different value. An existing space within the Google Workspace organization might already use this display name. - `space_type`: Only supports changing a `GROUP_CHAT` space type to `SPACE`. Include `display_name` together with `space_type` in the update mask and ensure that the specified space has a non-empty display name and the `SPACE` space type. Including the `space_type` mask and the `SPACE` type in the specified space when updating the display name is optional if the existing space already has the `SPACE` type. Trying to update the space type in other ways results in an invalid argument error. `space_type` is not supported with admin access. - `space_history_state`: Updates [space history settings](https://support.google.com/chat/answer/7664687) by turning history on or off for the space. Only supported if history settings are enabled for the Google Workspace organization. To update the space history state, you must omit all other field masks in your request. `space_history_state` is not supported with admin access. - `access_settings.audience`: Updates the [access setting](https://support.google.com/chat/answer/11971020) of who can discover the space, join the space, and preview the messages in named space where `spaceType` field is `SPACE`. If the existing space has a target audience, you can remove the audience and restrict space access by omitting a value for this field mask. To update access settings for a space, the authenticating user must be a space manager and omit all other field masks in your request. You can't update this field if the space is in [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a space discoverable to specific users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience` is not supported with admin access. - Developer Preview: Supports changing the [permission settings](https://support.google.com/chat/answer/13340792) of a space, supported field paths include: `permission_settings.manage_members_and_groups`, `permission_settings.modify_space_details`, `permission_settings.toggle_history`, `permission_settings.use_at_mention_all`, `permission_settings.manage_apps`, `permission_settings.manage_webhooks`, `permission_settings.reply_messages` (Warning: mutually exclusive with all other non-permission settings field paths). `permission_settings` is not supported with admin access.
      */
     updateMask?: string;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Some `FieldMask` values are not supported using admin access. For details, see the description of `update_mask`.
+     */
+    useAdminAccess?: boolean;
 
     /**
      * Request body metadata
      */
     requestBody?: Schema$Space;
+  }
+  export interface Params$Resource$Spaces$Search extends StandardParameters {
+    /**
+     * Optional. How the list of spaces is ordered. Supported attributes to order by are: - `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of this space. - `create_time` — Denotes the time of the space creation. Valid ordering operation values are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are: - `membership_count.joined_direct_human_user_count DESC` - `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC` - `create_time DESC` - `create_time ASC`
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of spaces to return. The service may return fewer than this value. If unspecified, at most 100 spaces are returned. The maximum value is 1000. If you use a value more than 1000, it's automatically changed to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A token, received from the previous search spaces call. Provide this parameter to retrieve the subsequent page. When paginating, all other parameters provided should match the call that provided the page token. Passing different values to the other parameters might lead to unexpected results.
+     */
+    pageToken?: string;
+    /**
+     * Required. A search query. You can search by using the following parameters: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` - `space_type` `create_time` and `last_active_time` accept a timestamp in [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are: `=`, `<`, `\>`, `<=`, `\>=`. `customer` is required and is used to indicate which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun event` or `even`. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only accepts values from the [`historyState`] (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is `space_type = "SPACE" AND display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR display_name:"Hello"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval, such as `last_active_time < "2022-01-01T00:00:00+00:00" AND last_active_time \> "2023-01-01T00:00:00+00:00"`. The following example queries are valid: ``` customer = "customers/my_customer" AND space_type = "SPACE" customer = "customers/my_customer" AND space_type = "SPACE" AND display_name:"Hello World" customer = "customers/my_customer" AND space_type = "SPACE" AND (last_active_time < "2020-01-01T00:00:00+00:00" OR last_active_time \> "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (display_name:"Hello World" OR display_name:"Fun event") AND (last_active_time \> "2020-01-01T00:00:00+00:00" AND last_active_time < "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND (create_time \> "2019-01-01T00:00:00+00:00" AND create_time < "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF") ```
+     */
+    query?: string;
+    /**
+     * When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). This method currently only supports admin access, thus only `true` is accepted for this field.
+     */
+    useAdminAccess?: boolean;
   }
   export interface Params$Resource$Spaces$Setup extends StandardParameters {
     /**
@@ -3422,7 +3583,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a human membership or app membership for the calling app. Creating memberships for other apps isn't supported. For an example, see [Invite or add a user or a Google Chat app to a space](https://developers.google.com/workspace/chat/create-members). When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). To specify the member to add, set the `membership.member.name` for the human or app member, or set the `membership.group_member.name` for the group member. - To add the calling app to a space or a direct message between two human users, use `users/app`. Unable to add other apps to the space. - To add a human user, use `users/{user\}`, where `{user\}` can be the email address for the user. For users in the same Workspace organization `{user\}` can also be the `id` for the person from the People API, or the `id` for the user in the Directory API. For example, if the People API Person profile ID for `user@example.com` is `123456789`, you can add the user to the space by setting the `membership.member.name` to `users/user@example.com` or `users/123456789`. - To add or invite a Google group in a named space, use `groups/{group\}`, where `{group\}` is the `id` for the group from the Cloud Identity Groups API. For example, you can use [Cloud Identity Groups lookup API](https://cloud.google.com/identity/docs/reference/rest/v1/groups/lookup) to retrieve the ID `123456789` for group email `group@example.com`, then you can add or invite the group to a named space by setting the `membership.group_member.name` to `groups/123456789`. Group email is not supported, and Google groups can only be added as members in named spaces.
+     * Creates a membership for the calling Chat app, a user, or a Google Group. Creating memberships for other Chat apps isn't supported. When creating a membership, if the specified member has their auto-accept policy turned off, then they're invited, and must accept the space invitation before joining. Otherwise, creating a membership adds the member directly to the specified space. Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user). For example usage, see: - [Invite or add a user to a space](https://developers.google.com/workspace/chat/create-members#create-user-membership). - [Invite or add a Google Group to a space](https://developers.google.com/workspace/chat/create-members#create-group-membership). - [Add the Chat app to a space](https://developers.google.com/workspace/chat/create-members#create-membership-calling-api).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3864,6 +4025,10 @@ export namespace chat_v1 {
      * Required. The resource name of the space for which to create the membership. Format: spaces/{space\}
      */
     parent?: string;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Creating app memberships or creating memberships for users outside the administrator's Google Workspace organization isn't supported using admin access.
+     */
+    useAdminAccess?: boolean;
 
     /**
      * Request body metadata
@@ -3876,6 +4041,10 @@ export namespace chat_v1 {
      * Required. Resource name of the membership to delete. Chat apps can delete human users' or their own memberships. Chat apps can't delete other apps' memberships. When deleting a human membership, requires the `chat.memberships` scope and `spaces/{space\}/members/{member\}` format. You can use the email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user. When deleting an app membership, requires the `chat.memberships.app` scope and `spaces/{space\}/members/app` format. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app`.
      */
     name?: string;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Deleting app memberships in a space isn't supported using admin access.
+     */
+    useAdminAccess?: boolean;
   }
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
@@ -3883,6 +4052,10 @@ export namespace chat_v1 {
      * Required. Resource name of the membership to retrieve. To get the app's own membership [by using user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), you can optionally use `spaces/{space\}/members/app`. Format: `spaces/{space\}/members/{member\}` or `spaces/{space\}/members/app` When [authenticated as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), you can use the user's email as an alias for `{member\}`. For example, `spaces/{space\}/members/example@gmail.com` where `example@gmail.com` is the email of the Google Chat user.
      */
     name?: string;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` or `chat.admin.memberships.readonly` [OAuth 2.0 scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Getting app memberships in a space isn't supported when using admin access.
+     */
+    useAdminAccess?: boolean;
   }
   export interface Params$Resource$Spaces$Members$List
     extends StandardParameters {
@@ -3910,6 +4083,10 @@ export namespace chat_v1 {
      * Optional. When `true`, also returns memberships associated with invited members, in addition to other types of memberships. If a filter is set, invited memberships that don't match the filter criteria aren't returned. Currently requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      */
     showInvited?: boolean;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires either the `chat.admin.memberships.readonly` or `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Listing app memberships in a space isn't supported when using admin access.
+     */
+    useAdminAccess?: boolean;
   }
   export interface Params$Resource$Spaces$Members$Patch
     extends StandardParameters {
@@ -3921,6 +4098,10 @@ export namespace chat_v1 {
      * Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `role`
      */
     updateMask?: string;
+    /**
+     * [Developer Preview](https://developers.google.com/workspace/preview). When `true`, the method runs using the user's Google Workspace administrator privileges. The calling user must be a Google Workspace administrator with the [manage chat and spaces conversations privilege](https://support.google.com/a/answer/13369245). Requires the `chat.admin.memberships` [OAuth 2.0 scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes).
+     */
+    useAdminAccess?: boolean;
 
     /**
      * Request body metadata
@@ -4197,7 +4378,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists messages in a space that the caller is a member of, including messages from blocked members and spaces. For an example, see [List messages](/chat/api/guides/v1/messages/list). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
+     * Lists messages in a space that the caller is a member of, including messages from blocked members and spaces. If you list messages from a space with no messages, the response is an empty object. When using a REST/HTTP interface, the response contains an empty JSON object, `{\}`. For an example, see [List messages](https://developers.google.com/workspace/chat/api/guides/v1/messages/list). Requires [user authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
