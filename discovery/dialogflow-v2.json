@@ -8714,7 +8714,7 @@
       }
     }
   },
-  "revision": "20240724",
+  "revision": "20240812",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9018,17 +9018,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowCxV3CreateDocumentOperationMetadata": {
-      "description": "Metadata for CreateDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3CreateDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowCxV3CreateVersionOperationMetadata": {
       "description": "Metadata associated with the long running operation for Versions.CreateVersion.",
       "id": "GoogleCloudDialogflowCxV3CreateVersionOperationMetadata",
@@ -9063,17 +9052,6 @@
             "A data store that contains structured data (for example FAQ)."
           ],
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata": {
-      "description": "Metadata for DeleteDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
         }
       },
       "type": "object"
@@ -9540,55 +9518,6 @@
         "uri": {
           "description": "Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata": {
-      "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
-      "id": "GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata",
-      "properties": {
-        "state": {
-          "description": "Required. Output only. The current state of this operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ],
-          "enumDescriptions": [
-            "State unspecified.",
-            "The operation has been created.",
-            "The operation is currently running.",
-            "The operation is done, either cancelled or completed."
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3ImportDocumentsOperationMetadata": {
-      "description": "Metadata for ImportDocuments operation.",
-      "id": "GoogleCloudDialogflowCxV3ImportDocumentsOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3ImportDocumentsResponse": {
-      "description": "Response message for Documents.ImportDocuments.",
-      "id": "GoogleCloudDialogflowCxV3ImportDocumentsResponse",
-      "properties": {
-        "warnings": {
-          "description": "Includes details about skipped documents or any other warnings.",
-          "items": {
-            "$ref": "GoogleRpcStatus"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -10144,17 +10073,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowCxV3ReloadDocumentOperationMetadata": {
-      "description": "Metadata for ReloadDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3ReloadDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowCxV3ResponseMessage": {
       "description": "Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.",
       "id": "GoogleCloudDialogflowCxV3ResponseMessage",
@@ -10362,7 +10280,7 @@
           "type": "boolean"
         },
         "text": {
-          "description": "Required. A collection of text responses.",
+          "description": "Required. A collection of text response variants. If multiple variants are defined, only one text response variant is returned at runtime.",
           "items": {
             "type": "string"
           },
@@ -10715,17 +10633,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata": {
-      "description": "Metadata for UpdateDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
         }
       },
       "type": "object"
@@ -11416,17 +11323,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowCxV3beta1CreateDocumentOperationMetadata": {
-      "description": "Metadata for CreateDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3beta1CreateDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata": {
       "description": "Metadata associated with the long running operation for Versions.CreateVersion.",
       "id": "GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata",
@@ -11461,17 +11357,6 @@
             "A data store that contains structured data (for example FAQ)."
           ],
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata": {
-      "description": "Metadata for DeleteDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
         }
       },
       "type": "object"
@@ -11938,55 +11823,6 @@
         "uri": {
           "description": "Required. The Google Cloud Storage URI for the exported objects. A URI is of the form: `gs://bucket/object-name-or-prefix` Whether a full object name, or just a prefix, its usage depends on the Dialogflow operation.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata": {
-      "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
-      "id": "GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata",
-      "properties": {
-        "state": {
-          "description": "Required. Output only. The current state of this operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ],
-          "enumDescriptions": [
-            "State unspecified.",
-            "The operation has been created.",
-            "The operation is currently running.",
-            "The operation is done, either cancelled or completed."
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3beta1ImportDocumentsOperationMetadata": {
-      "description": "Metadata for ImportDocuments operation.",
-      "id": "GoogleCloudDialogflowCxV3beta1ImportDocumentsOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse": {
-      "description": "Response message for Documents.ImportDocuments.",
-      "id": "GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse",
-      "properties": {
-        "warnings": {
-          "description": "Includes details about skipped documents or any other warnings.",
-          "items": {
-            "$ref": "GoogleRpcStatus"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -12546,17 +12382,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata": {
-      "description": "Metadata for ReloadDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowCxV3beta1ResponseMessage": {
       "description": "Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.",
       "id": "GoogleCloudDialogflowCxV3beta1ResponseMessage",
@@ -12752,7 +12577,7 @@
           "type": "boolean"
         },
         "text": {
-          "description": "Required. A collection of text responses.",
+          "description": "Required. A collection of text response variants. If multiple variants are defined, only one text response variant is returned at runtime.",
           "items": {
             "type": "string"
           },
@@ -13166,17 +12991,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata": {
-      "description": "Metadata for UpdateDocument operation.",
-      "id": "GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
         }
       },
       "type": "object"
@@ -18415,7 +18229,7 @@
           "description": "Required. The natural language text query for knowledge search."
         },
         "sessionId": {
-          "description": "Optional. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.",
+          "description": "Required. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.",
           "type": "string"
         }
       },
@@ -21668,7 +21482,7 @@
       "id": "GoogleCloudDialogflowV2beta1ResponseMessageText",
       "properties": {
         "text": {
-          "description": "A collection of text responses.",
+          "description": "A collection of text response variants. If multiple variants are defined, only one text response variant is returned at runtime.",
           "items": {
             "type": "string"
           },
@@ -22058,88 +21872,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata": {
-      "description": "Metadata for CreateDocument operation.",
-      "id": "GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV3alpha1DeleteDocumentOperationMetadata": {
-      "description": "Metadata for DeleteDocument operation.",
-      "id": "GoogleCloudDialogflowV3alpha1DeleteDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata": {
-      "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
-      "id": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
-      "properties": {
-        "state": {
-          "description": "Required. Output only. The current state of this operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ],
-          "enumDescriptions": [
-            "State unspecified.",
-            "The operation has been created.",
-            "The operation is currently running.",
-            "The operation is done, either cancelled or completed."
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV3alpha1ImportDocumentsOperationMetadata": {
-      "description": "Metadata for ImportDocuments operation.",
-      "id": "GoogleCloudDialogflowV3alpha1ImportDocumentsOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV3alpha1ImportDocumentsResponse": {
-      "description": "Response message for Documents.ImportDocuments.",
-      "id": "GoogleCloudDialogflowV3alpha1ImportDocumentsResponse",
-      "properties": {
-        "warnings": {
-          "description": "Includes details about skipped documents or any other warnings.",
-          "items": {
-            "$ref": "GoogleRpcStatus"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV3alpha1ReloadDocumentOperationMetadata": {
-      "description": "Metadata for ReloadDocument operation.",
-      "id": "GoogleCloudDialogflowV3alpha1ReloadDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowV3alpha1TurnSignals": {
       "description": "Collection of all signals that were extracted for a single turn of the conversation.",
       "id": "GoogleCloudDialogflowV3alpha1TurnSignals",
@@ -22205,17 +21937,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata": {
-      "description": "Metadata for UpdateDocument operation.",
-      "id": "GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata",
-      "properties": {
-        "genericMetadata": {
-          "$ref": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
-          "description": "The generic information of the operation."
         }
       },
       "type": "object"
