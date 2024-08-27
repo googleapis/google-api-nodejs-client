@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20240621",
+  "revision": "20240820",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalServiceAccount": {
@@ -1076,6 +1076,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "requestedAugmentedInfo": {
+          "$ref": "AugmentedInfo",
+          "description": "This field contains the augmented information of the request."
+        },
         "requestedDuration": {
           "description": "The requested access duration.",
           "format": "google-duration",
@@ -1143,6 +1147,17 @@
         "signatureInfo": {
           "$ref": "SignatureInfo",
           "description": "The signature for the ApprovalRequest and details on how it was signed."
+        }
+      },
+      "type": "object"
+    },
+    "AugmentedInfo": {
+      "description": "This field contains the augmented information of the request.",
+      "id": "AugmentedInfo",
+      "properties": {
+        "command": {
+          "description": "For command-line tools, the full command-line exactly as entered by the actor without adding any additional characters (such as quotation marks).",
+          "type": "string"
         }
       },
       "type": "object"
