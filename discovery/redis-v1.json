@@ -371,6 +371,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "rescheduleClusterMaintenance": {
+                  "description": "Reschedules upcoming maintenance event.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:rescheduleClusterMaintenance",
+                  "httpMethod": "POST",
+                  "id": "redis.projects.locations.clusters.rescheduleClusterMaintenance",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis Cluster instance resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:rescheduleClusterMaintenance",
+                  "request": {
+                    "$ref": "RescheduleClusterMaintenanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -821,7 +849,7 @@
       }
     }
   },
-  "revision": "20240812",
+  "revision": "20240822",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -840,7 +868,7 @@
             "Not set. Default: EVERYSEC",
             "Never fsync. Normally Linux will flush data every 30 seconds with this configuration, but it's up to the kernel's exact tuning.",
             "fsync every second. Fast enough, and you may lose 1 second of data if there is a disaster",
-            "fsync every time new commands are appended to the AOF. It has the best data loss protection at the cost of performance"
+            "fsync every time new write commands are appended to the AOF. It has the best data loss protection at the cost of performance"
           ],
           "type": "string"
         }
@@ -851,6 +879,10 @@
       "description": "Configuration for availability of database instance",
       "id": "AvailabilityConfiguration",
       "properties": {
+        "automaticFailoverRoutingConfigured": {
+          "description": "Checks for existence of (multi-cluster) routing configuration that allows automatic failover to a different zone/region in case of an outage. Applicable to Bigtable resources.",
+          "type": "boolean"
+        },
         "availabilityType": {
           "description": "Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).",
           "enum": [
@@ -1003,6 +1035,15 @@
           "readOnly": true,
           "type": "array"
         },
+        "maintenancePolicy": {
+          "$ref": "ClusterMaintenancePolicy",
+          "description": "Optional. ClusterMaintenancePolicy determines when to allow or deny updates."
+        },
+        "maintenanceSchedule": {
+          "$ref": "ClusterMaintenanceSchedule",
+          "description": "Output only. ClusterMaintenanceSchedule Output only Published maintenance schedule.",
+          "readOnly": true
+        },
         "name": {
           "description": "Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
           "type": "string"
@@ -1123,6 +1164,57 @@
       },
       "type": "object"
     },
+    "ClusterMaintenancePolicy": {
+      "description": "Maintenance policy per cluster.",
+      "id": "ClusterMaintenancePolicy",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the policy was created i.e. Maintenance Window or Deny Period was assigned.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when the policy was updated i.e. Maintenance Window or Deny Period was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "weeklyMaintenanceWindow": {
+          "description": "Optional. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_maintenance_window is expected to be one.",
+          "items": {
+            "$ref": "ClusterWeeklyMaintenanceWindow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterMaintenanceSchedule": {
+      "description": "Upcoming maitenance schedule.",
+      "id": "ClusterMaintenanceSchedule",
+      "properties": {
+        "endTime": {
+          "description": "Output only. The end time of any upcoming scheduled maintenance for this instance.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scheduleDeadlineTime": {
+          "description": "Output only. The deadline that the maintenance schedule start time can not go beyond, including reschedule.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The start time of any upcoming scheduled maintenance for this instance.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ClusterPersistenceConfig": {
       "description": "Configuration of the persistence functionality.",
       "id": "ClusterPersistenceConfig",
@@ -1150,6 +1242,46 @@
         "rdbConfig": {
           "$ref": "RDBConfig",
           "description": "Optional. RDB configuration. This field will be ignored if mode is not RDB."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterWeeklyMaintenanceWindow": {
+      "description": "Time window specified for weekly operations.",
+      "id": "ClusterWeeklyMaintenanceWindow",
+      "properties": {
+        "day": {
+          "description": "Allows to define schedule that runs specified day of the week.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "duration": {
+          "description": "Duration of the time window.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Start time of the window in UTC."
         }
       },
       "type": "object"
@@ -3346,6 +3478,32 @@
         "uid": {
           "description": "Output only. The unique identifier of the remote cluster.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RescheduleClusterMaintenanceRequest": {
+      "description": "Request for rescheduling a cluster maintenance.",
+      "id": "RescheduleClusterMaintenanceRequest",
+      "properties": {
+        "rescheduleType": {
+          "description": "Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.",
+          "enum": [
+            "RESCHEDULE_TYPE_UNSPECIFIED",
+            "IMMEDIATE",
+            "SPECIFIC_TIME"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "If the user wants to schedule the maintenance to happen now.",
+            "If the user wants to reschedule the maintenance to a specific time."
+          ],
+          "type": "string"
+        },
+        "scheduleTime": {
+          "description": "Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
