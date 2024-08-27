@@ -550,6 +550,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restore": {
+                  "description": "RestoreInstance restores an Instance from a BackupSource.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:restore",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.instances.restore",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:restore",
+                  "request": {
+                    "$ref": "RestoreInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "rollback": {
                   "description": "Rollbacks a notebook instance to the previous version.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:rollback",
@@ -876,7 +904,7 @@
       }
     }
   },
-  "revision": "20240731",
+  "revision": "20240820",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1768,6 +1796,17 @@
       },
       "type": "object"
     },
+    "RestoreInstanceRequest": {
+      "description": "Request for restoring the notebook instance from a BackupSource.",
+      "id": "RestoreInstanceRequest",
+      "properties": {
+        "snapshot": {
+          "$ref": "Snapshot",
+          "description": "Snapshot to be used for restore."
+        }
+      },
+      "type": "object"
+    },
     "RollbackInstanceRequest": {
       "description": "Request for rollbacking a notebook instance",
       "id": "RollbackInstanceRequest",
@@ -1829,6 +1868,21 @@
         "enableVtpm": {
           "description": "Optional. Defines whether the VM instance has the vTPM enabled. Enabled by default.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Snapshot": {
+      "description": "Snapshot represents the snapshot of the data disk used to restore the Workbench Instance from. Refers to: compute/v1/projects/{project_id}/global/snapshots/{snapshot_id}",
+      "id": "Snapshot",
+      "properties": {
+        "projectId": {
+          "description": "Required. The project ID of the snapshot.",
+          "type": "string"
+        },
+        "snapshotId": {
+          "description": "Required. The ID of the snapshot.",
+          "type": "string"
         }
       },
       "type": "object"
