@@ -260,10 +260,6 @@ export namespace vmmigration_v1 {
      */
     migrationResourcesUserTags?: {[key: string]: string} | null;
     /**
-     * Output only. Information about the network coniguration of the source. Only gatherred upon request.
-     */
-    networkInsights?: Schema$NetworkInsights;
-    /**
      * Output only. The source's public IP. All communication initiated by this source will originate from this IP.
      */
     publicIp?: string | null;
@@ -550,10 +546,6 @@ export namespace vmmigration_v1 {
    */
   export interface Schema$CancelCutoverJobRequest {}
   /**
-   * Request message for 'CancelDiskMigrationJob' request.
-   */
-  export interface Schema$CancelDiskMigrationJobRequest {}
-  /**
    * Request message for 'CancelImageImportJob' request.
    */
   export interface Schema$CancelImageImportJobRequest {}
@@ -699,6 +691,10 @@ export namespace vmmigration_v1 {
      */
     appliedLicense?: Schema$AppliedLicense;
     /**
+     * Optional. By default the virtual machine will keep its existing boot option. Setting this property will trigger an internal process which will convert the virtual machine from using the existing boot option to another.
+     */
+    bootConversion?: string | null;
+    /**
      * Output only. The VM Boot Option, as set in the source VM.
      */
     bootOption?: string | null;
@@ -710,6 +706,14 @@ export namespace vmmigration_v1 {
      * The disk type to use in the VM.
      */
     diskType?: string | null;
+    /**
+     * Optional. Defines whether the instance has integrity monitoring enabled. This can be set to true only if the VM boot option is EFI, and vTPM is enabled.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Optional. Defines whether the instance has vTPM enabled. This can be set to true only if the VM boot option is EFI.
+     */
+    enableVtpm?: boolean | null;
     /**
      * Optional. Immutable. The encryption to apply to the VM disks.
      */
@@ -780,6 +784,10 @@ export namespace vmmigration_v1 {
      */
     appliedLicense?: Schema$AppliedLicense;
     /**
+     * Optional. By default the virtual machine will keep its existing boot option. Setting this property will trigger an internal process which will convert the virtual machine from using the existing boot option to another.
+     */
+    bootConversion?: string | null;
+    /**
      * The VM Boot Option, as set in the source VM.
      */
     bootOption?: string | null;
@@ -791,6 +799,14 @@ export namespace vmmigration_v1 {
      * The disk type to use in the VM.
      */
     diskType?: string | null;
+    /**
+     * Optional. Defines whether the instance has integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Optional. Defines whether the instance has vTPM enabled.
+     */
+    enableVtpm?: boolean | null;
     /**
      * Optional. The encryption to apply to the VM disks.
      */
@@ -1149,6 +1165,14 @@ export namespace vmmigration_v1 {
      * Optional. Compute instance scheduling information (if empty default is used).
      */
     computeScheduling?: Schema$ComputeScheduling;
+    /**
+     * Optional. Defines whether the instance has integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Optional. Defines whether the instance has vTPM enabled.
+     */
+    enableVtpm?: boolean | null;
     /**
      * Optional. The encryption to apply to the VM.
      */
@@ -1896,19 +1920,6 @@ export namespace vmmigration_v1 {
     warningTime?: string | null;
   }
   /**
-   * Information about the network coniguration of the source.
-   */
-  export interface Schema$NetworkInsights {
-    /**
-     * Output only. The gathered network configuration of the source. Presented in json format.
-     */
-    sourceNetworkConfig?: string | null;
-    /**
-     * Output only. The gathered network configuration of the source. Presented in terraform format.
-     */
-    sourceNetworkTerraform?: string | null;
-  }
-  /**
    * NetworkInterface represents a NIC of a VM.
    */
   export interface Schema$NetworkInterface {
@@ -1925,7 +1936,7 @@ export namespace vmmigration_v1 {
      */
     network?: string | null;
     /**
-     * Optional. The networking tier used for configuring network access configuration. If left empty, will default to PREMIUM.
+     * Optional. The networking tier used for optimizing connectivity between instances and systems on the internet. Applies only for external ephemeral IP addresses. If left empty, will default to PREMIUM.
      */
     networkTier?: string | null;
     /**
@@ -2171,10 +2182,6 @@ export namespace vmmigration_v1 {
    * Request message for 'ResumeMigration' request.
    */
   export interface Schema$ResumeMigrationRequest {}
-  /**
-   * Request message for 'RunDiskMigrationJobRequest' request.
-   */
-  export interface Schema$RunDiskMigrationJobRequest {}
   /**
    * A policy for scheduling replications.
    */
@@ -4735,7 +4742,6 @@ export namespace vmmigration_v1 {
   export class Resource$Projects$Locations$Sources {
     context: APIRequestContext;
     datacenterConnectors: Resource$Projects$Locations$Sources$Datacenterconnectors;
-    diskMigrationJobs: Resource$Projects$Locations$Sources$Diskmigrationjobs;
     migratingVms: Resource$Projects$Locations$Sources$Migratingvms;
     utilizationReports: Resource$Projects$Locations$Sources$Utilizationreports;
     constructor(context: APIRequestContext) {
@@ -4744,8 +4750,6 @@ export namespace vmmigration_v1 {
         new Resource$Projects$Locations$Sources$Datacenterconnectors(
           this.context
         );
-      this.diskMigrationJobs =
-        new Resource$Projects$Locations$Sources$Diskmigrationjobs(this.context);
       this.migratingVms = new Resource$Projects$Locations$Sources$Migratingvms(
         this.context
       );
@@ -5916,210 +5920,6 @@ export namespace vmmigration_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UpgradeApplianceRequest;
-  }
-
-  export class Resource$Projects$Locations$Sources$Diskmigrationjobs {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Cancels the disk migration job.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    cancel(
-      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    cancel(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    cancel(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Runs the disk migration job.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    run(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    run(
-      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    run(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    run(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    run(
-      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    run(callback: BodyResponseCallback<Schema$Operation>): void;
-    run(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:run').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel
-    extends StandardParameters {
-    /**
-     * Required. The name of the DiskMigrationJob.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CancelDiskMigrationJobRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run
-    extends StandardParameters {
-    /**
-     * Required. The name of the DiskMigrationJob.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RunDiskMigrationJobRequest;
   }
 
   export class Resource$Projects$Locations$Sources$Migratingvms {
