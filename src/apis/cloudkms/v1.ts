@@ -248,6 +248,10 @@ export namespace cloudkms_v1 {
      * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
      */
     name?: string | null;
+    /**
+     * Output only. The state for the AutokeyConfig.
+     */
+    state?: string | null;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -560,7 +564,7 @@ export namespace cloudkms_v1 {
      */
     name?: string | null;
     /**
-     * A list of ServiceResolvers where the EKM can be reached. There should be one ServiceResolver per EKM replica. Currently, only a single ServiceResolver is supported.
+     * Optional. A list of ServiceResolvers where the EKM can be reached. There should be one ServiceResolver per EKM replica. Currently, only a single ServiceResolver is supported.
      */
     serviceResolvers?: Schema$ServiceResolver[];
   }
@@ -876,6 +880,10 @@ export namespace cloudkms_v1 {
      * Resulting KeyHandles.
      */
     keyHandles?: Schema$KeyHandle[];
+    /**
+     * A token to retrieve next page of results. Pass this value in ListKeyHandlesRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for KeyManagementService.ListKeyRings.
@@ -3646,6 +3654,14 @@ export namespace cloudkms_v1 {
      * Optional. Filter to apply when listing KeyHandles, e.g. `resource_type_selector="{SERVICE\}.googleapis.com/{TYPE\}"`.
      */
     filter?: string;
+    /**
+     * Optional. Optional limit on the number of KeyHandles to include in the response. The service may return fewer than this value. Further KeyHandles can subsequently be obtained by including the ListKeyHandlesResponse.next_page_token in a subsequent request. If unspecified, at most KeyHandles 100 will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Optional pagination token, returned earlier via ListKeyHandlesResponse.next_page_token.
+     */
+    pageToken?: string;
     /**
      * Required. Name of the resource project and location from which to list KeyHandles, e.g. `projects/{PROJECT_ID\}/locations/{LOCATION\}`.
      */
