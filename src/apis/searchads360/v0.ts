@@ -152,6 +152,15 @@ export namespace searchads360_v0 {
     startMinute?: string | null;
   }
   /**
+   * A text asset used inside an ad.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Common__AdTextAsset {
+    /**
+     * Asset text.
+     */
+    text?: string | null;
+  }
+  /**
    * An age range criterion.
    */
   export interface Schema$GoogleAdsSearchads360V0Common__AgeRangeInfo {
@@ -495,6 +504,10 @@ export namespace searchads360_v0 {
      * Average cost-per-thousand impressions (CPM). This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
      */
     averageCpm?: number | null;
+    /**
+     * The average quality score.
+     */
+    averageQualityScore?: number | null;
     /**
      * The number of clicks.
      */
@@ -866,6 +879,14 @@ export namespace searchads360_v0 {
      */
     adTrackingId?: string | null;
     /**
+     * List of text assets for descriptions. When the ad serves the descriptions will be selected from this list.
+     */
+    descriptions?: Schema$GoogleAdsSearchads360V0Common__AdTextAsset[];
+    /**
+     * List of text assets for headlines. When the ad serves the headlines will be selected from this list.
+     */
+    headlines?: Schema$GoogleAdsSearchads360V0Common__AdTextAsset[];
+    /**
      * Text appended to the auto-generated visible URL with a delimiter.
      */
     path1?: string | null;
@@ -943,6 +964,26 @@ export namespace searchads360_v0 {
      * Device to which metrics apply.
      */
     device?: string | null;
+    /**
+     * Resource name of the geo target constant that represents a city.
+     */
+    geoTargetCity?: string | null;
+    /**
+     * Resource name of the geo target constant that represents a country.
+     */
+    geoTargetCountry?: string | null;
+    /**
+     * Resource name of the geo target constant that represents a metro.
+     */
+    geoTargetMetro?: string | null;
+    /**
+     * Resource name of the geo target constant that represents a region.
+     */
+    geoTargetRegion?: string | null;
+    /**
+     * Hour of day as a number between 0 and 23, inclusive.
+     */
+    hour?: number | null;
     /**
      * Keyword criterion.
      */
@@ -1235,7 +1276,7 @@ export namespace searchads360_v0 {
      */
     cpcBidCeilingMicros?: string | null;
     /**
-     * The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.
+     * Deprecated: The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.
      */
     targetSpendMicros?: string | null;
   }
@@ -1253,7 +1294,7 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Common__TextLabel {
     /**
-     * Background color of the label in RGB format. This string must match the regular expression '^\#([a-fA-F0-9]{6\}|[a-fA-F0-9]{3\})$'. Note: The background color may not be visible for manager accounts.
+     * Background color of the label in HEX format. This string must match the regular expression '^\#([a-fA-F0-9]{6\}|[a-fA-F0-9]{3\})$'. Note: The background color may not be visible for manager accounts.
      */
     backgroundColor?: string | null;
     /**
@@ -1593,7 +1634,7 @@ export namespace searchads360_v0 {
     retryDelay?: string | null;
   }
   /**
-   * SearchAds360-specific error.
+   * Search Ads 360-specific error.
    */
   export interface Schema$GoogleAdsSearchads360V0Errors__SearchAds360Error {
     /**
@@ -2144,7 +2185,7 @@ export namespace searchads360_v0 {
      */
     creationTime?: string | null;
     /**
-     * Output only. ID of the ad in the external engine account. This field is for SearchAds 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-SearchAds 360 entity, use "ad_group_ad.ad.id" instead.
+     * Output only. ID of the ad in the external engine account. This field is for Search Ads 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-Search Ads 360 entity, use "ad_group_ad.ad.id" instead.
      */
     engineId?: string | null;
     /**
@@ -2180,6 +2221,10 @@ export namespace searchads360_v0 {
      * Immutable. The label assigned to the ad group ad.
      */
     label?: string | null;
+    /**
+     * Output only. The ID of the Customer which owns the label.
+     */
+    ownerCustomerId?: string | null;
     /**
      * Immutable. The resource name of the ad group ad label. Ad group ad label resource names have the form: `customers/{customer_id\}/adGroupAdLabels/{ad_group_id\}~{ad_id\}~{label_id\}`
      */
@@ -2375,6 +2420,10 @@ export namespace searchads360_v0 {
      */
     label?: string | null;
     /**
+     * Output only. The ID of the Customer which owns the label.
+     */
+    ownerCustomerId?: string | null;
+    /**
      * Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{customer_id\}/adGroupCriterionLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
      */
     resourceName?: string | null;
@@ -2391,6 +2440,10 @@ export namespace searchads360_v0 {
      * Immutable. The label assigned to the ad group.
      */
     label?: string | null;
+    /**
+     * Output only. The ID of the Customer which owns the label.
+     */
+    ownerCustomerId?: string | null;
     /**
      * Immutable. The resource name of the ad group label. Ad group label resource names have the form: `customers/{customer_id\}/adGroupLabels/{ad_group_id\}~{label_id\}`
      */
@@ -3107,6 +3160,10 @@ export namespace searchads360_v0 {
      */
     label?: string | null;
     /**
+     * Output only. The ID of the Customer which owns the label.
+     */
+    ownerCustomerId?: string | null;
+    /**
      * Immutable. Name of the resource. Campaign label resource names have the form: `customers/{customer_id\}/campaignLabels/{campaign_id\}~{label_id\}`
      */
     resourceName?: string | null;
@@ -3185,7 +3242,7 @@ export namespace searchads360_v0 {
      */
     id?: string | null;
     /**
-     * Output only. The SearchAds360 inventory account ID containing the product that was clicked on. SearchAds360 generates this ID when you link an inventory account in SearchAds360.
+     * Output only. The Search Ads 360 inventory account ID containing the product that was clicked on. Search Ads 360 generates this ID when you link an inventory account in Search Ads 360.
      */
     merchantId?: string | null;
     /**
@@ -3217,7 +3274,7 @@ export namespace searchads360_v0 {
      */
     status?: string | null;
     /**
-     * Output only. The SearchAds360 visit ID that the conversion is attributed to.
+     * Output only. The Search Ads 360 visit ID that the conversion is attributed to.
      */
     visitId?: string | null;
   }
@@ -3400,6 +3457,10 @@ export namespace searchads360_v0 {
      * Output only. True when the custom column is referring to one or more metrics.
      */
     referencesMetrics?: boolean | null;
+    /**
+     * Output only. How the result value of the custom column should be interpreted.
+     */
+    renderType?: string | null;
     /**
      * Immutable. The resource name of the custom column. Custom column resource names have the form: `customers/{customer_id\}/customColumns/{custom_column_id\}`
      */
@@ -3589,6 +3650,10 @@ export namespace searchads360_v0 {
      * Immutable. Name of the resource. CustomerManagerLink resource names have the form: `customers/{customer_id\}/customerManagerLinks/{manager_customer_id\}~{manager_link_id\}`
      */
     resourceName?: string | null;
+    /**
+     * Output only. The timestamp when the CustomerManagerLink was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
+     */
+    startTime?: string | null;
     /**
      * Status of the link between the customer and the manager.
      */
