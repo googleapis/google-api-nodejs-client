@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20240822",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -341,6 +341,17 @@
             "Thirty minutes past the hour.",
             "Forty-five minutes past the hour."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Common__AdTextAsset": {
+      "description": "A text asset used inside an ad.",
+      "id": "GoogleAdsSearchads360V0Common__AdTextAsset",
+      "properties": {
+        "text": {
+          "description": "Asset text.",
           "type": "string"
         }
       },
@@ -1012,6 +1023,11 @@
           "format": "double",
           "type": "number"
         },
+        "averageQualityScore": {
+          "description": "The average quality score.",
+          "format": "double",
+          "type": "number"
+        },
         "clicks": {
           "description": "The number of clicks.",
           "format": "int64",
@@ -1540,6 +1556,20 @@
           "format": "int64",
           "type": "string"
         },
+        "descriptions": {
+          "description": "List of text assets for descriptions. When the ad serves the descriptions will be selected from this list.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__AdTextAsset"
+          },
+          "type": "array"
+        },
+        "headlines": {
+          "description": "List of text assets for headlines. When the ad serves the headlines will be selected from this list.",
+          "items": {
+            "$ref": "GoogleAdsSearchads360V0Common__AdTextAsset"
+          },
+          "type": "array"
+        },
         "path1": {
           "description": "Text appended to the auto-generated visible URL with a delimiter.",
           "type": "string"
@@ -1737,6 +1767,27 @@
             "Other device types."
           ],
           "type": "string"
+        },
+        "geoTargetCity": {
+          "description": "Resource name of the geo target constant that represents a city.",
+          "type": "string"
+        },
+        "geoTargetCountry": {
+          "description": "Resource name of the geo target constant that represents a country.",
+          "type": "string"
+        },
+        "geoTargetMetro": {
+          "description": "Resource name of the geo target constant that represents a metro.",
+          "type": "string"
+        },
+        "geoTargetRegion": {
+          "description": "Resource name of the geo target constant that represents a region.",
+          "type": "string"
+        },
+        "hour": {
+          "description": "Hour of day as a number between 0 and 23, inclusive.",
+          "format": "int32",
+          "type": "integer"
         },
         "keyword": {
           "$ref": "GoogleAdsSearchads360V0Common__Keyword",
@@ -2144,7 +2195,7 @@
         },
         "targetSpendMicros": {
           "deprecated": true,
-          "description": "The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.",
+          "description": "Deprecated: The spend target under which to maximize clicks. A TargetSpend bidder will attempt to spend the smaller of this value or the natural throttling spend amount. If not specified, the budget is used as the spend target. This field is deprecated and should no longer be used. See https://ads-developers.googleblog.com/2020/05/reminder-about-sunset-creation-of.html for details.",
           "format": "int64",
           "type": "string"
         }
@@ -2181,7 +2232,7 @@
       "id": "GoogleAdsSearchads360V0Common__TextLabel",
       "properties": {
         "backgroundColor": {
-          "description": "Background color of the label in RGB format. This string must match the regular expression '^\\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$'. Note: The background color may not be visible for manager accounts.",
+          "description": "Background color of the label in HEX format. This string must match the regular expression '^\\#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$'. Note: The background color may not be visible for manager accounts.",
           "type": "string"
         },
         "description": {
@@ -3032,7 +3083,7 @@
       "type": "object"
     },
     "GoogleAdsSearchads360V0Errors__SearchAds360Error": {
-      "description": "SearchAds360-specific error.",
+      "description": "Search Ads 360-specific error.",
       "id": "GoogleAdsSearchads360V0Errors__SearchAds360Error",
       "properties": {
         "details": {
@@ -3893,7 +3944,8 @@
             "DISCOVERY_MULTI_ASSET_AD",
             "DISCOVERY_CAROUSEL_AD",
             "TRAVEL_AD",
-            "DISCOVERY_VIDEO_RESPONSIVE_AD"
+            "DISCOVERY_VIDEO_RESPONSIVE_AD",
+            "MULTIMEDIA_AD"
           ],
           "enumDescriptions": [
             "No value has been specified.",
@@ -3929,7 +3981,8 @@
             "Discovery multi asset ad.",
             "Discovery carousel ad.",
             "Travel ad.",
-            "Discovery video responsive ad."
+            "Discovery video responsive ad.",
+            "Multimedia ad."
           ],
           "readOnly": true,
           "type": "string"
@@ -4145,7 +4198,7 @@
           "type": "string"
         },
         "engineId": {
-          "description": "Output only. ID of the ad in the external engine account. This field is for SearchAds 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-SearchAds 360 entity, use \"ad_group_ad.ad.id\" instead.",
+          "description": "Output only. ID of the ad in the external engine account. This field is for Search Ads 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-Search Ads 360 entity, use \"ad_group_ad.ad.id\" instead.",
           "readOnly": true,
           "type": "string"
         },
@@ -4265,6 +4318,12 @@
         },
         "label": {
           "description": "Immutable. The label assigned to the ad group ad.",
+          "type": "string"
+        },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the label.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "resourceName": {
@@ -4689,6 +4748,12 @@
           "description": "Immutable. The label assigned to the ad group criterion.",
           "type": "string"
         },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the label.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "resourceName": {
           "description": "Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{customer_id}/adGroupCriterionLabels/{ad_group_id}~{criterion_id}~{label_id}`",
           "type": "string"
@@ -4706,6 +4771,12 @@
         },
         "label": {
           "description": "Immutable. The label assigned to the ad group.",
+          "type": "string"
+        },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the label.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "resourceName": {
@@ -5512,7 +5583,8 @@
             "VIDEO_SEQUENCE",
             "APP_CAMPAIGN_FOR_PRE_REGISTRATION",
             "VIDEO_REACH_TARGET_FREQUENCY",
-            "TRAVEL_ACTIVITIES"
+            "TRAVEL_ACTIVITIES",
+            "SOCIAL_FACEBOOK_TRACKING_ONLY"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -5535,7 +5607,8 @@
             "Video campaigns with sequence video ads.",
             "App Campaign for pre registration, specialized for advertising mobile app pre-registration, that targets multiple advertising channels across Google Play, YouTube and Display Network.",
             "Video reach campaign with Target Frequency bidding strategy.",
-            "Travel Activities campaigns."
+            "Travel Activities campaigns.",
+            "Facebook tracking only social campaigns."
           ],
           "type": "string"
         },
@@ -5555,7 +5628,8 @@
             "PERFORMANCE_MAX",
             "LOCAL_SERVICES",
             "DISCOVERY",
-            "TRAVEL"
+            "TRAVEL",
+            "SOCIAL"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -5571,7 +5645,8 @@
             "Performance Max campaigns.",
             "Local services campaigns.",
             "Discovery campaigns.",
-            "Travel campaigns."
+            "Travel campaigns.",
+            "Social campaigns."
           ],
           "type": "string"
         },
@@ -6288,6 +6363,12 @@
           "description": "Immutable. The label assigned to the campaign.",
           "type": "string"
         },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the label.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "resourceName": {
           "description": "Immutable. Name of the resource. Campaign label resource names have the form: `customers/{customer_id}/campaignLabels/{campaign_id}~{label_id}`",
           "type": "string"
@@ -6470,7 +6551,7 @@
           "type": "string"
         },
         "merchantId": {
-          "description": "Output only. The SearchAds360 inventory account ID containing the product that was clicked on. SearchAds360 generates this ID when you link an inventory account in SearchAds360.",
+          "description": "Output only. The Search Ads 360 inventory account ID containing the product that was clicked on. Search Ads 360 generates this ID when you link an inventory account in Search Ads 360.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -6535,7 +6616,7 @@
           "type": "string"
         },
         "visitId": {
-          "description": "Output only. The SearchAds360 visit ID that the conversion is attributed to.",
+          "description": "Output only. The Search Ads 360 visit ID that the conversion is attributed to.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -6979,6 +7060,31 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "renderType": {
+          "description": "Output only. How the result value of the custom column should be interpreted.",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "NUMBER",
+            "PERCENT",
+            "MONEY",
+            "STRING",
+            "BOOLEAN",
+            "DATE"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Unknown.",
+            "The custom column is a raw numerical value. See value_type field to determine if it is an integer or a double.",
+            "The custom column should be multiplied by 100 to retrieve the percentage value.",
+            "The custom column value is a monetary value and is in micros.",
+            "The custom column value is a string.",
+            "The custom column value is a boolean.",
+            "The custom column value is a date represented as an integer in YYYYMMDD format."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "resourceName": {
           "description": "Immutable. The resource name of the custom column. Custom column resource names have the form: `customers/{customer_id}/customColumns/{custom_column_id}`",
           "type": "string"
@@ -6991,7 +7097,8 @@
             "STRING",
             "INT64",
             "DOUBLE",
-            "BOOLEAN"
+            "BOOLEAN",
+            "DATE"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -6999,7 +7106,8 @@
             "The custom column value is a string.",
             "The custom column value is an int64 number.",
             "The custom column value is a double number.",
-            "The custom column value is a boolean."
+            "The custom column value is a boolean.",
+            "The custom column value is a date, in YYYYMMDD format."
           ],
           "readOnly": true,
           "type": "string"
@@ -7325,6 +7433,11 @@
         },
         "resourceName": {
           "description": "Immutable. Name of the resource. CustomerManagerLink resource names have the form: `customers/{customer_id}/customerManagerLinks/{manager_customer_id}~{manager_link_id}`",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Output only. The timestamp when the CustomerManagerLink was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
