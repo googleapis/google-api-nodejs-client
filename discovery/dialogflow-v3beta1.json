@@ -14730,6 +14730,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ToolAuthenticationBearerTokenConfig": {
+      "description": "Config for authentication using bearer token.",
+      "id": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationBearerTokenConfig",
+      "properties": {
+        "token": {
+          "description": "Required. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig": {
       "description": "Config for authentication with OAuth.",
       "id": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig",

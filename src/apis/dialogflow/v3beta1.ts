@@ -5153,6 +5153,15 @@ export namespace dialogflow_v3beta1 {
     token?: string | null;
   }
   /**
+   * Config for authentication using bearer token.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationBearerTokenConfig {
+    /**
+     * Required. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.
+     */
+    token?: string | null;
+  }
+  /**
    * Config for authentication with OAuth.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationOAuthConfig {
