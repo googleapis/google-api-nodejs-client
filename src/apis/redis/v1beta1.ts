@@ -138,6 +138,10 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$AvailabilityConfiguration {
     /**
+     * Checks for existence of (multi-cluster) routing configuration that allows automatic failover to a different zone/region in case of an outage. Applicable to Bigtable resources.
+     */
+    automaticFailoverRoutingConfigured?: boolean | null;
+    /**
      * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
      */
     availabilityType?: string | null;
@@ -227,6 +231,14 @@ export namespace redis_v1beta1 {
      */
     discoveryEndpoints?: Schema$DiscoveryEndpoint[];
     /**
+     * Optional. ClusterMaintenancePolicy determines when to allow or deny updates.
+     */
+    maintenancePolicy?: Schema$ClusterMaintenancePolicy;
+    /**
+     * Output only. ClusterMaintenanceSchedule Output only Published maintenance schedule.
+     */
+    maintenanceSchedule?: Schema$ClusterMaintenanceSchedule;
+    /**
      * Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
      */
     name?: string | null;
@@ -288,6 +300,40 @@ export namespace redis_v1beta1 {
     zoneDistributionConfig?: Schema$ZoneDistributionConfig;
   }
   /**
+   * Maintenance policy per cluster.
+   */
+  export interface Schema$ClusterMaintenancePolicy {
+    /**
+     * Output only. The time when the policy was created i.e. Maintenance Window or Deny Period was assigned.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time when the policy was updated i.e. Maintenance Window or Deny Period was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_maintenance_window is expected to be one.
+     */
+    weeklyMaintenanceWindow?: Schema$ClusterWeeklyMaintenanceWindow[];
+  }
+  /**
+   * Upcoming maitenance schedule.
+   */
+  export interface Schema$ClusterMaintenanceSchedule {
+    /**
+     * Output only. The end time of any upcoming scheduled maintenance for this instance.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The deadline that the maintenance schedule start time can not go beyond, including reschedule.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
+     * Output only. The start time of any upcoming scheduled maintenance for this instance.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Configuration of the persistence functionality.
    */
   export interface Schema$ClusterPersistenceConfig {
@@ -303,6 +349,23 @@ export namespace redis_v1beta1 {
      * Optional. RDB configuration. This field will be ignored if mode is not RDB.
      */
     rdbConfig?: Schema$RDBConfig;
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$ClusterWeeklyMaintenanceWindow {
+    /**
+     * Allows to define schedule that runs specified day of the week.
+     */
+    day?: string | null;
+    /**
+     * Duration of the time window.
+     */
+    duration?: string | null;
+    /**
+     * Start time of the window in UTC.
+     */
+    startTime?: Schema$TimeOfDay;
   }
   /**
    * Contains compliance information about a security standard indicating unmet recommendations.
@@ -1266,6 +1329,19 @@ export namespace redis_v1beta1 {
     uid?: string | null;
   }
   /**
+   * Request for rescheduling a cluster maintenance.
+   */
+  export interface Schema$RescheduleClusterMaintenanceRequest {
+    /**
+     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     */
+    rescheduleType?: string | null;
+    /**
+     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.
+     */
+    scheduleTime?: string | null;
+  }
+  /**
    * Request for RescheduleMaintenance.
    */
   export interface Schema$RescheduleMaintenanceRequest {
@@ -2201,6 +2277,96 @@ export namespace redis_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Reschedules upcoming maintenance event.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rescheduleClusterMaintenance(
+      params: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rescheduleClusterMaintenance(
+      params?: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rescheduleClusterMaintenance(
+      params: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rescheduleClusterMaintenance(
+      params: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleClusterMaintenance(
+      params: Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleClusterMaintenance(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleClusterMaintenance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+name}:rescheduleClusterMaintenance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Clusters$Create
@@ -2282,6 +2448,18 @@ export namespace redis_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Cluster;
+  }
+  export interface Params$Resource$Projects$Locations$Clusters$Rescheduleclustermaintenance
+    extends StandardParameters {
+    /**
+     * Required. Redis Cluster instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RescheduleClusterMaintenanceRequest;
   }
 
   export class Resource$Projects$Locations$Instances {
