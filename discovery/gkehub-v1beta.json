@@ -2111,7 +2111,7 @@
       }
     }
   },
-  "revision": "20240809",
+  "revision": "20240815",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2550,7 +2550,7 @@
       "type": "object"
     },
     "CommonFeatureSpec": {
-      "description": "CommonFeatureSpec contains Hub-wide configuration information",
+      "description": "CommonFeatureSpec contains Fleet-wide configuration information",
       "id": "CommonFeatureSpec",
       "properties": {
         "anthosobservability": {
@@ -2581,7 +2581,7 @@
       "type": "object"
     },
     "CommonFeatureState": {
-      "description": "CommonFeatureState contains Hub-wide Feature status information.",
+      "description": "CommonFeatureState contains Fleet-wide Feature status information.",
       "id": "CommonFeatureState",
       "properties": {
         "appdevexperience": {
@@ -2598,7 +2598,7 @@
         },
         "state": {
           "$ref": "FeatureState",
-          "description": "Output only. The \"running state\" of the Feature in this Hub.",
+          "description": "Output only. The \"running state\" of the Feature in this Fleet.",
           "readOnly": true
         }
       },
@@ -3320,7 +3320,7 @@
         },
         "hierarchyController": {
           "$ref": "ConfigManagementHierarchyControllerConfig",
-          "description": "Hierarchy Controller configuration for the cluster."
+          "description": "Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead."
         },
         "management": {
           "description": "Enables automatic Feature management.",
@@ -3743,7 +3743,7 @@
       "type": "object"
     },
     "Feature": {
-      "description": "Feature represents the settings and status of any Hub Feature.",
+      "description": "Feature represents the settings and status of any Fleet Feature.",
       "id": "Feature",
       "properties": {
         "createTime": {
@@ -3811,11 +3811,11 @@
         },
         "spec": {
           "$ref": "CommonFeatureSpec",
-          "description": "Optional. Hub-wide Feature configuration. If this Feature does not support any Hub-wide configuration, this field may be unused."
+          "description": "Optional. Fleet-wide Feature configuration. If this Feature does not support any Fleet-wide configuration, this field may be unused."
         },
         "state": {
           "$ref": "CommonFeatureState",
-          "description": "Output only. The Hub-wide Feature state.",
+          "description": "Output only. The Fleet-wide Feature state.",
           "readOnly": true
         },
         "unreachable": {
@@ -3836,7 +3836,7 @@
       "type": "object"
     },
     "FeatureResourceState": {
-      "description": "FeatureResourceState describes the state of a Feature *resource* in the GkeHub API. See `FeatureState` for the \"running state\" of the Feature in the Hub and across Memberships.",
+      "description": "FeatureResourceState describes the state of a Feature *resource* in the GkeHub API. See `FeatureState` for the \"running state\" of the Feature in the Fleet and across Memberships.",
       "id": "FeatureResourceState",
       "properties": {
         "state": {
@@ -3851,9 +3851,9 @@
           ],
           "enumDescriptions": [
             "State is unknown or not set.",
-            "The Feature is being enabled, and the Feature resource is being created. Once complete, the corresponding Feature will be enabled in this Hub.",
-            "The Feature is enabled in this Hub, and the Feature resource is fully available.",
-            "The Feature is being disabled in this Hub, and the Feature resource is being deleted.",
+            "The Feature is being enabled, and the Feature resource is being created. Once complete, the corresponding Feature will be enabled in this Fleet.",
+            "The Feature is enabled in this Fleet, and the Feature resource is fully available.",
+            "The Feature is being disabled in this Fleet, and the Feature resource is being deleted.",
             "The Feature resource is being updated.",
             "The Feature resource is being updated by the Hub Service."
           ],
@@ -5101,7 +5101,7 @@
       "type": "object"
     },
     "MembershipFeatureSpec": {
-      "description": "MembershipFeatureSpec contains configuration information for a single Membership. NOTE: Please use snake case in your feature name.",
+      "description": "MembershipFeatureSpec contains configuration information for a single Membership.",
       "id": "MembershipFeatureSpec",
       "properties": {
         "anthosobservability": {
@@ -6237,6 +6237,7 @@
           "enum": [
             "CODE_UNSPECIFIED",
             "MESH_IAM_PERMISSION_DENIED",
+            "MESH_IAM_CROSS_PROJECT_PERMISSION_DENIED",
             "CNI_CONFIG_UNSUPPORTED",
             "GKE_SANDBOX_UNSUPPORTED",
             "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
@@ -6266,6 +6267,7 @@
           "enumDescriptions": [
             "Default Unspecified code",
             "Mesh IAM permission denied error code",
+            "Permission denied error code for cross-project",
             "CNI config unsupported error code",
             "GKE sandbox unsupported error code",
             "Nodepool workload identity federation required error code",

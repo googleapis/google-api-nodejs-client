@@ -406,7 +406,7 @@ export namespace gkehub_v1 {
     updateTime?: string | null;
   }
   /**
-   * CommonFeatureSpec contains Hub-wide configuration information
+   * CommonFeatureSpec contains Fleet-wide configuration information
    */
   export interface Schema$CommonFeatureSpec {
     /**
@@ -431,7 +431,7 @@ export namespace gkehub_v1 {
     multiclusteringress?: Schema$MultiClusterIngressFeatureSpec;
   }
   /**
-   * CommonFeatureState contains Hub-wide Feature status information.
+   * CommonFeatureState contains Fleet-wide Feature status information.
    */
   export interface Schema$CommonFeatureState {
     /**
@@ -447,7 +447,7 @@ export namespace gkehub_v1 {
      */
     fleetobservability?: Schema$FleetObservabilityFeatureState;
     /**
-     * Output only. The "running state" of the Feature in this Hub.
+     * Output only. The "running state" of the Feature in this Fleet.
      */
     state?: Schema$FeatureState;
   }
@@ -818,7 +818,7 @@ export namespace gkehub_v1 {
      */
     configSync?: Schema$ConfigManagementConfigSync;
     /**
-     * Hierarchy Controller configuration for the cluster.
+     * Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead.
      */
     hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
     /**
@@ -1118,7 +1118,7 @@ export namespace gkehub_v1 {
     title?: string | null;
   }
   /**
-   * Feature represents the settings and status of any Hub Feature.
+   * Feature represents the settings and status of any Fleet Feature.
    */
   export interface Schema$Feature {
     /**
@@ -1162,11 +1162,11 @@ export namespace gkehub_v1 {
      */
     scopeStates?: {[key: string]: Schema$ScopeFeatureState} | null;
     /**
-     * Optional. Hub-wide Feature configuration. If this Feature does not support any Hub-wide configuration, this field may be unused.
+     * Optional. Fleet-wide Feature configuration. If this Feature does not support any Fleet-wide configuration, this field may be unused.
      */
     spec?: Schema$CommonFeatureSpec;
     /**
-     * Output only. The Hub-wide Feature state.
+     * Output only. The Fleet-wide Feature state.
      */
     state?: Schema$CommonFeatureState;
     /**
@@ -1179,7 +1179,7 @@ export namespace gkehub_v1 {
     updateTime?: string | null;
   }
   /**
-   * FeatureResourceState describes the state of a Feature *resource* in the GkeHub API. See `FeatureState` for the "running state" of the Feature in the Hub and across Memberships.
+   * FeatureResourceState describes the state of a Feature *resource* in the GkeHub API. See `FeatureState` for the "running state" of the Feature in the Fleet and across Memberships.
    */
   export interface Schema$FeatureResourceState {
     /**
@@ -2108,7 +2108,7 @@ export namespace gkehub_v1 {
     onPremCluster?: Schema$OnPremCluster;
   }
   /**
-   * MembershipFeatureSpec contains configuration information for a single Membership. NOTE: Please use snake case in your feature name.
+   * MembershipFeatureSpec contains configuration information for a single Membership.
    */
   export interface Schema$MembershipFeatureSpec {
     /**
