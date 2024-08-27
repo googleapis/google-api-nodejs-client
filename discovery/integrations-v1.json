@@ -10062,6 +10062,25 @@
           "readOnly": true,
           "type": "string"
         },
+        "deploymentModelMigrationState": {
+          "description": "Output only. Status of the deployment model migration.",
+          "enum": [
+            "DEPLOYMENT_MODEL_MIGRATION_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "COMPLETED",
+            "ROLLEDBACK",
+            "ROLLBACK_IN_PROGRESS"
+          ],
+          "enumDescriptions": [
+            "Deployment model migration state is not specified.",
+            "Deployment model migration is in progress.",
+            "Deployment model migration is completed.",
+            "Deployment model migration rolledback.",
+            "Deployment model migration rollback in progress."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "hpaConfig": {
           "$ref": "GoogleCloudConnectorsV1HPAConfig",
           "description": "Output only. HPA autoscaling config.",
