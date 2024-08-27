@@ -294,6 +294,7 @@ export {gkehub_v1alpha} from './apis/gkehub/v1alpha';
 export {gkehub_v1alpha2} from './apis/gkehub/v1alpha2';
 export {gkehub_v1beta} from './apis/gkehub/v1beta';
 export {gkehub_v1beta1} from './apis/gkehub/v1beta1';
+export {gkehub_v2} from './apis/gkehub/v2';
 export {gkehub_v2alpha} from './apis/gkehub/v2alpha';
 export {gkehub_v2beta} from './apis/gkehub/v2beta';
 export {gkeonprem_v1} from './apis/gkeonprem/v1';

@@ -233,7 +233,7 @@
       }
     }
   },
-  "revision": "20240720",
+  "revision": "20240825",
   "rootUrl": "https://pollen.googleapis.com/",
   "schemas": {
     "Color": {
@@ -471,7 +471,9 @@
             "HAZEL",
             "GRAMINALES",
             "RAGWEED",
-            "MUGWORT"
+            "MUGWORT",
+            "JAPANESE_CEDAR",
+            "JAPANESE_CYPRESS"
           ],
           "enumDescriptions": [
             "Unspecified plant code.",
@@ -489,7 +491,9 @@
             "Hazel is classified as a tree pollen type.",
             "Graminales is classified as a grass pollen type.",
             "Ragweed is classified as a weed pollen type.",
-            "Mugwort is classified as a weed pollen type."
+            "Mugwort is classified as a weed pollen type.",
+            "Japanese cedar is classified as a tree pollen type.",
+            "Japanese cypress is classified as a tree pollen type."
           ],
           "type": "string"
         },

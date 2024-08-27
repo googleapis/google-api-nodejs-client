@@ -2113,6 +2113,7 @@
               ]
             },
             "query": {
+              "deprecated": true,
               "description": "Queries time series using Monitoring Query Language.",
               "flatPath": "v3/projects/{projectsId}/timeSeries:query",
               "httpMethod": "POST",
@@ -2714,7 +2715,7 @@
       }
     }
   },
-  "revision": "20240804",
+  "revision": "20240818",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -5195,6 +5196,7 @@
       "type": "object"
     },
     "QueryTimeSeriesRequest": {
+      "deprecated": true,
       "description": "The QueryTimeSeries request.",
       "id": "QueryTimeSeriesRequest",
       "properties": {
@@ -5215,6 +5217,7 @@
       "type": "object"
     },
     "QueryTimeSeriesResponse": {
+      "deprecated": true,
       "description": "The QueryTimeSeries response.",
       "id": "QueryTimeSeriesResponse",
       "properties": {
