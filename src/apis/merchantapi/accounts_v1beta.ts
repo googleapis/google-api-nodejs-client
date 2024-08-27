@@ -311,6 +311,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     customerService?: Schema$CustomerService;
     /**
+     * Optional. The 10-digit [Korean business registration number](https://support.google.com/merchants/answer/9037766) separated with dashes in the format: XXX-XX-XXXXX.
+     */
+    koreanBusinessRegistrationNumber?: string | null;
+    /**
      * Identifier. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
      */
     name?: string | null;

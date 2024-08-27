@@ -1354,7 +1354,7 @@
       }
     }
   },
-  "revision": "20240806",
+  "revision": "20240821",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AcceptTermsOfService": {
@@ -1607,6 +1607,10 @@
         "customerService": {
           "$ref": "CustomerService",
           "description": "Optional. The customer service of the business."
+        },
+        "koreanBusinessRegistrationNumber": {
+          "description": "Optional. The 10-digit [Korean business registration number](https://support.google.com/merchants/answer/9037766) separated with dashes in the format: XXX-XX-XXXXX.",
+          "type": "string"
         },
         "name": {
           "description": "Identifier. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
