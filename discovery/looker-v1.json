@@ -731,7 +731,7 @@
       }
     }
   },
-  "revision": "20240522",
+  "revision": "20240814",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1163,6 +1163,14 @@
           "description": "Whether private IP is enabled on the Looker instance.",
           "type": "boolean"
         },
+        "pscConfig": {
+          "$ref": "PscConfig",
+          "description": "Optional. PSC configuration. Used when `psc_enabled` is true."
+        },
+        "pscEnabled": {
+          "description": "Optional. Whether to use Private Service Connect (PSC) for private IP connectivity. If true, neither `public_ip_enabled` nor `private_ip_enabled` can be true.",
+          "type": "boolean"
+        },
         "publicIpEnabled": {
           "description": "Whether public IP is enabled on the Looker instance.",
           "type": "boolean"
@@ -1476,10 +1484,72 @@
       },
       "type": "object"
     },
+    "PscConfig": {
+      "description": "Information for Private Service Connect (PSC) setup for a Looker instance.",
+      "id": "PscConfig",
+      "properties": {
+        "allowedVpcs": {
+          "description": "Optional. List of VPCs that are allowed ingress into looker. Format: projects/{project}/global/networks/{network}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lookerServiceAttachmentUri": {
+          "description": "Output only. URI of the Looker service attachment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachments": {
+          "description": "Optional. List of egress service attachment configurations.",
+          "items": {
+            "$ref": "ServiceAttachment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RestartInstanceRequest": {
       "description": "Request options for restarting an instance.",
       "id": "RestartInstanceRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ServiceAttachment": {
+      "description": "Service attachment configuration.",
+      "id": "ServiceAttachment",
+      "properties": {
+        "connectionStatus": {
+          "description": "Output only. Connection status.",
+          "enum": [
+            "UNKNOWN",
+            "ACCEPTED",
+            "PENDING",
+            "REJECTED",
+            "NEEDS_ATTENTION",
+            "CLOSED"
+          ],
+          "enumDescriptions": [
+            "Connection status is unspecified.",
+            "Connection is established and functioning normally.",
+            "Connection is not established (Looker tenant project hasn't been allowlisted).",
+            "Connection is not established (Looker tenant project is explicitly in reject list).",
+            "Issue with target service attachment, e.g. NAT subnet is exhausted.",
+            "Target service attachment does not exist. This status is a terminal state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "localFqdn": {
+          "description": "Required. Fully qualified domain name that will be used in the private DNS record created for the service attachment.",
+          "type": "string"
+        },
+        "targetServiceAttachmentUri": {
+          "description": "Required. URI of the service attachment to connect to. Format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SetIamPolicyRequest": {
