@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240724",
+  "revision": "20240814",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2720,6 +2720,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "preferredSecondaryZone": {
+          "description": "Optional. Copy clone and point-in-time recovery clone of a regional instance in the specified zones. If not specified, clone to the same secondary zone as the source instance. This value cannot be the same as the preferred_zone field. This field applies to all DB types.",
+          "type": "string"
+        },
         "preferredZone": {
           "description": "Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance. This field applies to all DB types.",
           "type": "string"
@@ -2791,7 +2795,6 @@
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_4",
-            "MYSQL_8_4_0",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2825,7 +2828,6 @@
             false,
             false,
             true,
-            false,
             false,
             false,
             false,
@@ -2883,7 +2885,6 @@
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database version is MySQL 8.4.",
-            "The database version is MySQL 8.4 and the patch version is 0.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3100,7 +3101,6 @@
             "MYSQL_8_0_39",
             "MYSQL_8_0_40",
             "MYSQL_8_4",
-            "MYSQL_8_4_0",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -3134,7 +3134,6 @@
             false,
             false,
             true,
-            false,
             false,
             false,
             false,
@@ -3192,7 +3191,6 @@
             "The database major version is MySQL 8.0 and the minor version is 39.",
             "The database major version is MySQL 8.0 and the minor version is 40.",
             "The database version is MySQL 8.4.",
-            "The database version is MySQL 8.4 and the patch version is 0.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -3854,7 +3852,6 @@
               "MYSQL_8_0_39",
               "MYSQL_8_0_40",
               "MYSQL_8_4",
-              "MYSQL_8_4_0",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
               "SQLSERVER_2019_EXPRESS",
@@ -3888,7 +3885,6 @@
               false,
               false,
               true,
-              false,
               false,
               false,
               false,
@@ -3946,7 +3942,6 @@
               "The database major version is MySQL 8.0 and the minor version is 39.",
               "The database major version is MySQL 8.0 and the minor version is 40.",
               "The database version is MySQL 8.4.",
-              "The database version is MySQL 8.4 and the patch version is 0.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
               "The database version is SQL Server 2019 Express.",
@@ -6293,9 +6288,9 @@
             "The database's built-in user type.",
             "Cloud IAM user.",
             "Cloud IAM service account.",
-            "Cloud IAM group non-login user.",
-            "Cloud IAM group login user.",
-            "Cloud IAM group login service account."
+            "Cloud IAM group. Not used for login.",
+            "Read-only. Login for a user that belongs to the Cloud IAM group.",
+            "Read-only. Login for a service account that belongs to the Cloud IAM group."
           ],
           "type": "string"
         }
