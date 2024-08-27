@@ -2008,7 +2008,7 @@
       }
     }
   },
-  "revision": "20240314",
+  "revision": "20240820",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2035,6 +2035,8 @@
             "NVIDIA_TESLA_T4_VWS",
             "NVIDIA_TESLA_P100_VWS",
             "NVIDIA_TESLA_P4_VWS",
+            "NVIDIA_H100_80GB",
+            "NVIDIA_H100_MEGA_80GB",
             "TPU_V2",
             "TPU_V3"
           ],
@@ -2051,6 +2053,8 @@
             "Accelerator type is NVIDIA Tesla T4 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P100 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P4 Virtual Workstations.",
+            "Accelerator type is NVIDIA H100 80GB.",
+            "Accelerator type is NVIDIA H100 Mega 80GB.",
             "(Coming soon) Accelerator type is TPU V2.",
             "(Coming soon) Accelerator type is TPU V3."
           ],
@@ -4058,6 +4062,8 @@
             "NVIDIA_TESLA_T4_VWS",
             "NVIDIA_TESLA_P100_VWS",
             "NVIDIA_TESLA_P4_VWS",
+            "NVIDIA_H100_80GB",
+            "NVIDIA_H100_MEGA_80GB",
             "TPU_V2",
             "TPU_V3"
           ],
@@ -4074,6 +4080,8 @@
             "Accelerator type is NVIDIA Tesla T4 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P100 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P4 Virtual Workstations.",
+            "Accelerator type is NVIDIA H100 80GB.",
+            "Accelerator type is NVIDIA H100 Mega 80GB.",
             "(Coming soon) Accelerator type is TPU V2.",
             "(Coming soon) Accelerator type is TPU V3."
           ],

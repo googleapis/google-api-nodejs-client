@@ -712,6 +712,15 @@ export namespace notebooks_v2 {
     dataDisk?: Schema$DataDisk;
   }
   /**
+   * Request for restoring the notebook instance from a BackupSource.
+   */
+  export interface Schema$RestoreInstanceRequest {
+    /**
+     * Snapshot to be used for restore.
+     */
+    snapshot?: Schema$Snapshot;
+  }
+  /**
    * Request for rollbacking a notebook instance
    */
   export interface Schema$RollbackInstanceRequest {
@@ -762,6 +771,19 @@ export namespace notebooks_v2 {
      * Optional. Defines whether the VM instance has the vTPM enabled. Enabled by default.
      */
     enableVtpm?: boolean | null;
+  }
+  /**
+   * Snapshot represents the snapshot of the data disk used to restore the Workbench Instance from. Refers to: compute/v1/projects/{project_id\}/global/snapshots/{snapshot_id\}
+   */
+  export interface Schema$Snapshot {
+    /**
+     * Required. The project ID of the snapshot.
+     */
+    projectId?: string | null;
+    /**
+     * Required. The ID of the snapshot.
+     */
+    snapshotId?: string | null;
   }
   /**
    * Request for starting a notebook instance
@@ -2185,6 +2207,94 @@ export namespace notebooks_v2 {
     }
 
     /**
+     * RestoreInstance restores an Instance from a BackupSource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Instances$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(callback: BodyResponseCallback<Schema$Operation>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Restore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Rollbacks a notebook instance to the previous version.
      *
      * @param params - Parameters for request
@@ -2958,6 +3068,18 @@ export namespace notebooks_v2 {
      * Request body metadata
      */
     requestBody?: Schema$ResizeDiskRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Restore
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreInstanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Rollback
     extends StandardParameters {
