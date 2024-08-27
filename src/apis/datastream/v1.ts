@@ -4441,7 +4441,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Use this method to start, resume or recover a stream with a non default CDC strategy. NOTE: This feature is currently experimental.
+     * Use this method to start, resume or recover a stream with a non default CDC strategy.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -1065,7 +1065,7 @@
                   ]
                 },
                 "run": {
-                  "description": "Use this method to start, resume or recover a stream with a non default CDC strategy. NOTE: This feature is currently experimental.",
+                  "description": "Use this method to start, resume or recover a stream with a non default CDC strategy.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}:run",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.streams.run",
@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20240612",
+  "revision": "20240814",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
