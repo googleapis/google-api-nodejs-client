@@ -2092,7 +2092,7 @@
       }
     }
   },
-  "revision": "20240801",
+  "revision": "20240816",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4641,7 +4641,7 @@
       "id": "GoogleCloudRetailV2RuleForceReturnFacetAction",
       "properties": {
         "facetPositionAdjustments": {
-          "description": "Each instance corresponds to a force return attribute for the given condition. There can't be more 3 instances here.",
+          "description": "Each instance corresponds to a force return attribute for the given condition. There can't be more 15 instances here.",
           "items": {
             "$ref": "GoogleCloudRetailV2RuleForceReturnFacetActionFacetPositionAdjustment"
           },
