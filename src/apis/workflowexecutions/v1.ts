@@ -150,6 +150,14 @@ export namespace workflowexecutions_v1 {
    */
   export interface Schema$CancelExecutionRequest {}
   /**
+   * Request for the DeleteExecutionHistory method.
+   */
+  export interface Schema$DeleteExecutionHistoryRequest {}
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
+  /**
    * Error describes why the execution was abnormally terminated.
    */
   export interface Schema$Error {
@@ -468,6 +476,10 @@ export namespace workflowexecutions_v1 {
      * Output only. The most recently updated time of the step entry.
      */
     updateTime?: string | null;
+    /**
+     * Output only. The VariableData associated to this step.
+     */
+    variableData?: Schema$VariableData;
   }
   /**
    * StepEntryMetadata contains metadata information about this step.
@@ -510,6 +522,15 @@ export namespace workflowexecutions_v1 {
      * Required. The subscription of the Pub/Sub push notification. Format: projects/{project\}/subscriptions/{sub\}
      */
     subscription?: string | null;
+  }
+  /**
+   * VariableData contains the variable data for this step.
+   */
+  export interface Schema$VariableData {
+    /**
+     * Variables that are associated with this step.
+     */
+    variables?: {[key: string]: any} | null;
   }
 
   export class Resource$Projects {
@@ -840,6 +861,96 @@ export namespace workflowexecutions_v1 {
     }
 
     /**
+     * Deletes all step entries for an execution.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteExecutionHistory(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteExecutionHistory(
+      params?: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    deleteExecutionHistory(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteExecutionHistory(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteExecutionHistory(
+      params: Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteExecutionHistory(callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteExecutionHistory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://workflowexecutions.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:deleteExecutionHistory').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Returns all metadata stored about an execution, excluding most data that is already accessible using other API methods.
      *
      * @param params - Parameters for request
@@ -1138,6 +1249,18 @@ export namespace workflowexecutions_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Execution;
+  }
+  export interface Params$Resource$Projects$Locations$Workflows$Executions$Deleteexecutionhistory
+    extends StandardParameters {
+    /**
+     * Required. Name of the execution for which step entries should be deleted. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeleteExecutionHistoryRequest;
   }
   export interface Params$Resource$Projects$Locations$Workflows$Executions$Exportdata
     extends StandardParameters {
@@ -1498,11 +1621,15 @@ export namespace workflowexecutions_v1 {
      * Required. The name of the step entry to retrieve. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}/stepEntries/{step_entry\}
      */
     name?: string;
+    /**
+     * Deprecated field.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Workflows$Executions$Stepentries$List
     extends StandardParameters {
     /**
-     * Optional. Filters applied to the `[StepEntries.ListStepEntries]` results. The following fields are supported for filtering: `entryId`, `createTime`, `updateTime`, `routine`, `step`, `stepType`, `state`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `createTime\>"2023-08-01" AND state="FAILED"`
+     * Optional. Filters applied to the `[StepEntries.ListStepEntries]` results. The following fields are supported for filtering: `entryId`, `createTime`, `updateTime`, `routine`, `step`, `stepType`, `parent`, `state`. For details, see AIP-160. For example, if you are using the Google APIs Explorer: `state="SUCCEEDED"` or `createTime\>"2023-08-01" AND state="FAILED"`
      */
     filter?: string;
     /**
@@ -1518,12 +1645,16 @@ export namespace workflowexecutions_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the workflow execution to list entries for. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}/stepEntries/
+     * Required. Name of the workflow execution to list entries for. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
     parent?: string;
     /**
      * Optional. The number of step entries to skip. It can be used with or without a pageToken. If used with a pageToken, then it indicates the number of step entries to skip starting from the requested page.
      */
     skip?: number;
+    /**
+     * Deprecated field.
+     */
+    view?: string;
   }
 }
