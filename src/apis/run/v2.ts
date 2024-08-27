@@ -1616,6 +1616,69 @@ export namespace run_v2 {
     buildOperation?: Schema$GoogleLongrunningOperation;
   }
   /**
+   * Location of the source in an archive file in Google Cloud Storage.
+   */
+  export interface Schema$GoogleCloudRunV2StorageSource {
+    /**
+     * Required. Google Cloud Storage bucket containing the source (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string | null;
+    /**
+     * Optional. Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Required. Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
+     */
+    object?: string | null;
+  }
+  /**
+   * Request message for submitting a Build.
+   */
+  export interface Schema$GoogleCloudRunV2SubmitBuildRequest {
+    /**
+     * Build the source using Buildpacks.
+     */
+    buildpackBuild?: Schema$GoogleCloudRunV2BuildpacksBuild;
+    /**
+     * Build the source using Docker. This means the source has a Dockerfile.
+     */
+    dockerBuild?: Schema$GoogleCloudRunV2DockerBuild;
+    /**
+     * Required. Artifact Registry URI to store the built image.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. The service account to use for the build. If not set, the default Cloud Build service account for the project will be used.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Required. Source for the build.
+     */
+    storageSource?: Schema$GoogleCloudRunV2StorageSource;
+    /**
+     * Optional. Additional tags to annotate the build.
+     */
+    tags?: string[] | null;
+    /**
+     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where {project\} and {region\} are the project id and region respectively where the worker pool is defined and {workerPool\} is the short name of the worker pool.
+     */
+    workerPool?: string | null;
+  }
+  /**
+   * Response message for submitting a Build.
+   */
+  export interface Schema$GoogleCloudRunV2SubmitBuildResponse {
+    /**
+     * URI of the base builder image in Artifact Registry being used in the build. Used to opt into automatic base image updates.
+     */
+    baseImageUri?: string | null;
+    /**
+     * Cloud Build operation to be polled via CloudBuild API.
+     */
+    buildOperation?: Schema$GoogleLongrunningOperation;
+  }
+  /**
    * Task represents a single run of a container to completion.
    */
   export interface Schema$GoogleCloudRunV2Task {
