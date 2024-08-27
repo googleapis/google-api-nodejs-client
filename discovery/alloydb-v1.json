@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20240627",
+  "revision": "20240806",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2001,6 +2001,83 @@
       },
       "type": "object"
     },
+    "ClusterUpgradeDetails": {
+      "description": "Upgrade details of a cluster. This cluster can be primary or secondary.",
+      "id": "ClusterUpgradeDetails",
+      "properties": {
+        "clusterType": {
+          "description": "Cluster type which can either be primary or secondary.",
+          "enum": [
+            "CLUSTER_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "SECONDARY"
+          ],
+          "enumDescriptions": [
+            "The type of the cluster is unknown.",
+            "Primary cluster that support read and write operations.",
+            "Secondary cluster that is replicating from another region. This only supports read."
+          ],
+          "type": "string"
+        },
+        "databaseVersion": {
+          "description": "Database version of the cluster after the upgrade operation. This will be the target version if the upgrade was successful otherwise it remains the same as that before the upgrade operation.",
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "This is an unknown database version.",
+            "DEPRECATED - The database version is Postgres 13.",
+            "The database version is Postgres 14.",
+            "The database version is Postgres 15."
+          ],
+          "type": "string"
+        },
+        "instanceUpgradeDetails": {
+          "description": "Upgrade details of the instances directly associated with this cluster.",
+          "items": {
+            "$ref": "InstanceUpgradeDetails"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Normalized name of the cluster",
+          "type": "string"
+        },
+        "stageInfo": {
+          "description": "Array containing stage info associated with this cluster.",
+          "items": {
+            "$ref": "StageInfo"
+          },
+          "type": "array"
+        },
+        "upgradeStatus": {
+          "description": "Upgrade status of the cluster.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL_SUCCESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation partially succeeded."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConnectionInfo": {
       "description": "ConnectionInfo singleton resource. https://google.aip.dev/156",
       "id": "ConnectionInfo",
@@ -2479,6 +2556,49 @@
         "enablePublicIp": {
           "description": "Optional. Enabling public ip for the instance.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceUpgradeDetails": {
+      "description": "Details regarding the upgrade of instaces associated with a cluster.",
+      "id": "InstanceUpgradeDetails",
+      "properties": {
+        "instanceType": {
+          "description": "Instance type.",
+          "enum": [
+            "INSTANCE_TYPE_UNSPECIFIED",
+            "PRIMARY",
+            "READ_POOL",
+            "SECONDARY"
+          ],
+          "enumDescriptions": [
+            "The type of the instance is unknown.",
+            "PRIMARY instances support read and write operations.",
+            "READ POOL instances support read operations only. Each read pool instance consists of one or more homogeneous nodes. * Read pool of size 1 can only have zonal availability. * Read pools with node count of 2 or more can have regional availability (nodes are present in 2 or more zones in a region).",
+            "SECONDARY instances support read operations only. SECONDARY instance is a cross-region read replica"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Normalized name of the instance.",
+          "type": "string"
+        },
+        "upgradeStatus": {
+          "description": "Upgrade status of the instance.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL_SUCCESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation partially succeeded."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2997,6 +3117,13 @@
     "RestartInstanceRequest": {
       "id": "RestartInstanceRequest",
       "properties": {
+        "nodeIds": {
+          "description": "Optional. Full name of the nodes as obtained from INSTANCE_VIEW_FULL to restart upon. Only applicable for read instances.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
@@ -3091,6 +3218,51 @@
             "SSL connections are required. CA verification enforced. Clients must have certificates signed by a Cluster CA, e.g. via GenerateClientCertificate.",
             "SSL connections are optional. CA verification not enforced.",
             "SSL connections are required. CA verification not enforced."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StageInfo": {
+      "description": "Stage information for different stages in the upgrade process.",
+      "id": "StageInfo",
+      "properties": {
+        "logsUrl": {
+          "description": "logs_url is the URL for the logs associated with a stage if that stage has logs. Right now, only three stages have logs: ALLOYDB_PRECHECK, PG_UPGRADE_CHECK, PRIMARY_INSTANCE_UPGRADE.",
+          "type": "string"
+        },
+        "stage": {
+          "description": "The stage.",
+          "enum": [
+            "STAGE_UNSPECIFIED",
+            "ALLOYDB_PRECHECK",
+            "PG_UPGRADE_CHECK",
+            "PRIMARY_INSTANCE_UPGRADE",
+            "READ_POOL_UPGRADE"
+          ],
+          "enumDescriptions": [
+            "Unspecified stage.",
+            "This stage is for the custom checks done before upgrade.",
+            "This stage is for `pg_upgrade --check` run before upgrade.",
+            "This stage is primary upgrade.",
+            "This stage is read pool upgrade."
+          ],
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of the stage.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL_SUCCESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation partially succeeded."
           ],
           "type": "string"
         }
@@ -3229,39 +3401,15 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainCustomMetadataData": {
-      "description": "Any custom metadata associated with the resource. i.e. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data",
+      "description": "Any custom metadata associated with the resource. e.g. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data",
       "id": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
       "properties": {
-        "databaseMetadata": {
+        "internalResourceMetadata": {
+          "description": "Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration.",
           "items": {
-            "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseMetadata"
+            "$ref": "StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "StorageDatabasecenterPartnerapiV1mainDatabaseMetadata": {
-      "description": "Metadata for individual databases created in an instance. i.e. spanner instance can have multiple databases with unique configuration settings.",
-      "id": "StorageDatabasecenterPartnerapiV1mainDatabaseMetadata",
-      "properties": {
-        "backupConfiguration": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
-          "description": "Backup configuration for this database"
-        },
-        "backupRun": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
-          "description": "Information about the last backup attempt for this database"
-        },
-        "product": {
-          "$ref": "StorageDatabasecenterProtoCommonProduct"
-        },
-        "resourceId": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId"
-        },
-        "resourceName": {
-          "description": "Required. Database name. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
-          "type": "string"
         }
       },
       "type": "object"
@@ -3294,8 +3442,7 @@
           "type": "string"
         },
         "observabilityMetricData": {
-          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData",
-          "description": "More feed data would be added in subsequent CLs"
+          "$ref": "StorageDatabasecenterPartnerapiV1mainObservabilityMetricData"
         },
         "recommendationSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData"
@@ -3402,6 +3549,24 @@
         },
         "signalId": {
           "description": "Required. Unique identifier for the signal. This is an unique id which would be mainatined by partner to identify a signal.",
+          "type": "string"
+        },
+        "signalSeverity": {
+          "description": "The severity of the signal, such as if it's a HIGH or LOW severity.",
+          "enum": [
+            "SIGNAL_SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "This value is used for findings when a source doesn't write a severity value.",
+            "A critical vulnerability is easily discoverable by an external actor, exploitable.",
+            "A high risk vulnerability can be easily discovered and exploited in combination with other vulnerabilities.",
+            "A medium risk vulnerability could be used by an actor to gain access to resources or privileges that enable them to eventually gain access and the ability to execute arbitrary code or exfiltrate data.",
+            "A low risk vulnerability hampers a security organization's ability to detect vulnerabilities or active threats in their deployment."
+          ],
           "type": "string"
         },
         "signalType": {
@@ -3700,7 +3865,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel",
+          "description": "Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance, spanner.googleapis.com/Database, firestore.googleapis.com/Database, sqladmin.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel",
           "type": "string"
         },
         "uniqueId": {
@@ -4198,6 +4363,31 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata": {
+      "description": "Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration settings. Similarly bigtable can have multiple clusters within same bigtable instance.",
+      "id": "StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata",
+      "properties": {
+        "backupConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
+          "description": "Backup configuration for this database"
+        },
+        "backupRun": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
+          "description": "Information about the last backup attempt for this database"
+        },
+        "product": {
+          "$ref": "StorageDatabasecenterProtoCommonProduct"
+        },
+        "resourceId": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId"
+        },
+        "resourceName": {
+          "description": "Required. internal resource name for spanner this will be database name e.g.\"spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainMachineConfiguration": {
       "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
       "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
@@ -4371,7 +4561,9 @@
             "ENGINE_CLOUD_SPANNER_WITH_GOOGLESQL_DIALECT",
             "ENGINE_MEMORYSTORE_FOR_REDIS",
             "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
-            "ENGINE_OTHER"
+            "ENGINE_OTHER",
+            "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
+            "ENGINE_FIRESTORE_WITH_DATASTORE_MODE"
           ],
           "enumDeprecated": [
             false,
@@ -4383,6 +4575,8 @@
             true,
             false,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -4403,7 +4597,9 @@
             "Cloud Spanner with Google SQL dialect.",
             "Memorystore with Redis dialect.",
             "Memorystore with Redis cluster dialect.",
-            "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum."
+            "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
+            "Firestore with native mode.",
+            "Firestore with datastore mode."
           ],
           "type": "string"
         },
@@ -4420,7 +4616,8 @@
             "ON_PREM",
             "PRODUCT_TYPE_MEMORYSTORE",
             "PRODUCT_TYPE_BIGTABLE",
-            "PRODUCT_TYPE_OTHER"
+            "PRODUCT_TYPE_OTHER",
+            "PRODUCT_TYPE_FIRESTORE"
           ],
           "enumDeprecated": [
             false,
@@ -4431,6 +4628,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false
@@ -4446,7 +4644,8 @@
             "On premises database product.",
             "Memorystore product area in GCP",
             "Bigtable product area in GCP",
-            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
+            "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum.",
+            "Firestore product area in GCP."
           ],
           "type": "string"
         },
@@ -4605,6 +4804,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "graceEndTime": {
+          "description": "grace end time of the cluster.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "startTime": {
           "description": "start time of the trial cluster.",
           "format": "google-datetime",
@@ -4613,6 +4817,40 @@
         "upgradeTime": {
           "description": "Upgrade time of trial cluster to Standard cluster.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeClusterResponse": {
+      "description": "UpgradeClusterResponse contains the response for upgrade cluster operation.",
+      "id": "UpgradeClusterResponse",
+      "properties": {
+        "clusterUpgradeDetails": {
+          "description": "Array of upgrade details for the current cluster and all the secondary clusters associated with this cluster.",
+          "items": {
+            "$ref": "ClusterUpgradeDetails"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A user friendly message summarising the upgrade operation details and the next steps for the user if there is any.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Status of upgrade operation.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "SUCCESS",
+            "FAILED",
+            "PARTIAL_SUCCESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation partially succeeded."
+          ],
           "type": "string"
         }
       },

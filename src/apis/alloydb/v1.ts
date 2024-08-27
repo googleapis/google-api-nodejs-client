@@ -437,6 +437,35 @@ export namespace alloydb_v1 {
     updateTime?: string | null;
   }
   /**
+   * Upgrade details of a cluster. This cluster can be primary or secondary.
+   */
+  export interface Schema$ClusterUpgradeDetails {
+    /**
+     * Cluster type which can either be primary or secondary.
+     */
+    clusterType?: string | null;
+    /**
+     * Database version of the cluster after the upgrade operation. This will be the target version if the upgrade was successful otherwise it remains the same as that before the upgrade operation.
+     */
+    databaseVersion?: string | null;
+    /**
+     * Upgrade details of the instances directly associated with this cluster.
+     */
+    instanceUpgradeDetails?: Schema$InstanceUpgradeDetails[];
+    /**
+     * Normalized name of the cluster
+     */
+    name?: string | null;
+    /**
+     * Array containing stage info associated with this cluster.
+     */
+    stageInfo?: Schema$StageInfo[];
+    /**
+     * Upgrade status of the cluster.
+     */
+    upgradeStatus?: string | null;
+  }
+  /**
    * ConnectionInfo singleton resource. https://google.aip.dev/156
    */
   export interface Schema$ConnectionInfo {
@@ -744,6 +773,23 @@ export namespace alloydb_v1 {
      * Optional. Enabling public ip for the instance.
      */
     enablePublicIp?: boolean | null;
+  }
+  /**
+   * Details regarding the upgrade of instaces associated with a cluster.
+   */
+  export interface Schema$InstanceUpgradeDetails {
+    /**
+     * Instance type.
+     */
+    instanceType?: string | null;
+    /**
+     * Normalized name of the instance.
+     */
+    name?: string | null;
+    /**
+     * Upgrade status of the instance.
+     */
+    upgradeStatus?: string | null;
   }
   /**
    * Restrictions on INTEGER type values.
@@ -1107,6 +1153,10 @@ export namespace alloydb_v1 {
   }
   export interface Schema$RestartInstanceRequest {
     /**
+     * Optional. Full name of the nodes as obtained from INSTANCE_VIEW_FULL to restart upon. Only applicable for read instances.
+     */
+    nodeIds?: string[] | null;
+    /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
@@ -1165,6 +1215,23 @@ export namespace alloydb_v1 {
      * Optional. SSL mode. Specifies client-server SSL/TLS connection behavior.
      */
     sslMode?: string | null;
+  }
+  /**
+   * Stage information for different stages in the upgrade process.
+   */
+  export interface Schema$StageInfo {
+    /**
+     * logs_url is the URL for the logs associated with a stage if that stage has logs. Right now, only three stages have logs: ALLOYDB_PRECHECK, PG_UPGRADE_CHECK, PRIMARY_INSTANCE_UPGRADE.
+     */
+    logsUrl?: string | null;
+    /**
+     * The stage.
+     */
+    stage?: string | null;
+    /**
+     * Status of the stage.
+     */
+    status?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1250,29 +1317,13 @@ export namespace alloydb_v1 {
     version?: string | null;
   }
   /**
-   * Any custom metadata associated with the resource. i.e. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
+   * Any custom metadata associated with the resource. e.g. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData {
-    databaseMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseMetadata[];
-  }
-  /**
-   * Metadata for individual databases created in an instance. i.e. spanner instance can have multiple databases with unique configuration settings.
-   */
-  export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseMetadata {
     /**
-     * Backup configuration for this database
+     * Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration.
      */
-    backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
-    /**
-     * Information about the last backup attempt for this database
-     */
-    backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
-    product?: Schema$StorageDatabasecenterProtoCommonProduct;
-    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
-    /**
-     * Required. Database name. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
-     */
-    resourceName?: string | null;
+    internalResourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata[];
   }
   /**
    * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.
@@ -1286,9 +1337,6 @@ export namespace alloydb_v1 {
      * Required. Type feed to be ingested into condor
      */
     feedType?: string | null;
-    /**
-     * More feed data would be added in subsequent CLs
-     */
     observabilityMetricData?: Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData;
     recommendationSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceRecommendationSignalData;
     resourceHealthSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceHealthSignalData;
@@ -1347,6 +1395,10 @@ export namespace alloydb_v1 {
      */
     signalId?: string | null;
     /**
+     * The severity of the signal, such as if it's a HIGH or LOW severity.
+     */
+    signalSeverity?: string | null;
+    /**
      * Required. Type of signal, for example, `AVAILABLE_IN_MULTIPLE_ZONES`, `LOGGING_MOST_ERRORS`, etc.
      */
     signalType?: string | null;
@@ -1365,7 +1417,7 @@ export namespace alloydb_v1 {
      */
     providerDescription?: string | null;
     /**
-     * Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
+     * Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance, spanner.googleapis.com/Database, firestore.googleapis.com/Database, sqladmin.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel
      */
     resourceType?: string | null;
     /**
@@ -1499,6 +1551,25 @@ export namespace alloydb_v1 {
      * An enum that represents the type of this entitlement.
      */
     type?: string | null;
+  }
+  /**
+   * Metadata for individual internal resources in an instance. e.g. spanner instance can have multiple databases with unique configuration settings. Similarly bigtable can have multiple clusters within same bigtable instance.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata {
+    /**
+     * Backup configuration for this database
+     */
+    backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
+    /**
+     * Information about the last backup attempt for this database
+     */
+    backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
+    product?: Schema$StorageDatabasecenterProtoCommonProduct;
+    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+    /**
+     * Required. internal resource name for spanner this will be database name e.g."spanner.googleapis.com/projects/123/abc/instances/inst1/databases/db1"
+     */
+    resourceName?: string | null;
   }
   /**
    * MachineConfiguration describes the configuration of a machine specific to Database Resource.
@@ -1675,6 +1746,10 @@ export namespace alloydb_v1 {
      */
     endTime?: string | null;
     /**
+     * grace end time of the cluster.
+     */
+    graceEndTime?: string | null;
+    /**
      * start time of the trial cluster.
      */
     startTime?: string | null;
@@ -1682,6 +1757,23 @@ export namespace alloydb_v1 {
      * Upgrade time of trial cluster to Standard cluster.
      */
     upgradeTime?: string | null;
+  }
+  /**
+   * UpgradeClusterResponse contains the response for upgrade cluster operation.
+   */
+  export interface Schema$UpgradeClusterResponse {
+    /**
+     * Array of upgrade details for the current cluster and all the secondary clusters associated with this cluster.
+     */
+    clusterUpgradeDetails?: Schema$ClusterUpgradeDetails[];
+    /**
+     * A user friendly message summarising the upgrade operation details and the next steps for the user if there is any.
+     */
+    message?: string | null;
+    /**
+     * Status of upgrade operation.
+     */
+    status?: string | null;
   }
   /**
    * Message describing User object.
