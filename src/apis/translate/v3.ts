@@ -222,7 +222,7 @@ export namespace translate_v3 {
     /**
      * Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned.
      */
-    glossaryConfig?: Schema$TranslateTextGlossaryConfig;
+    glossaryConfig?: Schema$GlossaryConfig;
     /**
      * Configuration for caller provided reference sentences.
      */
@@ -516,7 +516,7 @@ export namespace translate_v3 {
    */
   export interface Schema$Example {
     /**
-     * Output only. The resource name of the example, in form of `projects/{project-number-or-id\}/locations/{location_id\}/datasets/{dataset_id\}/examples/{example_id\}'
+     * Output only. The resource name of the example, in form of `projects/{project-number-or-id\}/locations/{location_id\}/datasets/{dataset_id\}/examples/{example_id\}`
      */
     name?: string | null;
     /**
@@ -632,6 +632,19 @@ export namespace translate_v3 {
     submitTime?: string | null;
   }
   /**
+   * Configures which glossary is used for a specific target language and defines options for applying that glossary.
+   */
+  export interface Schema$GlossaryConfig {
+    /**
+     * Required. The `glossary` to be applied for this translation. The format depends on the glossary: - User-provided custom glossary: `projects/{project-number-or-id\}/locations/{location-id\}/glossaries/{glossary-id\}`
+     */
+    glossary?: string | null;
+    /**
+     * Optional. Indicates match is case insensitive. The default value is `false` if missing.
+     */
+    ignoreCase?: boolean | null;
+  }
+  /**
    * Represents a single entry in a glossary.
    */
   export interface Schema$GlossaryEntry {
@@ -640,7 +653,7 @@ export namespace translate_v3 {
      */
     description?: string | null;
     /**
-     * Identifier. The resource name of the entry. Format: "projects/x/locations/x/glossaries/x/glossaryEntries/x"
+     * Identifier. The resource name of the entry. Format: `projects/x/locations/x/glossaries/x/glossaryEntries/x`
      */
     name?: string | null;
     /**
@@ -5631,7 +5644,7 @@ export namespace translate_v3 {
   export interface Params$Resource$Projects$Locations$Glossaries$Glossaryentries$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the entry. Format: "projects/x/locations/x/glossaries/x/glossaryEntries/x"
+     * Identifier. The resource name of the entry. Format: `projects/x/locations/x/glossaries/x/glossaryEntries/x`
      */
     name?: string;
 
