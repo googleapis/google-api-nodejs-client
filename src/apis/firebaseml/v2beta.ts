@@ -349,7 +349,7 @@ export namespace firebaseml_v2beta {
      */
     name?: string | null;
     /**
-     * Required. The function response in JSON object format.
+     * Required. The function response in JSON object format. Use "output" key to specify function output and "error" key to specify error details (if any). If "output" and "error" keys are not specified, then whole "response" is treated as function output.
      */
     response?: {[key: string]: any} | null;
   }
@@ -425,6 +425,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata {
     /**
+     * Output only. Number of tokens in the cached part in the input (the cached content).
+     */
+    cachedContentTokenCount?: number | null;
+    /**
      * Number of tokens in the response(s).
      */
     candidatesTokenCount?: number | null;
@@ -432,6 +436,9 @@ export namespace firebaseml_v2beta {
      * Number of tokens in the request. When `cached_content` is set, this is still the total effective prompt size meaning this includes the number of tokens in the cached content.
      */
     promptTokenCount?: number | null;
+    /**
+     * Total token count for prompt and response candidates.
+     */
     totalTokenCount?: number | null;
   }
   /**
@@ -696,7 +703,7 @@ export namespace firebaseml_v2beta {
     threshold?: string | null;
   }
   /**
-   * Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be added in the future as needed.
+   * Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may be added in the future as needed.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Schema {
     /**
