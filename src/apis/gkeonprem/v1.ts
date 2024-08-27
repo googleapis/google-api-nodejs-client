@@ -100,7 +100,7 @@ export namespace gkeonprem_v1 {
   }
 
   /**
-   * Anthos On-Prem API
+   * GDC Virtual API
    *
    *
    *
@@ -676,6 +676,10 @@ export namespace gkeonprem_v1 {
    * BareMetalClusterUpgradePolicy defines the cluster upgrade policy.
    */
   export interface Schema$BareMetalClusterUpgradePolicy {
+    /**
+     * Output only. Pause is used to show the upgrade pause status. It's view only for now.
+     */
+    pause?: boolean | null;
     /**
      * Specifies which upgrade policy to use.
      */
@@ -1685,6 +1689,14 @@ export namespace gkeonprem_v1 {
      * Human-friendly representation of the error message from controller. The error message can be temporary as the controller controller creates a cluster or node pool. If the error message persists for a longer period of time, it can be used to surface error message to indicate real problems requiring user intervention.
      */
     errorMessage?: string | null;
+    /**
+     * Reflect current version of the resource.
+     */
+    version?: string | null;
+    /**
+     * Shows the mapping of a given version to the number of machines under this version.
+     */
+    versions?: Schema$Versions;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1801,6 +1813,28 @@ export namespace gkeonprem_v1 {
      * Individual checks which failed as part of the Preflight check execution.
      */
     result?: Schema$ValidationCheckResult[];
+  }
+  /**
+   * Version describes the number of nodes at a given version under a resource.
+   */
+  export interface Schema$Version {
+    /**
+     * Number of machines under the above version.
+     */
+    count?: string | null;
+    /**
+     * Resource version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Versions describes the mapping of a given version to the number of machines under this version.
+   */
+  export interface Schema$Versions {
+    /**
+     * Shows the mapping of a given version to the number of machines under this version.
+     */
+    versions?: Schema$Version[];
   }
   /**
    * Specifies anti affinity group config for the VMware user cluster.
@@ -1954,6 +1988,10 @@ export namespace gkeonprem_v1 {
      * Output only. The time at which VMware admin cluster was last updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. ValidationCheck represents the result of the preflight check job.
+     */
+    validationCheck?: Schema$ValidationCheck;
     /**
      * The VMware admin cluster VCenter configuration.
      */
@@ -4035,6 +4073,10 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Create
     extends StandardParameters {
     /**
+     * Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
+     */
+    allowPreflightFailure?: boolean;
+    /**
      * Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
      */
     bareMetalAdminClusterId?: string;
@@ -4067,6 +4109,10 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$Baremetaladminclusters$Get
     extends StandardParameters {
     /**
+     * Optional. If true, return BareMetal Admin Cluster including the one that only exists in RMS.
+     */
+    allowMissing?: boolean;
+    /**
      * Required. Name of the bare metal admin cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalAdminClusters/{bare_metal_admin_cluster\}"
      */
     name?: string;
@@ -4088,6 +4134,10 @@ export namespace gkeonprem_v1 {
   }
   export interface Params$Resource$Projects$Locations$Baremetaladminclusters$List
     extends StandardParameters {
+    /**
+     * Optional. If true, return list of BareMetal Admin Clusters including the ones that only exists in RMS.
+     */
+    allowMissing?: boolean;
     /**
      * Requested page size. Server may return fewer items than requested. If unspecified, at most 50 clusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -5411,6 +5461,10 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$Baremetalclusters$Create
     extends StandardParameters {
     /**
+     * Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
+     */
+    allowPreflightFailure?: boolean;
+    /**
      * Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/
      */
     bareMetalClusterId?: string;
@@ -5470,6 +5524,10 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$Baremetalclusters$Get
     extends StandardParameters {
     /**
+     * Optional. If true, return BareMetal Cluster including the one that only exists in RMS.
+     */
+    allowMissing?: boolean;
+    /**
      * Required. Name of the bare metal user cluster to get. Format: "projects/{project\}/locations/{location\}/bareMetalClusters/{bare_metal_cluster\}"
      */
     name?: string;
@@ -5491,6 +5549,10 @@ export namespace gkeonprem_v1 {
   }
   export interface Params$Resource$Projects$Locations$Baremetalclusters$List
     extends StandardParameters {
+    /**
+     * Optional. If true, return list of BareMetal Clusters including the ones that only exists in RMS.
+     */
+    allowMissing?: boolean;
     /**
      * A resource filtering expression following https://google.aip.dev/160. When non-empty, only resource's whose attributes field matches the filter are returned.
      */
@@ -8260,6 +8322,10 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$Vmwareadminclusters$Get
     extends StandardParameters {
     /**
+     * Optional. If true, return Vmware Admin Cluster including the one that only exists in RMS.
+     */
+    allowMissing?: boolean;
+    /**
      * Required. Name of the VMware admin cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareAdminClusters/{vmware_admin_cluster\}"
      */
     name?: string;
@@ -8281,6 +8347,10 @@ export namespace gkeonprem_v1 {
   }
   export interface Params$Resource$Projects$Locations$Vmwareadminclusters$List
     extends StandardParameters {
+    /**
+     * Optional. If true, return list of Vmware Admin Clusters including the ones that only exists in RMS.
+     */
+    allowMissing?: boolean;
     /**
      * Requested page size. Server may return fewer items than requested. If unspecified, at most 50 clusters will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
@@ -9580,6 +9650,10 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$Vmwareclusters$Create
     extends StandardParameters {
     /**
+     * Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with "cluster already exists" error and hence a update cluster is required to fix the cluster.
+     */
+    allowPreflightFailure?: boolean;
+    /**
      * Required. The parent of the project and location where this cluster is created in. Format: "projects/{project\}/locations/{location\}"
      */
     parent?: string;
@@ -9639,6 +9713,10 @@ export namespace gkeonprem_v1 {
   export interface Params$Resource$Projects$Locations$Vmwareclusters$Get
     extends StandardParameters {
     /**
+     * Optional. If true, return Vmware Cluster including the one that only exists in RMS.
+     */
+    allowMissing?: boolean;
+    /**
      * Required. Name of the VMware user cluster to be returned. Format: "projects/{project\}/locations/{location\}/vmwareClusters/{vmware_cluster\}"
      */
     name?: string;
@@ -9660,6 +9738,10 @@ export namespace gkeonprem_v1 {
   }
   export interface Params$Resource$Projects$Locations$Vmwareclusters$List
     extends StandardParameters {
+    /**
+     * Optional. If true, return list of Vmware Clusters including the ones that only exists in RMS.
+     */
+    allowMissing?: boolean;
     /**
      * A resource filtering expression following https://google.aip.dev/160. When non-empty, only resource's whose attributes field matches the filter are returned.
      */
