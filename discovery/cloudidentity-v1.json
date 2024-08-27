@@ -422,7 +422,7 @@
               ],
               "enumDescriptions": [
                 "Default value. The value is unused.",
-                "This view contains all devices imported by the company admin. Each device in the response contains all information specified by the company admin when importing the device (i.e. asset tags). This includes devices that may be unaassigned or assigned to users.",
+                "This view contains all devices imported by the company admin. Each device in the response contains all information specified by the company admin when importing the device (i.e. asset tags). This includes devices that may be unassigned or assigned to users.",
                 "This view contains all devices with at least one user registered on the device. Each device in the response contains all device information, except for asset tags."
               ],
               "location": "query",
@@ -1990,7 +1990,7 @@
       }
     }
   },
-  "revision": "20240625",
+  "revision": "20240820",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
