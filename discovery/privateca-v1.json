@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20240619",
+  "revision": "20240819",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -2112,6 +2112,10 @@
         "subjectKeyId": {
           "$ref": "KeyId",
           "description": "Provides a means of identifiying certificates that contain a particular public key, per https://tools.ietf.org/html/rfc5280#section-4.2.1.2."
+        },
+        "tbsCertificateDigest": {
+          "description": "The hash of the pre-signed certificate, which will be signed by the CA. Corresponds to the TBS Certificate in https://tools.ietf.org/html/rfc5280#section-4.1.2. The field will always be populated.",
+          "type": "string"
         },
         "x509Description": {
           "$ref": "X509Parameters",
