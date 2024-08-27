@@ -3394,6 +3394,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadata {
     /**
+     * The data ingestion source of the Document. Allowed values are: * `batch`: Data ingested via Batch API, e.g., ImportDocuments. * `streaming` Data ingested via Streaming API, e.g., FHIR streaming.
+     */
+    dataIngestionSource?: string | null;
+    /**
      * The timestamp of the last time the Document was last indexed.
      */
     lastRefreshedTime?: string | null;
@@ -3410,6 +3414,10 @@ export namespace discoveryengine_v1 {
    * The value of the matcher that was used to match the Document.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadataMatcherValue {
+    /**
+     * Required. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}/fhir/{resource_type\}/{fhir_resource_id\}
+     */
+    fhirResource?: string | null;
     /**
      * If match by URI, the URI of the Document.
      */
@@ -7670,7 +7678,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1SearchResponse {
     /**
-     * A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance.
+     * A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance. This also helps to identify a request during the customer support scenarios.
      */
     attributionToken?: string | null;
     /**
@@ -9909,6 +9917,10 @@ export namespace discoveryengine_v1 {
 
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Branches$Batchgetdocumentsmetadata
     extends StandardParameters {
+    /**
+     * Required. The FHIR resources to match by. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}/fhir/{resource_type\}/{fhir_resource_id\}
+     */
+    'matcher.fhirMatcher.fhirResources'?: string[];
     /**
      * The exact URIs to match by.
      */
@@ -21393,6 +21405,10 @@ export namespace discoveryengine_v1 {
 
   export interface Params$Resource$Projects$Locations$Datastores$Branches$Batchgetdocumentsmetadata
     extends StandardParameters {
+    /**
+     * Required. The FHIR resources to match by. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}/fhir/{resource_type\}/{fhir_resource_id\}
+     */
+    'matcher.fhirMatcher.fhirResources'?: string[];
     /**
      * The exact URIs to match by.
      */

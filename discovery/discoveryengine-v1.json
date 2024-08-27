@@ -496,6 +496,12 @@
                             "parent"
                           ],
                           "parameters": {
+                            "matcher.fhirMatcher.fhirResources": {
+                              "description": "Required. The FHIR resources to match by. Format: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            },
                             "matcher.urisMatcher.uris": {
                               "description": "The exact URIs to match by.",
                               "location": "query",
@@ -3790,6 +3796,12 @@
                         "parent"
                       ],
                       "parameters": {
+                        "matcher.fhirMatcher.fhirResources": {
+                          "description": "Required. The FHIR resources to match by. Format: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
                         "matcher.urisMatcher.uris": {
                           "description": "The exact URIs to match by.",
                           "location": "query",
@@ -5974,7 +5986,7 @@
       }
     }
   },
-  "revision": "20240813",
+  "revision": "20240817",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -7089,6 +7101,10 @@
       "description": "The metadata of a Document.",
       "id": "GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadata",
       "properties": {
+        "dataIngestionSource": {
+          "description": "The data ingestion source of the Document. Allowed values are: * `batch`: Data ingested via Batch API, e.g., ImportDocuments. * `streaming` Data ingested via Streaming API, e.g., FHIR streaming.",
+          "type": "string"
+        },
         "lastRefreshedTime": {
           "description": "The timestamp of the last time the Document was last indexed.",
           "format": "google-datetime",
@@ -7121,6 +7137,10 @@
       "description": "The value of the matcher that was used to match the Document.",
       "id": "GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadataMatcherValue",
       "properties": {
+        "fhirResource": {
+          "description": "Required. Format: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}",
+          "type": "string"
+        },
         "uri": {
           "description": "If match by URI, the URI of the Document.",
           "type": "string"
@@ -8134,7 +8154,8 @@
             "TRAINING_COMPLETE",
             "READY_FOR_SERVING",
             "TRAINING_FAILED",
-            "NO_IMPROVEMENT"
+            "NO_IMPROVEMENT",
+            "INPUT_VALIDATION_FAILED"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -8143,7 +8164,8 @@
             "The model has successfully completed training.",
             "The model is ready for serving.",
             "The model training failed.",
-            "The model training finished successfully but metrics did not improve."
+            "The model training finished successfully but metrics did not improve.",
+            "Input data validation failed. Model training didn't start."
           ],
           "type": "string"
         },
@@ -10603,7 +10625,7 @@
       "id": "GoogleCloudDiscoveryengineV1SearchResponse",
       "properties": {
         "attributionToken": {
-          "description": "A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance.",
+          "description": "A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance. This also helps to identify a request during the customer support scenarios.",
           "type": "string"
         },
         "correctedQuery": {
@@ -12342,7 +12364,8 @@
             "TRAINING_COMPLETE",
             "READY_FOR_SERVING",
             "TRAINING_FAILED",
-            "NO_IMPROVEMENT"
+            "NO_IMPROVEMENT",
+            "INPUT_VALIDATION_FAILED"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -12351,7 +12374,8 @@
             "The model has successfully completed training.",
             "The model is ready for serving.",
             "The model training failed.",
-            "The model training finished successfully but metrics did not improve."
+            "The model training finished successfully but metrics did not improve.",
+            "Input data validation failed. Model training didn't start."
           ],
           "type": "string"
         },
@@ -15445,7 +15469,8 @@
             "TRAINING_COMPLETE",
             "READY_FOR_SERVING",
             "TRAINING_FAILED",
-            "NO_IMPROVEMENT"
+            "NO_IMPROVEMENT",
+            "INPUT_VALIDATION_FAILED"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -15454,7 +15479,8 @@
             "The model has successfully completed training.",
             "The model is ready for serving.",
             "The model training failed.",
-            "The model training finished successfully but metrics did not improve."
+            "The model training finished successfully but metrics did not improve.",
+            "Input data validation failed. Model training didn't start."
           ],
           "type": "string"
         },
