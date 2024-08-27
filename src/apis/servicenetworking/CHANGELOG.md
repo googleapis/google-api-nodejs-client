@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v20.0.0...servicenetworking-v20.1.0) (2024-08-27)
+
+
+### Features
+
+* **servicenetworking:** update the API ([e673e80](https://github.com/googleapis/google-api-nodejs-client/commit/e673e80007c4ce25a1e7ebb808b5f677e7f32d59))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v19.0.0...servicenetworking-v20.0.0) (2024-08-16)
 
 

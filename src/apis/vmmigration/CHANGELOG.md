@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v9.3.0...vmmigration-v10.0.0) (2024-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vmmigration:** This release has breaking changes.
+
+### Features
+
+* **vmmigration:** update the API ([614baa2](https://github.com/googleapis/google-api-nodejs-client/commit/614baa252fdccd0fb3d7b444570733ae34374af4))
+
 ## [9.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v9.2.0...vmmigration-v9.3.0) (2024-08-16)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v11.0.0...retail-v11.0.1) (2024-08-27)
+
+
+### Bug Fixes
+
+* **retail:** update the API ([2179668](https://github.com/googleapis/google-api-nodejs-client/commit/2179668e37934ee952551833881bfa1d7b2056bd))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v10.0.0...retail-v11.0.0) (2024-08-16)
 
 

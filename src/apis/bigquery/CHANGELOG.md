@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v13.0.0...bigquery-v13.0.1) (2024-08-27)
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([2aca035](https://github.com/googleapis/google-api-nodejs-client/commit/2aca0358c5cd5f5d83b9aaf276ebe84dd5a93a44))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v12.0.0...bigquery-v13.0.0) (2024-08-16)
 
 

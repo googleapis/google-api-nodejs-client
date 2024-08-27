@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v14.0.0...dataflow-v14.1.0) (2024-08-27)
+
+
+### Features
+
+* **dataflow:** update the API ([1f67690](https://github.com/googleapis/google-api-nodejs-client/commit/1f6769038476c3668f525cac94b4fb8ef8c7fbb6))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v13.0.0...dataflow-v14.0.0) (2024-08-16)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v13.0.0...discoveryengine-v13.1.0) (2024-08-27)
+
+
+### Features
+
+* **discoveryengine:** update the API ([a71fc00](https://github.com/googleapis/google-api-nodejs-client/commit/a71fc0044dc152600f98fab793bd4da9f38afae2))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v12.0.0...discoveryengine-v13.0.0) (2024-08-16)
 
 
