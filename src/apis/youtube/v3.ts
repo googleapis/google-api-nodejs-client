@@ -3352,6 +3352,10 @@ export namespace youtube_v3 {
   }
   export interface Schema$PlaylistStatus {
     /**
+     * The playlist's podcast status.
+     */
+    podcastStatus?: string | null;
+    /**
      * The playlist's privacy status.
      */
     privacyStatus?: string | null;
@@ -8786,7 +8790,7 @@ export namespace youtube_v3 {
      */
     pageToken?: string;
     /**
-     * The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.
+     * The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
      */
     part?: string[];
     /**

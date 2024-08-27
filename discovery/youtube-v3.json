@@ -1770,7 +1770,7 @@
               "type": "string"
             },
             "part": {
-              "description": "The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id and snippet.",
+              "description": "The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.",
               "location": "query",
               "repeated": true,
               "required": true,
@@ -4072,7 +4072,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20240814",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -10259,6 +10259,18 @@
     "PlaylistStatus": {
       "id": "PlaylistStatus",
       "properties": {
+        "podcastStatus": {
+          "description": "The playlist's podcast status.",
+          "enum": [
+            "enabled",
+            "disabled"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "privacyStatus": {
           "description": "The playlist's privacy status.",
           "enum": [
