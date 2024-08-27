@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20240717",
+  "revision": "20240808",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10048,7 +10048,8 @@
             "EXCHANGE_UNITY_GBID",
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
-            "EXCHANGE_TOPON_GBID"
+            "EXCHANGE_TOPON_GBID",
+            "EXCHANGE_NETFLIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -10132,7 +10133,8 @@
             "Unity LevelPlay.",
             "Chartboost Mediation.",
             "AdMost.",
-            "TopOn."
+            "TopOn.",
+            "Netflix."
           ],
           "type": "string"
         },
@@ -14819,7 +14821,8 @@
             "EXCHANGE_UNITY_GBID",
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
-            "EXCHANGE_TOPON_GBID"
+            "EXCHANGE_TOPON_GBID",
+            "EXCHANGE_NETFLIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14903,7 +14906,8 @@
             "Unity LevelPlay.",
             "Chartboost Mediation.",
             "AdMost.",
-            "TopOn."
+            "TopOn.",
+            "Netflix."
           ],
           "type": "string"
         }
@@ -15012,7 +15016,8 @@
             "EXCHANGE_UNITY_GBID",
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
-            "EXCHANGE_TOPON_GBID"
+            "EXCHANGE_TOPON_GBID",
+            "EXCHANGE_NETFLIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15096,7 +15101,8 @@
             "Unity LevelPlay.",
             "Chartboost Mediation.",
             "AdMost.",
-            "TopOn."
+            "TopOn.",
+            "Netflix."
           ],
           "type": "string"
         },
@@ -15206,7 +15212,8 @@
             "EXCHANGE_UNITY_GBID",
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
-            "EXCHANGE_TOPON_GBID"
+            "EXCHANGE_TOPON_GBID",
+            "EXCHANGE_NETFLIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15290,7 +15297,8 @@
             "Unity LevelPlay.",
             "Chartboost Mediation.",
             "AdMost.",
-            "TopOn."
+            "TopOn.",
+            "Netflix."
           ],
           "type": "string"
         },
@@ -15401,7 +15409,8 @@
             "EXCHANGE_UNITY_GBID",
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
-            "EXCHANGE_TOPON_GBID"
+            "EXCHANGE_TOPON_GBID",
+            "EXCHANGE_NETFLIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15485,7 +15494,8 @@
             "Unity LevelPlay.",
             "Chartboost Mediation.",
             "AdMost.",
-            "TopOn."
+            "TopOn.",
+            "Netflix."
           ],
           "readOnly": true,
           "type": "string"
@@ -16447,7 +16457,8 @@
             "EXCHANGE_UNITY_GBID",
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
-            "EXCHANGE_TOPON_GBID"
+            "EXCHANGE_TOPON_GBID",
+            "EXCHANGE_NETFLIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16531,7 +16542,8 @@
             "Unity LevelPlay.",
             "Chartboost Mediation.",
             "AdMost.",
-            "TopOn."
+            "TopOn.",
+            "Netflix."
           ],
           "type": "string"
         },
@@ -17372,7 +17384,8 @@
             "EXCHANGE_UNITY_GBID",
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
-            "EXCHANGE_TOPON_GBID"
+            "EXCHANGE_TOPON_GBID",
+            "EXCHANGE_NETFLIX"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17456,7 +17469,8 @@
             "Unity LevelPlay.",
             "Chartboost Mediation.",
             "AdMost.",
-            "TopOn."
+            "TopOn.",
+            "Netflix."
           ],
           "type": "string"
         },
