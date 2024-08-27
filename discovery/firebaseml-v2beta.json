@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20240813",
+  "revision": "20240821",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -548,7 +548,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. The function response in JSON object format.",
+          "description": "Required. The function response in JSON object format. Use \"output\" key to specify function output and \"error\" key to specify error details (if any). If \"output\" and \"error\" keys are not specified, then whole \"response\" is treated as function output.",
           "type": "object"
         }
       },
@@ -665,6 +665,12 @@
       "description": "Usage metadata about response(s).",
       "id": "GoogleCloudAiplatformV1beta1GenerateContentResponseUsageMetadata",
       "properties": {
+        "cachedContentTokenCount": {
+          "description": "Output only. Number of tokens in the cached part in the input (the cached content).",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "candidatesTokenCount": {
           "description": "Number of tokens in the response(s).",
           "format": "int32",
@@ -676,6 +682,7 @@
           "type": "integer"
         },
         "totalTokenCount": {
+          "description": "Total token count for prompt and response candidates.",
           "format": "int32",
           "type": "integer"
         }
@@ -1104,7 +1111,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1Schema": {
-      "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be added in the future as needed.",
+      "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may be added in the future as needed.",
       "id": "GoogleCloudAiplatformV1beta1Schema",
       "properties": {
         "default": {
