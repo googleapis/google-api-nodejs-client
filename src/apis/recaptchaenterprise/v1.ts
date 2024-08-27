@@ -4468,6 +4468,21 @@ export namespace recaptchaenterprise_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Keys$Listipoverrides
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of overrides to return. Default is 10. Max limit is 100. If the number of overrides is less than the page_size, all overrides are returned. If the page size is more than 100, it is coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous ListIpOverridesRequest, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent key for which the IP overrides are listed, in the format `projects/{project\}/keys/{key\}`.
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Keys$Migrate
     extends StandardParameters {
     /**
