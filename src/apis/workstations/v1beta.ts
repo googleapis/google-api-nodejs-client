@@ -1030,6 +1030,10 @@ export namespace workstations_v1beta {
      */
     etag?: string | null;
     /**
+     * Optional. Grant creator of a workstation `roles/workstations.policyAdmin` role along with `roles/workstations.user` role on the workstation created by them. This allows workstation users to share access to either their entire workstation, or individual ports. Defaults to false.
+     */
+    grantWorkstationAdminRoleOnCreate?: boolean | null;
+    /**
      * Optional. Runtime host for the workstation.
      */
     host?: Schema$Host;

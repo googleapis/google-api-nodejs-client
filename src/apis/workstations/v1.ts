@@ -989,6 +989,10 @@ export namespace workstations_v1 {
      */
     etag?: string | null;
     /**
+     * Optional. Grant creator of a workstation `roles/workstations.policyAdmin` role along with `roles/workstations.user` role on the workstation created by them. This allows workstation users to share access to either their entire workstation, or individual ports. Defaults to false.
+     */
+    grantWorkstationAdminRoleOnCreate?: boolean | null;
+    /**
      * Optional. Runtime host for the workstation.
      */
     host?: Schema$Host;
@@ -1000,6 +1004,10 @@ export namespace workstations_v1 {
      * Optional. [Labels](https://cloud.google.com/workstations/docs/label-resources) that are applied to the workstation configuration and that are also propagated to the underlying Compute Engine resources.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Maximum number of workstations under this config a user can have `workstations.workstation.use` permission on. Only enforced on CreateWorkstation API calls on the user issuing the API request. Can be overridden by: - granting a user workstations.workstationConfigs.exemptMaxUsableWorkstationLimit permission, or - having a user with that permission create a workstation and granting another user `workstations.workstation.use` permission on that workstation. If not specified defaults to 0 which indicates unlimited.
+     */
+    maxUsableWorkstations?: number | null;
     /**
      * Identifier. Full name of this workstation configuration.
      */
