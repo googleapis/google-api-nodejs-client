@@ -859,6 +859,17 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "pageSize": {
+                      "description": "Optional. Optional limit on the number of KeyHandles to include in the response. The service may return fewer than this value. Further KeyHandles can subsequently be obtained by including the ListKeyHandlesResponse.next_page_token in a subsequent request. If unspecified, at most KeyHandles 100 will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Optional pagination token, returned earlier via ListKeyHandlesResponse.next_page_token.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "parent": {
                       "description": "Required. Name of the resource project and location from which to list KeyHandles, e.g. `projects/{PROJECT_ID}/locations/{LOCATION}`.",
                       "location": "path",
@@ -2101,7 +2112,7 @@
       }
     }
   },
-  "revision": "20240801",
+  "revision": "20240808",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2291,6 +2302,23 @@
         },
         "name": {
           "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state for the AutokeyConfig.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "KEY_PROJECT_DELETED",
+            "UNINITIALIZED"
+          ],
+          "enumDescriptions": [
+            "The state of the AutokeyConfig is unspecified.",
+            "The AutokeyConfig is currently active.",
+            "A previously configured key project has been deleted and the current AutokeyConfig is unusable.",
+            "The AutokeyConfig is not yet initialized or has been reset to its default uninitialized state."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2943,7 +2971,7 @@
           "type": "string"
         },
         "serviceResolvers": {
-          "description": "A list of ServiceResolvers where the EKM can be reached. There should be one ServiceResolver per EKM replica. Currently, only a single ServiceResolver is supported.",
+          "description": "Optional. A list of ServiceResolvers where the EKM can be reached. There should be one ServiceResolver per EKM replica. Currently, only a single ServiceResolver is supported.",
           "items": {
             "$ref": "ServiceResolver"
           },
@@ -3534,6 +3562,10 @@
             "$ref": "KeyHandle"
           },
           "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass this value in ListKeyHandlesRequest.page_token to retrieve the next page of results.",
+          "type": "string"
         }
       },
       "type": "object"
