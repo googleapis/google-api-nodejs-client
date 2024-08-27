@@ -850,6 +850,10 @@ export namespace container_v1beta1 {
      */
     protectConfig?: Schema$ProtectConfig;
     /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings that can be created.
+     */
+    rbacBindingConfig?: Schema$RBACBindingConfig;
+    /**
      * Release channel configuration. If left unspecified on cluster creation and a version is specified, the cluster is enrolled in the most mature release channel where the version is available (first checking STABLE, then REGULAR, and finally RAPID). Otherwise, if no release channel configuration and no version is specified, the cluster is enrolled in the REGULAR channel with its default version.
      */
     releaseChannel?: Schema$ReleaseChannel;
@@ -1181,6 +1185,10 @@ export namespace container_v1beta1 {
      * Deprecated: Use DesiredSecurityPostureConfig instead. Enable/Disable Protect API features for the cluster.
      */
     desiredProtectConfig?: Schema$ProtectConfig;
+    /**
+     * RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings that can be created.
+     */
+    desiredRbacBindingConfig?: Schema$RBACBindingConfig;
     /**
      * The desired release channel configuration.
      */
@@ -2134,7 +2142,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$MasterAuth {
     /**
-     * Output only. Base64-encoded public certificate used by clients to authenticate to the cluster endpoint.
+     * Output only. Base64-encoded public certificate used by clients to authenticate to the cluster endpoint. Issued only if client_certificate_config is set.
      */
     clientCertificate?: string | null;
     /**
@@ -3170,6 +3178,19 @@ export namespace container_v1beta1 {
      * Optional. Monitoring configuration for Ray clusters.
      */
     rayClusterMonitoringConfig?: Schema$RayClusterMonitoringConfig;
+  }
+  /**
+   * RBACBindingConfig allows user to restrict ClusterRoleBindings an RoleBindings that can be created.
+   */
+  export interface Schema$RBACBindingConfig {
+    /**
+     * Setting this to true will allow any ClusterRoleBinding and RoleBinding with subjects system:authenticated.
+     */
+    enableInsecureBindingSystemAuthenticated?: boolean | null;
+    /**
+     * Setting this to true will allow any ClusterRoleBinding and RoleBinding with subjets system:anonymous or system:unauthenticated.
+     */
+    enableInsecureBindingSystemUnauthenticated?: boolean | null;
   }
   /**
    * Represents an arbitrary window of time that recurs.
