@@ -1095,7 +1095,7 @@ export namespace drive_v2 {
       viewed?: boolean;
     } | null;
     /**
-     * Output only. The last user to modify this file.
+     * Output only. The last user to modify this file. This field is only populated when the last modification was performed by a signed-in user.
      */
     lastModifyingUser?: Schema$User;
     /**
@@ -1154,7 +1154,7 @@ export namespace drive_v2 {
      */
     owners?: Schema$User[];
     /**
-     * Collection of parent folders which contain this file. If not specified as part of an insert request, the file will be placed directly in the user's My Drive folder. If not specified as part of a copy request, the file will inherit any discoverable parents of the source file. Update requests can also use the `addParents` and `removeParents` parameters to modify the parents list.
+     * The ID of the parent folder containing the file. A file can only have one parent folder; specifying multiple parents isn't supported. If not specified as part of an insert request, the file is placed directly in the user's My Drive folder. If not specified as part of a copy request, the file inherits any discoverable parent of the source file. Update requests must use the `addParents` and `removeParents` parameters to modify the parents list.
      */
     parents?: Schema$ParentReference[];
     /**
@@ -1505,7 +1505,7 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A reference to a file's parent. Some resource methods (such as `parents.get`) require a `parentId`. Use the `parents.list` method to retrieve the ID for a parent.
+   * A reference to a file's parent. A file can only have one parent folder; specifying multiple parents isn't supported. Some resource methods (such as `parents.get`) require a `parentId`. Use the `parents.list` method to retrieve the ID for a parent.
    */
   export interface Schema$ParentReference {
     /**
@@ -1743,7 +1743,7 @@ export namespace drive_v2 {
      */
     kind?: string | null;
     /**
-     * Output only. The last user to modify this revision.
+     * Output only. The last user to modify this revision. This field is only populated when the last modification was performed by a signed-in user.
      */
     lastModifyingUser?: Schema$User;
     /**

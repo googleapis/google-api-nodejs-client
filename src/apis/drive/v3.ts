@@ -831,7 +831,7 @@ export namespace drive_v3 {
      */
     labelInfo?: {labels?: Schema$Label[]} | null;
     /**
-     * Output only. The last user to modify the file.
+     * Output only. The last user to modify the file. This field is only populated when the last modification was performed by a signed-in user.
      */
     lastModifyingUser?: Schema$User;
     /**
@@ -878,7 +878,7 @@ export namespace drive_v3 {
      */
     owners?: Schema$User[];
     /**
-     * The IDs of the parent folders which contain the file. If not specified as part of a create request, the file is placed directly in the user's My Drive folder. If not specified as part of a copy request, the file inherits any discoverable parents of the source file. Update requests must use the `addParents` and `removeParents` parameters to modify the parents list.
+     * The ID of the parent folder containing the file. A file can only have one parent folder; specifying multiple parents isn't supported. If not specified as part of a create request, the file is placed directly in the user's My Drive folder. If not specified as part of a copy request, the file inherits any discoverable parent of the source file. Update requests must use the `addParents` and `removeParents` parameters to modify the parents list.
      */
     parents?: string[] | null;
     /**
@@ -1371,7 +1371,7 @@ export namespace drive_v3 {
      */
     kind?: string | null;
     /**
-     * Output only. The last user to modify this revision.
+     * Output only. The last user to modify this revision. This field is only populated when the last modification was performed by a signed-in user.
      */
     lastModifyingUser?: Schema$User;
     /**
