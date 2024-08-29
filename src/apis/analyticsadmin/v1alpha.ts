@@ -447,7 +447,7 @@ export namespace analyticsadmin_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * A virtual resource representing an overview of an account and all its child GA4 properties.
+   * A virtual resource representing an overview of an account and all its child Google Analytics properties.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccountSummary {
     /**
@@ -481,11 +481,11 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse {}
   /**
-   * A link between a GA4 Property and an AdSense for Content ad client.
+   * A link between a Google Analytics property and an AdSense for Content ad client.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAdSenseLink {
     /**
-     * Immutable. The AdSense ad client code that the GA4 property is linked to. Example format: "ca-pub-1234567890"
+     * Immutable. The AdSense ad client code that the Google Analytics property is linked to. Example format: "ca-pub-1234567890"
      */
     adClientCode?: string | null;
     /**
@@ -544,7 +544,7 @@ export namespace analyticsadmin_v1alpha {
     reportingAttributionModel?: string | null;
   }
   /**
-   * A resource message representing a GA4 Audience.
+   * A resource message representing an Audience.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAudience {
     /**
@@ -869,7 +869,7 @@ export namespace analyticsadmin_v1alpha {
     accessBindings?: Schema$GoogleAnalyticsAdminV1alphaAccessBinding[];
   }
   /**
-   * A link between a GA4 Property and BigQuery project.
+   * A link between a Google Analytics property and BigQuery project.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBigQueryLink {
     /**
@@ -1579,7 +1579,7 @@ export namespace analyticsadmin_v1alpha {
     tagId?: string | null;
   }
   /**
-   * A link between a GA4 property and a Display & Video 360 advertiser.
+   * A link between a Google Analytics property and a Display & Video 360 advertiser.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink {
     /**
@@ -1595,11 +1595,11 @@ export namespace analyticsadmin_v1alpha {
      */
     advertiserId?: string | null;
     /**
-     * Immutable. Enables the import of campaign data from Display & Video 360 into the GA4 property. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of campaign data from Display & Video 360 into the Google Analytics property. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.
      */
     campaignDataSharingEnabled?: boolean | null;
     /**
-     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360 into the Google Analytics property. This can only be enabled if `campaign_data_sharing_enabled` is true. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.
      */
     costDataSharingEnabled?: boolean | null;
     /**
@@ -1608,7 +1608,7 @@ export namespace analyticsadmin_v1alpha {
     name?: string | null;
   }
   /**
-   * A proposal for a link between a GA4 property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.
+   * A proposal for a link between a Google Analytics property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal {
     /**
@@ -1748,7 +1748,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaEventMapping {
     /**
-     * Required. Name of the GA4 event. It must always be set. The max allowed display name length is 40 UTF-16 code units.
+     * Required. Name of the Google Analytics event. It must always be set. The max allowed display name length is 40 UTF-16 code units.
      */
     eventName?: string | null;
     /**
@@ -1769,7 +1769,7 @@ export namespace analyticsadmin_v1alpha {
     minEventValue?: number | null;
   }
   /**
-   * A resource message representing a GA4 ExpandedDataSet.
+   * A resource message representing an `ExpandedDataSet`.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaExpandedDataSet {
     /**
@@ -1902,7 +1902,7 @@ export namespace analyticsadmin_v1alpha {
     property?: string | null;
   }
   /**
-   * A link between a GA4 property and a Firebase project.
+   * A link between a Google Analytics property and a Firebase project.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaFirebaseLink {
     /**
@@ -1932,7 +1932,7 @@ export namespace analyticsadmin_v1alpha {
     snippet?: string | null;
   }
   /**
-   * A link between a GA4 property and a Google Ads account.
+   * A link between a Google Analytics property and a Google Ads account.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink {
     /**
@@ -2491,7 +2491,7 @@ export namespace analyticsadmin_v1alpha {
     postbackWindowSettingsEnabled?: boolean | null;
   }
   /**
-   * A resource message representing a Google Analytics GA4 property.
+   * A resource message representing a Google Analytics property.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaProperty {
     /**
@@ -2548,7 +2548,7 @@ export namespace analyticsadmin_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * A virtual resource representing metadata for a GA4 property.
+   * A virtual resource representing metadata for a Google Analytics property.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaPropertySummary {
     /**
@@ -2717,7 +2717,7 @@ export namespace analyticsadmin_v1alpha {
     rows?: Schema$GoogleAnalyticsAdminV1alphaAccessRow[];
   }
   /**
-   * A link between a GA4 property and a Search Ads 360 entity.
+   * A link between a Google Analytics property and a Search Ads 360 entity.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link {
     /**
@@ -2733,11 +2733,11 @@ export namespace analyticsadmin_v1alpha {
      */
     advertiserId?: string | null;
     /**
-     * Immutable. Enables the import of campaign data from Search Ads 360 into the GA4 property. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of campaign data from Search Ads 360 into the Google Analytics property. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.
      */
     campaignDataSharingEnabled?: boolean | null;
     /**
-     * Immutable. Enables the import of cost data from Search Ads 360 to the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Search Ads 360 to the Google Analytics property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.
      */
     costDataSharingEnabled?: boolean | null;
     /**
@@ -2842,7 +2842,7 @@ export namespace analyticsadmin_v1alpha {
     postbackWindowTwo?: Schema$GoogleAnalyticsAdminV1alphaPostbackWindow;
   }
   /**
-   * A resource message representing a GA4 Subproperty event filter.
+   * A resource message representing a Google Analytics subproperty event filter.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter {
     /**
@@ -3231,7 +3231,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA4 properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
+     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3517,7 +3517,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA UI Reporting, GA UI Explorations, GA Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3770,7 +3770,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Accounts$Runaccessreport
     extends StandardParameters {
     /**
-     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your Google Analytics Account ID.
      */
     entity?: string;
 
@@ -5038,7 +5038,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Creates an "GA4" property with the specified location and attributes.
+     * Creates a Google Analytics property with the specified location and attributes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5331,7 +5331,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.
+     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5715,7 +5715,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single "GA4" Property.
+     * Lookup for a single GA Property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6094,7 +6094,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns child Properties under the specified parent Account. Only "GA4" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
+     * Returns child Properties under the specified parent Account. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6480,7 +6480,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA UI Reporting, GA UI Explorations, GA Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7099,7 +7099,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Runaccessreport
     extends StandardParameters {
     /**
-     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your Google Analytics Account ID.
      */
     entity?: string;
 
@@ -14846,7 +14846,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     * Lookup for a single MeasurementProtocolSecret.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -430,7 +430,7 @@ export namespace analyticsadmin_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A virtual resource representing an overview of an account and all its child GA4 properties.
+   * A virtual resource representing an overview of an account and all its child Google Analytics properties.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaAccountSummary {
     /**
@@ -793,7 +793,7 @@ export namespace analyticsadmin_v1beta {
     measurementId?: string | null;
   }
   /**
-   * A link between a GA4 property and a Firebase project.
+   * A link between a Google Analytics property and a Firebase project.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaFirebaseLink {
     /**
@@ -810,7 +810,7 @@ export namespace analyticsadmin_v1beta {
     project?: string | null;
   }
   /**
-   * A link between a GA4 property and a Google Ads account.
+   * A link between a Google Analytics property and a Google Ads account.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaGoogleAdsLink {
     /**
@@ -1062,7 +1062,7 @@ export namespace analyticsadmin_v1beta {
     int64Value?: string | null;
   }
   /**
-   * A resource message representing a Google Analytics GA4 property.
+   * A resource message representing a Google Analytics property.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaProperty {
     /**
@@ -1119,7 +1119,7 @@ export namespace analyticsadmin_v1beta {
     updateTime?: string | null;
   }
   /**
-   * A virtual resource representing metadata for a GA4 property.
+   * A virtual resource representing metadata for a Google Analytics property.
    */
   export interface Schema$GoogleAnalyticsAdminV1betaPropertySummary {
     /**
@@ -1578,7 +1578,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA4 properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
+     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1864,7 +1864,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA UI Reporting, GA UI Explorations, GA Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2117,7 +2117,7 @@ export namespace analyticsadmin_v1beta {
   export interface Params$Resource$Accounts$Runaccessreport
     extends StandardParameters {
     /**
-     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your Google Analytics Account ID.
      */
     entity?: string;
 
@@ -2380,7 +2380,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Creates an "GA4" property with the specified location and attributes.
+     * Creates a Google Analytics property with the specified location and attributes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2475,7 +2475,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.
+     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2570,7 +2570,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Lookup for a single "GA4" Property.
+     * Lookup for a single GA Property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2759,7 +2759,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Returns child Properties under the specified parent Account. Only "GA4" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
+     * Returns child Properties under the specified parent Account. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2947,7 +2947,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
+     * Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA UI Reporting, GA UI Explorations, GA Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3215,7 +3215,7 @@ export namespace analyticsadmin_v1beta {
   export interface Params$Resource$Properties$Runaccessreport
     extends StandardParameters {
     /**
-     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your GA4 Account ID.
+     * The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if "123" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if "1234" is your Google Analytics Account ID.
      */
     entity?: string;
 
@@ -5617,7 +5617,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     * Lookup for a single MeasurementProtocolSecret.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

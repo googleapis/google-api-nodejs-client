@@ -226,7 +226,7 @@
           ]
         },
         "list": {
-          "description": "Returns all accounts accessible by the caller. Note that these accounts might not currently have GA4 properties. Soft-deleted (ie: \"trashed\") accounts are excluded by default. Returns an empty list if no relevant accounts are found.",
+          "description": "Returns all accounts accessible by the caller. Note that these accounts might not currently have GA properties. Soft-deleted (ie: \"trashed\") accounts are excluded by default. Returns an empty list if no relevant accounts are found.",
           "flatPath": "v1alpha/accounts",
           "httpMethod": "GET",
           "id": "analyticsadmin.accounts.list",
@@ -311,7 +311,7 @@
           ]
         },
         "runAccessReport": {
-          "description": "Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).",
+          "description": "Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA UI Reporting, GA UI Explorations, GA Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).",
           "flatPath": "v1alpha/accounts/{accountsId}:runAccessReport",
           "httpMethod": "POST",
           "id": "analyticsadmin.accounts.runAccessReport",
@@ -320,7 +320,7 @@
           ],
           "parameters": {
             "entity": {
-              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your GA4 Account ID.",
+              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your Google Analytics Account ID.",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -666,7 +666,7 @@
           ]
         },
         "create": {
-          "description": "Creates an \"GA4\" property with the specified location and attributes.",
+          "description": "Creates a Google Analytics property with the specified location and attributes.",
           "flatPath": "v1alpha/properties",
           "httpMethod": "POST",
           "id": "analyticsadmin.properties.create",
@@ -720,7 +720,7 @@
           ]
         },
         "delete": {
-          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not a GA4 Property.",
+          "description": "Marks target Property as soft-deleted (ie: \"trashed\") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, AccessBindings) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.",
           "flatPath": "v1alpha/properties/{propertiesId}",
           "httpMethod": "DELETE",
           "id": "analyticsadmin.properties.delete",
@@ -804,7 +804,7 @@
           ]
         },
         "get": {
-          "description": "Lookup for a single \"GA4\" Property.",
+          "description": "Lookup for a single GA Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
           "httpMethod": "GET",
           "id": "analyticsadmin.properties.get",
@@ -908,7 +908,7 @@
           ]
         },
         "list": {
-          "description": "Returns child Properties under the specified parent Account. Only \"GA4\" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: \"trashed\") properties are excluded by default. Returns an empty list if no relevant properties are found.",
+          "description": "Returns child Properties under the specified parent Account. Properties will be excluded if the caller does not have access. Soft-deleted (ie: \"trashed\") properties are excluded by default. Returns an empty list if no relevant properties are found.",
           "flatPath": "v1alpha/properties",
           "httpMethod": "GET",
           "id": "analyticsadmin.properties.list",
@@ -1017,7 +1017,7 @@
           ]
         },
         "runAccessReport": {
-          "description": "Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA4 UI Reporting, GA4 UI Explorations, GA4 Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).",
+          "description": "Returns a customized report of data access records. The report provides records of each time a user reads Google Analytics reporting data. Access records are retained for up to 2 years. Data Access Reports can be requested for a property. Reports may be requested for any property, but dimensions that aren't related to quota can only be requested on Google Analytics 360 properties. This method is only available to Administrators. These data access records include GA UI Reporting, GA UI Explorations, GA Data API, and other products like Firebase & Admob that can retrieve data from Google Analytics through a linkage. These records don't include property configuration changes like adding a stream or changing a property's time zone. For configuration change history, see [searchChangeHistoryEvents](https://developers.google.com/analytics/devguides/config/admin/v1/rest/v1alpha/accounts/searchChangeHistoryEvents).",
           "flatPath": "v1alpha/properties/{propertiesId}:runAccessReport",
           "httpMethod": "POST",
           "id": "analyticsadmin.properties.runAccessReport",
@@ -1026,7 +1026,7 @@
           ],
           "parameters": {
             "entity": {
-              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your GA4 property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your GA4 Account ID.",
+              "description": "The Data Access Report supports requesting at the property level or account level. If requested at the account level, Data Access Reports include all access for all properties under that account. To request at the property level, entity should be for example 'properties/123' if \"123\" is your Google Analytics property ID. To request at the account level, entity should be for example 'accounts/1234' if \"1234\" is your Google Analytics Account ID.",
               "location": "path",
               "pattern": "^properties/[^/]+$",
               "required": true,
@@ -3341,7 +3341,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Lookup for a single \"GA4\" MeasurementProtocolSecret.",
+                  "description": "Lookup for a single MeasurementProtocolSecret.",
                   "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
                   "httpMethod": "GET",
                   "id": "analyticsadmin.properties.dataStreams.measurementProtocolSecrets.get",
@@ -4886,7 +4886,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20240823",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -5323,7 +5323,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaAccountSummary": {
-      "description": "A virtual resource representing an overview of an account and all its child GA4 properties.",
+      "description": "A virtual resource representing an overview of an account and all its child Google Analytics properties.",
       "id": "GoogleAnalyticsAdminV1alphaAccountSummary",
       "properties": {
         "account": {
@@ -5366,11 +5366,11 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaAdSenseLink": {
-      "description": "A link between a GA4 Property and an AdSense for Content ad client.",
+      "description": "A link between a Google Analytics property and an AdSense for Content ad client.",
       "id": "GoogleAnalyticsAdminV1alphaAdSenseLink",
       "properties": {
         "adClientCode": {
-          "description": "Immutable. The AdSense ad client code that the GA4 property is linked to. Example format: \"ca-pub-1234567890\"",
+          "description": "Immutable. The AdSense ad client code that the Google Analytics property is linked to. Example format: \"ca-pub-1234567890\"",
           "type": "string"
         },
         "name": {
@@ -5491,7 +5491,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaAudience": {
-      "description": "A resource message representing a GA4 Audience.",
+      "description": "A resource message representing an Audience.",
       "id": "GoogleAnalyticsAdminV1alphaAudience",
       "properties": {
         "adsPersonalizationEnabled": {
@@ -5992,7 +5992,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaBigQueryLink": {
-      "description": "A link between a GA4 Property and BigQuery project.",
+      "description": "A link between a Google Analytics property and BigQuery project.",
       "id": "GoogleAnalyticsAdminV1alphaBigQueryLink",
       "properties": {
         "createTime": {
@@ -7017,7 +7017,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink": {
-      "description": "A link between a GA4 property and a Display & Video 360 advertiser.",
+      "description": "A link between a Google Analytics property and a Display & Video 360 advertiser.",
       "id": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink",
       "properties": {
         "adsPersonalizationEnabled": {
@@ -7034,11 +7034,11 @@
           "type": "string"
         },
         "campaignDataSharingEnabled": {
-          "description": "Immutable. Enables the import of campaign data from Display & Video 360 into the GA4 property. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.",
+          "description": "Immutable. Enables the import of campaign data from Display & Video 360 into the Google Analytics property. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.",
           "type": "boolean"
         },
         "costDataSharingEnabled": {
-          "description": "Immutable. Enables the import of cost data from Display & Video 360 into the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.",
+          "description": "Immutable. Enables the import of cost data from Display & Video 360 into the Google Analytics property. This can only be enabled if `campaign_data_sharing_enabled` is true. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.",
           "type": "boolean"
         },
         "name": {
@@ -7050,7 +7050,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal": {
-      "description": "A proposal for a link between a GA4 property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.",
+      "description": "A proposal for a link between a Google Analytics property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.",
       "id": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal",
       "properties": {
         "adsPersonalizationEnabled": {
@@ -7217,7 +7217,7 @@
       "id": "GoogleAnalyticsAdminV1alphaEventMapping",
       "properties": {
         "eventName": {
-          "description": "Required. Name of the GA4 event. It must always be set. The max allowed display name length is 40 UTF-16 code units.",
+          "description": "Required. Name of the Google Analytics event. It must always be set. The max allowed display name length is 40 UTF-16 code units.",
           "type": "string"
         },
         "maxEventCount": {
@@ -7244,7 +7244,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaExpandedDataSet": {
-      "description": "A resource message representing a GA4 ExpandedDataSet.",
+      "description": "A resource message representing an `ExpandedDataSet`.",
       "id": "GoogleAnalyticsAdminV1alphaExpandedDataSet",
       "properties": {
         "dataCollectionStartTime": {
@@ -7420,7 +7420,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaFirebaseLink": {
-      "description": "A link between a GA4 property and a Firebase project.",
+      "description": "A link between a Google Analytics property and a Firebase project.",
       "id": "GoogleAnalyticsAdminV1alphaFirebaseLink",
       "properties": {
         "createTime": {
@@ -7458,7 +7458,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaGoogleAdsLink": {
-      "description": "A link between a GA4 property and a Google Ads account.",
+      "description": "A link between a Google Analytics property and a Google Ads account.",
       "id": "GoogleAnalyticsAdminV1alphaGoogleAdsLink",
       "properties": {
         "adsPersonalizationEnabled": {
@@ -8293,7 +8293,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaProperty": {
-      "description": "A resource message representing a Google Analytics GA4 property.",
+      "description": "A resource message representing a Google Analytics property.",
       "id": "GoogleAnalyticsAdminV1alphaProperty",
       "properties": {
         "account": {
@@ -8407,9 +8407,9 @@
           ],
           "enumDescriptions": [
             "Unknown or unspecified property type",
-            "Ordinary GA4 property",
-            "GA4 subproperty",
-            "GA4 rollup property"
+            "Ordinary Google Analytics property",
+            "Google Analytics subproperty",
+            "Google Analytics rollup property"
           ],
           "type": "string"
         },
@@ -8442,7 +8442,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaPropertySummary": {
-      "description": "A virtual resource representing metadata for a GA4 property.",
+      "description": "A virtual resource representing metadata for a Google Analytics property.",
       "id": "GoogleAnalyticsAdminV1alphaPropertySummary",
       "properties": {
         "displayName": {
@@ -8467,9 +8467,9 @@
           ],
           "enumDescriptions": [
             "Unknown or unspecified property type",
-            "Ordinary GA4 property",
-            "GA4 subproperty",
-            "GA4 rollup property"
+            "Ordinary Google Analytics property",
+            "Google Analytics subproperty",
+            "Google Analytics rollup property"
           ],
           "type": "string"
         }
@@ -8697,7 +8697,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaSearchAds360Link": {
-      "description": "A link between a GA4 property and a Search Ads 360 entity.",
+      "description": "A link between a Google Analytics property and a Search Ads 360 entity.",
       "id": "GoogleAnalyticsAdminV1alphaSearchAds360Link",
       "properties": {
         "adsPersonalizationEnabled": {
@@ -8714,11 +8714,11 @@
           "type": "string"
         },
         "campaignDataSharingEnabled": {
-          "description": "Immutable. Enables the import of campaign data from Search Ads 360 into the GA4 property. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.",
+          "description": "Immutable. Enables the import of campaign data from Search Ads 360 into the Google Analytics property. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.",
           "type": "boolean"
         },
         "costDataSharingEnabled": {
-          "description": "Immutable. Enables the import of cost data from Search Ads 360 to the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.",
+          "description": "Immutable. Enables the import of cost data from Search Ads 360 to the Google Analytics property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Search Ads 360 product. If this field is not set on create, it will be defaulted to true.",
           "type": "boolean"
         },
         "name": {
@@ -8892,7 +8892,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter": {
-      "description": "A resource message representing a GA4 Subproperty event filter.",
+      "description": "A resource message representing a Google Analytics subproperty event filter.",
       "id": "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter",
       "properties": {
         "applyToProperty": {
