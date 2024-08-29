@@ -618,6 +618,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "orderBy": {
+                      "description": "Optional. The field to order the results by.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of repositories to return. Maximum page size is 1,000.",
                       "format": "int32",
@@ -973,6 +978,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "orderBy": {
+                          "description": "Optional. The field to order the results by.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "The maximum number of packages to return. Maximum page size is 1,000.",
                           "format": "int32",
@@ -1414,7 +1424,7 @@
       }
     }
   },
-  "revision": "20240809",
+  "revision": "20240826",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
