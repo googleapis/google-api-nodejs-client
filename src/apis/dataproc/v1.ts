@@ -2436,6 +2436,10 @@ export namespace dataproc_v1 {
      */
     sessionTemplate?: string | null;
     /**
+     * Optional. Spark connect session config.
+     */
+    sparkConnectSession?: Schema$SparkConnectConfig;
+    /**
      * Output only. A state of the session.
      */
     state?: string | null;
@@ -2551,6 +2555,10 @@ export namespace dataproc_v1 {
      */
     runtimeConfig?: Schema$RuntimeConfig;
     /**
+     * Optional. Spark connect session config.
+     */
+    sparkConnectSession?: Schema$SparkConnectConfig;
+    /**
      * Output only. The time the template was last updated.
      */
     updateTime?: string | null;
@@ -2590,7 +2598,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$SoftwareConfig {
     /**
-     * Optional. The version of software inside the cluster. It must be one of the supported Dataproc Versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_dataproc_versions), such as "1.2" (including a subminor version, such as "1.2.29"), or the "preview" version (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions). If unspecified, it defaults to the latest Debian version.
+     * Optional. The version of software inside the cluster. It must be one of the supported Dataproc Versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions), such as "1.2" (including a subminor version, such as "1.2.29"), or the "preview" version (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions). If unspecified, it defaults to the latest Debian version.
      */
     imageVersion?: string | null;
     /**
@@ -2631,6 +2639,10 @@ export namespace dataproc_v1 {
      */
     mainJarFileUri?: string | null;
   }
+  /**
+   * Spark connect configuration for an interactive session.
+   */
+  export interface Schema$SparkConnectConfig {}
   /**
    * Spark History Server configuration for the workload.
    */
