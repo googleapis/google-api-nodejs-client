@@ -828,6 +828,15 @@ export namespace servicenetworking_v1beta {
     options?: Schema$Option[];
   }
   /**
+   * Experimental features to be included during client library generation. These fields will be deprecated once the feature graduates and is enabled by default.
+   */
+  export interface Schema$ExperimentalFeatures {
+    /**
+     * Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.
+     */
+    restAsyncIoEnabled?: boolean | null;
+  }
+  /**
    * A single field of a message type.
    */
   export interface Schema$Field {
@@ -1275,6 +1284,10 @@ export namespace servicenetworking_v1beta {
      * The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.
      */
     samplePeriod?: string | null;
+    /**
+     * The scope of the timeseries data of the metric.
+     */
+    timeSeriesResourceHierarchyLevel?: string[] | null;
   }
   /**
    * Bind API methods to metrics. Binding a method to a metric causes that metric's configured quota behaviors to apply to the method call.
@@ -1530,6 +1543,10 @@ export namespace servicenetworking_v1beta {
      * Some settings.
      */
     common?: Schema$CommonLanguageSettings;
+    /**
+     * Experimental features to be included during client library generation.
+     */
+    experimentalFeatures?: Schema$ExperimentalFeatures;
   }
   /**
    * Quota configuration helps to achieve fairness and budgeting in service usage. The metric based quota configuration works this way: - The service configuration defines a set of metrics. - For API calls, the quota.metric_rules maps methods to metrics with corresponding costs. - The quota.limits defines limits on the metrics, which will be used for quota checks at runtime. An example quota configuration in yaml format: quota: limits: - name: apiWriteQpsPerProject metric: library.googleapis.com/write_calls unit: "1/min/{project\}" # rate limit for consumer projects values: STANDARD: 10000 (The metric rules bind all methods to the read_calls metric, except for the UpdateBook and DeleteBook methods. These two methods are mapped to the write_calls metric, with the UpdateBook method consuming at twice rate as the DeleteBook method.) metric_rules: - selector: "*" metric_costs: library.googleapis.com/read_calls: 1 - selector: google.example.library.v1.LibraryService.UpdateBook metric_costs: library.googleapis.com/write_calls: 2 - selector: google.example.library.v1.LibraryService.DeleteBook metric_costs: library.googleapis.com/write_calls: 1 Corresponding Metric definition: metrics: - name: library.googleapis.com/read_calls display_name: Read requests metric_kind: DELTA value_type: INT64 - name: library.googleapis.com/write_calls display_name: Write requests metric_kind: DELTA value_type: INT64
