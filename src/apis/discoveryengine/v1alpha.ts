@@ -1297,13 +1297,9 @@ export namespace discoveryengine_v1alpha {
      */
     endPos?: number | null;
     /**
-     * Indicates that this claim required grounding check. When the system decided this claim doesn't require attribution/grounding check, this field will be set to false. In that case, no grounding check was done for the claim and therefore citation_indices, and anti_citation_indices should not be returned.
+     * Indicates that this claim required grounding check. When the system decided this claim doesn't require attribution/grounding check, this field will be set to false. In that case, no grounding check was done for the claim and therefore citation_indices, anti_citation_indices, and score should not be returned.
      */
     groundingCheckRequired?: boolean | null;
-    /**
-     * Confidence score for the claim in the answer candidate, in the range of [0, 1].
-     */
-    score?: number | null;
     /**
      * Position indicating the start of the claim in the answer candidate, measured in bytes.
      */
