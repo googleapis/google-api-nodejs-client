@@ -2865,7 +2865,7 @@ export namespace healthcare_v1beta1 {
     fhirStore?: string | null;
   }
   /**
-   * Filtering fields for an HL7 rollback. Currently only supports a list of operation ids to roll back.
+   * Filtering fields for an HL7v2 rollback. Currently only supports a list of operation ids to roll back.
    */
   export interface Schema$RollbackHL7MessagesFilteringFields {
     /**
@@ -2911,7 +2911,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$RollbackHl7V2MessagesResponse {
     /**
-     * The name of the HL7 store to rollback, in the format of "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\} /hl7v2Stores/{fhir_store_id\}".
+     * The name of the HL7v2 store to rollback, in the format of "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\} /hl7v2Stores/{fhir_store_id\}".
      */
     hl7v2Store?: string | null;
   }
@@ -19465,7 +19465,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Rolls back messages from the HL7 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * Rolls back messages from the HL7v2 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
