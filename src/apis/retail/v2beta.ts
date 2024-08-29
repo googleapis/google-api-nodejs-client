@@ -1212,7 +1212,7 @@ export namespace retail_v2beta {
     recentSearchResults?: Schema$GoogleCloudRetailV2betaCompleteQueryResponseRecentSearchResult[];
   }
   /**
-   * Resource that represents attribute results.
+   * Resource that represents attribute results. The list of suggestions for the attribute.
    */
   export interface Schema$GoogleCloudRetailV2betaCompleteQueryResponseAttributeResult {
     suggestions?: string[] | null;
@@ -2197,7 +2197,7 @@ export namespace retail_v2beta {
      */
     audience?: Schema$GoogleCloudRetailV2betaAudience;
     /**
-     * The online availability of the Product. Default to Availability.IN_STOCK. Corresponding properties: Google Merchant Center property [availability](https://support.google.com/merchants/answer/6324448). Schema.org property [Offer.availability](https://schema.org/availability).
+     * The online availability of the Product. Default to Availability.IN_STOCK. For primary products with variants set the availability of the primary as Availability.OUT_OF_STOCK and set the true availability at the variant level. This way the primary product will be considered "in stock" as long as it has at least one variant in stock. For primary products with no variants set the true availability at the primary level. Corresponding properties: Google Merchant Center property [availability](https://support.google.com/merchants/answer/6324448). Schema.org property [Offer.availability](https://schema.org/availability).
      */
     availability?: string | null;
     /**
