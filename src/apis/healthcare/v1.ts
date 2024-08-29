@@ -273,6 +273,32 @@ export namespace healthcare_v1 {
     role?: string | null;
   }
   /**
+   * BlobStorageInfo contains details about the data stored in Blob Storage for the referenced resource. Note: Storage class is only valid for DICOM and hence will only be populated for DICOM resources.
+   */
+  export interface Schema$BlobStorageInfo {
+    /**
+     * Size in bytes of data stored in Blob Storage.
+     */
+    sizeBytes?: string | null;
+    /**
+     * The storage class in which the Blob data is stored.
+     */
+    storageClass?: string | null;
+    /**
+     * The time at which the storage class was updated. This is used to compute early deletion fees of the resource.
+     */
+    storageClassUpdateTime?: string | null;
+  }
+  /**
+   * Settings for data stored in Blob storage.
+   */
+  export interface Schema$BlobStorageSettings {
+    /**
+     * The Storage class in which the Blob data is stored.
+     */
+    blobStorageClass?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -1357,6 +1383,10 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ImportDicomDataRequest {
     /**
+     * Optional. The blob storage settings for the data imported by this operation.
+     */
+    blobStorageSettings?: Schema$BlobStorageSettings;
+    /**
      * Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location.
      */
     gcsSource?: Schema$GoogleCloudHealthcareV1DicomGcsSource;
@@ -1972,7 +2002,7 @@ export namespace healthcare_v1 {
     fhirStore?: string | null;
   }
   /**
-   * Filtering fields for an HL7 rollback. Currently only supports a list of operation ids to roll back.
+   * Filtering fields for an HL7v2 rollback. Currently only supports a list of operation ids to roll back.
    */
   export interface Schema$RollbackHL7MessagesFilteringFields {
     /**
@@ -2018,7 +2048,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$RollbackHl7V2MessagesResponse {
     /**
-     * The name of the HL7 store to rollback, in the format of "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\} /hl7v2Stores/{hl7v2_store_id\}".
+     * The name of the HL7v2 store to rollback, in the format of "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\} /hl7v2Stores/{hl7v2_store_id\}".
      */
     hl7v2Store?: string | null;
   }
@@ -2167,6 +2197,23 @@ export namespace healthcare_v1 {
     structuredStorageSizeBytes?: string | null;
   }
   /**
+   * Request message for `SetBlobStorageSettings` method.
+   */
+  export interface Schema$SetBlobStorageSettingsRequest {
+    /**
+     * The blob storage settings to update for the specified resources. Only fields listed in `update_mask` are applied.
+     */
+    blobStorageSettings?: Schema$BlobStorageSettings;
+    /**
+     * Optional. A filter configuration. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     */
+    filterConfig?: Schema$DicomFilterConfig;
+  }
+  /**
+   * Returns additional info in regards to a completed set blob storage settings API.
+   */
+  export interface Schema$SetBlobStorageSettingsResponse {}
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -2218,6 +2265,23 @@ export namespace healthcare_v1 {
     message?: string | null;
   }
   /**
+   * StorageInfo encapsulates all the storage info of a resource.
+   */
+  export interface Schema$StorageInfo {
+    /**
+     * Info about the data stored in blob storage for the resource.
+     */
+    blobStorageInfo?: Schema$BlobStorageInfo;
+    /**
+     * The resource whose storage info is returned. For example: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`
+     */
+    referencedResource?: string | null;
+    /**
+     * Info about the data stored in structured storage for the resource.
+     */
+    structuredStorageInfo?: Schema$StructuredStorageInfo;
+  }
+  /**
    * Contains configuration for streaming FHIR export.
    */
   export interface Schema$StreamConfig {
@@ -2233,6 +2297,15 @@ export namespace healthcare_v1 {
      * Supply a FHIR resource type (such as "Patient" or "Observation"). See https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats an empty list as an intent to stream all the supported resource types in this FHIR store.
      */
     resourceTypes?: string[] | null;
+  }
+  /**
+   * StructuredStorageInfo contains details about the data stored in Structured Storage for the referenced resource.
+   */
+  export interface Schema$StructuredStorageInfo {
+    /**
+     * Size in bytes of data stored in structured storage.
+     */
+    sizeBytes?: string | null;
   }
   /**
    * StudyMetrics contains metrics describing a DICOM study.
@@ -8805,6 +8878,97 @@ export namespace healthcare_v1 {
     }
 
     /**
+     * SetBlobStorageSettings sets the blob storage settings of the specified resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setBlobStorageSettings(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setBlobStorageSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      *
      * @param params - Parameters for request
@@ -9231,6 +9395,18 @@ export namespace healthcare_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Setblobstoragesettings
+    extends StandardParameters {
+    /**
+     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetBlobStorageSettingsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy
     extends StandardParameters {
     /**
@@ -9383,6 +9559,97 @@ export namespace healthcare_v1 {
         return createAPIRequest<Schema$StudyMetrics>(parameters);
       }
     }
+
+    /**
+     * SetBlobStorageSettings sets the blob storage settings of the specified resources.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setBlobStorageSettings(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    setBlobStorageSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setBlobStorageSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Getstudymetrics
@@ -9392,11 +9659,28 @@ export namespace healthcare_v1 {
      */
     study?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Setblobstoragesettings
+    extends StandardParameters {
+    /**
+     * Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}`, `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/`, or `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}`.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetBlobStorageSettingsRequest;
+  }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series {
     context: APIRequestContext;
+    instances: Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.instances =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances(
+          this.context
+        );
     }
 
     /**
@@ -9497,6 +9781,110 @@ export namespace healthcare_v1 {
      * Required. The series resource path. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}/dicomWeb/studies/{study_uid\}/series/{series_uid\}`.
      */
     series?: string;
+  }
+
+  export class Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * GetStorageInfo returns the storage info of the specified resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getStorageInfo(
+      params?: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StorageInfo>;
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      options: MethodOptions | BodyResponseCallback<Schema$StorageInfo>,
+      callback: BodyResponseCallback<Schema$StorageInfo>
+    ): void;
+    getStorageInfo(
+      params: Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo,
+      callback: BodyResponseCallback<Schema$StorageInfo>
+    ): void;
+    getStorageInfo(callback: BodyResponseCallback<Schema$StorageInfo>): void;
+    getStorageInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo
+        | BodyResponseCallback<Schema$StorageInfo>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StorageInfo>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StorageInfo>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$StorageInfo> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getStorageInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StorageInfo>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StorageInfo>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$Dicomweb$Studies$Series$Instances$Getstorageinfo
+    extends StandardParameters {
+    /**
+     * Required. The path of the instance to return storage info for, in the form: `projects/{projectID\}/locations/{locationID\}/datasets/{datasetID\}/dicomStores/{dicomStoreID\}/dicomWeb/studies/{studyUID\}/series/{seriesUID\}/instances/{instanceUID\}`
+     */
+    resource?: string;
   }
 
   export class Resource$Projects$Locations$Datasets$Dicomstores$Studies {
@@ -15013,7 +15401,7 @@ export namespace healthcare_v1 {
     }
 
     /**
-     * Rolls back messages from the HL7 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * Rolls back messages from the HL7v2 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

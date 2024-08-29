@@ -2117,6 +2117,35 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "setBlobStorageSettings": {
+                      "description": "SetBlobStorageSettings sets the blob storage settings of the specified resources.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}:setBlobStorageSettings",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.dicomStores.setBlobStorageSettings",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}`, `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/`, or `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setBlobStorageSettings",
+                      "request": {
+                        "$ref": "SetBlobStorageSettingsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}:setIamPolicy",
@@ -2243,6 +2272,35 @@
                                 "https://www.googleapis.com/auth/cloud-healthcare",
                                 "https://www.googleapis.com/auth/cloud-platform"
                               ]
+                            },
+                            "setBlobStorageSettings": {
+                              "description": "SetBlobStorageSettings sets the blob storage settings of the specified resources.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}:setBlobStorageSettings",
+                              "httpMethod": "POST",
+                              "id": "healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.setBlobStorageSettings",
+                              "parameterOrder": [
+                                "resource"
+                              ],
+                              "parameters": {
+                                "resource": {
+                                  "description": "Required. The path of the resource to update the blob storage settings in the format of `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}`, `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/`, or `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+/dicomWeb/studies/.*$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+resource}:setBlobStorageSettings",
+                              "request": {
+                                "$ref": "SetBlobStorageSettingsRequest"
+                              },
+                              "response": {
+                                "$ref": "Operation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-healthcare",
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
                             }
                           },
                           "resources": {
@@ -2273,6 +2331,38 @@
                                     "https://www.googleapis.com/auth/cloud-healthcare",
                                     "https://www.googleapis.com/auth/cloud-platform"
                                   ]
+                                }
+                              },
+                              "resources": {
+                                "instances": {
+                                  "methods": {
+                                    "getStorageInfo": {
+                                      "description": "GetStorageInfo returns the storage info of the specified resource.",
+                                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}/series/{seriesId}/instances/{instancesId}:getStorageInfo",
+                                      "httpMethod": "GET",
+                                      "id": "healthcare.projects.locations.datasets.dicomStores.dicomWeb.studies.series.instances.getStorageInfo",
+                                      "parameterOrder": [
+                                        "resource"
+                                      ],
+                                      "parameters": {
+                                        "resource": {
+                                          "description": "Required. The path of the instance to return storage info for, in the form: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`",
+                                          "location": "path",
+                                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/dicomStores/[^/]+/dicomWeb/studies/[^/]+/series/[^/]+/instances/[^/]+$",
+                                          "required": true,
+                                          "type": "string"
+                                        }
+                                      },
+                                      "path": "v1/{+resource}:getStorageInfo",
+                                      "response": {
+                                        "$ref": "StorageInfo"
+                                      },
+                                      "scopes": [
+                                        "https://www.googleapis.com/auth/cloud-healthcare",
+                                        "https://www.googleapis.com/auth/cloud-platform"
+                                      ]
+                                    }
+                                  }
                                 }
                               }
                             }
@@ -4110,7 +4200,7 @@
                       ]
                     },
                     "rollback": {
-                      "description": "Rolls back messages from the HL7 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
+                      "description": "Rolls back messages from the HL7v2 store to the specified time. This method returns an Operation that can be used to track the status of the rollback by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type RollbackHl7V2MessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}:rollback",
                       "httpMethod": "POST",
                       "id": "healthcare.projects.locations.datasets.hl7V2Stores.rollback",
@@ -4583,7 +4673,7 @@
       }
     }
   },
-  "revision": "20240731",
+  "revision": "20240819",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4821,6 +4911,66 @@
         },
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BlobStorageInfo": {
+      "description": "BlobStorageInfo contains details about the data stored in Blob Storage for the referenced resource. Note: Storage class is only valid for DICOM and hence will only be populated for DICOM resources.",
+      "id": "BlobStorageInfo",
+      "properties": {
+        "sizeBytes": {
+          "description": "Size in bytes of data stored in Blob Storage.",
+          "format": "int64",
+          "type": "string"
+        },
+        "storageClass": {
+          "description": "The storage class in which the Blob data is stored.",
+          "enum": [
+            "BLOB_STORAGE_CLASS_UNSPECIFIED",
+            "STANDARD",
+            "NEARLINE",
+            "COLDLINE",
+            "ARCHIVE"
+          ],
+          "enumDescriptions": [
+            "If unspecified in CreateDataset, the StorageClass defaults to STANDARD. If unspecified in UpdateDataset and the StorageClass is set in the field mask, an InvalidRequest error is thrown.",
+            "This stores the Object in Blob Standard Storage: https://cloud.google.com/storage/docs/storage-classes#standard",
+            "This stores the Object in Blob Nearline Storage: https://cloud.google.com/storage/docs/storage-classes#nearline",
+            "This stores the Object in Blob Coldline Storage: https://cloud.google.com/storage/docs/storage-classes#coldline",
+            "This stores the Object in Blob Archive Storage: https://cloud.google.com/storage/docs/storage-classes#archive"
+          ],
+          "type": "string"
+        },
+        "storageClassUpdateTime": {
+          "description": "The time at which the storage class was updated. This is used to compute early deletion fees of the resource.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BlobStorageSettings": {
+      "description": "Settings for data stored in Blob storage.",
+      "id": "BlobStorageSettings",
+      "properties": {
+        "blobStorageClass": {
+          "description": "The Storage class in which the Blob data is stored.",
+          "enum": [
+            "BLOB_STORAGE_CLASS_UNSPECIFIED",
+            "STANDARD",
+            "NEARLINE",
+            "COLDLINE",
+            "ARCHIVE"
+          ],
+          "enumDescriptions": [
+            "If unspecified in CreateDataset, the StorageClass defaults to STANDARD. If unspecified in UpdateDataset and the StorageClass is set in the field mask, an InvalidRequest error is thrown.",
+            "This stores the Object in Blob Standard Storage: https://cloud.google.com/storage/docs/storage-classes#standard",
+            "This stores the Object in Blob Nearline Storage: https://cloud.google.com/storage/docs/storage-classes#nearline",
+            "This stores the Object in Blob Coldline Storage: https://cloud.google.com/storage/docs/storage-classes#coldline",
+            "This stores the Object in Blob Archive Storage: https://cloud.google.com/storage/docs/storage-classes#archive"
+          ],
           "type": "string"
         }
       },
@@ -6334,6 +6484,10 @@
       "description": "Imports data into the specified DICOM store. Returns an error if any of the files to import are not DICOM files. This API accepts duplicate DICOM instances by ignoring the newly-pushed instance. It does not overwrite.",
       "id": "ImportDicomDataRequest",
       "properties": {
+        "blobStorageSettings": {
+          "$ref": "BlobStorageSettings",
+          "description": "Optional. The blob storage settings for the data imported by this operation."
+        },
         "gcsSource": {
           "$ref": "GoogleCloudHealthcareV1DicomGcsSource",
           "description": "Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location."
@@ -7218,7 +7372,7 @@
       "type": "object"
     },
     "RollbackHL7MessagesFilteringFields": {
-      "description": "Filtering fields for an HL7 rollback. Currently only supports a list of operation ids to roll back.",
+      "description": "Filtering fields for an HL7v2 rollback. Currently only supports a list of operation ids to roll back.",
       "id": "RollbackHL7MessagesFilteringFields",
       "properties": {
         "operationIds": {
@@ -7287,7 +7441,7 @@
       "id": "RollbackHl7V2MessagesResponse",
       "properties": {
         "hl7v2Store": {
-          "description": "The name of the HL7 store to rollback, in the format of \"projects/{project_id}/locations/{location_id}/datasets/{dataset_id} /hl7v2Stores/{hl7v2_store_id}\".",
+          "description": "The name of the HL7v2 store to rollback, in the format of \"projects/{project_id}/locations/{location_id}/datasets/{dataset_id} /hl7v2Stores/{hl7v2_store_id}\".",
           "type": "string"
         }
       },
@@ -7505,6 +7659,27 @@
       },
       "type": "object"
     },
+    "SetBlobStorageSettingsRequest": {
+      "description": "Request message for `SetBlobStorageSettings` method.",
+      "id": "SetBlobStorageSettingsRequest",
+      "properties": {
+        "blobStorageSettings": {
+          "$ref": "BlobStorageSettings",
+          "description": "The blob storage settings to update for the specified resources. Only fields listed in `update_mask` are applied."
+        },
+        "filterConfig": {
+          "$ref": "DicomFilterConfig",
+          "description": "Optional. A filter configuration. If `filter_config` is specified, set the value of `resource` to the resource name of a DICOM store in the format `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}`."
+        }
+      },
+      "type": "object"
+    },
+    "SetBlobStorageSettingsResponse": {
+      "description": "Returns additional info in regards to a completed set blob storage settings API.",
+      "id": "SetBlobStorageSettingsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -7575,6 +7750,25 @@
       },
       "type": "object"
     },
+    "StorageInfo": {
+      "description": "StorageInfo encapsulates all the storage info of a resource.",
+      "id": "StorageInfo",
+      "properties": {
+        "blobStorageInfo": {
+          "$ref": "BlobStorageInfo",
+          "description": "Info about the data stored in blob storage for the resource."
+        },
+        "referencedResource": {
+          "description": "The resource whose storage info is returned. For example: `projects/{projectID}/locations/{locationID}/datasets/{datasetID}/dicomStores/{dicomStoreID}/dicomWeb/studies/{studyUID}/series/{seriesUID}/instances/{instanceUID}`",
+          "type": "string"
+        },
+        "structuredStorageInfo": {
+          "$ref": "StructuredStorageInfo",
+          "description": "Info about the data stored in structured storage for the resource."
+        }
+      },
+      "type": "object"
+    },
     "StreamConfig": {
       "description": "Contains configuration for streaming FHIR export.",
       "id": "StreamConfig",
@@ -7593,6 +7787,18 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StructuredStorageInfo": {
+      "description": "StructuredStorageInfo contains details about the data stored in Structured Storage for the referenced resource.",
+      "id": "StructuredStorageInfo",
+      "properties": {
+        "sizeBytes": {
+          "description": "Size in bytes of data stored in structured storage.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
