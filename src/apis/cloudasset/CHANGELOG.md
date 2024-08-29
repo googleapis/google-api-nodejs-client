@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v7.3.0...cloudasset-v7.4.0) (2024-08-27)
+
+
+### Features
+
+* **cloudasset:** update the API ([2f72369](https://github.com/googleapis/google-api-nodejs-client/commit/2f7236928e32e49a3144b2fd4937931ac770f9ff))
+* **cloudasset:** update the API ([1c506b6](https://github.com/googleapis/google-api-nodejs-client/commit/1c506b62cc9ad1d8975c31c23150d812d6430338))
+
+
+### Bug Fixes
+
+* **cloudasset:** update the API ([663abb4](https://github.com/googleapis/google-api-nodejs-client/commit/663abb42ba1409aa2ee9062eedb836cba07f1c29))
+
 ## [7.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v7.2.0...cloudasset-v7.3.0) (2024-08-27)
 
 

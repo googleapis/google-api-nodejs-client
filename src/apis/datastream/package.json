@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/datastream",
-  "version": "6.5.1",
+  "version": "6.6.0",
   "description": "datastream",
   "main": "build/index.js",
   "types": "build/index.d.ts",
