@@ -15,6 +15,13 @@
   "description": "Connect third-party source code management to Google",
   "discoveryVersion": "v1",
   "documentationLink": "http://cloud.google.com/developer-connect/docs/overview",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://developerconnect.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -840,7 +847,7 @@
       }
     }
   },
-  "revision": "20240527",
+  "revision": "20240822",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {

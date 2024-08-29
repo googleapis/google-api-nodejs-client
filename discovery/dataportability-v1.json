@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/dataportability.alerts.subscriptions": {
+          "description": "Move a copy of the Google Alerts subscriptions you created."
+        },
         "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations": {
           "description": "Move a copy of messages between you and the businesses you have conversations with across Google services."
         },
@@ -315,6 +318,7 @@
             "$ref": "PortabilityArchiveState"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -405,6 +409,7 @@
             "$ref": "RetryPortabilityArchiveResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -489,6 +494,7 @@
             "$ref": "Empty"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -573,6 +579,7 @@
             "$ref": "InitiatePortabilityArchiveResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/dataportability.alerts.subscriptions",
             "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations",
             "https://www.googleapis.com/auth/dataportability.chrome.autofill",
             "https://www.googleapis.com/auth/dataportability.chrome.bookmarks",
@@ -641,7 +648,7 @@
       }
     }
   },
-  "revision": "20240430",
+  "revision": "20240827",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "Empty": {
