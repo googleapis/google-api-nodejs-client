@@ -28,6 +28,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dataproc.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dataproc.me-central2.rep.googleapis.com/",
       "location": "me-central2"
     }
@@ -3072,7 +3077,7 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240821",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -6375,6 +6380,10 @@
           "description": "Optional. The session template used by the session.Only resource names, including project ID and location, are valid.Example: * https://www.googleapis.com/compute/v1/projects/[project_id]/locations/[dataproc_region]/sessionTemplates/[template_id] * projects/[project_id]/locations/[dataproc_region]/sessionTemplates/[template_id]The template must be in the same project and Dataproc region as the session.",
           "type": "string"
         },
+        "sparkConnectSession": {
+          "$ref": "SparkConnectConfig",
+          "description": "Optional. Spark connect session config."
+        },
         "state": {
           "description": "Output only. A state of the session.",
           "enum": [
@@ -6567,6 +6576,10 @@
           "$ref": "RuntimeConfig",
           "description": "Optional. Runtime configuration for session execution."
         },
+        "sparkConnectSession": {
+          "$ref": "SparkConnectConfig",
+          "description": "Optional. Spark connect session config."
+        },
         "updateTime": {
           "description": "Output only. The time the template was last updated.",
           "format": "google-datetime",
@@ -6616,7 +6629,7 @@
       "id": "SoftwareConfig",
       "properties": {
         "imageVersion": {
-          "description": "Optional. The version of software inside the cluster. It must be one of the supported Dataproc Versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported_dataproc_versions), such as \"1.2\" (including a subminor version, such as \"1.2.29\"), or the \"preview\" version (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions). If unspecified, it defaults to the latest Debian version.",
+          "description": "Optional. The version of software inside the cluster. It must be one of the supported Dataproc Versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#supported-dataproc-image-versions), such as \"1.2\" (including a subminor version, such as \"1.2.29\"), or the \"preview\" version (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-versions#other_versions). If unspecified, it defaults to the latest Debian version.",
           "type": "string"
         },
         "optionalComponents": {
@@ -6641,7 +6654,7 @@
             ],
             "enumDescriptions": [
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
-              "The Anaconda python distribution. The Anaconda component is not supported in the Dataproc 2.0 image. The 2.0 image is pre-installed with Miniconda.",
+              "The Anaconda component is no longer supported or applicable to supported Dataproc on Compute Engine image versions (https://cloud.google.com/dataproc/docs/concepts/versioning/dataproc-version-clusters#supported-dataproc-image-versions). It cannot be activated on clusters created with supported Dataproc on Compute Engine image versions.",
               "Docker",
               "The Druid query engine. (alpha)",
               "Flink",
@@ -6711,6 +6724,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SparkConnectConfig": {
+      "description": "Spark connect configuration for an interactive session.",
+      "id": "SparkConnectConfig",
+      "properties": {},
       "type": "object"
     },
     "SparkHistoryServerConfig": {
