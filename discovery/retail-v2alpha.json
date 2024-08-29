@@ -4345,7 +4345,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult": {
-      "description": "Resource that represents attribute results.",
+      "description": "Resource that represents attribute results. The list of suggestions for the attribute.",
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult",
       "properties": {
         "suggestions": {
