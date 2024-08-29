@@ -41738,7 +41738,7 @@
         },
         "encryptionSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
-          "description": "Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookRuntimeTemplate has an encryption spec."
+          "description": "Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookService.NotebookRuntimeTemplate has an encryption spec."
         },
         "executionTimeout": {
           "description": "Max running time of the execution job in seconds (default 86400s / 24 hrs).",
@@ -46733,10 +46733,6 @@
           },
           "type": "array"
         },
-        "ranking": {
-          "$ref": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking",
-          "description": "Optional. Configurations for hybrid search results ranking."
-        },
         "vectorDistanceThreshold": {
           "deprecated": true,
           "description": "Optional. Only return contexts with vector distance smaller than the threshold.",
@@ -46760,18 +46756,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking": {
-      "description": "Configurations for hybrid search results ranking.",
-      "id": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking",
-      "properties": {
-        "alpha": {
-          "description": "Optional. Alpha value controls the weight between dense and sparse vector search results. The range is [0, 1], while 0 means sparse vector search only and 1 means dense vector search only. The default value is 0.5 which balances sparse and dense vector search equally.",
-          "format": "float",
-          "type": "number"
         }
       },
       "type": "object"

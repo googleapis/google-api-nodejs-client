@@ -47233,6 +47233,56 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1VertexRagStore": {
+      "description": "Retrieve from Vertex RAG Store for grounding.",
+      "id": "GoogleCloudAiplatformV1VertexRagStore",
+      "properties": {
+        "ragCorpora": {
+          "deprecated": true,
+          "description": "Optional. Deprecated. Please use rag_resources instead.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ragResources": {
+          "description": "Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1VertexRagStoreRagResource"
+          },
+          "type": "array"
+        },
+        "similarityTopK": {
+          "description": "Optional. Number of top k results to return from the selected corpora.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "vectorDistanceThreshold": {
+          "description": "Optional. Only return results with vector distance smaller than the threshold.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1VertexRagStoreRagResource": {
+      "description": "The definition of the Rag resource.",
+      "id": "GoogleCloudAiplatformV1VertexRagStoreRagResource",
+      "properties": {
+        "ragCorpus": {
+          "description": "Optional. RagCorpora resource name. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+          "type": "string"
+        },
+        "ragFileIds": {
+          "description": "Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1VideoMetadata": {
       "description": "Metadata describes the input video content.",
       "id": "GoogleCloudAiplatformV1VideoMetadata",
