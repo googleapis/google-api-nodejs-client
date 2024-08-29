@@ -1148,7 +1148,7 @@
       }
     }
   },
-  "revision": "20240816",
+  "revision": "20240823",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -2142,13 +2142,17 @@
               "METHOD_TYPE_UNSPECIFIED",
               "CREATE",
               "UPDATE",
-              "DELETE"
+              "DELETE",
+              "REMOVE_GRANT",
+              "GOVERN_TAGS"
             ],
             "enumDescriptions": [
               "Unspecified. Will results in user error.",
               "Constraint applied when creating the resource.",
               "Constraint applied when updating the resource.",
-              "Constraint applied when deleting the resource."
+              "Constraint applied when deleting the resource.",
+              "Constraint applied when removing an IAM grant.",
+              "Constraint applied when enforcing forced tagging."
             ],
             "type": "string"
           },
@@ -4203,7 +4207,7 @@
           "type": "array"
         },
         "enrichments": {
-          "description": "Enrichments of the asset.",
+          "description": "Enrichments of the asset. Currently supported enrichment types with SearchAllResources API: * RESOURCE_OWNERS The corresponding read masks in order to get the enrichment: * enrichments.resource_owners The corresponding required permissions: * cloudasset.assets.searchEnrichmentResourceOwners Example query to get resource owner enrichment: scope: \"projects/my-project\" query: \"name: my-project\" assetTypes: \"cloudresourcemanager.googleapis.com/Project\" readMask: { paths: \"asset_type\" paths: \"name\" paths: \"enrichments.resource_owners\" }",
           "items": {
             "$ref": "AssetEnrichment"
           },
