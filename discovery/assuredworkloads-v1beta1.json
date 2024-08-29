@@ -588,7 +588,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20240823",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -694,7 +694,9 @@
             "IL2",
             "JP_REGIONS_AND_SUPPORT",
             "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
-            "REGIONAL_CONTROLS"
+            "REGIONAL_CONTROLS",
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -717,7 +719,9 @@
             "Information protection as per DoD IL2 requirements.",
             "Assured Workloads for Japan Regions",
             "Assured Workloads Sovereign Controls KSA",
-            "Assured Workloads for Regional Controls"
+            "Assured Workloads for Regional Controls",
+            "Healthcare and Life Science Controls",
+            "Healthcare and Life Science Controls with US Support"
           ],
           "type": "string"
         },
@@ -1175,7 +1179,9 @@
             "IL2",
             "JP_REGIONS_AND_SUPPORT",
             "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
-            "REGIONAL_CONTROLS"
+            "REGIONAL_CONTROLS",
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1198,7 +1204,9 @@
             "Information protection as per DoD IL2 requirements.",
             "Assured Workloads for Japan Regions",
             "Assured Workloads Sovereign Controls KSA",
-            "Assured Workloads for Regional Controls"
+            "Assured Workloads for Regional Controls",
+            "Healthcare and Life Science Controls",
+            "Healthcare and Life Science Controls with US Support"
           ],
           "type": "string"
         },
@@ -1316,7 +1324,7 @@
           "description": "Optional. Permissions granted to the AW Partner SA account for the customer workload"
         },
         "partnerServicesBillingAccount": {
-          "description": "Optional. Billing account necessary for purchasing services from Sovereign Partners. This field is required for creating SIA/PSN partner workloads. The caller should have 'billing.resourceAssociations.create' IAM permission on this billing-account. The format of this string is billingAccounts/AAAAAA-BBBBBB-CCCCCC",
+          "description": "Optional. Billing account necessary for purchasing services from Sovereign Partners. This field is required for creating SIA/PSN/CNTXT partner workloads. The caller should have 'billing.resourceAssociations.create' IAM permission on this billing-account. The format of this string is billingAccounts/AAAAAA-BBBBBB-CCCCCC",
           "type": "string"
         },
         "provisionedResourcesParent": {
