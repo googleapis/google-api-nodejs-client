@@ -1255,6 +1255,10 @@ export namespace alloydb_v1 {
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration {
     /**
+     * Checks for existence of (multi-cluster) routing configuration that allows automatic failover to a different zone/region in case of an outage. Applicable to Bigtable resources.
+     */
+    automaticFailoverRoutingConfigured?: boolean | null;
+    /**
      * Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).
      */
     availabilityType?: string | null;
@@ -1783,6 +1787,10 @@ export namespace alloydb_v1 {
      * Optional. List of database roles this user has. The database role strings are subject to the PostgreSQL naming conventions.
      */
     databaseRoles?: string[] | null;
+    /**
+     * Input only. If the user already exists and it has additional roles, keep them granted.
+     */
+    keepExtraRoles?: boolean | null;
     /**
      * Output only. Name of the resource in the form of projects/{project\}/locations/{location\}/cluster/{cluster\}/users/{user\}.
      */

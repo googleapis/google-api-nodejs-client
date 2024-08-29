@@ -1489,7 +1489,7 @@
       }
     }
   },
-  "revision": "20240806",
+  "revision": "20240823",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -3300,6 +3300,10 @@
       "description": "Configuration for availability of database instance",
       "id": "StorageDatabasecenterPartnerapiV1mainAvailabilityConfiguration",
       "properties": {
+        "automaticFailoverRoutingConfigured": {
+          "description": "Checks for existence of (multi-cluster) routing configuration that allows automatic failover to a different zone/region in case of an outage. Applicable to Bigtable resources.",
+          "type": "boolean"
+        },
         "availabilityType": {
           "description": "Availability type. Potential values: * `ZONAL`: The instance serves data from only one zone. Outages in that zone affect data accessibility. * `REGIONAL`: The instance can serve data from more than one zone in a region (it is highly available).",
           "enum": [
@@ -4866,6 +4870,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "keepExtraRoles": {
+          "description": "Input only. If the user already exists and it has additional roles, keep them granted.",
+          "type": "boolean"
         },
         "name": {
           "description": "Output only. Name of the resource in the form of projects/{project}/locations/{location}/cluster/{cluster}/users/{user}.",
