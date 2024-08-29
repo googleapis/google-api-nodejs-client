@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20240815",
+  "revision": "20240822",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -5291,10 +5291,6 @@
           },
           "type": "array"
         },
-        "jsonError": {
-          "$ref": "ImportRowErrorJsonErrorDetails",
-          "description": "Error details for a JSON file."
-        },
         "rowNumber": {
           "deprecated": true,
           "description": "The row number where the error was detected.",
@@ -5341,12 +5337,6 @@
           "type": "integer"
         }
       },
-      "type": "object"
-    },
-    "ImportRowErrorJsonErrorDetails": {
-      "description": "Error details for a JSON file.",
-      "id": "ImportRowErrorJsonErrorDetails",
-      "properties": {},
       "type": "object"
     },
     "ImportRowErrorXlsxErrorDetails": {
