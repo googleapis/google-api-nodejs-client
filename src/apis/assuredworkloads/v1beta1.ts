@@ -537,7 +537,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     partnerPermissions?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadPartnerPermissions;
     /**
-     * Optional. Billing account necessary for purchasing services from Sovereign Partners. This field is required for creating SIA/PSN partner workloads. The caller should have 'billing.resourceAssociations.create' IAM permission on this billing-account. The format of this string is billingAccounts/AAAAAA-BBBBBB-CCCCCC
+     * Optional. Billing account necessary for purchasing services from Sovereign Partners. This field is required for creating SIA/PSN/CNTXT partner workloads. The caller should have 'billing.resourceAssociations.create' IAM permission on this billing-account. The format of this string is billingAccounts/AAAAAA-BBBBBB-CCCCCC
      */
     partnerServicesBillingAccount?: string | null;
     /**
