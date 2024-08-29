@@ -1913,7 +1913,7 @@
       }
     }
   },
-  "revision": "20240809",
+  "revision": "20240827",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2199,6 +2199,10 @@
         "subscription": {
           "$ref": "AzureSubscription",
           "description": "The Azure subscription associated with the resource."
+        },
+        "tenant": {
+          "$ref": "AzureTenant",
+          "description": "The Azure Entra tenant associated with the resource."
         }
       },
       "type": "object"
@@ -2224,6 +2228,17 @@
         },
         "id": {
           "description": "The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AzureTenant": {
+      "description": "Represents a Microsoft Entra tenant.",
+      "id": "AzureTenant",
+      "properties": {
+        "id": {
+          "description": "The ID of the Microsoft Entra tenant, for example, \"a11aaa11-aa11-1aa1-11aa-1aaa11a\".",
           "type": "string"
         }
       },
@@ -2676,6 +2691,11 @@
           ],
           "type": "string"
         },
+        "firstExploitationDate": {
+          "description": "Date of the earliest known exploitation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "id": {
           "description": "The unique identifier for the vulnerability. e.g. CVE-2021-34527",
           "type": "string"
@@ -2851,6 +2871,82 @@
             "The vulnerable system can be exploited without interaction from any user.",
             "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataAccessEvent": {
+      "description": "Details about a data access attempt made by a principal not authorized under applicable data security policy.",
+      "id": "DataAccessEvent",
+      "properties": {
+        "eventId": {
+          "description": "Unique identifier for data access event.",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "Timestamp of data access event.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operation": {
+          "description": "The operation performed by the principal to access the data.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "READ",
+            "MOVE",
+            "COPY"
+          ],
+          "enumDescriptions": [
+            "The operation is unspecified.",
+            "Represents a read operation.",
+            "Represents a move operation.",
+            "Represents a copy operation."
+          ],
+          "type": "string"
+        },
+        "principalEmail": {
+          "description": "The email address of the principal that accessed the data. The principal could be a user account, service account, Google group, or other.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataFlowEvent": {
+      "description": "Details about a data flow event, in which either the data is moved to or is accessed from a non-compliant geo-location, as defined in the applicable data security policy.",
+      "id": "DataFlowEvent",
+      "properties": {
+        "eventId": {
+          "description": "Unique identifier for data flow event.",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "Timestamp of data flow event.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operation": {
+          "description": "The operation performed by the principal for the data flow event.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "READ",
+            "MOVE",
+            "COPY"
+          ],
+          "enumDescriptions": [
+            "The operation is unspecified.",
+            "Represents a read operation.",
+            "Represents a move operation.",
+            "Represents a copy operation."
+          ],
+          "type": "string"
+        },
+        "principalEmail": {
+          "description": "The email address of the principal that initiated the data flow event. The principal could be a user account, service account, Google group, or other.",
+          "type": "string"
+        },
+        "violatedLocation": {
+          "description": "Non-compliant location of the principal or the data destination.",
           "type": "string"
         }
       },
@@ -3207,6 +3303,20 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "dataAccessEvents": {
+          "description": "Data access events associated with the finding.",
+          "items": {
+            "$ref": "DataAccessEvent"
+          },
+          "type": "array"
+        },
+        "dataFlowEvents": {
+          "description": "Data flow events associated with the finding.",
+          "items": {
+            "$ref": "DataFlowEvent"
+          },
+          "type": "array"
+        },
         "database": {
           "$ref": "Database",
           "description": "Database associated with the finding."
@@ -3253,7 +3363,8 @@
             "OBSERVATION",
             "SCC_ERROR",
             "POSTURE_VIOLATION",
-            "TOXIC_COMBINATION"
+            "TOXIC_COMBINATION",
+            "SENSITIVE_DATA_RISK"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -3263,7 +3374,8 @@
             "Describes a security observation that is for informational purposes.",
             "Describes an error that prevents some SCC functionality.",
             "Describes a potential security risk due to a change in the security posture.",
-            "Describes a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination."
+            "Describes a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination.",
+            "Describes a potential security risk to data assets that contain sensitive data."
           ],
           "type": "string"
         },
@@ -4656,6 +4768,10 @@
         "subscription": {
           "$ref": "GoogleCloudSecuritycenterV2AzureSubscription",
           "description": "The Azure subscription associated with the resource."
+        },
+        "tenant": {
+          "$ref": "GoogleCloudSecuritycenterV2AzureTenant",
+          "description": "The Azure Entra tenant associated with the resource."
         }
       },
       "type": "object"
@@ -4681,6 +4797,17 @@
         },
         "id": {
           "description": "The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AzureTenant": {
+      "description": "Represents a Microsoft Entra tenant.",
+      "id": "GoogleCloudSecuritycenterV2AzureTenant",
+      "properties": {
+        "id": {
+          "description": "The ID of the Microsoft Entra tenant, for example, \"a11aaa11-aa11-1aa1-11aa-1aaa11a\".",
           "type": "string"
         }
       },
@@ -5081,6 +5208,11 @@
           ],
           "type": "string"
         },
+        "firstExploitationDate": {
+          "description": "Date of the earliest known exploitation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "id": {
           "description": "The unique identifier for the vulnerability. e.g. CVE-2021-34527",
           "type": "string"
@@ -5256,6 +5388,82 @@
             "The vulnerable system can be exploited without interaction from any user.",
             "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2DataAccessEvent": {
+      "description": "Details about a data access attempt made by a principal not authorized under applicable data security policy.",
+      "id": "GoogleCloudSecuritycenterV2DataAccessEvent",
+      "properties": {
+        "eventId": {
+          "description": "Unique identifier for data access event.",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "Timestamp of data access event.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operation": {
+          "description": "The operation performed by the principal to access the data.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "READ",
+            "MOVE",
+            "COPY"
+          ],
+          "enumDescriptions": [
+            "The operation is unspecified.",
+            "Represents a read operation.",
+            "Represents a move operation.",
+            "Represents a copy operation."
+          ],
+          "type": "string"
+        },
+        "principalEmail": {
+          "description": "The email address of the principal that accessed the data. The principal could be a user account, service account, Google group, or other.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2DataFlowEvent": {
+      "description": "Details about a data flow event, in which either the data is moved to or is accessed from a non-compliant geo-location, as defined in the applicable data security policy.",
+      "id": "GoogleCloudSecuritycenterV2DataFlowEvent",
+      "properties": {
+        "eventId": {
+          "description": "Unique identifier for data flow event.",
+          "type": "string"
+        },
+        "eventTime": {
+          "description": "Timestamp of data flow event.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operation": {
+          "description": "The operation performed by the principal for the data flow event.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "READ",
+            "MOVE",
+            "COPY"
+          ],
+          "enumDescriptions": [
+            "The operation is unspecified.",
+            "Represents a read operation.",
+            "Represents a move operation.",
+            "Represents a copy operation."
+          ],
+          "type": "string"
+        },
+        "principalEmail": {
+          "description": "The email address of the principal that initiated the data flow event. The principal could be a user account, service account, Google group, or other.",
+          "type": "string"
+        },
+        "violatedLocation": {
+          "description": "Non-compliant location of the principal or the data destination.",
           "type": "string"
         }
       },
@@ -5572,6 +5780,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataAccessEvents": {
+          "description": "Data access events associated with the finding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2DataAccessEvent"
+          },
+          "type": "array"
+        },
+        "dataFlowEvents": {
+          "description": "Data flow events associated with the finding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2DataFlowEvent"
+          },
+          "type": "array"
+        },
         "database": {
           "$ref": "GoogleCloudSecuritycenterV2Database",
           "description": "Database associated with the finding."
@@ -5618,7 +5840,8 @@
             "OBSERVATION",
             "SCC_ERROR",
             "POSTURE_VIOLATION",
-            "TOXIC_COMBINATION"
+            "TOXIC_COMBINATION",
+            "SENSITIVE_DATA_RISK"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
@@ -5628,7 +5851,8 @@
             "Describes a security observation that is for informational purposes.",
             "Describes an error that prevents some SCC functionality.",
             "Describes a potential security risk due to a change in the security posture.",
-            "Describes a combination of security issues that represent a more severe security problem when taken together."
+            "Describes a combination of security issues that represent a more severe security problem when taken together.",
+            "Describes a potential security risk to data assets that contain sensitive data."
           ],
           "type": "string"
         },
