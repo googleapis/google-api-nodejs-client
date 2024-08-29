@@ -1030,7 +1030,7 @@ export namespace analyticsdata_v1beta {
      */
     dimensions?: Schema$Dimension[];
     /**
-     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics (GA4) property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0.
+     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0.
      */
     keepEmptyRows?: boolean | null;
     /**
@@ -1046,11 +1046,11 @@ export namespace analyticsdata_v1beta {
      */
     pivots?: Schema$Pivot[];
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
      */
     property?: string | null;
     /**
-     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      */
     returnPropertyQuota?: boolean | null;
   }
@@ -1083,7 +1083,7 @@ export namespace analyticsdata_v1beta {
      */
     pivotHeaders?: Schema$PivotHeader[];
     /**
-     * This Analytics Property's quota state including this request.
+     * This Google Analytics property's quota state including this request.
      */
     propertyQuota?: Schema$PropertyQuota;
     /**
@@ -1128,7 +1128,7 @@ export namespace analyticsdata_v1beta {
      */
     orderBys?: Schema$OrderBy[];
     /**
-     * Toggles whether to return the current state of this Analytics Property's Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics property's Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      */
     returnPropertyQuota?: boolean | null;
   }
@@ -1157,7 +1157,7 @@ export namespace analyticsdata_v1beta {
      */
     minimums?: Schema$Row[];
     /**
-     * This Analytics Property's Realtime quota state including this request.
+     * This Google Analytics property's Realtime quota state including this request.
      */
     propertyQuota?: Schema$PropertyQuota;
     /**
@@ -1202,7 +1202,7 @@ export namespace analyticsdata_v1beta {
      */
     dimensions?: Schema$Dimension[];
     /**
-     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics (GA4) property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0.
+     * If false or unspecified, each row with all metrics equal to 0 will not be returned. If true, these rows will be returned if they are not separately removed by a filter. Regardless of this `keep_empty_rows` setting, only data recorded by the Google Analytics property can be displayed in a report. For example if a property never logs a `purchase` event, then a query for the `eventName` dimension and `eventCount` metric will not have a row eventName: "purchase" and eventCount: 0.
      */
     keepEmptyRows?: boolean | null;
     /**
@@ -1230,11 +1230,11 @@ export namespace analyticsdata_v1beta {
      */
     orderBys?: Schema$OrderBy[];
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
      */
     property?: string | null;
     /**
-     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Google Analytics property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      */
     returnPropertyQuota?: boolean | null;
   }
@@ -1267,7 +1267,7 @@ export namespace analyticsdata_v1beta {
      */
     minimums?: Schema$Row[];
     /**
-     * This Analytics Property's quota state including this request.
+     * This Google Analytics property's quota state including this request.
      */
     propertyQuota?: Schema$PropertyQuota;
     /**
@@ -1378,7 +1378,7 @@ export namespace analyticsdata_v1beta {
     }
 
     /**
-     * Returns multiple pivot reports in a batch. All reports must be for the same GA4 Property.
+     * Returns multiple pivot reports in a batch. All reports must be for the same Google Analytics property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1476,7 +1476,7 @@ export namespace analyticsdata_v1beta {
     }
 
     /**
-     * Returns multiple reports in a batch. All reports must be for the same GA4 Property.
+     * Returns multiple reports in a batch. All reports must be for the same Google Analytics property.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1668,7 +1668,7 @@ export namespace analyticsdata_v1beta {
     }
 
     /**
-     * Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. In this method, a Google Analytics GA4 Property Identifier is specified in the request, and the metadata response includes Custom dimensions and metrics as well as Universal metadata. For example if a custom metric with parameter name `levels_unlocked` is registered to a property, the Metadata response will contain `customEvent:levels_unlocked`. Universal metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
+     * Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. In this method, a Google Analytics property identifier is specified in the request, and the metadata response includes Custom dimensions and metrics as well as Universal metadata. For example if a custom metric with parameter name `levels_unlocked` is registered to a property, the Metadata response will contain `customEvent:levels_unlocked`. Universal metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2041,7 +2041,7 @@ export namespace analyticsdata_v1beta {
   export interface Params$Resource$Properties$Batchrunpivotreports
     extends StandardParameters {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). This property must be specified for the batch. The property within RunPivotReportRequest may either be unspecified or consistent with this property. Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). This property must be specified for the batch. The property within RunPivotReportRequest may either be unspecified or consistent with this property. Example: properties/1234
      */
     property?: string;
 
@@ -2053,7 +2053,7 @@ export namespace analyticsdata_v1beta {
   export interface Params$Resource$Properties$Batchrunreports
     extends StandardParameters {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). This property must be specified for the batch. The property within RunReportRequest may either be unspecified or consistent with this property. Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). This property must be specified for the batch. The property within RunReportRequest may either be unspecified or consistent with this property. Example: properties/1234
      */
     property?: string;
 
@@ -2065,7 +2065,7 @@ export namespace analyticsdata_v1beta {
   export interface Params$Resource$Properties$Checkcompatibility
     extends StandardParameters {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234
      */
     property?: string;
 
@@ -2077,14 +2077,14 @@ export namespace analyticsdata_v1beta {
   export interface Params$Resource$Properties$Getmetadata
     extends StandardParameters {
     /**
-     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
+     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Runpivotreport
     extends StandardParameters {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
      */
     property?: string;
 
@@ -2096,7 +2096,7 @@ export namespace analyticsdata_v1beta {
   export interface Params$Resource$Properties$Runrealtimereport
     extends StandardParameters {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234
      */
     property?: string;
 
@@ -2108,7 +2108,7 @@ export namespace analyticsdata_v1beta {
   export interface Params$Resource$Properties$Runreport
     extends StandardParameters {
     /**
-     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
+     * A Google Analytics property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Within a batch request, this property should either be unspecified or consistent with the batch-level property. Example: properties/1234
      */
     property?: string;
 
