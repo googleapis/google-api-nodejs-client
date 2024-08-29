@@ -1238,7 +1238,7 @@ export namespace places_v1 {
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextResponse {
     /**
-     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. A list of contextual contents where each entry associates to the corresponding place in the same index in the places field. The contents that are relevant to the `text_query` in the request are preferred. If the contextual content is not available for one of the places, it will return non-contextual content. It will be empty only when the content is unavailable for this place. This list should have as many entries as the list of places if requested.
+     * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. A list of contextual contents where each entry associates to the corresponding place in the same index in the places field. The contents that are relevant to the `text_query` in the request are preferred. If the contextual content is not available for one of the places, it will return non-contextual content. It will be empty only when the content is unavailable for this place. This list will have as many entries as the list of places if requested.
      */
     contextualContents?: Schema$GoogleMapsPlacesV1ContextualContent[];
     /**
