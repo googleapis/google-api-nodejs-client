@@ -427,6 +427,10 @@ export namespace securitycenter_v1beta1 {
      * The Azure subscription associated with the resource.
      */
     subscription?: Schema$AzureSubscription;
+    /**
+     * The Azure Entra tenant associated with the resource.
+     */
+    tenant?: Schema$AzureTenant;
   }
   /**
    * Represents an Azure resource group.
@@ -447,6 +451,15 @@ export namespace securitycenter_v1beta1 {
     displayName?: string | null;
     /**
      * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     */
+    id?: string | null;
+  }
+  /**
+   * Represents a Microsoft Entra tenant.
+   */
+  export interface Schema$AzureTenant {
+    /**
+     * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */
     id?: string | null;
   }
@@ -739,6 +752,10 @@ export namespace securitycenter_v1beta1 {
      */
     exploitReleaseDate?: string | null;
     /**
+     * Date of the earliest known exploitation.
+     */
+    firstExploitationDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -805,6 +822,27 @@ export namespace securitycenter_v1beta1 {
     userInteraction?: string | null;
   }
   /**
+   * Details about a data access attempt made by a principal not authorized under applicable data security policy.
+   */
+  export interface Schema$DataAccessEvent {
+    /**
+     * Unique identifier for data access event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data access event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal to access the data.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that accessed the data. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+  }
+  /**
    * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided.
    */
   export interface Schema$Database {
@@ -832,6 +870,31 @@ export namespace securitycenter_v1beta1 {
      * The version of the database, for example, POSTGRES_14. See [the complete list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      */
     version?: string | null;
+  }
+  /**
+   * Details about a data flow event, in which either the data is moved to or is accessed from a non-compliant geo-location, as defined in the applicable data security policy.
+   */
+  export interface Schema$DataFlowEvent {
+    /**
+     * Unique identifier for data flow event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data flow event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal for the data flow event.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that initiated the data flow event. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+    /**
+     * Non-compliant location of the principal or the data destination.
+     */
+    violatedLocation?: string | null;
   }
   /**
    * Memory hash detection contributing to the binary family match.
@@ -1034,9 +1097,17 @@ export namespace securitycenter_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Data access events associated with the finding.
+     */
+    dataAccessEvents?: Schema$DataAccessEvent[];
+    /**
      * Database associated with the finding.
      */
     database?: Schema$Database;
+    /**
+     * Data flow events associated with the finding.
+     */
+    dataFlowEvents?: Schema$DataFlowEvent[];
     /**
      * Contains more details about the finding.
      */
@@ -2124,6 +2195,10 @@ export namespace securitycenter_v1beta1 {
      * The Azure subscription associated with the resource.
      */
     subscription?: Schema$GoogleCloudSecuritycenterV2AzureSubscription;
+    /**
+     * The Azure Entra tenant associated with the resource.
+     */
+    tenant?: Schema$GoogleCloudSecuritycenterV2AzureTenant;
   }
   /**
    * Represents an Azure resource group.
@@ -2144,6 +2219,15 @@ export namespace securitycenter_v1beta1 {
     displayName?: string | null;
     /**
      * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     */
+    id?: string | null;
+  }
+  /**
+   * Represents a Microsoft Entra tenant.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AzureTenant {
+    /**
+     * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */
     id?: string | null;
   }
@@ -2440,6 +2524,10 @@ export namespace securitycenter_v1beta1 {
      */
     exploitReleaseDate?: string | null;
     /**
+     * Date of the earliest known exploitation.
+     */
+    firstExploitationDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -2506,6 +2594,27 @@ export namespace securitycenter_v1beta1 {
     userInteraction?: string | null;
   }
   /**
+   * Details about a data access attempt made by a principal not authorized under applicable data security policy.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DataAccessEvent {
+    /**
+     * Unique identifier for data access event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data access event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal to access the data.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that accessed the data. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+  }
+  /**
    * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Database {
@@ -2533,6 +2642,31 @@ export namespace securitycenter_v1beta1 {
      * The version of the database, for example, POSTGRES_14. See [the complete list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      */
     version?: string | null;
+  }
+  /**
+   * Details about a data flow event, in which either the data is moved to or is accessed from a non-compliant geo-location, as defined in the applicable data security policy.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DataFlowEvent {
+    /**
+     * Unique identifier for data flow event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data flow event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal for the data flow event.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that initiated the data flow event. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+    /**
+     * Non-compliant location of the principal or the data destination.
+     */
+    violatedLocation?: string | null;
   }
   /**
    * Memory hash detection contributing to the binary family match.
@@ -2761,9 +2895,17 @@ export namespace securitycenter_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Data access events associated with the finding.
+     */
+    dataAccessEvents?: Schema$GoogleCloudSecuritycenterV2DataAccessEvent[];
+    /**
      * Database associated with the finding.
      */
     database?: Schema$GoogleCloudSecuritycenterV2Database;
+    /**
+     * Data flow events associated with the finding.
+     */
+    dataFlowEvents?: Schema$GoogleCloudSecuritycenterV2DataFlowEvent[];
     /**
      * Contains more details about the finding.
      */

@@ -527,6 +527,10 @@ export namespace securitycenter_v1 {
      * The Azure subscription associated with the resource.
      */
     subscription?: Schema$AzureSubscription;
+    /**
+     * The Azure Entra tenant associated with the resource.
+     */
+    tenant?: Schema$AzureTenant;
   }
   /**
    * Represents an Azure resource group.
@@ -547,6 +551,15 @@ export namespace securitycenter_v1 {
     displayName?: string | null;
     /**
      * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     */
+    id?: string | null;
+  }
+  /**
+   * Represents a Microsoft Entra tenant.
+   */
+  export interface Schema$AzureTenant {
+    /**
+     * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */
     id?: string | null;
   }
@@ -910,6 +923,10 @@ export namespace securitycenter_v1 {
      */
     exploitReleaseDate?: string | null;
     /**
+     * Date of the earliest known exploitation.
+     */
+    firstExploitationDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -976,6 +993,27 @@ export namespace securitycenter_v1 {
     userInteraction?: string | null;
   }
   /**
+   * Details about a data access attempt made by a principal not authorized under applicable data security policy.
+   */
+  export interface Schema$DataAccessEvent {
+    /**
+     * Unique identifier for data access event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data access event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal to access the data.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that accessed the data. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+  }
+  /**
    * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided.
    */
   export interface Schema$Database {
@@ -1003,6 +1041,31 @@ export namespace securitycenter_v1 {
      * The version of the database, for example, POSTGRES_14. See [the complete list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      */
     version?: string | null;
+  }
+  /**
+   * Details about a data flow event, in which either the data is moved to or is accessed from a non-compliant geo-location, as defined in the applicable data security policy.
+   */
+  export interface Schema$DataFlowEvent {
+    /**
+     * Unique identifier for data flow event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data flow event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal for the data flow event.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that initiated the data flow event. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+    /**
+     * Non-compliant location of the principal or the data destination.
+     */
+    violatedLocation?: string | null;
   }
   /**
    * Memory hash detection contributing to the binary family match.
@@ -1275,9 +1338,17 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
+     * Data access events associated with the finding.
+     */
+    dataAccessEvents?: Schema$DataAccessEvent[];
+    /**
      * Database associated with the finding.
      */
     database?: Schema$Database;
+    /**
+     * Data flow events associated with the finding.
+     */
+    dataFlowEvents?: Schema$DataFlowEvent[];
     /**
      * Contains more details about the finding.
      */
@@ -2307,6 +2378,10 @@ export namespace securitycenter_v1 {
      * The Azure subscription associated with the resource.
      */
     subscription?: Schema$GoogleCloudSecuritycenterV2AzureSubscription;
+    /**
+     * The Azure Entra tenant associated with the resource.
+     */
+    tenant?: Schema$GoogleCloudSecuritycenterV2AzureTenant;
   }
   /**
    * Represents an Azure resource group.
@@ -2327,6 +2402,15 @@ export namespace securitycenter_v1 {
     displayName?: string | null;
     /**
      * The UUID of the Azure subscription, for example, `291bba3f-e0a5-47bc-a099-3bdcb2a50a05`.
+     */
+    id?: string | null;
+  }
+  /**
+   * Represents a Microsoft Entra tenant.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2AzureTenant {
+    /**
+     * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */
     id?: string | null;
   }
@@ -2623,6 +2707,10 @@ export namespace securitycenter_v1 {
      */
     exploitReleaseDate?: string | null;
     /**
+     * Date of the earliest known exploitation.
+     */
+    firstExploitationDate?: string | null;
+    /**
      * The unique identifier for the vulnerability. e.g. CVE-2021-34527
      */
     id?: string | null;
@@ -2689,6 +2777,27 @@ export namespace securitycenter_v1 {
     userInteraction?: string | null;
   }
   /**
+   * Details about a data access attempt made by a principal not authorized under applicable data security policy.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DataAccessEvent {
+    /**
+     * Unique identifier for data access event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data access event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal to access the data.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that accessed the data. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+  }
+  /**
    * Represents database access information, such as queries. A database may be a sub-resource of an instance (as in the case of Cloud SQL instances or Cloud Spanner instances), or the database instance itself. Some database resources might not have the [full resource name](https://google.aip.dev/122#full-resource-names) populated because these resource types, such as Cloud SQL databases, are not yet supported by Cloud Asset Inventory. In these cases only the display name is provided.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Database {
@@ -2716,6 +2825,31 @@ export namespace securitycenter_v1 {
      * The version of the database, for example, POSTGRES_14. See [the complete list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1/SqlDatabaseVersion).
      */
     version?: string | null;
+  }
+  /**
+   * Details about a data flow event, in which either the data is moved to or is accessed from a non-compliant geo-location, as defined in the applicable data security policy.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DataFlowEvent {
+    /**
+     * Unique identifier for data flow event.
+     */
+    eventId?: string | null;
+    /**
+     * Timestamp of data flow event.
+     */
+    eventTime?: string | null;
+    /**
+     * The operation performed by the principal for the data flow event.
+     */
+    operation?: string | null;
+    /**
+     * The email address of the principal that initiated the data flow event. The principal could be a user account, service account, Google group, or other.
+     */
+    principalEmail?: string | null;
+    /**
+     * Non-compliant location of the principal or the data destination.
+     */
+    violatedLocation?: string | null;
   }
   /**
    * Memory hash detection contributing to the binary family match.
@@ -2944,9 +3078,17 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
+     * Data access events associated with the finding.
+     */
+    dataAccessEvents?: Schema$GoogleCloudSecuritycenterV2DataAccessEvent[];
+    /**
      * Database associated with the finding.
      */
     database?: Schema$GoogleCloudSecuritycenterV2Database;
+    /**
+     * Data flow events associated with the finding.
+     */
+    dataFlowEvents?: Schema$GoogleCloudSecuritycenterV2DataFlowEvent[];
     /**
      * Contains more details about the finding.
      */
@@ -11081,6 +11223,7 @@ export namespace securitycenter_v1 {
     securityHealthAnalyticsSettings: Resource$Organizations$Securityhealthanalyticssettings;
     simulations: Resource$Organizations$Simulations;
     sources: Resource$Organizations$Sources;
+    valuedResources: Resource$Organizations$Valuedresources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Organizations$Assets(this.context);
@@ -11104,6 +11247,9 @@ export namespace securitycenter_v1 {
         );
       this.simulations = new Resource$Organizations$Simulations(this.context);
       this.sources = new Resource$Organizations$Sources(this.context);
+      this.valuedResources = new Resource$Organizations$Valuedresources(
+        this.context
+      );
     }
 
     /**
@@ -19431,6 +19577,133 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudSecuritycenterV1ExternalSystem;
+  }
+
+  export class Resource$Organizations$Valuedresources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the valued resources for a set of simulation results and filter.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Valuedresources$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Valuedresources$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListValuedResourcesResponse>;
+    list(
+      params: Params$Resource$Organizations$Valuedresources$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Valuedresources$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>,
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Valuedresources$List,
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListValuedResourcesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Valuedresources$List
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListValuedResourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListValuedResourcesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Valuedresources$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Valuedresources$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/valuedResources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListValuedResourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListValuedResourcesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Valuedresources$List
+    extends StandardParameters {
+    /**
+     * The filter expression that filters the valued resources in the response. Supported fields: * `resource_value` supports = * `resource_type` supports =
+     */
+    filter?: string;
+    /**
+     * Optional. The fields by which to order the valued resources response. Supported fields: * `exposed_score` * `resource_value` * `resource_type` * `resource` * `display_name` Values should be a comma separated list of fields. For example: `exposed_score,resource_value`. The default sorting order is descending. To specify ascending or descending order for a field, append a ` ASC` or a ` DESC` suffix, respectively; for example: `exposed_score DESC`.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListValuedResourcesResponse`; indicates that this is a continuation of a prior `ListValuedResources` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of parent to list valued resources. Valid formats: `organizations/{organization\}`, `organizations/{organization\}/simulations/{simulation\}` `organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Projects {
