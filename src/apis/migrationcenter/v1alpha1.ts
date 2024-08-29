@@ -1909,10 +1909,6 @@ export namespace migrationcenter_v1alpha1 {
      */
     errors?: Schema$ImportError[];
     /**
-     * Error details for a JSON file.
-     */
-    jsonError?: Schema$ImportRowErrorJsonErrorDetails;
-    /**
      * The row number where the error was detected.
      */
     rowNumber?: number | null;
@@ -1951,10 +1947,6 @@ export namespace migrationcenter_v1alpha1 {
      */
     rowNumber?: number | null;
   }
-  /**
-   * Error details for a JSON file.
-   */
-  export interface Schema$ImportRowErrorJsonErrorDetails {}
   /**
    * Error details for an XLSX file.
    */
