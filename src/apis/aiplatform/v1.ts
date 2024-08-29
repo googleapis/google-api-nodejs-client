@@ -112,6 +112,8 @@ export namespace aiplatform_v1 {
    */
   export class Aiplatform {
     context: APIRequestContext;
+    datasets: Resource$Datasets;
+    endpoints: Resource$Endpoints;
     projects: Resource$Projects;
     publishers: Resource$Publishers;
 
@@ -121,6 +123,8 @@ export namespace aiplatform_v1 {
         google,
       };
 
+      this.datasets = new Resource$Datasets(this.context);
+      this.endpoints = new Resource$Endpoints(this.context);
       this.projects = new Resource$Projects(this.context);
       this.publishers = new Resource$Publishers(this.context);
     }
@@ -4000,13 +4004,13 @@ export namespace aiplatform_v1 {
      */
     entityIdColumns?: string[] | null;
     /**
-     * Optional. If the source is a time-series source, this can be set to control how downstream sources (ex: FeatureOnlineStore.FeatureView) will treat time series sources. If not set, will treat the source as a time-series source with feature_timestamp as timestamp column and no scan boundary.
+     * Optional. If the source is a time-series source, this can be set to control how downstream sources (ex: FeatureView ) will treat time-series sources. If not set, will treat the source as a time-series source with `feature_timestamp` as timestamp column and no scan boundary.
      */
     timeSeries?: Schema$GoogleCloudAiplatformV1FeatureGroupBigQueryTimeSeries;
   }
   export interface Schema$GoogleCloudAiplatformV1FeatureGroupBigQueryTimeSeries {
     /**
-     * Optional. Column hosting timestamp values for a time-series source. Will be used to determine the latest featureValues for each entity. Optional. If not provided, a feature_timestamp column of type TIMESTAMP will be used.
+     * Optional. Column hosting timestamp values for a time-series source. Will be used to determine the latest `feature_values` for each entity. Optional. If not provided, column named `feature_timestamp` of type `TIMESTAMP` will be used.
      */
     timestampColumn?: string | null;
   }
@@ -4608,6 +4612,10 @@ export namespace aiplatform_v1 {
      */
     rowSynced?: string | null;
     /**
+     * Lower bound of the system time watermark for the sync job. This is only set for continuously syncing feature views.
+     */
+    systemWatermarkTime?: string | null;
+    /**
      * Output only. BigQuery slot milliseconds consumed for the sync job.
      */
     totalSlot?: string | null;
@@ -5110,7 +5118,7 @@ export namespace aiplatform_v1 {
     topP?: number | null;
   }
   /**
-   * Routing config.
+   * The configuration for routing the request to a specific model.
    */
   export interface Schema$GoogleCloudAiplatformV1GenerationConfigRoutingConfig {
     /**
@@ -5136,7 +5144,7 @@ export namespace aiplatform_v1 {
    */
   export interface Schema$GoogleCloudAiplatformV1GenerationConfigRoutingConfigManualRoutingMode {
     /**
-     * The model name to use. Only the public LLM models are accepted. e.g. gemini-1.5-pro-001.
+     * The model name to use. Only the public LLM models are accepted. e.g. 'gemini-1.5-pro-001'.
      */
     modelName?: string | null;
   }
@@ -8013,7 +8021,7 @@ export namespace aiplatform_v1 {
     value?: number[] | null;
   }
   /**
-   * Numeric filter is used to search a subset of the entities by using boolean rules on numeric columns. For example: Database Point 0: {name: “a” value_int: 42\} {name: “b” value_float: 1.0\} Database Point 1: {name: “a” value_int: 10\} {name: “b” value_float: 2.0\} Database Point 2: {name: “a” value_int: -1\} {name: “b” value_float: 3.0\} Query: {name: “a” value_int: 12 operator: LESS\} // Matches Point 1, 2 {name: “b” value_float: 2.0 operator: EQUAL\} // Matches Point 1
+   * Numeric filter is used to search a subset of the entities by using boolean rules on numeric columns. For example: Database Point 0: {name: "a" value_int: 42\} {name: "b" value_float: 1.0\} Database Point 1: {name: "a" value_int: 10\} {name: "b" value_float: 2.0\} Database Point 2: {name: "a" value_int: -1\} {name: "b" value_float: 3.0\} Query: {name: "a" value_int: 12 operator: LESS\} // Matches Point 1, 2 {name: "b" value_float: 2.0 operator: EQUAL\} // Matches Point 1
    */
   export interface Schema$GoogleCloudAiplatformV1NearestNeighborQueryNumericFilter {
     /**
@@ -8235,7 +8243,7 @@ export namespace aiplatform_v1 {
      */
     displayName?: string | null;
     /**
-     * Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookRuntimeTemplate has an encryption spec.
+     * Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookService.NotebookRuntimeTemplate has an encryption spec.
      */
     encryptionSpec?: Schema$GoogleCloudAiplatformV1EncryptionSpec;
     /**
@@ -8788,6 +8796,14 @@ export namespace aiplatform_v1 {
      * Optional. Persistent Resource runtime spec. For example, used for Ray cluster configuration.
      */
     resourceRuntimeSpec?: Schema$GoogleCloudAiplatformV1ResourceRuntimeSpec;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. Time when the PersistentResource for the first time entered the `RUNNING` state.
      */
@@ -9378,6 +9394,10 @@ export namespace aiplatform_v1 {
      */
     deployGke?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployGke;
     /**
+     * Optional. Multiple setups to deploy the PublisherModel to Vertex Endpoint.
+     */
+    multiDeployVertex?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployVertex;
+    /**
      * Optional. Open evaluation pipeline of the PublisherModel.
      */
     openEvaluationPipeline?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences;
@@ -9488,6 +9508,15 @@ export namespace aiplatform_v1 {
      * Optional. GKE deployment configuration in yaml format.
      */
     gkeYamlConfigs?: string[] | null;
+  }
+  /**
+   * Multiple setups to deploy the PublisherModel.
+   */
+  export interface Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeployVertex {
+    /**
+     * Optional. One click deployment configurations.
+     */
+    multiDeployVertex?: Schema$GoogleCloudAiplatformV1PublisherModelCallToActionDeploy[];
   }
   /**
    * Open fine tuning pipelines.
@@ -10371,6 +10400,10 @@ export namespace aiplatform_v1 {
      * Set to use data source powered by Vertex AI Search.
      */
     vertexAiSearch?: Schema$GoogleCloudAiplatformV1VertexAISearch;
+    /**
+     * Set to use data source powered by Vertex RAG store. User data is uploaded via the VertexRagDataService.
+     */
+    vertexRagStore?: Schema$GoogleCloudAiplatformV1VertexRagStore;
   }
   /**
    * Input for rouge metric.
@@ -10723,6 +10756,10 @@ export namespace aiplatform_v1 {
      * Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.
      */
     disableRetries?: boolean | null;
+    /**
+     * Optional. This is the maximum duration that a job will wait for the requested resources to be provisioned if the scheduling strategy is set to [Strategy.DWS_FLEX_START]. If set to 0, the job will wait indefinitely. The default is 24 hours.
+     */
+    maxWaitDuration?: string | null;
     /**
      * Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.
      */
@@ -14448,9 +14485,17 @@ export namespace aiplatform_v1 {
      */
     totalBillableTokenCount?: string | null;
     /**
+     * The number of examples in the dataset that have been truncated by any amount.
+     */
+    totalTruncatedExampleCount?: string | null;
+    /**
      * Output only. Number of tuning characters in the tuning dataset.
      */
     totalTuningCharacterCount?: string | null;
+    /**
+     * A partial sample of the indices (starting from 1) of the truncated examples.
+     */
+    truncatedExampleIndices?: string[] | null;
     /**
      * Output only. Number of examples in the tuning dataset.
      */
@@ -15671,13 +15716,47 @@ export namespace aiplatform_v1 {
     stringValue?: string | null;
   }
   /**
-   * Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/vertex-ai-search-and-conversation
+   * Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/products/agent-builder
    */
   export interface Schema$GoogleCloudAiplatformV1VertexAISearch {
     /**
-     * Required. Fully-qualified Vertex AI Search's datastore resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
+     * Required. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
      */
     datastore?: string | null;
+  }
+  /**
+   * Retrieve from Vertex RAG Store for grounding.
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexRagStore {
+    /**
+     * Optional. Deprecated. Please use rag_resources instead.
+     */
+    ragCorpora?: string[] | null;
+    /**
+     * Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.
+     */
+    ragResources?: Schema$GoogleCloudAiplatformV1VertexRagStoreRagResource[];
+    /**
+     * Optional. Number of top k results to return from the selected corpora.
+     */
+    similarityTopK?: number | null;
+    /**
+     * Optional. Only return results with vector distance smaller than the threshold.
+     */
+    vectorDistanceThreshold?: number | null;
+  }
+  /**
+   * The definition of the Rag resource.
+   */
+  export interface Schema$GoogleCloudAiplatformV1VertexRagStoreRagResource {
+    /**
+     * Optional. RagCorpora resource name. Format: `projects/{project\}/locations/{location\}/ragCorpora/{rag_corpus\}`
+     */
+    ragCorpus?: string | null;
+    /**
+     * Optional. rag_file_id. The files should be in the same rag_corpus set in rag_corpus field.
+     */
+    ragFileIds?: string[] | null;
   }
   /**
    * Metadata describes the input video content.
@@ -16033,6 +16112,1646 @@ export namespace aiplatform_v1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+
+  export class Resource$Datasets {
+    context: APIRequestContext;
+    datasetVersions: Resource$Datasets$Datasetversions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.datasetVersions = new Resource$Datasets$Datasetversions(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Datasets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Datasets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Datasets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Datasets$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Datasets$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Datasets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Datasets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Datasets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Datasets$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Datasets$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Datasets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Datasets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>;
+    get(
+      params: Params$Resource$Datasets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Datasets$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+    ): void;
+    get(
+      params: Params$Resource$Datasets$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1Dataset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1Dataset>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Datasets in a Location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Datasets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Datasets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>;
+    list(
+      params: Params$Resource$Datasets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Datasets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Datasets$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/datasets').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListDatasetsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Datasets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Datasets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>;
+    patch(
+      params: Params$Resource$Datasets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Datasets$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+    ): void;
+    patch(
+      params: Params$Resource$Datasets$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Patch
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1Dataset>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1Dataset>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Datasets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1Dataset>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1Dataset>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Datasets$Create extends StandardParameters {
+    /**
+     * Required. The resource name of the Location to create the Dataset in. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1Dataset;
+  }
+  export interface Params$Resource$Datasets$Delete extends StandardParameters {
+    /**
+     * Required. The resource name of the Dataset to delete. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Datasets$Get extends StandardParameters {
+    /**
+     * Required. The name of the Dataset resource.
+     */
+    name?: string;
+    /**
+     * Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Datasets$List extends StandardParameters {
+    /**
+     * An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `display_name`: supports = and != * `metadata_schema_uri`: supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels."a key"`. Some examples: * `displayName="myDisplayName"` * `labels.myKey="myValue"`
+     */
+    filter?: string;
+    /**
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `display_name` * `create_time` * `update_time`
+     */
+    orderBy?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the Dataset's parent resource. Format: `projects/{project\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Datasets$Patch extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of the Dataset.
+     */
+    name?: string;
+    /**
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Updatable fields: * `display_name` * `description` * `labels`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1Dataset;
+  }
+
+  export class Resource$Datasets$Datasetversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a version from a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Datasets$Datasetversions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Datasets$Datasetversions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Datasets$Datasetversions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Datasets$Datasetversions$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Datasets$Datasetversions$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Datasetversions$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datasets$Datasetversions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Datasetversions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/datasetVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a Dataset version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Datasets$Datasetversions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Datasets$Datasetversions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Datasets$Datasetversions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Datasets$Datasetversions$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Datasets$Datasetversions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Datasetversions$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datasets$Datasetversions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Datasetversions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Dataset version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Datasets$Datasetversions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Datasets$Datasetversions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    get(
+      params: Params$Resource$Datasets$Datasetversions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Datasets$Datasetversions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    get(
+      params: Params$Resource$Datasets$Datasetversions$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Datasetversions$Get
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datasets$Datasetversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Datasetversions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists DatasetVersions in a Dataset.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Datasets$Datasetversions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Datasets$Datasetversions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>;
+    list(
+      params: Params$Resource$Datasets$Datasetversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Datasets$Datasetversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Datasets$Datasetversions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Datasetversions$List
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datasets$Datasetversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Datasetversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/datasetVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ListDatasetVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a DatasetVersion.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Datasets$Datasetversions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Datasets$Datasetversions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>;
+    patch(
+      params: Params$Resource$Datasets$Datasetversions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Datasets$Datasetversions$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    patch(
+      params: Params$Resource$Datasets$Datasetversions$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Datasetversions$Patch
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1DatasetVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1DatasetVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datasets$Datasetversions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Datasetversions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1DatasetVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Restores a dataset version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Datasets$Datasetversions$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Datasets$Datasetversions$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    restore(
+      params: Params$Resource$Datasets$Datasetversions$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Datasets$Datasetversions$Restore,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      params: Params$Resource$Datasets$Datasetversions$Restore,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Datasets$Datasetversions$Restore
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Datasets$Datasetversions$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Datasets$Datasetversions$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Datasets$Datasetversions$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the Dataset resource. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1DatasetVersion;
+  }
+  export interface Params$Resource$Datasets$Datasetversions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Dataset version to delete. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Datasets$Datasetversions$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Dataset version to delete. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
+     */
+    name?: string;
+    /**
+     * Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Datasets$Datasetversions$List
+    extends StandardParameters {
+    /**
+     * Optional. The standard list filter.
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The standard list page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Dataset to list DatasetVersions from. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}`
+     */
+    parent?: string;
+    /**
+     * Optional. Mask specifying which fields to read.
+     */
+    readMask?: string;
+  }
+  export interface Params$Resource$Datasets$Datasetversions$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. The resource name of the DatasetVersion.
+     */
+    name?: string;
+    /**
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Updatable fields: * `display_name`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1DatasetVersion;
+  }
+  export interface Params$Resource$Datasets$Datasetversions$Restore
+    extends StandardParameters {
+    /**
+     * Required. The name of the DatasetVersion resource. Format: `projects/{project\}/locations/{location\}/datasets/{dataset\}/datasetVersions/{dataset_version\}`
+     */
+    name?: string;
+  }
+
+  export class Resource$Endpoints {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Return a list of tokens based on the input text.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeTokens(
+      params: Params$Resource$Endpoints$Computetokens,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    computeTokens(
+      params?: Params$Resource$Endpoints$Computetokens,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
+    computeTokens(
+      params: Params$Resource$Endpoints$Computetokens,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeTokens(
+      params: Params$Resource$Endpoints$Computetokens,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+    ): void;
+    computeTokens(
+      params: Params$Resource$Endpoints$Computetokens,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+    ): void;
+    computeTokens(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+    ): void;
+    computeTokens(
+      paramsOrCallback?:
+        | Params$Resource$Endpoints$Computetokens
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Endpoints$Computetokens;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Endpoints$Computetokens;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+endpoint}:computeTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Perform a token counting.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countTokens(
+      params: Params$Resource$Endpoints$Counttokens,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countTokens(
+      params?: Params$Resource$Endpoints$Counttokens,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
+    countTokens(
+      params: Params$Resource$Endpoints$Counttokens,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countTokens(
+      params: Params$Resource$Endpoints$Counttokens,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+    ): void;
+    countTokens(
+      params: Params$Resource$Endpoints$Counttokens,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+    ): void;
+    countTokens(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+    ): void;
+    countTokens(
+      paramsOrCallback?:
+        | Params$Resource$Endpoints$Counttokens
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Endpoints$Counttokens;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Endpoints$Counttokens;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+endpoint}:countTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1CountTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1CountTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generate content with multimodal inputs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateContent(
+      params: Params$Resource$Endpoints$Generatecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateContent(
+      params?: Params$Resource$Endpoints$Generatecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    generateContent(
+      params: Params$Resource$Endpoints$Generatecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateContent(
+      params: Params$Resource$Endpoints$Generatecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      params: Params$Resource$Endpoints$Generatecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      paramsOrCallback?:
+        | Params$Resource$Endpoints$Generatecontent
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Endpoints$Generatecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Endpoints$Generatecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+model}:generateContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['model'],
+        pathParams: ['model'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generate content with multimodal inputs with streaming support.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamGenerateContent(
+      params: Params$Resource$Endpoints$Streamgeneratecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    streamGenerateContent(
+      params?: Params$Resource$Endpoints$Streamgeneratecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    streamGenerateContent(
+      params: Params$Resource$Endpoints$Streamgeneratecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamGenerateContent(
+      params: Params$Resource$Endpoints$Streamgeneratecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    streamGenerateContent(
+      params: Params$Resource$Endpoints$Streamgeneratecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    streamGenerateContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    streamGenerateContent(
+      paramsOrCallback?:
+        | Params$Resource$Endpoints$Streamgeneratecontent
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Endpoints$Streamgeneratecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Endpoints$Streamgeneratecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+model}:streamGenerateContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['model'],
+        pathParams: ['model'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Endpoints$Computetokens
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to get lists of tokens and token ids.
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1ComputeTokensRequest;
+  }
+  export interface Params$Resource$Endpoints$Counttokens
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to perform token counting. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1CountTokensRequest;
+  }
+  export interface Params$Resource$Endpoints$Generatecontent
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    model?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1GenerateContentRequest;
+  }
+  export interface Params$Resource$Endpoints$Streamgeneratecontent
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    model?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1GenerateContentRequest;
   }
 
   export class Resource$Projects {
@@ -27098,7 +28817,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Endpoints$Generatecontent
     extends StandardParameters {
     /**
-     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
      */
     model?: string;
 
@@ -27208,7 +28927,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Endpoints$Streamgeneratecontent
     extends StandardParameters {
     /**
-     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
      */
     model?: string;
 
@@ -60315,7 +62034,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Publishers$Models$Generatecontent
     extends StandardParameters {
     /**
-     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
      */
     model?: string;
 
@@ -60363,7 +62082,7 @@ export namespace aiplatform_v1 {
   export interface Params$Resource$Projects$Locations$Publishers$Models$Streamgeneratecontent
     extends StandardParameters {
     /**
-     * Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project\}/locations/{location\}/publishers/x/models/x`
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
      */
     model?: string;
 
@@ -72659,6 +74378,297 @@ export namespace aiplatform_v1 {
     }
 
     /**
+     * Return a list of tokens based on the input text.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeTokens(
+      params: Params$Resource$Publishers$Models$Computetokens,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    computeTokens(
+      params?: Params$Resource$Publishers$Models$Computetokens,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>;
+    computeTokens(
+      params: Params$Resource$Publishers$Models$Computetokens,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeTokens(
+      params: Params$Resource$Publishers$Models$Computetokens,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+    ): void;
+    computeTokens(
+      params: Params$Resource$Publishers$Models$Computetokens,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+    ): void;
+    computeTokens(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+    ): void;
+    computeTokens(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Models$Computetokens
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Models$Computetokens;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Models$Computetokens;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+endpoint}:computeTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1ComputeTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Perform a token counting.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countTokens(
+      params: Params$Resource$Publishers$Models$Counttokens,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countTokens(
+      params?: Params$Resource$Publishers$Models$Counttokens,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>;
+    countTokens(
+      params: Params$Resource$Publishers$Models$Counttokens,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countTokens(
+      params: Params$Resource$Publishers$Models$Counttokens,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+    ): void;
+    countTokens(
+      params: Params$Resource$Publishers$Models$Counttokens,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+    ): void;
+    countTokens(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+    ): void;
+    countTokens(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Models$Counttokens
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1CountTokensResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Models$Counttokens;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Models$Counttokens;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+endpoint}:countTokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['endpoint'],
+        pathParams: ['endpoint'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1CountTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1CountTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Generate content with multimodal inputs.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateContent(
+      params: Params$Resource$Publishers$Models$Generatecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateContent(
+      params?: Params$Resource$Publishers$Models$Generatecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    generateContent(
+      params: Params$Resource$Publishers$Models$Generatecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateContent(
+      params: Params$Resource$Publishers$Models$Generatecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      params: Params$Resource$Publishers$Models$Generatecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    generateContent(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Models$Generatecontent
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Models$Generatecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Models$Generatecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+model}:generateContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['model'],
+        pathParams: ['model'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets a Model Garden publisher model.
      *
      * @param params - Parameters for request
@@ -72751,8 +74761,141 @@ export namespace aiplatform_v1 {
         );
       }
     }
+
+    /**
+     * Generate content with multimodal inputs with streaming support.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamGenerateContent(
+      params: Params$Resource$Publishers$Models$Streamgeneratecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    streamGenerateContent(
+      params?: Params$Resource$Publishers$Models$Streamgeneratecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>;
+    streamGenerateContent(
+      params: Params$Resource$Publishers$Models$Streamgeneratecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamGenerateContent(
+      params: Params$Resource$Publishers$Models$Streamgeneratecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    streamGenerateContent(
+      params: Params$Resource$Publishers$Models$Streamgeneratecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    streamGenerateContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+    ): void;
+    streamGenerateContent(
+      paramsOrCallback?:
+        | Params$Resource$Publishers$Models$Streamgeneratecontent
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAiplatformV1GenerateContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Publishers$Models$Streamgeneratecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Publishers$Models$Streamgeneratecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://aiplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+model}:streamGenerateContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['model'],
+        pathParams: ['model'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAiplatformV1GenerateContentResponse>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Publishers$Models$Computetokens
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to get lists of tokens and token ids.
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1ComputeTokensRequest;
+  }
+  export interface Params$Resource$Publishers$Models$Counttokens
+    extends StandardParameters {
+    /**
+     * Required. The name of the Endpoint requested to perform token counting. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    endpoint?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1CountTokensRequest;
+  }
+  export interface Params$Resource$Publishers$Models$Generatecontent
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    model?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1GenerateContentRequest;
+  }
   export interface Params$Resource$Publishers$Models$Get
     extends StandardParameters {
     /**
@@ -72775,5 +74918,17 @@ export namespace aiplatform_v1 {
      * Optional. PublisherModel view specifying which fields to read.
      */
     view?: string;
+  }
+  export interface Params$Resource$Publishers$Models$Streamgeneratecontent
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     */
+    model?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAiplatformV1GenerateContentRequest;
   }
 }

@@ -305,6 +305,492 @@
   },
   "protocol": "rest",
   "resources": {
+    "datasets": {
+      "methods": {
+        "create": {
+          "description": "Creates a Dataset.",
+          "flatPath": "v1beta1/datasets",
+          "httpMethod": "POST",
+          "id": "aiplatform.datasets.create",
+          "parameterOrder": [],
+          "parameters": {
+            "parent": {
+              "description": "Required. The resource name of the Location to create the Dataset in. Format: `projects/{project}/locations/{location}`",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/datasets",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1Dataset"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a Dataset.",
+          "flatPath": "v1beta1/datasets/{datasetsId}",
+          "httpMethod": "DELETE",
+          "id": "aiplatform.datasets.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the Dataset to delete. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+              "location": "path",
+              "pattern": "^datasets/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}",
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "get": {
+          "description": "Gets a Dataset.",
+          "flatPath": "v1beta1/datasets/{datasetsId}",
+          "httpMethod": "GET",
+          "id": "aiplatform.datasets.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the Dataset resource.",
+              "location": "path",
+              "pattern": "^datasets/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "readMask": {
+              "description": "Mask specifying which fields to read.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}",
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1Dataset"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "list": {
+          "description": "Lists Datasets in a Location.",
+          "flatPath": "v1beta1/datasets",
+          "httpMethod": "GET",
+          "id": "aiplatform.datasets.list",
+          "parameterOrder": [],
+          "parameters": {
+            "filter": {
+              "description": "An expression for filtering the results of the request. For field names both snake_case and camelCase are supported. * `display_name`: supports = and != * `metadata_schema_uri`: supports = and != * `labels` supports general map functions that is: * `labels.key=value` - key:value equality * `labels.key:* or labels:key - key existence * A key including a space must be quoted. `labels.\"a key\"`. Some examples: * `displayName=\"myDisplayName\"` * `labels.myKey=\"myValue\"`",
+              "location": "query",
+              "type": "string"
+            },
+            "orderBy": {
+              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `display_name` * `create_time` * `update_time`",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The standard list page size.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The standard list page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The name of the Dataset's parent resource. Format: `projects/{project}/locations/{location}`",
+              "location": "query",
+              "type": "string"
+            },
+            "readMask": {
+              "description": "Mask specifying which fields to read.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/datasets",
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1ListDatasetsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "patch": {
+          "description": "Updates a Dataset.",
+          "flatPath": "v1beta1/datasets/{datasetsId}",
+          "httpMethod": "PATCH",
+          "id": "aiplatform.datasets.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Identifier. The resource name of the Dataset.",
+              "location": "path",
+              "pattern": "^datasets/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Updatable fields: * `display_name` * `description` * `labels`",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1Dataset"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1Dataset"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      },
+      "resources": {
+        "datasetVersions": {
+          "methods": {
+            "create": {
+              "description": "Create a version from a Dataset.",
+              "flatPath": "v1beta1/datasets/{datasetsId}/datasetVersions",
+              "httpMethod": "POST",
+              "id": "aiplatform.datasets.datasetVersions.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the Dataset resource. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                  "location": "path",
+                  "pattern": "^datasets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/datasetVersions",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1DatasetVersion"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a Dataset version.",
+              "flatPath": "v1beta1/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+              "httpMethod": "DELETE",
+              "id": "aiplatform.datasets.datasetVersions.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the Dataset version to delete. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                  "location": "path",
+                  "pattern": "^datasets/[^/]+/datasetVersions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a Dataset version.",
+              "flatPath": "v1beta1/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+              "httpMethod": "GET",
+              "id": "aiplatform.datasets.datasetVersions.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the Dataset version to delete. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                  "location": "path",
+                  "pattern": "^datasets/[^/]+/datasetVersions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "readMask": {
+                  "description": "Mask specifying which fields to read.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1DatasetVersion"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists DatasetVersions in a Dataset.",
+              "flatPath": "v1beta1/datasets/{datasetsId}/datasetVersions",
+              "httpMethod": "GET",
+              "id": "aiplatform.datasets.datasetVersions.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. The standard list filter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The standard list page size.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The standard list page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The resource name of the Dataset to list DatasetVersions from. Format: `projects/{project}/locations/{location}/datasets/{dataset}`",
+                  "location": "path",
+                  "pattern": "^datasets/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "readMask": {
+                  "description": "Optional. Mask specifying which fields to read.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/datasetVersions",
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1ListDatasetVersionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a DatasetVersion.",
+              "flatPath": "v1beta1/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}",
+              "httpMethod": "PATCH",
+              "id": "aiplatform.datasets.datasetVersions.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Identifier. The resource name of the DatasetVersion.",
+                  "location": "path",
+                  "pattern": "^datasets/[^/]+/datasetVersions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask. Updatable fields: * `display_name`",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1DatasetVersion"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1DatasetVersion"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "restore": {
+              "description": "Restores a dataset version.",
+              "flatPath": "v1beta1/datasets/{datasetsId}/datasetVersions/{datasetVersionsId}:restore",
+              "httpMethod": "GET",
+              "id": "aiplatform.datasets.datasetVersions.restore",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the DatasetVersion resource. Format: `projects/{project}/locations/{location}/datasets/{dataset}/datasetVersions/{dataset_version}`",
+                  "location": "path",
+                  "pattern": "^datasets/[^/]+/datasetVersions/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:restore",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "endpoints": {
+      "methods": {
+        "computeTokens": {
+          "description": "Return a list of tokens based on the input text.",
+          "flatPath": "v1beta1/endpoints/{endpointsId}:computeTokens",
+          "httpMethod": "POST",
+          "id": "aiplatform.endpoints.computeTokens",
+          "parameterOrder": [
+            "endpoint"
+          ],
+          "parameters": {
+            "endpoint": {
+              "description": "Required. The name of the Endpoint requested to get lists of tokens and token ids.",
+              "location": "path",
+              "pattern": "^endpoints/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+endpoint}:computeTokens",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "countTokens": {
+          "description": "Perform a token counting.",
+          "flatPath": "v1beta1/endpoints/{endpointsId}:countTokens",
+          "httpMethod": "POST",
+          "id": "aiplatform.endpoints.countTokens",
+          "parameterOrder": [
+            "endpoint"
+          ],
+          "parameters": {
+            "endpoint": {
+              "description": "Required. The name of the Endpoint requested to perform token counting. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+              "location": "path",
+              "pattern": "^endpoints/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+endpoint}:countTokens",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1CountTokensRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1CountTokensResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "generateContent": {
+          "description": "Generate content with multimodal inputs.",
+          "flatPath": "v1beta1/endpoints/{endpointsId}:generateContent",
+          "httpMethod": "POST",
+          "id": "aiplatform.endpoints.generateContent",
+          "parameterOrder": [
+            "model"
+          ],
+          "parameters": {
+            "model": {
+              "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+              "location": "path",
+              "pattern": "^endpoints/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+model}:generateContent",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1GenerateContentRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "streamGenerateContent": {
+          "description": "Generate content with multimodal inputs with streaming support.",
+          "flatPath": "v1beta1/endpoints/{endpointsId}:streamGenerateContent",
+          "httpMethod": "POST",
+          "id": "aiplatform.endpoints.streamGenerateContent",
+          "parameterOrder": [
+            "model"
+          ],
+          "parameters": {
+            "model": {
+              "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+              "location": "path",
+              "pattern": "^endpoints/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+model}:streamGenerateContent",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1GenerateContentRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        }
+      }
+    },
     "media": {
       "methods": {
         "upload": {
@@ -4033,7 +4519,7 @@
                   ],
                   "parameters": {
                     "model": {
-                      "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                      "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
                       "required": true,
@@ -4342,7 +4828,7 @@
                   ],
                   "parameters": {
                     "model": {
-                      "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                      "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
                       "required": true,
@@ -4463,7 +4949,7 @@
                       ],
                       "parameters": {
                         "endpoint": {
-                          "description": "Required. The name of the Endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/openapi`",
+                          "description": "Required. The name of the endpoint requested to serve the prediction. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/endpoints/[^/]+$",
                           "required": true,
@@ -15688,7 +16174,7 @@
                       ],
                       "parameters": {
                         "model": {
-                          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                          "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
                           "required": true,
@@ -15835,7 +16321,7 @@
                       ],
                       "parameters": {
                         "model": {
-                          "description": "Required. The name of the publisher model requested to serve the prediction. Format: `projects/{project}/locations/{location}/publishers/*/models/*`",
+                          "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
                           "required": true,
@@ -20327,6 +20813,92 @@
       "resources": {
         "models": {
           "methods": {
+            "computeTokens": {
+              "description": "Return a list of tokens based on the input text.",
+              "flatPath": "v1beta1/publishers/{publishersId}/models/{modelsId}:computeTokens",
+              "httpMethod": "POST",
+              "id": "aiplatform.publishers.models.computeTokens",
+              "parameterOrder": [
+                "endpoint"
+              ],
+              "parameters": {
+                "endpoint": {
+                  "description": "Required. The name of the Endpoint requested to get lists of tokens and token ids.",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/models/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+endpoint}:computeTokens",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1ComputeTokensResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "countTokens": {
+              "description": "Perform a token counting.",
+              "flatPath": "v1beta1/publishers/{publishersId}/models/{modelsId}:countTokens",
+              "httpMethod": "POST",
+              "id": "aiplatform.publishers.models.countTokens",
+              "parameterOrder": [
+                "endpoint"
+              ],
+              "parameters": {
+                "endpoint": {
+                  "description": "Required. The name of the Endpoint requested to perform token counting. Format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/models/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+endpoint}:countTokens",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1CountTokensRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1CountTokensResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "generateContent": {
+              "description": "Generate content with multimodal inputs.",
+              "flatPath": "v1beta1/publishers/{publishersId}/models/{modelsId}:generateContent",
+              "httpMethod": "POST",
+              "id": "aiplatform.publishers.models.generateContent",
+              "parameterOrder": [
+                "model"
+              ],
+              "parameters": {
+                "model": {
+                  "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/models/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+model}:generateContent",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1GenerateContentRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
             "get": {
               "description": "Gets a Model Garden publisher model.",
               "flatPath": "v1beta1/publishers/{publishersId}/models/{modelsId}",
@@ -20451,13 +21023,42 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "streamGenerateContent": {
+              "description": "Generate content with multimodal inputs with streaming support.",
+              "flatPath": "v1beta1/publishers/{publishersId}/models/{modelsId}:streamGenerateContent",
+              "httpMethod": "POST",
+              "id": "aiplatform.publishers.models.streamGenerateContent",
+              "parameterOrder": [
+                "model"
+              ],
+              "parameters": {
+                "model": {
+                  "description": "Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+                  "location": "path",
+                  "pattern": "^publishers/[^/]+/models/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+model}:streamGenerateContent",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1GenerateContentRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
             }
           }
         }
       }
     }
   },
-  "revision": "20240809",
+  "revision": "20240816",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -22348,7 +22949,7 @@
             "The finish reason is unspecified.",
             "Token generation reached a natural stopping point or a configured stop sequence.",
             "Token generation reached the configured maximum output tokens.",
-            "Token generation stopped because the content potentially contains safety violations. NOTE: When streaming, Candidate.content is empty if content filters blocks the output.",
+            "Token generation stopped because the content potentially contains safety violations. NOTE: When streaming, content is empty if content filters blocks the output.",
             "Token generation stopped because the content potentially contains copyright violations.",
             "All other reasons that stopped the token generation.",
             "Token generation stopped because the content contains forbidden terms.",
@@ -26494,7 +27095,7 @@
         },
         "timeSeries": {
           "$ref": "GoogleCloudAiplatformV1beta1FeatureGroupBigQueryTimeSeries",
-          "description": "Optional. If the source is a time-series source, this can be set to control how downstream sources (ex: FeatureOnlineStore.FeatureView) will treat time series sources. If not set, will treat the source as a time-series source with feature_timestamp as timestamp column and no scan boundary."
+          "description": "Optional. If the source is a time-series source, this can be set to control how downstream sources (ex: FeatureView ) will treat time-series sources. If not set, will treat the source as a time-series source with `feature_timestamp` as timestamp column and no scan boundary."
         }
       },
       "type": "object"
@@ -26503,7 +27104,7 @@
       "id": "GoogleCloudAiplatformV1beta1FeatureGroupBigQueryTimeSeries",
       "properties": {
         "timestampColumn": {
-          "description": "Optional. Column hosting timestamp values for a time-series source. Will be used to determine the latest featureValues for each entity. Optional. If not provided, a feature_timestamp column of type TIMESTAMP will be used.",
+          "description": "Optional. Column hosting timestamp values for a time-series source. Will be used to determine the latest `feature_values` for each entity. Optional. If not provided, column named `feature_timestamp` of type `TIMESTAMP` will be used.",
           "type": "string"
         }
       },
@@ -27163,6 +27764,11 @@
           "description": "Output only. Total number of rows synced.",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        },
+        "systemWatermarkTime": {
+          "description": "Lower bound of the system time watermark for the sync job. This is only set for continuously syncing feature views.",
+          "format": "google-datetime",
           "type": "string"
         },
         "totalSlot": {
@@ -27897,9 +28503,9 @@
           ],
           "enumDescriptions": [
             "Unspecified function calling mode. This value should not be used.",
-            "Default model behavior, model decides to predict either a function call or a natural language response.",
-            "Model is constrained to always predicting a function call only. If \"allowed_function_names\" are set, the predicted function call will be limited to any one of \"allowed_function_names\", else the predicted function call will be any one of the provided \"function_declarations\".",
-            "Model will not predict any function call. Model behavior is same as when not passing any function declarations."
+            "Default model behavior, model decides to predict either function calls or natural language response.",
+            "Model is constrained to always predicting function calls only. If \"allowed_function_names\" are set, the predicted function calls will be limited to any one of \"allowed_function_names\", else the predicted function calls will be any one of the provided \"function_declarations\".",
+            "Model will not predict any function calls. Model behavior is same as when not passing any function declarations."
           ],
           "type": "string"
         }
@@ -28229,7 +28835,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig": {
-      "description": "Routing config.",
+      "description": "The configuration for routing the request to a specific model.",
       "id": "GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfig",
       "properties": {
         "autoMode": {
@@ -28271,7 +28877,7 @@
       "id": "GoogleCloudAiplatformV1beta1GenerationConfigRoutingConfigManualRoutingMode",
       "properties": {
         "modelName": {
-          "description": "The model name to use. Only the public LLM models are accepted. e.g. gemini-1.5-pro-001.",
+          "description": "The model name to use. Only the public LLM models are accepted. e.g. 'gemini-1.5-pro-001'.",
           "type": "string"
         }
       },
@@ -29431,7 +30037,8 @@
             "EUC_AGENT_API_STATE",
             "IDLE_SHUTDOWN_AGENT_STATE",
             "PROXY_AGENT_STATE",
-            "GCR_DNS_STATE"
+            "GCR_DNS_STATE",
+            "GUEST_ATTRIBUTE_STATE"
           ],
           "enumDescriptions": [
             "Service name unknown.",
@@ -29444,7 +30051,8 @@
             "Represents the EUC agent server API endpoint.",
             "Represents the idle shutdown agent sidecar container.",
             "Represents the proxy agent sidecar container.",
-            "Represents resolving DNS for the gcr.io endpoint."
+            "Represents resolving DNS for the gcr.io endpoint.",
+            "Represents if the guest attribute service is enabled."
           ],
           "type": "string"
         },
@@ -33442,7 +34050,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1NearestNeighborQueryNumericFilter": {
-      "description": "Numeric filter is used to search a subset of the entities by using boolean rules on numeric columns. For example: Database Point 0: {name: “a” value_int: 42} {name: “b” value_float: 1.0} Database Point 1: {name: “a” value_int: 10} {name: “b” value_float: 2.0} Database Point 2: {name: “a” value_int: -1} {name: “b” value_float: 3.0} Query: {name: “a” value_int: 12 operator: LESS} // Matches Point 1, 2 {name: “b” value_float: 2.0 operator: EQUAL} // Matches Point 1",
+      "description": "Numeric filter is used to search a subset of the entities by using boolean rules on numeric columns. For example: Database Point 0: {name: \"a\" value_int: 42} {name: \"b\" value_float: 1.0} Database Point 1: {name: \"a\" value_int: 10} {name: \"b\" value_float: 2.0} Database Point 2: {name: \"a\" value_int: -1} {name: \"b\" value_float: 3.0} Query: {name: \"a\" value_int: 12 operator: LESS} // Matches Point 1, 2 {name: \"b\" value_float: 2.0 operator: EQUAL} // Matches Point 1",
       "id": "GoogleCloudAiplatformV1beta1NearestNeighborQueryNumericFilter",
       "properties": {
         "name": {
@@ -33783,7 +34391,7 @@
         },
         "encryptionSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
-          "description": "Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookRuntimeTemplate has an encryption spec."
+          "description": "Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookService.NotebookRuntimeTemplate has an encryption spec."
         },
         "executionTimeout": {
           "description": "Max running time of the execution job in seconds (default 86400s / 24 hrs).",
@@ -34574,6 +35182,16 @@
         "resourceRuntimeSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ResourceRuntimeSpec",
           "description": "Optional. Persistent Resource runtime spec. For example, used for Ray cluster configuration."
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "startTime": {
           "description": "Output only. Time when the PersistentResource for the first time entered the `RUNNING` state.",
@@ -35541,6 +36159,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployGke",
           "description": "Optional. Deploy PublisherModel to Google Kubernetes Engine."
         },
+        "multiDeployVertex": {
+          "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex",
+          "description": "Optional. Multiple setups to deploy the PublisherModel to Vertex Endpoint."
+        },
         "openEvaluationPipeline": {
           "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences",
           "description": "Optional. Open evaluation pipeline of the PublisherModel."
@@ -35661,6 +36283,20 @@
           "description": "Optional. GKE deployment configuration in yaml format.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex": {
+      "description": "Multiple setups to deploy the PublisherModel.",
+      "id": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeployVertex",
+      "properties": {
+        "multiDeployVertex": {
+          "description": "Optional. One click deployment configurations.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionDeploy"
           },
           "type": "array"
         }
@@ -36630,10 +37266,6 @@
       "description": "Specifies the parsing config for RagFiles.",
       "id": "GoogleCloudAiplatformV1beta1RagFileParsingConfig",
       "properties": {
-        "parsePdfsUsingOcr": {
-          "description": "Whether to use OCR for PDFs.",
-          "type": "boolean"
-        },
         "useAdvancedPdfParsing": {
           "description": "Whether to use advanced PDF parsing.",
           "type": "boolean"
@@ -36645,6 +37277,10 @@
       "description": "A query to retrieve relevant contexts.",
       "id": "GoogleCloudAiplatformV1beta1RagQuery",
       "properties": {
+        "ranking": {
+          "$ref": "GoogleCloudAiplatformV1beta1RagQueryRanking",
+          "description": "Optional. Configurations for hybrid search results ranking."
+        },
         "similarityTopK": {
           "description": "Optional. The number of contexts to retrieve.",
           "format": "int32",
@@ -36653,6 +37289,18 @@
         "text": {
           "description": "Optional. The query in text format to get relevant contexts.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RagQueryRanking": {
+      "description": "Configurations for hybrid search results ranking.",
+      "id": "GoogleCloudAiplatformV1beta1RagQueryRanking",
+      "properties": {
+        "alpha": {
+          "description": "Optional. Alpha value controls the weight between dense and sparse vector search results. The range is [0, 1], while 0 means sparse vector search only and 1 means dense vector search only. The default value is 0.5 which balances sparse and dense vector search equally.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -37381,10 +38029,6 @@
           },
           "type": "array"
         },
-        "ranking": {
-          "$ref": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking",
-          "description": "Optional. Configurations for hybrid search results ranking."
-        },
         "vectorDistanceThreshold": {
           "description": "Optional. Only return contexts with vector distance smaller than the threshold.",
           "format": "double",
@@ -37407,18 +38051,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking": {
-      "description": "Configurations for hybrid search results ranking.",
-      "id": "GoogleCloudAiplatformV1beta1RetrieveContextsRequestVertexRagStoreRanking",
-      "properties": {
-        "alpha": {
-          "description": "Optional. Alpha value controls the weight between dense and sparse vector search results. The range is [0, 1], while 0 means sparse vector search only and 1 means dense vector search only. The default value is 0.5 which balances sparse and dense vector search equally.",
-          "format": "float",
-          "type": "number"
         }
       },
       "type": "object"
@@ -38039,6 +38671,11 @@
           "description": "Optional. Indicates if the job should retry for internal errors after the job starts running. If true, overrides `Scheduling.restart_job_on_worker_restart` to false.",
           "type": "boolean"
         },
+        "maxWaitDuration": {
+          "description": "Optional. This is the maximum duration that a job will wait for the requested resources to be provisioned if the scheduling strategy is set to [Strategy.DWS_FLEX_START]. If set to 0, the job will wait indefinitely. The default is 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "restartJobOnWorkerRestart": {
           "description": "Restarts the entire CustomJob if a worker gets restarted. This feature can be used by distributed training jobs that are not resilient to workers leaving and joining a job.",
           "type": "boolean"
@@ -38050,21 +38687,24 @@
             "ON_DEMAND",
             "LOW_COST",
             "STANDARD",
-            "SPOT"
+            "SPOT",
+            "DWS_FLEX_START"
           ],
           "enumDeprecated": [
             false,
             true,
             true,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
             "Strategy will default to STANDARD.",
-            "Regular on-demand provisioning strategy.",
-            "Low cost by making potential use of spot resources.",
+            "Deprecated. Regular on-demand provisioning strategy.",
+            "Deprecated. Low cost by making potential use of spot resources.",
             "Standard provisioning strategy uses regular on-demand resources.",
-            "Spot provisioning strategy uses spot resources."
+            "Spot provisioning strategy uses spot resources.",
+            "DWS Flex start strategy uses DWS to queue for resources."
           ],
           "type": "string"
         },
@@ -43471,11 +44111,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "totalTruncatedExampleCount": {
+          "description": "The number of examples in the dataset that have been truncated by any amount.",
+          "format": "int64",
+          "type": "string"
+        },
         "totalTuningCharacterCount": {
           "description": "Output only. Number of tuning characters in the tuning dataset.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        },
+        "truncatedExampleIndices": {
+          "description": "A partial sample of the indices (starting from 1) of the truncated examples.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
         },
         "tuningDatasetExampleCount": {
           "description": "Output only. Number of examples in the tuning dataset.",
@@ -45436,11 +46089,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1VertexAISearch": {
-      "description": "Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/vertex-ai-search-and-conversation",
+      "description": "Retrieve from Vertex AI Search datastore for grounding. See https://cloud.google.com/products/agent-builder",
       "id": "GoogleCloudAiplatformV1beta1VertexAISearch",
       "properties": {
         "datastore": {
-          "description": "Required. Fully-qualified Vertex AI Search's datastore resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`",
+          "description": "Required. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{dataStore}`",
           "type": "string"
         }
       },
