@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/workspaceevents-v1.0.1...workspaceevents-v1.0.2) (2024-08-30)
+
+
+### Bug Fixes
+
+* **workspaceevents:** update the API ([dbdb567](https://github.com/googleapis/google-api-nodejs-client/commit/dbdb5670b40f930facb092aa26e0540bf41e9d77))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workspaceevents-v1.0.0...workspaceevents-v1.0.1) (2024-05-02)
 
 

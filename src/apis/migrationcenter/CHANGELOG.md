@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v6.1.0...migrationcenter-v7.0.0) (2024-08-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **migrationcenter:** This release has breaking changes.
+
+### Features
+
+* **migrationcenter:** update the API ([d42c0fd](https://github.com/googleapis/google-api-nodejs-client/commit/d42c0fd2364d050bf206f650ffd7a7bc865b7aec))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v6.0.0...migrationcenter-v6.1.0) (2024-08-27)
 
 
