@@ -1,5 +1,16 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v14.0.0...discoveryengine-v15.0.0) (2024-08-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **discoveryengine:** This release has breaking changes.
+
+### Features
+
+* **discoveryengine:** update the API ([d7d6c3f](https://github.com/googleapis/google-api-nodejs-client/commit/d7d6c3f1726c4647f42fe1cc02e189bb1ddbc7ab))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v13.1.0...discoveryengine-v14.0.0) (2024-08-27)
 
 
