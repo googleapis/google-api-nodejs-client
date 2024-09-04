@@ -1611,6 +1611,10 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$List
     extends StandardParameters {
     /**
+     * Optional. The field to order the results by.
+     */
+    orderBy?: string;
+    /**
      * The maximum number of repositories to return. Maximum page size is 1,000.
      */
     pageSize?: number;
@@ -2179,6 +2183,10 @@ export namespace artifactregistry_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Repositories$Packages$List
     extends StandardParameters {
+    /**
+     * Optional. The field to order the results by.
+     */
+    orderBy?: string;
     /**
      * The maximum number of packages to return. Maximum page size is 1,000.
      */
