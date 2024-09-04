@@ -164,6 +164,9 @@
         "https://www.googleapis.com/auth/dataportability.youtube.clips": {
           "description": "Move a copy of your YouTube clips metadata"
         },
+        "https://www.googleapis.com/auth/dataportability.youtube.clips": {
+          "description": "Move a copy of your YouTube clips metadata."
+        },
         "https://www.googleapis.com/auth/dataportability.youtube.comments": {
           "description": "Move a copy of your YouTube comments"
         },
