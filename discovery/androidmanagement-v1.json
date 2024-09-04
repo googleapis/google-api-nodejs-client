@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20240902",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -4853,6 +4853,20 @@
           },
           "type": "array"
         },
+        "assistContentPolicy": {
+          "description": "Optional. Controls whether AssistContent (https://developer.android.com/reference/android/app/assist/AssistContent) is allowed to be sent to a privileged app such as an assistant app. AssistContent includes screenshots and information about an app, such as package name. This is supported on Android 15 and above.",
+          "enum": [
+            "ASSIST_CONTENT_POLICY_UNSPECIFIED",
+            "ASSIST_CONTENT_DISALLOWED",
+            "ASSIST_CONTENT_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ASSIST_CONTENT_ALLOWED.",
+            "Assist content is blocked from being sent to a privileged app.Supported on Android 15 and above. A nonComplianceDetail with API_LEVEL is reported if the Android version is less than 15.",
+            "Assist content is allowed to be sent to a privileged app.Supported on Android 15 and above."
+          ],
+          "type": "string"
+        },
         "autoDateAndTimeZone": {
           "description": "Whether auto date, time, and time zone are enabled on a company-owned device. If this is set, then autoTimeRequired is ignored.",
           "enum": [
@@ -5412,7 +5426,7 @@
         },
         "wifiConfigsLockdownEnabled": {
           "deprecated": true,
-          "description": "DEPRECATED - Use wifi_config_disabled.",
+          "description": "This is deprecated.",
           "type": "boolean"
         }
       },

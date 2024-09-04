@@ -2239,6 +2239,10 @@ export namespace androidmanagement_v1 {
      */
     applications?: Schema$ApplicationPolicy[];
     /**
+     * Optional. Controls whether AssistContent (https://developer.android.com/reference/android/app/assist/AssistContent) is allowed to be sent to a privileged app such as an assistant app. AssistContent includes screenshots and information about an app, such as package name. This is supported on Android 15 and above.
+     */
+    assistContentPolicy?: string | null;
+    /**
      * Whether auto date, time, and time zone are enabled on a company-owned device. If this is set, then autoTimeRequired is ignored.
      */
     autoDateAndTimeZone?: string | null;
@@ -2575,7 +2579,7 @@ export namespace androidmanagement_v1 {
      */
     wifiConfigDisabled?: boolean | null;
     /**
-     * DEPRECATED - Use wifi_config_disabled.
+     * This is deprecated.
      */
     wifiConfigsLockdownEnabled?: boolean | null;
   }
