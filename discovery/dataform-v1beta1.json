@@ -133,6 +133,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getConfig": {
+              "description": "Get default config for a given project and location.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/config",
+              "httpMethod": "GET",
+              "id": "dataform.projects.locations.getConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The config name.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/config$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Config"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1beta1/projects/{projectsId}/locations",
@@ -169,6 +194,40 @@
               "path": "v1beta1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateConfig": {
+              "description": "Update default config for a given project and location.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/config",
+              "httpMethod": "PATCH",
+              "id": "dataform.projects.locations.updateConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The config name.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/config$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. Specifies the fields to be updated in the config.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "request": {
+                "$ref": "Config"
+              },
+              "response": {
+                "$ref": "Config"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -2236,7 +2295,7 @@
       }
     }
   },
-  "revision": "20240629",
+  "revision": "20240824",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2596,6 +2655,10 @@
           "$ref": "Target",
           "description": "The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result."
         },
+        "dataPreparation": {
+          "$ref": "DataPreparation",
+          "description": "The data preparation executed by this action."
+        },
         "declaration": {
           "$ref": "Declaration",
           "description": "The declaration declared by this action."
@@ -2646,6 +2709,21 @@
       },
       "type": "object"
     },
+    "Config": {
+      "description": "Config for all repositories in a given project and location.",
+      "id": "Config",
+      "properties": {
+        "defaultKmsKeyName": {
+          "description": "Optional. The default KMS key that is used if no encryption key is provided when a repository is created.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The config name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DataEncryptionState": {
       "description": "Describes encryption state of a resource.",
       "id": "DataEncryptionState",
@@ -2653,6 +2731,36 @@
         "kmsKeyVersionName": {
           "description": "The KMS key version name with which data of a resource is encrypted.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DataPreparation": {
+      "description": "Defines a compiled Data Preparation entity",
+      "id": "DataPreparation",
+      "properties": {
+        "contents": {
+          "description": "The data preparation definition, stored as a binary encoded proto.",
+          "format": "byte",
+          "type": "string"
+        },
+        "dependencyTargets": {
+          "description": "A list of actions that this action depends on.",
+          "items": {
+            "$ref": "Target"
+          },
+          "type": "array"
+        },
+        "disabled": {
+          "description": "Whether this action is disabled (i.e. should not be run).",
+          "type": "boolean"
+        },
+        "tags": {
+          "description": "Arbitrary, user-defined tags on this action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
