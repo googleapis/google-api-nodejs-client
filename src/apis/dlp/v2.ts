@@ -1346,7 +1346,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2DataSourceType {
     /**
-     * Output only. An identifying string to the type of resource being profiled. Current values: google/bigquery/table, google/project
+     * Output only. An identifying string to the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket
      */
     dataSource?: string | null;
   }
@@ -3640,7 +3640,7 @@ export namespace dlp_v2 {
      */
     profileStatus?: Schema$GooglePrivacyDlpV2ProfileStatus;
     /**
-     * Project ID that was profiled.
+     * Project ID or account that was profiled.
      */
     projectId?: string | null;
     /**

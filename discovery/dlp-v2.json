@@ -5015,7 +5015,7 @@
       }
     }
   },
-  "revision": "20240818",
+  "revision": "20240825",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6700,7 +6700,7 @@
       "id": "GooglePrivacyDlpV2DataSourceType",
       "properties": {
         "dataSource": {
-          "description": "Output only. An identifying string to the type of resource being profiled. Current values: google/bigquery/table, google/project",
+          "description": "Output only. An identifying string to the type of resource being profiled. Current values: * google/bigquery/table * google/project * google/sql/table * google/gcs/bucket",
           "readOnly": true,
           "type": "string"
         }
@@ -10249,7 +10249,7 @@
           "description": "Success or error status of the last attempt to profile the project."
         },
         "projectId": {
-          "description": "Project ID that was profiled.",
+          "description": "Project ID or account that was profiled.",
           "type": "string"
         },
         "sensitivityScore": {
