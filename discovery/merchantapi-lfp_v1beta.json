@@ -298,7 +298,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20240827",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -569,12 +569,16 @@
             "FREE_LOCAL_VEHICLE_LISTINGS",
             "YOUTUBE_SHOPPING",
             "CLOUD_RETAIL",
-            "LOCAL_CLOUD_RETAIL"
+            "LOCAL_CLOUD_RETAIL",
+            "PRODUCT_REVIEWS",
+            "MERCHANT_REVIEWS"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -603,7 +607,9 @@
             "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
             "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
-            "[Local cloud retail](https://cloud.google.com/solutions/retail)."
+            "[Local cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
           ],
           "type": "string"
         }
