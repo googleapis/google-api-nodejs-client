@@ -151,7 +151,7 @@
               ],
               "parameters": {
                 "databaseId": {
-                  "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database id is also valid.",
+                  "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database ID is also valid.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1706,7 +1706,7 @@
       }
     }
   },
-  "revision": "20240804",
+  "revision": "20240822",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2407,6 +2407,15 @@
           ],
           "type": "string"
         },
+        "distanceResultField": {
+          "description": "Optional. Optional name of the field to output the result of the vector distance calculation. Must conform to document field name limitations.",
+          "type": "string"
+        },
+        "distanceThreshold": {
+          "description": "Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold For DOT_PRODUCT: WHERE distance >= distance_threshold",
+          "format": "double",
+          "type": "number"
+        },
         "limit": {
           "description": "Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.",
           "format": "int32",
@@ -2521,7 +2530,7 @@
       "id": "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata",
       "properties": {
         "collectionIds": {
-          "description": "The ids of the collection groups that are being deleted.",
+          "description": "The IDs of the collection groups that are being deleted.",
           "items": {
             "type": "string"
           },
@@ -2533,7 +2542,7 @@
           "type": "string"
         },
         "namespaceIds": {
-          "description": "Which namespace ids are being deleted.",
+          "description": "Which namespace IDs are being deleted.",
           "items": {
             "type": "string"
           },
@@ -2722,7 +2731,7 @@
           "type": "string"
         },
         "keyPrefix": {
-          "description": "Output only. The key_prefix for this database. This key_prefix is used, in combination with the project id (\"~\") to construct the application id that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).",
+          "description": "Output only. The key_prefix for this database. This key_prefix is used, in combination with the project ID (\"~\") to construct the application ID that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).",
           "readOnly": true,
           "type": "string"
         },
@@ -2794,7 +2803,7 @@
       "type": "object"
     },
     "GoogleFirestoreAdminV1EncryptionConfig": {
-      "description": "Encryption configuration for a new database being created from another source. The source could be a Backup or a DatabaseSnapshot.",
+      "description": "Encryption configuration for a new database being created from another source. The source could be a Backup .",
       "id": "GoogleFirestoreAdminV1EncryptionConfig",
       "properties": {
         "customerManagedEncryption": {
@@ -2817,7 +2826,7 @@
       "id": "GoogleFirestoreAdminV1ExportDocumentsMetadata",
       "properties": {
         "collectionIds": {
-          "description": "Which collection ids are being exported.",
+          "description": "Which collection IDs are being exported.",
           "items": {
             "type": "string"
           },
@@ -2829,7 +2838,7 @@
           "type": "string"
         },
         "namespaceIds": {
-          "description": "Which namespace ids are being exported.",
+          "description": "Which namespace IDs are being exported.",
           "items": {
             "type": "string"
           },
@@ -2889,7 +2898,7 @@
       "id": "GoogleFirestoreAdminV1ExportDocumentsRequest",
       "properties": {
         "collectionIds": {
-          "description": "Which collection ids to export. Unspecified means all collections. Each collection id in this list must be unique.",
+          "description": "Which collection IDs to export. Unspecified means all collections. Each collection ID in this list must be unique.",
           "items": {
             "type": "string"
           },
@@ -2926,7 +2935,7 @@
       "type": "object"
     },
     "GoogleFirestoreAdminV1Field": {
-      "description": "Represents a single field in the database. Fields are grouped by their \"Collection Group\", which represent all collections in the database with the same id.",
+      "description": "Represents a single field in the database. Fields are grouped by their \"Collection Group\", which represent all collections in the database with the same ID.",
       "id": "GoogleFirestoreAdminV1Field",
       "properties": {
         "indexConfig": {
@@ -3025,7 +3034,7 @@
       "id": "GoogleFirestoreAdminV1ImportDocumentsMetadata",
       "properties": {
         "collectionIds": {
-          "description": "Which collection ids are being imported.",
+          "description": "Which collection IDs are being imported.",
           "items": {
             "type": "string"
           },
@@ -3041,7 +3050,7 @@
           "type": "string"
         },
         "namespaceIds": {
-          "description": "Which namespace ids are being imported.",
+          "description": "Which namespace IDs are being imported.",
           "items": {
             "type": "string"
           },
@@ -3092,7 +3101,7 @@
       "id": "GoogleFirestoreAdminV1ImportDocumentsRequest",
       "properties": {
         "collectionIds": {
-          "description": "Which collection ids to import. Unspecified means all collections included in the import. Each collection id in this list must be unique.",
+          "description": "Which collection IDs to import. Unspecified means all collections included in the import. Each collection ID in this list must be unique.",
           "items": {
             "type": "string"
           },
@@ -3140,7 +3149,7 @@
           "type": "string"
         },
         "queryScope": {
-          "description": "Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection id. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection id as this index.",
+          "description": "Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection ID. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection ID as this index.",
           "enum": [
             "QUERY_SCOPE_UNSPECIFIED",
             "COLLECTION",
@@ -3149,8 +3158,8 @@
           ],
           "enumDescriptions": [
             "The query scope is unspecified. Not a valid option.",
-            "Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the collection id specified by the index.",
-            "Indexes with a collection group query scope specified allow queries against all collections that has the collection id specified by the index.",
+            "Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the collection ID specified by the index.",
+            "Indexes with a collection group query scope specified allow queries against all collections that has the collection ID specified by the index.",
             "Include all the collections's ancestor in the index. Only available for Datastore Mode databases."
           ],
           "type": "string"
@@ -3492,11 +3501,11 @@
       "id": "GoogleFirestoreAdminV1RestoreDatabaseRequest",
       "properties": {
         "backup": {
-          "description": "Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
+          "description": "Required. Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id}/locations/{location}/backups/{backup}`",
           "type": "string"
         },
         "databaseId": {
-          "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This database id must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database id is also valid.",
+          "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database ID is also valid.",
           "type": "string"
         },
         "encryptionConfig": {
