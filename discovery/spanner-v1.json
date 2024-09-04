@@ -29,6 +29,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-west1.rep.googleapis.com/",
       "location": "us-west1"
     }
@@ -3259,7 +3264,7 @@
       }
     }
   },
-  "revision": "20240814",
+  "revision": "20240831",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AutoscalingConfig": {

@@ -4084,7 +4084,7 @@
       }
     }
   },
-  "revision": "20240819",
+  "revision": "20240825",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -4816,6 +4816,10 @@
         },
         "connectorVersion": {
           "description": "Connector version Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector}/versions/{version}",
+          "type": "string"
+        },
+        "host": {
+          "description": "The name of the Hostname of the Service Directory service with TLS if used.",
           "type": "string"
         },
         "serviceName": {

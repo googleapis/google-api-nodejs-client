@@ -772,7 +772,7 @@
       }
     }
   },
-  "revision": "20240717",
+  "revision": "20240821",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -2159,6 +2159,7 @@
           "type": "array"
         },
         "instanceNumber": {
+          "deprecated": true,
           "description": "Optional. The VM's instance number.",
           "format": "int64",
           "type": "string"

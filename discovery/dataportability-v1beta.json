@@ -155,6 +155,9 @@
         "https://www.googleapis.com/auth/dataportability.youtube.channel": {
           "description": "Move a copy of information about your YouTube channel."
         },
+        "https://www.googleapis.com/auth/dataportability.youtube.clips": {
+          "description": "Move a copy of your YouTube clips metadata."
+        },
         "https://www.googleapis.com/auth/dataportability.youtube.comments": {
           "description": "Move a copy of your YouTube comments."
         },
@@ -369,6 +372,7 @@
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
             "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
@@ -460,6 +464,7 @@
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
             "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
@@ -545,6 +550,7 @@
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
             "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
@@ -630,6 +636,7 @@
             "https://www.googleapis.com/auth/dataportability.shopping.reviews",
             "https://www.googleapis.com/auth/dataportability.streetview.imagery",
             "https://www.googleapis.com/auth/dataportability.youtube.channel",
+            "https://www.googleapis.com/auth/dataportability.youtube.clips",
             "https://www.googleapis.com/auth/dataportability.youtube.comments",
             "https://www.googleapis.com/auth/dataportability.youtube.live_chat",
             "https://www.googleapis.com/auth/dataportability.youtube.music",
@@ -648,7 +655,7 @@
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20240828",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "Empty": {
