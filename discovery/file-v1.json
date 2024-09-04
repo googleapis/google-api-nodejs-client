@@ -502,7 +502,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * \"description\" * \"file_shares\" * \"labels\"",
+                      "description": "Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * \"description\" * \"file_shares\" * \"labels\" * \"performance_config\" * \"deletion_protection_enabled\" * \"deletion_protection_reason\"",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -520,7 +520,7 @@
                   ]
                 },
                 "promoteReplica": {
-                  "description": "Promote an standby instance (replica).",
+                  "description": "Promote the standby instance (replica).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:promoteReplica",
                   "httpMethod": "POST",
                   "id": "file.projects.locations.instances.promoteReplica",
@@ -902,7 +902,7 @@
       }
     }
   },
-  "revision": "20240716",
+  "revision": "20240821",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -928,6 +928,21 @@
         "downloadBytes": {
           "description": "Output only. Amount of bytes that will be downloaded if the backup is restored. This may be different than storage bytes, since sequential backups of the same disk will share storage.",
           "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileSystemProtocol": {
+          "description": "Output only. The file system protocol of the source Filestore instance that this backup is created from.",
+          "enum": [
+            "FILE_PROTOCOL_UNSPECIFIED",
+            "NFS_V3",
+            "NFS_V4_1"
+          ],
+          "enumDescriptions": [
+            "FILE_PROTOCOL_UNSPECIFIED serves a \"not set\" default value when a FileProtocol is a separate field in a message.",
+            "NFS 3.0.",
+            "NFS 4.1."
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -1023,7 +1038,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         }
       },
@@ -1410,6 +1425,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "deletionProtectionEnabled": {
+          "description": "Optional. Indicates whether the instance is protected against deletion.",
+          "type": "boolean"
+        },
+        "deletionProtectionReason": {
+          "description": "Optional. The reason for enabling deletion protection.",
+          "type": "string"
+        },
         "description": {
           "description": "The description of the instance (2048 characters or less).",
           "type": "string"
@@ -1448,9 +1471,23 @@
           },
           "type": "array"
         },
+        "protocol": {
+          "description": "Immutable. The protocol indicates the access protocol for all shares in the instance. This field is immutable and it cannot be changed after the instance has been created. Default value: `NFS_V3`.",
+          "enum": [
+            "FILE_PROTOCOL_UNSPECIFIED",
+            "NFS_V3",
+            "NFS_V4_1"
+          ],
+          "enumDescriptions": [
+            "FILE_PROTOCOL_UNSPECIFIED serves a \"not set\" default value when a FileProtocol is a separate field in a message.",
+            "NFS 3.0.",
+            "NFS 4.1."
+          ],
+          "type": "string"
+        },
         "replication": {
           "$ref": "Replication",
-          "description": "Optional. Replicaition configuration."
+          "description": "Optional. Replication configuration."
         },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
@@ -1520,7 +1557,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         },
         "tier": {
@@ -2001,7 +2038,7 @@
       "id": "Replication",
       "properties": {
         "replicas": {
-          "description": "Optional. Replicas configuration on the instance. For now, only a single replica config is supported.",
+          "description": "Optional. Replication configuration for the replica instance associated with this instance. Only a single replica is supported.",
           "items": {
             "$ref": "ReplicaConfig"
           },
@@ -2016,8 +2053,8 @@
           ],
           "enumDescriptions": [
             "Role not set.",
-            "The instance is a Active replication member, functions as the replication source instance.",
-            "The instance is a Standby replication member, functions as the replication destination instance."
+            "The instance is the `ACTIVE` replication member, functions as the replication source instance.",
+            "The instance is the `STANDBY` replication member, functions as the replication destination instance."
           ],
           "type": "string"
         }
@@ -2143,7 +2180,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         }
       },
