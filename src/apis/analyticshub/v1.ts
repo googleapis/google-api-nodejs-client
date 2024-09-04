@@ -926,7 +926,7 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$RevokeSubscriptionRequest {}
   /**
-   * Message for response when you revoke a subscription.
+   * Message for response when you revoke a subscription. Empty for now.
    */
   export interface Schema$RevokeSubscriptionResponse {}
   /**
