@@ -2303,7 +2303,7 @@
       }
     }
   },
-  "revision": "20240728",
+  "revision": "20240828",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2581,6 +2581,10 @@
         "domain": {
           "description": "Required. Domain to fetch for Cloud Identity account customers, including domained and domainless.",
           "type": "string"
+        },
+        "primaryAdminEmail": {
+          "description": "Optional. Primary admin email to fetch for Cloud Identity account domainless customer.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2603,12 +2607,30 @@
       "description": "Entity representing a Cloud Identity account that may be associated with a Channel Services API partner.",
       "id": "GoogleCloudChannelV1CloudIdentityCustomerAccount",
       "properties": {
+        "channelPartnerCloudIdentityId": {
+          "description": "If existing = true, and is 2-tier customer, the channel partner of the customer.",
+          "type": "string"
+        },
         "customerCloudIdentityId": {
           "description": "If existing = true, the Cloud Identity ID of the customer.",
           "type": "string"
         },
         "customerName": {
           "description": "If owned = true, the name of the customer that owns the Cloud Identity account. Customer_name uses the format: accounts/{account_id}/customers/{customer_id}",
+          "type": "string"
+        },
+        "customerType": {
+          "description": "If existing = true, the type of the customer.",
+          "enum": [
+            "CUSTOMER_TYPE_UNSPECIFIED",
+            "DOMAIN",
+            "TEAM"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Domain-owning customer which needs domain verification to use services.",
+            "Team customer which needs email verification to use services."
+          ],
           "type": "string"
         },
         "existing": {
@@ -3426,6 +3448,10 @@
         "overwriteIfExists": {
           "description": "Required. Choose to overwrite an existing customer if found. This must be set to true if there is an existing customer with a conflicting region code or domain.",
           "type": "boolean"
+        },
+        "primaryAdminEmail": {
+          "description": "Optional. Customer's primary admin email.",
+          "type": "string"
         }
       },
       "type": "object"
