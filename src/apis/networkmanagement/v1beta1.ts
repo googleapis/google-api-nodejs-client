@@ -1223,6 +1223,35 @@ export namespace networkmanagement_v1beta1 {
     verifyTime?: string | null;
   }
   /**
+   * For display only. Metadata associated with a Cloud Redis Instance.
+   */
+  export interface Schema$RedisInstanceInfo {
+    /**
+     * Name of a Cloud Redis Instance.
+     */
+    displayName?: string | null;
+    /**
+     * URI of a Cloud Redis Instance network.
+     */
+    networkUri?: string | null;
+    /**
+     * Primary endpoint IP address of a Cloud Redis Instance.
+     */
+    primaryEndpointIp?: string | null;
+    /**
+     * Read endpoint IP address of a Cloud Redis Instance (if applicable).
+     */
+    readEndpointIp?: string | null;
+    /**
+     * Region in which the Cloud Redis Instance is defined.
+     */
+    region?: string | null;
+    /**
+     * URI of a Cloud Redis Instance.
+     */
+    uri?: string | null;
+  }
+  /**
    * Request for the `RerunConnectivityTest` method.
    */
   export interface Schema$RerunConnectivityTestRequest {}
@@ -1426,6 +1455,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a ProxyConnection.
      */
     proxyConnection?: Schema$ProxyConnectionInfo;
+    /**
+     * Display information of a Redis Instance.
+     */
+    redisInstance?: Schema$RedisInstanceInfo;
     /**
      * Display information of a Compute Engine route.
      */

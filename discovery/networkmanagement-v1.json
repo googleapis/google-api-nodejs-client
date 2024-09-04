@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240807",
+  "revision": "20240821",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1105,6 +1105,7 @@
             "INSTANCE_NOT_RUNNING",
             "GKE_CLUSTER_NOT_RUNNING",
             "CLOUD_SQL_INSTANCE_NOT_RUNNING",
+            "REDIS_INSTANCE_NOT_RUNNING",
             "TRAFFIC_TYPE_BLOCKED",
             "GKE_MASTER_UNAUTHORIZED_ACCESS",
             "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
@@ -1175,6 +1176,7 @@
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
             "Packet sent from or to a GKE cluster that is not in running state.",
             "Packet sent from or to a Cloud SQL instance that is not in running state.",
+            "Packet sent from or to a Redis Instance that is not in running state.",
             "The type of traffic is blocked and the user cannot configure a firewall rule to enable it. See [Always blocked traffic](https://cloud.google.com/vpc/docs/firewalls#blockedtraffic) for more details.",
             "Access to Google Kubernetes Engine cluster master's endpoint is not authorized. See [Access to the cluster endpoints](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#access_to_the_cluster_endpoints) for more details.",
             "Access to the Cloud SQL instance endpoint is not authorized. See [Authorizing with authorized networks](https://cloud.google.com/sql/docs/mysql/authorize-networks) for more details.",
@@ -2383,6 +2385,37 @@
       },
       "type": "object"
     },
+    "RedisInstanceInfo": {
+      "description": "For display only. Metadata associated with a Cloud Redis Instance.",
+      "id": "RedisInstanceInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Cloud Redis Instance.",
+          "type": "string"
+        },
+        "networkUri": {
+          "description": "URI of a Cloud Redis Instance network.",
+          "type": "string"
+        },
+        "primaryEndpointIp": {
+          "description": "Primary endpoint IP address of a Cloud Redis Instance.",
+          "type": "string"
+        },
+        "readEndpointIp": {
+          "description": "Read endpoint IP address of a Cloud Redis Instance (if applicable).",
+          "type": "string"
+        },
+        "region": {
+          "description": "Region in which the Cloud Redis Instance is defined.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Cloud Redis Instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RerunConnectivityTestRequest": {
       "description": "Request for the `RerunConnectivityTest` method.",
       "id": "RerunConnectivityTestRequest",
@@ -2680,6 +2713,10 @@
           "$ref": "ProxyConnectionInfo",
           "description": "Display information of a ProxyConnection."
         },
+        "redisInstance": {
+          "$ref": "RedisInstanceInfo",
+          "description": "Display information of a Redis Instance."
+        },
         "route": {
           "$ref": "RouteInfo",
           "description": "Display information of a Compute Engine route."
@@ -2698,6 +2735,7 @@
             "START_FROM_PRIVATE_NETWORK",
             "START_FROM_GKE_MASTER",
             "START_FROM_CLOUD_SQL_INSTANCE",
+            "START_FROM_REDIS_INSTANCE",
             "START_FROM_CLOUD_FUNCTION",
             "START_FROM_APP_ENGINE_VERSION",
             "START_FROM_CLOUD_RUN_REVISION",
@@ -2745,6 +2783,7 @@
             false,
             false,
             false,
+            false,
             true,
             true,
             false,
@@ -2766,6 +2805,7 @@
             "Initial state: packet originating from a VPC or on-premises network with internal source IP. If the source is a VPC network visible to the user, a NetworkInfo is populated with details of the network.",
             "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo is populated with starting instance information.",
+            "Initial state: packet originating from a Redis instance. A RedisInstanceInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud Function. A CloudFunctionInfo is populated with starting function information.",
             "Initial state: packet originating from an App Engine service version. An AppEngineVersionInfo is populated with starting version information.",
             "Initial state: packet originating from a Cloud Run revision. A CloudRunRevisionInfo is populated with starting revision information.",
