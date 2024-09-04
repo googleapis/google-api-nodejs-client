@@ -1202,7 +1202,7 @@ export namespace merchantapi_accounts_v1beta {
     storeConfig?: Schema$StoreConfig;
   }
   /**
-   * The merchant account's [shipping setting]((https://support.google.com/merchants/answer/6069284).
+   * The merchant account's [shipping setting](https://support.google.com/merchants/answer/6069284).
    */
   export interface Schema$ShippingSettings {
     /**
