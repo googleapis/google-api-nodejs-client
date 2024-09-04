@@ -343,6 +343,15 @@ export namespace batch_v1 {
     taskStatus?: Schema$TaskStatus;
   }
   /**
+   * AgentTaskLoggingOption contains the options for the logging of the task.
+   */
+  export interface Schema$AgentTaskLoggingOption {
+    /**
+     * Labels to be added to the log entry. Now only cloud logging is supported.
+     */
+    labels?: {[key: string]: string} | null;
+  }
+  /**
    * AgentTaskRunnable is the Runnable representation between Agent and CLH communication.
    */
   export interface Schema$AgentTaskRunnable {
@@ -383,6 +392,10 @@ export namespace batch_v1 {
      * Environment variables to set before running the Task.
      */
     environment?: Schema$AgentEnvironment;
+    /**
+     * Logging option for the task.
+     */
+    loggingOption?: Schema$AgentTaskLoggingOption;
     /**
      * Maximum duration the task should run before being automatically retried (if enabled) or automatically failed. Format the value of this field as a time limit in seconds followed by `s`—for example, `3600s` for 1 hour. The field accepts any value between 0 and the maximum listed for the `Duration` field type at https://protobuf.dev/reference/protobuf/google.protobuf/#duration; however, the actual maximum run time for a job will be limited to the maximum run time for a job listed at https://cloud.google.com/batch/quotas#max-job-duration.
      */
