@@ -411,6 +411,10 @@ export namespace dataform_v1beta1 {
      */
     canonicalTarget?: Schema$Target;
     /**
+     * The data preparation executed by this action.
+     */
+    dataPreparation?: Schema$DataPreparation;
+    /**
      * The declaration declared by this action.
      */
     declaration?: Schema$Declaration;
@@ -445,6 +449,19 @@ export namespace dataform_v1beta1 {
     tokenStatus?: string | null;
   }
   /**
+   * Config for all repositories in a given project and location.
+   */
+  export interface Schema$Config {
+    /**
+     * Optional. The default KMS key that is used if no encryption key is provided when a repository is created.
+     */
+    defaultKmsKeyName?: string | null;
+    /**
+     * Identifier. The config name.
+     */
+    name?: string | null;
+  }
+  /**
    * Describes encryption state of a resource.
    */
   export interface Schema$DataEncryptionState {
@@ -452,6 +469,27 @@ export namespace dataform_v1beta1 {
      * The KMS key version name with which data of a resource is encrypted.
      */
     kmsKeyVersionName?: string | null;
+  }
+  /**
+   * Defines a compiled Data Preparation entity
+   */
+  export interface Schema$DataPreparation {
+    /**
+     * The data preparation definition, stored as a binary encoded proto.
+     */
+    contents?: string | null;
+    /**
+     * A list of actions that this action depends on.
+     */
+    dependencyTargets?: Schema$Target[];
+    /**
+     * Whether this action is disabled (i.e. should not be run).
+     */
+    disabled?: boolean | null;
+    /**
+     * Arbitrary, user-defined tags on this action.
+     */
+    tags?: string[] | null;
   }
   /**
    * Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.
@@ -1702,6 +1740,91 @@ export namespace dataform_v1beta1 {
     }
 
     /**
+     * Get default config for a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getConfig(
+      params: Params$Resource$Projects$Locations$Getconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getConfig(
+      params?: Params$Resource$Projects$Locations$Getconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Config>;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Getconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Getconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Config>,
+      callback: BodyResponseCallback<Schema$Config>
+    ): void;
+    getConfig(
+      params: Params$Resource$Projects$Locations$Getconfig,
+      callback: BodyResponseCallback<Schema$Config>
+    ): void;
+    getConfig(callback: BodyResponseCallback<Schema$Config>): void;
+    getConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getconfig
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Config> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Config>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Config>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      *
      * @param params - Parameters for request
@@ -1793,12 +1916,104 @@ export namespace dataform_v1beta1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
+
+    /**
+     * Update default config for a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
+      params?: Params$Resource$Projects$Locations$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Config>;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Updateconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Config>,
+      callback: BodyResponseCallback<Schema$Config>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Updateconfig,
+      callback: BodyResponseCallback<Schema$Config>
+    ): void;
+    updateConfig(callback: BodyResponseCallback<Schema$Config>): void;
+    updateConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updateconfig
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Config>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Config> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Config>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Config>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
      * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Getconfig
+    extends StandardParameters {
+    /**
+     * Required. The config name.
      */
     name?: string;
   }
@@ -1820,6 +2035,22 @@ export namespace dataform_v1beta1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Updateconfig
+    extends StandardParameters {
+    /**
+     * Identifier. The config name.
+     */
+    name?: string;
+    /**
+     * Optional. Specifies the fields to be updated in the config.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Config;
   }
 
   export class Resource$Projects$Locations$Collections {
