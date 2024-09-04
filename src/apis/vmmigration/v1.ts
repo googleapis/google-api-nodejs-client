@@ -865,7 +865,7 @@ export namespace vmmigration_v1 {
     zone?: string | null;
   }
   /**
-   * Scheduling information for VM on maintenance/restart behaviour and node allocation in sole tenant nodes.
+   * Scheduling information for VM on maintenance/restart behaviour and node allocation in sole tenant nodes. Options for instance behavior when the host machine undergoes maintenance that may temporarily impact instance performance.
    */
   export interface Schema$ComputeScheduling {
     /**

@@ -2220,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240808",
+  "revision": "20240822",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -3404,7 +3404,7 @@
       "type": "object"
     },
     "ComputeScheduling": {
-      "description": "Scheduling information for VM on maintenance/restart behaviour and node allocation in sole tenant nodes.",
+      "description": "Scheduling information for VM on maintenance/restart behaviour and node allocation in sole tenant nodes. Options for instance behavior when the host machine undergoes maintenance that may temporarily impact instance performance.",
       "id": "ComputeScheduling",
       "properties": {
         "minNodeCpus": {
