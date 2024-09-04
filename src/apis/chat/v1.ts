@@ -687,7 +687,7 @@ export namespace chat_v1 {
      */
     cornerRadius?: number | null;
     /**
-     * The colors to use when the type is `BORDER_TYPE_STROKE`.
+     * The colors to use when the type is `BORDER_TYPE_STROKE`. To set the stroke color, specify a value for the `red`, `green`, and `blue` fields. The value must be a float number between 0 and 1 based on the RGB color value, where `0` (0/255) represents the absence of color and `1` (255/255) represents the maximum intensity of the color. For example, the following sets the color to red at its maximum intensity: ``` "color": { "red": 1, "green": 0, "blue": 0, \} ``` The `alpha` field is unavailable for stroke color. If specified, this field is ignored.
      */
     strokeColor?: Schema$Color;
     /**
@@ -704,7 +704,7 @@ export namespace chat_v1 {
      */
     altText?: string | null;
     /**
-     * If set, the button is filled with a solid background color and the font color changes to maintain contrast with the background color. For example, setting a blue background likely results in white text. If unset, the image background is white and the font color is blue. For red, green, and blue, the value of each field is a `float` number that you can express in either of two ways: as a number between 0 and 255 divided by 255 (153/255), or as a value between 0 and 1 (0.6). 0 represents the absence of a color and 1 or 255/255 represent the full presence of that color on the RGB scale. Optionally set `alpha`, which sets a level of transparency using this equation: ``` pixel color = alpha * (this color) + (1.0 - alpha) * (background color) ``` For `alpha`, a value of `1` corresponds with a solid color, and a value of `0` corresponds with a completely transparent color. For example, the following color represents a half transparent red: ``` "color": { "red": 1, "green": 0, "blue": 0, "alpha": 0.5 \} ```
+     * Optional. The color of the button. If set, the button `type` is set to `FILLED` and the color of `text` and `icon` fields are set to a contrasting color for readability. For example, if the button color is set to blue, any text or icons in the button are set to white. To set the button color, specify a value for the `red`, `green`, and `blue` fields. The value must be a float number between 0 and 1 based on the RGB color value, where `0` (0/255) represents the absence of color and `1` (255/255) represents the maximum intensity of the color. For example, the following sets the color to red at its maximum intensity: ``` "color": { "red": 1, "green": 0, "blue": 0, \} ``` The `alpha` field is unavailable for button color. If specified, this field is ignored.
      */
     color?: Schema$Color;
     /**
@@ -712,7 +712,7 @@ export namespace chat_v1 {
      */
     disabled?: boolean | null;
     /**
-     * The icon image. If both `icon` and `text` are set, then the icon appears before the text.
+     * An icon displayed inside the button. If both `icon` and `text` are set, then the icon appears before the text.
      */
     icon?: Schema$GoogleAppsCardV1Icon;
     /**
@@ -1312,7 +1312,7 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1Widget {
     /**
-     * A list of buttons. For example, the following JSON creates two buttons. The first is a blue text button and the second is an image button that opens a link: ``` "buttonList": { "buttons": [ { "text": "Edit", "color": { "red": 0, "green": 0, "blue": 1, "alpha": 1 \}, "disabled": true, \}, { "icon": { "knownIcon": "INVITE", "altText": "check calendar" \}, "onClick": { "openLink": { "url": "https://example.com/calendar" \} \} \} ] \} ```
+     * A list of buttons. For example, the following JSON creates two buttons. The first is a blue text button and the second is an image button that opens a link: ``` "buttonList": { "buttons": [ { "text": "Edit", "color": { "red": 0, "green": 0, "blue": 1, \}, "disabled": true, \}, { "icon": { "knownIcon": "INVITE", "altText": "check calendar" \}, "onClick": { "openLink": { "url": "https://example.com/calendar" \} \} \} ] \} ```
      */
     buttonList?: Schema$GoogleAppsCardV1ButtonList;
     /**
@@ -1719,7 +1719,7 @@ export namespace chat_v1 {
      */
     cards?: Schema$Card[];
     /**
-     * An array of [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards). Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), the messages can't contain cards. To learn about cards and how to create them, see [Send card messages](https://developers.google.com/workspace/chat/create-messages#create). [Card builder](https://addons.gsuite.google.com/uikit/builder)
+     * An array of [cards](https://developers.google.com/workspace/chat/api/reference/rest/v1/cards). Only Chat apps can create cards. If your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user), the messages can't contain cards. To learn how to create a message that contains cards, see [Send a message](https://developers.google.com/workspace/chat/create-messages). [Card builder](https://addons.gsuite.google.com/uikit/builder)
      */
     cardsV2?: Schema$CardWithId[];
     /**
@@ -1763,7 +1763,7 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. Input for creating a message, otherwise output only. The user that can view the message. When set, the message is private and only visible to the specified user and the Chat app. Link previews and attachments aren't supported for private messages. Only Chat apps can send private messages. If your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) to send a message, the message can't be private and must omit this field. For details, see [Send private messages to Google Chat users](https://developers.google.com/workspace/chat/private-messages).
+     * Immutable. Input for creating a message, otherwise output only. The user that can view the message. When set, the message is private and only visible to the specified user and the Chat app. Link previews and attachments aren't supported for private messages. Only Chat apps can send private messages. If your Chat app [authenticates as a user](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) to send a message, the message can't be private and must omit this field. For details, see [Send a message privately](https://developers.google.com/workspace/chat/create-messages#private).
      */
     privateMessageViewer?: Schema$User;
     /**
@@ -1783,7 +1783,7 @@ export namespace chat_v1 {
      */
     space?: Schema$Space;
     /**
-     * Plain-text body of the message. The first link to an image, video, or web page generates a [preview chip](https://developers.google.com/workspace/chat/preview-links). You can also [@mention a Google Chat user](https://developers.google.com/workspace/chat/format-messages#messages-@mention), or everyone in the space. To learn about creating text messages, see [Send a text message](https://developers.google.com/workspace/chat/create-messages#create-text-messages).
+     * Plain-text body of the message. The first link to an image, video, or web page generates a [preview chip](https://developers.google.com/workspace/chat/preview-links). You can also [@mention a Google Chat user](https://developers.google.com/workspace/chat/format-messages#messages-@mention), or everyone in the space. To learn about creating text messages, see [Send a message](https://developers.google.com/workspace/chat/create-messages).
      */
     text?: string | null;
     /**
@@ -2081,7 +2081,7 @@ export namespace chat_v1 {
      */
     membershipCount?: Schema$MembershipCount;
     /**
-     * Resource name of the space. Format: `spaces/{space\}`
+     * Resource name of the space. Format: `spaces/{space\}` Where `{space\}` represents the system-assigned ID for the space. You can obtain the space ID by calling the [`spaces.list()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/list) method or from the space URL. For example, if the space URL is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID is `AAAAAAAAA`.
      */
     name?: string | null;
     /**
@@ -3530,7 +3530,7 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$Patch extends StandardParameters {
     /**
-     * Resource name of the space. Format: `spaces/{space\}`
+     * Resource name of the space. Format: `spaces/{space\}` Where `{space\}` represents the system-assigned ID for the space. You can obtain the space ID by calling the [`spaces.list()`](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/list) method or from the space URL. For example, if the space URL is `https://mail.google.com/mail/u/0/#chat/space/AAAAAAAAA`, the space ID is `AAAAAAAAA`.
      */
     name?: string;
     /**
@@ -4120,7 +4120,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Creates a message in a Google Chat space. The maximum message size, including text and cards, is 32,000 bytes. For an example, see [Send a message](https://developers.google.com/workspace/chat/create-messages). Calling this method requires [authentication](https://developers.google.com/workspace/chat/authenticate-authorize) and supports the following authentication types: - For text messages, user authentication or app authentication are supported. - For card messages, only app authentication is supported. (Only Chat apps can create card messages.)
+     * Creates a message in a Google Chat space. For an example, see [Send a message](https://developers.google.com/workspace/chat/create-messages). The `create()` method requires either user or app authentication. Chat attributes the message sender differently depending on the type of authentication that you use in your request. The following image shows how Chat attributes a message when you use app authentication. Chat displays the Chat app as the message sender. The content of the message can contain text (`text`), cards (`cardsV2`), and accessory widgets (`accessoryWidgets`). ![Message sent with app authentication](https://developers.google.com/workspace/chat/images/message-app-auth.svg) The following image shows how Chat attributes a message when you use user authentication. Chat displays the user as the message sender and attributes the Chat app to the message by displaying its name. The content of message can only contain text (`text`). ![Message sent with user authentication](https://developers.google.com/workspace/chat/images/message-user-auth.svg) The maximum message size, including the message contents, is 32,000 bytes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
