@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v4.3.0...cloudfunctions-v4.3.1) (2024-08-30)
+
+
+### Bug Fixes
+
+* **cloudfunctions:** update the API ([158373f](https://github.com/googleapis/google-api-nodejs-client/commit/158373f1d84156c77b347f5925fa1bcde28acc8a))
+
 ## [4.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v4.2.0...cloudfunctions-v4.3.0) (2024-08-16)
 
 
