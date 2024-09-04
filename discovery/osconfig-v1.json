@@ -1083,7 +1083,7 @@
       }
     }
   },
-  "revision": "20240602",
+  "revision": "20240901",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -1565,7 +1565,7 @@
             "AVAILABLE_PACKAGE"
           ],
           "enumDescriptions": [
-            "Invalid. An type must be specified.",
+            "Invalid. A type must be specified.",
             "This represents a package that is installed on the VM.",
             "This represents an update that is available for a package."
           ],
@@ -2480,7 +2480,7 @@
           "type": "string"
         },
         "outputFilePath": {
-          "description": "Only recorded for enforce Exec. Path to an output file (that is created by this Exec) whose content will be recorded in OSPolicyResourceCompliance after a successful run. Absence or failure to read this file will result in this ExecResource being non-compliant. Output file size is limited to 100K bytes.",
+          "description": "Only recorded for enforce Exec. Path to an output file (that is created by this Exec) whose content will be recorded in OSPolicyResourceCompliance after a successful run. Absence or failure to read this file will result in this ExecResource being non-compliant. Output file size is limited to 500K bytes.",
           "type": "string"
         },
         "script": {
