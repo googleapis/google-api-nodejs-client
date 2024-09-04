@@ -145,6 +145,10 @@ export namespace file_v1 {
      */
     downloadBytes?: string | null;
     /**
+     * Output only. The file system protocol of the source Filestore instance that this backup is created from.
+     */
+    fileSystemProtocol?: string | null;
+    /**
      * Immutable. KMS key name used for data encryption.
      */
     kmsKey?: string | null;
@@ -185,7 +189,7 @@ export namespace file_v1 {
      */
     storageBytes?: string | null;
     /**
-     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     * Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
      */
     tags?: {[key: string]: string} | null;
   }
@@ -479,6 +483,14 @@ export namespace file_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Indicates whether the instance is protected against deletion.
+     */
+    deletionProtectionEnabled?: boolean | null;
+    /**
+     * Optional. The reason for enabling deletion protection.
+     */
+    deletionProtectionReason?: string | null;
+    /**
      * The description of the instance (2048 characters or less).
      */
     description?: string | null;
@@ -507,7 +519,11 @@ export namespace file_v1 {
      */
     networks?: Schema$NetworkConfig[];
     /**
-     * Optional. Replicaition configuration.
+     * Immutable. The protocol indicates the access protocol for all shares in the instance. This field is immutable and it cannot be changed after the instance has been created. Default value: `NFS_V3`.
+     */
+    protocol?: string | null;
+    /**
+     * Optional. Replication configuration.
      */
     replication?: Schema$Replication;
     /**
@@ -531,7 +547,7 @@ export namespace file_v1 {
      */
     suspensionReasons?: string[] | null;
     /**
-     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     * Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
      */
     tags?: {[key: string]: string} | null;
     /**
@@ -821,7 +837,7 @@ export namespace file_v1 {
    */
   export interface Schema$Replication {
     /**
-     * Optional. Replicas configuration on the instance. For now, only a single replica config is supported.
+     * Optional. Replication configuration for the replica instance associated with this instance. Only a single replica is supported.
      */
     replicas?: Schema$ReplicaConfig[];
     /**
@@ -897,7 +913,7 @@ export namespace file_v1 {
      */
     state?: string | null;
     /**
-     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     * Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
      */
     tags?: {[key: string]: string} | null;
   }
@@ -2157,7 +2173,7 @@ export namespace file_v1 {
     }
 
     /**
-     * Promote an standby instance (replica).
+     * Promote the standby instance (replica).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2483,7 +2499,7 @@ export namespace file_v1 {
      */
     name?: string;
     /**
-     * Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
+     * Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels" * "performance_config" * "deletion_protection_enabled" * "deletion_protection_reason"
      */
     updateMask?: string;
 
