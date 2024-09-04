@@ -201,7 +201,7 @@
       }
     }
   },
-  "revision": "20240530",
+  "revision": "20240829",
   "rootUrl": "https://pagespeedonline.googleapis.com/",
   "schemas": {
     "AuditRefs": {
@@ -432,6 +432,10 @@
           "description": "The audit's id.",
           "type": "string"
         },
+        "metricSavings": {
+          "$ref": "MetricSavings",
+          "description": "The metric savings of the audit."
+        },
         "numericUnit": {
           "description": "The unit of the numeric_value field. Used to format the numeric value for display.",
           "type": "string"
@@ -588,6 +592,38 @@
         "userAgent": {
           "description": "The user agent that was used to run this LHR.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MetricSavings": {
+      "description": "The metric savings of the audit.",
+      "id": "MetricSavings",
+      "properties": {
+        "CLS": {
+          "description": "Optional. Optional numeric value representing the audit's savings for the CLS metric.",
+          "format": "double",
+          "type": "number"
+        },
+        "FCP": {
+          "description": "Optional. Optional numeric value representing the audit's savings for the FCP metric.",
+          "format": "double",
+          "type": "number"
+        },
+        "INP": {
+          "description": "Optional. Optional numeric value representing the audit's savings for the INP metric.",
+          "format": "double",
+          "type": "number"
+        },
+        "LCP": {
+          "description": "Optional. Optional numeric value representing the audit's savings for the LCP metric.",
+          "format": "double",
+          "type": "number"
+        },
+        "TBT": {
+          "description": "Optional. Optional numeric value representing the audit's savings for the TBT metric.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
