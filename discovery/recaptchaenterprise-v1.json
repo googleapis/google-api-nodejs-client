@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20240811",
+  "revision": "20240825",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1160,7 +1160,7 @@
           "type": "string"
         },
         "express": {
-          "description": "Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.",
+          "description": "Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference an Express site key.",
           "type": "boolean"
         },
         "firewallPolicyEvaluation": {
@@ -1231,6 +1231,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ExpressKeySettings": {
+      "description": "Settings specific to keys that can be used for reCAPTCHA Express.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ExpressKeySettings",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1FirewallAction": {
@@ -1553,6 +1559,10 @@
         "displayName": {
           "description": "Required. Human-readable display name of this key. Modifiable by user.",
           "type": "string"
+        },
+        "expressSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ExpressKeySettings",
+          "description": "Settings for keys that can be used by reCAPTCHA Express."
         },
         "iosSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
