@@ -821,7 +821,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig {
     /**
-     * Required. Format: projects//locations//agents//flows//versions/.
+     * Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.
      */
     version?: string | null;
   }
@@ -2921,7 +2921,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig {
     /**
-     * Required. Format: projects//locations//agents//flows//versions/.
+     * Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.
      */
     version?: string | null;
   }
