@@ -1221,6 +1221,10 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$ImportRowError {
     /**
+     * Error details for a CSV file.
+     */
+    csvError?: Schema$ImportRowErrorCsvErrorDetails;
+    /**
      * The list of errors detected in the row.
      */
     errors?: Schema$ImportError[];
@@ -1236,6 +1240,32 @@ export namespace migrationcenter_v1 {
      * The VM UUID.
      */
     vmUuid?: string | null;
+    /**
+     * Error details for an XLSX file.
+     */
+    xlsxError?: Schema$ImportRowErrorXlsxErrorDetails;
+  }
+  /**
+   * Error details for a CSV file.
+   */
+  export interface Schema$ImportRowErrorCsvErrorDetails {
+    /**
+     * The row number where the error was detected.
+     */
+    rowNumber?: number | null;
+  }
+  /**
+   * Error details for an XLSX file.
+   */
+  export interface Schema$ImportRowErrorXlsxErrorDetails {
+    /**
+     * The row number where the error was detected.
+     */
+    rowNumber?: number | null;
+    /**
+     * The name of the sheet where the error was detected.
+     */
+    sheet?: string | null;
   }
   /**
    * An insight about an asset.
