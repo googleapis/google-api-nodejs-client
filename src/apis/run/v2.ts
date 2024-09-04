@@ -1523,7 +1523,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ServiceMesh {
     /**
-     * The service mesh resource name. Format: projects/{project_number\}/locations/global/meshes/{mesh\}.
+     * The Mesh resource name. Format: projects/{project\}/locations/global/meshes/{mesh\}, where {project\} can be project id or number.
      */
     mesh?: string | null;
   }

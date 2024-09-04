@@ -4032,7 +4032,7 @@
       "id": "GoogleCloudRunV2ServiceMesh",
       "properties": {
         "mesh": {
-          "description": "The service mesh resource name. Format: projects/{project_number}/locations/global/meshes/{mesh}.",
+          "description": "The Mesh resource name. Format: projects/{project}/locations/global/meshes/{mesh}, where {project} can be project id or number.",
           "type": "string"
         }
       },
