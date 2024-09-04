@@ -2267,7 +2267,7 @@
       }
     }
   },
-  "revision": "20240814",
+  "revision": "20240829",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2777,6 +2777,7 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
+            "POSTGRES_17",
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
@@ -2808,6 +2809,7 @@
             false,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -2867,6 +2869,7 @@
             "The database version is PostgreSQL 14.",
             "The database version is PostgreSQL 15.",
             "The database version is PostgreSQL 16.",
+            "The database version is PostgreSQL 17.",
             "The database version is MySQL 8.",
             "The database major version is MySQL 8.0 and the minor version is 18.",
             "The database major version is MySQL 8.0 and the minor version is 26.",
@@ -3083,6 +3086,7 @@
             "POSTGRES_14",
             "POSTGRES_15",
             "POSTGRES_16",
+            "POSTGRES_17",
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
@@ -3114,6 +3118,7 @@
             false,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -3173,6 +3178,7 @@
             "The database version is PostgreSQL 14.",
             "The database version is PostgreSQL 15.",
             "The database version is PostgreSQL 16.",
+            "The database version is PostgreSQL 17.",
             "The database version is MySQL 8.",
             "The database major version is MySQL 8.0 and the minor version is 18.",
             "The database major version is MySQL 8.0 and the minor version is 26.",
@@ -3651,6 +3657,16 @@
               "description": "Whether or not the backup can be used as a differential base copy_only backup can not be served as differential base",
               "type": "boolean"
             },
+            "exportLogEndTime": {
+              "description": "Optional. The end timestamp when transaction log will be included in the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all available logs until current time will be included. Only applied to Cloud SQL for SQL Server.",
+              "format": "google-datetime",
+              "type": "string"
+            },
+            "exportLogStartTime": {
+              "description": "Optional. The begin timestamp when transaction log will be included in the export operation. [RFC 3339](https://tools.ietf.org/html/rfc3339) format (for example, `2023-10-01T16:19:00.094`) in UTC. When omitted, all available logs from the beginning of retention period will be included. Only applied to Cloud SQL for SQL Server.",
+              "format": "google-datetime",
+              "type": "string"
+            },
             "stripeCount": {
               "description": "Option for specifying how many stripes to use for the export. If blank, and the value of the striped field is true, the number of stripes is automatically chosen.",
               "format": "int32",
@@ -3834,6 +3850,7 @@
               "POSTGRES_14",
               "POSTGRES_15",
               "POSTGRES_16",
+              "POSTGRES_17",
               "MYSQL_8_0",
               "MYSQL_8_0_18",
               "MYSQL_8_0_26",
@@ -3865,6 +3882,7 @@
               false,
               true,
               true,
+              false,
               false,
               false,
               false,
@@ -3924,6 +3942,7 @@
               "The database version is PostgreSQL 14.",
               "The database version is PostgreSQL 15.",
               "The database version is PostgreSQL 16.",
+              "The database version is PostgreSQL 17.",
               "The database version is MySQL 8.",
               "The database major version is MySQL 8.0 and the minor version is 18.",
               "The database major version is MySQL 8.0 and the minor version is 26.",
@@ -5621,7 +5640,9 @@
             "EXTENSIONS_NOT_MIGRATED",
             "PG_CRON_FLAG_ENABLED_IN_REPLICA",
             "EXTENSIONS_NOT_ENABLED_IN_REPLICA",
-            "UNSUPPORTED_COLUMNS"
+            "UNSUPPORTED_COLUMNS",
+            "USERS_NOT_CREATED_IN_REPLICA",
+            "UNSUPPORTED_SYSTEM_OBJECTS"
           ],
           "enumDescriptions": [
             "",
@@ -5673,7 +5694,9 @@
             "The warning message indicates the pg_cron extension and settings will not be migrated to the destination.",
             "The error message indicates that pg_cron flags are enabled on the destination which is not supported during the migration.",
             "This error message indicates that the specified extensions are not enabled on destination instance. For example, before you can migrate data to the destination instance, you must enable the PGAudit extension on the instance.",
-            "The source database has generated columns that can't be migrated. Please change them to regular columns before migration."
+            "The source database has generated columns that can't be migrated. Please change them to regular columns before migration.",
+            "The source database has users that aren't created in the replica. First, create all users, which are in the pg_user_mappings table of the source database, in the destination instance. Then, perform the migration.",
+            "The selected objects include system objects that aren't supported for migration."
           ],
           "type": "string"
         }

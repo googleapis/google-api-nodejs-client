@@ -901,6 +901,8 @@ export namespace sqladmin_v1 {
       bakType?: string;
       copyOnly?: boolean;
       differentialBase?: boolean;
+      exportLogEndTime?: string;
+      exportLogStartTime?: string;
       stripeCount?: number;
       striped?: boolean;
     } | null;
