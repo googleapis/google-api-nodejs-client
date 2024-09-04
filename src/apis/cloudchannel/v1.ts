@@ -760,6 +760,10 @@ export namespace cloudchannel_v1 {
      * Required. Domain to fetch for Cloud Identity account customers, including domained and domainless.
      */
     domain?: string | null;
+    /**
+     * Optional. Primary admin email to fetch for Cloud Identity account domainless customer.
+     */
+    primaryAdminEmail?: string | null;
   }
   /**
    * Response message for CloudChannelService.CheckCloudIdentityAccountsExist.
@@ -775,6 +779,10 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1CloudIdentityCustomerAccount {
     /**
+     * If existing = true, and is 2-tier customer, the channel partner of the customer.
+     */
+    channelPartnerCloudIdentityId?: string | null;
+    /**
      * If existing = true, the Cloud Identity ID of the customer.
      */
     customerCloudIdentityId?: string | null;
@@ -782,6 +790,10 @@ export namespace cloudchannel_v1 {
      * If owned = true, the name of the customer that owns the Cloud Identity account. Customer_name uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
     customerName?: string | null;
+    /**
+     * If existing = true, the type of the customer.
+     */
+    customerType?: string | null;
     /**
      * Returns true if a Cloud Identity account exists for a specific domain.
      */
@@ -1257,6 +1269,10 @@ export namespace cloudchannel_v1 {
      * Required. Choose to overwrite an existing customer if found. This must be set to true if there is an existing customer with a conflicting region code or domain.
      */
     overwriteIfExists?: boolean | null;
+    /**
+     * Optional. Customer's primary admin email.
+     */
+    primaryAdminEmail?: string | null;
   }
   /**
    * Response message for CloudChannelService.ListChannelPartnerLinks.
