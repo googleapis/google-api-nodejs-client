@@ -1022,7 +1022,7 @@
       }
     }
   },
-  "revision": "20240715",
+  "revision": "20240826",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
@@ -2146,7 +2146,7 @@
       "type": "object"
     },
     "RevokeSubscriptionResponse": {
-      "description": "Message for response when you revoke a subscription.",
+      "description": "Message for response when you revoke a subscription. Empty for now.",
       "id": "RevokeSubscriptionResponse",
       "properties": {},
       "type": "object"
