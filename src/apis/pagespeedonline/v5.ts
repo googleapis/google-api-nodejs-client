@@ -317,6 +317,10 @@ export namespace pagespeedonline_v5 {
      */
     id?: string | null;
     /**
+     * The metric savings of the audit.
+     */
+    metricSavings?: Schema$MetricSavings;
+    /**
      * The unit of the numeric_value field. Used to format the numeric value for display.
      */
     numericUnit?: string | null;
@@ -450,6 +454,31 @@ export namespace pagespeedonline_v5 {
      * The user agent that was used to run this LHR.
      */
     userAgent?: string | null;
+  }
+  /**
+   * The metric savings of the audit.
+   */
+  export interface Schema$MetricSavings {
+    /**
+     * Optional. Optional numeric value representing the audit's savings for the CLS metric.
+     */
+    CLS?: number | null;
+    /**
+     * Optional. Optional numeric value representing the audit's savings for the FCP metric.
+     */
+    FCP?: number | null;
+    /**
+     * Optional. Optional numeric value representing the audit's savings for the INP metric.
+     */
+    INP?: number | null;
+    /**
+     * Optional. Optional numeric value representing the audit's savings for the LCP metric.
+     */
+    LCP?: number | null;
+    /**
+     * Optional. Optional numeric value representing the audit's savings for the TBT metric.
+     */
+    TBT?: number | null;
   }
   /**
    * The CrUX loading experience object that contains CrUX data breakdowns.
