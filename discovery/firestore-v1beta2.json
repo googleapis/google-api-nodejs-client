@@ -415,7 +415,7 @@
       }
     }
   },
-  "revision": "20240617",
+  "revision": "20240822",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -429,7 +429,7 @@
       "id": "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata",
       "properties": {
         "collectionIds": {
-          "description": "The ids of the collection groups that are being deleted.",
+          "description": "The IDs of the collection groups that are being deleted.",
           "items": {
             "type": "string"
           },
@@ -441,7 +441,7 @@
           "type": "string"
         },
         "namespaceIds": {
-          "description": "Which namespace ids are being deleted.",
+          "description": "Which namespace IDs are being deleted.",
           "items": {
             "type": "string"
           },

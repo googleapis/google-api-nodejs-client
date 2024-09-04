@@ -614,6 +614,14 @@ export namespace firestore_v1beta1 {
      */
     distanceMeasure?: string | null;
     /**
+     * Optional. Optional name of the field to output the result of the vector distance calculation. Must conform to document field name limitations.
+     */
+    distanceResultField?: string | null;
+    /**
+     * Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold For DOT_PRODUCT: WHERE distance \>= distance_threshold
+     */
+    distanceThreshold?: number | null;
+    /**
      * Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.
      */
     limit?: number | null;
@@ -825,7 +833,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
     /**
-     * The ids of the collection groups that are being deleted.
+     * The IDs of the collection groups that are being deleted.
      */
     collectionIds?: string[] | null;
     /**
@@ -833,7 +841,7 @@ export namespace firestore_v1beta1 {
      */
     endTime?: string | null;
     /**
-     * Which namespace ids are being deleted.
+     * Which namespace IDs are being deleted.
      */
     namespaceIds?: string[] | null;
     /**

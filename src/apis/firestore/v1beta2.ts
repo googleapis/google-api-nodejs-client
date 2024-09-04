@@ -420,7 +420,7 @@ export namespace firestore_v1beta2 {
    */
   export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
     /**
-     * The ids of the collection groups that are being deleted.
+     * The IDs of the collection groups that are being deleted.
      */
     collectionIds?: string[] | null;
     /**
@@ -428,7 +428,7 @@ export namespace firestore_v1beta2 {
      */
     endTime?: string | null;
     /**
-     * Which namespace ids are being deleted.
+     * Which namespace IDs are being deleted.
      */
     namespaceIds?: string[] | null;
     /**

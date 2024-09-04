@@ -614,6 +614,14 @@ export namespace firestore_v1 {
      */
     distanceMeasure?: string | null;
     /**
+     * Optional. Optional name of the field to output the result of the vector distance calculation. Must conform to document field name limitations.
+     */
+    distanceResultField?: string | null;
+    /**
+     * Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold For DOT_PRODUCT: WHERE distance \>= distance_threshold
+     */
+    distanceThreshold?: number | null;
+    /**
      * Required. The number of nearest neighbors to return. Must be a positive integer of no more than 1000.
      */
     limit?: number | null;
@@ -693,7 +701,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
     /**
-     * The ids of the collection groups that are being deleted.
+     * The IDs of the collection groups that are being deleted.
      */
     collectionIds?: string[] | null;
     /**
@@ -701,7 +709,7 @@ export namespace firestore_v1 {
      */
     endTime?: string | null;
     /**
-     * Which namespace ids are being deleted.
+     * Which namespace IDs are being deleted.
      */
     namespaceIds?: string[] | null;
     /**
@@ -805,7 +813,7 @@ export namespace firestore_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. The key_prefix for this database. This key_prefix is used, in combination with the project id ("~") to construct the application id that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).
+     * Output only. The key_prefix for this database. This key_prefix is used, in combination with the project ID ("~") to construct the application ID that is returned from the Cloud Datastore APIs in Google App Engine first generation runtimes. This value may be empty in which case the appid to use for URL-encoded keys is the project_id (eg: foo instead of v~foo).
      */
     keyPrefix?: string | null;
     /**
@@ -846,7 +854,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1DeleteDatabaseMetadata {}
   /**
-   * Encryption configuration for a new database being created from another source. The source could be a Backup or a DatabaseSnapshot.
+   * Encryption configuration for a new database being created from another source. The source could be a Backup .
    */
   export interface Schema$GoogleFirestoreAdminV1EncryptionConfig {
     /**
@@ -867,7 +875,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ExportDocumentsMetadata {
     /**
-     * Which collection ids are being exported.
+     * Which collection IDs are being exported.
      */
     collectionIds?: string[] | null;
     /**
@@ -875,7 +883,7 @@ export namespace firestore_v1 {
      */
     endTime?: string | null;
     /**
-     * Which namespace ids are being exported.
+     * Which namespace IDs are being exported.
      */
     namespaceIds?: string[] | null;
     /**
@@ -908,7 +916,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ExportDocumentsRequest {
     /**
-     * Which collection ids to export. Unspecified means all collections. Each collection id in this list must be unique.
+     * Which collection IDs to export. Unspecified means all collections. Each collection ID in this list must be unique.
      */
     collectionIds?: string[] | null;
     /**
@@ -934,7 +942,7 @@ export namespace firestore_v1 {
     outputUriPrefix?: string | null;
   }
   /**
-   * Represents a single field in the database. Fields are grouped by their "Collection Group", which represent all collections in the database with the same id.
+   * Represents a single field in the database. Fields are grouped by their "Collection Group", which represent all collections in the database with the same ID.
    */
   export interface Schema$GoogleFirestoreAdminV1Field {
     /**
@@ -1000,7 +1008,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ImportDocumentsMetadata {
     /**
-     * Which collection ids are being imported.
+     * Which collection IDs are being imported.
      */
     collectionIds?: string[] | null;
     /**
@@ -1012,7 +1020,7 @@ export namespace firestore_v1 {
      */
     inputUriPrefix?: string | null;
     /**
-     * Which namespace ids are being imported.
+     * Which namespace IDs are being imported.
      */
     namespaceIds?: string[] | null;
     /**
@@ -1037,7 +1045,7 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1ImportDocumentsRequest {
     /**
-     * Which collection ids to import. Unspecified means all collections included in the import. Each collection id in this list must be unique.
+     * Which collection IDs to import. Unspecified means all collections included in the import. Each collection ID in this list must be unique.
      */
     collectionIds?: string[] | null;
     /**
@@ -1066,7 +1074,7 @@ export namespace firestore_v1 {
      */
     name?: string | null;
     /**
-     * Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection id. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection id as this index.
+     * Indexes with a collection query scope specified allow queries against a collection that is the child of a specific document, specified at query time, and that has the same collection ID. Indexes with a collection group query scope specified allow queries against all collections descended from a specific document, specified at query time, and that have the same collection ID as this index.
      */
     queryScope?: string | null;
     /**
@@ -1270,11 +1278,11 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1RestoreDatabaseRequest {
     /**
-     * Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
+     * Required. Backup to restore from. Must be from the same project as the parent. The restored database will be created in the same location as the source backup. Format is: `projects/{project_id\}/locations/{location\}/backups/{backup\}`
      */
     backup?: string | null;
     /**
-     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database id must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid.
      */
     databaseId?: string | null;
     /**
@@ -2951,7 +2959,7 @@ export namespace firestore_v1 {
   export interface Params$Resource$Projects$Databases$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database id is also valid.
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid.
      */
     databaseId?: string;
     /**
