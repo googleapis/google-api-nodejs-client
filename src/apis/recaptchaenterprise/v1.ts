@@ -347,7 +347,7 @@ export namespace recaptchaenterprise_v1 {
      */
     expectedAction?: string | null;
     /**
-     * Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference a SCORE key with WAF feature set to EXPRESS.
+     * Optional. Flag for a reCAPTCHA express request for an assessment without a token. If enabled, `site_key` must reference an Express site key.
      */
     express?: boolean | null;
     /**
@@ -403,6 +403,10 @@ export namespace recaptchaenterprise_v1 {
      */
     wafTokenAssessment?: boolean | null;
   }
+  /**
+   * Settings specific to keys that can be used for reCAPTCHA Express.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ExpressKeySettings {}
   /**
    * An individual action. Each action represents what to do if a policy matches.
    */
@@ -637,6 +641,10 @@ export namespace recaptchaenterprise_v1 {
      * Required. Human-readable display name of this key. Modifiable by user.
      */
     displayName?: string | null;
+    /**
+     * Settings for keys that can be used by reCAPTCHA Express.
+     */
+    expressSettings?: Schema$GoogleCloudRecaptchaenterpriseV1ExpressKeySettings;
     /**
      * Settings for keys that can be used by iOS apps.
      */
