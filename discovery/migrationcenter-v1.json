@@ -2309,7 +2309,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20240822",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3918,6 +3918,10 @@
       "description": "A resource that reports the import job errors at row level.",
       "id": "ImportRowError",
       "properties": {
+        "csvError": {
+          "$ref": "ImportRowErrorCsvErrorDetails",
+          "description": "Error details for a CSV file."
+        },
         "errors": {
           "description": "The list of errors detected in the row.",
           "items": {
@@ -3937,6 +3941,38 @@
         },
         "vmUuid": {
           "description": "The VM UUID.",
+          "type": "string"
+        },
+        "xlsxError": {
+          "$ref": "ImportRowErrorXlsxErrorDetails",
+          "description": "Error details for an XLSX file."
+        }
+      },
+      "type": "object"
+    },
+    "ImportRowErrorCsvErrorDetails": {
+      "description": "Error details for a CSV file.",
+      "id": "ImportRowErrorCsvErrorDetails",
+      "properties": {
+        "rowNumber": {
+          "description": "The row number where the error was detected.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ImportRowErrorXlsxErrorDetails": {
+      "description": "Error details for an XLSX file.",
+      "id": "ImportRowErrorXlsxErrorDetails",
+      "properties": {
+        "rowNumber": {
+          "description": "The row number where the error was detected.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sheet": {
+          "description": "The name of the sheet where the error was detected.",
           "type": "string"
         }
       },
