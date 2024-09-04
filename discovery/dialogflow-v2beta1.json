@@ -8082,7 +8082,7 @@
       }
     }
   },
-  "revision": "20240812",
+  "revision": "20240828",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -8535,7 +8535,7 @@
       "id": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Format: projects//locations//agents//flows//versions/.",
+          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
           "type": "string"
         }
       },
@@ -10840,7 +10840,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Format: projects//locations//agents//flows//versions/.",
+          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
           "type": "string"
         }
       },
