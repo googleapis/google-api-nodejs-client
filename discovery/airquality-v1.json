@@ -250,7 +250,7 @@
       }
     }
   },
-  "revision": "20240625",
+  "revision": "20240901",
   "rootUrl": "https://airquality.googleapis.com/",
   "schemas": {
     "AdditionalInfo": {
@@ -350,7 +350,7 @@
           "type": "string"
         },
         "value": {
-          "description": "Value of pollutant concentration.",
+          "description": "Value of the pollutant concentration.",
           "format": "float",
           "type": "number"
         }
@@ -849,7 +849,7 @@
           "description": "Additional information about the pollutant."
         },
         "code": {
-          "description": "The pollutant's code name. For example: \"so2\". A list of all available codes could be found [here](/maps/documentation/air-quality/pollutants#reported_pollutants).",
+          "description": "The pollutant's code name (for example, \"so2\"). For a list of supported pollutant codes, see [Reported pollutants](/maps/documentation/air-quality/pollutants#reported_pollutants).",
           "type": "string"
         },
         "concentration": {
@@ -861,7 +861,7 @@
           "type": "string"
         },
         "fullName": {
-          "description": "The pollutant's full name. For chemical compounds, this is the IUPAC name. Example: \"Sulfur Dioxide\". For more information about the IUPAC names table, see https://iupac.org/what-we-do/periodic-table-of-elements/",
+          "description": "The pollutant's full name. For chemical compounds, this is the IUPAC name. Example: \"Sulfur Dioxide\". For more information about the IUPAC names table, see https://iupac.org/what-we-do/periodic-table-of-elements/.",
           "type": "string"
         }
       },
