@@ -206,7 +206,7 @@ export namespace airquality_v1 {
      */
     units?: string | null;
     /**
-     * Value of pollutant concentration.
+     * Value of the pollutant concentration.
      */
     value?: number | null;
   }
@@ -526,7 +526,7 @@ export namespace airquality_v1 {
      */
     additionalInfo?: Schema$AdditionalInfo;
     /**
-     * The pollutant's code name. For example: "so2". A list of all available codes could be found [here](/maps/documentation/air-quality/pollutants#reported_pollutants).
+     * The pollutant's code name (for example, "so2"). For a list of supported pollutant codes, see [Reported pollutants](/maps/documentation/air-quality/pollutants#reported_pollutants).
      */
     code?: string | null;
     /**
@@ -538,7 +538,7 @@ export namespace airquality_v1 {
      */
     displayName?: string | null;
     /**
-     * The pollutant's full name. For chemical compounds, this is the IUPAC name. Example: "Sulfur Dioxide". For more information about the IUPAC names table, see https://iupac.org/what-we-do/periodic-table-of-elements/
+     * The pollutant's full name. For chemical compounds, this is the IUPAC name. Example: "Sulfur Dioxide". For more information about the IUPAC names table, see https://iupac.org/what-we-do/periodic-table-of-elements/.
      */
     fullName?: string | null;
   }
