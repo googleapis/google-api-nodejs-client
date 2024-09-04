@@ -1336,11 +1336,11 @@ export namespace run_v2 {
     urls?: string[] | null;
   }
   /**
-   * Service mesh configuration.
+   * Settings for Cloud Service Mesh. For more information see https://cloud.google.com/service-mesh/docs/overview.
    */
   export interface Schema$GoogleCloudRunV2ServiceMesh {
     /**
-     * The service mesh resource name. Format: projects/{project_number\}/locations/global/meshes/{mesh\}.
+     * The Mesh resource name. Format: projects/{project\}/locations/global/meshes/{mesh\}, where {project\} can be project id or number.
      */
     mesh?: string | null;
   }

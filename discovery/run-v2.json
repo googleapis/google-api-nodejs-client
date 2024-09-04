@@ -1526,7 +1526,7 @@
       }
     }
   },
-  "revision": "20240816",
+  "revision": "20240823",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3380,11 +3380,11 @@
       "type": "object"
     },
     "GoogleCloudRunV2ServiceMesh": {
-      "description": "Service mesh configuration.",
+      "description": "Settings for Cloud Service Mesh. For more information see https://cloud.google.com/service-mesh/docs/overview.",
       "id": "GoogleCloudRunV2ServiceMesh",
       "properties": {
         "mesh": {
-          "description": "The service mesh resource name. Format: projects/{project_number}/locations/global/meshes/{mesh}.",
+          "description": "The Mesh resource name. Format: projects/{project}/locations/global/meshes/{mesh}, where {project} can be project id or number.",
           "type": "string"
         }
       },
