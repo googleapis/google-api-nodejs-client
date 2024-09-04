@@ -2185,7 +2185,7 @@
       }
     }
   },
-  "revision": "20240815",
+  "revision": "20240825",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -6329,11 +6329,13 @@
       "id": "ResourceManifest",
       "properties": {
         "clusterScoped": {
-          "description": "Whether the resource provided in the manifest is `cluster_scoped`. If unset, the manifest is assumed to be namespace scoped. This field is used for REST mapping when applying the resource in a cluster.",
+          "description": "Output only. Whether the resource provided in the manifest is `cluster_scoped`. If unset, the manifest is assumed to be namespace scoped. This field is used for REST mapping when applying the resource in a cluster.",
+          "readOnly": true,
           "type": "boolean"
         },
         "manifest": {
-          "description": "YAML manifest of the resource.",
+          "description": "Output only. YAML manifest of the resource.",
+          "readOnly": true,
           "type": "string"
         }
       },
