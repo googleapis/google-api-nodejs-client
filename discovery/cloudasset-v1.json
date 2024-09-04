@@ -358,59 +358,6 @@
     },
     "operations": {
       "methods": {
-        "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "flatPath": "v1/operations/{operationsId}:cancel",
-          "httpMethod": "POST",
-          "id": "cloudasset.operations.cancel",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be cancelled.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}:cancel",
-          "request": {
-            "$ref": "CancelOperationRequest"
-          },
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "delete": {
-          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-          "flatPath": "v1/operations/{operationsId}",
-          "httpMethod": "DELETE",
-          "id": "cloudasset.operations.delete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be deleted.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}",
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
         "get": {
           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
           "flatPath": "v1/{v1Id}/{v1Id1}/operations/{operationsId}/{operationsId1}",
@@ -1148,7 +1095,7 @@
       }
     }
   },
-  "revision": "20240823",
+  "revision": "20240831",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1576,12 +1523,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "CancelOperationRequest": {
-      "description": "The request message for Operations.CancelOperation.",
-      "id": "CancelOperationRequest",
-      "properties": {},
       "type": "object"
     },
     "ConditionContext": {
@@ -3526,7 +3467,7 @@
             "AVAILABLE_PACKAGE"
           ],
           "enumDescriptions": [
-            "Invalid. An type must be specified.",
+            "Invalid. A type must be specified.",
             "This represents a package that is installed on the VM.",
             "This represents an update that is available for a package."
           ],
@@ -4207,7 +4148,7 @@
           "type": "array"
         },
         "enrichments": {
-          "description": "Enrichments of the asset. Currently supported enrichment types with SearchAllResources API: * RESOURCE_OWNERS The corresponding read masks in order to get the enrichment: * enrichments.resource_owners The corresponding required permissions: * cloudasset.assets.searchEnrichmentResourceOwners Example query to get resource owner enrichment: scope: \"projects/my-project\" query: \"name: my-project\" assetTypes: \"cloudresourcemanager.googleapis.com/Project\" readMask: { paths: \"asset_type\" paths: \"name\" paths: \"enrichments.resource_owners\" }",
+          "description": "Enrichments of the asset. Currently supported enrichment types with SearchAllResources API: * RESOURCE_OWNERS The corresponding read masks in order to get the enrichment: * enrichments.resource_owners The corresponding required permissions: * cloudasset.assets.searchEnrichmentResourceOwners Example query to get resource owner enrichment: ``` scope: \"projects/my-project\" query: \"name: my-project\" assetTypes: \"cloudresourcemanager.googleapis.com/Project\" readMask: { paths: \"asset_type\" paths: \"name\" paths: \"enrichments.resource_owners\" } ```",
           "items": {
             "$ref": "AssetEnrichment"
           },
