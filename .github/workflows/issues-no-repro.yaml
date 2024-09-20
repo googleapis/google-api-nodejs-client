@@ -1,0 +1,18 @@
+name: invalid_link
+on:
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const script = require('./.github/scripts/close-invalid-link.cjs')
+            await script({github, context})
