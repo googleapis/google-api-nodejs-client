@@ -1,0 +1,53 @@
+name: Documentation Requests
+description: Requests for more information
+body:
+  - type: markdown
+    attributes:
+      value: >
+        Please use this issue type to log documentation requests against the library itself.
+        These requests should involve documentation on Github (`.md` files), and should relate to the library
+        itself. If you have questions or documentation requests for an API, please
+        reach out to the API tracker itself.
+
+        Please submit an issue to the API team, either by submitting an
+        issue in its issue tracker https://cloud.google.com/support/docs/issue-trackers), or by
+        submitting an issue in its linked tracker in the .repo-metadata.json
+        file in the API under packages/* ([example]()).
+        You can also submit a request to documentation on cloud.google.com itself with the "Send Feedback"
+        on the bottom of the page.
+
+
+        Please note that documentation requests and questions for specific APIs
+        will be closed.
+  - type: checkboxes
+    attributes:
+      label: Please make sure you have searched for information in the following
+        guides.
+      options:
+        - label: "Search the issues already opened:
+            https://github.com/GoogleCloudPlatform/google-cloud-node/issues"
+          required: true
+        - label: "Check our Troubleshooting guide:
+            https://googlecloudplatform.github.io/google-cloud-node/#/docs/guid\
+            es/troubleshooting"
+          required: true
+        - label: "Check our FAQ:
+            https://googlecloudplatform.github.io/google-cloud-node/#/docs/guid\
+            es/faq"
+          required: true
+        - label: "Check our libraries HOW-TO:
+            https://github.com/googleapis/gax-nodejs/blob/main/client-libraries\
+            .md"
+          required: true
+        - label: "Check out our authentication guide:
+            https://github.com/googleapis/google-auth-library-nodejs"
+          required: true
+        - label: "Check out handwritten samples for many of our APIs:
+            https://github.com/GoogleCloudPlatform/nodejs-docs-samples"
+          required: true
+  - type: textarea
+    attributes:
+      label: >
+        Documentation Request
+    validations:
+      required: true
