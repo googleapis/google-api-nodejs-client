@@ -17,23 +17,23 @@ body:
         guides.
       options:
         - label: "Search the issues already opened:
-            https://github.com/GoogleCloudPlatform/google-cloud-node/issues"
+            https://github.com/GoogleCloudPlatform/google-cloud-node/issues an\
+            d https://github.com/googleapis/google-api-nodejs-client/issues"
           required: true
         - label: "Search StackOverflow:
             http://stackoverflow.com/questions/tagged/google-cloud-platform+nod\
             e.js"
           required: true
-        - label: "Check our Troubleshooting guide:
-            https://googlecloudplatform.github.io/google-cloud-node/#/docs/guid\
-            es/troubleshooting"
+        - label: "Check our Troubleshooting guide: https://github.com/googleapis\
+          /google-cloud-node/blob/main/docs/troubleshooting.md"
           required: true
         - label: "Check our FAQ:
             https://googlecloudplatform.github.io/google-cloud-node/#/docs/guid\
             es/faq"
           required: true
         - label: "Check our libraries HOW-TO:
-            https://github.com/googleapis/gax-nodejs/blob/main/client-libraries\
-            .md"
+            https://github.com/googleapis/gax-nodejs/blob/main/client-libraries.\
+            md"
           required: true
         - label: "Check out our authentication guide:
             https://github.com/googleapis/google-auth-library-nodejs"
