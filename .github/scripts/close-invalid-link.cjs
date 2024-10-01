@@ -17,16 +17,16 @@ async function closeIssue(github, owner, repo, number) {
           owner: owner,
           repo: repo,
           issue_number: number,
-          body: 'Issue was opened with an invalid reproduction link. Please make sure the repository is a valid, publicly-accessible github repository, and make sure the url is complete (example: https://github.com/googleapis/google-cloud-node)'
+          body: "Issue was opened with an invalid reproduction link. Please make sure the repository is a valid, publicly-accessible github repository, and make sure the url is complete (example: https://github.com/googleapis/google-cloud-node)"
         });
     await github.rest.issues.update({
         owner: owner,
         repo: repo,
         issue_number: number,
-        state: 'closed'
+        state: "closed"
       });
 }
-module.exports = async ({github, context}) => {
+module.exports = async ({ github, context }) => {
     const owner = context.repo.owner;
     const repo = context.repo.repo;
     const number = context.issue.number;
@@ -37,12 +37,15 @@ module.exports = async ({github, context}) => {
       issue_number: number,
     });
 
-    const isBugTemplate = issue.data.body.includes('Link to the code that reproduces this issue');
+    const isBugTemplate = issue.data.body.includes("Link to the code that reproduces this issue");
 
     if (isBugTemplate) {
+        console.log(`Issue ${number} is a bug template`)
         try {
-            const link = issue.data.body.split('\n')[18].match(/(https?:\/\/g?i?s?t?\.?github.com\/.*)/);
+            const link = issue.data.body.split("\n")[18].match(/(https?:\/\/(gist\.)?github.com\/.*)/)[0];
+            console.log(`Issue ${number} contains this link: ${link}`)
             const isValidLink = (await fetch(link)).ok;
+            console.log(`Issue ${number} has a ${isValidLink ? "valid" : "invalid"} link`)
             if (!isValidLink) {
             await closeIssue(github, owner, repo, number);
             }
