@@ -24,12 +24,12 @@ body:
             e.js"
           required: true
         - label: "Check our Troubleshooting guide:
-            https://googlecloudplatform.github.io/google-cloud-node/#/docs/guid\
-            es/troubleshooting"
+            https://github.com/googleapis/google-cloud-node/blob/main/docs/trou\
+            bleshooting.md"
           required: true
         - label: "Check our FAQ:
-            https://googlecloudplatform.github.io/google-cloud-node/#/docs/guid\
-            es/faq"
+            https://github.com/googleapis/google-cloud-node/blob/main/docs/faq.\
+            md"
           required: true
         - label: "Check our libraries HOW-TO:
             https://github.com/googleapis/gax-nodejs/blob/main/client-libraries\
@@ -55,9 +55,9 @@ body:
         behavior you are experiencing. If the behavior is the same, it means
         that you are likely experiencing a bug with the API itself. In that
         case, please submit an issue to the API team, either by submitting an
-        issue in its issue tracker https://cloud.google.com/support/docs/issue-trackers, or by
+        issue in its issue tracker (https://cloud.google.com/support/docs/issue-trackers), or by
         submitting an issue in its linked tracker in the .repo-metadata.json
-        file        
+        file     
     validations:
       required: true
   - type: input
