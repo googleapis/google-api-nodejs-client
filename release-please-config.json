@@ -302,6 +302,8 @@
     "src/apis/apim": {},
     "src/apis/adsenseplatform": {},
     "src/apis/keep": {},
-    "src/apis/css": {}
+    "src/apis/css": {},
+    "src/apis/oracledatabase": {},
+    "src/apis/firebasedataconnect": {}
   }
 }
