@@ -723,7 +723,7 @@
                 "accept": [
                   "application/octet-stream"
                 ],
-                "maxSize": "10737418240",
+                "maxSize": "53687091200",
                 "protocols": {
                   "resumable": {
                     "multipart": true,
@@ -4732,7 +4732,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20241003",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5253,7 +5253,7 @@
           "type": "string"
         },
         "billingPeriodDuration": {
-          "description": "Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.",
+          "description": "Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created.",
           "type": "string"
         },
         "gracePeriodDuration": {
@@ -6227,17 +6227,6 @@
       },
       "type": "object"
     },
-    "ExternalOfferInitialAcquisitionDetails": {
-      "description": "Details about the first time a user/device completed a transaction using external offers.",
-      "id": "ExternalOfferInitialAcquisitionDetails",
-      "properties": {
-        "externalTransactionId": {
-          "description": "Required. The external transaction id of the first completed purchase made by the user.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ExternalSubscription": {
       "description": "Details of an external subscription.",
       "id": "ExternalSubscription",
@@ -6278,10 +6267,6 @@
           "$ref": "Price",
           "description": "Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.",
           "readOnly": true
-        },
-        "externalOfferInitialAcquisitionDetails": {
-          "$ref": "ExternalOfferInitialAcquisitionDetails",
-          "description": "Optional. Details about the first time a user/device completed a transaction using external offers. Not required for transactions made using user choice billing or alternative billing only."
         },
         "externalTransactionId": {
           "description": "Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.",
@@ -7085,11 +7070,11 @@
           "type": "string"
         },
         "billingPeriodDuration": {
-          "description": "Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.",
+          "description": "Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created.",
           "type": "string"
         },
         "committedPaymentsCount": {
-          "description": "Required. The number of payments the user is committed to.",
+          "description": "Required. Immutable. The number of payments the user is committed to. It is immutable after the base plan is created.",
           "format": "int32",
           "type": "integer"
         },
@@ -7112,7 +7097,7 @@
           "type": "string"
         },
         "renewalType": {
-          "description": "Required. Installments base plan renewal type. Determines the behavior at the end of the initial commitment.",
+          "description": "Required. Immutable. Installments base plan renewal type. Determines the behavior at the end of the initial commitment. The renewal type is immutable after the base plan is created.",
           "enum": [
             "RENEWAL_TYPE_UNSPECIFIED",
             "RENEWAL_TYPE_RENEWS_WITHOUT_COMMITMENT",
@@ -7748,7 +7733,7 @@
       "id": "PrepaidBasePlanType",
       "properties": {
         "billingPeriodDuration": {
-          "description": "Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.",
+          "description": "Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created.",
           "type": "string"
         },
         "timeExtension": {
@@ -8671,7 +8656,7 @@
           "type": "string"
         },
         "phases": {
-          "description": "Required. The phases of this subscription offer. Must contain at least one entry, and may contain at most five. Users will always receive all these phases in the specified order. Phases may not be added, removed, or reordered after initial creation.",
+          "description": "Required. The phases of this subscription offer. Must contain at least one and at most two entries. Users will always receive all these phases in the specified order.",
           "items": {
             "$ref": "SubscriptionOfferPhase"
           },

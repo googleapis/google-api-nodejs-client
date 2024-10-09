@@ -521,7 +521,7 @@ export namespace androidpublisher_v3 {
      */
     accountHoldDuration?: string | null;
     /**
-     * Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.
+     * Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created.
      */
     billingPeriodDuration?: string | null;
     /**
@@ -1274,15 +1274,6 @@ export namespace androidpublisher_v3 {
     versionName?: string | null;
   }
   /**
-   * Details about the first time a user/device completed a transaction using external offers.
-   */
-  export interface Schema$ExternalOfferInitialAcquisitionDetails {
-    /**
-     * Required. The external transaction id of the first completed purchase made by the user.
-     */
-    externalTransactionId?: string | null;
-  }
-  /**
    * Details of an external subscription.
    */
   export interface Schema$ExternalSubscription {
@@ -1307,10 +1298,6 @@ export namespace androidpublisher_v3 {
      * Output only. The current tax amount. This represents the current tax amount including any refunds that may have been applied to this transaction.
      */
     currentTaxAmount?: Schema$Price;
-    /**
-     * Optional. Details about the first time a user/device completed a transaction using external offers. Not required for transactions made using user choice billing or alternative billing only.
-     */
-    externalOfferInitialAcquisitionDetails?: Schema$ExternalOfferInitialAcquisitionDetails;
     /**
      * Output only. The id of this transaction. All transaction ids under the same package name must be unique. Set when creating the external transaction.
      */
@@ -1797,11 +1784,11 @@ export namespace androidpublisher_v3 {
      */
     accountHoldDuration?: string | null;
     /**
-     * Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.
+     * Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created.
      */
     billingPeriodDuration?: string | null;
     /**
-     * Required. The number of payments the user is committed to.
+     * Required. Immutable. The number of payments the user is committed to. It is immutable after the base plan is created.
      */
     committedPaymentsCount?: number | null;
     /**
@@ -1813,7 +1800,7 @@ export namespace androidpublisher_v3 {
      */
     prorationMode?: string | null;
     /**
-     * Required. Installments base plan renewal type. Determines the behavior at the end of the initial commitment.
+     * Required. Immutable. Installments base plan renewal type. Determines the behavior at the end of the initial commitment. The renewal type is immutable after the base plan is created.
      */
     renewalType?: string | null;
     /**
@@ -2268,7 +2255,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$PrepaidBasePlanType {
     /**
-     * Required. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center.
+     * Required. Immutable. Subscription period, specified in ISO 8601 format. For a list of acceptable billing periods, refer to the help center. The duration is immutable after the base plan is created.
      */
     billingPeriodDuration?: string | null;
     /**
@@ -2923,7 +2910,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string | null;
     /**
-     * Required. The phases of this subscription offer. Must contain at least one entry, and may contain at most five. Users will always receive all these phases in the specified order. Phases may not be added, removed, or reordered after initial creation.
+     * Required. The phases of this subscription offer. Must contain at least one and at most two entries. Users will always receive all these phases in the specified order.
      */
     phases?: Schema$SubscriptionOfferPhase[];
     /**
