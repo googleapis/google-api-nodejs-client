@@ -1595,7 +1595,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform)",
+                  "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform) * `oauth2.googleapis.com` (Google Identity for iOS)",
                   "location": "path",
                   "pattern": "^projects/[^/]+/services/[^/]+$",
                   "required": true,
@@ -1823,7 +1823,7 @@
       }
     }
   },
-  "revision": "20240528",
+  "revision": "20240930",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {
@@ -1843,16 +1843,16 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaAppCheckToken": {
-      "description": "Encapsulates an *App Check token*, which are used to access Firebase services protected by App Check.",
+      "description": "Encapsulates an *App Check token*, which are used to access backend services protected by App Check.",
       "id": "GoogleFirebaseAppcheckV1betaAppCheckToken",
       "properties": {
         "attestationToken": {
           "deprecated": true,
-          "description": "An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.",
+          "description": "The App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and GCP project. This token is used to access Google services protected by App Check. These tokens can also be [verified by your own custom backends](https://firebase.google.com/docs/app-check/custom-resource-backend) using the Firebase Admin SDK or third-party libraries.",
           "type": "string"
         },
         "token": {
-          "description": "An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.",
+          "description": "The App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and GCP project. This token is used to access Google services protected by App Check. These tokens can also be [verified by your own custom backends](https://firebase.google.com/docs/app-check/custom-resource-backend) using the Firebase Admin SDK or third-party libraries.",
           "type": "string"
         },
         "ttl": {
@@ -2519,7 +2519,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaResourcePolicy": {
-      "description": "App Check enforcement policy for a specific resource of a Firebase service supported by App Check. Note that this policy will override the service-level configuration.",
+      "description": "App Check enforcement policy for a specific resource of a Google service supported by App Check. Note that this policy will override the service-level configuration.",
       "id": "GoogleFirebaseAppcheckV1betaResourcePolicy",
       "properties": {
         "enforcementMode": {
@@ -2545,7 +2545,7 @@
           "type": "string"
         },
         "targetResource": {
-          "description": "Required. Service specific name of the resource object to which this policy applies, in the format: * `//oauth2.googleapis.com/projects/{project_number}/oauthClients/{oauth_client_id}` (Google Identity for iOS) Note that the resource must belong to the service specified in the `name` and be from the same project as this policy, but the resource is allowed to be missing at the time of creation of this policy; in that case, we make a best-effort attempt at respecting this policy, but it may not have any effect until the resource is fully created.",
+          "description": "Required. Service specific name of the resource object to which this policy applies, in the format: * **iOS OAuth clients** (Google Identity for iOS): `//oauth2.googleapis.com/projects/{project_number}/oauthClients/{oauth_client_id}` Note that the resource must belong to the service specified in the `name` and be from the same project as this policy, but the resource is allowed to be missing at the time of creation of this policy; in that case, we make a best-effort attempt at respecting this policy, but it may not have any effect until the resource is fully created.",
           "type": "string"
         },
         "updateTime": {
@@ -2597,7 +2597,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform)",
+          "description": "Required. The relative resource name of the service configuration object, in the format: ``` projects/{project_number}/services/{service_id} ``` Note that the `service_id` element must be a supported service ID. Currently, the following service IDs are supported: * `firebasestorage.googleapis.com` (Cloud Storage for Firebase) * `firebasedatabase.googleapis.com` (Firebase Realtime Database) * `firestore.googleapis.com` (Cloud Firestore) * `identitytoolkit.googleapis.com` (Firebase Authentication with Identity Platform) * `oauth2.googleapis.com` (Google Identity for iOS)",
           "type": "string"
         },
         "updateTime": {
