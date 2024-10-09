@@ -484,6 +484,39 @@
       },
       "type": "object"
     },
+    "DataSourceReference": {
+      "description": "Data source reference can be used to manage related data sources within the data source service.",
+      "id": "DataSourceReference",
+      "properties": {
+        "primaryDataSourceName": {
+          "description": "Optional. The name of the primary data source. Format: `accounts/{account}/dataSources/{datasource}`",
+          "type": "string"
+        },
+        "self": {
+          "description": "Self should be used to reference the primary data source itself.",
+          "type": "boolean"
+        },
+        "supplementalDataSourceName": {
+          "description": "Optional. The name of the supplemental data source. Format: `accounts/{account}/dataSources/{datasource}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultRule": {
+      "description": "Default rule management of the data source.",
+      "id": "DefaultRule",
+      "properties": {
+        "takeFromDataSources": {
+          "description": "Required. The list of data sources linked in the [default rule](https://support.google.com/merchants/answer/7450276). This list is ordered by the default rule priority of joining the data. It might include none or multiple references to `self` and supplemental data sources. The list must not be empty. To link the data source to the default rule, you need to add a new reference to this list (in sequential order). To unlink the data source from the default rule, you need to remove the given reference from this list. Changing the order of this list will result in changing the priority of data sources in the default rule. For example, providing the following list: [`1001`, `self`] will take attribute values from supplemental data source `1001`, and fallback to `self` if the attribute is not set in `1001`.",
+          "items": {
+            "$ref": "DataSourceReference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
