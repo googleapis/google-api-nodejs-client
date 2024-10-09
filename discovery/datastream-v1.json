@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20240814",
+  "revision": "20240904",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -2778,6 +2778,10 @@
         "cdcStrategy": {
           "$ref": "CdcStrategy",
           "description": "Optional. The CDC strategy of the stream. If not set, the system's default value will be used."
+        },
+        "force": {
+          "description": "Optional. Update the stream without validating it.",
+          "type": "boolean"
         }
       },
       "type": "object"

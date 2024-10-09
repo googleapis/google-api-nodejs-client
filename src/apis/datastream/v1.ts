@@ -1294,6 +1294,10 @@ export namespace datastream_v1 {
      * Optional. The CDC strategy of the stream. If not set, the system's default value will be used.
      */
     cdcStrategy?: Schema$CdcStrategy;
+    /**
+     * Optional. Update the stream without validating it.
+     */
+    force?: boolean | null;
   }
   /**
    * A single target dataset to which all data will be streamed.
