@@ -134,6 +134,31 @@ export namespace redis_v1 {
     appendFsync?: string | null;
   }
   /**
+   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
+   */
+  export interface Schema$AssetLocation {
+    /**
+     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
+     */
+    ccfeRmsPath?: string | null;
+    /**
+     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
+     */
+    expected?: Schema$IsolationExpectations;
+    /**
+     * Defines extra parameters required for specific asset types.
+     */
+    extraParameters?: Schema$ExtraParameter[];
+    /**
+     * Contains all kinds of physical location definitions for this asset.
+     */
+    locationData?: Schema$LocationData[];
+    /**
+     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
+     */
+    parentAsset?: Schema$CloudAsset[];
+  }
+  /**
    * Configuration for availability of database instance
    */
   export interface Schema$AvailabilityConfiguration {
@@ -190,6 +215,12 @@ export namespace redis_v1 {
      */
     status?: string | null;
   }
+  /**
+   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
+   */
+  export interface Schema$BlobstoreLocation {
+    policyId?: string[] | null;
+  }
   export interface Schema$CertChain {
     /**
      * The certificates that form the CA chain, from leaf to root order.
@@ -205,6 +236,13 @@ export namespace redis_v1 {
      * Identifier. Unique name of the resource in this scope including project, location and cluster using the form: `projects/{project\}/locations/{location\}/clusters/{cluster\}/certificateAuthority`
      */
     name?: string | null;
+  }
+  export interface Schema$CloudAsset {
+    assetName?: string | null;
+    assetType?: string | null;
+  }
+  export interface Schema$CloudAssetComposition {
+    childAsset?: Schema$CloudAsset[];
   }
   /**
    * A cluster instance.
@@ -259,7 +297,7 @@ export namespace redis_v1 {
      */
     pscConfigs?: Schema$PscConfig[];
     /**
-     * Output only. PSC connections for discovery of the cluster topology and accessing the cluster.
+     * Output only. The list of PSC connections that are auto-created through service connectivity automation.
      */
     pscConnections?: Schema$PscConnection[];
     /**
@@ -325,10 +363,6 @@ export namespace redis_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. The deadline that the maintenance schedule start time can not go beyond, including reschedule.
-     */
-    scheduleDeadlineTime?: string | null;
-    /**
      * Output only. The start time of any upcoming scheduled maintenance for this instance.
      */
     startTime?: string | null;
@@ -358,10 +392,6 @@ export namespace redis_v1 {
      * Allows to define schedule that runs specified day of the week.
      */
     day?: string | null;
-    /**
-     * Duration of the time window.
-     */
-    duration?: string | null;
     /**
      * Start time of the window in UTC.
      */
@@ -515,7 +545,7 @@ export namespace redis_v1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata.
+   * Common model for database resource instance metadata. Next ID: 23
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -542,6 +572,10 @@ export namespace redis_v1 {
      * Any custom metadata associated with the resource
      */
     customMetadata?: Schema$CustomMetadataData;
+    /**
+     * Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.
+     */
+    edition?: string | null;
     /**
      * Entitlements associated with the resource
      */
@@ -571,6 +605,10 @@ export namespace redis_v1 {
      */
     primaryResourceId?: Schema$DatabaseResourceId;
     /**
+     * Primary resource location. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
+     */
+    primaryResourceLocation?: string | null;
+    /**
      * The product this resource represents.
      */
     product?: Schema$Product;
@@ -582,6 +620,10 @@ export namespace redis_v1 {
      * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
     resourceName?: string | null;
+    /**
+     * Optional. Tags associated with this resources.
+     */
+    tagsSet?: Schema$Tags;
     /**
      * The time at which the resource was updated and recorded at partner service.
      */
@@ -628,6 +670,9 @@ export namespace redis_v1 {
      */
     signalType?: string | null;
   }
+  export interface Schema$DirectLocationAssignment {
+    location?: Schema$LocationAssignment[];
+  }
   /**
    * Endpoints on each network, for Redis clients to connect to the cluster.
    */
@@ -670,6 +715,15 @@ export namespace redis_v1 {
      * Required. Specify data to be exported.
      */
     outputConfig?: Schema$OutputConfig;
+  }
+  /**
+   * Defines parameters that should only be used for specific asset types.
+   */
+  export interface Schema$ExtraParameter {
+    /**
+     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
+     */
+    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
   }
   /**
    * Request for Failover.
@@ -945,6 +999,25 @@ export namespace redis_v1 {
      */
     resourceName?: string | null;
   }
+  export interface Schema$IsolationExpectations {
+    /**
+     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
+     */
+    requirementOverride?: Schema$RequirementOverride;
+    ziOrgPolicy?: string | null;
+    ziRegionPolicy?: string | null;
+    ziRegionState?: string | null;
+    /**
+     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
+     */
+    zoneIsolation?: string | null;
+    /**
+     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
+     */
+    zoneSeparation?: string | null;
+    zsOrgPolicy?: string | null;
+    zsRegionState?: string | null;
+  }
   /**
    * Response for ListClusters.
    */
@@ -1030,6 +1103,18 @@ export namespace redis_v1 {
      */
     name?: string | null;
   }
+  export interface Schema$LocationAssignment {
+    location?: string | null;
+    locationType?: string | null;
+  }
+  export interface Schema$LocationData {
+    blobstoreLocation?: Schema$BlobstoreLocation;
+    childAssetLocation?: Schema$CloudAssetComposition;
+    directLocation?: Schema$DirectLocationAssignment;
+    gcpProjectProxy?: Schema$TenantProjectProxy;
+    placerLocation?: Schema$PlacerLocation;
+    spannerLocation?: Schema$SpannerLocation;
+  }
   /**
    * MachineConfiguration describes the configuration of a machine specific to Database Resource.
    */
@@ -1042,6 +1127,10 @@ export namespace redis_v1 {
      * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     memorySizeInBytes?: string | null;
+    /**
+     * Optional. Number of shards (if applicable).
+     */
+    shardCount?: number | null;
   }
   /**
    * Maintenance policy for an instance.
@@ -1242,6 +1331,15 @@ export namespace redis_v1 {
     rdbSnapshotStartTime?: string | null;
   }
   /**
+   * Message describing that the location of the customer resource is tied to placer allocations
+   */
+  export interface Schema$PlacerLocation {
+    /**
+     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
+     */
+    placerConfig?: string | null;
+  }
+  /**
    * Product specification for Condor resources.
    */
   export interface Schema$Product {
@@ -1269,25 +1367,29 @@ export namespace redis_v1 {
    */
   export interface Schema$PscConnection {
     /**
-     * Output only. The IP allocated on the consumer network for the PSC forwarding rule.
+     * Required. The IP allocated on the consumer network for the PSC forwarding rule.
      */
     address?: string | null;
     /**
-     * Output only. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId\}/regions/us-east1/forwardingRules/{resourceId\}.
+     * Required. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId\}/regions/us-east1/forwardingRules/{resourceId\}.
      */
     forwardingRule?: string | null;
     /**
-     * The consumer network where the IP address resides, in the form of projects/{project_id\}/global/networks/{network_id\}.
+     * Required. The consumer network where the IP address resides, in the form of projects/{project_id\}/global/networks/{network_id\}.
      */
     network?: string | null;
     /**
-     * Output only. The consumer project_id where the forwarding rule is created from.
+     * Optional. Project ID of the consumer project where the forwarding rule is created in.
      */
     projectId?: string | null;
     /**
-     * Output only. The PSC connection id of the forwarding rule connected to the service attachment.
+     * Required. The PSC connection id of the forwarding rule connected to the service attachment.
      */
     pscConnectionId?: string | null;
+    /**
+     * Required. The service attachment which is the target of the PSC connection, in the form of projects/{project-id\}/regions/{region\}/serviceAttachments/{service-attachment-id\}.
+     */
+    serviceAttachment?: string | null;
   }
   /**
    * Configuration of the RDB based persistence.
@@ -1316,6 +1418,19 @@ export namespace redis_v1 {
     exclusiveAction?: string | null;
   }
   /**
+   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
+   */
+  export interface Schema$RegionalMigDistributionPolicy {
+    /**
+     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
+     */
+    targetShape?: number | null;
+    /**
+     * Cloud zones used by regional MIG to create instances.
+     */
+    zones?: Schema$ZoneConfiguration[];
+  }
+  /**
    * Details of the remote cluster associated with this cluster in a cross cluster replication setup.
    */
   export interface Schema$RemoteCluster {
@@ -1327,6 +1442,10 @@ export namespace redis_v1 {
      * Output only. The unique identifier of the remote cluster.
      */
     uid?: string | null;
+  }
+  export interface Schema$RequirementOverride {
+    ziOverride?: string | null;
+    zsOverride?: string | null;
   }
   /**
    * Request for rescheduling a cluster maintenance.
@@ -1355,12 +1474,26 @@ export namespace redis_v1 {
     scheduleTime?: string | null;
   }
   export interface Schema$RetentionSettings {
+    /**
+     * Duration based retention period i.e. 172800 seconds (2 days)
+     */
+    durationBasedRetention?: string | null;
     quantityBasedRetention?: number | null;
     /**
      * The unit that 'retained_backups' represents.
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
+  }
+  export interface Schema$SpannerLocation {
+    /**
+     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
+     */
+    backupName?: string[] | null;
+    /**
+     * Set of databases used by the resource in format /span//
+     */
+    dbName?: string[] | null;
   }
   /**
    * Represents additional information about the state of the cluster.
@@ -1387,6 +1520,18 @@ export namespace redis_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.
+   */
+  export interface Schema$Tags {
+    /**
+     * The Tag key/value mappings.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  export interface Schema$TenantProjectProxy {
+    projectNumbers?: string[] | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -1499,6 +1644,9 @@ export namespace redis_v1 {
      * Required. Start time of the window in UTC time.
      */
     startTime?: Schema$TimeOfDay;
+  }
+  export interface Schema$ZoneConfiguration {
+    zone?: string | null;
   }
   /**
    * Zone distribution config for allocation of cluster resources.
