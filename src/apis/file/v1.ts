@@ -270,6 +270,15 @@ export namespace file_v1 {
     sourceBackup?: string | null;
   }
   /**
+   * Fixed IOPS (input/output operations per second) parameters.
+   */
+  export interface Schema$FixedIOPS {
+    /**
+     * Required. Maximum raw read IOPS.
+     */
+    maxReadIops?: string | null;
+  }
+  /**
    * Instance represents the interface for SLM services to actuate the state of control plane resources. Example Instance in JSON, where consumer-project-number=123456, producer-project-id=cloud-sql: ```json Instance: { "name": "projects/123456/locations/us-east1/instances/prod-instance", "create_time": { "seconds": 1526406431, \}, "labels": { "env": "prod", "foo": "bar" \}, "state": READY, "software_versions": { "software_update": "cloud-sql-09-28-2018", \}, "maintenance_policy_names": { "UpdatePolicy": "projects/123456/locations/us-east1/maintenancePolicies/prod-update-policy", \} "tenant_project_id": "cloud-sql-test-tenant", "producer_metadata": { "cloud-sql-tier": "basic", "cloud-sql-instance-size": "1G", \}, "provisioned_resources": [ { "resource-type": "compute-instance", "resource-url": "https://www.googleapis.com/compute/v1/projects/cloud-sql/zones/us-east1-b/instances/vm-1", \} ], "maintenance_schedules": { "csa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \}, "ncsa_rollout": { "start_time": { "seconds": 1526406431, \}, "end_time": { "seconds": 1535406431, \}, \} \}, "consumer_defined_name": "my-sql-instance1", \} ``` LINT.IfChange
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
@@ -479,6 +488,10 @@ export namespace file_v1 {
    */
   export interface Schema$Instance {
     /**
+     * Output only. Indicates whether this instance's performance is configurable. If enabled, adjust it using the 'performance_config' field.
+     */
+    configurablePerformanceEnabled?: boolean | null;
+    /**
      * Output only. The time when the instance was created.
      */
     createTime?: string | null;
@@ -519,6 +532,14 @@ export namespace file_v1 {
      */
     networks?: Schema$NetworkConfig[];
     /**
+     * Optional. Used to configure performance.
+     */
+    performanceConfig?: Schema$PerformanceConfig;
+    /**
+     * Output only. Used for getting performance limits.
+     */
+    performanceLimits?: Schema$PerformanceLimits;
+    /**
      * Immutable. The protocol indicates the access protocol for all shares in the instance. This field is immutable and it cannot be changed after the instance has been created. Default value: `NFS_V3`.
      */
     protocol?: string | null;
@@ -554,6 +575,15 @@ export namespace file_v1 {
      * The service tier of the instance.
      */
     tier?: string | null;
+  }
+  /**
+   * IOPS per TB. Filestore defines TB as 1024^4 bytes (TiB).
+   */
+  export interface Schema$IOPSPerTB {
+    /**
+     * Required. Maximum read IOPS per TiB.
+     */
+    maxReadIopsPerTb?: string | null;
   }
   /**
    * ListBackupsResponse is the result of ListBackupsRequest.
@@ -806,6 +836,40 @@ export namespace file_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * Used for setting the performance configuration. If the user doesn't specify PerformanceConfig, automatically provision the default performance settings as described in https://cloud.google.com/filestore/docs/performance. Larger instances will be linearly set to more IOPS. If the instance's capacity is increased or decreased, its performance will be automatically adjusted upwards or downwards accordingly (respectively).
+   */
+  export interface Schema$PerformanceConfig {
+    /**
+     * Choose a fixed provisioned IOPS value for the instance, which will remain constant regardless of instance capacity. Value must be a multiple of 1000. If the chosen value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error.
+     */
+    fixedIops?: Schema$FixedIOPS;
+    /**
+     * Provision IOPS dynamically based on the capacity of the instance. Provisioned read IOPS will be calculated by multiplying the capacity of the instance in TiB by the `iops_per_tb` value. For example, for a 2 TiB instance with an `iops_per_tb` value of 17000 the provisioned read IOPS will be 34000. If the calculated value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error.
+     */
+    iopsPerTb?: Schema$IOPSPerTB;
+  }
+  /**
+   * The enforced performance limits, calculated from the instance's performance configuration.
+   */
+  export interface Schema$PerformanceLimits {
+    /**
+     * Output only. The max read IOPS.
+     */
+    maxReadIops?: string | null;
+    /**
+     * Output only. The max read throughput in bytes per second.
+     */
+    maxReadThroughputBps?: string | null;
+    /**
+     * Output only. The max write IOPS.
+     */
+    maxWriteIops?: string | null;
+    /**
+     * Output only. The max write throughput in bytes per second.
+     */
+    maxWriteThroughputBps?: string | null;
   }
   /**
    * PromoteReplicaRequest promotes a Filestore standby instance (replica).
