@@ -751,6 +751,19 @@ export namespace logging_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * The response from ListLogScopes. Every project has a _Default log scope that cannot be modified or deleted.
+   */
+  export interface Schema$ListLogScopesResponse {
+    /**
+     * A list of log scopes.
+     */
+    logScopes?: Schema$LogScope[];
+    /**
+     * If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Result returned from ListLogs.
    */
   export interface Schema$ListLogsResponse {
@@ -888,7 +901,7 @@ export namespace logging_v2 {
    */
   export interface Schema$LogBucket {
     /**
-     * Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.
+     * Optional. Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.
      */
     analyticsEnabled?: boolean | null;
     /**
@@ -1189,6 +1202,31 @@ export namespace logging_v2 {
     version?: string | null;
   }
   /**
+   * Describes a group of resources to read log entries from.
+   */
+  export interface Schema$LogScope {
+    /**
+     * Output only. The creation timestamp of the log scope.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Describes this log scope.The maximum length of the description is 8000 characters.
+     */
+    description?: string | null;
+    /**
+     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     */
+    name?: string | null;
+    /**
+     * Required. Names of one or more parent resources: projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 50 projects and a maximum of 100 resources in total.
+     */
+    resourceNames?: string[] | null;
+    /**
+     * Output only. The last update timestamp of the log scope.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Describes a sink used to export log entries to one of the following destinations: a Cloud Logging log bucket, a Cloud Storage bucket, a BigQuery dataset, a Pub/Sub topic, a Cloud project.A logs filter controls which log entries are exported. The sink must be created within a project, organization, billing account, or folder.
    */
   export interface Schema$LogSink {
@@ -1356,6 +1394,10 @@ export namespace logging_v2 {
      * The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.
      */
     samplePeriod?: string | null;
+    /**
+     * The scope of the timeseries data of the metric.
+     */
+    timeSeriesResourceHierarchyLevel?: string[] | null;
   }
   /**
    * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for "gce_instance" has labels "project_id", "instance_id" and "zone": { "type": "gce_instance", "labels": { "project_id": "my-project", "instance_id": "12345678901234", "zone": "us-central1-a" \}\}
@@ -8144,12 +8186,14 @@ export namespace logging_v2 {
   export class Resource$Folders$Locations {
     context: APIRequestContext;
     buckets: Resource$Folders$Locations$Buckets;
+    logScopes: Resource$Folders$Locations$Logscopes;
     operations: Resource$Folders$Locations$Operations;
     recentQueries: Resource$Folders$Locations$Recentqueries;
     savedQueries: Resource$Folders$Locations$Savedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Folders$Locations$Buckets(this.context);
+      this.logScopes = new Resource$Folders$Locations$Logscopes(this.context);
       this.operations = new Resource$Folders$Locations$Operations(this.context);
       this.recentQueries = new Resource$Folders$Locations$Recentqueries(
         this.context
@@ -10510,6 +10554,511 @@ export namespace logging_v2 {
      * Optional. List of resource names to list logs for: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]The resource name in the parent field is added to this list.
      */
     resourceNames?: string[];
+  }
+
+  export class Resource$Folders$Locations$Logscopes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Locations$Logscopes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Locations$Logscopes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    create(
+      params: Params$Resource$Folders$Locations$Logscopes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Logscopes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Locations$Logscopes$Create,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogScope>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Logscopes$Create
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Logscopes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Logscopes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logScopes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Locations$Logscopes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Locations$Logscopes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Locations$Logscopes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Logscopes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Locations$Logscopes$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Logscopes$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Logscopes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Logscopes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Locations$Logscopes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Locations$Logscopes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    get(
+      params: Params$Resource$Folders$Locations$Logscopes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Logscopes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Locations$Logscopes$Get,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogScope>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Logscopes$Get
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Logscopes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Logscopes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+
+    /**
+     * Lists log scopes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Locations$Logscopes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Locations$Logscopes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogScopesResponse>;
+    list(
+      params: Params$Resource$Folders$Locations$Logscopes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Logscopes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogScopesResponse>,
+      callback: BodyResponseCallback<Schema$ListLogScopesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Locations$Logscopes$List,
+      callback: BodyResponseCallback<Schema$ListLogScopesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogScopesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Logscopes$List
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogScopesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Logscopes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Logscopes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logScopes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogScopesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogScopesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Locations$Logscopes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Locations$Logscopes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    patch(
+      params: Params$Resource$Folders$Locations$Logscopes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Logscopes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Locations$Logscopes$Patch,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogScope>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Locations$Logscopes$Patch
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Locations$Logscopes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Locations$Logscopes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Locations$Logscopes$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
+     */
+    logScopeId?: string;
+    /**
+     * Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogScope;
+  }
+  export interface Params$Resource$Folders$Locations$Logscopes$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Logscopes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Logscopes$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose log scopes are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Locations$Logscopes$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     */
+    name?: string;
+    /**
+     * Optional. Field mask that specifies the fields in log_scope that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=description
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogScope;
   }
 
   export class Resource$Folders$Locations$Operations {
@@ -16069,12 +16618,16 @@ export namespace logging_v2 {
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
     buckets: Resource$Organizations$Locations$Buckets;
+    logScopes: Resource$Organizations$Locations$Logscopes;
     operations: Resource$Organizations$Locations$Operations;
     recentQueries: Resource$Organizations$Locations$Recentqueries;
     savedQueries: Resource$Organizations$Locations$Savedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Organizations$Locations$Buckets(this.context);
+      this.logScopes = new Resource$Organizations$Locations$Logscopes(
+        this.context
+      );
       this.operations = new Resource$Organizations$Locations$Operations(
         this.context
       );
@@ -18452,6 +19005,511 @@ export namespace logging_v2 {
      * Optional. List of resource names to list logs for: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]The resource name in the parent field is added to this list.
      */
     resourceNames?: string[];
+  }
+
+  export class Resource$Organizations$Locations$Logscopes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Logscopes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Logscopes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    create(
+      params: Params$Resource$Organizations$Locations$Logscopes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Logscopes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Logscopes$Create,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogScope>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Logscopes$Create
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Logscopes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Logscopes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logScopes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Logscopes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Logscopes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Logscopes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Logscopes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Logscopes$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Logscopes$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Logscopes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Logscopes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Logscopes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Logscopes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    get(
+      params: Params$Resource$Organizations$Locations$Logscopes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Logscopes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Logscopes$Get,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogScope>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Logscopes$Get
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Logscopes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Logscopes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+
+    /**
+     * Lists log scopes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Logscopes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Logscopes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogScopesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Logscopes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Logscopes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogScopesResponse>,
+      callback: BodyResponseCallback<Schema$ListLogScopesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Logscopes$List,
+      callback: BodyResponseCallback<Schema$ListLogScopesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogScopesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Logscopes$List
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogScopesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Logscopes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Logscopes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logScopes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogScopesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogScopesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Logscopes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Logscopes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Logscopes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Logscopes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Logscopes$Patch,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogScope>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Logscopes$Patch
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Logscopes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Logscopes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Logscopes$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
+     */
+    logScopeId?: string;
+    /**
+     * Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogScope;
+  }
+  export interface Params$Resource$Organizations$Locations$Logscopes$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Logscopes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Logscopes$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose log scopes are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Logscopes$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     */
+    name?: string;
+    /**
+     * Optional. Field mask that specifies the fields in log_scope that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=description
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogScope;
   }
 
   export class Resource$Organizations$Locations$Operations {
@@ -20944,12 +22002,14 @@ export namespace logging_v2 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     buckets: Resource$Projects$Locations$Buckets;
+    logScopes: Resource$Projects$Locations$Logscopes;
     operations: Resource$Projects$Locations$Operations;
     recentQueries: Resource$Projects$Locations$Recentqueries;
     savedQueries: Resource$Projects$Locations$Savedqueries;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Projects$Locations$Buckets(this.context);
+      this.logScopes = new Resource$Projects$Locations$Logscopes(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -23312,6 +24372,511 @@ export namespace logging_v2 {
      * Optional. List of resource names to list logs for: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID] folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]To support legacy queries, it could also be: projects/[PROJECT_ID] organizations/[ORGANIZATION_ID] billingAccounts/[BILLING_ACCOUNT_ID] folders/[FOLDER_ID]The resource name in the parent field is added to this list.
      */
     resourceNames?: string[];
+  }
+
+  export class Resource$Projects$Locations$Logscopes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Logscopes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Logscopes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    create(
+      params: Params$Resource$Projects$Locations$Logscopes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Logscopes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Logscopes$Create,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$LogScope>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Logscopes$Create
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Logscopes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Logscopes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logScopes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Logscopes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Logscopes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Logscopes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Logscopes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Logscopes$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Logscopes$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Logscopes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Logscopes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Logscopes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Logscopes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    get(
+      params: Params$Resource$Projects$Locations$Logscopes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Logscopes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Logscopes$Get,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$LogScope>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Logscopes$Get
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Logscopes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Logscopes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+
+    /**
+     * Lists log scopes.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Logscopes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Logscopes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListLogScopesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Logscopes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Logscopes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLogScopesResponse>,
+      callback: BodyResponseCallback<Schema$ListLogScopesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Logscopes$List,
+      callback: BodyResponseCallback<Schema$ListLogScopesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLogScopesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Logscopes$List
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLogScopesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListLogScopesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Logscopes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Logscopes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/logScopes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLogScopesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLogScopesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a log scope.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Logscopes$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Logscopes$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LogScope>;
+    patch(
+      params: Params$Resource$Projects$Locations$Logscopes$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Logscopes$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$LogScope>,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Logscopes$Patch,
+      callback: BodyResponseCallback<Schema$LogScope>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$LogScope>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Logscopes$Patch
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LogScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LogScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Logscopes$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Logscopes$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LogScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LogScope>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Logscopes$Create
+    extends StandardParameters {
+    /**
+     * Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
+     */
+    logScopeId?: string;
+    /**
+     * Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogScope;
+  }
+  export interface Params$Resource$Projects$Locations$Logscopes$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Logscopes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Logscopes$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource whose log scopes are to be listed: "projects/[PROJECT_ID]/locations/[LOCATION_ID]"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Logscopes$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     */
+    name?: string;
+    /**
+     * Optional. Field mask that specifies the fields in log_scope that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=description
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LogScope;
   }
 
   export class Resource$Projects$Locations$Operations {
