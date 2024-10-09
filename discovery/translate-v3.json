@@ -1132,7 +1132,8 @@
                     "$ref": "Operation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-translation"
                   ]
                 },
                 "delete": {
@@ -1707,7 +1708,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20240912",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "AdaptiveMtDataset": {

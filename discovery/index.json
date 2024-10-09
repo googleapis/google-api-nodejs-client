@@ -197,21 +197,6 @@
       "version": "v2"
     },
     {
-      "description": "The AdSense Host API gives AdSense Hosts access to report generation, ad code generation, and publisher management capabilities.",
-      "discoveryRestUrl": "https://adsensehost.googleapis.com/$discovery/rest?version=v4.1",
-      "documentationLink": "https://developers.google.com/adsense/host/index",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "adsensehost:v4.1",
-      "kind": "discovery#directoryItem",
-      "name": "adsensehost",
-      "preferred": true,
-      "title": "AdSense Host API",
-      "version": "v4.1"
-    },
-    {
       "description": "",
       "discoveryRestUrl": "https://adsenseplatform.googleapis.com/$discovery/rest?version=v1alpha",
       "documentationLink": "https://developers.google.com/adsense/platforms/",
@@ -2631,7 +2616,7 @@
     {
       "description": "Discovery Engine API.",
       "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1alpha",
-      "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+      "documentationLink": "https://cloud.google.com/generative-ai-app-builder/docs/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2646,7 +2631,7 @@
     {
       "description": "Discovery Engine API.",
       "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1beta",
-      "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+      "documentationLink": "https://cloud.google.com/generative-ai-app-builder/docs/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2661,7 +2646,7 @@
     {
       "description": "Discovery Engine API.",
       "discoveryRestUrl": "https://discoveryengine.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+      "documentationLink": "https://cloud.google.com/generative-ai-app-builder/docs/",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2762,21 +2747,6 @@
       "preferred": true,
       "title": "Google Docs API",
       "version": "v1"
-    },
-    {
-      "description": "Service to parse structured information from unstructured or semi-structured documents using state-of-the-art Google AI such as natural language, computer vision, translation, and AutoML.",
-      "discoveryRestUrl": "https://documentai.googleapis.com/$discovery/rest?version=v1beta2",
-      "documentationLink": "https://cloud.google.com/document-ai/docs/",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "documentai:v1beta2",
-      "kind": "discovery#directoryItem",
-      "name": "documentai",
-      "preferred": false,
-      "title": "Cloud Document AI API",
-      "version": "v1beta2"
     },
     {
       "description": "Service to parse structured information from unstructured or semi-structured documents using state-of-the-art Google AI such as natural language, computer vision, translation, and AutoML.",
@@ -3153,6 +3123,21 @@
       "name": "firebasedatabase",
       "preferred": true,
       "title": "Firebase Realtime Database API",
+      "version": "v1beta"
+    },
+    {
+      "description": "Firebase Data Connect is a relational database service for mobile and web apps that lets you build and scale using a fully-managed PostgreSQL database powered by Cloud SQL. The REST API lets developers manage the connections to their database, change the schema of their database, and query the database.",
+      "discoveryRestUrl": "https://firebasedataconnect.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://firebase.google.com/docs/data-connect",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "firebasedataconnect:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "firebasedataconnect",
+      "preferred": true,
+      "title": "Firebase Data Connect API",
       "version": "v1beta"
     },
     {
@@ -4321,9 +4306,24 @@
       "id": "merchantapi:reports_v1beta",
       "kind": "discovery#directoryItem",
       "name": "merchantapi",
-      "preferred": true,
+      "preferred": false,
       "title": "Merchant API",
       "version": "reports_v1beta"
+    },
+    {
+      "description": "Programmatically manage your Merchant Center Accounts.",
+      "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=reviews_v1beta",
+      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "merchantapi:reviews_v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "merchantapi",
+      "preferred": true,
+      "title": "Merchant API",
+      "version": "reviews_v1beta"
     },
     {
       "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
@@ -4744,6 +4744,21 @@
       "name": "ondemandscanning",
       "preferred": true,
       "title": "On-Demand Scanning API",
+      "version": "v1"
+    },
+    {
+      "description": "The Oracle Database@Google Cloud API provides a set of APIs to manage Oracle database services, such as Exadata and Autonomous Databases.",
+      "discoveryRestUrl": "https://oracledatabase.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/oracle/database/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "oracledatabase:v1",
+      "kind": "discovery#directoryItem",
+      "name": "oracledatabase",
+      "preferred": true,
+      "title": "Oracle Database@Google Cloud API",
       "version": "v1"
     },
     {

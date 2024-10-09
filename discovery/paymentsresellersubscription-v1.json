@@ -435,7 +435,7 @@
       }
     }
   },
-  "revision": "20240626",
+  "revision": "20240922",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -478,7 +478,7 @@
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
-            "Reason is unspecified.",
+            "Reason is unspecified. Should not be used.",
             "Fraudualant transaction.",
             "Buyer's remorse.",
             "Accidential purchase.",
@@ -1182,7 +1182,7 @@
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
-            "Reason is unspecified.",
+            "Reason is unspecified. Should not be used.",
             "Fraudualant transaction.",
             "Buyer's remorse.",
             "Accidential purchase.",

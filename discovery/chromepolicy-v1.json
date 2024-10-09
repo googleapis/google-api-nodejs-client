@@ -3,10 +3,10 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/chrome.management.policy": {
-          "description": "See, edit, create or delete policies applied to Chrome OS and Chrome Browsers managed within your organization"
+          "description": "See, edit, create or delete policies applied to ChromeOS and Chrome Browsers managed within your organization"
         },
         "https://www.googleapis.com/auth/chrome.management.policy.readonly": {
-          "description": "See policies applied to Chrome OS and Chrome Browsers managed within your organization"
+          "description": "See policies applied to ChromeOS and Chrome Browsers managed within your organization"
         }
       }
     }
@@ -557,7 +557,7 @@
       }
     }
   },
-  "revision": "20240729",
+  "revision": "20241004",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyVersionsV1AdditionalTargetKeyName": {
