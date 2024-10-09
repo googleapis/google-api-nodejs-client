@@ -171,6 +171,10 @@ export namespace connectors_v1 {
      */
     oauth2AuthCodeFlow?: Schema$Oauth2AuthCodeFlow;
     /**
+     * Oauth2AuthCodeFlowGoogleManaged.
+     */
+    oauth2AuthCodeFlowGoogleManaged?: Schema$Oauth2AuthCodeFlowGoogleManaged;
+    /**
      * Oauth2ClientCredentials.
      */
     oauth2ClientCredentials?: Schema$Oauth2ClientCredentials;
@@ -217,6 +221,56 @@ export namespace connectors_v1 {
     isDefault?: boolean | null;
   }
   /**
+   * AuthField defines a field in an authentication type.
+   */
+  export interface Schema$AuthField {
+    /**
+     * Data type of the field.
+     */
+    dataType?: string | null;
+    /**
+     * Description of the field.
+     */
+    description?: string | null;
+    /**
+     * Key of the field.
+     */
+    key?: string | null;
+  }
+  /**
+   * AuthObject defines a JSON schema of an authentication type.
+   */
+  export interface Schema$AuthObject {
+    /**
+     * Whether the object has additional properties.
+     */
+    additionalProperties?: boolean | null;
+    /**
+     * Auth key of the object.
+     */
+    authKey?: string | null;
+    /**
+     * Auth type of the object.
+     */
+    authType?: string | null;
+    /**
+     * Description of the object.
+     */
+    description?: string | null;
+    /**
+     * Whether the object is the default one.
+     */
+    isDefault?: boolean | null;
+    /**
+     * Properties of the object.
+     */
+    properties?: {[key: string]: Schema$AuthProperty} | null;
+    /**
+     * Type of the object.
+     */
+    type?: string | null;
+  }
+  /**
    * This configuration captures the details required to render an authorization link for the OAuth Authorization Code Flow.
    */
   export interface Schema$AuthorizationCodeLink {
@@ -224,6 +278,10 @@ export namespace connectors_v1 {
      * The client ID assigned to the Google Cloud Connectors OAuth app for the connector data source.
      */
     clientId?: string | null;
+    /**
+     * Optional. The client secret assigned to the Google Cloud Connectors OAuth app for the connector data source.
+     */
+    clientSecret?: Schema$Secret;
     /**
      * Whether to enable PKCE for the auth code flow.
      */
@@ -240,6 +298,48 @@ export namespace connectors_v1 {
      * The base URI the user must click to trigger the authorization code login flow.
      */
     uri?: string | null;
+  }
+  /**
+   * AuthProperty defines a property of an authentication type.
+   */
+  export interface Schema$AuthProperty {
+    /**
+     * Description of the property.
+     */
+    description?: string | null;
+    /**
+     * Type of the property.
+     */
+    type?: string | null;
+  }
+  /**
+   * AuthSchema defines the schema of an authentication type.
+   */
+  export interface Schema$AuthSchema {
+    /**
+     * List of AuthFields.
+     */
+    authFields?: Schema$AuthField[];
+    /**
+     * Auth key of the schema.
+     */
+    authKey?: string | null;
+    /**
+     * Auth type of the schema.
+     */
+    authType?: string | null;
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name of the schema.
+     */
+    displayName?: string | null;
+    /**
+     * Whether the auth schema is the default one.
+     */
+    isDefault?: boolean | null;
   }
   /**
    * Billing config for the connection.
@@ -377,6 +477,10 @@ export namespace connectors_v1 {
      * Optional. Configuration for establishing the connection's authentication with an external system.
      */
     authConfig?: Schema$AuthConfig;
+    /**
+     * Optional. Auth override enabled for the connection. If Auth Override is enabled, Connection allows the backend service auth to be overridden in the entities/actions API.
+     */
+    authOverrideEnabled?: boolean | null;
     /**
      * Output only. Billing config for the connection.
      */
@@ -610,6 +714,10 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConnectorInfraConfig {
     /**
+     * Indicates that the Cloud Run CPU should always be allocated.
+     */
+    alwaysAllocateCpu?: boolean | null;
+    /**
      * The window used for ratelimiting runtime requests to connections.
      */
     connectionRatelimitWindowSeconds?: string | null;
@@ -633,6 +741,14 @@ export namespace connectors_v1 {
      * Indicate whether connector is being migrated to cloud run deployment model.
      */
     migrateDeploymentModel?: boolean | null;
+    /**
+     * Indicate whether connector is being migrated to TLS.
+     */
+    migrateTls?: boolean | null;
+    /**
+     * Indicate whether cloud spanner is required for connector job.
+     */
+    provisionCloudSpanner?: boolean | null;
     /**
      * Max QPS supported by the connector version before throttling of requests.
      */
@@ -812,6 +928,10 @@ export namespace connectors_v1 {
      * Output only. The name of shared connector deployment.
      */
     sharedDeployment?: string | null;
+    /**
+     * Output only. Status of the TLS migration.
+     */
+    tlsMigrationState?: string | null;
   }
   /**
    * CustomConnector represents the custom connector defined by the customer as part of byoc.
@@ -1478,6 +1598,19 @@ export namespace connectors_v1 {
     extractionRule?: Schema$ExtractionRule[];
   }
   /**
+   * Response message for Connectors.GetAuthSchema.
+   */
+  export interface Schema$FetchAuthSchemaResponse {
+    /**
+     * List of AuthSchemas.
+     */
+    authSchemas?: Schema$AuthSchema[];
+    /**
+     * JSON schema of the AuthSchemas. This is only populated if the view is JSON_SCHEMA. The schema is in draft-07 format.
+     */
+    jsonSchema?: Schema$JsonAuthSchema;
+  }
+  /**
    * Metadata of an entity field.
    */
   export interface Schema$Field {
@@ -1685,6 +1818,19 @@ export namespace connectors_v1 {
      * Optional. Type of the JMS Source. i.e. Queue or Topic
      */
     type?: string | null;
+  }
+  /**
+   * JsonAuthSchema defines the JSON schema of all authentication types.
+   */
+  export interface Schema$JsonAuthSchema {
+    /**
+     * JSON schema of the AuthSchemas.
+     */
+    $schema?: string | null;
+    /**
+     * List of AuthObjects.
+     */
+    oneOf?: Schema$AuthObject[];
   }
   /**
    * JsonSchema representation of schema metadata
@@ -2301,6 +2447,23 @@ export namespace connectors_v1 {
     redirectUri?: string | null;
     /**
      * Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
+  }
+  /**
+   * Parameters to support Oauth 2.0 Auth Code Grant Authentication using Google Provided OAuth Client. See https://tools.ietf.org/html/rfc6749#section-1.3.1 for more details.
+   */
+  export interface Schema$Oauth2AuthCodeFlowGoogleManaged {
+    /**
+     * Optional. Authorization code to be exchanged for access and refresh tokens.
+     */
+    authCode?: string | null;
+    /**
+     * Optional. Redirect URI to be provided during the auth code exchange.
+     */
+    redirectUri?: string | null;
+    /**
+     * Required. Scopes the connection will request when the user performs the auth code flow.
      */
     scopes?: string[] | null;
   }
@@ -9930,6 +10093,102 @@ export namespace connectors_v1 {
     }
 
     /**
+     * fetch and return the list of auth config variables required to override the connection backend auth.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchAuthSchema(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchAuthSchema(
+      params?: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FetchAuthSchemaResponse>;
+    fetchAuthSchema(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchAuthSchema(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchAuthSchemaResponse>,
+      callback: BodyResponseCallback<Schema$FetchAuthSchemaResponse>
+    ): void;
+    fetchAuthSchema(
+      params: Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema,
+      callback: BodyResponseCallback<Schema$FetchAuthSchemaResponse>
+    ): void;
+    fetchAuthSchema(
+      callback: BodyResponseCallback<Schema$FetchAuthSchemaResponse>
+    ): void;
+    fetchAuthSchema(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema
+        | BodyResponseCallback<Schema$FetchAuthSchemaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchAuthSchemaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchAuthSchemaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FetchAuthSchemaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchAuthSchema').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchAuthSchemaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchAuthSchemaResponse>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single connector version.
      *
      * @param params - Parameters for request
@@ -10114,6 +10373,17 @@ export namespace connectors_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Fetchauthschema
+    extends StandardParameters {
+    /**
+     * Required. Parent resource of the Connector Version, of the form: `projects/x/locations/x/providers/x/connectors/x/versions/x`
+     */
+    name?: string;
+    /**
+     * Optional. View of the AuthSchema. The default value is BASIC.
+     */
+    view?: string;
+  }
   export interface Params$Resource$Projects$Locations$Providers$Connectors$Versions$Get
     extends StandardParameters {
     /**
