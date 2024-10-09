@@ -591,6 +591,10 @@ export namespace tpu_v2alpha1 {
      */
     networkConfig?: Schema$NetworkConfig;
     /**
+     * Optional. Repeated network configurations for the TPU node.
+     */
+    networkConfigs?: Schema$NetworkConfig[];
+    /**
      * Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that runtime clients of the node reach out to the 0th entry in this map first.
      */
     networkEndpoints?: Schema$NetworkEndpoint[];
