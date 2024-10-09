@@ -138,6 +138,138 @@ export namespace dataproc_v1 {
     acceleratorTypeUri?: string | null;
   }
   /**
+   * Environment details of a Saprk Application.
+   */
+  export interface Schema$AccessSessionSparkApplicationEnvironmentInfoResponse {
+    /**
+     * Details about the Environment that the application is running in.
+     */
+    applicationEnvironmentInfo?: Schema$ApplicationEnvironmentInfo;
+  }
+  /**
+   * Details of a particular job associated with Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationJobResponse {
+    /**
+     * Output only. Data corresponding to a spark job.
+     */
+    jobData?: Schema$JobData;
+  }
+  /**
+   * A summary of Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationResponse {
+    /**
+     * Output only. High level information corresponding to an application.
+     */
+    application?: Schema$ApplicationInfo;
+  }
+  /**
+   * Details of a query for a Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationSqlQueryResponse {
+    /**
+     * SQL Execution Data
+     */
+    executionData?: Schema$SqlExecutionUiData;
+  }
+  /**
+   * SparkPlanGraph for a Spark Application execution limited to maximum 10000 clusters.
+   */
+  export interface Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse {
+    /**
+     * SparkPlanGraph for a Spark Application execution.
+     */
+    sparkPlanGraph?: Schema$SparkPlanGraph;
+  }
+  /**
+   * Stage Attempt for a Stage of a Spark Application
+   */
+  export interface Schema$AccessSessionSparkApplicationStageAttemptResponse {
+    /**
+     * Output only. Data corresponding to a stage.
+     */
+    stageData?: Schema$StageData;
+  }
+  /**
+   * RDD operation graph for a Spark Application Stage limited to maximum 10000 clusters.
+   */
+  export interface Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse {
+    /**
+     * RDD operation graph for a Spark Application Stage.
+     */
+    rddOperationGraph?: Schema$RddOperationGraph;
+  }
+  /**
+   * Environment details of a Saprk Application.
+   */
+  export interface Schema$AccessSparkApplicationEnvironmentInfoResponse {
+    /**
+     * Details about the Environment that the application is running in.
+     */
+    applicationEnvironmentInfo?: Schema$ApplicationEnvironmentInfo;
+  }
+  /**
+   * Details of a particular job associated with Spark Application
+   */
+  export interface Schema$AccessSparkApplicationJobResponse {
+    /**
+     * Output only. Data corresponding to a spark job.
+     */
+    jobData?: Schema$JobData;
+  }
+  /**
+   * A summary of Spark Application
+   */
+  export interface Schema$AccessSparkApplicationResponse {
+    /**
+     * Output only. High level information corresponding to an application.
+     */
+    application?: Schema$ApplicationInfo;
+  }
+  /**
+   * Details of a query for a Spark Application
+   */
+  export interface Schema$AccessSparkApplicationSqlQueryResponse {
+    /**
+     * SQL Execution Data
+     */
+    executionData?: Schema$SqlExecutionUiData;
+  }
+  /**
+   * SparkPlanGraph for a Spark Application execution limited to maximum 10000 clusters.
+   */
+  export interface Schema$AccessSparkApplicationSqlSparkPlanGraphResponse {
+    /**
+     * SparkPlanGraph for a Spark Application execution.
+     */
+    sparkPlanGraph?: Schema$SparkPlanGraph;
+  }
+  /**
+   * Stage Attempt for a Stage of a Spark Application
+   */
+  export interface Schema$AccessSparkApplicationStageAttemptResponse {
+    /**
+     * Output only. Data corresponding to a stage.
+     */
+    stageData?: Schema$StageData;
+  }
+  /**
+   * RDD operation graph for a Spark Application Stage limited to maximum 10000 clusters.
+   */
+  export interface Schema$AccessSparkApplicationStageRddOperationGraphResponse {
+    /**
+     * RDD operation graph for a Spark Application Stage.
+     */
+    rddOperationGraph?: Schema$RddOperationGraph;
+  }
+  export interface Schema$AccumulableInfo {
+    accumullableInfoId?: string | null;
+    name?: string | null;
+    update?: string | null;
+    value?: string | null;
+  }
+  /**
    * A request to analyze a batch workload.
    */
   export interface Schema$AnalyzeBatchRequest {
@@ -182,6 +314,49 @@ export namespace dataproc_v1 {
      * Output only. Warnings encountered during operation execution.
      */
     warnings?: string[] | null;
+  }
+  /**
+   * Specific attempt of an application.
+   */
+  export interface Schema$ApplicationAttemptInfo {
+    appSparkVersion?: string | null;
+    attemptId?: string | null;
+    completed?: boolean | null;
+    durationMillis?: string | null;
+    endTime?: string | null;
+    lastUpdated?: string | null;
+    sparkUser?: string | null;
+    startTime?: string | null;
+  }
+  /**
+   * Details about the Environment that the application is running in.
+   */
+  export interface Schema$ApplicationEnvironmentInfo {
+    classpathEntries?: {[key: string]: string} | null;
+    hadoopProperties?: {[key: string]: string} | null;
+    metricsProperties?: {[key: string]: string} | null;
+    resourceProfiles?: Schema$ResourceProfileInfo[];
+    runtime?: Schema$SparkRuntimeInfo;
+    sparkProperties?: {[key: string]: string} | null;
+    systemProperties?: {[key: string]: string} | null;
+  }
+  /**
+   * High level information corresponding to an application.
+   */
+  export interface Schema$ApplicationInfo {
+    applicationContextIngestionStatus?: string | null;
+    applicationId?: string | null;
+    attempts?: Schema$ApplicationAttemptInfo[];
+    coresGranted?: number | null;
+    coresPerExecutor?: number | null;
+    maxCores?: number | null;
+    memoryPerExecutorMb?: number | null;
+    name?: string | null;
+    quantileDataStatus?: string | null;
+  }
+  export interface Schema$AppSummary {
+    numCompletedJobs?: number | null;
+    numCompletedStages?: number | null;
   }
   /**
    * Autoscaling Policy config associated with the cluster.
@@ -667,6 +842,15 @@ export namespace dataproc_v1 {
     substate?: string | null;
   }
   /**
+   * Cluster to be repaired
+   */
+  export interface Schema$ClusterToRepair {
+    /**
+     * Required. Repair action to take on the cluster resource.
+     */
+    clusterRepairAction?: string | null;
+  }
+  /**
    * Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)
    */
   export interface Schema$ConfidentialInstanceConfig {
@@ -674,6 +858,28 @@ export namespace dataproc_v1 {
      * Optional. Defines whether the instance should have confidential compute enabled.
      */
     enableConfidentialCompute?: boolean | null;
+  }
+  /**
+   * Consolidated summary about executors used by the application.
+   */
+  export interface Schema$ConsolidatedExecutorSummary {
+    activeTasks?: number | null;
+    completedTasks?: number | null;
+    count?: number | null;
+    diskUsed?: string | null;
+    failedTasks?: number | null;
+    isExcluded?: number | null;
+    maxMemory?: string | null;
+    memoryMetrics?: Schema$MemoryMetrics;
+    memoryUsed?: string | null;
+    rddBlocks?: number | null;
+    totalCores?: number | null;
+    totalDurationMillis?: string | null;
+    totalGcTimeMillis?: string | null;
+    totalInputBytes?: string | null;
+    totalShuffleRead?: string | null;
+    totalShuffleWrite?: string | null;
+    totalTasks?: number | null;
   }
   /**
    * Dataproc metric config.
@@ -848,6 +1054,98 @@ export namespace dataproc_v1 {
      */
     ttl?: string | null;
   }
+  export interface Schema$ExecutorMetrics {
+    metrics?: {[key: string]: string} | null;
+  }
+  export interface Schema$ExecutorMetricsDistributions {
+    diskBytesSpilled?: number[] | null;
+    failedTasks?: number[] | null;
+    inputBytes?: number[] | null;
+    inputRecords?: number[] | null;
+    killedTasks?: number[] | null;
+    memoryBytesSpilled?: number[] | null;
+    outputBytes?: number[] | null;
+    outputRecords?: number[] | null;
+    peakMemoryMetrics?: Schema$ExecutorPeakMetricsDistributions;
+    quantiles?: number[] | null;
+    shuffleRead?: number[] | null;
+    shuffleReadRecords?: number[] | null;
+    shuffleWrite?: number[] | null;
+    shuffleWriteRecords?: number[] | null;
+    succeededTasks?: number[] | null;
+    taskTimeMillis?: number[] | null;
+  }
+  export interface Schema$ExecutorPeakMetricsDistributions {
+    executorMetrics?: Schema$ExecutorMetrics[];
+    quantiles?: number[] | null;
+  }
+  /**
+   * Resources used per executor used by the application.
+   */
+  export interface Schema$ExecutorResourceRequest {
+    amount?: string | null;
+    discoveryScript?: string | null;
+    resourceName?: string | null;
+    vendor?: string | null;
+  }
+  /**
+   * Executor resources consumed by a stage.
+   */
+  export interface Schema$ExecutorStageSummary {
+    diskBytesSpilled?: string | null;
+    executorId?: string | null;
+    failedTasks?: number | null;
+    inputBytes?: string | null;
+    inputRecords?: string | null;
+    isExcludedForStage?: boolean | null;
+    killedTasks?: number | null;
+    memoryBytesSpilled?: string | null;
+    outputBytes?: string | null;
+    outputRecords?: string | null;
+    peakMemoryMetrics?: Schema$ExecutorMetrics;
+    shuffleRead?: string | null;
+    shuffleReadRecords?: string | null;
+    shuffleWrite?: string | null;
+    shuffleWriteRecords?: string | null;
+    stageAttemptId?: number | null;
+    stageId?: string | null;
+    succeededTasks?: number | null;
+    taskTimeMillis?: string | null;
+  }
+  /**
+   * Details about executors used by the application.
+   */
+  export interface Schema$ExecutorSummary {
+    activeTasks?: number | null;
+    addTime?: string | null;
+    attributes?: {[key: string]: string} | null;
+    completedTasks?: number | null;
+    diskUsed?: string | null;
+    excludedInStages?: string[] | null;
+    executorId?: string | null;
+    executorLogs?: {[key: string]: string} | null;
+    failedTasks?: number | null;
+    hostPort?: string | null;
+    isActive?: boolean | null;
+    isExcluded?: boolean | null;
+    maxMemory?: string | null;
+    maxTasks?: number | null;
+    memoryMetrics?: Schema$MemoryMetrics;
+    memoryUsed?: string | null;
+    peakMemoryMetrics?: Schema$ExecutorMetrics;
+    rddBlocks?: number | null;
+    removeReason?: string | null;
+    removeTime?: string | null;
+    resourceProfileId?: number | null;
+    resources?: {[key: string]: Schema$ResourceInformation} | null;
+    totalCores?: number | null;
+    totalDurationMillis?: string | null;
+    totalGcTimeMillis?: string | null;
+    totalInputBytes?: string | null;
+    totalShuffleRead?: string | null;
+    totalShuffleWrite?: string | null;
+    totalTasks?: number | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -894,7 +1192,7 @@ export namespace dataproc_v1 {
      */
     mainJarFileUri?: string | null;
     /**
-     * Optional. A mapping of property names to values, used to configure Flink. Properties that conflict with values set by the Dataproc API might beoverwritten. Can include properties set in/etc/flink/conf/flink-defaults.conf and classes in user code.
+     * Optional. A mapping of property names to values, used to configure Flink. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/flink/conf/flink-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
     /**
@@ -1189,6 +1487,17 @@ export namespace dataproc_v1 {
     credentialsCiphertext?: string | null;
   }
   /**
+   * Metrics about the input data read by the task.
+   */
+  export interface Schema$InputMetrics {
+    bytesRead?: string | null;
+    recordsRead?: string | null;
+  }
+  export interface Schema$InputQuantileMetrics {
+    bytesRead?: Schema$Quantiles;
+    recordsRead?: Schema$Quantiles;
+  }
+  /**
    * Instance flexibility Policy allowing a mixture of VM shapes and provisioning models.
    */
   export interface Schema$InstanceFlexibilityPolicy {
@@ -1200,6 +1509,10 @@ export namespace dataproc_v1 {
      * Output only. A list of instance selection results in the group.
      */
     instanceSelectionResults?: Schema$InstanceSelectionResult[];
+    /**
+     * Optional. Defines how the Group selects the provisioning model to ensure required reliability.
+     */
+    provisioningModelMix?: Schema$ProvisioningModelMix;
   }
   /**
    * Configuration for the size bounds of an instance group, including its proportional size to other groups.
@@ -1450,6 +1763,33 @@ export namespace dataproc_v1 {
     yarnApplications?: Schema$YarnApplication[];
   }
   /**
+   * Data corresponding to a spark job.
+   */
+  export interface Schema$JobData {
+    completionTime?: string | null;
+    description?: string | null;
+    jobGroup?: string | null;
+    jobId?: string | null;
+    killTasksSummary?: {[key: string]: number} | null;
+    name?: string | null;
+    numActiveStages?: number | null;
+    numActiveTasks?: number | null;
+    numCompletedIndices?: number | null;
+    numCompletedStages?: number | null;
+    numCompletedTasks?: number | null;
+    numFailedStages?: number | null;
+    numFailedTasks?: number | null;
+    numKilledTasks?: number | null;
+    numSkippedStages?: number | null;
+    numSkippedTasks?: number | null;
+    numTasks?: number | null;
+    skippedStages?: number[] | null;
+    sqlExecutionId?: string | null;
+    stageIds?: string[] | null;
+    status?: string | null;
+    submissionTime?: string | null;
+  }
+  /**
    * Job Operation metadata.
    */
   export interface Schema$JobMetadata {
@@ -1512,6 +1852,35 @@ export namespace dataproc_v1 {
      * Optional. Maximum total number of times a driver can be restarted as a result of the driver exiting with a non-zero code. After the maximum number is reached, the job will be reported as failed.Maximum value is 240.Note: Currently, this restartable job option is not supported in Dataproc workflow templates (https://cloud.google.com/dataproc/docs/concepts/workflows/using-workflows#adding_jobs_to_a_template).
      */
     maxFailuresTotal?: number | null;
+  }
+  /**
+   * Data related to Jobs page summary
+   */
+  export interface Schema$JobsSummary {
+    /**
+     * Number of active jobs
+     */
+    activeJobs?: number | null;
+    /**
+     * Spark Application Id
+     */
+    applicationId?: string | null;
+    /**
+     * Attempts info
+     */
+    attempts?: Schema$ApplicationAttemptInfo[];
+    /**
+     * Number of completed jobs
+     */
+    completedJobs?: number | null;
+    /**
+     * Number of failed jobs
+     */
+    failedJobs?: number | null;
+    /**
+     * Spark Scheduling mode
+     */
+    schedulingMode?: string | null;
   }
   /**
    * Dataproc job status.
@@ -1822,6 +2191,12 @@ export namespace dataproc_v1 {
      */
     instanceTemplateName?: string | null;
   }
+  export interface Schema$MemoryMetrics {
+    totalOffHeapStorageMemory?: string | null;
+    totalOnHeapStorageMemory?: string | null;
+    usedOffHeapStorageMemory?: string | null;
+    usedOnHeapStorageMemory?: string | null;
+  }
   /**
    * Specifies a Metastore configuration.
    */
@@ -1862,7 +2237,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$NodeGroup {
     /**
-     * Optional. Node group labels. Label keys must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values can be empty. If specified, they must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). The node group must have no more than 32 labelsn.
+     * Optional. Node group labels. Label keys must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values can be empty. If specified, they must consist of from 1 to 63 characters and conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). The node group must have no more than 32 labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -2041,6 +2416,17 @@ export namespace dataproc_v1 {
     trinoJob?: Schema$TrinoJob;
   }
   /**
+   * Metrics about the data written by the task.
+   */
+  export interface Schema$OutputMetrics {
+    bytesWritten?: string | null;
+    recordsWritten?: string | null;
+  }
+  export interface Schema$OutputQuantileMetrics {
+    bytesWritten?: Schema$Quantiles;
+    recordsWritten?: Schema$Quantiles;
+  }
+  /**
    * Configuration for parameter validation.
    */
   export interface Schema$ParameterValidation {
@@ -2117,6 +2503,13 @@ export namespace dataproc_v1 {
     version?: number | null;
   }
   /**
+   * Pool Data
+   */
+  export interface Schema$PoolData {
+    name?: string | null;
+    stageIds?: string[] | null;
+  }
+  /**
    * A Dataproc job for running Presto (https://prestosql.io/) queries. IMPORTANT: The Dataproc Presto Optional Component (https://cloud.google.com/dataproc/docs/concepts/components/presto) must be enabled when the cluster is created to submit a Presto job to the cluster.
    */
   export interface Schema$PrestoJob {
@@ -2148,6 +2541,31 @@ export namespace dataproc_v1 {
      * A list of queries.
      */
     queryList?: Schema$QueryList;
+  }
+  /**
+   * Process Summary
+   */
+  export interface Schema$ProcessSummary {
+    addTime?: string | null;
+    hostPort?: string | null;
+    isActive?: boolean | null;
+    processId?: string | null;
+    processLogs?: {[key: string]: string} | null;
+    removeTime?: string | null;
+    totalCores?: number | null;
+  }
+  /**
+   * Defines how Dataproc should create VMs with a mixture of provisioning models.
+   */
+  export interface Schema$ProvisioningModelMix {
+    /**
+     * Optional. The base capacity that will always use Standard VMs to avoid risk of more preemption than the minimum capacity you need. Dataproc will create only standard VMs until it reaches standard_capacity_base, then it will start using standard_capacity_percent_above_base to mix Spot with Standard VMs. eg. If 15 instances are requested and standard_capacity_base is 5, Dataproc will create 5 standard VMs and then start mixing spot and standard VMs for remaining 10 instances.
+     */
+    standardCapacityBase?: number | null;
+    /**
+     * Optional. The percentage of target capacity that should use Standard VM. The remaining percentage will use Spot VMs. The percentage applies only to the capacity above standard_capacity_base. eg. If 15 instances are requested and standard_capacity_base is 5 and standard_capacity_percent_above_base is 30, Dataproc will create 5 standard VMs and then start mixing spot and standard VMs for remaining 10 instances. The mix will be 30% standard and 70% spot.
+     */
+    standardCapacityPercentAboveBase?: number | null;
   }
   /**
    * Configuration for PyPi repository
@@ -2225,6 +2643,18 @@ export namespace dataproc_v1 {
     pythonFileUris?: string[] | null;
   }
   /**
+   * Quantile metrics data related to Tasks. Units can be seconds, bytes, milliseconds, etc depending on the message type.
+   */
+  export interface Schema$Quantiles {
+    count?: string | null;
+    maximum?: string | null;
+    minimum?: string | null;
+    percentile25?: string | null;
+    percentile50?: string | null;
+    percentile75?: string | null;
+    sum?: string | null;
+  }
+  /**
    * A list of queries to run on a cluster.
    */
   export interface Schema$QueryList {
@@ -2232,6 +2662,80 @@ export namespace dataproc_v1 {
      * Required. The queries to execute. You do not need to end a query expression with a semicolon. Multiple queries can be specified in one string by separating each with a semicolon. Here is an example of a Dataproc API snippet that uses a QueryList to specify a HiveJob: "hiveJob": { "queryList": { "queries": [ "query1", "query2", "query3;query4", ] \} \}
      */
     queries?: string[] | null;
+  }
+  /**
+   * Details about RDD usage.
+   */
+  export interface Schema$RddDataDistribution {
+    address?: string | null;
+    diskUsed?: string | null;
+    memoryRemaining?: string | null;
+    memoryUsed?: string | null;
+    offHeapMemoryRemaining?: string | null;
+    offHeapMemoryUsed?: string | null;
+    onHeapMemoryRemaining?: string | null;
+    onHeapMemoryUsed?: string | null;
+  }
+  /**
+   * A grouping of nodes representing higher level constructs (stage, job etc.).
+   */
+  export interface Schema$RddOperationCluster {
+    childClusters?: Schema$RddOperationCluster[];
+    childNodes?: Schema$RddOperationNode[];
+    name?: string | null;
+    rddClusterId?: string | null;
+  }
+  /**
+   * A directed edge representing dependency between two RDDs.
+   */
+  export interface Schema$RddOperationEdge {
+    fromId?: number | null;
+    toId?: number | null;
+  }
+  /**
+   * Graph representing RDD dependencies. Consists of edges and a root cluster.
+   */
+  export interface Schema$RddOperationGraph {
+    edges?: Schema$RddOperationEdge[];
+    incomingEdges?: Schema$RddOperationEdge[];
+    outgoingEdges?: Schema$RddOperationEdge[];
+    rootCluster?: Schema$RddOperationCluster;
+    stageId?: string | null;
+  }
+  /**
+   * A node in the RDD operation graph. Corresponds to a single RDD.
+   */
+  export interface Schema$RddOperationNode {
+    barrier?: boolean | null;
+    cached?: boolean | null;
+    callsite?: string | null;
+    name?: string | null;
+    nodeId?: number | null;
+    outputDeterministicLevel?: string | null;
+  }
+  /**
+   * Information about RDD partitions.
+   */
+  export interface Schema$RddPartitionInfo {
+    blockName?: string | null;
+    diskUsed?: string | null;
+    executors?: string[] | null;
+    memoryUsed?: string | null;
+    storageLevel?: string | null;
+  }
+  /**
+   * Overall data about RDD storage.
+   */
+  export interface Schema$RddStorageInfo {
+    dataDistribution?: Schema$RddDataDistribution[];
+    diskUsed?: string | null;
+    memoryUsed?: string | null;
+    name?: string | null;
+    numCachedPartitions?: number | null;
+    numPartitions?: number | null;
+    partitions?: Schema$RddPartitionInfo[];
+    rddStorageId?: number | null;
+    storageLevel?: string | null;
   }
   /**
    * Validation based on regular expressions.
@@ -2246,6 +2750,10 @@ export namespace dataproc_v1 {
    * A request to repair a cluster.
    */
   export interface Schema$RepairClusterRequest {
+    /**
+     * Optional. Cluster to be repaired
+     */
+    cluster?: Schema$ClusterToRepair;
     /**
      * Optional. Specifying the cluster_uuid means the RPC will fail (with error NOT_FOUND) if a cluster with the specified UUID does not exist.
      */
@@ -2328,6 +2836,18 @@ export namespace dataproc_v1 {
      */
     size?: number | null;
   }
+  export interface Schema$ResourceInformation {
+    addresses?: string[] | null;
+    name?: string | null;
+  }
+  /**
+   * Resource profile that contains information about all the resources required by executors and tasks.
+   */
+  export interface Schema$ResourceProfileInfo {
+    executorResources?: {[key: string]: Schema$ExecutorResourceRequest} | null;
+    resourceProfileId?: number | null;
+    taskResources?: {[key: string]: Schema$TaskResourceRequest} | null;
+  }
   /**
    * Runtime configuration for a workload.
    */
@@ -2381,6 +2901,214 @@ export namespace dataproc_v1 {
      * Output only. A URI pointing to the location of the stdout and stderr of the workload.
      */
     outputUri?: string | null;
+  }
+  /**
+   * List of Executors associated with a Spark Application.
+   */
+  export interface Schema$SearchSessionSparkApplicationExecutorsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationExecutorsRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Details about executors used by the application.
+     */
+    sparkApplicationExecutors?: Schema$ExecutorSummary[];
+  }
+  /**
+   * List of Executors associated with a Spark Application Stage.
+   */
+  export interface Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationExecutorStageSummaryRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Details about executors used by the application stage.
+     */
+    sparkApplicationStageExecutors?: Schema$ExecutorStageSummary[];
+  }
+  /**
+   * A list of Jobs associated with a Spark Application.
+   */
+  export interface Schema$SearchSessionSparkApplicationJobsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationJobsRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to a spark job.
+     */
+    sparkApplicationJobs?: Schema$JobData[];
+  }
+  /**
+   * List of all queries for a Spark Application.
+   */
+  export interface Schema$SearchSessionSparkApplicationSqlQueriesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationSqlQueriesRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. SQL Execution Data
+     */
+    sparkApplicationSqlQueries?: Schema$SqlExecutionUiData[];
+  }
+  /**
+   * A list of summary of Spark Applications
+   */
+  export interface Schema$SearchSessionSparkApplicationsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationsRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. High level information corresponding to an application.
+     */
+    sparkApplications?: Schema$SparkApplication[];
+  }
+  /**
+   * A list of Stage Attempts for a Stage of a Spark Application.
+   */
+  export interface Schema$SearchSessionSparkApplicationStageAttemptsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationStageAttemptsRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to a stage attempts
+     */
+    sparkApplicationStageAttempts?: Schema$StageData[];
+  }
+  /**
+   * List of tasks for a stage of a Spark Application
+   */
+  export interface Schema$SearchSessionSparkApplicationStageAttemptTasksResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationStageAttemptTasksRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to tasks created by spark.
+     */
+    sparkApplicationStageAttemptTasks?: Schema$TaskData[];
+  }
+  /**
+   * A list of stages associated with a Spark Application.
+   */
+  export interface Schema$SearchSessionSparkApplicationStagesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSessionSparkApplicationStages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to a stage.
+     */
+    sparkApplicationStages?: Schema$StageData[];
+  }
+  /**
+   * List of Executors associated with a Spark Application.
+   */
+  export interface Schema$SearchSparkApplicationExecutorsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationExecutorsListRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Details about executors used by the application.
+     */
+    sparkApplicationExecutors?: Schema$ExecutorSummary[];
+  }
+  /**
+   * List of Executors associated with a Spark Application Stage.
+   */
+  export interface Schema$SearchSparkApplicationExecutorStageSummaryResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationExecutorsListRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Details about executors used by the application stage.
+     */
+    sparkApplicationStageExecutors?: Schema$ExecutorStageSummary[];
+  }
+  /**
+   * A list of Jobs associated with a Spark Application.
+   */
+  export interface Schema$SearchSparkApplicationJobsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationJobsRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to a spark job.
+     */
+    sparkApplicationJobs?: Schema$JobData[];
+  }
+  /**
+   * List of all queries for a Spark Application.
+   */
+  export interface Schema$SearchSparkApplicationSqlQueriesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationSqlQueriesRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. SQL Execution Data
+     */
+    sparkApplicationSqlQueries?: Schema$SqlExecutionUiData[];
+  }
+  /**
+   * A list of summary of Spark Applications
+   */
+  export interface Schema$SearchSparkApplicationsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationsRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. High level information corresponding to an application.
+     */
+    sparkApplications?: Schema$SparkApplication[];
+  }
+  /**
+   * A list of Stage Attempts for a Stage of a Spark Application.
+   */
+  export interface Schema$SearchSparkApplicationStageAttemptsResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListSparkApplicationStageAttemptsRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to a stage attempts
+     */
+    sparkApplicationStageAttempts?: Schema$StageData[];
+  }
+  /**
+   * List of tasks for a stage of a Spark Application
+   */
+  export interface Schema$SearchSparkApplicationStageAttemptTasksResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent ListSparkApplicationStageAttemptTasksRequest.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to tasks created by spark.
+     */
+    sparkApplicationStageAttemptTasks?: Schema$TaskData[];
+  }
+  /**
+   * A list of stages associated with a Spark Application.
+   */
+  export interface Schema$SearchSparkApplicationStagesResponse {
+    /**
+     * This token is included in the response if there are more results to fetch. To fetch additional results, provide this value as the page_token in a subsequent SearchSparkApplicationStages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Data corresponding to a stage.
+     */
+    sparkApplicationStages?: Schema$StageData[];
   }
   /**
    * Security related configuration, including encryption, Kerberos, etc.
@@ -2593,6 +3321,72 @@ export namespace dataproc_v1 {
      */
     enableVtpm?: boolean | null;
   }
+  export interface Schema$ShufflePushReadMetrics {
+    corruptMergedBlockChunks?: string | null;
+    localMergedBlocksFetched?: string | null;
+    localMergedBytesRead?: string | null;
+    localMergedChunksFetched?: string | null;
+    mergedFetchFallbackCount?: string | null;
+    remoteMergedBlocksFetched?: string | null;
+    remoteMergedBytesRead?: string | null;
+    remoteMergedChunksFetched?: string | null;
+    remoteMergedReqsDuration?: string | null;
+  }
+  export interface Schema$ShufflePushReadQuantileMetrics {
+    corruptMergedBlockChunks?: Schema$Quantiles;
+    localMergedBlocksFetched?: Schema$Quantiles;
+    localMergedBytesRead?: Schema$Quantiles;
+    localMergedChunksFetched?: Schema$Quantiles;
+    mergedFetchFallbackCount?: Schema$Quantiles;
+    remoteMergedBlocksFetched?: Schema$Quantiles;
+    remoteMergedBytesRead?: Schema$Quantiles;
+    remoteMergedChunksFetched?: Schema$Quantiles;
+    remoteMergedReqsDuration?: Schema$Quantiles;
+  }
+  /**
+   * Shuffle data read by the task.
+   */
+  export interface Schema$ShuffleReadMetrics {
+    fetchWaitTimeMillis?: string | null;
+    localBlocksFetched?: string | null;
+    localBytesRead?: string | null;
+    recordsRead?: string | null;
+    remoteBlocksFetched?: string | null;
+    remoteBytesRead?: string | null;
+    remoteBytesReadToDisk?: string | null;
+    remoteReqsDuration?: string | null;
+    shufflePushReadMetrics?: Schema$ShufflePushReadMetrics;
+  }
+  export interface Schema$ShuffleReadQuantileMetrics {
+    fetchWaitTimeMillis?: Schema$Quantiles;
+    localBlocksFetched?: Schema$Quantiles;
+    readBytes?: Schema$Quantiles;
+    readRecords?: Schema$Quantiles;
+    remoteBlocksFetched?: Schema$Quantiles;
+    remoteBytesRead?: Schema$Quantiles;
+    remoteBytesReadToDisk?: Schema$Quantiles;
+    remoteReqsDuration?: Schema$Quantiles;
+    shufflePushReadMetrics?: Schema$ShufflePushReadQuantileMetrics;
+    totalBlocksFetched?: Schema$Quantiles;
+  }
+  /**
+   * Shuffle data written by task.
+   */
+  export interface Schema$ShuffleWriteMetrics {
+    bytesWritten?: string | null;
+    recordsWritten?: string | null;
+    writeTimeNanos?: string | null;
+  }
+  export interface Schema$ShuffleWriteQuantileMetrics {
+    writeBytes?: Schema$Quantiles;
+    writeRecords?: Schema$Quantiles;
+    writeTimeNanos?: Schema$Quantiles;
+  }
+  export interface Schema$SinkProgress {
+    description?: string | null;
+    metrics?: {[key: string]: string} | null;
+    numOutputRows?: string | null;
+  }
   /**
    * Specifies the selection and config of software inside the cluster.
    */
@@ -2609,6 +3403,29 @@ export namespace dataproc_v1 {
      * Optional. The properties to set on daemon config files.Property keys are specified in prefix:property format, for example core:hadoop.tmp.dir. The following are supported prefixes and their mappings: capacity-scheduler: capacity-scheduler.xml core: core-site.xml distcp: distcp-default.xml hdfs: hdfs-site.xml hive: hive-site.xml mapred: mapred-site.xml pig: pig.properties spark: spark-defaults.conf yarn: yarn-site.xmlFor more information, see Cluster properties (https://cloud.google.com/dataproc/docs/concepts/cluster-properties).
      */
     properties?: {[key: string]: string} | null;
+  }
+  export interface Schema$SourceProgress {
+    description?: string | null;
+    endOffset?: string | null;
+    inputRowsPerSecond?: number | null;
+    latestOffset?: string | null;
+    metrics?: {[key: string]: string} | null;
+    numInputRows?: string | null;
+    processedRowsPerSecond?: number | null;
+    startOffset?: string | null;
+  }
+  /**
+   * A summary of Spark Application
+   */
+  export interface Schema$SparkApplication {
+    /**
+     * Output only. High level information corresponding to an application.
+     */
+    application?: Schema$ApplicationInfo;
+    /**
+     * Identifier. Name of the spark application
+     */
+    name?: string | null;
   }
   /**
    * A configuration for running an Apache Spark (https://spark.apache.org/) batch workload.
@@ -2690,6 +3507,47 @@ export namespace dataproc_v1 {
     properties?: {[key: string]: string} | null;
   }
   /**
+   * A graph used for storing information of an executionPlan of DataFrame.
+   */
+  export interface Schema$SparkPlanGraph {
+    edges?: Schema$SparkPlanGraphEdge[];
+    executionId?: string | null;
+    nodes?: Schema$SparkPlanGraphNodeWrapper[];
+  }
+  /**
+   * Represents a tree of spark plan.
+   */
+  export interface Schema$SparkPlanGraphCluster {
+    desc?: string | null;
+    metrics?: Schema$SqlPlanMetric[];
+    name?: string | null;
+    nodes?: Schema$SparkPlanGraphNodeWrapper[];
+    sparkPlanGraphClusterId?: string | null;
+  }
+  /**
+   * Represents a directed edge in the spark plan tree from child to parent.
+   */
+  export interface Schema$SparkPlanGraphEdge {
+    fromId?: string | null;
+    toId?: string | null;
+  }
+  /**
+   * Represents a node in the spark plan tree.
+   */
+  export interface Schema$SparkPlanGraphNode {
+    desc?: string | null;
+    metrics?: Schema$SqlPlanMetric[];
+    name?: string | null;
+    sparkPlanGraphNodeId?: string | null;
+  }
+  /**
+   * Wrapper user to represent either a node or a cluster.
+   */
+  export interface Schema$SparkPlanGraphNodeWrapper {
+    cluster?: Schema$SparkPlanGraphCluster;
+    node?: Schema$SparkPlanGraphNode;
+  }
+  /**
    * A configuration for running an Apache SparkR (https://spark.apache.org/docs/latest/sparkr.html) batch workload.
    */
   export interface Schema$SparkRBatch {
@@ -2738,6 +3596,11 @@ export namespace dataproc_v1 {
      * Optional. A mapping of property names to values, used to configure SparkR. Properties that conflict with values set by the Dataproc API might be overwritten. Can include properties set in /etc/spark/conf/spark-defaults.conf and classes in user code.
      */
     properties?: {[key: string]: string} | null;
+  }
+  export interface Schema$SparkRuntimeInfo {
+    javaHome?: string | null;
+    javaVersion?: string | null;
+    scalaVersion?: string | null;
   }
   /**
    * A configuration for running Apache Spark SQL (https://spark.apache.org/sql/) queries as a batch workload.
@@ -2815,6 +3678,210 @@ export namespace dataproc_v1 {
     scaleUpMinWorkerFraction?: number | null;
   }
   /**
+   * Outer message that contains the data obtained from spark listener, packaged with information that is required to process it.
+   */
+  export interface Schema$SparkWrapperObject {
+    applicationEnvironmentInfo?: Schema$ApplicationEnvironmentInfo;
+    /**
+     * Application Id created by Spark.
+     */
+    applicationId?: string | null;
+    applicationInfo?: Schema$ApplicationInfo;
+    appSummary?: Schema$AppSummary;
+    /**
+     * VM Timestamp associated with the data object.
+     */
+    eventTimestamp?: string | null;
+    executorStageSummary?: Schema$ExecutorStageSummary;
+    executorSummary?: Schema$ExecutorSummary;
+    jobData?: Schema$JobData;
+    poolData?: Schema$PoolData;
+    processSummary?: Schema$ProcessSummary;
+    rddOperationGraph?: Schema$RddOperationGraph;
+    rddStorageInfo?: Schema$RddStorageInfo;
+    resourceProfileInfo?: Schema$ResourceProfileInfo;
+    sparkPlanGraph?: Schema$SparkPlanGraph;
+    speculationStageSummary?: Schema$SpeculationStageSummary;
+    sqlExecutionUiData?: Schema$SqlExecutionUiData;
+    stageData?: Schema$StageData;
+    streamBlockData?: Schema$StreamBlockData;
+    streamingQueryData?: Schema$StreamingQueryData;
+    streamingQueryProgress?: Schema$StreamingQueryProgress;
+    taskData?: Schema$TaskData;
+  }
+  /**
+   * Details of the speculation task when speculative execution is enabled.
+   */
+  export interface Schema$SpeculationStageSummary {
+    numActiveTasks?: number | null;
+    numCompletedTasks?: number | null;
+    numFailedTasks?: number | null;
+    numKilledTasks?: number | null;
+    numTasks?: number | null;
+    stageAttemptId?: number | null;
+    stageId?: string | null;
+  }
+  /**
+   * SQL Execution Data
+   */
+  export interface Schema$SqlExecutionUiData {
+    completionTime?: string | null;
+    description?: string | null;
+    details?: string | null;
+    errorMessage?: string | null;
+    executionId?: string | null;
+    jobs?: {[key: string]: string} | null;
+    metrics?: Schema$SqlPlanMetric[];
+    metricValues?: {[key: string]: string} | null;
+    metricValuesIsNull?: boolean | null;
+    modifiedConfigs?: {[key: string]: string} | null;
+    physicalPlanDescription?: string | null;
+    rootExecutionId?: string | null;
+    stages?: string[] | null;
+    submissionTime?: string | null;
+  }
+  /**
+   * Metrics related to SQL execution.
+   */
+  export interface Schema$SqlPlanMetric {
+    accumulatorId?: string | null;
+    metricType?: string | null;
+    name?: string | null;
+  }
+  /**
+   * Data related to tasks summary for a Spark Stage Attempt
+   */
+  export interface Schema$StageAttemptTasksSummary {
+    applicationId?: string | null;
+    numFailedTasks?: number | null;
+    numKilledTasks?: number | null;
+    numPendingTasks?: number | null;
+    numRunningTasks?: number | null;
+    numSuccessTasks?: number | null;
+    numTasks?: number | null;
+    stageAttemptId?: number | null;
+    stageId?: string | null;
+  }
+  /**
+   * Data corresponding to a stage.
+   */
+  export interface Schema$StageData {
+    accumulatorUpdates?: Schema$AccumulableInfo[];
+    completionTime?: string | null;
+    description?: string | null;
+    details?: string | null;
+    executorMetricsDistributions?: Schema$ExecutorMetricsDistributions;
+    executorSummary?: {[key: string]: Schema$ExecutorStageSummary} | null;
+    failureReason?: string | null;
+    firstTaskLaunchedTime?: string | null;
+    isShufflePushEnabled?: boolean | null;
+    jobIds?: string[] | null;
+    killedTasksSummary?: {[key: string]: number} | null;
+    locality?: {[key: string]: string} | null;
+    name?: string | null;
+    numActiveTasks?: number | null;
+    numCompletedIndices?: number | null;
+    numCompleteTasks?: number | null;
+    numFailedTasks?: number | null;
+    numKilledTasks?: number | null;
+    numTasks?: number | null;
+    parentStageIds?: string[] | null;
+    peakExecutorMetrics?: Schema$ExecutorMetrics;
+    rddIds?: string[] | null;
+    resourceProfileId?: number | null;
+    schedulingPool?: string | null;
+    shuffleMergersCount?: number | null;
+    speculationSummary?: Schema$SpeculationStageSummary;
+    stageAttemptId?: number | null;
+    stageId?: string | null;
+    stageMetrics?: Schema$StageMetrics;
+    status?: string | null;
+    submissionTime?: string | null;
+    /**
+     * Summary metrics fields. These are included in response only if present in summary_metrics_mask field in request
+     */
+    taskQuantileMetrics?: Schema$TaskQuantileMetrics;
+    tasks?: {[key: string]: Schema$TaskData} | null;
+  }
+  /**
+   * Metrics about the input read by the stage.
+   */
+  export interface Schema$StageInputMetrics {
+    bytesRead?: string | null;
+    recordsRead?: string | null;
+  }
+  /**
+   * Stage Level Aggregated Metrics
+   */
+  export interface Schema$StageMetrics {
+    diskBytesSpilled?: string | null;
+    executorCpuTimeNanos?: string | null;
+    executorDeserializeCpuTimeNanos?: string | null;
+    executorDeserializeTimeMillis?: string | null;
+    executorRunTimeMillis?: string | null;
+    jvmGcTimeMillis?: string | null;
+    memoryBytesSpilled?: string | null;
+    peakExecutionMemoryBytes?: string | null;
+    resultSerializationTimeMillis?: string | null;
+    resultSize?: string | null;
+    stageInputMetrics?: Schema$StageInputMetrics;
+    stageOutputMetrics?: Schema$StageOutputMetrics;
+    stageShuffleReadMetrics?: Schema$StageShuffleReadMetrics;
+    stageShuffleWriteMetrics?: Schema$StageShuffleWriteMetrics;
+  }
+  /**
+   * Metrics about the output written by the stage.
+   */
+  export interface Schema$StageOutputMetrics {
+    bytesWritten?: string | null;
+    recordsWritten?: string | null;
+  }
+  export interface Schema$StageShufflePushReadMetrics {
+    corruptMergedBlockChunks?: string | null;
+    localMergedBlocksFetched?: string | null;
+    localMergedBytesRead?: string | null;
+    localMergedChunksFetched?: string | null;
+    mergedFetchFallbackCount?: string | null;
+    remoteMergedBlocksFetched?: string | null;
+    remoteMergedBytesRead?: string | null;
+    remoteMergedChunksFetched?: string | null;
+    remoteMergedReqsDuration?: string | null;
+  }
+  /**
+   * Shuffle data read for the stage.
+   */
+  export interface Schema$StageShuffleReadMetrics {
+    bytesRead?: string | null;
+    fetchWaitTimeMillis?: string | null;
+    localBlocksFetched?: string | null;
+    localBytesRead?: string | null;
+    recordsRead?: string | null;
+    remoteBlocksFetched?: string | null;
+    remoteBytesRead?: string | null;
+    remoteBytesReadToDisk?: string | null;
+    remoteReqsDuration?: string | null;
+    stageShufflePushReadMetrics?: Schema$StageShufflePushReadMetrics;
+  }
+  /**
+   * Shuffle data written for the stage.
+   */
+  export interface Schema$StageShuffleWriteMetrics {
+    bytesWritten?: string | null;
+    recordsWritten?: string | null;
+    writeTimeNanos?: string | null;
+  }
+  /**
+   * Data related to Stages page summary
+   */
+  export interface Schema$StagesSummary {
+    applicationId?: string | null;
+    numActiveStages?: number | null;
+    numCompletedStages?: number | null;
+    numFailedStages?: number | null;
+    numPendingStages?: number | null;
+    numSkippedStages?: number | null;
+  }
+  /**
    * A request to start a cluster.
    */
   export interface Schema$StartClusterRequest {
@@ -2853,6 +3920,20 @@ export namespace dataproc_v1 {
      */
     stateStartTime?: string | null;
   }
+  export interface Schema$StateOperatorProgress {
+    allRemovalsTimeMs?: string | null;
+    allUpdatesTimeMs?: string | null;
+    commitTimeMs?: string | null;
+    customMetrics?: {[key: string]: string} | null;
+    memoryUsedBytes?: string | null;
+    numRowsDroppedByWatermark?: string | null;
+    numRowsRemoved?: string | null;
+    numRowsTotal?: string | null;
+    numRowsUpdated?: string | null;
+    numShufflePartitions?: string | null;
+    numStateStoreInstances?: string | null;
+    operatorName?: string | null;
+  }
   /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
    */
@@ -2884,6 +3965,46 @@ export namespace dataproc_v1 {
     requestId?: string | null;
   }
   /**
+   * Stream Block Data.
+   */
+  export interface Schema$StreamBlockData {
+    deserialized?: boolean | null;
+    diskSize?: string | null;
+    executorId?: string | null;
+    hostPort?: string | null;
+    memSize?: string | null;
+    name?: string | null;
+    storageLevel?: string | null;
+    useDisk?: boolean | null;
+    useMemory?: boolean | null;
+  }
+  /**
+   * Streaming
+   */
+  export interface Schema$StreamingQueryData {
+    endTimestamp?: string | null;
+    exception?: string | null;
+    isActive?: boolean | null;
+    name?: string | null;
+    runId?: string | null;
+    startTimestamp?: string | null;
+    streamingQueryId?: string | null;
+  }
+  export interface Schema$StreamingQueryProgress {
+    batchDuration?: string | null;
+    batchId?: string | null;
+    durationMillis?: {[key: string]: string} | null;
+    eventTime?: {[key: string]: string} | null;
+    name?: string | null;
+    observedMetrics?: {[key: string]: string} | null;
+    runId?: string | null;
+    sink?: Schema$SinkProgress;
+    sources?: Schema$SourceProgress[];
+    stateOperators?: Schema$StateOperatorProgress[];
+    streamingQueryProgressId?: string | null;
+    timestamp?: string | null;
+  }
+  /**
    * A request to submit a job.
    */
   export interface Schema$SubmitJobRequest {
@@ -2895,6 +4016,173 @@ export namespace dataproc_v1 {
      * Optional. A unique id used to identify the request. If the server receives two SubmitJobRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.SubmitJobRequest)s with the same id, then the second request will be ignored and the first Job created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string | null;
+  }
+  /**
+   * Consolidated summary of executors for a Spark Application.
+   */
+  export interface Schema$SummarizeSessionSparkApplicationExecutorsResponse {
+    /**
+     * Consolidated summary for active executors.
+     */
+    activeExecutorSummary?: Schema$ConsolidatedExecutorSummary;
+    /**
+     * Spark Application Id
+     */
+    applicationId?: string | null;
+    /**
+     * Consolidated summary for dead executors.
+     */
+    deadExecutorSummary?: Schema$ConsolidatedExecutorSummary;
+    /**
+     * Overall consolidated summary for all executors.
+     */
+    totalExecutorSummary?: Schema$ConsolidatedExecutorSummary;
+  }
+  /**
+   * Summary of a Spark Application jobs.
+   */
+  export interface Schema$SummarizeSessionSparkApplicationJobsResponse {
+    /**
+     * Summary of a Spark Application Jobs
+     */
+    jobsSummary?: Schema$JobsSummary;
+  }
+  /**
+   * Summary of tasks for a Spark Application stage attempt.
+   */
+  export interface Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse {
+    /**
+     * Summary of tasks for a Spark Application Stage Attempt
+     */
+    stageAttemptTasksSummary?: Schema$StageAttemptTasksSummary;
+  }
+  /**
+   * Summary of a Spark Application stages.
+   */
+  export interface Schema$SummarizeSessionSparkApplicationStagesResponse {
+    /**
+     * Summary of a Spark Application Stages
+     */
+    stagesSummary?: Schema$StagesSummary;
+  }
+  /**
+   * Consolidated summary of executors for a Spark Application.
+   */
+  export interface Schema$SummarizeSparkApplicationExecutorsResponse {
+    /**
+     * Consolidated summary for active executors.
+     */
+    activeExecutorSummary?: Schema$ConsolidatedExecutorSummary;
+    /**
+     * Spark Application Id
+     */
+    applicationId?: string | null;
+    /**
+     * Consolidated summary for dead executors.
+     */
+    deadExecutorSummary?: Schema$ConsolidatedExecutorSummary;
+    /**
+     * Overall consolidated summary for all executors.
+     */
+    totalExecutorSummary?: Schema$ConsolidatedExecutorSummary;
+  }
+  /**
+   * Summary of a Spark Application jobs.
+   */
+  export interface Schema$SummarizeSparkApplicationJobsResponse {
+    /**
+     * Summary of a Spark Application Jobs
+     */
+    jobsSummary?: Schema$JobsSummary;
+  }
+  /**
+   * Summary of tasks for a Spark Application stage attempt.
+   */
+  export interface Schema$SummarizeSparkApplicationStageAttemptTasksResponse {
+    /**
+     * Summary of tasks for a Spark Application Stage Attempt
+     */
+    stageAttemptTasksSummary?: Schema$StageAttemptTasksSummary;
+  }
+  /**
+   * Summary of a Spark Application stages.
+   */
+  export interface Schema$SummarizeSparkApplicationStagesResponse {
+    /**
+     * Summary of a Spark Application Stages
+     */
+    stagesSummary?: Schema$StagesSummary;
+  }
+  /**
+   * Data corresponding to tasks created by spark.
+   */
+  export interface Schema$TaskData {
+    accumulatorUpdates?: Schema$AccumulableInfo[];
+    attempt?: number | null;
+    durationMillis?: string | null;
+    errorMessage?: string | null;
+    executorId?: string | null;
+    executorLogs?: {[key: string]: string} | null;
+    gettingResultTimeMillis?: string | null;
+    hasMetrics?: boolean | null;
+    host?: string | null;
+    index?: number | null;
+    launchTime?: string | null;
+    partitionId?: number | null;
+    resultFetchStart?: string | null;
+    schedulerDelayMillis?: string | null;
+    speculative?: boolean | null;
+    stageAttemptId?: number | null;
+    stageId?: string | null;
+    status?: string | null;
+    taskId?: string | null;
+    taskLocality?: string | null;
+    taskMetrics?: Schema$TaskMetrics;
+  }
+  /**
+   * Executor Task Metrics
+   */
+  export interface Schema$TaskMetrics {
+    diskBytesSpilled?: string | null;
+    executorCpuTimeNanos?: string | null;
+    executorDeserializeCpuTimeNanos?: string | null;
+    executorDeserializeTimeMillis?: string | null;
+    executorRunTimeMillis?: string | null;
+    inputMetrics?: Schema$InputMetrics;
+    jvmGcTimeMillis?: string | null;
+    memoryBytesSpilled?: string | null;
+    outputMetrics?: Schema$OutputMetrics;
+    peakExecutionMemoryBytes?: string | null;
+    resultSerializationTimeMillis?: string | null;
+    resultSize?: string | null;
+    shuffleReadMetrics?: Schema$ShuffleReadMetrics;
+    shuffleWriteMetrics?: Schema$ShuffleWriteMetrics;
+  }
+  export interface Schema$TaskQuantileMetrics {
+    diskBytesSpilled?: Schema$Quantiles;
+    durationMillis?: Schema$Quantiles;
+    executorCpuTimeNanos?: Schema$Quantiles;
+    executorDeserializeCpuTimeNanos?: Schema$Quantiles;
+    executorDeserializeTimeMillis?: Schema$Quantiles;
+    executorRunTimeMillis?: Schema$Quantiles;
+    gettingResultTimeMillis?: Schema$Quantiles;
+    inputMetrics?: Schema$InputQuantileMetrics;
+    jvmGcTimeMillis?: Schema$Quantiles;
+    memoryBytesSpilled?: Schema$Quantiles;
+    outputMetrics?: Schema$OutputQuantileMetrics;
+    peakExecutionMemoryBytes?: Schema$Quantiles;
+    resultSerializationTimeMillis?: Schema$Quantiles;
+    resultSize?: Schema$Quantiles;
+    schedulerDelayMillis?: Schema$Quantiles;
+    shuffleReadMetrics?: Schema$ShuffleReadQuantileMetrics;
+    shuffleWriteMetrics?: Schema$ShuffleWriteQuantileMetrics;
+  }
+  /**
+   * Resources used per task created by the application.
+   */
+  export interface Schema$TaskResourceRequest {
+    amount?: number | null;
+    resourceName?: string | null;
   }
   /**
    * A configurable parameter that replaces one or more fields in the template. Parameterizable fields: - Labels - File uris - Job properties - Job arguments - Script variables - Main class (in HadoopJob and SparkJob) - Zone (in ClusterSelector)
@@ -3211,6 +4499,37 @@ export namespace dataproc_v1 {
      */
     managedCluster?: Schema$ManagedCluster;
   }
+  /**
+   * Write Spark Application data to internal storage systems
+   */
+  export interface Schema$WriteSessionSparkApplicationContextRequest {
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string | null;
+    /**
+     * Required. The batch of spark application context objects sent for ingestion.
+     */
+    sparkWrapperObjects?: Schema$SparkWrapperObject[];
+  }
+  /**
+   * Response returned as an acknowledgement of receipt of data.
+   */
+  export interface Schema$WriteSessionSparkApplicationContextResponse {}
+  /**
+   * Write Spark Application data to internal storage systems
+   */
+  export interface Schema$WriteSparkApplicationContextRequest {
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string | null;
+    sparkWrapperObjects?: Schema$SparkWrapperObject[];
+  }
+  /**
+   * Response returned as an acknowledgement of receipt of data.
+   */
+  export interface Schema$WriteSparkApplicationContextResponse {}
   /**
    * A YARN application created by a job. Application information is a subset of org.apache.hadoop.yarn.proto.YarnProtos.ApplicationReportProto.Beta Feature: This report is available for testing purposes only. It may be changed before final release.
    */
@@ -4096,8 +5415,11 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects$Locations$Batches {
     context: APIRequestContext;
+    sparkApplications: Resource$Projects$Locations$Batches$Sparkapplications;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.sparkApplications =
+        new Resource$Projects$Locations$Batches$Sparkapplications(this.context);
     }
 
     /**
@@ -4608,6 +5930,2369 @@ export namespace dataproc_v1 {
     parent?: string;
   }
 
+  export class Resource$Projects$Locations$Batches$Sparkapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Obtain high level information corresponding to a single Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    access(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    access(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationResponse>;
+    access(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    access(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationResponse>
+    ): void;
+    access(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Access,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationResponse>
+    ): void;
+    access(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationResponse>
+    ): void;
+    access(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Access
+        | BodyResponseCallback<Schema$AccessSparkApplicationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Access;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Access;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:access').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain environment details for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessEnvironmentInfo(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationEnvironmentInfoResponse>;
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationEnvironmentInfoResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+    ): void;
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+    ): void;
+    accessEnvironmentInfo(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+    ): void;
+    accessEnvironmentInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo
+        | BodyResponseCallback<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationEnvironmentInfoResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessEnvironmentInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationEnvironmentInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationEnvironmentInfoResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a spark job for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessJob(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessJob(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationJobResponse>;
+    accessJob(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessJob(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationJobResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationJobResponse>
+    ): void;
+    accessJob(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationJobResponse>
+    ): void;
+    accessJob(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationJobResponse>
+    ): void;
+    accessJob(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob
+        | BodyResponseCallback<Schema$AccessSparkApplicationJobResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationJobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationJobResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationJobResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessJob').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationJobResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationJobResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain Spark Plan Graph for a Spark Application SQL execution. Limits the number of clusters returned as part of the graph to 10000.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessSqlPlan(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>;
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+    ): void;
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+    ): void;
+    accessSqlPlan(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+    ): void;
+    accessSqlPlan(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessSqlPlan').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationSqlSparkPlanGraphResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a particular SQL Query for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessSqlQuery(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationSqlQueryResponse>;
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlQueryResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationSqlQueryResponse>
+    ): void;
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationSqlQueryResponse>
+    ): void;
+    accessSqlQuery(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationSqlQueryResponse>
+    ): void;
+    accessSqlQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationSqlQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationSqlQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessSqlQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationSqlQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationSqlQueryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a spark stage attempt for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessStageAttempt(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationStageAttemptResponse>;
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageAttemptResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationStageAttemptResponse>
+    ): void;
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationStageAttemptResponse>
+    ): void;
+    accessStageAttempt(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationStageAttemptResponse>
+    ): void;
+    accessStageAttempt(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageAttemptResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageAttemptResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageAttemptResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationStageAttemptResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessStageAttempt').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationStageAttemptResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationStageAttemptResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain RDD operation graph for a Spark Application Stage. Limits the number of clusters returned as part of the graph to 10000.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessStageRddGraph(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSparkApplicationStageRddOperationGraphResponse>;
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageRddOperationGraphResponse>,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+    ): void;
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph,
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+    ): void;
+    accessStageRddGraph(
+      callback: BodyResponseCallback<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+    ): void;
+    accessStageRddGraph(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSparkApplicationStageRddOperationGraphResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessStageRddGraph').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSparkApplicationStageRddOperationGraphResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSparkApplicationStageRddOperationGraphResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain high level information and list of Spark Applications corresponding to a batch
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationsResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Search,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Search
+        | BodyResponseCallback<Schema$SearchSparkApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/sparkApplications:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to executors for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchExecutors(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationExecutorsResponse>;
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationExecutorsResponse>
+    ): void;
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationExecutorsResponse>
+    ): void;
+    searchExecutors(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationExecutorsResponse>
+    ): void;
+    searchExecutors(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationExecutorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchExecutors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationExecutorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationExecutorsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain executor summary with respect to a spark stage attempt.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchExecutorStageSummary(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationExecutorStageSummaryResponse>;
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorStageSummaryResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+    ): void;
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+    ): void;
+    searchExecutorStageSummary(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+    ): void;
+    searchExecutorStageSummary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationExecutorStageSummaryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchExecutorStageSummary').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationExecutorStageSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationExecutorStageSummaryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain list of spark jobs corresponding to a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchJobs(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationJobsResponse>;
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationJobsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationJobsResponse>
+    ): void;
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationJobsResponse>
+    ): void;
+    searchJobs(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationJobsResponse>
+    ): void;
+    searchJobs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs
+        | BodyResponseCallback<Schema$SearchSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to SQL Queries for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchSqlQueries(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationSqlQueriesResponse>;
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationSqlQueriesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationSqlQueriesResponse>
+    ): void;
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationSqlQueriesResponse>
+    ): void;
+    searchSqlQueries(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationSqlQueriesResponse>
+    ): void;
+    searchSqlQueries(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries
+        | BodyResponseCallback<Schema$SearchSparkApplicationSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationSqlQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationSqlQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchSqlQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationSqlQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationSqlQueriesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a spark stage attempts for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchStageAttempts(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationStageAttemptsResponse>;
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptsResponse>
+    ): void;
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptsResponse>
+    ): void;
+    searchStageAttempts(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptsResponse>
+    ): void;
+    searchStageAttempts(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationStageAttemptsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchStageAttempts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationStageAttemptsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationStageAttemptsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to tasks for a spark stage attempt for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchStageAttemptTasks(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationStageAttemptTasksResponse>;
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptTasksResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    searchStageAttemptTasks(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    searchStageAttemptTasks(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationStageAttemptTasksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchStageAttemptTasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationStageAttemptTasksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationStageAttemptTasksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to stages for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchStages(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSparkApplicationStagesResponse>;
+    searchStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationStagesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStagesResponse>
+    ): void;
+    searchStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages,
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStagesResponse>
+    ): void;
+    searchStages(
+      callback: BodyResponseCallback<Schema$SearchSparkApplicationStagesResponse>
+    ): void;
+    searchStages(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages
+        | BodyResponseCallback<Schema$SearchSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSparkApplicationStagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchStages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSparkApplicationStagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSparkApplicationStagesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Executor Summary for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeExecutors(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSparkApplicationExecutorsResponse>;
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationExecutorsResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationExecutorsResponse>
+    ): void;
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationExecutorsResponse>
+    ): void;
+    summarizeExecutors(
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationExecutorsResponse>
+    ): void;
+    summarizeExecutors(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSparkApplicationExecutorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeExecutors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSparkApplicationExecutorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSparkApplicationExecutorsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Jobs for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeJobs(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSparkApplicationJobsResponse>;
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationJobsResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationJobsResponse>
+    ): void;
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationJobsResponse>
+    ): void;
+    summarizeJobs(
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationJobsResponse>
+    ): void;
+    summarizeJobs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSparkApplicationJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSparkApplicationJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Tasks for a Spark Application Stage Attempt
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeStageAttemptTasks(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>;
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    summarizeStageAttemptTasks(
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    summarizeStageAttemptTasks(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeStageAttemptTasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSparkApplicationStageAttemptTasksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Stages for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeStages(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSparkApplicationStagesResponse>;
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStagesResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationStagesResponse>
+    ): void;
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages,
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationStagesResponse>
+    ): void;
+    summarizeStages(
+      callback: BodyResponseCallback<Schema$SummarizeSparkApplicationStagesResponse>
+    ): void;
+    summarizeStages(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSparkApplicationStagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeStages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSparkApplicationStagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSparkApplicationStagesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Write wrapper objects from dataplane to spanner
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    write(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    write(
+      params?: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WriteSparkApplicationContextResponse>;
+    write(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    write(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WriteSparkApplicationContextResponse>,
+      callback: BodyResponseCallback<Schema$WriteSparkApplicationContextResponse>
+    ): void;
+    write(
+      params: Params$Resource$Projects$Locations$Batches$Sparkapplications$Write,
+      callback: BodyResponseCallback<Schema$WriteSparkApplicationContextResponse>
+    ): void;
+    write(
+      callback: BodyResponseCallback<Schema$WriteSparkApplicationContextResponse>
+    ): void;
+    write(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Sparkapplications$Write
+        | BodyResponseCallback<Schema$WriteSparkApplicationContextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WriteSparkApplicationContextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WriteSparkApplicationContextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WriteSparkApplicationContextResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Sparkapplications$Write;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batches$Sparkapplications$Write;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:write').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WriteSparkApplicationContextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WriteSparkApplicationContextResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Access
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessenvironmentinfo
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessjob
+    extends StandardParameters {
+    /**
+     * Required. Job ID to fetch data for.
+     */
+    jobId?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlplan
+    extends StandardParameters {
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accesssqlquery
+    extends StandardParameters {
+    /**
+     * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
+     */
+    details?: boolean;
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. Enables/ disables physical plan description on demand
+     */
+    planDescription?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstageattempt
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+    /**
+     * Optional. The list of summary metrics fields to include. Empty list will default to skip all summary metrics fields. Example, if the response should include TaskQuantileMetrics, the request should have task_quantile_metrics in summary_metrics_mask field
+     */
+    summaryMetricsMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Accessstagerddgraph
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Search
+    extends StandardParameters {
+    /**
+     * Optional. Search only applications in the chosen state.
+     */
+    applicationStatus?: string;
+    /**
+     * Optional. Latest end timestamp to list.
+     */
+    maxEndTime?: string;
+    /**
+     * Optional. Latest start timestamp to list.
+     */
+    maxTime?: string;
+    /**
+     * Optional. Earliest end timestamp to list.
+     */
+    minEndTime?: string;
+    /**
+     * Optional. Earliest start timestamp to list.
+     */
+    minTime?: string;
+    /**
+     * Optional. Maximum number of applications to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSparkApplications call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutors
+    extends StandardParameters {
+    /**
+     * Optional. Filter to select whether active/ dead or all executors should be selected.
+     */
+    executorStatus?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of executors to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous AccessSparkApplicationExecutorsList call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchexecutorstagesummary
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of executors to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous AccessSparkApplicationExecutorsList call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchjobs
+    extends StandardParameters {
+    /**
+     * Optional. List only jobs in the specific state.
+     */
+    jobStatus?: string;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of jobs to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSparkApplicationJobs call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchsqlqueries
+    extends StandardParameters {
+    /**
+     * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
+     */
+    details?: boolean;
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSparkApplicationSqlQueries call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. Enables/ disables physical plan description on demand
+     */
+    planDescription?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempts
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of stage attempts (paging based on stage_attempt_id) to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSparkApplicationStageAttempts call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage ID for which attempts are to be fetched
+     */
+    stageId?: string;
+    /**
+     * Optional. The list of summary metrics fields to include. Empty list will default to skip all summary metrics fields. Example, if the response should include TaskQuantileMetrics, the request should have task_quantile_metrics in summary_metrics_mask field
+     */
+    summaryMetricsMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstageattempttasks
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of tasks to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous ListSparkApplicationStageAttemptTasks call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. Sort the tasks by runtime.
+     */
+    sortRuntime?: boolean;
+    /**
+     * Optional. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Optional. Stage ID
+     */
+    stageId?: string;
+    /**
+     * Optional. List only tasks in the state.
+     */
+    taskStatus?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Searchstages
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of stages (paging based on stage_id) to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous FetchSparkApplicationStagesList call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. List only stages in the given state.
+     */
+    stageStatus?: string;
+    /**
+     * Optional. The list of summary metrics fields to include. Empty list will default to skip all summary metrics fields. Example, if the response should include TaskQuantileMetrics, the request should have task_quantile_metrics in summary_metrics_mask field
+     */
+    summaryMetricsMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizeexecutors
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizejobs
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestageattempttasks
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Summarizestages
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the batch to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Batch) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Sparkapplications$Write
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the spark application to write data about in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/batches/BATCH_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WriteSparkApplicationContextRequest;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -5003,8 +8688,13 @@ export namespace dataproc_v1 {
 
   export class Resource$Projects$Locations$Sessions {
     context: APIRequestContext;
+    sparkApplications: Resource$Projects$Locations$Sessions$Sparkapplications;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.sparkApplications =
+        new Resource$Projects$Locations$Sessions$Sparkapplications(
+          this.context
+        );
     }
 
     /**
@@ -5515,6 +9205,2369 @@ export namespace dataproc_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TerminateSessionRequest;
+  }
+
+  export class Resource$Projects$Locations$Sessions$Sparkapplications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Obtain high level information corresponding to a single Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    access(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    access(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationResponse>;
+    access(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    access(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationResponse>
+    ): void;
+    access(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationResponse>
+    ): void;
+    access(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationResponse>
+    ): void;
+    access(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:access').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain environment details for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessEnvironmentInfo(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>;
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+    ): void;
+    accessEnvironmentInfo(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+    ): void;
+    accessEnvironmentInfo(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+    ): void;
+    accessEnvironmentInfo(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessEnvironmentInfo').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationEnvironmentInfoResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a spark job for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessJob(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessJob(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationJobResponse>;
+    accessJob(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessJob(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationJobResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationJobResponse>
+    ): void;
+    accessJob(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationJobResponse>
+    ): void;
+    accessJob(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationJobResponse>
+    ): void;
+    accessJob(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationJobResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationJobResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationJobResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationJobResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessJob').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationJobResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationJobResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain Spark Plan Graph for a Spark Application SQL execution. Limits the number of clusters returned as part of the graph to 10000.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessSqlPlan(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>;
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+    ): void;
+    accessSqlPlan(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+    ): void;
+    accessSqlPlan(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+    ): void;
+    accessSqlPlan(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessSqlPlan').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationSqlSparkPlanGraphResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a particular SQL Query for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessSqlQuery(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationSqlQueryResponse>;
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlQueryResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+    ): void;
+    accessSqlQuery(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+    ): void;
+    accessSqlQuery(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+    ): void;
+    accessSqlQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationSqlQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessSqlQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationSqlQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationSqlQueryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a spark stage attempt for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessStageAttempt(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationStageAttemptResponse>;
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageAttemptResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+    ): void;
+    accessStageAttempt(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+    ): void;
+    accessStageAttempt(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+    ): void;
+    accessStageAttempt(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationStageAttemptResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessStageAttempt').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationStageAttemptResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationStageAttemptResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain RDD operation graph for a Spark Application Stage. Limits the number of clusters returned as part of the graph to 10000.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    accessStageRddGraph(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>;
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+    ): void;
+    accessStageRddGraph(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph,
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+    ): void;
+    accessStageRddGraph(
+      callback: BodyResponseCallback<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+    ): void;
+    accessStageRddGraph(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:accessStageRddGraph').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessSessionSparkApplicationStageRddOperationGraphResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain high level information and list of Spark Applications corresponding to a batch
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationsResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/sparkApplications:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to executors for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchExecutors(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorsResponse>;
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorsResponse>
+    ): void;
+    searchExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorsResponse>
+    ): void;
+    searchExecutors(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorsResponse>
+    ): void;
+    searchExecutors(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchExecutors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationExecutorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationExecutorsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain executor summary with respect to a spark stage attempt.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchExecutorStageSummary(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>;
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+    ): void;
+    searchExecutorStageSummary(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+    ): void;
+    searchExecutorStageSummary(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+    ): void;
+    searchExecutorStageSummary(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchExecutorStageSummary').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationExecutorStageSummaryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain list of spark jobs corresponding to a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchJobs(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationJobsResponse>;
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationJobsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationJobsResponse>
+    ): void;
+    searchJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationJobsResponse>
+    ): void;
+    searchJobs(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationJobsResponse>
+    ): void;
+    searchJobs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to SQL Queries for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchSqlQueries(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationSqlQueriesResponse>;
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationSqlQueriesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+    ): void;
+    searchSqlQueries(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+    ): void;
+    searchSqlQueries(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+    ): void;
+    searchSqlQueries(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationSqlQueriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchSqlQueries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationSqlQueriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationSqlQueriesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to a spark stage attempts for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchStageAttempts(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptsResponse>;
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptsResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+    ): void;
+    searchStageAttempts(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+    ): void;
+    searchStageAttempts(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+    ): void;
+    searchStageAttempts(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchStageAttempts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationStageAttemptsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationStageAttemptsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to tasks for a spark stage attempt for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchStageAttemptTasks(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>;
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    searchStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    searchStageAttemptTasks(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    searchStageAttemptTasks(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchStageAttemptTasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationStageAttemptTasksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain data corresponding to stages for a Spark Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchStages(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchSessionSparkApplicationStagesResponse>;
+    searchStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStagesResponse>,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStagesResponse>
+    ): void;
+    searchStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages,
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStagesResponse>
+    ): void;
+    searchStages(
+      callback: BodyResponseCallback<Schema$SearchSessionSparkApplicationStagesResponse>
+    ): void;
+    searchStages(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchSessionSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchSessionSparkApplicationStagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:searchStages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchSessionSparkApplicationStagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchSessionSparkApplicationStagesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Executor Summary for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeExecutors(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationExecutorsResponse>;
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationExecutorsResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+    ): void;
+    summarizeExecutors(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+    ): void;
+    summarizeExecutors(
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+    ): void;
+    summarizeExecutors(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationExecutorsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeExecutors').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSessionSparkApplicationExecutorsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSessionSparkApplicationExecutorsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Jobs for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeJobs(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationJobsResponse>;
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationJobsResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationJobsResponse>
+    ): void;
+    summarizeJobs(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationJobsResponse>
+    ): void;
+    summarizeJobs(
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationJobsResponse>
+    ): void;
+    summarizeJobs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSessionSparkApplicationJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSessionSparkApplicationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Tasks for a Spark Application Stage Attempt
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeStageAttemptTasks(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>;
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    summarizeStageAttemptTasks(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    summarizeStageAttemptTasks(
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+    ): void;
+    summarizeStageAttemptTasks(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeStageAttemptTasks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSessionSparkApplicationStageAttemptTasksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Obtain summary of Stages for a Spark Application
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    summarizeStages(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SummarizeSessionSparkApplicationStagesResponse>;
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStagesResponse>,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStagesResponse>
+    ): void;
+    summarizeStages(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages,
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStagesResponse>
+    ): void;
+    summarizeStages(
+      callback: BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStagesResponse>
+    ): void;
+    summarizeStages(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SummarizeSessionSparkApplicationStagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SummarizeSessionSparkApplicationStagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:summarizeStages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SummarizeSessionSparkApplicationStagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SummarizeSessionSparkApplicationStagesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Write wrapper objects from dataplane to spanner
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    write(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    write(
+      params?: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WriteSessionSparkApplicationContextResponse>;
+    write(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    write(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WriteSessionSparkApplicationContextResponse>,
+      callback: BodyResponseCallback<Schema$WriteSessionSparkApplicationContextResponse>
+    ): void;
+    write(
+      params: Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write,
+      callback: BodyResponseCallback<Schema$WriteSessionSparkApplicationContextResponse>
+    ): void;
+    write(
+      callback: BodyResponseCallback<Schema$WriteSessionSparkApplicationContextResponse>
+    ): void;
+    write(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write
+        | BodyResponseCallback<Schema$WriteSessionSparkApplicationContextResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WriteSessionSparkApplicationContextResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WriteSessionSparkApplicationContextResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WriteSessionSparkApplicationContextResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:write').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WriteSessionSparkApplicationContextResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WriteSessionSparkApplicationContextResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Access
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessenvironmentinfo
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessjob
+    extends StandardParameters {
+    /**
+     * Required. Job ID to fetch data for.
+     */
+    jobId?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlplan
+    extends StandardParameters {
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accesssqlquery
+    extends StandardParameters {
+    /**
+     * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
+     */
+    details?: boolean;
+    /**
+     * Required. Execution ID
+     */
+    executionId?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. Enables/ disables physical plan description on demand
+     */
+    planDescription?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstageattempt
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+    /**
+     * Optional. The list of summary metrics fields to include. Empty list will default to skip all summary metrics fields. Example, if the response should include TaskQuantileMetrics, the request should have task_quantile_metrics in summary_metrics_mask field
+     */
+    summaryMetricsMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Accessstagerddgraph
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Search
+    extends StandardParameters {
+    /**
+     * Optional. Search only applications in the chosen state.
+     */
+    applicationStatus?: string;
+    /**
+     * Optional. Latest end timestamp to list.
+     */
+    maxEndTime?: string;
+    /**
+     * Optional. Latest start timestamp to list.
+     */
+    maxTime?: string;
+    /**
+     * Optional. Earliest end timestamp to list.
+     */
+    minEndTime?: string;
+    /**
+     * Optional. Earliest start timestamp to list.
+     */
+    minTime?: string;
+    /**
+     * Optional. Maximum number of applications to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplications call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID"
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutors
+    extends StandardParameters {
+    /**
+     * Optional. Filter to select whether active/ dead or all executors should be selected.
+     */
+    executorStatus?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of executors to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationExecutors call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchexecutorstagesummary
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of executors to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationExecutorStageSummary call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchjobs
+    extends StandardParameters {
+    /**
+     * Optional. List only jobs in the specific state.
+     */
+    jobStatus?: string;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of jobs to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationJobs call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchsqlqueries
+    extends StandardParameters {
+    /**
+     * Optional. Lists/ hides details of Spark plan nodes. True is set to list and false to hide.
+     */
+    details?: boolean;
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of queries to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationSqlQueries call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. Enables/ disables physical plan description on demand
+     */
+    planDescription?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempts
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of stage attempts (paging based on stage_attempt_id) to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationStageAttempts call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage ID for which attempts are to be fetched
+     */
+    stageId?: string;
+    /**
+     * Optional. The list of summary metrics fields to include. Empty list will default to skip all summary metrics fields. Example, if the response should include TaskQuantileMetrics, the request should have task_quantile_metrics in summary_metrics_mask field
+     */
+    summaryMetricsMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstageattempttasks
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of tasks to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationStageAttemptTasks call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. Sort the tasks by runtime.
+     */
+    sortRuntime?: boolean;
+    /**
+     * Optional. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Optional. Stage ID
+     */
+    stageId?: string;
+    /**
+     * Optional. List only tasks in the state.
+     */
+    taskStatus?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Searchstages
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Optional. Maximum number of stages (paging based on stage_id) to return in each response. The service may return fewer than this. The default page size is 10; the maximum page size is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous SearchSessionSparkApplicationStages call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Optional. List only stages in the given state.
+     */
+    stageStatus?: string;
+    /**
+     * Optional. The list of summary metrics fields to include. Empty list will default to skip all summary metrics fields. Example, if the response should include TaskQuantileMetrics, the request should have task_quantile_metrics in summary_metrics_mask field
+     */
+    summaryMetricsMask?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizeexecutors
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestageattempttasks
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+    /**
+     * Required. Stage Attempt ID
+     */
+    stageAttemptId?: number;
+    /**
+     * Required. Stage ID
+     */
+    stageId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizestages
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+    /**
+     * Required. Parent (Session) resource reference.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write
+    extends StandardParameters {
+    /**
+     * Required. The fully qualified name of the spark application to write data about in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WriteSessionSparkApplicationContextRequest;
   }
 
   export class Resource$Projects$Locations$Sessiontemplates {
