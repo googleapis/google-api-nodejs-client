@@ -175,6 +175,10 @@ export namespace container_v1beta1 {
      */
     maxPodsPerNode?: Schema$MaxPodsConstraint;
     /**
+     * The name of the network attachment for pods to communicate to; cannot be specified along with subnetwork or secondary_pod_range.
+     */
+    networkAttachment?: string | null;
+    /**
      * The name of the secondary range on the subnet which provides IP address for this pod range.
      */
     secondaryPodRange?: string | null;
@@ -914,6 +918,10 @@ export namespace container_v1beta1 {
      */
     tpuIpv4CidrBlock?: string | null;
     /**
+     * The Custom keys configuration for the cluster.
+     */
+    userManagedKeysConfig?: Schema$UserManagedKeysConfig;
+    /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
@@ -1009,6 +1017,10 @@ export namespace container_v1beta1 {
      * The desired telemetry integration for the cluster.
      */
     desiredClusterTelemetry?: Schema$ClusterTelemetry;
+    /**
+     * Enable/Disable Compliance Posture features for the cluster.
+     */
+    desiredCompliancePostureConfig?: Schema$CompliancePostureConfig;
     /**
      * The desired containerd config for the cluster.
      */
@@ -1253,6 +1265,10 @@ export namespace container_v1beta1 {
      * The additional pod ranges that are to be removed from the cluster. The pod ranges specified here must have been specified earlier in the 'additional_pod_ranges_config' argument.
      */
     removedAdditionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
+    /**
+     * The Custom keys configuration for the cluster.
+     */
+    userManagedKeysConfig?: Schema$UserManagedKeysConfig;
   }
   /**
    * CompleteIPRotationRequest moves the cluster master back into single-IP mode.
@@ -1611,7 +1627,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$GetJSONWebKeysResponse {
     /**
-     * OnePlatform automatically extracts this field and uses it to set the HTTP Cache-Control header.
+     * For HTTP requests, this field is automatically extracted into the Cache-Control HTTP header.
      */
     cacheHeader?: Schema$HttpCacheControlResponseHeader;
     /**
@@ -1624,7 +1640,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$GetOpenIDConfigResponse {
     /**
-     * OnePlatform automatically extracts this field and uses it to set the HTTP Cache-Control header.
+     * For HTTP requests, this field is automatically extracted into the Cache-Control HTTP header.
      */
     cacheHeader?: Schema$HttpCacheControlResponseHeader;
     /**
@@ -2406,6 +2422,10 @@ export namespace container_v1beta1 {
      * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
+    /**
+     * Output only. effective_cgroup_mode is the cgroup mode actually used by the node pool. It is determined by the cgroup mode specified in the LinuxNodeConfig or the default cgroup mode based on the cluster creation version.
+     */
+    effectiveCgroupMode?: string | null;
     /**
      * Optional. Reserved for future use.
      */
@@ -4250,6 +4270,43 @@ export namespace container_v1beta1 {
      * This field is to determine the status of the secondary range programmably.
      */
     status?: string | null;
+  }
+  /**
+   * UserManagedKeysConfig holds the resource address to Keys which are used for signing certs and token that are used for communication within cluster.
+   */
+  export interface Schema$UserManagedKeysConfig {
+    /**
+     * The Certificate Authority Service caPool to use for the aggregation CA in this cluster.
+     */
+    aggregationCa?: string | null;
+    /**
+     * The Certificate Authority Service caPool to use for the cluster CA in this cluster.
+     */
+    clusterCa?: string | null;
+    /**
+     * The Cloud KMS cryptoKey to use for Confidential Hyperdisk on the control plane nodes.
+     */
+    controlPlaneDiskEncryptionKey?: string | null;
+    /**
+     * Resource path of the Certificate Authority Service caPool to use for the etcd API CA in this cluster.
+     */
+    etcdApiCa?: string | null;
+    /**
+     * Resource path of the Certificate Authority Service caPool to use for the etcd peer CA in this cluster.
+     */
+    etcdPeerCa?: string | null;
+    /**
+     * Resource path of the Cloud KMS cryptoKey to use for encryption of internal etcd backups.
+     */
+    gkeopsEtcdBackupEncryptionKey?: string | null;
+    /**
+     * The Cloud KMS cryptoKeyVersions to use for signing service account JWTs issued by this cluster. Format: `projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{cryptoKey\}/cryptoKeyVersions/{cryptoKeyVersion\}`
+     */
+    serviceAccountSigningKeys?: string[] | null;
+    /**
+     * The Cloud KMS cryptoKeyVersions to use for verifying service account JWTs issued by this cluster. Format: `projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{cryptoKey\}/cryptoKeyVersions/{cryptoKeyVersion\}`
+     */
+    serviceAccountVerificationKeys?: string[] | null;
   }
   /**
    * VerticalPodAutoscaling contains global, per-cluster information required by Vertical Pod Autoscaler to automatically adjust the resources of pods controlled by it.
