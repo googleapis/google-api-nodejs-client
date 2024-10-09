@@ -731,7 +731,7 @@
       }
     }
   },
-  "revision": "20240814",
+  "revision": "20240910",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1091,6 +1091,14 @@
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
           "description": "Encryption configuration (CMEK). Only set if CMEK has been enabled on the instance."
+        },
+        "fipsEnabled": {
+          "description": "Optional. Whether FIPS is enabled on the Looker instance.",
+          "type": "boolean"
+        },
+        "geminiEnabled": {
+          "description": "Optional. Whether Gemini feature is enabled on the Looker instance or not.",
+          "type": "boolean"
         },
         "ingressPrivateIp": {
           "description": "Output only. Private Ingress IP (IPv4).",

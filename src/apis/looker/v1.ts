@@ -376,6 +376,14 @@ export namespace looker_v1 {
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
+     * Optional. Whether FIPS is enabled on the Looker instance.
+     */
+    fipsEnabled?: boolean | null;
+    /**
+     * Optional. Whether Gemini feature is enabled on the Looker instance or not.
+     */
+    geminiEnabled?: boolean | null;
+    /**
      * Output only. Private Ingress IP (IPv4).
      */
     ingressPrivateIp?: string | null;
