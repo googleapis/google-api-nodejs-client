@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240721",
+  "revision": "20240929",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1022,9 +1022,36 @@
       "description": "The persistent settings for a table's columns.",
       "id": "ColumnSettings",
       "properties": {
+        "alignment": {
+          "description": "Optional. Whether the column should be left / middle / right aligned",
+          "enum": [
+            "CELL_ALIGNMENT_UNSPECIFIED",
+            "LEFT",
+            "CENTER",
+            "RIGHT"
+          ],
+          "enumDescriptions": [
+            "No horizontal alignment specified; fall back to the default behavior. Label values are left aligned. Numeric values are right aligned.",
+            "Left-align",
+            "Center-align",
+            "Right-align"
+          ],
+          "type": "string"
+        },
         "column": {
           "description": "Required. The id of the column.",
           "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name of the column",
+          "type": "string"
+        },
+        "thresholds": {
+          "description": "Optional. The thresholds used to determine how the table cell should be rendered given the time series' current value.",
+          "items": {
+            "$ref": "Threshold"
+          },
+          "type": "array"
         },
         "visible": {
           "description": "Required. Whether the column should be visible on page load.",
@@ -1386,7 +1413,8 @@
             "CLOUD_SQL_STORAGE",
             "UPTIME_CHECK_FAILURE",
             "CLOUD_ALERTING_ALERT",
-            "SERVICE_HEALTH_INCIDENT"
+            "SERVICE_HEALTH_INCIDENT",
+            "SAP_BACKINT"
           ],
           "enumDescriptions": [
             "No event type specified.",
@@ -1410,7 +1438,8 @@
             "Storage event for a Cloud SQL instance.",
             "Failure of a Cloud Monitoring uptime check.",
             "Alerts from Cloud Alerting",
-            "Incidents from Service Health"
+            "Incidents from Service Health",
+            "Agent for SAP Backint related events."
           ],
           "type": "string"
         },
@@ -2027,7 +2056,7 @@
           "type": "string"
         },
         "query": {
-          "description": "A PromQL query string. Query lanauge documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
+          "description": "A PromQL query string. Query language documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
           "type": "string"
         },
         "start": {
@@ -2042,7 +2071,7 @@
       "id": "QueryInstantRequest",
       "properties": {
         "query": {
-          "description": "A PromQL query string. Query lanauge documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
+          "description": "A PromQL query string. Query language documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
           "type": "string"
         },
         "time": {
@@ -2084,7 +2113,7 @@
           "type": "string"
         },
         "query": {
-          "description": "A PromQL query string. Query lanauge documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
+          "description": "A PromQL query string. Query language documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.",
           "type": "string"
         },
         "start": {

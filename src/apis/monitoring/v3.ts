@@ -292,6 +292,15 @@ export namespace monitoring_v3 {
     version?: string[] | null;
   }
   /**
+   * A test that uses an alerting result in a boolean column produced by the SQL query.
+   */
+  export interface Schema$BooleanTest {
+    /**
+     * Required. The name of the column containing the boolean value. If the value in a row is NULL, that row is ignored.
+     */
+    column?: string | null;
+  }
+  /**
    * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i \> 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
    */
   export interface Schema$BucketOptions {
@@ -469,6 +478,10 @@ export namespace monitoring_v3 {
      */
     conditionPrometheusQueryLanguage?: Schema$PrometheusQueryLanguageCondition;
     /**
+     * A condition that uses SQL to define alerts in Logs Analytics.
+     */
+    conditionSql?: Schema$SqlCondition;
+    /**
      * A condition that compares a time series against a threshold.
      */
     conditionThreshold?: Schema$MetricThreshold;
@@ -567,6 +580,19 @@ export namespace monitoring_v3 {
    * Use a custom service to designate a service that you want to monitor when none of the other service types (like App Engine, Cloud Run, or a GKE type) matches your intended service.
    */
   export interface Schema$Custom {}
+  /**
+   * Used to schedule the query to run every so many days.
+   */
+  export interface Schema$Daily {
+    /**
+     * Optional. The time of day (in UTC) at which the query should run. If left unspecified, the server picks an arbitrary time of day and runs the query at the same time each day.
+     */
+    executionTime?: Schema$TimeOfDay;
+    /**
+     * Required. LINT.IfChange The number of days between runs. Must be greater than or equal to 1 day and less than or equal to 31 days. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)
+     */
+    periodicity?: number | null;
+  }
   /**
    * Distribution contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets.The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths.Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the mean and sum_of_squared_deviation fields meaningless.
    */
@@ -891,6 +917,19 @@ export namespace monitoring_v3 {
      * The name of the group's parent, if it has one. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] For groups with no parent, parent_name is the empty string, "".
      */
     parentName?: string | null;
+  }
+  /**
+   * Used to schedule the query to run every so many hours.
+   */
+  export interface Schema$Hourly {
+    /**
+     * Optional. LINT.IfChange The number of minutes after the hour (in UTC) to run the query. Must be between 0 and 59 inclusive. If left unspecified, then an arbitrary offset is used. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)
+     */
+    minuteOffset?: number | null;
+    /**
+     * Required. LINT.IfChange The number of hours between runs. Must be greater than or equal to 1 hour and less than or equal to 48 hours. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)
+     */
+    periodicity?: number | null;
   }
   /**
    * Information involved in an HTTP/HTTPS Uptime check request.
@@ -1407,6 +1446,10 @@ export namespace monitoring_v3 {
      * The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.
      */
     samplePeriod?: string | null;
+    /**
+     * The scope of the timeseries data of the metric.
+     */
+    timeSeriesResourceHierarchyLevel?: string[] | null;
   }
   /**
    * A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x <= range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.
@@ -1465,6 +1508,15 @@ export namespace monitoring_v3 {
      * The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations, or by the ratio, if denominator_filter and denominator_aggregations are specified.
      */
     trigger?: Schema$Trigger;
+  }
+  /**
+   * Used to schedule the query to run every so many minutes.
+   */
+  export interface Schema$Minutes {
+    /**
+     * Required. LINT.IfChange Number of minutes between runs. The interval must be between 5 minutes and 1440 minutes. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)
+     */
+    periodicity?: number | null;
   }
   /**
    * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for "gce_instance" has labels "project_id", "instance_id" and "zone": { "type": "gce_instance", "labels": { "project_id": "my-project", "instance_id": "12345678901234", "zone": "us-central1-a" \}\}
@@ -1767,7 +1819,7 @@ export namespace monitoring_v3 {
     ruleGroup?: string | null;
   }
   /**
-   * The QueryTimeSeries request.
+   * The QueryTimeSeries request. For information about the status of Monitoring Query Language (MQL), see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql).
    */
   export interface Schema$QueryTimeSeriesRequest {
     /**
@@ -1784,7 +1836,7 @@ export namespace monitoring_v3 {
     query?: string | null;
   }
   /**
-   * The QueryTimeSeries response.
+   * The QueryTimeSeries response. For information about the status of Monitoring Query Language (MQL), see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql).
    */
   export interface Schema$QueryTimeSeriesResponse {
     /**
@@ -1855,6 +1907,19 @@ export namespace monitoring_v3 {
      * A status code to accept.
      */
     statusValue?: number | null;
+  }
+  /**
+   * A test that checks if the number of rows in the result set violates some threshold.
+   */
+  export interface Schema$RowCountTest {
+    /**
+     * Required. The comparison to apply between the number of rows returned by the query and the threshold.
+     */
+    comparison?: string | null;
+    /**
+     * Required. The value against which to compare the row count.
+     */
+    threshold?: string | null;
   }
   /**
    * The SendNotificationChannelVerificationCode request.
@@ -2024,6 +2089,35 @@ export namespace monitoring_v3 {
     spanName?: string | null;
   }
   /**
+   * A condition that allows alert policies to be defined using GoogleSQL. SQL conditions examine a sliding window of logs using GoogleSQL. Alert policies with SQL conditions may incur additional billing.
+   */
+  export interface Schema$SqlCondition {
+    /**
+     * Test the boolean value in the indicated column.
+     */
+    booleanTest?: Schema$BooleanTest;
+    /**
+     * Schedule the query to execute every so many days.
+     */
+    daily?: Schema$Daily;
+    /**
+     * Schedule the query to execute every so many hours.
+     */
+    hourly?: Schema$Hourly;
+    /**
+     * Schedule the query to execute every so many minutes.
+     */
+    minutes?: Schema$Minutes;
+    /**
+     * Required. The Log Analytics SQL query to run, as a string. The query must conform to the required shape. Specifically, the query must not try to filter the input by time. A filter will automatically be applied to filter the input so that the query receives all rows received since the last time the query was run.E.g. Extract all log entries containing an HTTP request:SELECT timestamp, log_name, severity, http_request, resource, labels FROM my-project.global._Default._AllLogs WHERE http_request IS NOT NULL
+     */
+    query?: string | null;
+    /**
+     * Test the row count against a threshold.
+     */
+    rowCountTest?: Schema$RowCountTest;
+  }
+  /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -2083,6 +2177,27 @@ export namespace monitoring_v3 {
      * Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      */
     startTime?: string | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and google.protobuf.Timestamp.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
   }
   /**
    * A collection of data points that describes the time-varying values of a metric. A time series is identified by a combination of a fully-specified monitored resource and a fully-specified metric. This type is used for both listing and creating time series.
@@ -6414,7 +6529,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Queries time series using Monitoring Query Language.
+     * Queries time series by using Monitoring Query Language (MQL). We recommend using PromQL instead of MQL. For more information about the status of MQL, see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

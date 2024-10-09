@@ -2114,7 +2114,7 @@
             },
             "query": {
               "deprecated": true,
-              "description": "Queries time series using Monitoring Query Language.",
+              "description": "Queries time series by using Monitoring Query Language (MQL). We recommend using PromQL instead of MQL. For more information about the status of MQL, see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql).",
               "flatPath": "v3/projects/{projectsId}/timeSeries:query",
               "httpMethod": "POST",
               "id": "monitoring.projects.timeSeries.query",
@@ -2715,7 +2715,7 @@
       }
     }
   },
-  "revision": "20240818",
+  "revision": "20240929",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3020,6 +3020,17 @@
       },
       "type": "object"
     },
+    "BooleanTest": {
+      "description": "A test that uses an alerting result in a boolean column produced by the SQL query.",
+      "id": "BooleanTest",
+      "properties": {
+        "column": {
+          "description": "Required. The name of the column containing the boolean value. If the value in a row is NULL, that row is ignored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BucketOptions": {
       "description": "BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i > 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.",
       "id": "BucketOptions",
@@ -3243,6 +3254,10 @@
           "$ref": "PrometheusQueryLanguageCondition",
           "description": "A condition that uses the Prometheus query language to define alerts."
         },
+        "conditionSql": {
+          "$ref": "SqlCondition",
+          "description": "A condition that uses SQL to define alerts in Logs Analytics."
+        },
         "conditionThreshold": {
           "$ref": "MetricThreshold",
           "description": "A condition that compares a time series against a threshold."
@@ -3391,6 +3406,22 @@
       "description": "Use a custom service to designate a service that you want to monitor when none of the other service types (like App Engine, Cloud Run, or a GKE type) matches your intended service.",
       "id": "Custom",
       "properties": {},
+      "type": "object"
+    },
+    "Daily": {
+      "description": "Used to schedule the query to run every so many days.",
+      "id": "Daily",
+      "properties": {
+        "executionTime": {
+          "$ref": "TimeOfDay",
+          "description": "Optional. The time of day (in UTC) at which the query should run. If left unspecified, the server picks an arbitrary time of day and runs the query at the same time each day."
+        },
+        "periodicity": {
+          "description": "Required. LINT.IfChange The number of days between runs. Must be greater than or equal to 1 day and less than or equal to 31 days. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "Distribution": {
@@ -3850,6 +3881,23 @@
         "parentName": {
           "description": "The name of the group's parent, if it has one. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] For groups with no parent, parent_name is the empty string, \"\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Hourly": {
+      "description": "Used to schedule the query to run every so many hours.",
+      "id": "Hourly",
+      "properties": {
+        "minuteOffset": {
+          "description": "Optional. LINT.IfChange The number of minutes after the hour (in UTC) to run the query. Must be between 0 and 59 inclusive. If left unspecified, then an arbitrary offset is used. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "periodicity": {
+          "description": "Required. LINT.IfChange The number of hours between runs. Must be greater than or equal to 1 hour and less than or equal to 48 hours. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4621,6 +4669,25 @@
           "description": "The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.",
           "format": "google-duration",
           "type": "string"
+        },
+        "timeSeriesResourceHierarchyLevel": {
+          "description": "The scope of the timeseries data of the metric.",
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ],
+            "enumDescriptions": [
+              "Do not use this default value.",
+              "Scopes a metric to a project.",
+              "Scopes a metric to an organization.",
+              "Scopes a metric to a folder."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4721,6 +4788,18 @@
         "trigger": {
           "$ref": "Trigger",
           "description": "The number/percent of time series for which the comparison must hold in order for the condition to trigger. If unspecified, then the condition will trigger if the comparison is true for any of the time series that have been identified by filter and aggregations, or by the ratio, if denominator_filter and denominator_aggregations are specified."
+        }
+      },
+      "type": "object"
+    },
+    "Minutes": {
+      "description": "Used to schedule the query to run every so many minutes.",
+      "id": "Minutes",
+      "properties": {
+        "periodicity": {
+          "description": "Required. LINT.IfChange Number of minutes between runs. The interval must be between 5 minutes and 1440 minutes. LINT.ThenChange(//depot/google3/cloud/monitoring/api/alerts/policy_validation.cc)",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5197,7 +5276,7 @@
     },
     "QueryTimeSeriesRequest": {
       "deprecated": true,
-      "description": "The QueryTimeSeries request.",
+      "description": "The QueryTimeSeries request. For information about the status of Monitoring Query Language (MQL), see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql).",
       "id": "QueryTimeSeriesRequest",
       "properties": {
         "pageSize": {
@@ -5218,7 +5297,7 @@
     },
     "QueryTimeSeriesResponse": {
       "deprecated": true,
-      "description": "The QueryTimeSeries response.",
+      "description": "The QueryTimeSeries response. For information about the status of Monitoring Query Language (MQL), see the MQL deprecation notice (https://cloud.google.com/stackdriver/docs/deprecations/mql).",
       "id": "QueryTimeSeriesResponse",
       "properties": {
         "nextPageToken": {
@@ -5333,6 +5412,40 @@
           "description": "A status code to accept.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RowCountTest": {
+      "description": "A test that checks if the number of rows in the result set violates some threshold.",
+      "id": "RowCountTest",
+      "properties": {
+        "comparison": {
+          "description": "Required. The comparison to apply between the number of rows returned by the query and the threshold.",
+          "enum": [
+            "COMPARISON_UNSPECIFIED",
+            "COMPARISON_GT",
+            "COMPARISON_GE",
+            "COMPARISON_LT",
+            "COMPARISON_LE",
+            "COMPARISON_EQ",
+            "COMPARISON_NE"
+          ],
+          "enumDescriptions": [
+            "No ordering relationship is specified.",
+            "True if the left argument is greater than the right argument.",
+            "True if the left argument is greater than or equal to the right argument.",
+            "True if the left argument is less than the right argument.",
+            "True if the left argument is less than or equal to the right argument.",
+            "True if the left argument is equal to the right argument.",
+            "True if the left argument is not equal to the right argument."
+          ],
+          "type": "string"
+        },
+        "threshold": {
+          "description": "Required. The value against which to compare the row count.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5556,6 +5669,37 @@
       },
       "type": "object"
     },
+    "SqlCondition": {
+      "description": "A condition that allows alert policies to be defined using GoogleSQL. SQL conditions examine a sliding window of logs using GoogleSQL. Alert policies with SQL conditions may incur additional billing.",
+      "id": "SqlCondition",
+      "properties": {
+        "booleanTest": {
+          "$ref": "BooleanTest",
+          "description": "Test the boolean value in the indicated column."
+        },
+        "daily": {
+          "$ref": "Daily",
+          "description": "Schedule the query to execute every so many days."
+        },
+        "hourly": {
+          "$ref": "Hourly",
+          "description": "Schedule the query to execute every so many hours."
+        },
+        "minutes": {
+          "$ref": "Minutes",
+          "description": "Schedule the query to execute every so many minutes."
+        },
+        "query": {
+          "description": "Required. The Log Analytics SQL query to run, as a string. The query must conform to the required shape. Specifically, the query must not try to filter the input by time. A filter will automatically be applied to filter the input so that the query receives all rows received since the last time the query was run.E.g. Extract all log entries containing an HTTP request:SELECT timestamp, log_name, severity, http_request, resource, labels FROM my-project.global._Default._AllLogs WHERE http_request IS NOT NULL",
+          "type": "string"
+        },
+        "rowCountTest": {
+          "$ref": "RowCountTest",
+          "description": "Test the row count against a threshold."
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -5634,6 +5778,33 @@
           "description": "Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeOfDay": {
+      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and google.protobuf.Timestamp.",
+      "id": "TimeOfDay",
+      "properties": {
+        "hours": {
+          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
