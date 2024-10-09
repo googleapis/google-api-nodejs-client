@@ -127,129 +127,6 @@ export namespace dataplex_v1 {
   }
 
   /**
-   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
-   */
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosAssetLocation {
-    /**
-     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
-     */
-    ccfeRmsPath?: string | null;
-    /**
-     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
-     */
-    expected?: Schema$CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectations;
-    /**
-     * Defines extra parameters required for specific asset types.
-     */
-    extraParameters?: Schema$CloudReliabilityZicyWs3DataplaneProtosExtraParameter[];
-    /**
-     * Contains all kinds of physical location definitions for this asset.
-     */
-    locationData?: Schema$CloudReliabilityZicyWs3DataplaneProtosLocationData[];
-    /**
-     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
-     */
-    parentAsset?: Schema$CloudReliabilityZicyWs3DataplaneProtosCloudAsset[];
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectations {
-    /**
-     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
-     */
-    requirementOverride?: Schema$CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectationsRequirementOverride;
-    ziOrgPolicy?: string | null;
-    ziRegionPolicy?: string | null;
-    ziRegionState?: string | null;
-    /**
-     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
-     */
-    zoneIsolation?: string | null;
-    /**
-     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
-     */
-    zoneSeparation?: string | null;
-    zsOrgPolicy?: string | null;
-    zsRegionState?: string | null;
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosAssetLocationIsolationExpectationsRequirementOverride {
-    ziOverride?: string | null;
-    zsOverride?: string | null;
-  }
-  /**
-   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
-   */
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosBlobstoreLocation {
-    policyId?: string[] | null;
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosCloudAsset {
-    assetName?: string | null;
-    assetType?: string | null;
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosCloudAssetComposition {
-    childAsset?: Schema$CloudReliabilityZicyWs3DataplaneProtosCloudAsset[];
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosDirectLocationAssignment {
-    location?: Schema$CloudReliabilityZicyWs3DataplaneProtosLocationAssignment[];
-  }
-  /**
-   * Defines parameters that should only be used for specific asset types.
-   */
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosExtraParameter {
-    /**
-     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
-     */
-    regionalMigDistributionPolicy?: Schema$CloudReliabilityZicyWs3DataplaneProtosRegionalMigDistributionPolicy;
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosLocationAssignment {
-    location?: string | null;
-    locationType?: string | null;
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosLocationData {
-    blobstoreLocation?: Schema$CloudReliabilityZicyWs3DataplaneProtosBlobstoreLocation;
-    childAssetLocation?: Schema$CloudReliabilityZicyWs3DataplaneProtosCloudAssetComposition;
-    directLocation?: Schema$CloudReliabilityZicyWs3DataplaneProtosDirectLocationAssignment;
-    gcpProjectProxy?: Schema$CloudReliabilityZicyWs3DataplaneProtosTenantProjectProxy;
-    placerLocation?: Schema$CloudReliabilityZicyWs3DataplaneProtosPlacerLocation;
-    spannerLocation?: Schema$CloudReliabilityZicyWs3DataplaneProtosSpannerLocation;
-  }
-  /**
-   * Message describing that the location of the customer resource is tied to placer allocations
-   */
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosPlacerLocation {
-    /**
-     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
-     */
-    placerConfig?: string | null;
-  }
-  /**
-   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
-   */
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosRegionalMigDistributionPolicy {
-    /**
-     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
-     */
-    targetShape?: number | null;
-    /**
-     * Cloud zones used by regional MIG to create instances.
-     */
-    zones?: Schema$CloudReliabilityZicyWs3DataplaneProtosZoneConfiguration[];
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosSpannerLocation {
-    /**
-     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
-     */
-    backupName?: string[] | null;
-    /**
-     * Set of databases used by the resource in format /span//
-     */
-    dbName?: string[] | null;
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosTenantProjectProxy {
-    projectNumbers?: string[] | null;
-  }
-  export interface Schema$CloudReliabilityZicyWs3DataplaneProtosZoneConfiguration {
-    zone?: string | null;
-  }
-  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -476,6 +353,10 @@ export namespace dataplex_v1 {
      * Output only. The relative resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
      */
     name?: string | null;
+    /**
+     * Output only. Denotes the transfer status of the Aspect Type. It is unspecified for Aspect Types created from Dataplex API.
+     */
+    transferStatus?: string | null;
     /**
      * Output only. System generated globally unique ID for the AspectType. If you delete and recreate the AspectType with the same name, then this ID will be different.
      */
@@ -2113,6 +1994,10 @@ export namespace dataplex_v1 {
      */
     dataLocation?: string | null;
     /**
+     * The id of the associated datascan for standalone discovery.
+     */
+    datascanId?: string | null;
+    /**
      * Details about the entity associated with the event.
      */
     entity?: Schema$GoogleCloudDataplexV1DiscoveryEventEntityDetails;
@@ -2128,6 +2013,10 @@ export namespace dataplex_v1 {
      * Details about the partition associated with the event.
      */
     partition?: Schema$GoogleCloudDataplexV1DiscoveryEventPartitionDetails;
+    /**
+     * Details about the BigQuery table publishing associated with the event.
+     */
+    table?: Schema$GoogleCloudDataplexV1DiscoveryEventTableDetails;
     /**
      * The type of the event being logged.
      */
@@ -2186,6 +2075,19 @@ export namespace dataplex_v1 {
     sampledDataLocations?: string[] | null;
     /**
      * The type of the containing entity resource.
+     */
+    type?: string | null;
+  }
+  /**
+   * Details about the published table.
+   */
+  export interface Schema$GoogleCloudDataplexV1DiscoveryEventTableDetails {
+    /**
+     * The fully-qualified resource name of the table resource.
+     */
+    table?: string | null;
+    /**
+     * The type of the table resource.
      */
     type?: string | null;
   }
@@ -2357,6 +2259,10 @@ export namespace dataplex_v1 {
      * Output only. The relative resource name of the EntryGroup, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
      */
     name?: string | null;
+    /**
+     * Output only. Denotes the transfer status of the Entry Group. It is unspecified for Entry Group created from Dataplex API.
+     */
+    transferStatus?: string | null;
     /**
      * Output only. System generated globally unique ID for the EntryGroup. If you delete and recreate the EntryGroup with the same name, this ID will be different.
      */
@@ -3933,7 +3839,7 @@ export namespace dataplex_v1 {
      */
     sqlScript?: string | null;
     /**
-     * A reference to a query file. This can be the Cloud Storage URI of the query file or it can the path to a SqlScript Content. The execution args are used to declare a set of script variables (set key="value";).
+     * A reference to a query file. This should be the Cloud Storage URI of the query file. The execution args are used to declare a set of script variables (set key="value";).
      */
     sqlScriptFile?: string | null;
   }
@@ -5339,7 +5245,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Looks up a single Entry by name using the permission on the source system.
+     * Looks up a single Entry by name using the permission on the source system.Caution: The BigQuery metadata that is stored in Dataplex Catalog is changing. For more information, see Changes to BigQuery metadata stored in Dataplex Catalog (https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11655,7 +11561,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an Entry.
+     * Gets an Entry.Caution: The BigQuery metadata that is stored in Dataplex Catalog is changing. For more information, see Changes to BigQuery metadata stored in Dataplex Catalog (https://cloud.google.com/dataplex/docs/biqquery-metadata-changes).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12007,7 +11913,7 @@ export namespace dataplex_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. * - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     * Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. For example, to attach an aspect to a field that is specified by the schema aspect, the path should have the format Schema.. * - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
      */
     aspectKeys?: string[];
     /**
