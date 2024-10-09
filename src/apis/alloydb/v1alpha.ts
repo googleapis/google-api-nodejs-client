@@ -293,7 +293,7 @@ export namespace alloydb_v1alpha {
      */
     requireConnectors?: boolean | null;
     /**
-     * Optional. SSL config option for this instance.
+     * Optional. SSL configuration option for this instance.
      */
     sslConfig?: Schema$SslConfig;
   }
@@ -609,11 +609,11 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$FailoverInstanceRequest {
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the failover.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
   }
@@ -703,11 +703,11 @@ export namespace alloydb_v1alpha {
      */
     faultType?: string | null;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the fault injection.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
   }
@@ -776,7 +776,7 @@ export namespace alloydb_v1alpha {
      */
     name?: string | null;
     /**
-     * Optional. Instance level network configuration.
+     * Optional. Instance-level network configuration.
      */
     networkConfig?: Schema$InstanceNetworkConfig;
     /**
@@ -841,7 +841,7 @@ export namespace alloydb_v1alpha {
     writableNode?: Schema$Node;
   }
   /**
-   * Metadata related to instance level network configuration.
+   * Metadata related to instance-level network configuration.
    */
   export interface Schema$InstanceNetworkConfig {
     /**
@@ -1189,11 +1189,11 @@ export namespace alloydb_v1alpha {
      */
     etag?: string | null;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
   }
@@ -1277,15 +1277,15 @@ export namespace alloydb_v1alpha {
   }
   export interface Schema$RestartInstanceRequest {
     /**
-     * Optional. Full name of the nodes as obtained from INSTANCE_VIEW_FULL to restart upon. Only applicable for read instances.
+     * Optional. Full name of the nodes as obtained from INSTANCE_VIEW_FULL to restart upon. Applicable only to read instances.
      */
     nodeIds?: string[] | null;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the restart.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
   }
@@ -1310,11 +1310,11 @@ export namespace alloydb_v1alpha {
      */
     continuousBackupSource?: Schema$ContinuousBackupSource;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the import request.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
   }
@@ -1554,7 +1554,7 @@ export namespace alloydb_v1alpha {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata.
+   * Common model for database resource instance metadata. Next ID: 22
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -1610,6 +1610,10 @@ export namespace alloydb_v1alpha {
      */
     primaryResourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     /**
+     * Primary resource location. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.
+     */
+    primaryResourceLocation?: string | null;
+    /**
      * The product this resource represents.
      */
     product?: Schema$StorageDatabasecenterProtoCommonProduct;
@@ -1621,6 +1625,10 @@ export namespace alloydb_v1alpha {
      * Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named "ABC" is deleted, the name "ABC" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel
      */
     resourceName?: string | null;
+    /**
+     * Optional. Tags associated with this resources.
+     */
+    tagsSet?: Schema$StorageDatabasecenterPartnerapiV1mainTags;
     /**
      * The time at which the resource was updated and recorded at partner service.
      */
@@ -1711,6 +1719,10 @@ export namespace alloydb_v1alpha {
      * Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     memorySizeInBytes?: string | null;
+    /**
+     * Optional. Number of shards (if applicable).
+     */
+    shardCount?: number | null;
   }
   export interface Schema$StorageDatabasecenterPartnerapiV1mainObservabilityMetricData {
     /**
@@ -1749,12 +1761,25 @@ export namespace alloydb_v1alpha {
     message?: string | null;
   }
   export interface Schema$StorageDatabasecenterPartnerapiV1mainRetentionSettings {
+    /**
+     * Duration based retention period i.e. 172800 seconds (2 days)
+     */
+    durationBasedRetention?: string | null;
     quantityBasedRetention?: number | null;
     /**
      * The unit that 'retained_backups' represents.
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
+  }
+  /**
+   * Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainTags {
+    /**
+     * The Tag key/value mappings.
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.
@@ -1848,11 +1873,11 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$SwitchoverClusterRequest {
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
   }
@@ -1904,11 +1929,11 @@ export namespace alloydb_v1alpha {
      */
     etag?: string | null;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but does not actually execute the upgrade.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean | null;
     /**
@@ -2680,7 +2705,7 @@ export namespace alloydb_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -2704,7 +2729,7 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -2753,7 +2778,7 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -3484,7 +3509,7 @@ export namespace alloydb_v1alpha {
     }
 
     /**
-     * Switches the role of PRIMARY and SECONDARY cluster without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up original PRIMARY cluster to replicate from this newly promoted cluster.
+     * Switches the roles of PRIMARY and SECONDARY clusters without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up the original PRIMARY cluster to replicate from this newly promoted cluster.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3671,11 +3696,11 @@ export namespace alloydb_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
 
@@ -3695,11 +3720,11 @@ export namespace alloydb_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
 
@@ -3723,11 +3748,11 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
   }
@@ -3776,7 +3801,7 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -3784,7 +3809,7 @@ export namespace alloydb_v1alpha {
      */
     updateMask?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the update request.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
 
@@ -4747,11 +4772,11 @@ export namespace alloydb_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
 
@@ -4771,11 +4796,11 @@ export namespace alloydb_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
 
@@ -4795,11 +4820,11 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
   }
@@ -4833,7 +4858,7 @@ export namespace alloydb_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
   }
@@ -4883,7 +4908,7 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -4891,7 +4916,7 @@ export namespace alloydb_v1alpha {
      */
     updateMask?: string;
     /**
-     * Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the update request.
+     * Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.
      */
     validateOnly?: boolean;
 
@@ -5361,7 +5386,7 @@ export namespace alloydb_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -5385,7 +5410,7 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
@@ -5434,7 +5459,7 @@ export namespace alloydb_v1alpha {
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**
