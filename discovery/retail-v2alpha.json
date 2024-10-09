@@ -479,6 +479,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getGenerativeQuestionFeature": {
+                  "description": "Manages overal generative question feature state -- enables toggling feature on and off.",
+                  "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/generativeQuestionFeature",
+                  "httpMethod": "GET",
+                  "id": "retail.projects.locations.catalogs.getGenerativeQuestionFeature",
+                  "parameterOrder": [
+                    "catalog"
+                  ],
+                  "parameters": {
+                    "catalog": {
+                      "description": "Required. Resource name of the parent catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha/{+catalog}/generativeQuestionFeature",
+                  "response": {
+                    "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists all the Catalogs associated with the project.",
                   "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs",
@@ -640,6 +665,74 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudRetailV2alphaCompletionConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateGenerativeQuestion": {
+                  "description": "Allows management of individual questions.",
+                  "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/generativeQuestion",
+                  "httpMethod": "PATCH",
+                  "id": "retail.projects.locations.catalogs.updateGenerativeQuestion",
+                  "parameterOrder": [
+                    "catalog"
+                  ],
+                  "parameters": {
+                    "catalog": {
+                      "description": "Required. Resource name of the catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Indicates which fields in the provided GenerativeQuestionConfig to update. The following are NOT supported: * GenerativeQuestionConfig.frequency If not set or empty, all supported fields are updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha/{+catalog}/generativeQuestion",
+                  "request": {
+                    "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateGenerativeQuestionFeature": {
+                  "description": "Manages overal generative question feature state -- enables toggling feature on and off.",
+                  "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/generativeQuestionFeature",
+                  "httpMethod": "PATCH",
+                  "id": "retail.projects.locations.catalogs.updateGenerativeQuestionFeature",
+                  "parameterOrder": [
+                    "catalog"
+                  ],
+                  "parameters": {
+                    "catalog": {
+                      "description": "Required. Resource name of the affected catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Indicates which fields in the provided GenerativeQuestionsFeatureConfig to update. If not set or empty, all supported fields are updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2alpha/{+catalog}/generativeQuestionFeature",
+                  "request": {
+                    "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -1505,6 +1598,67 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudRetailV2alphaControl"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "generativeQuestion": {
+                  "methods": {
+                    "batchUpdate": {
+                      "description": "Allows management of multiple questions.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/generativeQuestion:batchUpdate",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.generativeQuestion.batchUpdate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Optional. Resource name of the parent catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+parent}/generativeQuestion:batchUpdate",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "generativeQuestions": {
+                  "methods": {
+                    "list": {
+                      "description": "Returns all questions for a given catalog.",
+                      "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/generativeQuestions",
+                      "httpMethod": "GET",
+                      "id": "retail.projects.locations.catalogs.generativeQuestions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Resource name of the parent catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2alpha/{+parent}/generativeQuestions",
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -2613,7 +2767,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20240920",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3582,6 +3736,34 @@
           "description": "Catalog attributes that were reset. Catalog attributes that are either in use by products or are predefined attributes cannot be deleted; however, their configuration properties will reset to default values upon removal request.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsRequest": {
+      "description": "Request for BatchUpdateGenerativeQuestionConfig method.",
+      "id": "GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The updates question configs.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaUpdateGenerativeQuestionConfigRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse": {
+      "description": "Aggregated response for UpdateGenerativeQuestionConfig method.",
+      "id": "GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse",
+      "properties": {
+        "generativeQuestionConfigs": {
+          "description": "Optional. The updates question configs.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionConfig"
           },
           "type": "array"
         }
@@ -4637,6 +4819,68 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaGenerativeQuestionConfig": {
+      "description": "Configuration for a single generated question.",
+      "id": "GoogleCloudRetailV2alphaGenerativeQuestionConfig",
+      "properties": {
+        "allowedInConversation": {
+          "description": "Optional. Whether the question is asked at serving time.",
+          "type": "boolean"
+        },
+        "catalog": {
+          "description": "Required. Resource name of the catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+          "type": "string"
+        },
+        "exampleValues": {
+          "description": "Output only. Values that can be used to answer the question.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "facet": {
+          "description": "Required. The facet to which the question is associated.",
+          "type": "string"
+        },
+        "finalQuestion": {
+          "description": "Optional. The question that will be used at serving time. Question can have a max length of 300 bytes. When not populated, generated_question should be used.",
+          "type": "string"
+        },
+        "frequency": {
+          "description": "Output only. The ratio of how often a question was asked.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "generatedQuestion": {
+          "description": "Output only. The LLM generated question.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig": {
+      "description": "Configuration for overall generative question feature state.",
+      "id": "GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig",
+      "properties": {
+        "catalog": {
+          "description": "Required. Resource name of the affected catalog. Format: projects/{project}/locations/{location}/catalogs/{catalog}",
+          "type": "string"
+        },
+        "featureEnabled": {
+          "description": "Optional. Determines whether questions will be used at serving time. Note: This feature cannot be enabled until initial data requirements are satisfied.",
+          "type": "boolean"
+        },
+        "minimumProducts": {
+          "description": "Optional. Minimum number of products in the response to trigger follow-up questions. Value must be 0 or positive.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaGetDefaultBranchResponse": {
       "description": "Response message of CatalogService.GetDefaultBranch.",
       "id": "GoogleCloudRetailV2alphaGetDefaultBranchResponse",
@@ -4955,6 +5199,20 @@
               "Used for Retail Search."
             ],
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse": {
+      "description": "Response for ListQuestions method.",
+      "id": "GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse",
+      "properties": {
+        "generativeQuestionConfigs": {
+          "description": "All the questions for a given catalog.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionConfig"
           },
           "type": "array"
         }
@@ -5972,6 +6230,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaProductAttributeInterval": {
+      "description": "Product attribute name and numeric interval.",
+      "id": "GoogleCloudRetailV2alphaProductAttributeInterval",
+      "properties": {
+        "interval": {
+          "$ref": "GoogleCloudRetailV2alphaInterval",
+          "description": "The numeric interval (e.g. [10, 20))"
+        },
+        "name": {
+          "description": "The attribute name (e.g. \"length\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaProductAttributeValue": {
+      "description": "Product attribute which structured by an attribute name and value. This structure is used in conversational search filters and answers. For example, if we have `name=color` and `value=red`, this means that the color is `red`.",
+      "id": "GoogleCloudRetailV2alphaProductAttributeValue",
+      "properties": {
+        "name": {
+          "description": "The attribute name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The attribute value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaProductDetail": {
       "description": "Detailed product information associated with a user event.",
       "id": "GoogleCloudRetailV2alphaProductDetail",
@@ -6638,6 +6926,10 @@
           "description": "The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. In the case a query does not have a sufficient amount of results this filter will be used to determine whether or not to enable the query expansion flow. The original filter will still be used for the query expanded search. This field is strongly recommended to achieve high search quality. For more information about filter syntax, see SearchRequest.filter.",
           "type": "string"
         },
+        "conversationalSearchSpec": {
+          "$ref": "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec",
+          "description": "Optional. This field specifies all conversational related parameters addition to traditional retail search."
+        },
         "dynamicFacetSpec": {
           "$ref": "GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec",
           "deprecated": true,
@@ -6738,6 +7030,10 @@
           "$ref": "GoogleCloudRetailV2alphaSearchRequestSpellCorrectionSpec",
           "description": "The spell correction specification that specifies the mode under which spell correction will take effect."
         },
+        "tileNavigationSpec": {
+          "$ref": "GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec",
+          "description": "Optional. This field specifies tile navigation related parameters."
+        },
         "userInfo": {
           "$ref": "GoogleCloudRetailV2alphaUserInfo",
           "description": "User information."
@@ -6786,6 +7082,59 @@
         "condition": {
           "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost products with product ID \"product_1\" or \"product_2\", and color \"Red\" or \"Blue\": * (id: ANY(\"product_1\", \"product_2\")) AND (colorFamilies: ANY(\"Red\",\"Blue\"))",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec": {
+      "description": "This field specifies all conversational related parameters addition to traditional retail search.",
+      "id": "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec",
+      "properties": {
+        "conversationId": {
+          "description": "This field specifies the conversation id, which maintains the state of the conversation between client side and server side. Use the value from the previous ConversationalSearchResult.conversation_id. For the initial request, this should be empty.",
+          "type": "string"
+        },
+        "followupConversationRequested": {
+          "description": "This field specifies whether the customer would like to do conversational search. If this field is set to true, conversational related extra information will be returned from server side, including follow-up question, answer options, etc.",
+          "type": "boolean"
+        },
+        "userAnswer": {
+          "$ref": "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswer",
+          "description": "This field specifies the current user answer during the conversational search. This can be either user selected from suggested answers or user input plain text."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswer": {
+      "description": "This field specifies the current user answer during the conversational search. This can be either user selected from suggested answers or user input plain text.",
+      "id": "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswer",
+      "properties": {
+        "selectedAnswer": {
+          "$ref": "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer",
+          "description": "This field specifies the selected attributes during the conversational search. This should be a subset of ConversationalSearchResult.suggested_answers."
+        },
+        "textAnswer": {
+          "description": "This field specifies the incremental input text from the user during the conversational search.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer": {
+      "description": "This field specifies the selected answers during the conversational search.",
+      "id": "GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer",
+      "properties": {
+        "productAttributeValue": {
+          "$ref": "GoogleCloudRetailV2alphaProductAttributeValue",
+          "description": "This field specifies the selected answer which is a attribute key-value."
+        },
+        "productAttributeValues": {
+          "deprecated": true,
+          "description": "This field is deprecated and should not be set.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaProductAttributeValue"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6960,6 +7309,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec": {
+      "description": "This field specifies tile navigation related parameters.",
+      "id": "GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec",
+      "properties": {
+        "appliedTiles": {
+          "description": "This field specifies the tiles which are already clicked in client side. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaTile"
+          },
+          "type": "array"
+        },
+        "tileNavigationRequested": {
+          "description": "This field specifies whether the customer would like to request tile navigation.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaSearchResponse": {
       "description": "Response message for SearchService.Search method.",
       "id": "GoogleCloudRetailV2alphaSearchResponse",
@@ -6974,6 +7341,10 @@
         "attributionToken": {
           "description": "A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance.",
           "type": "string"
+        },
+        "conversationalSearchResult": {
+          "$ref": "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResult",
+          "description": "This field specifies all related information that is needed on client side for UI rendering of conversational retail search."
         },
         "correctedQuery": {
           "description": "Contains the spell corrected query, if found. If the spell correction type is AUTOMATIC, then the search results are based on corrected_query. Otherwise the original query is used for search.",
@@ -7019,10 +7390,74 @@
           },
           "type": "array"
         },
+        "tileNavigationResult": {
+          "$ref": "GoogleCloudRetailV2alphaSearchResponseTileNavigationResult",
+          "description": "This field specifies all related information for tile navigation that will be used in client side."
+        },
         "totalSize": {
           "description": "The estimated total count of matched items irrespective of pagination. The count of results returned by pagination may be less than the total_size that matches.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResult": {
+      "description": "This field specifies all related information that is needed on client side for UI rendering of conversational retail search.",
+      "id": "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResult",
+      "properties": {
+        "additionalFilter": {
+          "$ref": "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultAdditionalFilter",
+          "description": "This is the incremental additional filters implied from the current user answer. User should add the suggested addition filters to the previous SearchRequest.filter, and use the merged filter in the follow up search request."
+        },
+        "additionalFilters": {
+          "deprecated": true,
+          "description": "This field is deprecated but will be kept for backward compatibility. There is expected to have only one additional filter and the value will be the same to the same as field `additional_filter`.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultAdditionalFilter"
+          },
+          "type": "array"
+        },
+        "conversationId": {
+          "description": "Conversation UUID. This field will be stored in client side storage to maintain the conversation session with server and will be used for next search request's SearchRequest.ConversationalSearchSpec.conversation_id to restore conversation state in server.",
+          "type": "string"
+        },
+        "followupQuestion": {
+          "description": "The follow-up question. e.g., `What is the color?`",
+          "type": "string"
+        },
+        "refinedQuery": {
+          "description": "The current refined query for the conversational search. This field will be used in customer UI that the query in the search bar should be replaced with the refined query. For example, if SearchRequest.query is `dress` and next SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer is `red color`, which does not match any product attribute value filters, the refined query will be `dress, red color`.",
+          "type": "string"
+        },
+        "suggestedAnswers": {
+          "description": "The answer options provided to client for the follow-up question.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultSuggestedAnswer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultAdditionalFilter": {
+      "description": "Additional filter that client side need to apply.",
+      "id": "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultAdditionalFilter",
+      "properties": {
+        "productAttributeValue": {
+          "$ref": "GoogleCloudRetailV2alphaProductAttributeValue",
+          "description": "Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultSuggestedAnswer": {
+      "description": "Suggested answers to the follow-up question.",
+      "id": "GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultSuggestedAnswer",
+      "properties": {
+        "productAttributeValue": {
+          "$ref": "GoogleCloudRetailV2alphaProductAttributeValue",
+          "description": "Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future."
         }
       },
       "type": "object"
@@ -7133,6 +7568,20 @@
           },
           "description": "The rollup matching variant Product attributes. The key is one of the SearchRequest.variant_rollup_keys. The values are the merged and de-duplicated Product attributes. Notice that the rollup values are respect filter. For example, when filtering by \"colorFamilies:ANY(\\\"red\\\")\" and rollup \"colorFamilies\", only \"red\" is returned. For textual and numerical attributes, the rollup values is a list of string or double values with type google.protobuf.ListValue. For example, if there are two variants with colors \"red\" and \"blue\", the rollup values are { key: \"colorFamilies\" value { list_value { values { string_value: \"red\" } values { string_value: \"blue\" } } } } For FulfillmentInfo, the rollup values is a double value with type google.protobuf.Value. For example, `{key: \"pickupInStore.store1\" value { number_value: 10 }}` means a there are 10 variants in this product are available in the store \"store1\".",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaSearchResponseTileNavigationResult": {
+      "description": "This field specifies all related information for tile navigation that will be used in client side.",
+      "id": "GoogleCloudRetailV2alphaSearchResponseTileNavigationResult",
+      "properties": {
+        "tiles": {
+          "description": "The current tiles that are used for tile navigation, sorted by engagement.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2alphaTile"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7330,6 +7779,25 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaTile": {
+      "description": "This field specifies the tile information including an attribute key, attribute value. More fields will be added in the future, eg: product id or product counts, etc.",
+      "id": "GoogleCloudRetailV2alphaTile",
+      "properties": {
+        "productAttributeInterval": {
+          "$ref": "GoogleCloudRetailV2alphaProductAttributeInterval",
+          "description": "The product attribute key-numeric interval."
+        },
+        "productAttributeValue": {
+          "$ref": "GoogleCloudRetailV2alphaProductAttributeValue",
+          "description": "The product attribute key-value."
+        },
+        "representativeProductId": {
+          "description": "The representative product id for this tile.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaTransformedUserEventsMetadata": {
       "description": "Metadata related to transform user events operation.",
       "id": "GoogleCloudRetailV2alphaTransformedUserEventsMetadata",
@@ -7368,6 +7836,22 @@
       "description": "Response associated with a tune operation.",
       "id": "GoogleCloudRetailV2alphaTuneModelResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaUpdateGenerativeQuestionConfigRequest": {
+      "description": "Request for UpdateGenerativeQuestionConfig method.",
+      "id": "GoogleCloudRetailV2alphaUpdateGenerativeQuestionConfigRequest",
+      "properties": {
+        "generativeQuestionConfig": {
+          "$ref": "GoogleCloudRetailV2alphaGenerativeQuestionConfig",
+          "description": "Required. The question to update."
+        },
+        "updateMask": {
+          "description": "Optional. Indicates which fields in the provided GenerativeQuestionConfig to update. The following are NOT supported: * GenerativeQuestionConfig.frequency If not set or empty, all supported fields are updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRetailV2alphaUserEvent": {
