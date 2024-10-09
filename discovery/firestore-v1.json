@@ -1682,6 +1682,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "An expression that filters the list of returned backups. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Backup are eligible for filtering: * `database_uid` (supports `=` only)",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "parent": {
                       "description": "Required. The location to list backups from. Format is `projects/{project}/locations/{location}`. Use `{location} = '-'` to list backups from all locations for the given project. This allows listing backups from a single location or from all locations.",
                       "location": "path",
@@ -1706,7 +1711,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20240904",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2525,6 +2530,17 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1BackupSource": {
+      "description": "Information about a backup that was used to restore a database.",
+      "id": "GoogleFirestoreAdminV1BackupSource",
+      "properties": {
+        "backup": {
+          "description": "The resource name of the backup that was used to restore this database. Format: `projects/{project}/locations/{location}/backups/{backup}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata": {
       "description": "Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.",
       "id": "GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata",
@@ -2761,6 +2777,11 @@
           "description": "Output only. The database resource's prior database ID. This field is only populated for deleted databases.",
           "readOnly": true,
           "type": "string"
+        },
+        "sourceInfo": {
+          "$ref": "GoogleFirestoreAdminV1SourceInfo",
+          "description": "Output only. Information about the provenance of this database.",
+          "readOnly": true
         },
         "type": {
           "description": "The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.",
@@ -3519,6 +3540,21 @@
       "description": "The configuration options for using the same encryption method as the source.",
       "id": "GoogleFirestoreAdminV1SourceEncryptionOptions",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1SourceInfo": {
+      "description": "Information about the provenance of this database.",
+      "id": "GoogleFirestoreAdminV1SourceInfo",
+      "properties": {
+        "backup": {
+          "$ref": "GoogleFirestoreAdminV1BackupSource",
+          "description": "If set, this database was restored from the specified backup (or a snapshot thereof)."
+        },
+        "operation": {
+          "description": "The associated long-running operation. This field may not be set after the operation has completed. Format: `projects/{project}/databases/{database}/operations/{operation}`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1Stats": {

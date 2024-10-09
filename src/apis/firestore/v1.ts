@@ -697,6 +697,15 @@ export namespace firestore_v1 {
     weeklyRecurrence?: Schema$GoogleFirestoreAdminV1WeeklyRecurrence;
   }
   /**
+   * Information about a backup that was used to restore a database.
+   */
+  export interface Schema$GoogleFirestoreAdminV1BackupSource {
+    /**
+     * The resource name of the backup that was used to restore this database. Format: `projects/{project\}/locations/{location\}/backups/{backup\}`.
+     */
+    backup?: string | null;
+  }
+  /**
    * Metadata for google.longrunning.Operation results from FirestoreAdmin.BulkDeleteDocuments.
    */
   export interface Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsMetadata {
@@ -832,6 +841,10 @@ export namespace firestore_v1 {
      * Output only. The database resource's prior database ID. This field is only populated for deleted databases.
      */
     previousId?: string | null;
+    /**
+     * Output only. Information about the provenance of this database.
+     */
+    sourceInfo?: Schema$GoogleFirestoreAdminV1SourceInfo;
     /**
      * The type of the database. See https://cloud.google.com/datastore/docs/firestore-or-datastore for information about how to choose.
      */
@@ -1294,6 +1307,19 @@ export namespace firestore_v1 {
    * The configuration options for using the same encryption method as the source.
    */
   export interface Schema$GoogleFirestoreAdminV1SourceEncryptionOptions {}
+  /**
+   * Information about the provenance of this database.
+   */
+  export interface Schema$GoogleFirestoreAdminV1SourceInfo {
+    /**
+     * If set, this database was restored from the specified backup (or a snapshot thereof).
+     */
+    backup?: Schema$GoogleFirestoreAdminV1BackupSource;
+    /**
+     * The associated long-running operation. This field may not be set after the operation has completed. Format: `projects/{project\}/databases/{database\}/operations/{operation\}`.
+     */
+    operation?: string | null;
+  }
   /**
    * Backup specific statistics.
    */
@@ -7126,6 +7152,10 @@ export namespace firestore_v1 {
   }
   export interface Params$Resource$Projects$Locations$Backups$List
     extends StandardParameters {
+    /**
+     * An expression that filters the list of returned backups. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the Backup are eligible for filtering: * `database_uid` (supports `=` only)
+     */
+    filter?: string;
     /**
      * Required. The location to list backups from. Format is `projects/{project\}/locations/{location\}`. Use `{location\} = '-'` to list backups from all locations for the given project. This allows listing backups from a single location or from all locations.
      */
