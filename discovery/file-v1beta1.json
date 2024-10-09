@@ -502,7 +502,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * \"description\" * \"directory_services\" * \"file_shares\" * \"labels\"",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * \"description\" * \"directory_services\" * \"file_shares\" * \"labels\" * \"performance_config\" * \"deletion_protection_enabled\" * \"deletion_protection_reason\"",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -520,7 +520,7 @@
                   ]
                 },
                 "promoteReplica": {
-                  "description": "Promote an standby instance (replica).",
+                  "description": "Promote the standby instance (replica).",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:promoteReplica",
                   "httpMethod": "POST",
                   "id": "file.projects.locations.instances.promoteReplica",
@@ -1069,7 +1069,7 @@
       }
     }
   },
-  "revision": "20240716",
+  "revision": "20240905",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1205,7 +1205,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         }
       },
@@ -1313,6 +1313,18 @@
         },
         "sourceBackup": {
           "description": "The resource name of the backup, in the format `projects/{project_id}/locations/{location_id}/backups/{backup_id}`, that this file share has been restored from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FixedIOPS": {
+      "description": "Fixed IOPS (input/output operations per second) parameters.",
+      "id": "FixedIOPS",
+      "properties": {
+        "maxReadIops": {
+          "description": "Required. Maximum raw read IOPS.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -1593,6 +1605,18 @@
       },
       "type": "object"
     },
+    "IOPSPerTB": {
+      "description": "IOPS per TB. Filestore defines TB as 1024^4 bytes (TiB).",
+      "id": "IOPSPerTB",
+      "properties": {
+        "maxReadIopsPerTb": {
+          "description": "Required. Maximum read IOPS per TiB.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Instance": {
       "description": "A Filestore instance.",
       "id": "Instance",
@@ -1608,10 +1632,23 @@
           "readOnly": true,
           "type": "string"
         },
+        "configurablePerformanceEnabled": {
+          "description": "Output only. Indicates whether this instance's performance is configurable. If enabled, adjust it using the 'performance_config' field.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "deletionProtectionEnabled": {
+          "description": "Optional. Indicates whether the instance is protected against deletion.",
+          "type": "boolean"
+        },
+        "deletionProtectionReason": {
+          "description": "Optional. The reason for enabling deletion protection.",
           "type": "string"
         },
         "description": {
@@ -1671,6 +1708,15 @@
           },
           "type": "array"
         },
+        "performanceConfig": {
+          "$ref": "PerformanceConfig",
+          "description": "Optional. Used to configure performance."
+        },
+        "performanceLimits": {
+          "$ref": "PerformanceLimits",
+          "description": "Output only. Used for getting performance limits.",
+          "readOnly": true
+        },
         "protocol": {
           "description": "Immutable. The protocol indicates the access protocol for all shares in the instance. This field is immutable and it cannot be changed after the instance has been created. Default value: `NFS_V3`.",
           "enum": [
@@ -1687,7 +1733,7 @@
         },
         "replication": {
           "$ref": "Replication",
-          "description": "Optional. Replicaition configuration."
+          "description": "Optional. Replication configuration."
         },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
@@ -1757,7 +1803,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         },
         "tier": {
@@ -2018,11 +2064,11 @@
       "type": "object"
     },
     "ManagedActiveDirectoryConfig": {
-      "description": "ManagedActiveDirectoryConfig contains all the parameters for connecting to Managed Active Directory.",
+      "description": "ManagedActiveDirectoryConfig contains all the parameters for connecting to Managed Service for Microsoft Active Directory (Managed Microsoft AD).",
       "id": "ManagedActiveDirectoryConfig",
       "properties": {
         "computer": {
-          "description": "Required. The computer name is used as a prefix to the mount remote target. Example: if the computer is `my-computer`, the mount command will look like: `$mount -o vers=4.1,sec=krb5 my-computer.filestore.: `.",
+          "description": "Required. The computer name is used as a prefix in the command to mount the remote target. For example: if the computer is `my-computer`, the mount command will look like: `$mount -o vers=4.1,sec=krb5 my-computer.filestore.: `.",
           "type": "string"
         },
         "domain": {
@@ -2236,6 +2282,52 @@
       },
       "type": "object"
     },
+    "PerformanceConfig": {
+      "description": "Used for setting the performance configuration. If the user doesn't specify PerformanceConfig, automatically provision the default performance settings as described in https://cloud.google.com/filestore/docs/performance. Larger instances will be linearly set to more IOPS. If the instance's capacity is increased or decreased, its performance will be automatically adjusted upwards or downwards accordingly (respectively).",
+      "id": "PerformanceConfig",
+      "properties": {
+        "fixedIops": {
+          "$ref": "FixedIOPS",
+          "description": "Choose a fixed provisioned IOPS value for the instance, which will remain constant regardless of instance capacity. Value must be a multiple of 1000. If the chosen value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error."
+        },
+        "iopsPerTb": {
+          "$ref": "IOPSPerTB",
+          "description": "Provision IOPS dynamically based on the capacity of the instance. Provisioned read IOPS will be calculated by multiplying the capacity of the instance in TiB by the `iops_per_tb` value. For example, for a 2 TiB instance with an `iops_per_tb` value of 17000 the provisioned read IOPS will be 34000. If the calculated value is outside the supported range for the instance's capacity during instance creation, instance creation will fail with an `InvalidArgument` error. Similarly, if an instance capacity update would result in a value outside the supported range, the update will fail with an `InvalidArgument` error."
+        }
+      },
+      "type": "object"
+    },
+    "PerformanceLimits": {
+      "description": "The enforced performance limits, calculated from the instance's performance configuration.",
+      "id": "PerformanceLimits",
+      "properties": {
+        "maxReadIops": {
+          "description": "Output only. The max read IOPS.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxReadThroughputBps": {
+          "description": "Output only. The max read throughput in bytes per second.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxWriteIops": {
+          "description": "Output only. The max write IOPS.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxWriteThroughputBps": {
+          "description": "Output only. The max write throughput in bytes per second.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PromoteReplicaRequest": {
       "description": "PromoteReplicaRequest promotes a Filestore standby instance (replica).",
       "id": "PromoteReplicaRequest",
@@ -2296,7 +2388,7 @@
       "id": "Replication",
       "properties": {
         "replicas": {
-          "description": "Replicas configuration on the instance. For now, only a single replica config is supported.",
+          "description": "Replication configuration for the replica instance associated with this instance. Only a single replica is supported.",
           "items": {
             "$ref": "ReplicaConfig"
           },
@@ -2311,8 +2403,8 @@
           ],
           "enumDescriptions": [
             "Role not set.",
-            "The instance is a Active replication member, functions as the replication source instance.",
-            "The instance is a Standby replication member, functions as the replication destination instance."
+            "The instance is the `ACTIVE` replication member, functions as the replication source instance.",
+            "The instance is the `STANDBY` replication member, functions as the replication destination instance."
           ],
           "type": "string"
         }
@@ -2509,7 +2601,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
           "type": "object"
         }
       },
