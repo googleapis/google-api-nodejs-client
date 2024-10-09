@@ -2309,7 +2309,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20240926",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2850,12 +2850,14 @@
       "id": "ComputeEngineShapeDescriptor",
       "properties": {
         "logicalCoreCount": {
-          "description": "Number of logical cores.",
+          "description": "Output only. Number of logical cores.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "machineType": {
-          "description": "Compute Engine machine type.",
+          "description": "Output only. Compute Engine machine type.",
+          "readOnly": true,
           "type": "string"
         },
         "memoryMb": {
@@ -2869,14 +2871,16 @@
           "type": "integer"
         },
         "series": {
-          "description": "Compute Engine machine series.",
+          "description": "Output only. Compute Engine machine series.",
+          "readOnly": true,
           "type": "string"
         },
         "storage": {
-          "description": "Compute Engine storage. Never empty.",
+          "description": "Output only. Compute Engine storage. Never empty.",
           "items": {
             "$ref": "ComputeStorageDescriptor"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -2887,12 +2891,13 @@
       "id": "ComputeStorageDescriptor",
       "properties": {
         "sizeGb": {
-          "description": "Disk size in GiB.",
+          "description": "Output only. Disk size in GiB.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "type": {
-          "description": "Disk type backing the storage.",
+          "description": "Output only. Disk type backing the storage.",
           "enum": [
             "PERSISTENT_DISK_TYPE_UNSPECIFIED",
             "PERSISTENT_DISK_TYPE_STANDARD",
@@ -2905,6 +2910,7 @@
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3377,7 +3383,7 @@
       "id": "FitDescriptor",
       "properties": {
         "fitLevel": {
-          "description": "Fit level.",
+          "description": "Output only. Fit level.",
           "enum": [
             "FIT_LEVEL_UNSPECIFIED",
             "FIT",
@@ -3390,6 +3396,7 @@
             "No Fit.",
             "Fit with effort."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4358,7 +4365,8 @@
           "type": "integer"
         },
         "cpuThreadCount": {
-          "description": "Number of CPU threads allocated to the machine.",
+          "deprecated": true,
+          "description": "Deprecated: use MachineDetails.core_count instead. Number of CPU threads allocated to the machine.",
           "format": "int32",
           "type": "integer"
         },
@@ -5192,7 +5200,7 @@
       "properties": {
         "coreCountHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
-          "description": "Histogram showing a distribution of CPU core counts."
+          "description": "Histogram showing a distribution of logical CPU core counts."
         },
         "memoryBytesHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
