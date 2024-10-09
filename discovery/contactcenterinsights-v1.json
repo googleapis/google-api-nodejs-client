@@ -284,8 +284,7 @@
                   ]
                 },
                 "create": {
-                  "deprecated": true,
-                  "description": "Creates a conversation. Does not support audio transcription or DLP redaction. Use `conversations.upload` instead.",
+                  "description": "Creates a conversation. Note that this method does not support audio transcription or redaction. Use `conversations.upload` instead.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations",
                   "httpMethod": "POST",
                   "id": "contactcenterinsights.projects.locations.conversations.create",
@@ -435,7 +434,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of conversations to return in the response. A valid page size ranges from 0 to 1,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.",
+                      "description": "The maximum number of conversations to return in the response. A valid page size ranges from 0 to 100,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1531,7 +1530,7 @@
       }
     }
   },
-  "revision": "20240805",
+  "revision": "20240925",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2171,6 +2170,10 @@
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
+          "type": "string"
+        },
+        "metadataJson": {
+          "description": "Input only. JSON Metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insights' supported formats.",
           "type": "string"
         },
         "name": {
@@ -4772,6 +4775,10 @@
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
+          "type": "string"
+        },
+        "metadataJson": {
+          "description": "Input only. JSON Metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insights' supported formats.",
           "type": "string"
         },
         "name": {
