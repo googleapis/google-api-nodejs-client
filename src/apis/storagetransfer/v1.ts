@@ -569,23 +569,23 @@ export namespace storagetransfer_v1 {
     rootDirectory?: string | null;
   }
   /**
-   * Specifies the configuration for running a replication job.
+   * Specifies the configuration for a cross-bucket replication job. Cross-bucket replication copies new or updated objects from a source Cloud Storage bucket to a destination Cloud Storage bucket. Existing objects in the source bucket are not copied by a new cross-bucket replication job.
    */
   export interface Schema$ReplicationSpec {
     /**
-     * Specifies cloud Storage data sink.
+     * The Cloud Storage bucket to which to replicate objects.
      */
     gcsDataSink?: Schema$GcsData;
     /**
-     * Specifies cloud Storage data source.
+     * The Cloud Storage bucket from which to replicate objects.
      */
     gcsDataSource?: Schema$GcsData;
     /**
-     * Specifies the object conditions to only include objects that satisfy these conditions in the set of data source objects. Object conditions based on objects' "last modification time" do not exclude objects in a data sink.
+     * Object conditions that determine which objects are transferred. For replication jobs, only `include_prefixes` and `exclude_prefixes` are supported.
      */
     objectConditions?: Schema$ObjectConditions;
     /**
-     * Specifies the actions to be performed on the object during replication. Delete options are not supported for replication and when specified, the request fails with an INVALID_ARGUMENT error.
+     * Specifies the metadata options to be applied during replication. Delete options are not supported. If a delete option is specified, the request fails with an INVALID_ARGUMENT error.
      */
     transferOptions?: Schema$TransferOptions;
   }
@@ -2191,7 +2191,7 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferjobs$List
     extends StandardParameters {
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...]\}` Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `projectId` is required. `jobNames` and `jobStatuses` are optional. The valid values for `jobStatuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
+     * Required. A list of query parameters specified as JSON text in the form of: ``` { "projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...], "dataBackend":"QUERY_REPLICATION_CONFIGS", "sourceBucket":"source-bucket-name", "sinkBucket":"sink-bucket-name", \} ``` The JSON formatting in the example is for display only; provide the query parameters without spaces or line breaks. * `projectId` is required. * Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `jobNames` and `jobStatuses` are optional. Valid values are case-insensitive: * ENABLED * DISABLED * DELETED * Specify `"dataBackend":"QUERY_REPLICATION_CONFIGS"` to return a list of cross-bucket replication jobs. * Limit the results to jobs from a particular bucket with `sourceBucket` and/or to a particular bucket with `sinkBucket`.
      */
     filter?: string;
     /**
