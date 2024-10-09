@@ -3574,10 +3574,6 @@ export namespace youtube_v3 {
      */
     channelId?: string | null;
     /**
-     * Channel title for the channel that the subscription belongs to.
-     */
-    channelTitle?: string | null;
-    /**
      * The subscription's details.
      */
     description?: string | null;
@@ -3894,6 +3890,7 @@ export namespace youtube_v3 {
      * The monetizationDetails object encapsulates information about the monetization status of the video.
      */
     monetizationDetails?: Schema$VideoMonetizationDetails;
+    paidProductPlacementDetails?: Schema$VideoPaidProductPlacementDetails;
     /**
      * The player object contains information that you would use to play the video in an embedded player.
      */
@@ -4366,6 +4363,15 @@ export namespace youtube_v3 {
     access?: Schema$AccessPolicy;
   }
   /**
+   * Details about paid content, such as paid product placement, sponsorships or endorsement, contained in a YouTube video and a method to inform viewers of paid promotion. This data can only be retrieved by the video owner.
+   */
+  export interface Schema$VideoPaidProductPlacementDetails {
+    /**
+     * This boolean represents whether the video contains Paid Product Placement, Studio equivalent: https://screenshot.googleplex.com/4Me79DE6AfT2ktp.png
+     */
+    hasPaidProductPlacement?: boolean | null;
+  }
+  /**
    * Player to be used for a video playback.
    */
   export interface Schema$VideoPlayer {
@@ -4546,7 +4552,7 @@ export namespace youtube_v3 {
     viewCount?: string | null;
   }
   /**
-   * Basic details about a video category, such as its localized title. Next Id: 18
+   * Basic details about a video category, such as its localized title. Next Id: 19
    */
   export interface Schema$VideoStatus {
     /**
