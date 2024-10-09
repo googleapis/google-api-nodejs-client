@@ -965,7 +965,7 @@
       }
     }
   },
-  "revision": "20240613",
+  "revision": "20240916",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1627,6 +1627,13 @@
         "networkConfig": {
           "$ref": "NetworkConfig",
           "description": "Network configurations for the TPU node."
+        },
+        "networkConfigs": {
+          "description": "Optional. Repeated network configurations for the TPU node.",
+          "items": {
+            "$ref": "NetworkConfig"
+          },
+          "type": "array"
         },
         "networkEndpoints": {
           "description": "Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that runtime clients of the node reach out to the 0th entry in this map first.",
