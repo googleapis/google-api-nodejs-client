@@ -9,7 +9,7 @@
           "description": "See reports about devices and Chrome browsers managed within your organization"
         },
         "https://www.googleapis.com/auth/chrome.management.telemetry.readonly": {
-          "description": "See basic device and telemetry information collected from Chrome OS devices or users managed within your organization"
+          "description": "See basic device and telemetry information collected from ChromeOS devices or users managed within your organization"
         }
       }
     }
@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20240815",
+  "revision": "20241003",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -3682,7 +3682,8 @@
             "APPLICATION_LAUNCH_SOURCE_FIRST_RUN",
             "APPLICATION_LAUNCH_SOURCE_WELCOME_TOUR",
             "APPLICATION_LAUNCH_SOURCE_FOCUS_MODE",
-            "APPLICATION_LAUNCH_SOURCE_SPARKY"
+            "APPLICATION_LAUNCH_SOURCE_SPARKY",
+            "APPLICATION_LAUNCH_SOURCE_NAVIGATION_CAPTURING"
           ],
           "enumDescriptions": [
             "Application launch source unknown.",
@@ -3726,7 +3727,8 @@
             "Count first-run Help app launches separately so that we can understand the number of user-triggered launches.",
             "Application launched from welcome tour.",
             "Applicationed launched from focus panel.",
-            "Application launched from experimental feature Sparky."
+            "Application launched from experimental feature Sparky.",
+            "Application launched from navigation capturing."
           ],
           "type": "string"
         },

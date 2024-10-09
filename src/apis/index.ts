@@ -338,6 +338,10 @@ import {
   firebasedatabase,
 } from './firebasedatabase';
 import {
+  VERSIONS as firebasedataconnectVersions,
+  firebasedataconnect,
+} from './firebasedataconnect';
+import {
   VERSIONS as firebasedynamiclinksVersions,
   firebasedynamiclinks,
 } from './firebasedynamiclinks';
@@ -490,6 +494,10 @@ import {
   VERSIONS as ondemandscanningVersions,
   ondemandscanning,
 } from './ondemandscanning';
+import {
+  VERSIONS as oracledatabaseVersions,
+  oracledatabase,
+} from './oracledatabase';
 import {VERSIONS as orgpolicyVersions, orgpolicy} from './orgpolicy';
 import {VERSIONS as osconfigVersions, osconfig} from './osconfig';
 import {VERSIONS as osloginVersions, oslogin} from './oslogin';
@@ -857,6 +865,7 @@ export const APIS: APIList = {
   firebaseappcheck: firebaseappcheckVersions,
   firebaseappdistribution: firebaseappdistributionVersions,
   firebasedatabase: firebasedatabaseVersions,
+  firebasedataconnect: firebasedataconnectVersions,
   firebasedynamiclinks: firebasedynamiclinksVersions,
   firebasehosting: firebasehostingVersions,
   firebaseml: firebasemlVersions,
@@ -923,6 +932,7 @@ export const APIS: APIList = {
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
   ondemandscanning: ondemandscanningVersions,
+  oracledatabase: oracledatabaseVersions,
   orgpolicy: orgpolicyVersions,
   osconfig: osconfigVersions,
   oslogin: osloginVersions,
@@ -1160,6 +1170,7 @@ export class GeneratedAPIs {
   firebaseappcheck = firebaseappcheck;
   firebaseappdistribution = firebaseappdistribution;
   firebasedatabase = firebasedatabase;
+  firebasedataconnect = firebasedataconnect;
   firebasedynamiclinks = firebasedynamiclinks;
   firebasehosting = firebasehosting;
   firebaseml = firebaseml;
@@ -1226,6 +1237,7 @@ export class GeneratedAPIs {
   notebooks = notebooks;
   oauth2 = oauth2;
   ondemandscanning = ondemandscanning;
+  oracledatabase = oracledatabase;
   orgpolicy = orgpolicy;
   osconfig = osconfig;
   oslogin = oslogin;

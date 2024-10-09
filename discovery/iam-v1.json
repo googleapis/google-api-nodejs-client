@@ -3188,7 +3188,7 @@
       }
     }
   },
-  "revision": "20240725",
+  "revision": "20240918",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -3555,7 +3555,7 @@
           ],
           "enumDescriptions": [
             "No AttributesType specified.",
-            "Used to get the user's group claims from the Azure AD identity provider using configuration provided in ExtraAttributesOAuth2Client and `mail` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The attributes obtained from idntity provider are mapped to `assertion.groups`."
+            "Used to get the user's group claims from the Microsoft Entra ID identity provider using configuration provided in ExtraAttributesOAuth2Client and `mail` property of the `microsoft.graph.group` object is used for claim mapping. See https://learn.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0#properties for more details on `microsoft.graph.group` properties. The attributes obtained from idntity provider are mapped to `assertion.groups`."
           ],
           "type": "string"
         },

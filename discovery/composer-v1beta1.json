@@ -15,6 +15,13 @@
   "description": "Manages Apache Airflow environments on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/composer/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://composer.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -994,7 +1001,7 @@
       }
     }
   },
-  "revision": "20240716",
+  "revision": "20240917",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {

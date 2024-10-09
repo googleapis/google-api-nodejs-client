@@ -181,7 +181,7 @@
               "type": "string"
             },
             "retention": {
-              "description": "Optional. This setting is applicable only for organizations that are soft-deleted (i.e., BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored. **Note: During the data retention period specified using this field, the Apigee organization cannot be recreated in the same GCP project.**",
+              "description": "Optional. This setting is applicable only for organizations that are soft-deleted (i.e., BillingType is not EVALUATION). It controls how long Organization data will be retained after the initial delete operation completes. During this period, the Organization may be restored to its last known state. After this period, the Organization will no longer be able to be restored. **Note: During the data retention period specified using this field, the Apigee organization cannot be recreated in the same Google Cloud project.**",
               "enum": [
                 "DELETION_RETENTION_UNSPECIFIED",
                 "MINIMUM"
@@ -222,6 +222,31 @@
           "path": "v1/{+name}",
           "response": {
             "$ref": "GoogleCloudApigeeV1Organization"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getControlPlaneAccess": {
+          "description": "Lists the service accounts allowed to access Apigee control plane directly for limited functionality. **Note**: Available to Apigee hybrid only.",
+          "flatPath": "v1/organizations/{organizationsId}/controlPlaneAccess",
+          "httpMethod": "GET",
+          "id": "apigee.organizations.getControlPlaneAccess",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Resource name of the Control Plane Access. Use the following structure in your request: `organizations/{org}/controlPlaneAccess`",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/controlPlaneAccess$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleCloudApigeeV1ControlPlaneAccess"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -474,6 +499,40 @@
           },
           "response": {
             "$ref": "GoogleCloudApigeeV1Organization"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "updateControlPlaneAccess": {
+          "description": "Updates the permissions required to allow Apigee runtime-plane components access to the control plane. Currently, the permissions required are to: 1. Allow runtime components to publish analytics data to the control plane. **Note**: Available to Apigee hybrid only.",
+          "flatPath": "v1/organizations/{organizationsId}/controlPlaneAccess",
+          "httpMethod": "PATCH",
+          "id": "apigee.organizations.updateControlPlaneAccess",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Identifier. The resource name of the ControlPlaneAccess. Format: \"organizations/{org}/controlPlaneAccess\"",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/controlPlaneAccess$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "List of fields to be updated. Fields that can be updated: synchronizer_identities, publisher_identities.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "GoogleCloudApigeeV1ControlPlaneAccess"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -5402,6 +5461,62 @@
             },
             "deployments": {
               "methods": {
+                "get": {
+                  "description": "Gets a particular deployment of Api proxy or a shared flow in an environment",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/deployments/{deploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.deployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the api proxy or the shared flow deployment. Use the following structure in your request: `organizations/{org}/environments/{env}/deployments/{deployment}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1Deployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getIamPolicy": {
+                  "description": "Gets the IAM policy on a deployment. For more information, see [Manage users, roles, and permissions using the API](https://cloud.google.com/apigee/docs/api-platform/system-administration/manage-users-roles). You must have the `apigee.deployments.getIamPolicy` permission to call this API.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/deployments/{deploymentsId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.deployments.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists all deployments of API proxies or shared flows in an environment.",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/deployments",
@@ -5427,6 +5542,62 @@
                   "path": "v1/{+parent}/deployments",
                   "response": {
                     "$ref": "GoogleCloudApigeeV1ListDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the IAM policy on a deployment, if the policy already exists it will be replaced. For more information, see [Manage users, roles, and permissions using the API](https://cloud.google.com/apigee/docs/api-platform/system-administration/manage-users-roles). You must have the `apigee.deployments.setIamPolicy` permission to call this API.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/deployments/{deploymentsId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.deployments.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Tests the permissions of a user on a deployment, and returns a subset of permissions that the user has on the deployment. If the deployment does not exist, an empty permission set is returned (a NOT_FOUND error is not returned).",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/deployments/{deploymentsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.deployments.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/deployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -9391,6 +9562,163 @@
             }
           }
         },
+        "securityProfilesV2": {
+          "methods": {
+            "create": {
+              "description": "Create a security profile v2.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfilesV2",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.securityProfilesV2.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource name.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "securityProfileV2Id": {
+                  "description": "Required. The security profile id.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/securityProfilesV2",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1SecurityProfileV2"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityProfileV2"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Delete a security profile v2.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfilesV2/{securityProfilesV2Id}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.securityProfilesV2.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the security profile v2 to delete.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Get a security profile v2.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfilesV2/{securityProfilesV2Id}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityProfilesV2.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The security profile id.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityProfileV2"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "List security profiles v2.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfilesV2",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.securityProfilesV2.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of profiles to return",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListSecurityProfilesV2` call. Provide this to retrieve the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. For a specific organization, list of all the security profiles. Format: `organizations/{org}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/securityProfilesV2",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListSecurityProfilesV2Response"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Update a security profile V2.",
+              "flatPath": "v1/organizations/{organizationsId}/securityProfilesV2/{securityProfilesV2Id}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.securityProfilesV2.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. Name of the security profile v2 resource. Format: organizations/{org}/securityProfilesV2/{profile}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1SecurityProfileV2"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1SecurityProfileV2"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "sharedflows": {
           "methods": {
             "create": {
@@ -10045,7 +10373,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20241004",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -11762,6 +12090,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ControlPlaneAccess": {
+      "description": "ControlPlaneAccess is the request body and response body of UpdateControlPlaneAccess. and the response body of GetControlPlaneAccess. The input identities contains an array of service accounts to grant access to the respective control plane resource, with each service account specified using the following format: `serviceAccount:`***service-account-name***. The ***service-account-name*** is formatted like an email address. For example: `my-control-plane-service_account@my_project_id.iam.gserviceaccount.com` You might specify multiple service accounts, for example, if you have multiple environments and wish to assign a unique service account to each one.",
+      "id": "GoogleCloudApigeeV1ControlPlaneAccess",
+      "properties": {
+        "analyticsPublisherIdentities": {
+          "description": "Optional. Array of service accounts authorized to publish analytics data to the control plane (for the Message Processor component).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the ControlPlaneAccess. Format: \"organizations/{org}/controlPlaneAccess\"",
+          "type": "string"
+        },
+        "synchronizerIdentities": {
+          "description": "Optional. Array of service accounts to grant access to control plane resources (for the Synchronizer component). The service accounts must have **Apigee Synchronizer Manager** role. See also [Create service accounts](https://cloud.google.com/apigee/docs/hybrid/latest/sa-about#create-the-service-accounts).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1Credential": {
       "id": "GoogleCloudApigeeV1Credential",
       "properties": {
@@ -12097,7 +12450,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Required. GCP project in which the datastore exists",
+          "description": "Required. Google Cloud project in which the datastore exists",
           "type": "string"
         },
         "tablePrefix": {
@@ -14591,6 +14944,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListSecurityProfilesV2Response": {
+      "description": "Response for ListSecurityProfilesV2.",
+      "id": "GoogleCloudApigeeV1ListSecurityProfilesV2Response",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "securityProfilesV2": {
+          "description": "List of security profiles in the organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1SecurityProfileV2"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListSecurityReportsResponse": {
       "description": "The response for SecurityReports.",
       "id": "GoogleCloudApigeeV1ListSecurityReportsResponse",
@@ -16617,6 +16988,13 @@
           "$ref": "GoogleCloudApigeeV1SecurityActionAllow",
           "description": "Allow a request through if it matches this SecurityAction."
         },
+        "apiProxies": {
+          "description": "Optional. If unset, this would apply to all proxies in the environment. If set, this action is enforced only if at least one proxy in the repeated list is deployed at the time of enforcement. If set, several restrictions are enforced on SecurityActions. There can be at most 100 enabled actions with proxies set in an env. Several other restrictions apply on conditions and are detailed later.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "conditionConfig": {
           "$ref": "GoogleCloudApigeeV1SecurityActionConditionConfig",
           "description": "Required. A valid SecurityAction must contain at least one condition."
@@ -17220,6 +17598,68 @@
         },
         "title": {
           "description": "Title of the config.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityProfileV2": {
+      "description": "Security profile for risk assessment version 2.",
+      "id": "GoogleCloudApigeeV1SecurityProfileV2",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time of the security profile creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. The description of the security profile.",
+          "type": "string"
+        },
+        "googleDefined": {
+          "description": "Output only. Whether the security profile is google defined.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Identifier. Name of the security profile v2 resource. Format: organizations/{org}/securityProfilesV2/{profile}",
+          "type": "string"
+        },
+        "profileAssessmentConfigs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig"
+          },
+          "description": "Required. The configuration for each assessment in this profile. Key is the name/id of the assessment.",
+          "type": "object"
+        },
+        "updateTime": {
+          "description": "Output only. The time of the security profile update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig": {
+      "description": "The configuration definition for a specific assessment.",
+      "id": "GoogleCloudApigeeV1SecurityProfileV2ProfileAssessmentConfig",
+      "properties": {
+        "weight": {
+          "description": "The weight of the assessment.",
+          "enum": [
+            "WEIGHT_UNSPECIFIED",
+            "MINOR",
+            "MODERATE",
+            "MAJOR"
+          ],
+          "enumDescriptions": [
+            "The weight is unspecified.",
+            "The weight is minor.",
+            "The weight is moderate.",
+            "The weight is major."
+          ],
           "type": "string"
         }
       },

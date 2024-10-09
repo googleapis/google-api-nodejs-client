@@ -798,7 +798,7 @@
       }
     }
   },
-  "revision": "20230908",
+  "revision": "20240902",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
@@ -1060,7 +1060,8 @@
             "DATA_FUSION",
             "COMPOSER",
             "LOOKER_STUDIO",
-            "DATAPROC"
+            "DATAPROC",
+            "VERTEX_AI"
           ],
           "enumDescriptions": [
             "Source is Unspecified",
@@ -1069,7 +1070,8 @@
             "Data Fusion",
             "Composer",
             "Looker Studio",
-            "Dataproc"
+            "Dataproc",
+            "Vertex AI"
           ],
           "type": "string"
         }

@@ -1722,7 +1722,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240830",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "AllowedClient": {
@@ -2847,7 +2847,7 @@
           "type": "string"
         },
         "vlanAttachments": {
-          "description": "List of VLAN attachments. As of now there are always 2 attachments, but it is going to change in the future (multi vlan).",
+          "description": "List of VLAN attachments. As of now there are always 2 attachments, but it is going to change in the future (multi vlan). Use only one of vlan_attachments or vrf",
           "items": {
             "$ref": "IntakeVlanAttachment"
           },
@@ -2856,6 +2856,10 @@
         "vlanSameProject": {
           "description": "Whether the VLAN attachment pair is located in the same project.",
           "type": "boolean"
+        },
+        "vrf": {
+          "description": "Optional. The name of a pre-existing Vrf that the network should be attached to. Format is `vrfs/{vrf}`. If vrf is specified, vlan_attachments must be empty.",
+          "type": "string"
         }
       },
       "type": "object"
