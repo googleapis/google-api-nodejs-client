@@ -472,7 +472,7 @@
       }
     }
   },
-  "revision": "20240719",
+  "revision": "20240909",
   "rootUrl": "https://css.googleapis.com/",
   "schemas": {
     "Account": {
@@ -691,6 +691,10 @@
           "description": "Condition of the headline offer.",
           "type": "string"
         },
+        "headlineOfferInstallment": {
+          "$ref": "HeadlineOfferInstallment",
+          "description": "Number and amount of installments to pay for an item."
+        },
         "headlineOfferLink": {
           "description": "Link to the headline offer.",
           "type": "string"
@@ -706,6 +710,10 @@
         "headlineOfferShippingPrice": {
           "$ref": "Price",
           "description": "Headline Price of the aggregate offer."
+        },
+        "headlineOfferSubscriptionCost": {
+          "$ref": "HeadlineOfferSubscriptionCost",
+          "description": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
         },
         "highPrice": {
           "$ref": "Price",
@@ -1020,6 +1028,56 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "HeadlineOfferInstallment": {
+      "description": "A message that represents installment.",
+      "id": "HeadlineOfferInstallment",
+      "properties": {
+        "amount": {
+          "$ref": "Price",
+          "description": "The amount the buyer has to pay per month."
+        },
+        "downpayment": {
+          "$ref": "Price",
+          "description": "The up-front down payment amount the buyer has to pay."
+        },
+        "months": {
+          "description": "The number of installments the buyer has to pay.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HeadlineOfferSubscriptionCost": {
+      "description": "The SubscriptionCost of the product.",
+      "id": "HeadlineOfferSubscriptionCost",
+      "properties": {
+        "amount": {
+          "$ref": "Price",
+          "description": "The amount the buyer has to pay per subscription period."
+        },
+        "period": {
+          "description": "The type of subscription period. Supported values are: * \"`month`\" * \"`year`\"",
+          "enum": [
+            "SUBSCRIPTION_PERIOD_UNSPECIFIED",
+            "MONTH",
+            "YEAR"
+          ],
+          "enumDescriptions": [
+            "Indicates that the subscription period is unspecified.",
+            "Indicates that the subscription period is month.",
+            "Indicates that the subscription period is year."
+          ],
+          "type": "string"
+        },
+        "periodLength": {
+          "description": "The number of subscription periods the buyer has to pay.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ItemLevelIssue": {
