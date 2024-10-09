@@ -131,7 +131,7 @@ export namespace chromeuxreport_v1 {
     /**
      * The proportion of users that experienced this bin's value for the given metric.
      */
-    density?: number | null;
+    density?: any | null;
     /**
      * End is the end of the data bin. If end is not populated, then the bin has no end and is valid from start to +inf.
      */
