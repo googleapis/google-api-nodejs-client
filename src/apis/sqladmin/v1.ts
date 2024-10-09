@@ -284,6 +284,10 @@ export namespace sqladmin_v1 {
      * This is always `sql#backupContext`.
      */
     kind?: string | null;
+    /**
+     * The name of the backup. Format: projects/{project\}/backups/{backup\}
+     */
+    name?: string | null;
   }
   /**
    * Backup Reencryption Config
@@ -1279,6 +1283,27 @@ export namespace sqladmin_v1 {
     kind?: string | null;
   }
   /**
+   * Instances ListServerCertificates response.
+   */
+  export interface Schema$InstancesListServerCertificatesResponse {
+    /**
+     * The `sha1_fingerprint` of the active certificate from `server_certs`.
+     */
+    activeVersion?: string | null;
+    /**
+     * List of server CA certificates for the instance.
+     */
+    caCerts?: Schema$SslCert[];
+    /**
+     * This is always `sql#instancesListServerCertificates`.
+     */
+    kind?: string | null;
+    /**
+     * List of server certificates for the instance, signed by the corresponding CA from the `ca_certs` list.
+     */
+    serverCerts?: Schema$SslCert[];
+  }
+  /**
    * Database Instance reencrypt request.
    */
   export interface Schema$InstancesReencryptRequest {
@@ -1292,9 +1317,17 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$InstancesRestoreBackupRequest {
     /**
+     * The name of the backup to restore from in following format: projects/{project-id\}/backups/{backup-uid\} Only one of restore_backup_context or backup can be passed to the input.
+     */
+    backup?: string | null;
+    /**
      * Parameters required to perform the restore backup operation.
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
+    /**
+     * Optional. Restore instance settings overrides the instance settings stored as part of the backup. Instance's major database version cannot be changed and the disk size can only be increased. This feature is only available for restores to new instances using the backup name.
+     */
+    restoreInstanceSettings?: Schema$DatabaseInstance;
   }
   /**
    * Rotate server CA request.
@@ -1304,6 +1337,15 @@ export namespace sqladmin_v1 {
      * Contains details about the rotate server CA operation.
      */
     rotateServerCaContext?: Schema$RotateServerCaContext;
+  }
+  /**
+   * Rotate server certificate request.
+   */
+  export interface Schema$InstancesRotateServerCertificateRequest {
+    /**
+     * Optional. Contains details about the rotate server certificate operation.
+     */
+    rotateServerCertificateContext?: Schema$RotateServerCertificateContext;
   }
   /**
    * Instance truncate log request.
@@ -1666,6 +1708,10 @@ export namespace sqladmin_v1 {
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
+    /**
+     * List of warnings that occurred while handling the request.
+     */
+    warnings?: Schema$ApiWarning[];
   }
   /**
    * Read-only password status.
@@ -1814,6 +1860,19 @@ export namespace sqladmin_v1 {
     kind?: string | null;
     /**
      * The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server CA version.
+     */
+    nextVersion?: string | null;
+  }
+  /**
+   * Instance rotate server certificate context.
+   */
+  export interface Schema$RotateServerCertificateContext {
+    /**
+     * Optional. This is always `sql#rotateServerCertificateContext`.
+     */
+    kind?: string | null;
+    /**
+     * The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.
      */
     nextVersion?: string | null;
   }
@@ -4024,6 +4083,96 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, please use AddServerCa instead.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addServerCertificate(
+      params: Params$Resource$Instances$Addservercertificate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addServerCertificate(
+      params?: Params$Resource$Instances$Addservercertificate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    addServerCertificate(
+      params: Params$Resource$Instances$Addservercertificate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addServerCertificate(
+      params: Params$Resource$Instances$Addservercertificate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addServerCertificate(
+      params: Params$Resource$Instances$Addservercertificate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addServerCertificate(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    addServerCertificate(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Addservercertificate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Addservercertificate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Addservercertificate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/addServerCertificate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a Cloud SQL instance as a clone of the source instance. Using this operation might cause your instance to restart.
      *
      * @param params - Parameters for request
@@ -4991,6 +5140,103 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ListServerCertificates(
+      params: Params$Resource$Instances$Listservercertificates,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    ListServerCertificates(
+      params?: Params$Resource$Instances$Listservercertificates,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstancesListServerCertificatesResponse>;
+    ListServerCertificates(
+      params: Params$Resource$Instances$Listservercertificates,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ListServerCertificates(
+      params: Params$Resource$Instances$Listservercertificates,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InstancesListServerCertificatesResponse>,
+      callback: BodyResponseCallback<Schema$InstancesListServerCertificatesResponse>
+    ): void;
+    ListServerCertificates(
+      params: Params$Resource$Instances$Listservercertificates,
+      callback: BodyResponseCallback<Schema$InstancesListServerCertificatesResponse>
+    ): void;
+    ListServerCertificates(
+      callback: BodyResponseCallback<Schema$InstancesListServerCertificatesResponse>
+    ): void;
+    ListServerCertificates(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Listservercertificates
+        | BodyResponseCallback<Schema$InstancesListServerCertificatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstancesListServerCertificatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstancesListServerCertificatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InstancesListServerCertificatesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Listservercertificates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Listservercertificates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/listServerCertificates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstancesListServerCertificatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstancesListServerCertificatesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Partially updates settings of a Cloud SQL instance by merging the request with the current configuration. This method supports patch semantics.
      *
      * @param params - Parameters for request
@@ -5700,6 +5946,96 @@ export namespace sqladmin_v1 {
     }
 
     /**
+     * Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, please use RotateServerCa instead.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    RotateServerCertificate(
+      params: Params$Resource$Instances$Rotateservercertificate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    RotateServerCertificate(
+      params?: Params$Resource$Instances$Rotateservercertificate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    RotateServerCertificate(
+      params: Params$Resource$Instances$Rotateservercertificate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    RotateServerCertificate(
+      params: Params$Resource$Instances$Rotateservercertificate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    RotateServerCertificate(
+      params: Params$Resource$Instances$Rotateservercertificate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    RotateServerCertificate(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    RotateServerCertificate(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Rotateservercertificate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Rotateservercertificate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Rotateservercertificate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{project}/instances/{instance}/rotateServerCertificate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Starts the replication in the read replica instance.
      *
      * @param params - Parameters for request
@@ -6164,6 +6500,17 @@ export namespace sqladmin_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Instances$Addservercertificate
+    extends StandardParameters {
+    /**
+     * Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Instances$Clone extends StandardParameters {
     /**
      * The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
@@ -6180,6 +6527,22 @@ export namespace sqladmin_v1 {
     requestBody?: Schema$InstancesCloneRequest;
   }
   export interface Params$Resource$Instances$Delete extends StandardParameters {
+    /**
+     * Flag to opt-in for final backup. By default, it is turned off.
+     */
+    enableFinalBackup?: boolean;
+    /**
+     * Optional. The description of the final backup.
+     */
+    finalBackupDescription?: string;
+    /**
+     * Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.
+     */
+    finalBackupExpiryTime?: string;
+    /**
+     * Optional. Retention period of the final backup.
+     */
+    finalBackupTtlDays?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -6316,6 +6679,17 @@ export namespace sqladmin_v1 {
      */
     project?: string;
   }
+  export interface Params$Resource$Instances$Listservercertificates
+    extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance.
+     */
+    project?: string;
+  }
   export interface Params$Resource$Instances$Patch extends StandardParameters {
     /**
      * Cloud SQL instance ID. This does not include the project ID.
@@ -6426,6 +6800,22 @@ export namespace sqladmin_v1 {
      * Request body metadata
      */
     requestBody?: Schema$InstancesRotateServerCaRequest;
+  }
+  export interface Params$Resource$Instances$Rotateservercertificate
+    extends StandardParameters {
+    /**
+     * Required. Cloud SQL instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InstancesRotateServerCertificateRequest;
   }
   export interface Params$Resource$Instances$Startreplica
     extends StandardParameters {
@@ -6790,6 +7180,10 @@ export namespace sqladmin_v1 {
     project?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
+    /**
+     * Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.
+     */
+    filter?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */

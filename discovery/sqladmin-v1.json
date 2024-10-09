@@ -608,6 +608,73 @@
     },
     "instances": {
       "methods": {
+        "ListServerCertificates": {
+          "description": "Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.",
+          "flatPath": "v1/projects/{project}/instances/{instance}/listServerCertificates",
+          "httpMethod": "GET",
+          "id": "sql.instances.ListServerCertificates",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/listServerCertificates",
+          "response": {
+            "$ref": "InstancesListServerCertificatesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
+        "RotateServerCertificate": {
+          "description": "Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, please use RotateServerCa instead.",
+          "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCertificate",
+          "httpMethod": "POST",
+          "id": "sql.instances.RotateServerCertificate",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/rotateServerCertificate",
+          "request": {
+            "$ref": "InstancesRotateServerCertificateRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
         "acquireSsrsLease": {
           "description": "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
           "flatPath": "v1/projects/{project}/instances/{instance}/acquireSsrsLease",
@@ -675,6 +742,38 @@
             "https://www.googleapis.com/auth/sqlservice.admin"
           ]
         },
+        "addServerCertificate": {
+          "description": "Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, please use AddServerCa instead.",
+          "flatPath": "v1/projects/{project}/instances/{instance}/addServerCertificate",
+          "httpMethod": "POST",
+          "id": "sql.instances.addServerCertificate",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Cloud SQL instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/addServerCertificate",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
         "clone": {
           "description": "Creates a Cloud SQL instance as a clone of the source instance. Using this operation might cause your instance to restart.",
           "flatPath": "v1/projects/{project}/instances/{instance}/clone",
@@ -720,6 +819,28 @@
             "instance"
           ],
           "parameters": {
+            "enableFinalBackup": {
+              "description": "Flag to opt-in for final backup. By default, it is turned off.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "finalBackupDescription": {
+              "description": "Optional. The description of the final backup.",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupExpiryTime": {
+              "description": "Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.",
+              "format": "google-datetime",
+              "location": "query",
+              "type": "string"
+            },
+            "finalBackupTtlDays": {
+              "description": "Optional. Retention period of the final backup.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
@@ -1570,6 +1691,11 @@
             "project"
           ],
           "parameters": {
+            "filter": {
+              "description": "Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.",
+              "location": "query",
+              "type": "string"
+            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "query",
@@ -2267,7 +2393,7 @@
       }
     }
   },
-  "revision": "20240829",
+  "revision": "20240925",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2456,6 +2582,10 @@
         },
         "kind": {
           "description": "This is always `sql#backupContext`.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the backup. Format: projects/{project}/backups/{backup}",
           "type": "string"
         }
       },
@@ -4454,6 +4584,35 @@
       },
       "type": "object"
     },
+    "InstancesListServerCertificatesResponse": {
+      "description": "Instances ListServerCertificates response.",
+      "id": "InstancesListServerCertificatesResponse",
+      "properties": {
+        "activeVersion": {
+          "description": "The `sha1_fingerprint` of the active certificate from `server_certs`.",
+          "type": "string"
+        },
+        "caCerts": {
+          "description": "List of server CA certificates for the instance.",
+          "items": {
+            "$ref": "SslCert"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "This is always `sql#instancesListServerCertificates`.",
+          "type": "string"
+        },
+        "serverCerts": {
+          "description": "List of server certificates for the instance, signed by the corresponding CA from the `ca_certs` list.",
+          "items": {
+            "$ref": "SslCert"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "InstancesReencryptRequest": {
       "description": "Database Instance reencrypt request.",
       "id": "InstancesReencryptRequest",
@@ -4469,9 +4628,17 @@
       "description": "Database instance restore backup request.",
       "id": "InstancesRestoreBackupRequest",
       "properties": {
+        "backup": {
+          "description": "The name of the backup to restore from in following format: projects/{project-id}/backups/{backup-uid} Only one of restore_backup_context or backup can be passed to the input.",
+          "type": "string"
+        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
+        },
+        "restoreInstanceSettings": {
+          "$ref": "DatabaseInstance",
+          "description": "Optional. Restore instance settings overrides the instance settings stored as part of the backup. Instance's major database version cannot be changed and the disk size can only be increased. This feature is only available for restores to new instances using the backup name."
         }
       },
       "type": "object"
@@ -4483,6 +4650,17 @@
         "rotateServerCaContext": {
           "$ref": "RotateServerCaContext",
           "description": "Contains details about the rotate server CA operation."
+        }
+      },
+      "type": "object"
+    },
+    "InstancesRotateServerCertificateRequest": {
+      "description": "Rotate server certificate request.",
+      "id": "InstancesRotateServerCertificateRequest",
+      "properties": {
+        "rotateServerCertificateContext": {
+          "$ref": "RotateServerCertificateContext",
+          "description": "Optional. Contains details about the rotate server certificate operation."
         }
       },
       "type": "object"
@@ -4859,6 +5037,7 @@
             "AUTO_RESTART",
             "REENCRYPT",
             "SWITCHOVER",
+            "UPDATE_BACKUP",
             "ACQUIRE_SSRS_LEASE",
             "RELEASE_SSRS_LEASE",
             "RECONFIGURE_OLD_PRIMARY",
@@ -4911,7 +5090,8 @@
             false,
             false,
             false,
-            false,
+            true,
+            true,
             false,
             false
           ],
@@ -4955,6 +5135,7 @@
             "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
             "Re-encrypts CMEK instances with latest key version.",
             "Switches the roles of the primary and replica pair. The target instance should be the replica.",
+            "Update a backup.",
             "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica.",
@@ -5107,6 +5288,13 @@
         "nextPageToken": {
           "description": "The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.",
           "type": "string"
+        },
+        "warnings": {
+          "description": "List of warnings that occurred while handling the request.",
+          "items": {
+            "$ref": "ApiWarning"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5309,6 +5497,21 @@
         },
         "nextVersion": {
           "description": "The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server CA version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RotateServerCertificateContext": {
+      "description": "Instance rotate server certificate context.",
+      "id": "RotateServerCertificateContext",
+      "properties": {
+        "kind": {
+          "description": "Optional. This is always `sql#rotateServerCertificateContext`.",
+          "type": "string"
+        },
+        "nextVersion": {
+          "description": "The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.",
           "type": "string"
         }
       },
@@ -5642,7 +5845,8 @@
             "EXTENSIONS_NOT_ENABLED_IN_REPLICA",
             "UNSUPPORTED_COLUMNS",
             "USERS_NOT_CREATED_IN_REPLICA",
-            "UNSUPPORTED_SYSTEM_OBJECTS"
+            "UNSUPPORTED_SYSTEM_OBJECTS",
+            "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY"
           ],
           "enumDescriptions": [
             "",
@@ -5665,7 +5869,7 @@
             "The primary instance database parameter setup doesn't allow EM sync.",
             "The gtid_mode is not supported, applicable for MySQL.",
             "SQL Server Agent is not running.",
-            "The table definition is not support due to missing primary key or replica identity, applicable for postgres.",
+            "The table definition is not support due to missing primary key or replica identity, applicable for postgres. Note that this is a warning and won't block the migration.",
             "The customer has a definer that will break EM setup.",
             "SQL Server @@SERVERNAME does not match actual host name.",
             "The primary instance has been setup and will fail the setup.",
@@ -5696,7 +5900,8 @@
             "This error message indicates that the specified extensions are not enabled on destination instance. For example, before you can migrate data to the destination instance, you must enable the PGAudit extension on the instance.",
             "The source database has generated columns that can't be migrated. Please change them to regular columns before migration.",
             "The source database has users that aren't created in the replica. First, create all users, which are in the pg_user_mappings table of the source database, in the destination instance. Then, perform the migration.",
-            "The selected objects include system objects that aren't supported for migration."
+            "The selected objects include system objects that aren't supported for migration.",
+            "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration."
           ],
           "type": "string"
         }
