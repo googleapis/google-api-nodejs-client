@@ -26,6 +26,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.europe-west9.rep.googleapis.com/",
       "location": "europe-west9"
     },
@@ -36,8 +41,28 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.us-east4.rep.googleapis.com/",
       "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
     },
     {
       "description": "Regional Endpoint",
@@ -46,8 +71,33 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigqueryreservation.us-west1.rep.googleapis.com/",
       "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigqueryreservation.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -885,7 +935,7 @@
       }
     }
   },
-  "revision": "20240611",
+  "revision": "20240921",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -991,13 +1041,13 @@
       "id": "CapacityCommitment",
       "properties": {
         "commitmentEndTime": {
-          "description": "Output only. The end of the current commitment period. It is applicable only for ACTIVE capacity commitments.",
+          "description": "Output only. The end of the current commitment period. It is applicable only for ACTIVE capacity commitments. Note after renewal, commitment_end_time is the time the renewed commitment expires. So itwould be at a time after commitment_start_time + committed period, because we don't change commitment_start_time ,",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "commitmentStartTime": {
-          "description": "Output only. The start of the current commitment period. It is applicable only for ACTIVE capacity commitments.",
+          "description": "Output only. The start of the current commitment period. It is applicable only for ACTIVE capacity commitments. Note after the commitment is renewed, commitment_start_time won't be changed. It refers to the start time of the original commitment.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
