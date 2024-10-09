@@ -22917,6 +22917,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig": {
       "description": "Specifies the configurations needed for Generic Discovery.Currently we support: * `content_search_spec`: configuration for generic content search.",
       "id": "GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig",
@@ -26604,6 +26615,27 @@
         "vertexAiOrganicCrawlRate": {
           "$ref": "GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries",
           "description": "Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig": {
+      "description": "Configuration for Natural Language Query Understanding.",
+      "id": "GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig",
+      "properties": {
+        "mode": {
+          "description": "Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Natural Language Query Understanding is disabled.",
+            "Natural Language Query Understanding is enabled."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

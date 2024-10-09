@@ -16226,6 +16226,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSession": {
       "description": "External session proto definition.",
       "id": "GoogleCloudDiscoveryengineV1alphaSession",
@@ -25067,6 +25078,17 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1betaServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
         }
       },
       "type": "object"

@@ -3906,6 +3906,15 @@ export namespace discoveryengine_v1 {
     mode?: string | null;
   }
   /**
+   * Stores information regarding the serving configurations at DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfigDataStore {
+    /**
+     * If set true, the DataStore will not be available for serving search requests.
+     */
+    disabledForServing?: boolean | null;
+  }
+  /**
    * External session proto definition.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSession {
@@ -6616,6 +6625,15 @@ export namespace discoveryengine_v1 {
      * Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot.
      */
     vertexAiOrganicCrawlRate?: Schema$GoogleCloudDiscoveryengineV1betaCrawlRateTimeSeries;
+  }
+  /**
+   * Configuration for Natural Language Query Understanding.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig {
+    /**
+     * Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.
+     */
+    mode?: string | null;
   }
   /**
    * Metadata and configurations for a Google Cloud project in the service.

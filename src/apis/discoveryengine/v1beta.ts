@@ -3877,6 +3877,15 @@ export namespace discoveryengine_v1beta {
     mode?: string | null;
   }
   /**
+   * Stores information regarding the serving configurations at DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfigDataStore {
+    /**
+     * If set true, the DataStore will not be available for serving search requests.
+     */
+    disabledForServing?: boolean | null;
+  }
+  /**
    * External session proto definition.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSession {
@@ -10215,6 +10224,15 @@ export namespace discoveryengine_v1beta {
      * Output only. ServingConfig updated timestamp.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Stores information regarding the serving configurations at DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaServingConfigDataStore {
+    /**
+     * If set true, the DataStore will not be available for serving search requests.
+     */
+    disabledForServing?: boolean | null;
   }
   /**
    * Specifies the configurations needed for Generic Discovery.Currently we support: * `content_search_spec`: configuration for generic content search.
