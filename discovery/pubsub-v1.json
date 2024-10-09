@@ -1638,7 +1638,7 @@
       }
     }
   },
-  "revision": "20240730",
+  "revision": "20240918",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1683,6 +1683,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "AvroFormat": {
+      "description": "Configuration for reading Cloud Storage data in Avro binary format. The bytes of each object will be set to the `data` field of a Pub/Sub message.",
+      "id": "AvroFormat",
+      "properties": {},
       "type": "object"
     },
     "AwsKinesis": {
@@ -1799,6 +1805,59 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudStorage": {
+      "description": "Ingestion settings for Cloud Storage.",
+      "id": "CloudStorage",
+      "properties": {
+        "avroFormat": {
+          "$ref": "AvroFormat",
+          "description": "Optional. Data from Cloud Storage will be interpreted in Avro format."
+        },
+        "bucket": {
+          "description": "Optional. Cloud Storage bucket. The bucket name must be without any prefix like \"gs://\". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).",
+          "type": "string"
+        },
+        "matchGlob": {
+          "description": "Optional. Glob pattern used to match objects that will be ingested. If unset, all objects will be ingested. See the [supported patterns](https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-objects-and-prefixes-using-glob).",
+          "type": "string"
+        },
+        "minimumObjectCreateTime": {
+          "description": "Optional. Only objects with a larger or equal creation timestamp will be ingested.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "pubsubAvroFormat": {
+          "$ref": "PubSubAvroFormat",
+          "description": "Optional. It will be assumed data from Cloud Storage was written via [Cloud Storage subscriptions](https://cloud.google.com/pubsub/docs/cloudstorage)."
+        },
+        "state": {
+          "description": "Output only. An output-only field that indicates the state of the Cloud Storage ingestion source.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CLOUD_STORAGE_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "BUCKET_NOT_FOUND",
+            "TOO_MANY_OBJECTS"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Ingestion is active.",
+            "Permission denied encountered while calling the Cloud Storage API. This can happen if the Pub/Sub SA has not been granted the [appropriate permissions](https://cloud.google.com/storage/docs/access-control/iam-permissions): - storage.objects.list: to list the objects in a bucket. - storage.objects.get: to read the objects in a bucket. - storage.buckets.get: to verify the bucket exists.",
+            "Permission denied encountered while publishing to the topic. This can happen if the Pub/Sub SA has not been granted the [appropriate publish permissions](https://cloud.google.com/pubsub/docs/access-control#pubsub.publisher)",
+            "The provided Cloud Storage bucket doesn't exist.",
+            "The Cloud Storage bucket has too many objects, ingestion will be paused."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "textFormat": {
+          "$ref": "TextFormat",
+          "description": "Optional. Data from Cloud Storage will be interpreted as text."
         }
       },
       "type": "object"
@@ -1973,6 +2032,14 @@
         "awsKinesis": {
           "$ref": "AwsKinesis",
           "description": "Optional. Amazon Kinesis Data Streams."
+        },
+        "cloudStorage": {
+          "$ref": "CloudStorage",
+          "description": "Optional. Cloud Storage."
+        },
+        "platformLogsSettings": {
+          "$ref": "PlatformLogsSettings",
+          "description": "Optional. Platform Logs settings. If unset, no Platform Logs will be generated."
         }
       },
       "type": "object"
@@ -2177,6 +2244,33 @@
       },
       "type": "object"
     },
+    "PlatformLogsSettings": {
+      "description": "Settings for Platform Logs produced by Pub/Sub.",
+      "id": "PlatformLogsSettings",
+      "properties": {
+        "severity": {
+          "description": "Optional. The minimum severity level of Platform Logs that will be written.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "DISABLED",
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default value. Logs level is unspecified. Logs will be disabled.",
+            "Logs will be disabled.",
+            "Debug logs and higher-severity logs will be written.",
+            "Info logs and higher-severity logs will be written.",
+            "Warning logs and higher-severity logs will be written.",
+            "Only error logs will be written."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -2199,6 +2293,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "PubSubAvroFormat": {
+      "description": "Configuration for reading Cloud Storage data written via [Cloud Storage subscriptions](https://cloud.google.com/pubsub/docs/cloudstorage). The data and attributes fields of the originally exported Pub/Sub message will be restored when publishing.",
+      "id": "PubSubAvroFormat",
+      "properties": {},
       "type": "object"
     },
     "PublishRequest": {
@@ -2563,7 +2663,7 @@
           "type": "object"
         },
         "messageRetentionDuration": {
-          "description": "Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.",
+          "description": "Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 31 days or less than 10 minutes.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2643,6 +2743,17 @@
       "description": "Configuration for writing message data in text format. Message payloads will be written to files as raw text, separated by a newline.",
       "id": "TextConfig",
       "properties": {},
+      "type": "object"
+    },
+    "TextFormat": {
+      "description": "Configuration for reading Cloud Storage data in text format. Each line of text as specified by the delimiter will be set to the `data` field of a Pub/Sub message.",
+      "id": "TextFormat",
+      "properties": {
+        "delimiter": {
+          "description": "Optional. When unset, '\\n' is used.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Topic": {
