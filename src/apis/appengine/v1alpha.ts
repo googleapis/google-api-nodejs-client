@@ -260,6 +260,19 @@ export namespace appengine_v1alpha {
    */
   export interface Schema$Empty {}
   /**
+   * For use only by GCE. GceTag is a wrapper around the GCE administrative tag with parent info.
+   */
+  export interface Schema$GceTag {
+    /**
+     * The parents(s) of the tag. Eg. projects/123, folders/456 It usually contains only one parent. But, in some corner cases, it can contain multiple parents. Currently, organizations are not supported.
+     */
+    parent?: string[] | null;
+    /**
+     * The administrative_tag name.
+     */
+    tag?: string | null;
+  }
+  /**
    * Metadata for the given google.cloud.location.Location.
    */
   export interface Schema$GoogleAppengineV1betaLocationMetadata {
@@ -560,6 +573,10 @@ export namespace appengine_v1alpha {
      * The CCFE state of the consumer project. It is the same state that is communicated to the CLH during project events. Notice that this field is not set in the DB, it is only set in this proto when communicated to CLH in the side channel.
      */
     consumerProjectState?: string | null;
+    /**
+     * The GCE tags associated with the consumer project and those inherited due to their ancestry, if any. Not supported by CCFE.
+     */
+    gceTag?: Schema$GceTag[];
     /**
      * The service account authorized to operate on the consumer project. Note: CCFE only propagates P4SA with default tag to CLH.
      */

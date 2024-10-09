@@ -946,7 +946,7 @@
       }
     }
   },
-  "revision": "20240422",
+  "revision": "20240906",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -1123,6 +1123,24 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } ",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GceTag": {
+      "description": "For use only by GCE. GceTag is a wrapper around the GCE administrative tag with parent info.",
+      "id": "GceTag",
+      "properties": {
+        "parent": {
+          "description": "The parents(s) of the tag. Eg. projects/123, folders/456 It usually contains only one parent. But, in some corner cases, it can contain multiple parents. Currently, organizations are not supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "tag": {
+          "description": "The administrative_tag name.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleAppengineV1betaLocationMetadata": {
@@ -1550,6 +1568,13 @@
             "This state indicates that the container has been (or is being) completely removed. This is often due to a data governance purge request and therefore resources should be deleted when this state is reached."
           ],
           "type": "string"
+        },
+        "gceTag": {
+          "description": "The GCE tags associated with the consumer project and those inherited due to their ancestry, if any. Not supported by CCFE.",
+          "items": {
+            "$ref": "GceTag"
+          },
+          "type": "array"
         },
         "p4ServiceAccount": {
           "description": "The service account authorized to operate on the consumer project. Note: CCFE only propagates P4SA with default tag to CLH.",
