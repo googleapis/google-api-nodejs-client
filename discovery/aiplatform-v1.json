@@ -2246,7 +2246,7 @@
                     "annotations": {
                       "methods": {
                         "list": {
-                          "description": "Lists Annotations belongs to a dataitem",
+                          "description": "Lists Annotations belongs to a dataitem This RPC is only available in InternalDatasetService. It is only used for exporting conversation data to CCAI Insights.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dataItems/{dataItemsId}/annotations",
                           "httpMethod": "GET",
                           "id": "aiplatform.projects.locations.datasets.dataItems.annotations.list",
@@ -4271,7 +4271,7 @@
                   ],
                   "parameters": {
                     "featureGroupId": {
-                      "description": "Required. The ID to use for this FeatureGroup, which will become the final component of the FeatureGroup's resource name. This value may be up to 60 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within the project and location.",
+                      "description": "Required. The ID to use for this FeatureGroup, which will become the final component of the FeatureGroup's resource name. This value may be up to 128 characters, and valid characters are `[a-z0-9_]`. The first character cannot be a number. The value must be unique within the project and location.",
                       "location": "query",
                       "type": "string"
                     },
@@ -4956,6 +4956,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}:getIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists FeatureOnlineStores in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores",
@@ -5031,6 +5062,65 @@
                   },
                   "response": {
                     "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "GoogleIamV1SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.featureOnlineStores.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "permissions": {
+                      "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -5156,6 +5246,37 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists FeatureViews in a given FeatureOnlineStore.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews",
@@ -5264,6 +5385,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "sync": {
                       "description": "Triggers on-demand sync for the FeatureView.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:sync",
@@ -5287,6 +5436,37 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudAiplatformV1SyncFeatureViewResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "permissions": {
+                          "description": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:testIamPermissions",
+                      "response": {
+                        "$ref": "GoogleIamV1TestIamPermissionsResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -6410,7 +6590,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The resource name of the EntityType to create the batch of Features under. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}`",
+                              "description": "Required. The resource name of the EntityType/FeatureGroup to create the batch of Features under. Format: `projects/{project}/locations/{location}/featurestores/{featurestore}/entityTypes/{entity_type}` `projects/{project}/locations/{location}/featureGroups/{feature_group}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/featurestores/[^/]+/entityTypes/[^/]+$",
                               "required": true,
@@ -17296,6 +17476,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "rebaseTunedModel": {
+                  "description": "Rebase a TunedModel.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tuningJobs:rebaseTunedModel",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.tuningJobs.rebaseTunedModel",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location into which to rebase the Model. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/tuningJobs:rebaseTunedModel",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1RebaseTunedModelRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -17319,6 +17527,31 @@
                         }
                       },
                       "path": "v1/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/tuningJobs/{tuningJobsId}/operations/{operationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "aiplatform.projects.locations.tuningJobs.operations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the operation resource to be deleted.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/tuningJobs/[^/]+/operations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "GoogleProtobufEmpty"
                       },
@@ -17580,7 +17813,7 @@
       }
     }
   },
-  "revision": "20240816",
+  "revision": "20240925",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -17719,8 +17952,16 @@
       "type": "object"
     },
     "CloudAiLargeModelsVisionRaiInfo": {
+      "description": "Next ID: 6",
       "id": "CloudAiLargeModelsVisionRaiInfo",
       "properties": {
+        "blockedEntities": {
+          "description": "List of blocked entities from the blocklist if it is detected.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "detectedLabels": {
           "description": "The list of detected labels for different rai categories.",
           "items": {
@@ -18366,11 +18607,11 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1BatchCreateFeaturesRequest": {
-      "description": "Request message for FeaturestoreService.BatchCreateFeatures.",
+      "description": "Request message for FeaturestoreService.BatchCreateFeatures. Request message for FeatureRegistryService.BatchCreateFeatures.",
       "id": "GoogleCloudAiplatformV1BatchCreateFeaturesRequest",
       "properties": {
         "requests": {
-          "description": "Required. The request message specifying the Features to create. All Features must be created under the same parent EntityType. The `parent` field in each child request message can be omitted. If `parent` is set in a child request, then the value must match the `parent` value in this request message.",
+          "description": "Required. The request message specifying the Features to create. All Features must be created under the same parent EntityType / FeatureGroup. The `parent` field in each child request message can be omitted. If `parent` is set in a child request, then the value must match the `parent` value in this request message.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1CreateFeatureRequest"
           },
@@ -19224,6 +19465,11 @@
           "readOnly": true,
           "type": "integer"
         },
+        "logprobsResult": {
+          "$ref": "GoogleCloudAiplatformV1LogprobsResult",
+          "description": "Output only. Log-likelihood scores for the response tokens and top tokens",
+          "readOnly": true
+        },
         "safetyRatings": {
           "description": "Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.",
           "items": {
@@ -19664,6 +19910,10 @@
           },
           "type": "array"
         },
+        "generationConfig": {
+          "$ref": "GoogleCloudAiplatformV1GenerationConfig",
+          "description": "Optional. Generation config that the model will use to generate the response."
+        },
         "instances": {
           "description": "Optional. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.",
           "items": {
@@ -19897,6 +20147,25 @@
         },
         "progressMessage": {
           "description": "A human-readable message that shows the intermediate progress details of NotebookRuntime.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1CreateNotebookExecutionJobRequest": {
+      "description": "Request message for [NotebookService.CreateNotebookExecutionJob]",
+      "id": "GoogleCloudAiplatformV1CreateNotebookExecutionJobRequest",
+      "properties": {
+        "notebookExecutionJob": {
+          "$ref": "GoogleCloudAiplatformV1NotebookExecutionJob",
+          "description": "Required. The NotebookExecutionJob to create."
+        },
+        "notebookExecutionJobId": {
+          "description": "Optional. User specified ID for the NotebookExecutionJob.",
+          "type": "string"
+        },
+        "parent": {
+          "description": "Required. The resource name of the Location to create the NotebookExecutionJob. Format: `projects/{project}/locations/{location}`",
           "type": "string"
         }
       },
@@ -20862,6 +21131,13 @@
           "$ref": "GoogleCloudAiplatformV1IndexPrivateEndpoints",
           "description": "Output only. Provides paths for users to send requests directly to the deployed index services running on Cloud via private services access. This field is populated if network is configured.",
           "readOnly": true
+        },
+        "pscAutomationConfigs": {
+          "description": "Optional. If set for PSC deployed index, PSC connection will be automatically created after deployment is done and the endpoint information is populated in private_endpoints.psc_automated_endpoints.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1PSCAutomationConfig"
+          },
+          "type": "array"
         },
         "reservedIpRanges": {
           "description": "Optional. A list of reserved ip ranges under the VPC network that can be used for this DeployedIndex. If set, we will deploy the index within the provided ip ranges. Otherwise, the index might be deployed to any ip ranges under the provided VPC network. The value should be the name of the address (https://cloud.google.com/compute/docs/reference/rest/v1/addresses) Example: ['vertex-ai-ip-range']. For more information about subnets and network IP ranges, please see https://cloud.google.com/vpc/docs/subnets#manually_created_subnet_ip_ranges.",
@@ -22872,12 +23148,20 @@
           "$ref": "GoogleCloudAiplatformV1BigQuerySource",
           "description": "Required. Immutable. The BigQuery source URI that points to either a BigQuery Table or View."
         },
+        "dense": {
+          "description": "Optional. If set, all feature values will be fetched from a single row per unique entityId including nulls. If not set, will collapse all rows for each unique entityId into a singe row with any non-null values if present, if no non-null values are present will sync null. ex: If source has schema `(entity_id, feature_timestamp, f0, f1)` and the following rows: `(e1, 2020-01-01T10:00:00.123Z, 10, 15)` `(e1, 2020-02-01T10:00:00.123Z, 20, null)` If dense is set, `(e1, 20, null)` is synced to online stores. If dense is not set, `(e1, 20, 15)` is synced to online stores.",
+          "type": "boolean"
+        },
         "entityIdColumns": {
           "description": "Optional. Columns to construct entity_id / row keys. If not provided defaults to `entity_id`.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "staticDataSource": {
+          "description": "Optional. Set if the data source is not a time-series.",
+          "type": "boolean"
         },
         "timeSeries": {
           "$ref": "GoogleCloudAiplatformV1FeatureGroupBigQueryTimeSeries",
@@ -23292,6 +23576,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "vertexRagSource": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewVertexRagSource",
+          "description": "Optional. The Vertex RAG Source that the FeatureView is linked to."
         }
       },
       "type": "object"
@@ -23520,6 +23808,22 @@
           "description": "Output only. BigQuery slot milliseconds consumed for the sync job.",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewVertexRagSource": {
+      "description": "A Vertex Rag source for features that need to be synced to Online Store.",
+      "id": "GoogleCloudAiplatformV1FeatureViewVertexRagSource",
+      "properties": {
+        "ragCorpusId": {
+          "description": "Optional. The RAG corpus id corresponding to this FeatureView.",
+          "format": "int64",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The BigQuery view/table URI that will be materialized on each manual sync trigger. The table/view is expected to have the following columns and types at least: - `corpus_id` (STRING, NULLABLE/REQUIRED) - `file_id` (STRING, NULLABLE/REQUIRED) - `chunk_id` (STRING, NULLABLE/REQUIRED) - `chunk_data_type` (STRING, NULLABLE/REQUIRED) - `chunk_data` (STRING, NULLABLE/REQUIRED) - `embeddings` (FLOAT, REPEATED) - `file_original_uri` (STRING, NULLABLE/REQUIRED)",
           "type": "string"
         }
       },
@@ -24178,6 +24482,10 @@
         "parameters": {
           "$ref": "GoogleCloudAiplatformV1Schema",
           "description": "Optional. Describes the parameters to this function in JSON Schema Object format. Reflects the Open API 3.03 Parameter Object. string Key: the name of the parameter. Parameter names are case sensitive. Schema Value: the Schema defining the type used for the parameter. For function with no parameters, this can be left unset. Parameter names must start with a letter or an underscore and must only contain chars a-z, A-Z, 0-9, or underscores with a maximum length of 64. Example with 1 required and 1 optional parameter: type: OBJECT properties: param1: type: STRING param2: type: INTEGER required: - param1"
+        },
+        "response": {
+          "$ref": "GoogleCloudAiplatformV1Schema",
+          "description": "Optional. Describes the output from this function in JSON Schema format. Reflects the Open API 3.03 Response Object. The Schema defines the type used for the response value of the function."
         }
       },
       "type": "object"
@@ -24195,7 +24503,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. The function response in JSON object format.",
+          "description": "Required. The function response in JSON object format. Use \"output\" key to specify function output and \"error\" key to specify error details (if any). If \"output\" and \"error\" keys are not specified, then whole \"response\" is treated as function output.",
           "type": "object"
         }
       },
@@ -24241,6 +24549,13 @@
           "$ref": "GoogleCloudAiplatformV1GenerationConfig",
           "description": "Optional. Generation config."
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. It is used for billing and reporting only. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
         "safetySettings": {
           "description": "Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.",
           "items": {
@@ -24277,6 +24592,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "modelVersion": {
+          "description": "Output only. The model version used to generate the response.",
+          "readOnly": true,
+          "type": "string"
         },
         "promptFeedback": {
           "$ref": "GoogleCloudAiplatformV1GenerateContentResponsePromptFeedback",
@@ -24344,6 +24664,7 @@
           "type": "integer"
         },
         "totalTokenCount": {
+          "description": "Total token count for prompt and response candidates.",
           "format": "int32",
           "type": "integer"
         }
@@ -24364,6 +24685,11 @@
           "format": "float",
           "type": "number"
         },
+        "logprobs": {
+          "description": "Optional. Logit probabilities.",
+          "format": "int32",
+          "type": "integer"
+        },
         "maxOutputTokens": {
           "description": "Optional. The maximum number of output tokens to generate per message.",
           "format": "int32",
@@ -24373,6 +24699,10 @@
           "description": "Optional. Positive penalties.",
           "format": "float",
           "type": "number"
+        },
+        "responseLogprobs": {
+          "description": "Optional. If true, export the logprobs results in response.",
+          "type": "boolean"
         },
         "responseMimeType": {
           "description": "Optional. Output response mimetype of the generated candidate text. Supported mimetype: - `text/plain`: (default) Text output. - `application/json`: JSON response in the candidates. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. This is a preview feature.",
@@ -26396,6 +26726,62 @@
           "description": "List of TuningJobs in the requested page.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1TuningJob"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1LogprobsResult": {
+      "description": "Logprobs Result",
+      "id": "GoogleCloudAiplatformV1LogprobsResult",
+      "properties": {
+        "chosenCandidates": {
+          "description": "Length = total number of decoding steps. The chosen candidates may or may not be in top_candidates.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1LogprobsResultCandidate"
+          },
+          "type": "array"
+        },
+        "topCandidates": {
+          "description": "Length = total number of decoding steps.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1LogprobsResultTopCandidates"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1LogprobsResultCandidate": {
+      "description": "Candidate for the logprobs token and score.",
+      "id": "GoogleCloudAiplatformV1LogprobsResultCandidate",
+      "properties": {
+        "logProbability": {
+          "description": "The candidate's log probability.",
+          "format": "float",
+          "type": "number"
+        },
+        "token": {
+          "description": "The candidate’s token string value.",
+          "type": "string"
+        },
+        "tokenId": {
+          "description": "The candidate’s token id value.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1LogprobsResultTopCandidates": {
+      "description": "Candidates with top log probabilities at each decoding step.",
+      "id": "GoogleCloudAiplatformV1LogprobsResultTopCandidates",
+      "properties": {
+        "candidates": {
+          "description": "Sorted by log probability in descending order.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1LogprobsResultCandidate"
           },
           "type": "array"
         }
@@ -29274,6 +29660,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1PSCAutomationConfig": {
+      "description": "PSC config that is used to automatically create forwarding rule via ServiceConnectionMap.",
+      "id": "GoogleCloudAiplatformV1PSCAutomationConfig",
+      "properties": {
+        "network": {
+          "description": "Required. The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert): `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in '12345', and {network} is network name.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. Project id used to create forwarding rule.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1PairwiseMetricInput": {
       "description": "Input for pairwise metric.",
       "id": "GoogleCloudAiplatformV1PairwiseMetricInput",
@@ -31627,6 +32028,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1RebaseTunedModelRequest": {
+      "description": "Request message for GenAiTuningService.RebaseTunedModel.",
+      "id": "GoogleCloudAiplatformV1RebaseTunedModelRequest",
+      "properties": {
+        "artifactDestination": {
+          "$ref": "GoogleCloudAiplatformV1GcsDestination",
+          "description": "Optional. The Google Cloud Storage location to write the artifacts."
+        },
+        "deployToSameEndpoint": {
+          "description": "Optional. By default, bison to gemini migration will always create new model/endpoint, but for gemini-1.0 to gemini-1.5 migration, we default deploy to the same endpoint. See details in this Section.",
+          "type": "boolean"
+        },
+        "tunedModelRef": {
+          "$ref": "GoogleCloudAiplatformV1TunedModelRef",
+          "description": "Required. TunedModel reference to retrieve the legacy model information."
+        },
+        "tuningJob": {
+          "$ref": "GoogleCloudAiplatformV1TuningJob",
+          "description": "Optional. The TuningJob to be updated. Users can use this TuningJob field to overwrite tuning configs."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1RebootPersistentResourceOperationMetadata": {
       "description": "Details of operations that perform reboot PersistentResource.",
       "id": "GoogleCloudAiplatformV1RebootPersistentResourceOperationMetadata",
@@ -31986,14 +32410,16 @@
             "HARM_CATEGORY_HATE_SPEECH",
             "HARM_CATEGORY_DANGEROUS_CONTENT",
             "HARM_CATEGORY_HARASSMENT",
-            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_CIVIC_INTEGRITY"
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
             "The harm category is dangerous content.",
             "The harm category is harassment.",
-            "The harm category is sexually explicit content."
+            "The harm category is sexually explicit content.",
+            "The harm category is civic integrity."
           ],
           "readOnly": true,
           "type": "string"
@@ -32086,14 +32512,16 @@
             "HARM_CATEGORY_HATE_SPEECH",
             "HARM_CATEGORY_DANGEROUS_CONTENT",
             "HARM_CATEGORY_HARASSMENT",
-            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_CIVIC_INTEGRITY"
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
             "The harm category is dangerous content.",
             "The harm category is harassment.",
-            "The harm category is sexually explicit content."
+            "The harm category is sexually explicit content.",
+            "The harm category is civic integrity."
           ],
           "type": "string"
         },
@@ -32118,14 +32546,16 @@
             "BLOCK_LOW_AND_ABOVE",
             "BLOCK_MEDIUM_AND_ABOVE",
             "BLOCK_ONLY_HIGH",
-            "BLOCK_NONE"
+            "BLOCK_NONE",
+            "OFF"
           ],
           "enumDescriptions": [
             "Unspecified harm block threshold.",
             "Block low threshold and above (i.e. block more).",
             "Block medium threshold and above.",
             "Block only high threshold (i.e. block less).",
-            "Block none."
+            "Block none.",
+            "Turn off the safety filter."
           ],
           "type": "string"
         }
@@ -32289,6 +32719,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "createNotebookExecutionJobRequest": {
+          "$ref": "GoogleCloudAiplatformV1CreateNotebookExecutionJobRequest",
+          "description": "Request for NotebookService.CreateNotebookExecutionJob."
+        },
         "createPipelineJobRequest": {
           "$ref": "GoogleCloudAiplatformV1CreatePipelineJobRequest",
           "description": "Request for PipelineService.CreatePipelineJob. CreatePipelineJobRequest.parent field is required (format: projects/{project}/locations/{location})."
@@ -32427,7 +32861,7 @@
             "LOW_COST",
             "STANDARD",
             "SPOT",
-            "DWS_FLEX_START"
+            "FLEX_START"
           ],
           "enumDeprecated": [
             false,
@@ -32443,7 +32877,7 @@
             "Deprecated. Low cost by making potential use of spot resources.",
             "Standard provisioning strategy uses regular on-demand resources.",
             "Spot provisioning strategy uses spot resources.",
-            "DWS Flex start strategy uses DWS to queue for resources."
+            "Flex Start strategy uses DWS to queue for resources."
           ],
           "type": "string"
         },
@@ -32456,9 +32890,16 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1Schema": {
-      "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema). More fields may be added in the future as needed.",
+      "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may be added in the future as needed.",
       "id": "GoogleCloudAiplatformV1Schema",
       "properties": {
+        "anyOf": {
+          "description": "Optional. The value should be validated against any (one or more) of the subschemas in the list.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Schema"
+          },
+          "type": "array"
+        },
         "default": {
           "description": "Optional. Default value of the data.",
           "type": "any"
@@ -32540,6 +32981,13 @@
           },
           "description": "Optional. SCHEMA FIELDS FOR TYPE OBJECT Properties of Type.OBJECT.",
           "type": "object"
+        },
+        "propertyOrdering": {
+          "description": "Optional. The order of the properties. Not a standard field in open api spec. Only used to support the order of the properties.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "required": {
           "description": "Optional. Required properties of Type.OBJECT.",
@@ -34499,6 +34947,10 @@
           "description": "Whether the prompt dataset has prompt variable.",
           "type": "boolean"
         },
+        "logprobs": {
+          "description": "Whether or not the user has enabled logit probabilities in the model parameters.",
+          "type": "boolean"
+        },
         "maxOutputTokens": {
           "description": "Value of the maximum number of tokens generated set when the dataset was saved.",
           "format": "int64",
@@ -34510,6 +34962,15 @@
         },
         "promptType": {
           "description": "Type of the prompt dataset.",
+          "type": "string"
+        },
+        "seedEnabled": {
+          "description": "Seeding enables model to return a deterministic response on a best effort basis. Determinism isn't guaranteed. This field determines whether or not seeding is enabled.",
+          "type": "boolean"
+        },
+        "seedValue": {
+          "description": "The actual value of the seed.",
+          "format": "int64",
           "type": "string"
         },
         "stopSequences": {
@@ -37834,7 +38295,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1SupervisedTuningSpec": {
-      "description": "Tuning Spec for Supervised Tuning.",
+      "description": "Tuning Spec for Supervised Tuning for first party models.",
       "id": "GoogleCloudAiplatformV1SupervisedTuningSpec",
       "properties": {
         "hyperParameters": {
@@ -37859,7 +38320,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1SyncFeatureViewResponse": {
-      "description": "Respose message for FeatureOnlineStoreAdminService.SyncFeatureView.",
+      "description": "Response message for FeatureOnlineStoreAdminService.SyncFeatureView.",
       "id": "GoogleCloudAiplatformV1SyncFeatureViewResponse",
       "properties": {
         "featureViewSync": {
@@ -38452,7 +38913,7 @@
       "id": "GoogleCloudAiplatformV1Tool",
       "properties": {
         "functionDeclarations": {
-          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.",
+          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1FunctionDeclaration"
           },
@@ -39017,6 +39478,25 @@
         "model": {
           "description": "Output only. The resource name of the TunedModel. Format: `projects/{project}/locations/{location}/models/{model}`.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1TunedModelRef": {
+      "description": "TunedModel Reference for legacy model migration.",
+      "id": "GoogleCloudAiplatformV1TunedModelRef",
+      "properties": {
+        "pipelineJob": {
+          "description": "Support migration from tuning job list page, from bison model to gemini model.",
+          "type": "string"
+        },
+        "tunedModel": {
+          "description": "Support migration from model registry.",
+          "type": "string"
+        },
+        "tuningJob": {
+          "description": "Support migration from tuning job list page, from gemini-1.0-pro-002 to 1.5 and above.",
           "type": "string"
         }
       },
