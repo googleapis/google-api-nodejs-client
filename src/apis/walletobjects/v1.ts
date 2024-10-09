@@ -906,6 +906,10 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
+     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Event venue details.
      */
     venue?: Schema$EventVenue;
@@ -1071,6 +1075,10 @@ export namespace walletobjects_v1 {
      * The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed.
      */
     validTimeInterval?: Schema$TimeInterval;
+    /**
+     * Optional value added module data. Maximum of ten on the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
      * Deprecated
      */
@@ -1320,6 +1328,10 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
+     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Deprecated
      */
     version?: string | null;
@@ -1492,6 +1504,10 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
+     * Optional value added module data. Maximum of ten on the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Deprecated
      */
     version?: string | null;
@@ -1578,6 +1594,10 @@ export namespace walletobjects_v1 {
      * Text module data. If `textModulesData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object.
      */
     textModulesData?: Schema$TextModuleData[];
+    /**
+     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
      * View Unlock Requirement options for the generic pass.
      */
@@ -1709,6 +1729,10 @@ export namespace walletobjects_v1 {
      * The time period this object will be considered valid or usable. When the time period is passed, the object will be considered expired, which will affect the rendering on user's devices.
      */
     validTimeInterval?: Schema$TimeInterval;
+    /**
+     * Optional value added module data. Maximum of ten on the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
      * The wide logo of the pass. When provided, this will be used in place of the logo in the top left of the card view.
      */
@@ -1874,6 +1898,10 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
+     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Deprecated
      */
     version?: string | null;
@@ -2023,6 +2051,10 @@ export namespace walletobjects_v1 {
      * The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed.
      */
     validTimeInterval?: Schema$TimeInterval;
+    /**
+     * Optional value added module data. Maximum of ten on the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
      * Deprecated
      */
@@ -2417,6 +2449,10 @@ export namespace walletobjects_v1 {
      */
     textModulesData?: Schema$TextModuleData[];
     /**
+     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Deprecated
      */
     version?: string | null;
@@ -2566,6 +2602,10 @@ export namespace walletobjects_v1 {
      * The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed.
      */
     validTimeInterval?: Schema$TimeInterval;
+    /**
+     * Optional value added module data. Maximum of ten on the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
      * Deprecated
      */
@@ -2838,6 +2878,15 @@ export namespace walletobjects_v1 {
      */
     linkedOfferObjectIds?: Schema$ModifyLinkedOfferObjects;
   }
+  /**
+   * Constraints that all must be met for the module to be shown.
+   */
+  export interface Schema$ModuleViewConstraints {
+    /**
+     * The period of time that the module will be displayed to users. Can define both a `startTime` and `endTime`. The module is displayed immediately after insertion unless a `startTime` is set. The module is displayed indefinitely if `endTime` is not set.
+     */
+    displayInterval?: Schema$TimeInterval;
+  }
   export interface Schema$Money {
     /**
      * The currency code, such as "USD" or "EUR."
@@ -3032,6 +3081,10 @@ export namespace walletobjects_v1 {
      */
     titleImage?: Schema$Image;
     /**
+     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Deprecated
      */
     version?: string | null;
@@ -3161,6 +3214,10 @@ export namespace walletobjects_v1 {
      * The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed.
      */
     validTimeInterval?: Schema$TimeInterval;
+    /**
+     * Optional value added module data. Maximum of ten on the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
     /**
      * Deprecated
      */
@@ -3815,6 +3872,10 @@ export namespace walletobjects_v1 {
      */
     transitType?: string | null;
     /**
+     * Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Deprecated
      */
     version?: string | null;
@@ -4009,6 +4070,10 @@ export namespace walletobjects_v1 {
      */
     validTimeInterval?: Schema$TimeInterval;
     /**
+     * Optional value added module data. Maximum of ten on the object.
+     */
+    valueAddedModuleData?: Schema$ValueAddedModuleData[];
+    /**
      * Deprecated
      */
     version?: string | null;
@@ -4090,6 +4155,35 @@ export namespace walletobjects_v1 {
      * The location of a web page, image, or other resource. URIs in the `LinksModuleData` module can have different prefixes indicating the type of URI (a link to a web page, a link to a map, a telephone number, or an email address). URIs must have a scheme.
      */
     uri?: string | null;
+  }
+  /**
+   * Data for Value Added module. Required fields are header and uri.
+   */
+  export interface Schema$ValueAddedModuleData {
+    /**
+     * Body to be displayed on the module. Character limit is 50 and longer strings will be truncated.
+     */
+    body?: Schema$LocalizedString;
+    /**
+     * Header to be displayed on the module. Character limit is 60 and longer strings will be truncated.
+     */
+    header?: Schema$LocalizedString;
+    /**
+     * Image to be displayed on the module. Recommended image ratio is 1:1. Images will be resized to fit this ratio.
+     */
+    image?: Schema$Image;
+    /**
+     * The index for sorting the modules. Modules with a lower sort index are shown before modules with a higher sort index. If unspecified, the sort index is assumed to be INT_MAX. For two modules with the same index, the sorting behavior is undefined.
+     */
+    sortIndex?: number | null;
+    /**
+     * URI that the module leads to on click. This can be a web link or a deep link as mentioned in https://developer.android.com/training/app-links/deep-linking.
+     */
+    uri?: string | null;
+    /**
+     * Constraints that all must be met for the module to be shown.
+     */
+    viewConstraints?: Schema$ModuleViewConstraints;
   }
 
   export class Resource$Eventticketclass {

@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240809",
+  "revision": "20240927",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -3906,6 +3906,7 @@
           "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -4077,6 +4078,13 @@
           },
           "type": "array"
         },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
+        },
         "venue": {
           "$ref": "EventVenue",
           "description": "Event venue details."
@@ -4226,6 +4234,7 @@
           "description": "Links module data. If links module data is also defined on the class, both will be displayed."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -4322,6 +4331,13 @@
         "validTimeInterval": {
           "$ref": "TimeInterval",
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
         },
         "version": {
           "deprecated": true,
@@ -4701,6 +4717,7 @@
           "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -4806,6 +4823,13 @@
           "description": "Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class.",
           "items": {
             "$ref": "TextModuleData"
+          },
+          "type": "array"
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
           },
           "type": "array"
         },
@@ -4974,6 +4998,7 @@
           "description": "Links module data. If links module data is also defined on the class, both will be displayed."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -5062,6 +5087,13 @@
         "validTimeInterval": {
           "$ref": "TimeInterval",
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
         },
         "version": {
           "deprecated": true,
@@ -5207,6 +5239,13 @@
           "description": "Text module data. If `textModulesData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object.",
           "items": {
             "$ref": "TextModuleData"
+          },
+          "type": "array"
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
           },
           "type": "array"
         },
@@ -5435,6 +5474,13 @@
           "$ref": "TimeInterval",
           "description": "The time period this object will be considered valid or usable. When the time period is passed, the object will be considered expired, which will affect the rendering on user's devices."
         },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
+        },
         "wideLogo": {
           "$ref": "Image",
           "description": "The wide logo of the pass. When provided, this will be used in place of the logo in the top left of the card view."
@@ -5573,6 +5619,7 @@
           "description": "Translated strings for the pin_label."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -5686,6 +5733,13 @@
           "description": "Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class.",
           "items": {
             "$ref": "TextModuleData"
+          },
+          "type": "array"
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
           },
           "type": "array"
         },
@@ -5835,6 +5889,7 @@
           "description": "Links module data. If links module data is also defined on the class, both will be displayed."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -5915,6 +5970,13 @@
         "validTimeInterval": {
           "$ref": "TimeInterval",
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
         },
         "version": {
           "deprecated": true,
@@ -6397,6 +6459,7 @@
           "description": "Translated strings for the secondary_rewards_tier_label."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -6522,6 +6585,13 @@
           "description": "Text module data. If text module data is also defined on the class, both will be displayed. The maximum number of these fields displayed is 10 from the object and 10 from the class.",
           "items": {
             "$ref": "TextModuleData"
+          },
+          "type": "array"
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
           },
           "type": "array"
         },
@@ -6670,6 +6740,7 @@
           "description": "Links module data. If links module data is also defined on the class, both will be displayed."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -6754,6 +6825,13 @@
         "validTimeInterval": {
           "$ref": "TimeInterval",
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
         },
         "version": {
           "deprecated": true,
@@ -7163,6 +7241,17 @@
       },
       "type": "object"
     },
+    "ModuleViewConstraints": {
+      "description": "Constraints that all must be met for the module to be shown.",
+      "id": "ModuleViewConstraints",
+      "properties": {
+        "displayInterval": {
+          "$ref": "TimeInterval",
+          "description": "The period of time that the module will be displayed to users. Can define both a `startTime` and `endTime`. The module is displayed immediately after insertion unless a `startTime` is set. The module is displayed indefinitely if `endTime` is not set."
+        }
+      },
+      "type": "object"
+    },
     "Money": {
       "id": "Money",
       "properties": {
@@ -7324,6 +7413,7 @@
           "description": "Translated strings for the title. Recommended maximum length is 60 characters to ensure full string is displayed on smaller screens."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -7480,6 +7570,13 @@
         "titleImage": {
           "$ref": "Image",
           "description": "The title image of the offer. This image is displayed in both the details and list views of the app."
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
         },
         "version": {
           "deprecated": true,
@@ -7687,6 +7784,13 @@
         "validTimeInterval": {
           "$ref": "TimeInterval",
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
         },
         "version": {
           "deprecated": true,
@@ -8696,6 +8800,7 @@
           "description": "Translated strings for the issuer_name. Recommended maximum length is 20 characters to ensure full string is displayed on smaller screens."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -8850,6 +8955,13 @@
             "Legacy alias for `OTHER`. Deprecated."
           ],
           "type": "string"
+        },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the class. For a pass only ten will be displayed, prioritizing those from the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
         },
         "version": {
           "deprecated": true,
@@ -9031,6 +9143,7 @@
           "description": "Links module data. If links module data is also defined on the class, both will be displayed."
         },
         "locations": {
+          "deprecated": true,
           "description": "Note: This field is currently not supported to trigger geo notifications.",
           "items": {
             "$ref": "LatLongPoint"
@@ -9220,6 +9333,13 @@
           "$ref": "TimeInterval",
           "description": "The time period this object will be `active` and object can be used. An object's state will be changed to `expired` when this time period has passed."
         },
+        "valueAddedModuleData": {
+          "description": "Optional value added module data. Maximum of ten on the object.",
+          "items": {
+            "$ref": "ValueAddedModuleData"
+          },
+          "type": "array"
+        },
         "version": {
           "deprecated": true,
           "description": "Deprecated",
@@ -9330,6 +9450,38 @@
         "uri": {
           "description": "The location of a web page, image, or other resource. URIs in the `LinksModuleData` module can have different prefixes indicating the type of URI (a link to a web page, a link to a map, a telephone number, or an email address). URIs must have a scheme.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValueAddedModuleData": {
+      "description": "Data for Value Added module. Required fields are header and uri.",
+      "id": "ValueAddedModuleData",
+      "properties": {
+        "body": {
+          "$ref": "LocalizedString",
+          "description": "Body to be displayed on the module. Character limit is 50 and longer strings will be truncated."
+        },
+        "header": {
+          "$ref": "LocalizedString",
+          "description": "Header to be displayed on the module. Character limit is 60 and longer strings will be truncated."
+        },
+        "image": {
+          "$ref": "Image",
+          "description": "Image to be displayed on the module. Recommended image ratio is 1:1. Images will be resized to fit this ratio."
+        },
+        "sortIndex": {
+          "description": "The index for sorting the modules. Modules with a lower sort index are shown before modules with a higher sort index. If unspecified, the sort index is assumed to be INT_MAX. For two modules with the same index, the sorting behavior is undefined.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "uri": {
+          "description": "URI that the module leads to on click. This can be a web link or a deep link as mentioned in https://developer.android.com/training/app-links/deep-linking.",
+          "type": "string"
+        },
+        "viewConstraints": {
+          "$ref": "ModuleViewConstraints",
+          "description": "Constraints that all must be met for the module to be shown."
         }
       },
       "type": "object"
