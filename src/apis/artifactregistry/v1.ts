@@ -1157,10 +1157,6 @@ export namespace artifactregistry_v1 {
     pullPercent?: number | null;
   }
   /**
-   * The metadata for promote artifact long running operation.
-   */
-  export interface Schema$PromoteArtifactMetadata {}
-  /**
    * PythonPackage represents a python artifact.
    */
   export interface Schema$PythonPackage {

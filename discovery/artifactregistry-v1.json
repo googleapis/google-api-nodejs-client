@@ -3964,12 +3964,6 @@
       },
       "type": "object"
     },
-    "PromoteArtifactMetadata": {
-      "description": "The metadata for promote artifact long running operation.",
-      "id": "PromoteArtifactMetadata",
-      "properties": {},
-      "type": "object"
-    },
     "PythonPackage": {
       "description": "PythonPackage represents a python artifact.",
       "id": "PythonPackage",
