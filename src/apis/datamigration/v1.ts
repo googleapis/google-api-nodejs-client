@@ -242,6 +242,15 @@ export namespace datamigration_v1 {
     logType?: string | null;
   }
   /**
+   * AuthorizedNetwork contains metadata for an authorized network.
+   */
+  export interface Schema$AuthorizedNetwork {
+    /**
+     * Optional. CIDR range for one authorzied network of the instance.
+     */
+    cidrRange?: string | null;
+  }
+  /**
    * Execution log of a background job.
    */
   export interface Schema$BackgroundJobLogEntry {
@@ -289,6 +298,19 @@ export namespace datamigration_v1 {
      * The timestamp when the background job was started.
      */
     startTime?: string | null;
+  }
+  /**
+   * Configuration to use Binary Log Parser CDC technique.
+   */
+  export interface Schema$BinaryLogParser {
+    /**
+     * Use Oracle directories.
+     */
+    logFileDirectories?: Schema$LogFileDirectories;
+    /**
+     * Use Oracle ASM.
+     */
+    oracleAsmLogFileAccess?: Schema$OracleAsmLogFileAccess;
   }
   /**
    * Associates `members`, or principals, with a `role`.
@@ -365,9 +387,13 @@ export namespace datamigration_v1 {
      */
     databaseFlags?: {[key: string]: string} | null;
     /**
-     * The database engine type and version.
+     * The database engine type and version. Deprecated. Use database_version_name instead.
      */
     databaseVersion?: string | null;
+    /**
+     * Optional. The database engine type and version name.
+     */
+    databaseVersionName?: string | null;
     /**
      * Optional. Data cache is an optional feature available for Cloud SQL for MySQL Enterprise Plus edition only. For more information on data cache, see [Data cache overview](https://cloud.google.com/sql/help/mysql-data-cache) in Cloud SQL documentation.
      */
@@ -1243,6 +1269,23 @@ export namespace datamigration_v1 {
     unique?: boolean | null;
   }
   /**
+   * Metadata related to instance level network configuration.
+   */
+  export interface Schema$InstanceNetworkConfig {
+    /**
+     * Optional. A list of external network authorized to access this instance.
+     */
+    authorizedExternalNetworks?: Schema$AuthorizedNetwork[];
+    /**
+     * Optional. Enabling an outbound public IP address to support a database server sending requests out into the internet.
+     */
+    enableOutboundPublicIp?: boolean | null;
+    /**
+     * Optional. Enabling public ip for the instance.
+     */
+    enablePublicIp?: boolean | null;
+  }
+  /**
    * Filter based on relation between source value and compare value of type integer in ConditionalColumnSetValue
    */
   export interface Schema$IntComparisonFilter {
@@ -1387,6 +1430,23 @@ export namespace datamigration_v1 {
      */
     name?: string | null;
   }
+  /**
+   * Configuration to specify the Oracle directories to access the log files.
+   */
+  export interface Schema$LogFileDirectories {
+    /**
+     * Required. Oracle directory for archived logs.
+     */
+    archivedLogDirectory?: string | null;
+    /**
+     * Required. Oracle directory for online logs.
+     */
+    onlineLogDirectory?: string | null;
+  }
+  /**
+   * Configuration to use LogMiner CDC method.
+   */
+  export interface Schema$LogMiner {}
   /**
    * MachineConfig describes the configuration of a machine.
    */
@@ -1579,6 +1639,10 @@ export namespace datamigration_v1 {
      * The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/migrationJobs/{migrationJob\}.
      */
     name?: string | null;
+    /**
+     * Configuration for heterogeneous **Oracle to Cloud SQL for PostgreSQL** and **Oracle to AlloyDB for PostgreSQL** migrations.
+     */
+    oracleToPostgresConfig?: Schema$OracleToPostgresConfig;
     /**
      * Optional. Data dump parallelism settings used by the migration.
      */
@@ -1787,6 +1851,10 @@ export namespace datamigration_v1 {
     username?: string | null;
   }
   /**
+   * Configuration to use Oracle ASM to access the log files.
+   */
+  export interface Schema$OracleAsmLogFileAccess {}
+  /**
    * Specifies connection parameters required specifically for Oracle databases.
    */
   export interface Schema$OracleConnectionProfile {
@@ -1834,6 +1902,48 @@ export namespace datamigration_v1 {
      * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
      */
     username?: string | null;
+  }
+  /**
+   * Configuration for Oracle as a source in a migration.
+   */
+  export interface Schema$OracleSourceConfig {
+    /**
+     * Use Binary Log Parser.
+     */
+    binaryLogParser?: Schema$BinaryLogParser;
+    /**
+     * Optional. The schema change number (SCN) to start CDC data migration from.
+     */
+    cdcStartPosition?: string | null;
+    /**
+     * Use LogMiner.
+     */
+    logMiner?: Schema$LogMiner;
+    /**
+     * Optional. Maximum number of connections Database Migration Service will open to the source for CDC phase.
+     */
+    maxConcurrentCdcConnections?: number | null;
+    /**
+     * Optional. Maximum number of connections Database Migration Service will open to the source for full dump phase.
+     */
+    maxConcurrentFullDumpConnections?: number | null;
+    /**
+     * Optional. Whether to skip full dump or not.
+     */
+    skipFullDump?: boolean | null;
+  }
+  /**
+   * Configuration for heterogeneous **Oracle to Cloud SQL for PostgreSQL** and **Oracle to AlloyDB for PostgreSQL** migrations.
+   */
+  export interface Schema$OracleToPostgresConfig {
+    /**
+     * Optional. Configuration for Oracle source.
+     */
+    oracleSourceConfig?: Schema$OracleSourceConfig;
+    /**
+     * Optional. Configuration for Postgres destination.
+     */
+    postgresDestinationConfig?: Schema$PostgresDestinationConfig;
   }
   /**
    * Package's parent is a schema.
@@ -1904,6 +2014,19 @@ export namespace datamigration_v1 {
     offset?: number | null;
   }
   /**
+   * Configuration for Postgres as a destination in a migration.
+   */
+  export interface Schema$PostgresDestinationConfig {
+    /**
+     * Optional. Maximum number of connections Database Migration Service will open to the destination for data migration.
+     */
+    maxConcurrentConnections?: number | null;
+    /**
+     * Optional. Timeout for data migration transactions.
+     */
+    transactionTimeout?: string | null;
+  }
+  /**
    * Specifies connection parameters required specifically for PostgreSQL databases.
    */
   export interface Schema$PostgreSqlConnectionProfile {
@@ -1965,6 +2088,10 @@ export namespace datamigration_v1 {
      */
     id?: string | null;
     /**
+     * Optional. Metadata related to instance level network configuration.
+     */
+    instanceNetworkConfig?: Schema$InstanceNetworkConfig;
+    /**
      * Labels for the AlloyDB primary instance created by DMS. An object containing a list of 'key', 'value' pairs.
      */
     labels?: {[key: string]: string} | null;
@@ -1972,6 +2099,10 @@ export namespace datamigration_v1 {
      * Configuration for the machines that host the underlying database engine.
      */
     machineConfig?: Schema$MachineConfig;
+    /**
+     * Output only. All outbound public IP addresses configured for the instance.
+     */
+    outboundPublicIpAddresses?: string[] | null;
     /**
      * Output only. The private IP address for the Instance. This is the connection endpoint for an end-user application.
      */
