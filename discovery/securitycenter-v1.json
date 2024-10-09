@@ -732,39 +732,6 @@
           "resources": {
             "muteConfigs": {
               "methods": {
-                "create": {
-                  "description": "Creates a mute config.",
-                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/muteConfigs",
-                  "httpMethod": "POST",
-                  "id": "securitycenter.folders.locations.muteConfigs.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "muteConfigId": {
-                      "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
-                      "location": "path",
-                      "pattern": "^folders/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}/muteConfigs",
-                  "request": {
-                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "description": "Deletes an existing mute config.",
                   "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
@@ -810,42 +777,6 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "Lists mute configs.",
-                  "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/muteConfigs",
-                  "httpMethod": "GET",
-                  "id": "securitycenter.folders.locations.muteConfigs.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
-                      "location": "path",
-                      "pattern": "^folders/[^/]+/locations/[^/]+/muteConfigs$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}",
-                  "response": {
-                    "$ref": "ListMuteConfigsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2508,39 +2439,6 @@
           "resources": {
             "muteConfigs": {
               "methods": {
-                "create": {
-                  "description": "Creates a mute config.",
-                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/muteConfigs",
-                  "httpMethod": "POST",
-                  "id": "securitycenter.organizations.locations.muteConfigs.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "muteConfigId": {
-                      "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}/muteConfigs",
-                  "request": {
-                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "description": "Deletes an existing mute config.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
@@ -2586,42 +2484,6 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "Lists mute configs.",
-                  "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/muteConfigs",
-                  "httpMethod": "GET",
-                  "id": "securitycenter.organizations.locations.muteConfigs.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/locations/[^/]+/muteConfigs$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}",
-                  "response": {
-                    "$ref": "ListMuteConfigsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -5017,39 +4879,6 @@
           "resources": {
             "muteConfigs": {
               "methods": {
-                "create": {
-                  "description": "Creates a mute config.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/muteConfigs",
-                  "httpMethod": "POST",
-                  "id": "securitycenter.projects.locations.muteConfigs.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "muteConfigId": {
-                      "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of only lowercase letters, numbers, and hyphens, must start with a letter, must end with either a letter or a number, and must be 63 characters or less.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. Resource name of the new mute configs's parent. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, or `projects/[project_id]`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}/muteConfigs",
-                  "request": {
-                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "response": {
-                    "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "delete": {
                   "description": "Deletes an existing mute config.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/muteConfigs/{muteConfigsId}",
@@ -5095,42 +4924,6 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "list": {
-                  "description": "Lists mute configs.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/muteConfigs",
-                  "httpMethod": "GET",
-                  "id": "securitycenter.projects.locations.muteConfigs.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The parent, which owns the collection of mute configs. Its format is `organizations/[organization_id]`, `folders/[folder_id]`, `projects/[project_id]`.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/muteConfigs$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+parent}",
-                  "response": {
-                    "$ref": "ListMuteConfigsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -6084,7 +5877,7 @@
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20240926",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -6630,6 +6423,10 @@
       "description": "Represents an Azure resource group.",
       "id": "AzureResourceGroup",
       "properties": {
+        "id": {
+          "description": "The ID of the Azure resource group.",
+          "type": "string"
+        },
         "name": {
           "description": "The name of the Azure resource group. This is not a UUID.",
           "type": "string"
@@ -6656,6 +6453,10 @@
       "description": "Represents a Microsoft Entra tenant.",
       "id": "AzureTenant",
       "properties": {
+        "displayName": {
+          "description": "The display name of the Azure tenant.",
+          "type": "string"
+        },
         "id": {
           "description": "The ID of the Microsoft Entra tenant, for example, \"a11aaa11-aa11-1aa1-11aa-1aaa11a\".",
           "type": "string"
@@ -6795,6 +6596,17 @@
             "Matching findings will be muted (default).",
             "Matching findings will have their mute state cleared."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CelPolicySpec": {
+      "description": "YAML-based rule that uses CEL, which supports the declaration of variables and a filtering predicate. A vulnerable resource is emitted if the evaluation is false. Given: 1) the resource types as: - resource_types: \"compute.googleapis.com/Instance\" - resource_types: \"compute.googleapis.com/Firewall\" 2) the CEL policy spec as: name: bad_instance resource_filters: - name: instance resource_type: compute.googleapis.com/Instance filter: > instance.status == 'RUNNING' && 'public' in instance.tags.items - name: firewall resource_type: compute.googleapis.com/Firewall filter: > firewall.direction == 'INGRESS' && !firewall.disabled && firewall.allowed.exists(rule, rule.IPProtocol.upperAscii() in ['TCP', 'ALL'] && rule.ports.exists(port, network.portsInRange(port, '11-256'))) rule: match: - predicate: > instance.networkInterfaces.exists(net, firewall.network == net.network) output: > {'message': 'Compute instance with publicly accessible ports', 'instance': instance.name} Users are able to join resource types together using the exact format as Kubernetes Validating Admission policies.",
+      "id": "CelPolicySpec",
+      "properties": {
+        "spec": {
+          "description": "The CEL policy to evaluate to produce findings. A finding is generated when the policy validation evaluates to false.",
           "type": "string"
         }
       },
@@ -8238,6 +8050,10 @@
       "description": "Defines the properties in a custom module configuration for Security Health Analytics. Use the custom module configuration to create custom detectors that generate custom findings for resources that you specify.",
       "id": "GoogleCloudSecuritycenterV1CustomConfig",
       "properties": {
+        "celPolicy": {
+          "$ref": "CelPolicySpec",
+          "description": "The CEL policy spec attached to the custom module."
+        },
         "customOutput": {
           "$ref": "GoogleCloudSecuritycenterV1CustomOutputSpec",
           "description": "Custom output properties."
@@ -9320,6 +9136,10 @@
       "description": "Represents an Azure resource group.",
       "id": "GoogleCloudSecuritycenterV2AzureResourceGroup",
       "properties": {
+        "id": {
+          "description": "The ID of the Azure resource group.",
+          "type": "string"
+        },
         "name": {
           "description": "The name of the Azure resource group. This is not a UUID.",
           "type": "string"
@@ -9346,6 +9166,10 @@
       "description": "Represents a Microsoft Entra tenant.",
       "id": "GoogleCloudSecuritycenterV2AzureTenant",
       "properties": {
+        "displayName": {
+          "description": "The display name of the Azure tenant.",
+          "type": "string"
+        },
         "id": {
           "description": "The ID of the Microsoft Entra tenant, for example, \"a11aaa11-aa11-1aa1-11aa-1aaa11a\".",
           "type": "string"

@@ -395,6 +395,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$AzureTenant {
     /**
+     * The display name of the Azure tenant.
+     */
+    displayName?: string | null;
+    /**
      * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */
     id?: string | null;
@@ -2137,6 +2141,10 @@ export namespace securitycenter_v1beta2 {
    * Represents a Microsoft Entra tenant.
    */
   export interface Schema$GoogleCloudSecuritycenterV2AzureTenant {
+    /**
+     * The display name of the Azure tenant.
+     */
+    displayName?: string | null;
     /**
      * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */
@@ -6201,6 +6209,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Folders$Eventthreatdetectionsettings {
@@ -6315,6 +6327,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Folders$Rapidvulnerabilitydetectionsettings {
@@ -6543,6 +6559,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Folders$Virtualmachinethreatdetectionsettings {
@@ -6657,6 +6677,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Folders$Websecurityscannersettings {
@@ -6769,6 +6793,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Organizations {
@@ -8396,6 +8424,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Organizations$Eventthreatdetectionsettings {
@@ -8510,6 +8542,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Organizations$Rapidvulnerabilitydetectionsettings {
@@ -8738,6 +8774,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Organizations$Virtualmachinethreatdetectionsettings {
@@ -8852,6 +8892,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Organizations$Websecurityscannersettings {
@@ -8964,6 +9008,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Projects {
@@ -10492,6 +10540,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Projects$Eventthreatdetectionsettings {
@@ -10606,6 +10658,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Projects$Locations {
@@ -10957,6 +11013,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Projects$Rapidvulnerabilitydetectionsettings {
@@ -11185,6 +11245,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Projects$Virtualmachinethreatdetectionsettings {
@@ -11299,6 +11363,10 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 
   export class Resource$Projects$Websecurityscannersettings {
@@ -11411,5 +11479,9 @@ export namespace securitycenter_v1beta2 {
      * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
+    /**
+     * Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.
+     */
+    showEligibleModulesOnly?: boolean;
   }
 }
