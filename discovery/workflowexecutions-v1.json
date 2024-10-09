@@ -302,7 +302,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, and `label`. For details, see AIP-160. For more information, see Filter executions. For example, if you are using the Google APIs Explorer: `state=\"SUCCEEDED\"` or `startTime>\"2023-08-01\" AND state=\"FAILED\"`",
+                          "description": "Optional. Filters applied to the `[Executions.ListExecutions]` results. The following fields are supported for filtering: `executionId`, `state`, `createTime`, `startTime`, `endTime`, `duration`, `workflowRevisionId`, `stepName`, `label`, and `disableConcurrencyQuotaOverflowBuffering`. For details, see AIP-160. For more information, see Filter executions. For example, if you are using the Google APIs Explorer: `state=\"SUCCEEDED\"` or `startTime>\"2023-08-01\" AND state=\"FAILED\"`",
                           "location": "query",
                           "type": "string"
                         },
@@ -517,7 +517,7 @@
       }
     }
   },
-  "revision": "20240813",
+  "revision": "20240916",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "Callback": {
@@ -682,7 +682,7 @@
           "type": "string"
         },
         "startTime": {
-          "description": "Output only. Marks the beginning of execution.",
+          "description": "Output only. Marks the beginning of execution. Note that this will be the same as `createTime` for executions that start immediately.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1009,13 +1009,15 @@
             "STATE_UNSPECIFIED",
             "STATE_IN_PROGRESS",
             "STATE_SUCCEEDED",
-            "STATE_FAILED"
+            "STATE_FAILED",
+            "STATE_CANCELLED"
           ],
           "enumDescriptions": [
             "Invalid state.",
             "The step entry is in progress.",
             "The step entry finished successfully.",
-            "The step entry failed with an error."
+            "The step entry failed with an error.",
+            "The step entry is cancelled."
           ],
           "readOnly": true,
           "type": "string"
