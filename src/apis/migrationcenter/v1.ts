@@ -484,11 +484,11 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$ComputeEngineShapeDescriptor {
     /**
-     * Number of logical cores.
+     * Output only. Number of logical cores.
      */
     logicalCoreCount?: number | null;
     /**
-     * Compute Engine machine type.
+     * Output only. Compute Engine machine type.
      */
     machineType?: string | null;
     /**
@@ -500,11 +500,11 @@ export namespace migrationcenter_v1 {
      */
     physicalCoreCount?: number | null;
     /**
-     * Compute Engine machine series.
+     * Output only. Compute Engine machine series.
      */
     series?: string | null;
     /**
-     * Compute Engine storage. Never empty.
+     * Output only. Compute Engine storage. Never empty.
      */
     storage?: Schema$ComputeStorageDescriptor[];
   }
@@ -513,11 +513,11 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$ComputeStorageDescriptor {
     /**
-     * Disk size in GiB.
+     * Output only. Disk size in GiB.
      */
     sizeGb?: number | null;
     /**
-     * Disk type backing the storage.
+     * Output only. Disk type backing the storage.
      */
     type?: string | null;
   }
@@ -863,7 +863,7 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$FitDescriptor {
     /**
-     * Fit level.
+     * Output only. Fit level.
      */
     fitLevel?: string | null;
   }
@@ -1535,7 +1535,7 @@ export namespace migrationcenter_v1 {
      */
     cpuSocketCount?: number | null;
     /**
-     * Number of CPU threads allocated to the machine.
+     * Deprecated: use MachineDetails.core_count instead. Number of CPU threads allocated to the machine.
      */
     cpuThreadCount?: number | null;
     /**
@@ -2136,7 +2136,7 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$ReportSummaryAssetAggregateStats {
     /**
-     * Histogram showing a distribution of CPU core counts.
+     * Histogram showing a distribution of logical CPU core counts.
      */
     coreCountHistogram?: Schema$ReportSummaryHistogramChartData;
     /**

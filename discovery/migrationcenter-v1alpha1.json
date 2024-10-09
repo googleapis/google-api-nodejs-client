@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20240926",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2828,8 +2828,7 @@
         },
         "performanceData": {
           "$ref": "AssetPerformanceData",
-          "description": "Output only. Performance data for the asset.",
-          "readOnly": true
+          "description": "Performance data for the asset."
         },
         "sources": {
           "description": "Output only. The list of sources contributing to the asset.",
@@ -2969,6 +2968,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "inventory": {
+          "$ref": "AssetsExportJobInventory",
+          "description": "Export asset inventory details."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2985,6 +2988,10 @@
           "$ref": "AssetsExportJobNetworkDependencies",
           "description": "Export data regarding asset network dependencies."
         },
+        "performanceData": {
+          "$ref": "AssetsExportJobPerformanceData",
+          "description": "Export asset with performance data."
+        },
         "recentExecutions": {
           "description": "Output only. Recent non expired executions of the job.",
           "items": {
@@ -2992,6 +2999,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "showHidden": {
+          "description": "Optional. When this value is set to 'true' the response will include all assets, including those that are hidden.",
+          "type": "boolean"
         },
         "signedUriDestination": {
           "$ref": "SignedUriDestination",
@@ -3027,6 +3038,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "requestedAssetCount": {
+          "description": "Output only. Number of assets requested for export after resolving the requested filters.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "result": {
           "$ref": "AssetsExportJobExecutionResult",
           "description": "Output only. Result of the export execution.",
@@ -3050,6 +3067,11 @@
           "description": "Output only. Error encountered during export.",
           "readOnly": true
         },
+        "outputFiles": {
+          "$ref": "OutputFileList",
+          "description": "Output only. List of output files.",
+          "readOnly": true
+        },
         "signedUris": {
           "$ref": "SignedUris",
           "description": "Output only. Signed URLs for downloading export artifacts.",
@@ -3069,12 +3091,30 @@
       },
       "type": "object"
     },
+    "AssetsExportJobInventory": {
+      "description": "Configuration for asset inventory details exports.",
+      "id": "AssetsExportJobInventory",
+      "properties": {},
+      "type": "object"
+    },
     "AssetsExportJobNetworkDependencies": {
       "description": "Configuration for network dependencies exports.",
       "id": "AssetsExportJobNetworkDependencies",
       "properties": {
         "maxDays": {
           "description": "Optional. When this value is set to a positive integer, network connections data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AssetsExportJobPerformanceData": {
+      "description": "Configuration for performance data exports.",
+      "id": "AssetsExportJobPerformanceData",
+      "properties": {
+        "maxDays": {
+          "description": "Optional. When this value is set to a positive integer, performance data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned. The maximum value is 420; values above 420 will be coerced to 420. If unset (0 value) a default value of 40 will be used.",
           "format": "int32",
           "type": "integer"
         }
@@ -3228,7 +3268,7 @@
         },
         "cloudSqlForPostgresqlShape": {
           "$ref": "CloudSqlForPostgreSqlShape",
-          "description": "Cloud SQL for Postgres database shape."
+          "description": "Cloud SQL for PostgreSQL database shape."
         },
         "cloudSqlShape": {
           "$ref": "CloudSqlForSqlServerShape",
@@ -3321,7 +3361,7 @@
       "type": "object"
     },
     "CloudSqlForPostgreSqlShape": {
-      "description": "Cloud SQL for Postgres database shape.",
+      "description": "Cloud SQL for PostgreSQL database shape.",
       "id": "CloudSqlForPostgreSqlShape",
       "properties": {
         "backupStorageGb": {
@@ -3653,7 +3693,7 @@
           "type": "integer"
         },
         "type": {
-          "description": "Disk type backing the storage.",
+          "description": "Output only. Disk type backing the storage.",
           "enum": [
             "PERSISTENT_DISK_TYPE_UNSPECIFIED",
             "PERSISTENT_DISK_TYPE_STANDARD",
@@ -3666,6 +3706,7 @@
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3679,6 +3720,30 @@
           "description": "Percentage of total CPU capacity utilized. Must be in the interval [0, 100]. On most systems can be calculated using 100 - idle percentage.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CsvOutputFile": {
+      "description": "Contains a single output file of type CSV.",
+      "id": "CsvOutputFile",
+      "properties": {
+        "columnsCount": {
+          "description": "Output only. Number of columns in the file.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "rowCount": {
+          "description": "Output only. Number of rows in the file.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "signedUri": {
+          "$ref": "SignedUri",
+          "description": "Output only. Signed URI destination.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -4084,7 +4149,7 @@
           "type": "string"
         },
         "edition": {
-          "description": "Optional. Cloud SQL edition. For SQL Server, only Enterprise is available.",
+          "description": "Optional. Preferred Cloud SQL edition.",
           "enum": [
             "CLOUD_SQL_EDITION_UNSPECIFIED",
             "CLOUD_SQL_EDITION_ENTERPRISE",
@@ -4153,7 +4218,7 @@
       "id": "DatabasePreferencesCloudSqlCommonBackup",
       "properties": {
         "backupMode": {
-          "description": "Optional. Mode of automated backups.",
+          "description": "Optional. Automated backup mode.",
           "enum": [
             "BACKUP_MODE_UNSPECIFIED",
             "BACKUP_MODE_DISABLED",
@@ -4695,7 +4760,7 @@
       "id": "FitDescriptor",
       "properties": {
         "fitLevel": {
-          "description": "Fit level.",
+          "description": "Output only. Fit level.",
           "enum": [
             "FIT_LEVEL_UNSPECIFIED",
             "FIT",
@@ -4708,6 +4773,7 @@
             "No Fit.",
             "Fit with effort."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4926,7 +4992,8 @@
         },
         "hosts": {
           "$ref": "HostsEntryList",
-          "description": "Hosts file (/etc/hosts)."
+          "description": "Output only. Hosts file (/etc/hosts).",
+          "readOnly": true
         },
         "issue": {
           "description": "OS issue (typically /etc/issue in Linux).",
@@ -5068,10 +5135,11 @@
       "id": "HostsEntryList",
       "properties": {
         "entries": {
-          "description": "Hosts entries.",
+          "description": "Output only. Hosts entries.",
           "items": {
             "$ref": "HostsEntry"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -6496,6 +6564,38 @@
       },
       "type": "object"
     },
+    "OutputFile": {
+      "description": "Contains a single output file.",
+      "id": "OutputFile",
+      "properties": {
+        "csvOutputFile": {
+          "$ref": "CsvOutputFile",
+          "description": "Output only. CSV output file.",
+          "readOnly": true
+        },
+        "fileSizeBytes": {
+          "description": "Output only. File size in bytes.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "OutputFileList": {
+      "description": "Contains a list of output files.",
+      "id": "OutputFileList",
+      "properties": {
+        "entries": {
+          "description": "List of output files.",
+          "items": {
+            "$ref": "OutputFile"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PayloadFile": {
       "description": "Payload file for inline import job payload.",
       "id": "PayloadFile",
@@ -6973,7 +7073,7 @@
         },
         "coreCountHistogram": {
           "$ref": "ReportSummaryHistogramChartData",
-          "description": "Histogram showing a distribution of CPU core counts."
+          "description": "Histogram showing a distribution of logical CPU core counts."
         },
         "databaseTypes": {
           "$ref": "ReportSummaryChartData",
@@ -7117,7 +7217,7 @@
             "Unknown database type.",
             "SQL Server database.",
             "MySQL database.",
-            "Postgres database."
+            "PostgreSQL database."
           ],
           "readOnly": true,
           "type": "string"
@@ -7204,7 +7304,7 @@
         },
         "monthlyCostOsLicense": {
           "$ref": "Money",
-          "description": "Output only. Operating system licensing monthly cost for this preference set. Only present for virtual machines.",
+          "description": "Output only. All operating systems licensing monthly cost for this preference set. Only present for virtual machines.",
           "readOnly": true
         },
         "monthlyCostOther": {
@@ -8177,7 +8277,8 @@
           "type": "integer"
         },
         "cpuThreadCount": {
-          "description": "Number of CPU threads allocated to the machine.",
+          "deprecated": true,
+          "description": "Deprecated: use VirtualMachineDetails.core_count instead. Number of CPU threads allocated to the machine.",
           "format": "int32",
           "type": "integer"
         },

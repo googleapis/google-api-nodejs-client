@@ -316,7 +316,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     name?: string | null;
     /**
-     * Output only. Performance data for the asset.
+     * Performance data for the asset.
      */
     performanceData?: Schema$AssetPerformanceData;
     /**
@@ -408,6 +408,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     createTime?: string | null;
     /**
+     * Export asset inventory details.
+     */
+    inventory?: Schema$AssetsExportJobInventory;
+    /**
      * Optional. Labels as key value pairs. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
      */
     labels?: {[key: string]: string} | null;
@@ -420,9 +424,17 @@ export namespace migrationcenter_v1alpha1 {
      */
     networkDependencies?: Schema$AssetsExportJobNetworkDependencies;
     /**
+     * Export asset with performance data.
+     */
+    performanceData?: Schema$AssetsExportJobPerformanceData;
+    /**
      * Output only. Recent non expired executions of the job.
      */
     recentExecutions?: Schema$AssetsExportJobExecution[];
+    /**
+     * Optional. When this value is set to 'true' the response will include all assets, including those that are hidden.
+     */
+    showHidden?: boolean | null;
     /**
      * Export to Cloud Storage files downloadable using signed URIs.
      */
@@ -449,6 +461,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     expireTime?: string | null;
     /**
+     * Output only. Number of assets requested for export after resolving the requested filters.
+     */
+    requestedAssetCount?: number | null;
+    /**
      * Output only. Result of the export execution.
      */
     result?: Schema$AssetsExportJobExecutionResult;
@@ -466,6 +482,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     error?: Schema$Status;
     /**
+     * Output only. List of output files.
+     */
+    outputFiles?: Schema$OutputFileList;
+    /**
      * Output only. Signed URLs for downloading export artifacts.
      */
     signedUris?: Schema$SignedUris;
@@ -480,11 +500,24 @@ export namespace migrationcenter_v1alpha1 {
     filter?: string | null;
   }
   /**
+   * Configuration for asset inventory details exports.
+   */
+  export interface Schema$AssetsExportJobInventory {}
+  /**
    * Configuration for network dependencies exports.
    */
   export interface Schema$AssetsExportJobNetworkDependencies {
     /**
      * Optional. When this value is set to a positive integer, network connections data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned.
+     */
+    maxDays?: number | null;
+  }
+  /**
+   * Configuration for performance data exports.
+   */
+  export interface Schema$AssetsExportJobPerformanceData {
+    /**
+     * Optional. When this value is set to a positive integer, performance data will be returned for the most recent days for which data is available. When this value is unset (or set to zero), all available data is returned. The maximum value is 420; values above 420 will be coerced to 420. If unset (0 value) a default value of 40 will be used.
      */
     maxDays?: number | null;
   }
@@ -604,7 +637,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     cloudSqlForMysqlShape?: Schema$CloudSqlForMySqlShape;
     /**
-     * Cloud SQL for Postgres database shape.
+     * Cloud SQL for PostgreSQL database shape.
      */
     cloudSqlForPostgresqlShape?: Schema$CloudSqlForPostgreSqlShape;
     /**
@@ -650,7 +683,7 @@ export namespace migrationcenter_v1alpha1 {
     zoneAvailability?: string | null;
   }
   /**
-   * Cloud SQL for Postgres database shape.
+   * Cloud SQL for PostgreSQL database shape.
    */
   export interface Schema$CloudSqlForPostgreSqlShape {
     /**
@@ -807,7 +840,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     sizeGb?: number | null;
     /**
-     * Disk type backing the storage.
+     * Output only. Disk type backing the storage.
      */
     type?: string | null;
   }
@@ -819,6 +852,23 @@ export namespace migrationcenter_v1alpha1 {
      * Percentage of total CPU capacity utilized. Must be in the interval [0, 100]. On most systems can be calculated using 100 - idle percentage.
      */
     utilizedPercentage?: number | null;
+  }
+  /**
+   * Contains a single output file of type CSV.
+   */
+  export interface Schema$CsvOutputFile {
+    /**
+     * Output only. Number of columns in the file.
+     */
+    columnsCount?: number | null;
+    /**
+     * Output only. Number of rows in the file.
+     */
+    rowCount?: number | null;
+    /**
+     * Output only. Signed URI destination.
+     */
+    signedUri?: Schema$SignedUri;
   }
   /**
    * Usage data aggregation for a single day.
@@ -1116,7 +1166,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     commitmentPlan?: string | null;
     /**
-     * Optional. Cloud SQL edition. For SQL Server, only Enterprise is available.
+     * Optional. Preferred Cloud SQL edition.
      */
     edition?: string | null;
     /**
@@ -1137,7 +1187,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DatabasePreferencesCloudSqlCommonBackup {
     /**
-     * Optional. Mode of automated backups.
+     * Optional. Automated backup mode.
      */
     backupMode?: string | null;
   }
@@ -1522,7 +1572,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$FitDescriptor {
     /**
-     * Fit level.
+     * Output only. Fit level.
      */
     fitLevel?: string | null;
   }
@@ -1667,7 +1717,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     fstab?: Schema$FstabEntryList;
     /**
-     * Hosts file (/etc/hosts).
+     * Output only. Hosts file (/etc/hosts).
      */
     hosts?: Schema$HostsEntryList;
     /**
@@ -1789,7 +1839,7 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$HostsEntryList {
     /**
-     * Hosts entries.
+     * Output only. Hosts entries.
      */
     entries?: Schema$HostsEntry[];
   }
@@ -2724,6 +2774,28 @@ export namespace migrationcenter_v1alpha1 {
     verb?: string | null;
   }
   /**
+   * Contains a single output file.
+   */
+  export interface Schema$OutputFile {
+    /**
+     * Output only. CSV output file.
+     */
+    csvOutputFile?: Schema$CsvOutputFile;
+    /**
+     * Output only. File size in bytes.
+     */
+    fileSizeBytes?: number | null;
+  }
+  /**
+   * Contains a list of output files.
+   */
+  export interface Schema$OutputFileList {
+    /**
+     * List of output files.
+     */
+    entries?: Schema$OutputFile[];
+  }
+  /**
    * Payload file for inline import job payload.
    */
   export interface Schema$PayloadFile {
@@ -3085,7 +3157,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     assetAge?: Schema$ReportSummaryChartData;
     /**
-     * Histogram showing a distribution of CPU core counts.
+     * Histogram showing a distribution of logical CPU core counts.
      */
     coreCountHistogram?: Schema$ReportSummaryHistogramChartData;
     /**
@@ -3254,7 +3326,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     monthlyCostNetworkEgress?: Schema$Money;
     /**
-     * Output only. Operating system licensing monthly cost for this preference set. Only present for virtual machines.
+     * Output only. All operating systems licensing monthly cost for this preference set. Only present for virtual machines.
      */
     monthlyCostOsLicense?: Schema$Money;
     /**
@@ -3909,7 +3981,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     cpuSocketCount?: number | null;
     /**
-     * Number of CPU threads allocated to the machine.
+     * Deprecated: use VirtualMachineDetails.core_count instead. Number of CPU threads allocated to the machine.
      */
     cpuThreadCount?: number | null;
     /**
