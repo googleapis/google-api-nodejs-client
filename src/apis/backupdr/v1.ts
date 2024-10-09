@@ -411,7 +411,7 @@ export namespace backupdr_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. Name of the resource.
+     * Output only. Identifier. Name of the backup to create. It must have the format`"projects//locations//backupVaults//dataSources/{datasource\}/backups/{backup\}"`. `{backup\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the datasource.
      */
     name?: string | null;
     /**
@@ -557,7 +557,7 @@ export namespace backupdr_v1 {
     serviceLockInfo?: Schema$ServiceLockInfo;
   }
   /**
-   * A `BackupPlan` specifies some common fields, such as `display_name` as well as one or more `BackupRule` messages. Each `BackupRule` has a retention policy and defines a schedule by which the system is to perform backup workloads.
+   * A `BackupPlan` specifies some common fields, such as `description` as well as one or more `BackupRule` messages. Each `BackupRule` has a retention policy and defines a schedule by which the system is to perform backup workloads.
    */
   export interface Schema$BackupPlan {
     /**
@@ -668,6 +668,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupVault {
     /**
+     * Optional. Note: This field is added for future use case and will not be supported in the current release. Optional. Access restriction for the backup vault. Default value is WITHIN_ORGANIZATION if not provided during creation.
+     */
+    accessRestriction?: string | null;
+    /**
      * Optional. User annotations. See https://google.aip.dev/128#annotations Stores small amounts of arbitrary data.
      */
     annotations?: {[key: string]: string} | null;
@@ -704,7 +708,7 @@ export namespace backupdr_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name.
+     * Output only. Identifier. Name of the backup vault to create. It must have the format`"projects/{project\}/locations/{location\}/backupVaults/{backupvault\}"`. `{backupvault\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the project and location.
      */
     name?: string | null;
     /**
@@ -799,6 +803,10 @@ export namespace backupdr_v1 {
      * KeyRevocationActionType of the instance. Supported options are "STOP" and "NONE". The default value is "NONE" if it is not specified.
      */
     keyRevocationActionType?: string | null;
+    /**
+     * Labels to apply to instances that are created from these properties.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The machine type to use for instances that are created from these properties.
      */
@@ -1042,7 +1050,7 @@ export namespace backupdr_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name.
+     * Output only. Identifier. Name of the datasource to create. It must have the format`"projects/{project\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}"`. `{datasource\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the backup vault.
      */
     name?: string | null;
     /**
@@ -1284,6 +1292,23 @@ export namespace backupdr_v1 {
      * The rule id of the backup plan which triggered this backup in case of scheduled backup or used for
      */
     backupPlanRuleId?: string | null;
+  }
+  /**
+   * Minimum details to identify a Google Cloud resource
+   */
+  export interface Schema$GcpResource {
+    /**
+     * Name of the Google Cloud resource.
+     */
+    gcpResourcename?: string | null;
+    /**
+     * Location of the resource: //"global"/"unspecified".
+     */
+    location?: string | null;
+    /**
+     * Type of the resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
+     */
+    type?: string | null;
   }
   /**
    * Feature type of the Guest OS.
@@ -1857,6 +1882,15 @@ export namespace backupdr_v1 {
     requestId?: string | null;
   }
   /**
+   * Response message for restoring from a Backup.
+   */
+  export interface Schema$RestoreBackupResponse {
+    /**
+     * Details of the target resource created/modified as part of restore.
+     */
+    targetResource?: Schema$TargetResource;
+  }
+  /**
    * Message for rules config info.
    */
   export interface Schema$RuleConfigInfo {
@@ -1979,6 +2013,10 @@ export namespace backupdr_v1 {
      */
     value?: string | null;
   }
+  /**
+   * Response message from SetStatusInternal method.
+   */
+  export interface Schema$SetInternalStatusResponse {}
   export interface Schema$SpannerLocation {
     /**
      * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
@@ -2051,6 +2089,15 @@ export namespace backupdr_v1 {
      * Optional. An array of tags. Each tag must be 1-63 characters long, and comply with RFC1035.
      */
     items?: string[] | null;
+  }
+  /**
+   * Details of the target resource created/modified as part of restore.
+   */
+  export interface Schema$TargetResource {
+    /**
+     * Details of the native Google Cloud resource created as part of restore.
+     */
+    gcpResource?: Schema$GcpResource;
   }
   export interface Schema$TenantProjectProxy {
     projectNumbers?: string[] | null;
@@ -3328,6 +3375,7 @@ export namespace backupdr_v1 {
     }
 
     /**
+     * Creates a new BackupVault in a given project and location.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4037,6 +4085,10 @@ export namespace backupdr_v1 {
      * Required. Name of the backupvault store resource name, in the format 'projects/{project_id\}/locations/{location\}/backupVaults/{resource_name\}'
      */
     name?: string;
+    /**
+     * Optional. Reserved for future use to provide a BASIC & FULL view of Backup Vault
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupvaults$List
     extends StandardParameters {
@@ -4060,6 +4112,10 @@ export namespace backupdr_v1 {
      * Required. The project and location for which to retrieve backupvault stores information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve backupvault stores for all locations, use "-" for the '{location\}' value.
      */
     parent?: string;
+    /**
+     * Optional. Reserved for future use to provide a BASIC & FULL view of Backup Vault.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupvaults$Patch
     extends StandardParameters {
@@ -4068,7 +4124,7 @@ export namespace backupdr_v1 {
      */
     force?: boolean;
     /**
-     * Output only. Identifier. The resource name.
+     * Output only. Identifier. Name of the backup vault to create. It must have the format`"projects/{project\}/locations/{location\}/backupVaults/{backupvault\}"`. `{backupvault\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the project and location.
      */
     name?: string;
     /**
@@ -5010,7 +5066,7 @@ export namespace backupdr_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Output only. Identifier. The resource name.
+     * Output only. Identifier. Name of the datasource to create. It must have the format`"projects/{project\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}"`. `{datasource\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the backup vault.
      */
     name?: string;
     /**
@@ -5515,6 +5571,10 @@ export namespace backupdr_v1 {
      * Required. Name of the data source resource name, in the format 'projects/{project_id\}/locations/{location\}/backupVaults/{backupVault\}/dataSources/{datasource\}/backups/{backup\}'
      */
     name?: string;
+    /**
+     * Optional. Reserved for future use to provide a BASIC & FULL view of Backup resource.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$List
     extends StandardParameters {
@@ -5538,11 +5598,15 @@ export namespace backupdr_v1 {
      * Required. The project and location for which to retrieve backup information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud Backup and DR, locations map to Google Cloud regions, for example **us-central1**. To retrieve data sources for all locations, use "-" for the '{location\}' value.
      */
     parent?: string;
+    /**
+     * Optional. Reserved for future use to provide a BASIC & FULL view of Backup resource.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Backupvaults$Datasources$Backups$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. Name of the resource.
+     * Output only. Identifier. Name of the backup to create. It must have the format`"projects//locations//backupVaults//dataSources/{datasource\}/backups/{backup\}"`. `{backup\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the datasource.
      */
     name?: string;
     /**
