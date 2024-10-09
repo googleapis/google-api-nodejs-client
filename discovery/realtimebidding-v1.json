@@ -1305,7 +1305,7 @@
       }
     }
   },
-  "revision": "20240806",
+  "revision": "20240930",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -3251,11 +3251,11 @@
           "readOnly": true
         },
         "videoUrl": {
-          "description": "The URL to fetch a video ad.",
+          "description": "The URL to fetch a video ad. The URL should return an XML response that conforms to the VAST 2.0, 3.0 or 4.x standard.",
           "type": "string"
         },
         "videoVastXml": {
-          "description": "The contents of a VAST document for a video ad. This document should conform to the VAST 2.0 or 3.0 standard.",
+          "description": "The contents of a VAST document for a video ad. This document should conform to the VAST 2.0, 3.0, or 4.x standard.",
           "type": "string"
         }
       },

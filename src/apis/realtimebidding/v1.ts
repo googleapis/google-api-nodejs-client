@@ -1185,11 +1185,11 @@ export namespace realtimebidding_v1 {
      */
     videoMetadata?: Schema$VideoMetadata;
     /**
-     * The URL to fetch a video ad.
+     * The URL to fetch a video ad. The URL should return an XML response that conforms to the VAST 2.0, 3.0 or 4.x standard.
      */
     videoUrl?: string | null;
     /**
-     * The contents of a VAST document for a video ad. This document should conform to the VAST 2.0 or 3.0 standard.
+     * The contents of a VAST document for a video ad. This document should conform to the VAST 2.0, 3.0, or 4.x standard.
      */
     videoVastXml?: string | null;
   }
