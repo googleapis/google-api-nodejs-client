@@ -433,6 +433,24 @@ export namespace retail_v2alpha {
     resetCatalogAttributes?: string[] | null;
   }
   /**
+   * Request for BatchUpdateGenerativeQuestionConfig method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsRequest {
+    /**
+     * Required. The updates question configs.
+     */
+    requests?: Schema$GoogleCloudRetailV2alphaUpdateGenerativeQuestionConfigRequest[];
+  }
+  /**
+   * Aggregated response for UpdateGenerativeQuestionConfig method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse {
+    /**
+     * Optional. The updates question configs.
+     */
+    generativeQuestionConfigs?: Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig[];
+  }
+  /**
    * A BigQuery output result.
    */
   export interface Schema$GoogleCloudRetailV2alphaBigQueryOutputResult {
@@ -1150,6 +1168,56 @@ export namespace retail_v2alpha {
     inputUris?: string[] | null;
   }
   /**
+   * Configuration for a single generated question.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig {
+    /**
+     * Optional. Whether the question is asked at serving time.
+     */
+    allowedInConversation?: boolean | null;
+    /**
+     * Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    catalog?: string | null;
+    /**
+     * Output only. Values that can be used to answer the question.
+     */
+    exampleValues?: string[] | null;
+    /**
+     * Required. The facet to which the question is associated.
+     */
+    facet?: string | null;
+    /**
+     * Optional. The question that will be used at serving time. Question can have a max length of 300 bytes. When not populated, generated_question should be used.
+     */
+    finalQuestion?: string | null;
+    /**
+     * Output only. The ratio of how often a question was asked.
+     */
+    frequency?: number | null;
+    /**
+     * Output only. The LLM generated question.
+     */
+    generatedQuestion?: string | null;
+  }
+  /**
+   * Configuration for overall generative question feature state.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig {
+    /**
+     * Required. Resource name of the affected catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    catalog?: string | null;
+    /**
+     * Optional. Determines whether questions will be used at serving time. Note: This feature cannot be enabled until initial data requirements are satisfied.
+     */
+    featureEnabled?: boolean | null;
+    /**
+     * Optional. Minimum number of products in the response to trigger follow-up questions. Value must be 0 or positive.
+     */
+    minimumProducts?: number | null;
+  }
+  /**
    * Response message of CatalogService.GetDefaultBranch.
    */
   export interface Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse {
@@ -1387,6 +1455,15 @@ export namespace retail_v2alpha {
      * Retail API solutions that the project has enrolled.
      */
     enrolledSolutions?: string[] | null;
+  }
+  /**
+   * Response for ListQuestions method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse {
+    /**
+     * All the questions for a given catalog.
+     */
+    generativeQuestionConfigs?: Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig[];
   }
   /**
    * Response for MerchantCenterAccountLinkService.ListMerchantCenterAccountLinks method.
@@ -2067,6 +2144,32 @@ export namespace retail_v2alpha {
     variants?: Schema$GoogleCloudRetailV2alphaProduct[];
   }
   /**
+   * Product attribute name and numeric interval.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaProductAttributeInterval {
+    /**
+     * The numeric interval (e.g. [10, 20))
+     */
+    interval?: Schema$GoogleCloudRetailV2alphaInterval;
+    /**
+     * The attribute name (e.g. "length")
+     */
+    name?: string | null;
+  }
+  /**
+   * Product attribute which structured by an attribute name and value. This structure is used in conversational search filters and answers. For example, if we have `name=color` and `value=red`, this means that the color is `red`.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaProductAttributeValue {
+    /**
+     * The attribute name.
+     */
+    name?: string | null;
+    /**
+     * The attribute value.
+     */
+    value?: string | null;
+  }
+  /**
    * Detailed product information associated with a user event.
    */
   export interface Schema$GoogleCloudRetailV2alphaProductDetail {
@@ -2563,6 +2666,10 @@ export namespace retail_v2alpha {
      */
     canonicalFilter?: string | null;
     /**
+     * Optional. This field specifies all conversational related parameters addition to traditional retail search.
+     */
+    conversationalSearchSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec;
+    /**
      * Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic to enable dynamic facets. Do not set this field. The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated.
      */
     dynamicFacetSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec;
@@ -2627,6 +2734,10 @@ export namespace retail_v2alpha {
      */
     spellCorrectionSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestSpellCorrectionSpec;
     /**
+     * Optional. This field specifies tile navigation related parameters.
+     */
+    tileNavigationSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec;
+    /**
      * User information.
      */
     userInfo?: Schema$GoogleCloudRetailV2alphaUserInfo;
@@ -2664,6 +2775,49 @@ export namespace retail_v2alpha {
      * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost products with product ID "product_1" or "product_2", and color "Red" or "Blue": * (id: ANY("product_1", "product_2")) AND (colorFamilies: ANY("Red","Blue"))
      */
     condition?: string | null;
+  }
+  /**
+   * This field specifies all conversational related parameters addition to traditional retail search.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec {
+    /**
+     * This field specifies the conversation id, which maintains the state of the conversation between client side and server side. Use the value from the previous ConversationalSearchResult.conversation_id. For the initial request, this should be empty.
+     */
+    conversationId?: string | null;
+    /**
+     * This field specifies whether the customer would like to do conversational search. If this field is set to true, conversational related extra information will be returned from server side, including follow-up question, answer options, etc.
+     */
+    followupConversationRequested?: boolean | null;
+    /**
+     * This field specifies the current user answer during the conversational search. This can be either user selected from suggested answers or user input plain text.
+     */
+    userAnswer?: Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswer;
+  }
+  /**
+   * This field specifies the current user answer during the conversational search. This can be either user selected from suggested answers or user input plain text.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswer {
+    /**
+     * This field specifies the selected attributes during the conversational search. This should be a subset of ConversationalSearchResult.suggested_answers.
+     */
+    selectedAnswer?: Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer;
+    /**
+     * This field specifies the incremental input text from the user during the conversational search.
+     */
+    textAnswer?: string | null;
+  }
+  /**
+   * This field specifies the selected answers during the conversational search.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpecUserAnswerSelectedAnswer {
+    /**
+     * This field specifies the selected answer which is a attribute key-value.
+     */
+    productAttributeValue?: Schema$GoogleCloudRetailV2alphaProductAttributeValue;
+    /**
+     * This field is deprecated and should not be set.
+     */
+    productAttributeValues?: Schema$GoogleCloudRetailV2alphaProductAttributeValue[];
   }
   /**
    * The specifications of dynamically generated facets.
@@ -2768,6 +2922,19 @@ export namespace retail_v2alpha {
     mode?: string | null;
   }
   /**
+   * This field specifies tile navigation related parameters.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec {
+    /**
+     * This field specifies the tiles which are already clicked in client side. NOTE: This field is not being used for filtering search products. Client side should also put all the applied tiles in SearchRequest.filter.
+     */
+    appliedTiles?: Schema$GoogleCloudRetailV2alphaTile[];
+    /**
+     * This field specifies whether the customer would like to request tile navigation.
+     */
+    tileNavigationRequested?: boolean | null;
+  }
+  /**
    * Response message for SearchService.Search method.
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchResponse {
@@ -2779,6 +2946,10 @@ export namespace retail_v2alpha {
      * A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance.
      */
     attributionToken?: string | null;
+    /**
+     * This field specifies all related information that is needed on client side for UI rendering of conversational retail search.
+     */
+    conversationalSearchResult?: Schema$GoogleCloudRetailV2alphaSearchResponseConversationalSearchResult;
     /**
      * Contains the spell corrected query, if found. If the spell correction type is AUTOMATIC, then the search results are based on corrected_query. Otherwise the original query is used for search.
      */
@@ -2812,9 +2983,60 @@ export namespace retail_v2alpha {
      */
     results?: Schema$GoogleCloudRetailV2alphaSearchResponseSearchResult[];
     /**
+     * This field specifies all related information for tile navigation that will be used in client side.
+     */
+    tileNavigationResult?: Schema$GoogleCloudRetailV2alphaSearchResponseTileNavigationResult;
+    /**
      * The estimated total count of matched items irrespective of pagination. The count of results returned by pagination may be less than the total_size that matches.
      */
     totalSize?: number | null;
+  }
+  /**
+   * This field specifies all related information that is needed on client side for UI rendering of conversational retail search.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseConversationalSearchResult {
+    /**
+     * This is the incremental additional filters implied from the current user answer. User should add the suggested addition filters to the previous SearchRequest.filter, and use the merged filter in the follow up search request.
+     */
+    additionalFilter?: Schema$GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultAdditionalFilter;
+    /**
+     * This field is deprecated but will be kept for backward compatibility. There is expected to have only one additional filter and the value will be the same to the same as field `additional_filter`.
+     */
+    additionalFilters?: Schema$GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultAdditionalFilter[];
+    /**
+     * Conversation UUID. This field will be stored in client side storage to maintain the conversation session with server and will be used for next search request's SearchRequest.ConversationalSearchSpec.conversation_id to restore conversation state in server.
+     */
+    conversationId?: string | null;
+    /**
+     * The follow-up question. e.g., `What is the color?`
+     */
+    followupQuestion?: string | null;
+    /**
+     * The current refined query for the conversational search. This field will be used in customer UI that the query in the search bar should be replaced with the refined query. For example, if SearchRequest.query is `dress` and next SearchRequest.ConversationalSearchSpec.UserAnswer.text_answer is `red color`, which does not match any product attribute value filters, the refined query will be `dress, red color`.
+     */
+    refinedQuery?: string | null;
+    /**
+     * The answer options provided to client for the follow-up question.
+     */
+    suggestedAnswers?: Schema$GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultSuggestedAnswer[];
+  }
+  /**
+   * Additional filter that client side need to apply.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultAdditionalFilter {
+    /**
+     * Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future.
+     */
+    productAttributeValue?: Schema$GoogleCloudRetailV2alphaProductAttributeValue;
+  }
+  /**
+   * Suggested answers to the follow-up question.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseConversationalSearchResultSuggestedAnswer {
+    /**
+     * Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future.
+     */
+    productAttributeValue?: Schema$GoogleCloudRetailV2alphaProductAttributeValue;
   }
   /**
    * A facet result.
@@ -2899,6 +3121,15 @@ export namespace retail_v2alpha {
      * The rollup matching variant Product attributes. The key is one of the SearchRequest.variant_rollup_keys. The values are the merged and de-duplicated Product attributes. Notice that the rollup values are respect filter. For example, when filtering by "colorFamilies:ANY(\"red\")" and rollup "colorFamilies", only "red" is returned. For textual and numerical attributes, the rollup values is a list of string or double values with type google.protobuf.ListValue. For example, if there are two variants with colors "red" and "blue", the rollup values are { key: "colorFamilies" value { list_value { values { string_value: "red" \} values { string_value: "blue" \} \} \} \} For FulfillmentInfo, the rollup values is a double value with type google.protobuf.Value. For example, `{key: "pickupInStore.store1" value { number_value: 10 \}\}` means a there are 10 variants in this product are available in the store "store1".
      */
     variantRollupValues?: {[key: string]: any} | null;
+  }
+  /**
+   * This field specifies all related information for tile navigation that will be used in client side.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseTileNavigationResult {
+    /**
+     * The current tiles that are used for tile navigation, sorted by engagement.
+     */
+    tiles?: Schema$GoogleCloudRetailV2alphaTile[];
   }
   /**
    * Configures metadata that is used to generate serving time results (e.g. search results or recommendation predictions).
@@ -3032,6 +3263,23 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSetInventoryResponse {}
   /**
+   * This field specifies the tile information including an attribute key, attribute value. More fields will be added in the future, eg: product id or product counts, etc.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaTile {
+    /**
+     * The product attribute key-numeric interval.
+     */
+    productAttributeInterval?: Schema$GoogleCloudRetailV2alphaProductAttributeInterval;
+    /**
+     * The product attribute key-value.
+     */
+    productAttributeValue?: Schema$GoogleCloudRetailV2alphaProductAttributeValue;
+    /**
+     * The representative product id for this tile.
+     */
+    representativeProductId?: string | null;
+  }
+  /**
    * Metadata related to transform user events operation.
    */
   export interface Schema$GoogleCloudRetailV2alphaTransformedUserEventsMetadata {
@@ -3061,6 +3309,19 @@ export namespace retail_v2alpha {
    * Response associated with a tune operation.
    */
   export interface Schema$GoogleCloudRetailV2alphaTuneModelResponse {}
+  /**
+   * Request for UpdateGenerativeQuestionConfig method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaUpdateGenerativeQuestionConfigRequest {
+    /**
+     * Required. The question to update.
+     */
+    generativeQuestionConfig?: Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig;
+    /**
+     * Optional. Indicates which fields in the provided GenerativeQuestionConfig to update. The following are NOT supported: * GenerativeQuestionConfig.frequency If not set or empty, all supported fields are updated.
+     */
+    updateMask?: string | null;
+  }
   /**
    * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.
    */
@@ -4830,6 +5091,8 @@ export namespace retail_v2alpha {
     branches: Resource$Projects$Locations$Catalogs$Branches;
     completionData: Resource$Projects$Locations$Catalogs$Completiondata;
     controls: Resource$Projects$Locations$Catalogs$Controls;
+    generativeQuestion: Resource$Projects$Locations$Catalogs$Generativequestion;
+    generativeQuestions: Resource$Projects$Locations$Catalogs$Generativequestions;
     merchantCenterAccountLinks: Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks;
     models: Resource$Projects$Locations$Catalogs$Models;
     operations: Resource$Projects$Locations$Catalogs$Operations;
@@ -4848,6 +5111,14 @@ export namespace retail_v2alpha {
       this.controls = new Resource$Projects$Locations$Catalogs$Controls(
         this.context
       );
+      this.generativeQuestion =
+        new Resource$Projects$Locations$Catalogs$Generativequestion(
+          this.context
+        );
+      this.generativeQuestions =
+        new Resource$Projects$Locations$Catalogs$Generativequestions(
+          this.context
+        );
       this.merchantCenterAccountLinks =
         new Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks(
           this.context
@@ -5350,6 +5621,103 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Manages overal generative question feature state -- enables toggling feature on and off.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getGenerativeQuestionFeature(
+      params?: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>;
+    getGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+    ): void;
+    getGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+    ): void;
+    getGenerativeQuestionFeature(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+    ): void;
+    getGenerativeQuestionFeature(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+catalog}/generativeQuestionFeature'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists all the Catalogs associated with the project.
      *
      * @param params - Parameters for request
@@ -5823,6 +6191,201 @@ export namespace retail_v2alpha {
         );
       }
     }
+
+    /**
+     * Allows management of individual questions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateGenerativeQuestion(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateGenerativeQuestion(
+      params?: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>;
+    updateGenerativeQuestion(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateGenerativeQuestion(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>
+    ): void;
+    updateGenerativeQuestion(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>
+    ): void;
+    updateGenerativeQuestion(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>
+    ): void;
+    updateGenerativeQuestion(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+catalog}/generativeQuestion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Manages overal generative question feature state -- enables toggling feature on and off.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateGenerativeQuestionFeature(
+      params?: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>;
+    updateGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+    ): void;
+    updateGenerativeQuestionFeature(
+      params: Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+    ): void;
+    updateGenerativeQuestionFeature(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+    ): void;
+    updateGenerativeQuestionFeature(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+catalog}/generativeQuestionFeature'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Catalogs$Completequery
@@ -5894,6 +6457,13 @@ export namespace retail_v2alpha {
     extends StandardParameters {
     /**
      * The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
+     */
+    catalog?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Getgenerativequestionfeature
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
      */
     catalog?: string;
   }
@@ -5971,6 +6541,38 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaCompletionConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Updategenerativequestion
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    catalog?: string;
+    /**
+     * Optional. Indicates which fields in the provided GenerativeQuestionConfig to update. The following are NOT supported: * GenerativeQuestionConfig.frequency If not set or empty, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaGenerativeQuestionConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Updategenerativequestionfeature
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the affected catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    catalog?: string;
+    /**
+     * Optional. Indicates which fields in the provided GenerativeQuestionsFeatureConfig to update. If not set or empty, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaGenerativeQuestionsFeatureConfig;
   }
 
   export class Resource$Projects$Locations$Catalogs$Attributesconfig {
@@ -8969,6 +9571,236 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaControl;
+  }
+
+  export class Resource$Projects$Locations$Catalogs$Generativequestion {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Allows management of multiple questions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdate(
+      params?: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+parent}/generativeQuestion:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Generativequestion$Batchupdate
+    extends StandardParameters {
+    /**
+     * Optional. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaBatchUpdateGenerativeQuestionConfigsRequest;
+  }
+
+  export class Resource$Projects$Locations$Catalogs$Generativequestions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns all questions for a given catalog.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Generativequestions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Generativequestions$List
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Generativequestions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Generativequestions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/generativeQuestions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaListGenerativeQuestionConfigsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Generativequestions$List
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the parent catalog. Format: projects/{project\}/locations/{location\}/catalogs/{catalog\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Catalogs$Merchantcenteraccountlinks {
