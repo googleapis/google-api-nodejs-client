@@ -905,7 +905,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string | null;
     /**
-     * Immutable. The linked Google Cloud project resource name. Currently, this API always uses a project number, but may use project IDs in the future. Format: 'projects/{project number\}' Example: 'projects/1234'
+     * Immutable. The linked Google Cloud project. When creating a BigQueryLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, the returned project will always have a project that contains a project number. Format: 'projects/{project number\}' Example: 'projects/1234'
      */
     project?: string | null;
     /**
