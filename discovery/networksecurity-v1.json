@@ -3253,7 +3253,7 @@
       }
     }
   },
-  "revision": "20240803",
+  "revision": "20240919",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3492,6 +3492,17 @@
       },
       "type": "object"
     },
+    "CustomMirroringProfile": {
+      "description": "CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup",
+      "id": "CustomMirroringProfile",
+      "properties": {
+        "mirroringEndpointGroup": {
+          "description": "Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Destination": {
       "description": "Specification of traffic destination attributes.",
       "id": "Destination",
@@ -3678,14 +3689,16 @@
             "CREATING",
             "ACTIVE",
             "DELETING",
-            "INACTIVE"
+            "INACTIVE",
+            "ORPHAN"
           ],
           "enumDescriptions": [
             "Not set.",
             "Being created.",
             "Active and ready for traffic.",
             "Being deleted.",
-            "Down or in an error state."
+            "Down or in an error state.",
+            "The GCP project that housed the association has been deleted."
           ],
           "readOnly": true,
           "type": "string"
@@ -4525,6 +4538,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customMirroringProfile": {
+          "$ref": "CustomMirroringProfile",
+          "description": "The custom Packet Mirroring v2 configuration for the SecurityProfile."
+        },
         "description": {
           "description": "Optional. An optional description of the profile. Max length 512 characters.",
           "type": "string"
@@ -4553,11 +4570,13 @@
           "description": "Immutable. The single ProfileType that the SecurityProfile resource configures.",
           "enum": [
             "PROFILE_TYPE_UNSPECIFIED",
-            "THREAT_PREVENTION"
+            "THREAT_PREVENTION",
+            "CUSTOM_MIRRORING"
           ],
           "enumDescriptions": [
             "Profile type not specified.",
-            "Profile type for threat prevention."
+            "Profile type for threat prevention.",
+            "Profile type for packet mirroring v2"
           ],
           "type": "string"
         },
@@ -4578,6 +4597,10 @@
           "description": "Output only. Resource creation timestamp.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "customMirroringProfile": {
+          "description": "Optional. Reference to a SecurityProfile with the CustomMirroring configuration.",
           "type": "string"
         },
         "description": {
