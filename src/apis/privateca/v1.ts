@@ -240,7 +240,7 @@ export namespace privateca_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
+     * Output only. Identifier. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
      */
     name?: string | null;
     /**
@@ -2562,7 +2562,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
+     * Output only. Identifier. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
      */
     name?: string;
     /**

@@ -392,7 +392,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
+                      "description": "Output only. Identifier. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/caPools/[^/]+$",
                       "required": true,
@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20240819",
+  "revision": "20240918",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -1762,7 +1762,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
+          "description": "Output only. Identifier. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
           "readOnly": true,
           "type": "string"
         },
