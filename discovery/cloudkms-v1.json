@@ -26,6 +26,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.europe-west9.rep.googleapis.com/",
       "location": "europe-west9"
     },
@@ -78,6 +83,21 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://cloudkms.us-west4.rep.googleapis.com/",
       "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://cloudkms.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -860,7 +880,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. Optional limit on the number of KeyHandles to include in the response. The service may return fewer than this value. Further KeyHandles can subsequently be obtained by including the ListKeyHandlesResponse.next_page_token in a subsequent request. If unspecified, at most KeyHandles 100 will be returned.",
+                      "description": "Optional. Optional limit on the number of KeyHandles to include in the response. The service may return fewer than this value. Further KeyHandles can subsequently be obtained by including the ListKeyHandlesResponse.next_page_token in a subsequent request. If unspecified, at most 100 KeyHandles will be returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -2112,7 +2132,7 @@
       }
     }
   },
-  "revision": "20240808",
+  "revision": "20240926",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
