@@ -160,6 +160,10 @@ export namespace pubsub_v1 {
     writeMetadata?: boolean | null;
   }
   /**
+   * Configuration for reading Cloud Storage data in Avro binary format. The bytes of each object will be set to the `data` field of a Pub/Sub message.
+   */
+  export interface Schema$AvroFormat {}
+  /**
    * Ingestion settings for Amazon Kinesis Data Streams.
    */
   export interface Schema$AwsKinesis {
@@ -233,6 +237,39 @@ export namespace pubsub_v1 {
      * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).
      */
     role?: string | null;
+  }
+  /**
+   * Ingestion settings for Cloud Storage.
+   */
+  export interface Schema$CloudStorage {
+    /**
+     * Optional. Data from Cloud Storage will be interpreted in Avro format.
+     */
+    avroFormat?: Schema$AvroFormat;
+    /**
+     * Optional. Cloud Storage bucket. The bucket name must be without any prefix like "gs://". See the [bucket naming requirements] (https://cloud.google.com/storage/docs/buckets#naming).
+     */
+    bucket?: string | null;
+    /**
+     * Optional. Glob pattern used to match objects that will be ingested. If unset, all objects will be ingested. See the [supported patterns](https://cloud.google.com/storage/docs/json_api/v1/objects/list#list-objects-and-prefixes-using-glob).
+     */
+    matchGlob?: string | null;
+    /**
+     * Optional. Only objects with a larger or equal creation timestamp will be ingested.
+     */
+    minimumObjectCreateTime?: string | null;
+    /**
+     * Optional. It will be assumed data from Cloud Storage was written via [Cloud Storage subscriptions](https://cloud.google.com/pubsub/docs/cloudstorage).
+     */
+    pubsubAvroFormat?: Schema$PubSubAvroFormat;
+    /**
+     * Output only. An output-only field that indicates the state of the Cloud Storage ingestion source.
+     */
+    state?: string | null;
+    /**
+     * Optional. Data from Cloud Storage will be interpreted as text.
+     */
+    textFormat?: Schema$TextFormat;
   }
   /**
    * Configuration for a Cloud Storage subscription.
@@ -364,6 +401,14 @@ export namespace pubsub_v1 {
      * Optional. Amazon Kinesis Data Streams.
      */
     awsKinesis?: Schema$AwsKinesis;
+    /**
+     * Optional. Cloud Storage.
+     */
+    cloudStorage?: Schema$CloudStorage;
+    /**
+     * Optional. Platform Logs settings. If unset, no Platform Logs will be generated.
+     */
+    platformLogsSettings?: Schema$PlatformLogsSettings;
   }
   /**
    * Response for the `ListSchemaRevisions` method.
@@ -514,6 +559,15 @@ export namespace pubsub_v1 {
     serviceAccountEmail?: string | null;
   }
   /**
+   * Settings for Platform Logs produced by Pub/Sub.
+   */
+  export interface Schema$PlatformLogsSettings {
+    /**
+     * Optional. The minimum severity level of Platform Logs that will be written.
+     */
+    severity?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -548,6 +602,10 @@ export namespace pubsub_v1 {
      */
     messageIds?: string[] | null;
   }
+  /**
+   * Configuration for reading Cloud Storage data written via [Cloud Storage subscriptions](https://cloud.google.com/pubsub/docs/cloudstorage). The data and attributes fields of the originally exported Pub/Sub message will be restored when publishing.
+   */
+  export interface Schema$PubSubAvroFormat {}
   /**
    * A message that is published by publishers and consumed by subscribers. The message must contain either a non-empty data field or at least one attribute. Note that client libraries represent this object differently depending on the language. See the corresponding [client library documentation](https://cloud.google.com/pubsub/docs/reference/libraries) for more information. See [quotas and limits] (https://cloud.google.com/pubsub/quotas) for more information about message limits.
    */
@@ -805,7 +863,7 @@ export namespace pubsub_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 31 days or less than 10 minutes.
      */
     messageRetentionDuration?: string | null;
     /**
@@ -859,6 +917,15 @@ export namespace pubsub_v1 {
    * Configuration for writing message data in text format. Message payloads will be written to files as raw text, separated by a newline.
    */
   export interface Schema$TextConfig {}
+  /**
+   * Configuration for reading Cloud Storage data in text format. Each line of text as specified by the delimiter will be set to the `data` field of a Pub/Sub message.
+   */
+  export interface Schema$TextFormat {
+    /**
+     * Optional. When unset, '\n' is used.
+     */
+    delimiter?: string | null;
+  }
   /**
    * A topic resource.
    */
