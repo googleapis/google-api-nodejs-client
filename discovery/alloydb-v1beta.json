@@ -201,7 +201,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -244,7 +244,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -355,7 +355,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -408,12 +408,12 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.",
+                      "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -451,12 +451,12 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.",
+                      "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -499,12 +499,12 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
+                      "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -625,7 +625,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -636,7 +636,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the update request.",
+                      "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -709,7 +709,7 @@
                   ]
                 },
                 "switchover": {
-                  "description": "Switches the role of PRIMARY and SECONDARY cluster without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up original PRIMARY cluster to replicate from this newly promoted cluster.",
+                  "description": "Switches the roles of PRIMARY and SECONDARY clusters without any data loss. This promotes the SECONDARY cluster to PRIMARY and sets up the original PRIMARY cluster to replicate from this newly promoted cluster.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:switchover",
                   "httpMethod": "POST",
                   "id": "alloydb.projects.locations.clusters.switchover",
@@ -728,6 +728,34 @@
                   "path": "v1beta/{+name}:switchover",
                   "request": {
                     "$ref": "SwitchoverClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "upgrade": {
+                  "description": "Upgrades a single Cluster. Imperative only.",
+                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:upgrade",
+                  "httpMethod": "PATCH",
+                  "id": "alloydb.projects.locations.clusters.upgrade",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the cluster.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}:upgrade",
+                  "request": {
+                    "$ref": "UpgradeClusterRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -762,12 +790,12 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.",
+                          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -805,12 +833,12 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the create request.",
+                          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -848,12 +876,12 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
+                          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -951,7 +979,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         }
@@ -1060,7 +1088,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -1071,7 +1099,7 @@
                           "type": "string"
                         },
                         "validateOnly": {
-                          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the update request.",
+                          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -1136,7 +1164,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -1179,7 +1207,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -1290,7 +1318,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                           "location": "query",
                           "type": "string"
                         },
@@ -1486,7 +1514,7 @@
       }
     }
   },
-  "revision": "20240823",
+  "revision": "20240923",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1736,7 +1764,7 @@
         },
         "sslConfig": {
           "$ref": "SslConfig",
-          "description": "Optional. SSL config option for this instance."
+          "description": "Optional. SSL configuration option for this instance."
         }
       },
       "type": "object"
@@ -2002,7 +2030,7 @@
             "TRIAL"
           ],
           "enumDescriptions": [
-            "This is an unknown Subscription type (By default, Subscription Type is STANDARD)",
+            "This is an unknown subscription type. By default, the subscription type is STANDARD.",
             "Standard subscription.",
             "Trial subscription."
           ],
@@ -2092,15 +2120,23 @@
           "description": "Upgrade status of the cluster.",
           "enum": [
             "STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
             "SUCCESS",
             "FAILED",
-            "PARTIAL_SUCCESS"
+            "PARTIAL_SUCCESS",
+            "CANCEL_IN_PROGRESS",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Unspecified status.",
+            "Not started.",
+            "In progress.",
             "Operation succeeded.",
             "Operation failed.",
-            "Operation partially succeeded."
+            "Operation partially succeeded.",
+            "Cancel is in progress.",
+            "Cancellation complete."
           ],
           "type": "string"
         }
@@ -2287,11 +2323,11 @@
       "id": "FailoverInstanceRequest",
       "properties": {
         "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "validateOnly": {
-          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the failover.",
+          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
           "type": "boolean"
         }
       },
@@ -2417,11 +2453,11 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "validateOnly": {
-          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the fault injection.",
+          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
           "type": "boolean"
         }
       },
@@ -2530,7 +2566,7 @@
         },
         "networkConfig": {
           "$ref": "InstanceNetworkConfig",
-          "description": "Optional. Instance level network configuration."
+          "description": "Optional. Instance-level network configuration."
         },
         "nodes": {
           "description": "Output only. List of available read-only VMs in this instance, including the standby for a PRIMARY instance.",
@@ -2630,7 +2666,7 @@
       "type": "object"
     },
     "InstanceNetworkConfig": {
-      "description": "Metadata related to instance level network configuration.",
+      "description": "Metadata related to instance-level network configuration.",
       "id": "InstanceNetworkConfig",
       "properties": {
         "authorizedExternalNetworks": {
@@ -2679,15 +2715,23 @@
           "description": "Upgrade status of the instance.",
           "enum": [
             "STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
             "SUCCESS",
             "FAILED",
-            "PARTIAL_SUCCESS"
+            "PARTIAL_SUCCESS",
+            "CANCEL_IN_PROGRESS",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Unspecified status.",
+            "Not started.",
+            "In progress.",
             "Operation succeeded.",
             "Operation failed.",
-            "Operation partially succeeded."
+            "Operation partially succeeded.",
+            "Cancel is in progress.",
+            "Cancellation complete."
           ],
           "type": "string"
         }
@@ -3138,11 +3182,11 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "validateOnly": {
-          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
+          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
           "type": "boolean"
         }
       },
@@ -3255,18 +3299,18 @@
       "id": "RestartInstanceRequest",
       "properties": {
         "nodeIds": {
-          "description": "Optional. Full name of the nodes as obtained from INSTANCE_VIEW_FULL to restart upon. Only applicable for read instances.",
+          "description": "Optional. Full name of the nodes as obtained from INSTANCE_VIEW_FULL to restart upon. Applicable only to read instances.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "validateOnly": {
-          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the restart.",
+          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
           "type": "boolean"
         }
       },
@@ -3293,11 +3337,11 @@
           "description": "ContinuousBackup source. Continuous backup needs to be enabled in the source cluster for this operation to succeed."
         },
         "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "validateOnly": {
-          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the import request.",
+          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
           "type": "boolean"
         }
       },
@@ -3349,10 +3393,10 @@
             false
           ],
           "enumDescriptions": [
-            "SSL mode not specified. Defaults to ENCRYPTED_ONLY.",
+            "SSL mode is not specified. Defaults to ENCRYPTED_ONLY.",
             "SSL connections are optional. CA verification not enforced.",
             "SSL connections are required. CA verification not enforced. Clients may use locally self-signed certificates (default psql client behavior).",
-            "SSL connections are required. CA verification enforced. Clients must have certificates signed by a Cluster CA, e.g. via GenerateClientCertificate.",
+            "SSL connections are required. CA verification enforced. Clients must have certificates signed by a Cluster CA, for example, using GenerateClientCertificate.",
             "SSL connections are optional. CA verification not enforced.",
             "SSL connections are required. CA verification not enforced."
           ],
@@ -3375,15 +3419,21 @@
             "STAGE_UNSPECIFIED",
             "ALLOYDB_PRECHECK",
             "PG_UPGRADE_CHECK",
+            "PREPARE_FOR_UPGRADE",
             "PRIMARY_INSTANCE_UPGRADE",
-            "READ_POOL_UPGRADE"
+            "READ_POOL_INSTANCES_UPGRADE",
+            "ROLLBACK",
+            "CLEANUP"
           ],
           "enumDescriptions": [
             "Unspecified stage.",
-            "This stage is for the custom checks done before upgrade.",
-            "This stage is for `pg_upgrade --check` run before upgrade.",
-            "This stage is primary upgrade.",
-            "This stage is read pool upgrade."
+            "Pre-upgrade custom checks, not covered by pg_upgrade.",
+            "Pre-upgrade pg_upgrade checks.",
+            "Clone the original cluster.",
+            "Upgrade the primary instance(downtime).",
+            "This stage is read pool upgrade.",
+            "Rollback in case of critical failures.",
+            "Cleanup."
           ],
           "type": "string"
         },
@@ -3391,15 +3441,23 @@
           "description": "Status of the stage.",
           "enum": [
             "STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
             "SUCCESS",
             "FAILED",
-            "PARTIAL_SUCCESS"
+            "PARTIAL_SUCCESS",
+            "CANCEL_IN_PROGRESS",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Unspecified status.",
+            "Not started.",
+            "In progress.",
             "Operation succeeded.",
             "Operation failed.",
-            "Operation partially succeeded."
+            "Operation partially succeeded.",
+            "Cancel is in progress.",
+            "Cancellation complete."
           ],
           "type": "string"
         }
@@ -4017,7 +4075,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata.",
+      "description": "Common model for database resource instance metadata. Next ID: 22",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -4144,6 +4202,10 @@
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
           "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
         },
+        "primaryResourceLocation": {
+          "description": "Primary resource location. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.",
+          "type": "string"
+        },
         "product": {
           "$ref": "StorageDatabasecenterProtoCommonProduct",
           "description": "The product this resource represents."
@@ -4155,6 +4217,10 @@
         "resourceName": {
           "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
           "type": "string"
+        },
+        "tagsSet": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainTags",
+          "description": "Optional. Tags associated with this resources."
         },
         "updationTime": {
           "description": "The time at which the resource was updated and recorded at partner service.",
@@ -4542,6 +4608,11 @@
           "description": "Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
           "format": "int64",
           "type": "string"
+        },
+        "shardCount": {
+          "description": "Optional. Number of shards (if applicable).",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4642,6 +4713,11 @@
     "StorageDatabasecenterPartnerapiV1mainRetentionSettings": {
       "id": "StorageDatabasecenterPartnerapiV1mainRetentionSettings",
       "properties": {
+        "durationBasedRetention": {
+          "description": "Duration based retention period i.e. 172800 seconds (2 days)",
+          "format": "google-duration",
+          "type": "string"
+        },
         "quantityBasedRetention": {
           "format": "int32",
           "type": "integer"
@@ -4652,12 +4728,14 @@
             "RETENTION_UNIT_UNSPECIFIED",
             "COUNT",
             "TIME",
+            "DURATION",
             "RETENTION_UNIT_OTHER"
           ],
           "enumDescriptions": [
             "Backup retention unit is unspecified, will be treated as COUNT.",
             "Retention will be by count, eg. \"retain the most recent 7 backups\".",
-            "Retention will be by Time, eg. \"retain the last 7 days backups\".",
+            "Retention will be by Time, eg. \"retain backups till a specific time\" i.e. till 2024-05-01T00:00:00Z.",
+            "Retention will be by duration, eg. \"retain the backups for 172800 seconds (2 days)\".",
             "For rest of the other category"
           ],
           "type": "string"
@@ -4665,6 +4743,20 @@
         "timeBasedRetention": {
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainTags": {
+      "description": "Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.",
+      "id": "StorageDatabasecenterPartnerapiV1mainTags",
+      "properties": {
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The Tag key/value mappings.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -4917,11 +5009,11 @@
       "id": "SwitchoverClusterRequest",
       "properties": {
         "requestId": {
-          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
         },
         "validateOnly": {
-          "description": "Optional. If set, performs request validation (e.g. permission checks and any other type of validation), but do not actually execute the delete.",
+          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
           "type": "boolean"
         }
       },
@@ -4987,6 +5079,50 @@
       },
       "type": "object"
     },
+    "UpgradeClusterRequest": {
+      "description": "Upgrades a cluster.",
+      "id": "UpgradeClusterRequest",
+      "properties": {
+        "etag": {
+          "description": "Optional. The current etag of the Cluster. If an etag is provided and does not match the current etag of the Cluster, upgrade will be blocked and an ABORTED error will be returned.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server ignores the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if the original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
+          "type": "boolean"
+        },
+        "version": {
+          "description": "Required. The version the cluster is going to be upgraded to.",
+          "enum": [
+            "DATABASE_VERSION_UNSPECIFIED",
+            "POSTGRES_13",
+            "POSTGRES_14",
+            "POSTGRES_15",
+            "POSTGRES_16"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "This is an unknown database version.",
+            "DEPRECATED - The database version is Postgres 13.",
+            "The database version is Postgres 14.",
+            "The database version is Postgres 15.",
+            "The database version is Postgres 16."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UpgradeClusterResponse": {
       "description": "UpgradeClusterResponse contains the response for upgrade cluster operation.",
       "id": "UpgradeClusterResponse",
@@ -5006,15 +5142,23 @@
           "description": "Status of upgrade operation.",
           "enum": [
             "STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
             "SUCCESS",
             "FAILED",
-            "PARTIAL_SUCCESS"
+            "PARTIAL_SUCCESS",
+            "CANCEL_IN_PROGRESS",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Unspecified status.",
+            "Not started.",
+            "In progress.",
             "Operation succeeded.",
             "Operation failed.",
-            "Operation partially succeeded."
+            "Operation partially succeeded.",
+            "Cancel is in progress.",
+            "Cancellation complete."
           ],
           "type": "string"
         }
