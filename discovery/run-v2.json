@@ -1526,7 +1526,7 @@
       }
     }
   },
-  "revision": "20240823",
+  "revision": "20240927",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2984,7 +2984,7 @@
       "id": "GoogleCloudRunV2RevisionScaling",
       "properties": {
         "maxInstanceCount": {
-          "description": "Optional. Maximum number of serving instances that this resource should have.",
+          "description": "Optional. Maximum number of serving instances that this resource should have. When unspecified, the field is set to the server default value of 100. For more information see https://cloud.google.com/run/docs/configuring/max-instances",
           "format": "int32",
           "type": "integer"
         },
@@ -3258,6 +3258,10 @@
           ],
           "type": "string"
         },
+        "invokerIamDisabled": {
+          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This setting should not be used with external ingress.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3395,9 +3399,23 @@
       "id": "GoogleCloudRunV2ServiceScaling",
       "properties": {
         "minInstanceCount": {
-          "description": "Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)",
+          "description": "Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.",
           "format": "int32",
           "type": "integer"
+        },
+        "scalingMode": {
+          "description": "Optional. The scaling mode for the service.",
+          "enum": [
+            "SCALING_MODE_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Scale based on traffic between min and max instances.",
+            "Scale to exactly min instances and ignore max instances."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3466,6 +3484,10 @@
       "properties": {
         "baseImageUri": {
           "description": "URI of the base builder image in Artifact Registry being used in the build. Used to opt into automatic base image updates.",
+          "type": "string"
+        },
+        "baseImageWarning": {
+          "description": "Warning message for the base image.",
           "type": "string"
         },
         "buildOperation": {
@@ -4291,11 +4313,13 @@
           "description": "Optional. Option to specify how default logs buckets are setup.",
           "enum": [
             "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
-            "REGIONAL_USER_OWNED_BUCKET"
+            "REGIONAL_USER_OWNED_BUCKET",
+            "LEGACY_BUCKET"
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project."
+            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project.",
+            "Bucket is located in a Google-owned project and is not regionalized."
           ],
           "type": "string"
         },

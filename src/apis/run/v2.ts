@@ -1065,7 +1065,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2RevisionScaling {
     /**
-     * Optional. Maximum number of serving instances that this resource should have.
+     * Optional. Maximum number of serving instances that this resource should have. When unspecified, the field is set to the server default value of 100. For more information see https://cloud.google.com/run/docs/configuring/max-instances
      */
     maxInstanceCount?: number | null;
     /**
@@ -1263,6 +1263,10 @@ export namespace run_v2 {
      */
     ingress?: string | null;
     /**
+     * Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This setting should not be used with external ingress.
+     */
+    invokerIamDisabled?: boolean | null;
+    /**
      * Optional. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 Service.
      */
     labels?: {[key: string]: string} | null;
@@ -1349,9 +1353,13 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ServiceScaling {
     /**
-     * Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving. (BETA)
+     * Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.
      */
     minInstanceCount?: number | null;
+    /**
+     * Optional. The scaling mode for the service.
+     */
+    scalingMode?: string | null;
   }
   /**
    * Location of the source in an archive file in Google Cloud Storage.
@@ -1411,6 +1419,10 @@ export namespace run_v2 {
      * URI of the base builder image in Artifact Registry being used in the build. Used to opt into automatic base image updates.
      */
     baseImageUri?: string | null;
+    /**
+     * Warning message for the base image.
+     */
+    baseImageWarning?: string | null;
     /**
      * Cloud Build operation to be polled via CloudBuild API.
      */
