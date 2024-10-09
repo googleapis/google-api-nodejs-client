@@ -365,6 +365,13 @@ export namespace civicinfo_v2 {
      */
     type?: string | null;
   }
+  export interface Schema$DivisionByAddressResponse {
+    divisions?: {[key: string]: Schema$GeographicDivision} | null;
+    /**
+     * The normalized version of the requested address.
+     */
+    normalizedInput?: Schema$SimpleAddressType;
+  }
   /**
    * The result of a division search query.
    */
@@ -798,6 +805,101 @@ export namespace civicinfo_v2 {
     }
 
     /**
+     * Lookup OCDIDs and names for divisions related to an address.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryDivisionByAddress(
+      params: Params$Resource$Divisions$Querydivisionbyaddress,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    queryDivisionByAddress(
+      params?: Params$Resource$Divisions$Querydivisionbyaddress,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DivisionByAddressResponse>;
+    queryDivisionByAddress(
+      params: Params$Resource$Divisions$Querydivisionbyaddress,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryDivisionByAddress(
+      params: Params$Resource$Divisions$Querydivisionbyaddress,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DivisionByAddressResponse>,
+      callback: BodyResponseCallback<Schema$DivisionByAddressResponse>
+    ): void;
+    queryDivisionByAddress(
+      params: Params$Resource$Divisions$Querydivisionbyaddress,
+      callback: BodyResponseCallback<Schema$DivisionByAddressResponse>
+    ): void;
+    queryDivisionByAddress(
+      callback: BodyResponseCallback<Schema$DivisionByAddressResponse>
+    ): void;
+    queryDivisionByAddress(
+      paramsOrCallback?:
+        | Params$Resource$Divisions$Querydivisionbyaddress
+        | BodyResponseCallback<Schema$DivisionByAddressResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DivisionByAddressResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DivisionByAddressResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$DivisionByAddressResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Divisions$Querydivisionbyaddress;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Divisions$Querydivisionbyaddress;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://civicinfo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/civicinfo/v2/divisionsByAddress').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DivisionByAddressResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DivisionByAddressResponse>(parameters);
+      }
+    }
+
+    /**
      * Searches for political divisions by their natural name or OCD ID.
      *
      * @param params - Parameters for request
@@ -890,6 +992,13 @@ export namespace civicinfo_v2 {
     }
   }
 
+  export interface Params$Resource$Divisions$Querydivisionbyaddress
+    extends StandardParameters {
+    /**
+     *
+     */
+    address?: string;
+  }
   export interface Params$Resource$Divisions$Search extends StandardParameters {
     /**
      * The search query. Queries can cover any parts of a OCD ID or a human readable division name. All words given in the query are treated as required patterns. In addition to that, most query operators of the Apache Lucene library are supported. See http://lucene.apache.org/core/2_9_4/queryparsersyntax.html
