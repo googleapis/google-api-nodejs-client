@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20240820",
+  "revision": "20240904",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1237,7 +1237,7 @@
           "type": "boolean"
         },
         "id": {
-          "description": "Optional. Required. The id to be used for the boost config.",
+          "description": "Optional. Required. The id to be used for the boost configuration.",
           "type": "string"
         },
         "machineType": {
@@ -2052,7 +2052,7 @@
           "type": "object"
         },
         "boostConfigs": {
-          "description": "Output only. List of available boost configuration ids that this workstation can be boosted up to",
+          "description": "Output only. List of available boost configuration IDs that this workstation can be boosted up to.",
           "items": {
             "$ref": "WorkstationBoostConfig"
           },
@@ -2166,11 +2166,11 @@
       "type": "object"
     },
     "WorkstationBoostConfig": {
-      "description": "Boost config for this workstation. This object is populated from the parent workstation config.",
+      "description": "Boost configuration for this workstation. This object is populated from the parent workstation configuration.",
       "id": "WorkstationBoostConfig",
       "properties": {
         "id": {
-          "description": "Output only. Boost config id.",
+          "description": "Output only. Boost configuration ID.",
           "readOnly": true,
           "type": "string"
         }
@@ -2338,7 +2338,7 @@
           "type": "string"
         },
         "enableAuditAgent": {
-          "description": "Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service_account must also be specified that has `roles/logging.logWriter` and `roles/monitoring.metricWriter` on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging) and [Container output logging](http://cloud/workstations/docs/container-output-logging#overview). Operating system audit logs are available in the [Cloud Logging](https://cloud.google.com/logging/docs) console by querying: resource.type=\"gce_instance\" log_name:\"/logs/linux-auditd\"",
+          "description": "Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service_account must also be specified that has `roles/logging.logWriter` and `roles/monitoring.metricWriter` on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging) and [Container output logging](https://cloud.google.com/workstations/docs/container-output-logging#overview). Operating system audit logs are available in the [Cloud Logging](https://cloud.google.com/logging/docs) console by querying: resource.type=\"gce_instance\" log_name:\"/logs/linux-auditd\"",
           "type": "boolean"
         },
         "encryptionKey": {
@@ -2381,7 +2381,7 @@
           "type": "object"
         },
         "maxUsableWorkstations": {
-          "description": "Optional. Maximum number of workstations under this config a user can have `workstations.workstation.use` permission on. Only enforced on CreateWorkstation API calls on the user issuing the API request. Can be overridden by: - granting a user workstations.workstationConfigs.exemptMaxUsableWorkstationLimit permission, or - having a user with that permission create a workstation and granting another user `workstations.workstation.use` permission on that workstation. If not specified defaults to 0 which indicates unlimited.",
+          "description": "Optional. Maximum number of workstations under this configuration a user can have `workstations.workstation.use` permission on. Only enforced on CreateWorkstation API calls on the user issuing the API request. Can be overridden by: - granting a user workstations.workstationConfigs.exemptMaxUsableWorkstationLimit permission, or - having a user with that permission create a workstation and granting another user `workstations.workstation.use` permission on that workstation. If not specified, defaults to `0`, which indicates unlimited.",
           "format": "int32",
           "type": "integer"
         },
