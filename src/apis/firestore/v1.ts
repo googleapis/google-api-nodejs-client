@@ -1383,6 +1383,19 @@ export namespace firestore_v1 {
    */
   export interface Schema$GoogleFirestoreAdminV1SourceEncryptionOptions {}
   /**
+   * Information about the provenance of this database.
+   */
+  export interface Schema$GoogleFirestoreAdminV1SourceInfo {
+    /**
+     * If set, this database was restored from the specified backup (or a snapshot thereof).
+     */
+    backup?: Schema$GoogleFirestoreAdminV1BackupSource;
+    /**
+     * The associated long-running operation. This field may not be set after the operation has completed. Format: `projects/{project\}/databases/{database\}/operations/{operation\}`.
+     */
+    operation?: string | null;
+  }
+  /**
    * Backup specific statistics.
    */
   export interface Schema$GoogleFirestoreAdminV1Stats {

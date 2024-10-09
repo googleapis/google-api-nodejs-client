@@ -3876,6 +3876,21 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleFirestoreAdminV1SourceInfo": {
+      "description": "Information about the provenance of this database.",
+      "id": "GoogleFirestoreAdminV1SourceInfo",
+      "properties": {
+        "backup": {
+          "$ref": "GoogleFirestoreAdminV1BackupSource",
+          "description": "If set, this database was restored from the specified backup (or a snapshot thereof)."
+        },
+        "operation": {
+          "description": "The associated long-running operation. This field may not be set after the operation has completed. Format: `projects/{project}/databases/{database}/operations/{operation}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1Stats": {
       "description": "Backup specific statistics.",
       "id": "GoogleFirestoreAdminV1Stats",
