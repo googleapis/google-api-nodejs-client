@@ -1674,6 +1674,10 @@ export namespace run_v2 {
      */
     baseImageUri?: string | null;
     /**
+     * Warning message for the base image.
+     */
+    baseImageWarning?: string | null;
+    /**
      * Cloud Build operation to be polled via CloudBuild API.
      */
     buildOperation?: Schema$GoogleLongrunningOperation;

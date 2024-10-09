@@ -4217,6 +4217,10 @@
           "description": "URI of the base builder image in Artifact Registry being used in the build. Used to opt into automatic base image updates.",
           "type": "string"
         },
+        "baseImageWarning": {
+          "description": "Warning message for the base image.",
+          "type": "string"
+        },
         "buildOperation": {
           "$ref": "GoogleLongrunningOperation",
           "description": "Cloud Build operation to be polled via CloudBuild API."
