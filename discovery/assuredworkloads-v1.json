@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240823",
+  "revision": "20240913",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1AcknowledgeViolationRequest": {
@@ -699,7 +699,8 @@
             "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
             "REGIONAL_CONTROLS",
             "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
-            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT"
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
+            "IRS_1075"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -724,7 +725,8 @@
             "Assured Workloads Sovereign Controls KSA",
             "Assured Workloads for Regional Controls",
             "Healthcare and Life Science Controls",
-            "Healthcare and Life Science Controls with US Support"
+            "Healthcare and Life Science Controls with US Support",
+            "Internal Revenue Service 1075 controls"
           ],
           "type": "string"
         },
@@ -1186,7 +1188,8 @@
             "KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS",
             "REGIONAL_CONTROLS",
             "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS",
-            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT"
+            "HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT",
+            "IRS_1075"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -1211,7 +1214,8 @@
             "Assured Workloads Sovereign Controls KSA",
             "Assured Workloads for Regional Controls",
             "Healthcare and Life Science Controls",
-            "Healthcare and Life Science Controls with US Support"
+            "Healthcare and Life Science Controls with US Support",
+            "Internal Revenue Service 1075 controls"
           ],
           "type": "string"
         },
