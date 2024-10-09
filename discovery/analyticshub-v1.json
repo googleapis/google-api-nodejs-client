@@ -1022,7 +1022,7 @@
       }
     }
   },
-  "revision": "20240826",
+  "revision": "20240925",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AnalyticsHubSubscriptionInfo": {
@@ -1555,7 +1555,7 @@
           "type": "object"
         },
         "messageRetentionDuration": {
-          "description": "Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.",
+          "description": "Optional. How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 31 days or less than 10 minutes.",
           "format": "google-duration",
           "type": "string"
         },
