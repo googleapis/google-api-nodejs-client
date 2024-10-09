@@ -489,7 +489,7 @@
             "backupVaults": {
               "methods": {
                 "create": {
-                  "description": "",
+                  "description": "Creates a new BackupVault in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults",
                   "httpMethod": "POST",
                   "id": "backupdr.projects.locations.backupVaults.create",
@@ -642,6 +642,21 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Reserved for future use to provide a BASIC & FULL view of Backup Vault",
+                      "enum": [
+                        "BACKUP_VAULT_VIEW_UNSPECIFIED",
+                        "BACKUP_VAULT_VIEW_BASIC",
+                        "BACKUP_VAULT_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "If the value is not set, the default 'FULL' view is used.",
+                        "Includes basic data about the Backup Vault, but not the full contents.",
+                        "Includes all data about the Backup Vault. This is the default value (for both ListBackupVaults and GetBackupVault)."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+name}",
@@ -688,6 +703,21 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Reserved for future use to provide a BASIC & FULL view of Backup Vault.",
+                      "enum": [
+                        "BACKUP_VAULT_VIEW_UNSPECIFIED",
+                        "BACKUP_VAULT_VIEW_BASIC",
+                        "BACKUP_VAULT_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "If the value is not set, the default 'FULL' view is used.",
+                        "Includes basic data about the Backup Vault, but not the full contents.",
+                        "Includes all data about the Backup Vault. This is the default value (for both ListBackupVaults and GetBackupVault)."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+parent}/backupVaults",
@@ -713,7 +743,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Output only. Identifier. The resource name.",
+                      "description": "Output only. Identifier. Name of the backup vault to create. It must have the format`\"projects/{project}/locations/{location}/backupVaults/{backupvault}\"`. `{backupvault}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the project and location.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+$",
                       "required": true,
@@ -977,7 +1007,7 @@
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Output only. Identifier. The resource name.",
+                          "description": "Output only. Identifier. Name of the datasource to create. It must have the format`\"projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}\"`. `{datasource}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the backup vault.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
                           "required": true,
@@ -1111,6 +1141,21 @@
                               "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+/backups/[^/]+$",
                               "required": true,
                               "type": "string"
+                            },
+                            "view": {
+                              "description": "Optional. Reserved for future use to provide a BASIC & FULL view of Backup resource.",
+                              "enum": [
+                                "BACKUP_VIEW_UNSPECIFIED",
+                                "BACKUP_VIEW_BASIC",
+                                "BACKUP_VIEW_FULL"
+                              ],
+                              "enumDescriptions": [
+                                "If the value is not set, the default 'FULL' view is used.",
+                                "Includes basic data about the Backup, but not the full contents.",
+                                "Includes all data about the Backup. This is the default value (for both ListBackups and GetBackup)."
+                              ],
+                              "location": "query",
+                              "type": "string"
                             }
                           },
                           "path": "v1/{+name}",
@@ -1157,6 +1202,21 @@
                               "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
                               "required": true,
                               "type": "string"
+                            },
+                            "view": {
+                              "description": "Optional. Reserved for future use to provide a BASIC & FULL view of Backup resource.",
+                              "enum": [
+                                "BACKUP_VIEW_UNSPECIFIED",
+                                "BACKUP_VIEW_BASIC",
+                                "BACKUP_VIEW_FULL"
+                              ],
+                              "enumDescriptions": [
+                                "If the value is not set, the default 'FULL' view is used.",
+                                "Includes basic data about the Backup, but not the full contents.",
+                                "Includes all data about the Backup. This is the default value (for both ListBackups and GetBackup)."
+                              ],
+                              "location": "query",
+                              "type": "string"
                             }
                           },
                           "path": "v1/{+parent}/backups",
@@ -1177,7 +1237,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Output only. Identifier. Name of the resource.",
+                              "description": "Output only. Identifier. Name of the backup to create. It must have the format`\"projects//locations//backupVaults//dataSources/{datasource}/backups/{backup}\"`. `{backup}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the datasource.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+/backups/[^/]+$",
                               "required": true,
@@ -1598,7 +1658,7 @@
       }
     }
   },
-  "revision": "20240815",
+  "revision": "20240920",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2066,7 +2126,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. Name of the resource.",
+          "description": "Output only. Identifier. Name of the backup to create. It must have the format`\"projects//locations//backupVaults//dataSources/{datasource}/backups/{backup}\"`. `{backup}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the datasource.",
           "readOnly": true,
           "type": "string"
         },
@@ -2278,7 +2338,7 @@
       "type": "object"
     },
     "BackupPlan": {
-      "description": "A `BackupPlan` specifies some common fields, such as `display_name` as well as one or more `BackupRule` messages. Each `BackupRule` has a retention policy and defines a schedule by which the system is to perform backup workloads.",
+      "description": "A `BackupPlan` specifies some common fields, such as `description` as well as one or more `BackupRule` messages. Each `BackupRule` has a retention policy and defines a schedule by which the system is to perform backup workloads.",
       "id": "BackupPlan",
       "properties": {
         "backupRules": {
@@ -2448,6 +2508,22 @@
       "description": "Message describing a BackupVault object.",
       "id": "BackupVault",
       "properties": {
+        "accessRestriction": {
+          "description": "Optional. Note: This field is added for future use case and will not be supported in the current release. Optional. Access restriction for the backup vault. Default value is WITHIN_ORGANIZATION if not provided during creation.",
+          "enum": [
+            "ACCESS_RESTRICTION_UNSPECIFIED",
+            "WITHIN_PROJECT",
+            "WITHIN_ORGANIZATION",
+            "UNRESTRICTED"
+          ],
+          "enumDescriptions": [
+            "Access restriction not set.",
+            "Access to or from resources outside your current project will be denied.",
+            "Access to or from resources outside your current organization will be denied.",
+            "No access restriction."
+          ],
+          "type": "string"
+        },
         "annotations": {
           "additionalProperties": {
             "type": "string"
@@ -2498,7 +2574,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. The resource name.",
+          "description": "Output only. Identifier. Name of the backup vault to create. It must have the format`\"projects/{project}/locations/{location}/backupVaults/{backupvault}\"`. `{backupvault}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the project and location.",
           "readOnly": true,
           "type": "string"
         },
@@ -2667,6 +2743,13 @@
             "Indicates user chose to opt for VM shutdown on key revocation."
           ],
           "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels to apply to instances that are created from these properties.",
+          "type": "object"
         },
         "machineType": {
           "description": "The machine type to use for instances that are created from these properties.",
@@ -2989,7 +3072,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. The resource name.",
+          "description": "Output only. Identifier. Name of the datasource to create. It must have the format`\"projects/{project}/locations/{location}/backupVaults/{backupvault}/dataSources/{datasource}\"`. `{datasource}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the backup vault.",
           "readOnly": true,
           "type": "string"
         },
@@ -3303,6 +3386,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GcpResource": {
+      "description": "Minimum details to identify a Google Cloud resource",
+      "id": "GcpResource",
+      "properties": {
+        "gcpResourcename": {
+          "description": "Name of the Google Cloud resource.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location of the resource: //\"global\"/\"unspecified\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4372,6 +4474,17 @@
       },
       "type": "object"
     },
+    "RestoreBackupResponse": {
+      "description": "Response message for restoring from a Backup.",
+      "id": "RestoreBackupResponse",
+      "properties": {
+        "targetResource": {
+          "$ref": "TargetResource",
+          "description": "Details of the target resource created/modified as part of restore."
+        }
+      },
+      "type": "object"
+    },
     "RuleConfigInfo": {
       "description": "Message for rules config info.",
       "id": "RuleConfigInfo",
@@ -4581,6 +4694,12 @@
       },
       "type": "object"
     },
+    "SetInternalStatusResponse": {
+      "description": "Response message from SetStatusInternal method.",
+      "id": "SetInternalStatusResponse",
+      "properties": {},
+      "type": "object"
+    },
     "SpannerLocation": {
       "id": "SpannerLocation",
       "properties": {
@@ -4754,6 +4873,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TargetResource": {
+      "description": "Details of the target resource created/modified as part of restore.",
+      "id": "TargetResource",
+      "properties": {
+        "gcpResource": {
+          "$ref": "GcpResource",
+          "description": "Details of the native Google Cloud resource created as part of restore."
         }
       },
       "type": "object"
