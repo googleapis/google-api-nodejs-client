@@ -2218,7 +2218,7 @@
       }
     }
   },
-  "revision": "20240826",
+  "revision": "20240930",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2245,12 +2245,14 @@
           "enum": [
             "DATABASE_VERSION_UNSPECIFIED",
             "POSTGRES_14",
-            "POSTGRES_15"
+            "POSTGRES_15",
+            "POSTGRES_16"
           ],
           "enumDescriptions": [
             "This is an unknown database version.",
             "The database version is Postgres 14.",
-            "The database version is Postgres 15."
+            "The database version is Postgres 15.",
+            "The database version is Postgres 16."
           ],
           "type": "string"
         },
@@ -2389,6 +2391,17 @@
       },
       "type": "object"
     },
+    "AuthorizedNetwork": {
+      "description": "AuthorizedNetwork contains metadata for an authorized network.",
+      "id": "AuthorizedNetwork",
+      "properties": {
+        "cidrRange": {
+          "description": "Optional. CIDR range for one authorzied network of the instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackgroundJobLogEntry": {
       "description": "Execution log of a background job.",
       "id": "BackgroundJobLogEntry",
@@ -2469,6 +2482,21 @@
           "description": "The timestamp when the background job was started.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BinaryLogParser": {
+      "description": "Configuration to use Binary Log Parser CDC technique.",
+      "id": "BinaryLogParser",
+      "properties": {
+        "logFileDirectories": {
+          "$ref": "LogFileDirectories",
+          "description": "Use Oracle directories."
+        },
+        "oracleAsmLogFileAccess": {
+          "$ref": "OracleAsmLogFileAccess",
+          "description": "Use Oracle ASM."
         }
       },
       "type": "object"
@@ -2607,7 +2635,7 @@
           "type": "object"
         },
         "databaseVersion": {
-          "description": "The database engine type and version.",
+          "description": "The database engine type and version. Deprecated. Use database_version_name instead.",
           "enum": [
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_6",
@@ -2662,6 +2690,10 @@
             "PostgreSQL 15.",
             "PostgreSQL 16."
           ],
+          "type": "string"
+        },
+        "databaseVersionName": {
+          "description": "Optional. The database engine type and version name.",
           "type": "string"
         },
         "edition": {
@@ -4065,6 +4097,28 @@
       },
       "type": "object"
     },
+    "InstanceNetworkConfig": {
+      "description": "Metadata related to instance level network configuration.",
+      "id": "InstanceNetworkConfig",
+      "properties": {
+        "authorizedExternalNetworks": {
+          "description": "Optional. A list of external network authorized to access this instance.",
+          "items": {
+            "$ref": "AuthorizedNetwork"
+          },
+          "type": "array"
+        },
+        "enableOutboundPublicIp": {
+          "description": "Optional. Enabling an outbound public IP address to support a database server sending requests out into the internet.",
+          "type": "boolean"
+        },
+        "enablePublicIp": {
+          "description": "Optional. Enabling public ip for the instance.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "IntComparisonFilter": {
       "description": "Filter based on relation between source value and compare value of type integer in ConditionalColumnSetValue",
       "id": "IntComparisonFilter",
@@ -4281,6 +4335,27 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "LogFileDirectories": {
+      "description": "Configuration to specify the Oracle directories to access the log files.",
+      "id": "LogFileDirectories",
+      "properties": {
+        "archivedLogDirectory": {
+          "description": "Required. Oracle directory for archived logs.",
+          "type": "string"
+        },
+        "onlineLogDirectory": {
+          "description": "Required. Oracle directory for online logs.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LogMiner": {
+      "description": "Configuration to use LogMiner CDC method.",
+      "id": "LogMiner",
+      "properties": {},
       "type": "object"
     },
     "MachineConfig": {
@@ -4562,6 +4637,10 @@
         "name": {
           "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.",
           "type": "string"
+        },
+        "oracleToPostgresConfig": {
+          "$ref": "OracleToPostgresConfig",
+          "description": "Configuration for heterogeneous **Oracle to Cloud SQL for PostgreSQL** and **Oracle to AlloyDB for PostgreSQL** migrations."
         },
         "performanceConfig": {
           "$ref": "PerformanceConfig",
@@ -4952,6 +5031,12 @@
       },
       "type": "object"
     },
+    "OracleAsmLogFileAccess": {
+      "description": "Configuration to use Oracle ASM to access the log files.",
+      "id": "OracleAsmLogFileAccess",
+      "properties": {},
+      "type": "object"
+    },
     "OracleConnectionProfile": {
       "description": "Specifies connection parameters required specifically for Oracle databases.",
       "id": "OracleConnectionProfile",
@@ -5001,6 +5086,55 @@
         "username": {
           "description": "Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OracleSourceConfig": {
+      "description": "Configuration for Oracle as a source in a migration.",
+      "id": "OracleSourceConfig",
+      "properties": {
+        "binaryLogParser": {
+          "$ref": "BinaryLogParser",
+          "description": "Use Binary Log Parser."
+        },
+        "cdcStartPosition": {
+          "description": "Optional. The schema change number (SCN) to start CDC data migration from.",
+          "format": "int64",
+          "type": "string"
+        },
+        "logMiner": {
+          "$ref": "LogMiner",
+          "description": "Use LogMiner."
+        },
+        "maxConcurrentCdcConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the source for CDC phase.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxConcurrentFullDumpConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the source for full dump phase.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "skipFullDump": {
+          "description": "Optional. Whether to skip full dump or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "OracleToPostgresConfig": {
+      "description": "Configuration for heterogeneous **Oracle to Cloud SQL for PostgreSQL** and **Oracle to AlloyDB for PostgreSQL** migrations.",
+      "id": "OracleToPostgresConfig",
+      "properties": {
+        "oracleSourceConfig": {
+          "$ref": "OracleSourceConfig",
+          "description": "Optional. Configuration for Oracle source."
+        },
+        "postgresDestinationConfig": {
+          "$ref": "PostgresDestinationConfig",
+          "description": "Optional. Configuration for Postgres destination."
         }
       },
       "type": "object"
@@ -5173,6 +5307,23 @@
       },
       "type": "object"
     },
+    "PostgresDestinationConfig": {
+      "description": "Configuration for Postgres as a destination in a migration.",
+      "id": "PostgresDestinationConfig",
+      "properties": {
+        "maxConcurrentConnections": {
+          "description": "Optional. Maximum number of connections Database Migration Service will open to the destination for data migration.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionTimeout": {
+          "description": "Optional. Timeout for data migration transactions.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PrimaryInstanceSettings": {
       "description": "Settings for the cluster's primary instance",
       "id": "PrimaryInstanceSettings",
@@ -5188,6 +5339,10 @@
           "description": "Required. The ID of the AlloyDB primary instance. The ID must satisfy the regex expression \"[a-z0-9-]+\".",
           "type": "string"
         },
+        "instanceNetworkConfig": {
+          "$ref": "InstanceNetworkConfig",
+          "description": "Optional. Metadata related to instance level network configuration."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -5198,6 +5353,14 @@
         "machineConfig": {
           "$ref": "MachineConfig",
           "description": "Configuration for the machines that host the underlying database engine."
+        },
+        "outboundPublicIpAddresses": {
+          "description": "Output only. All outbound public IP addresses configured for the instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "privateIp": {
           "description": "Output only. The private IP address for the Instance. This is the connection endpoint for an end-user application.",
