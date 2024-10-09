@@ -159,6 +159,41 @@ export namespace assuredworkloads_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * Operation metadata to give request details of ApplyWorkloadUpdate.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateOperationMetadata {
+    /**
+     * Optional. The time the operation was created.
+     */
+    action?: string | null;
+    /**
+     * Optional. Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The resource name of the update
+     */
+    updateName?: string | null;
+  }
+  /**
+   * Request to apply update to a workload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateRequest {
+    /**
+     * The action to be performed on the update.
+     */
+    action?: string | null;
+  }
+  /**
+   * Response for ApplyWorkloadUpdate endpoint.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateResponse {
+    /**
+     * The update that was applied.
+     */
+    appliedUpdate?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate;
+  }
+  /**
    * Represents move analysis results for an asset.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1AssetMoveAnalysis {
@@ -235,6 +270,19 @@ export namespace assuredworkloads_v1beta1 {
     workloads?: Schema$GoogleCloudAssuredworkloadsV1beta1Workload[];
   }
   /**
+   * Response of listing the compliance updates per workload with pagination.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse {
+    /**
+     * The next page token. Return empty if reached the last page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of workload updates for a given workload.
+     */
+    workloadUpdates?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate[];
+  }
+  /**
    * Represents a logical group of checks performed for an asset. If successful, the group contains the analysis result, otherwise it contains an error with the failure reason.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1MoveAnalysisGroup {
@@ -274,6 +322,78 @@ export namespace assuredworkloads_v1beta1 {
     detail?: string | null;
   }
   /**
+   * This assured workload service object is used to represent the org policy attached to a resource. It servces the same purpose as the orgpolicy.v2.Policy object but with functionality that is limited to what is supported by Assured Workloads(e.g. only one rule under one OrgPolicy object, no conditions, etc).
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicy {
+    /**
+     * The constraint name of the OrgPolicy. e.g. "constraints/gcp.resourceLocations".
+     */
+    constraint?: string | null;
+    /**
+     * If `inherit` is true, policy rules of the lowest ancestor in the resource hierarchy chain are inherited. If it is false, policy rules are not inherited.
+     */
+    inherit?: boolean | null;
+    /**
+     * Ignores policies set above this resource and restores to the `constraint_default` value. `reset` can only be true when `rules` is empty and `inherit` is false.
+     */
+    reset?: boolean | null;
+    /**
+     * Resource that the OrgPolicy attaches to. Format: folders/123" projects/123".
+     */
+    resource?: string | null;
+    /**
+     * The rule of the OrgPolicy.
+     */
+    rule?: Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRule;
+  }
+  /**
+   * A rule used to express this policy.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRule {
+    /**
+     * ListPolicy only when all values are allowed.
+     */
+    allowAll?: boolean | null;
+    /**
+     * ListPolicy only when all values are denied.
+     */
+    denyAll?: boolean | null;
+    /**
+     * BooleanPolicy only.
+     */
+    enforce?: boolean | null;
+    /**
+     * ListPolicy only when custom values are specified.
+     */
+    values?: Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRuleStringValues;
+  }
+  /**
+   * The values allowed for a ListPolicy.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicyPolicyRuleStringValues {
+    /**
+     * List of values allowed at this resource.
+     */
+    allowedValues?: string[] | null;
+    /**
+     * List of values denied at this resource.
+     */
+    deniedValues?: string[] | null;
+  }
+  /**
+   * Represents an update for an org policy control applied on an Assured Workload resource. The inherited org policy is not considered.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicyUpdate {
+    /**
+     * The org policy currently applied on the assured workload resource.
+     */
+    appliedPolicy?: Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicy;
+    /**
+     * The suggested org policy that replaces the applied policy.
+     */
+    suggestedPolicy?: Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicy;
+  }
+  /**
    * Request for restricting list of available resources in Workload environment.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest {
@@ -286,6 +406,15 @@ export namespace assuredworkloads_v1beta1 {
    * Response for restricting the list of allowed resources.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesResponse {}
+  /**
+   * The details of the update.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1UpdateDetails {
+    /**
+     * Update to one org policy, e.g. gcp.resourceLocation.
+     */
+    orgPolicyUpdate?: Schema$GoogleCloudAssuredworkloadsV1beta1OrgPolicyUpdate;
+  }
   /**
    * Workload monitoring Violation.
    */
@@ -456,6 +585,10 @@ export namespace assuredworkloads_v1beta1 {
    * A Workload object for managing highly regulated workloads of cloud customers.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Workload {
+    /**
+     * Output only. The number of updates available for the workload.
+     */
+    availableUpdates?: number | null;
     /**
      * Optional. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
@@ -715,6 +848,31 @@ export namespace assuredworkloads_v1beta1 {
      * Indicates SAA enrollment status of a given workload.
      */
     setupStatus?: string | null;
+  }
+  /**
+   * A workload update is a change to the workload's compliance configuration.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate {
+    /**
+     * The time the update was created.
+     */
+    createTime?: string | null;
+    /**
+     * The details of the update.
+     */
+    details?: Schema$GoogleCloudAssuredworkloadsV1beta1UpdateDetails;
+    /**
+     * Output only. Immutable. Identifier. Resource name of the WorkloadUpdate. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\}/updates/{update\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the update.
+     */
+    state?: string | null;
+    /**
+     * The time the update was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1027,9 +1185,13 @@ export namespace assuredworkloads_v1beta1 {
 
   export class Resource$Organizations$Locations$Workloads {
     context: APIRequestContext;
+    updates: Resource$Organizations$Locations$Workloads$Updates;
     violations: Resource$Organizations$Locations$Workloads$Violations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.updates = new Resource$Organizations$Locations$Workloads$Updates(
+        this.context
+      );
       this.violations =
         new Resource$Organizations$Locations$Workloads$Violations(this.context);
     }
@@ -2019,6 +2181,237 @@ export namespace assuredworkloads_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1RestrictAllowedResourcesRequest;
+  }
+
+  export class Resource$Organizations$Locations$Workloads$Updates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * This endpoint creates a new operation to apply the given update.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    apply(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    apply(
+      params?: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    apply(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    apply(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    apply(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$Apply,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    apply(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    apply(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Updates$Apply
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Updates$Apply;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Updates$Apply;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:apply').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * This endpoint lists all updates for the given workload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Workloads$Updates$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Workloads$Updates$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Workloads$Updates$List
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Workloads$Updates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Workloads$Updates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://assuredworkloads.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/updates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadUpdatesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Workloads$Updates$Apply
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the update. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}/updates/{update_id\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudAssuredworkloadsV1beta1ApplyWorkloadUpdateRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Workloads$Updates$List
+    extends StandardParameters {
+    /**
+     * Page size. The default value is 20 and the max allowed value is 100.
+     */
+    pageSize?: number;
+    /**
+     * Page token returned from previous request.
+     */
+    pageToken?: string;
+    /**
+     * Required. organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations$Locations$Workloads$Violations {
