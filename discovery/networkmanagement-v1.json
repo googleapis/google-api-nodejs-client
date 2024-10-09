@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20240918",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -630,6 +630,8 @@
             "ROUTE_CONFIG_NOT_FOUND",
             "GOOGLE_MANAGED_SERVICE_AMBIGUOUS_PSC_ENDPOINT",
             "SOURCE_PSC_CLOUD_SQL_UNSUPPORTED",
+            "SOURCE_REDIS_CLUSTER_UNSUPPORTED",
+            "SOURCE_REDIS_INSTANCE_UNSUPPORTED",
             "SOURCE_FORWARDING_RULE_UNSUPPORTED",
             "NON_ROUTABLE_IP_ADDRESS",
             "UNKNOWN_ISSUE_IN_GOOGLE_MANAGED_PROJECT",
@@ -645,6 +647,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -700,6 +704,8 @@
             "Aborted because expected route configuration was missing.",
             "Aborted because a PSC endpoint selection for the Google-managed service is ambiguous (several PSC endpoints satisfy test input).",
             "Aborted because tests with a PSC-based Cloud SQL instance as a source are not supported.",
+            "Aborted because tests with a Redis Cluster as a source are not supported.",
+            "Aborted because tests with a Redis Instance as a source are not supported.",
             "Aborted because tests with a forwarding rule as a source are not supported.",
             "Aborted because one of the endpoints is a non-routable IP address (loopback, link-local, etc).",
             "Aborted due to an unknown issue in the Google-managed project.",
@@ -1045,7 +1051,9 @@
             "CLOUD_FUNCTION",
             "APP_ENGINE_VERSION",
             "CLOUD_RUN_REVISION",
-            "GOOGLE_MANAGED_SERVICE"
+            "GOOGLE_MANAGED_SERVICE",
+            "REDIS_INSTANCE",
+            "REDIS_CLUSTER"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -1063,7 +1071,9 @@
             "Target is a Cloud Function. Used only for return traces.",
             "Target is a App Engine service version. Used only for return traces.",
             "Target is a Cloud Run revision. Used only for return traces.",
-            "Target is a Google-managed service. Used only for return traces."
+            "Target is a Google-managed service. Used only for return traces.",
+            "Target is a Redis Instance.",
+            "Target is a Redis Cluster."
           ],
           "type": "string"
         }
@@ -1106,6 +1116,7 @@
             "GKE_CLUSTER_NOT_RUNNING",
             "CLOUD_SQL_INSTANCE_NOT_RUNNING",
             "REDIS_INSTANCE_NOT_RUNNING",
+            "REDIS_CLUSTER_NOT_RUNNING",
             "TRAFFIC_TYPE_BLOCKED",
             "GKE_MASTER_UNAUTHORIZED_ACCESS",
             "CLOUD_SQL_INSTANCE_UNAUTHORIZED_ACCESS",
@@ -1145,7 +1156,20 @@
             "DROPPED_INSIDE_GOOGLE_MANAGED_SERVICE",
             "LOAD_BALANCER_BACKEND_INVALID_NETWORK",
             "BACKEND_SERVICE_NAMED_PORT_NOT_DEFINED",
-            "DESTINATION_IS_PRIVATE_NAT_IP_RANGE"
+            "DESTINATION_IS_PRIVATE_NAT_IP_RANGE",
+            "DROPPED_INSIDE_REDIS_INSTANCE_SERVICE",
+            "REDIS_INSTANCE_UNSUPPORTED_PORT",
+            "REDIS_INSTANCE_CONNECTING_FROM_PUPI_ADDRESS",
+            "REDIS_INSTANCE_NO_ROUTE_TO_DESTINATION_NETWORK",
+            "REDIS_INSTANCE_NO_EXTERNAL_IP",
+            "REDIS_INSTANCE_UNSUPPORTED_PROTOCOL",
+            "DROPPED_INSIDE_REDIS_CLUSTER_SERVICE",
+            "REDIS_CLUSTER_UNSUPPORTED_PORT",
+            "REDIS_CLUSTER_NO_EXTERNAL_IP",
+            "REDIS_CLUSTER_UNSUPPORTED_PROTOCOL",
+            "NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION",
+            "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
+            "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1177,6 +1201,7 @@
             "Packet sent from or to a GKE cluster that is not in running state.",
             "Packet sent from or to a Cloud SQL instance that is not in running state.",
             "Packet sent from or to a Redis Instance that is not in running state.",
+            "Packet sent from or to a Redis Cluster that is not in running state.",
             "The type of traffic is blocked and the user cannot configure a firewall rule to enable it. See [Always blocked traffic](https://cloud.google.com/vpc/docs/firewalls#blockedtraffic) for more details.",
             "Access to Google Kubernetes Engine cluster master's endpoint is not authorized. See [Access to the cluster endpoints](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#access_to_the_cluster_endpoints) for more details.",
             "Access to the Cloud SQL instance endpoint is not authorized. See [Authorizing with authorized networks](https://cloud.google.com/sql/docs/mysql/authorize-networks) for more details.",
@@ -1216,7 +1241,20 @@
             "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces.",
             "Packet is dropped due to a load balancer backend instance not having a network interface in the network expected by the load balancer.",
             "Packet is dropped due to a backend service named port not being defined on the instance group level.",
-            "Packet is dropped due to a destination IP range being part of a Private NAT IP range."
+            "Packet is dropped due to a destination IP range being part of a Private NAT IP range.",
+            "Generic drop cause for a packet being dropped inside a Redis Instance service project.",
+            "Packet is dropped due to an unsupported port being used to connect to a Redis Instance. Port 6379 should be used to connect to a Redis Instance.",
+            "Packet is dropped due to connecting from PUPI address to a PSA based Redis Instance.",
+            "Packet is dropped due to no route to the destination network.",
+            "Redis Instance does not have an external IP address.",
+            "Packet is dropped due to an unsupported protocol being used to connect to a Redis Instance. Only TCP connections are accepted by a Redis Instance.",
+            "Generic drop cause for a packet being dropped inside a Redis Cluster service project.",
+            "Packet is dropped due to an unsupported port being used to connect to a Redis Cluster. Ports 6379 and 11000 to 13047 should be used to connect to a Redis Cluster.",
+            "Redis Cluster does not have an external IP address.",
+            "Packet is dropped due to an unsupported protocol being used to connect to a Redis Cluster. Only TCP connections are accepted by a Redis Cluster.",
+            "Packet from the non-GCP (on-prem) or unknown GCP network is dropped due to the destination IP address not belonging to any IP prefix advertised via BGP by the Cloud Router.",
+            "Packet from the non-GCP (on-prem) or unknown GCP network is dropped due to the destination IP address not belonging to any IP prefix included to the local traffic selector of the VPN tunnel.",
+            "Packet from the unknown peered network is dropped due to no known route from the source network to the destination IP address."
           ],
           "type": "string"
         },
@@ -1372,6 +1410,14 @@
         },
         "projectId": {
           "description": "Project ID where the endpoint is located. The Project ID can be derived from the URI if you provide a VM instance or network URI. The following are two cases where you must provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.",
+          "type": "string"
+        },
+        "redisCluster": {
+          "description": "A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.",
+          "type": "string"
+        },
+        "redisInstance": {
+          "description": "A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.",
           "type": "string"
         }
       },
@@ -2098,7 +2144,7 @@
       "type": "object"
     },
     "NetworkInfo": {
-      "description": "For display only. Metadata associated with a Compute Engine network.",
+      "description": "For display only. Metadata associated with a Compute Engine network. Next ID: 7",
       "id": "NetworkInfo",
       "properties": {
         "displayName": {
@@ -2106,7 +2152,15 @@
           "type": "string"
         },
         "matchedIpRange": {
-          "description": "The IP range that matches the test.",
+          "description": "The IP range of the subnet matching the source IP address of the test.",
+          "type": "string"
+        },
+        "matchedSubnetUri": {
+          "description": "URI of the subnet matching the source IP address of the test.",
+          "type": "string"
+        },
+        "region": {
+          "description": "The region of the subnet matching the source IP address of the test.",
           "type": "string"
         },
         "uri": {
@@ -2385,6 +2439,37 @@
       },
       "type": "object"
     },
+    "RedisClusterInfo": {
+      "description": "For display only. Metadata associated with a Redis Cluster.",
+      "id": "RedisClusterInfo",
+      "properties": {
+        "discoveryEndpointIpAddress": {
+          "description": "Discovery endpoint IP address of a Redis Cluster.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Name of a Redis Cluster.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Name of the region in which the Redis Cluster is defined. For example, \"us-central1\".",
+          "type": "string"
+        },
+        "networkUri": {
+          "description": "URI of a Redis Cluster network in format \"projects/{project_id}/global/networks/{network_id}\".",
+          "type": "string"
+        },
+        "secondaryEndpointIpAddress": {
+          "description": "Secondary endpoint IP address of a Redis Cluster.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Redis Cluster in format \"projects/{project_id}/locations/{location}/clusters/{cluster_id}\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RedisInstanceInfo": {
       "description": "For display only. Metadata associated with a Cloud Redis Instance.",
       "id": "RedisInstanceInfo",
@@ -2426,6 +2511,14 @@
       "description": "For display only. Metadata associated with a Compute Engine route.",
       "id": "RouteInfo",
       "properties": {
+        "advertisedRouteNextHopUri": {
+          "description": "For advertised routes, the URI of their next hop, i.e. the URI of the hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance) the advertised prefix is advertised through, or URI of the source peered network.",
+          "type": "string"
+        },
+        "advertisedRouteSourceRouterUri": {
+          "description": "For advertised dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix.",
+          "type": "string"
+        },
         "destIpRange": {
           "description": "Destination IP range of the route.",
           "type": "string"
@@ -2510,6 +2603,10 @@
           },
           "type": "array"
         },
+        "region": {
+          "description": "Region of the route (if applicable).",
+          "type": "string"
+        },
         "routeScope": {
           "description": "Indicates where route is applicable.",
           "enum": [
@@ -2534,7 +2631,8 @@
             "PEERING_SUBNET",
             "PEERING_STATIC",
             "PEERING_DYNAMIC",
-            "POLICY_BASED"
+            "POLICY_BASED",
+            "ADVERTISED"
           ],
           "enumDescriptions": [
             "Unspecified type. Default value.",
@@ -2544,7 +2642,8 @@
             "A subnet route received from peering network.",
             "A static route received from peering network.",
             "A dynamic route received from peering network.",
-            "Policy based route."
+            "Policy based route.",
+            "Advertised route. Synthetic route which is used to transition from the StartFromPrivateNetwork state in Connectivity tests."
           ],
           "type": "string"
         },
@@ -2560,7 +2659,7 @@
           "type": "array"
         },
         "uri": {
-          "description": "URI of a route. Dynamic, peering static and peering dynamic routes do not have an URI. Advertised route from Google Cloud VPC to on-premises network also does not have an URI.",
+          "description": "URI of a route (if applicable).",
           "type": "string"
         }
       },
@@ -2713,6 +2812,10 @@
           "$ref": "ProxyConnectionInfo",
           "description": "Display information of a ProxyConnection."
         },
+        "redisCluster": {
+          "$ref": "RedisClusterInfo",
+          "description": "Display information of a Redis Cluster."
+        },
         "redisInstance": {
           "$ref": "RedisInstanceInfo",
           "description": "Display information of a Redis Instance."
@@ -2736,6 +2839,7 @@
             "START_FROM_GKE_MASTER",
             "START_FROM_CLOUD_SQL_INSTANCE",
             "START_FROM_REDIS_INSTANCE",
+            "START_FROM_REDIS_CLUSTER",
             "START_FROM_CLOUD_FUNCTION",
             "START_FROM_APP_ENGINE_VERSION",
             "START_FROM_CLOUD_RUN_REVISION",
@@ -2784,6 +2888,7 @@
             false,
             false,
             false,
+            false,
             true,
             true,
             false,
@@ -2806,6 +2911,7 @@
             "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo is populated with starting instance information.",
             "Initial state: packet originating from a Redis instance. A RedisInstanceInfo is populated with starting instance information.",
+            "Initial state: packet originating from a Redis Cluster. A RedisClusterInfo is populated with starting Cluster information.",
             "Initial state: packet originating from a Cloud Function. A CloudFunctionInfo is populated with starting function information.",
             "Initial state: packet originating from an App Engine service version. An AppEngineVersionInfo is populated with starting version information.",
             "Initial state: packet originating from a Cloud Run revision. A CloudRunRevisionInfo is populated with starting revision information.",
