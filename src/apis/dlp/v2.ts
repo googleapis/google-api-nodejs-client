@@ -197,6 +197,45 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2AllText {}
   /**
+   * Amazon S3 bucket.
+   */
+  export interface Schema$GooglePrivacyDlpV2AmazonS3Bucket {
+    /**
+     * The AWS account.
+     */
+    awsAccount?: Schema$GooglePrivacyDlpV2AwsAccount;
+    /**
+     * Required. The bucket name.
+     */
+    bucketName?: string | null;
+  }
+  /**
+   * Amazon S3 bucket conditions.
+   */
+  export interface Schema$GooglePrivacyDlpV2AmazonS3BucketConditions {
+    /**
+     * Optional. Bucket types that should be profiled. Optional. Defaults to TYPE_ALL_SUPPORTED if unspecified.
+     */
+    bucketTypes?: string[] | null;
+    /**
+     * Optional. Object classes that should be profiled. Optional. Defaults to ALL_SUPPORTED_CLASSES if unspecified.
+     */
+    objectStorageClasses?: string[] | null;
+  }
+  /**
+   * Amazon S3 bucket regex.
+   */
+  export interface Schema$GooglePrivacyDlpV2AmazonS3BucketRegex {
+    /**
+     * The AWS account regex.
+     */
+    awsAccountRegex?: Schema$GooglePrivacyDlpV2AwsAccountRegex;
+    /**
+     * Optional. Regex to test the bucket name against. If empty, all buckets match.
+     */
+    bucketNameRegex?: string | null;
+  }
+  /**
    * Result of a risk analysis operation request.
    */
   export interface Schema$GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails {
@@ -253,6 +292,37 @@ export namespace dlp_v2 {
      * Required. Auxiliary table location.
      */
     table?: Schema$GooglePrivacyDlpV2BigQueryTable;
+  }
+  /**
+   * AWS account.
+   */
+  export interface Schema$GooglePrivacyDlpV2AwsAccount {
+    /**
+     * Required. AWS account ID.
+     */
+    accountId?: string | null;
+  }
+  /**
+   * AWS account regex.
+   */
+  export interface Schema$GooglePrivacyDlpV2AwsAccountRegex {
+    /**
+     * Optional. Regex to test the AWS account ID against. If empty, all accounts match.
+     */
+    accountIdRegex?: string | null;
+  }
+  /**
+   * The AWS starting location for discovery.
+   */
+  export interface Schema$GooglePrivacyDlpV2AwsDiscoveryStartingLocation {
+    /**
+     * The AWS account ID that this discovery config applies to. Within an AWS organization, you can find the AWS account ID inside an AWS account ARN. Example: arn:{partition\}:organizations::{management_account_id\}:account/{org_id\}/{account_id\}
+     */
+    accountId?: string | null;
+    /**
+     * All AWS assets stored in Asset Inventory that didn't match other AWS discovery configs.
+     */
+    allAssetInventoryAssets?: boolean | null;
   }
   /**
    * Target used to match against for discovery with BigQuery tables
@@ -1222,6 +1292,14 @@ export namespace dlp_v2 {
      */
     exportData?: Schema$GooglePrivacyDlpV2Export;
     /**
+     * Publishes generated data profiles to Google Security Operations. For more information, see [Use Sensitive Data Protection data in context-aware analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download).
+     */
+    publishToChronicle?: Schema$GooglePrivacyDlpV2PublishToChronicle;
+    /**
+     * Publishes findings to SCC for each data profile.
+     */
+    publishToScc?: Schema$GooglePrivacyDlpV2PublishToSecurityCommandCenter;
+    /**
      * Publish a message into the Pub/Sub topic.
      */
     pubSubNotification?: Schema$GooglePrivacyDlpV2PubSubNotification;
@@ -1288,6 +1366,10 @@ export namespace dlp_v2 {
      * The data to scan.
      */
     location?: Schema$GooglePrivacyDlpV2DataProfileLocation;
+    /**
+     * Must be set only when scanning other clouds.
+     */
+    otherCloudStartingLocation?: Schema$GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation;
     /**
      * The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.
      */
@@ -1812,6 +1894,10 @@ export namespace dlp_v2 {
      */
     orgConfig?: Schema$GooglePrivacyDlpV2OrgConfig;
     /**
+     * Must be set only when scanning other clouds.
+     */
+    otherCloudStartingLocation?: Schema$GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation;
+    /**
      * Required. A status for this configuration.
      */
     status?: string | null;
@@ -1872,6 +1958,49 @@ export namespace dlp_v2 {
     frequency?: string | null;
   }
   /**
+   * Requirements that must be true before a resource is profiled for the first time.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryOtherCloudConditions {
+    /**
+     * Amazon S3 bucket conditions.
+     */
+    amazonS3BucketConditions?: Schema$GooglePrivacyDlpV2AmazonS3BucketConditions;
+    /**
+     * Minimum age a resource must be before Cloud DLP can profile it. Value must be 1 hour or greater.
+     */
+    minAge?: string | null;
+  }
+  /**
+   * Determines which resources from the other cloud will have profiles generated. Includes the ability to filter by resource names.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryOtherCloudFilter {
+    /**
+     * A collection of resources for this filter to apply to.
+     */
+    collection?: Schema$GooglePrivacyDlpV2OtherCloudResourceCollection;
+    /**
+     * Optional. Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically.
+     */
+    others?: Schema$GooglePrivacyDlpV2AllOtherResources;
+    /**
+     * The resource to scan. Configs using this filter can only have one target (the target with this single resource reference).
+     */
+    singleResource?: Schema$GooglePrivacyDlpV2OtherCloudSingleResourceReference;
+  }
+  /**
+   * How often existing resources should have their profiles refreshed. New resources are scanned as quickly as possible depending on system capacity.
+   */
+  export interface Schema$GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence {
+    /**
+     * Optional. Governs when to update data profiles when the inspection rules defined by the `InspectTemplate` change. If not set, changing the template will not cause a data profile to update.
+     */
+    inspectTemplateModifiedCadence?: Schema$GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence;
+    /**
+     * Optional. Frequency to update profiles regardless of whether the underlying resource has changes. Defaults to never.
+     */
+    refreshFrequency?: string | null;
+  }
+  /**
    * The cadence at which to update data profiles when a schema is modified.
    */
   export interface Schema$GooglePrivacyDlpV2DiscoverySchemaModifiedCadence {
@@ -1926,6 +2055,10 @@ export namespace dlp_v2 {
      * Cloud Storage target for Discovery. The first target to match a table will be the one applied.
      */
     cloudStorageTarget?: Schema$GooglePrivacyDlpV2CloudStorageDiscoveryTarget;
+    /**
+     * Other clouds target for discovery. The first target to match a resource will be the one applied.
+     */
+    otherCloudTarget?: Schema$GooglePrivacyDlpV2OtherCloudDiscoveryTarget;
     /**
      * Discovery target that looks for credentials and secrets stored in cloud resource metadata and reports them as vulnerabilities to Security Command Center. Only one target of this type is allowed.
      */
@@ -2196,7 +2329,7 @@ export namespace dlp_v2 {
     includeRegexes?: Schema$GooglePrivacyDlpV2FileStoreRegexes;
   }
   /**
-   * The profile for a file store. * Cloud Storage: maps 1:1 with a bucket.
+   * The profile for a file store. * Cloud Storage: maps 1:1 with a bucket. * Amazon S3: maps 1:1 with a bucket.
    */
   export interface Schema$GooglePrivacyDlpV2FileStoreDataProfile {
     /**
@@ -2232,15 +2365,15 @@ export namespace dlp_v2 {
      */
     fileStoreIsEmpty?: boolean | null;
     /**
-     * The location of the file store. * Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations
+     * The location of the file store. * Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations * Amazon S3: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints
      */
     fileStoreLocation?: string | null;
     /**
-     * The file store path. * Cloud Storage: `gs://{bucket\}`
+     * The file store path. * Cloud Storage: `gs://{bucket\}` * Amazon S3: `s3://{bucket\}`
      */
     fileStorePath?: string | null;
     /**
-     * The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name Example format of an S3 bucket full resource name: `//cloudasset.googleapis.com/organizations/{org_id\}/otherCloudConnections/aws/arn:aws:s3:::{bucket_name\}`
      */
     fullResource?: string | null;
     /**
@@ -2268,7 +2401,7 @@ export namespace dlp_v2 {
      */
     projectDataProfile?: string | null;
     /**
-     * The Google Cloud project ID that owns the resource.
+     * The Google Cloud project ID that owns the resource. For Amazon S3 buckets, this is the AWS Account Id.
      */
     projectId?: string | null;
     /**
@@ -3461,6 +3594,76 @@ export namespace dlp_v2 {
     projectId?: string | null;
   }
   /**
+   * The other cloud starting location for discovery.
+   */
+  export interface Schema$GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation {
+    /**
+     * The AWS starting location for discovery.
+     */
+    awsLocation?: Schema$GooglePrivacyDlpV2AwsDiscoveryStartingLocation;
+  }
+  /**
+   * Target used to match against for discovery of resources from other clouds. An [AWS connector in Security Command Center (Enterprise](https://cloud.google.com/security-command-center/docs/connect-scc-to-aws) is required to use this feature.
+   */
+  export interface Schema$GooglePrivacyDlpV2OtherCloudDiscoveryTarget {
+    /**
+     * Optional. In addition to matching the filter, these conditions must be true before a profile is generated.
+     */
+    conditions?: Schema$GooglePrivacyDlpV2DiscoveryOtherCloudConditions;
+    /**
+     * Required. The type of data profiles generated by this discovery target. Supported values are: * aws/s3/bucket
+     */
+    dataSourceType?: Schema$GooglePrivacyDlpV2DataSourceType;
+    /**
+     * Disable profiling for resources that match this filter.
+     */
+    disabled?: Schema$GooglePrivacyDlpV2Disabled;
+    /**
+     * Required. The resources that the discovery cadence applies to. The first target with a matching filter will be the one to apply to a resource.
+     */
+    filter?: Schema$GooglePrivacyDlpV2DiscoveryOtherCloudFilter;
+    /**
+     * How often and when to update data profiles. New resources that match both the filter and conditions are scanned as quickly as possible depending on system capacity.
+     */
+    generationCadence?: Schema$GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence;
+  }
+  /**
+   * Match resources using regex filters.
+   */
+  export interface Schema$GooglePrivacyDlpV2OtherCloudResourceCollection {
+    /**
+     * A collection of regular expressions to match a resource against.
+     */
+    includeRegexes?: Schema$GooglePrivacyDlpV2OtherCloudResourceRegexes;
+  }
+  /**
+   * A pattern to match against one or more resources. At least one pattern must be specified. Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.
+   */
+  export interface Schema$GooglePrivacyDlpV2OtherCloudResourceRegex {
+    /**
+     * Regex for Amazon S3 buckets.
+     */
+    amazonS3BucketRegex?: Schema$GooglePrivacyDlpV2AmazonS3BucketRegex;
+  }
+  /**
+   * A collection of regular expressions to determine what resources to match against.
+   */
+  export interface Schema$GooglePrivacyDlpV2OtherCloudResourceRegexes {
+    /**
+     * A group of regular expression patterns to match against one or more resources. Maximum of 100 entries. The sum of all regular expression's length can't exceed 10 KiB.
+     */
+    patterns?: Schema$GooglePrivacyDlpV2OtherCloudResourceRegex[];
+  }
+  /**
+   * Identifies a single resource, like a single Amazon S3 bucket.
+   */
+  export interface Schema$GooglePrivacyDlpV2OtherCloudSingleResourceReference {
+    /**
+     * Amazon S3 bucket.
+     */
+    amazonS3Bucket?: Schema$GooglePrivacyDlpV2AmazonS3Bucket;
+  }
+  /**
    * Infotype details for other infoTypes found within a column.
    */
   export interface Schema$GooglePrivacyDlpV2OtherInfoTypeSummary {
@@ -3674,6 +3877,10 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishSummaryToCscc {}
   /**
+   * Message expressing intention to publish to Google Security Operations.
+   */
+  export interface Schema$GooglePrivacyDlpV2PublishToChronicle {}
+  /**
    * Publish a message into a given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job's [`DlpJob.name`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk
    */
   export interface Schema$GooglePrivacyDlpV2PublishToPubSub {
@@ -3682,6 +3889,10 @@ export namespace dlp_v2 {
      */
     topic?: string | null;
   }
+  /**
+   * If set, a summary finding will be created/updated in SCC for each profile.
+   */
+  export interface Schema$GooglePrivacyDlpV2PublishToSecurityCommandCenter {}
   /**
    * Enable Stackdriver metric dlp.googleapis.com/finding_count. This will publish a metric to stack driver on each infotype requested and how many findings were found for it. CustomDetectors will be bucketed as 'Custom' under the Stackdriver label 'info_type'.
    */
@@ -8805,7 +9016,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Organizations$Locations$Filestoredataprofiles$List
     extends StandardParameters {
     /**
-     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like "gs://bucket". - `data_source_type` - The profile's data source type, like "google/storage/bucket". - `data_storage_location` - The location where the file store's data is stored, like "us-central1". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
+     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `account_id` - The AWS account ID. - `file_store_path` - The path like "gs://bucket". - `data_source_type` - The profile's data source type, like "google/storage/bucket". - `data_storage_location` - The location where the file store's data is stored, like "us-central1". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -17706,7 +17917,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Filestoredataprofiles$List
     extends StandardParameters {
     /**
-     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like "gs://bucket". - `data_source_type` - The profile's data source type, like "google/storage/bucket". - `data_storage_location` - The location where the file store's data is stored, like "us-central1". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
+     * Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `account_id` - The AWS account ID. - `file_store_path` - The path like "gs://bucket". - `data_source_type` - The profile's data source type, like "google/storage/bucket". - `data_storage_location` - The location where the file store's data is stored, like "us-central1". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = "gs://mybucket"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
