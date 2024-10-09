@@ -1964,6 +1964,19 @@ export namespace spanner_v1 {
     seqNum?: number | null;
   }
   /**
+   * When a read-write transaction is executed on a multiplexed session, this precommit token is sent back to the client as a part of the [Transaction] message in the BeginTransaction response and also as a part of the [ResultSet] and [PartialResultSet] responses.
+   */
+  export interface Schema$MultiplexedSessionPrecommitToken {
+    /**
+     * Opaque precommit token.
+     */
+    precommitToken?: string | null;
+    /**
+     * An incrementing seq number is generated on every precommit token that is returned. Clients should remember the precommit token with the highest sequence number from the current transaction attempt.
+     */
+    seqNum?: number | null;
+  }
+  /**
    * A modification to one or more Cloud Spanner rows. Mutations can be applied to a Cloud Spanner database by sending them in a Commit call.
    */
   export interface Schema$Mutation {
