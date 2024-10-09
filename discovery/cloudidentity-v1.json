@@ -1990,7 +1990,7 @@
       }
     }
   },
-  "revision": "20240820",
+  "revision": "20240924",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2347,7 +2347,7 @@
           "type": "string"
         },
         "lastProfileSyncTime": {
-          "description": "Timestamp in milliseconds since Epoch when the profile/gcm id was last synced.",
+          "description": "Timestamp in milliseconds since the Unix epoch when the profile/gcm id was last synced.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -2355,7 +2355,7 @@
       "type": "object"
     },
     "GoogleAppsCloudidentityDevicesV1BrowserInfo": {
-      "description": "Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1). LINT.IfChange",
+      "description": "Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).",
       "id": "GoogleAppsCloudidentityDevicesV1BrowserInfo",
       "properties": {
         "browserManagementState": {
@@ -2378,7 +2378,7 @@
           "type": "string"
         },
         "browserVersion": {
-          "description": "Version of the request initiating browser.",
+          "description": "Version of the request initiating browser. E.g. `91.0.4442.4`.",
           "type": "string"
         },
         "isBuiltInDnsClientEnabled": {
@@ -3083,7 +3083,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Additional signals reported by Endpoint Verification. It includes the following attributes: 1. Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. 2. [Configurable attributes](https://cloud.google.com/endpoint-verification/docs/collect-config-attributes): file, folder, and binary attributes; registry entries; and properties in a plist.",
+          "description": "[Additional signals](https://cloud.google.com/endpoint-verification/docs/device-information) reported by Endpoint Verification. It includes the following attributes: * Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. * [Configurable attributes](https://cloud.google.com/endpoint-verification/docs/collect-config-attributes): file, folder, and binary attributes; registry entries; and properties in a plist.",
           "type": "object"
         },
         "browserAttributes": {
@@ -3732,6 +3732,7 @@
             "SERVICE_ACCOUNT",
             "GROUP",
             "SHARED_DRIVE",
+            "CBCM_BROWSER",
             "OTHER"
           ],
           "enumDescriptions": [
@@ -3740,6 +3741,7 @@
             "Represents service account type.",
             "Represents group type.",
             "Represents Shared drive.",
+            "Represents a CBCM-managed Chrome Browser type.",
             "Represents other type."
           ],
           "readOnly": true,
