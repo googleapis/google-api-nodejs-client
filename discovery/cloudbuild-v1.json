@@ -2346,7 +2346,7 @@
       }
     }
   },
-  "revision": "20240704",
+  "revision": "20240923",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -3017,11 +3017,13 @@
           "description": "Optional. Option to specify how default logs buckets are setup.",
           "enum": [
             "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
-            "REGIONAL_USER_OWNED_BUCKET"
+            "REGIONAL_USER_OWNED_BUCKET",
+            "LEGACY_BUCKET"
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project."
+            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project.",
+            "Bucket is located in a Google-owned project and is not regionalized."
           ],
           "type": "string"
         },
@@ -3428,7 +3430,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "The service account used for all user-controlled operations including UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild. If no service account is set, then the standard Cloud Build service account ([PROJECT_NUM]@system.gserviceaccount.com) will be used instead. Format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL}`",
+          "description": "The service account used for all user-controlled operations including UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild. If no service account is set and the legacy Cloud Build service account ([PROJECT_NUM]@cloudbuild.gserviceaccount.com) is the default for the project then it will be used instead. Format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL}`",
           "type": "string"
         },
         "sourceToBuild": {

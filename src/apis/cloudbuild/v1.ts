@@ -836,7 +836,7 @@ export namespace cloudbuild_v1 {
      */
     resourceName?: string | null;
     /**
-     * The service account used for all user-controlled operations including UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild. If no service account is set, then the standard Cloud Build service account ([PROJECT_NUM]@system.gserviceaccount.com) will be used instead. Format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL\}`
+     * The service account used for all user-controlled operations including UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild. If no service account is set and the legacy Cloud Build service account ([PROJECT_NUM]@cloudbuild.gserviceaccount.com) is the default for the project then it will be used instead. Format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL\}`
      */
     serviceAccount?: string | null;
     /**
