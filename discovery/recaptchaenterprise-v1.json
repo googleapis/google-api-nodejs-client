@@ -147,7 +147,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the project in which the assessment will be created, in the format `projects/{project}`.",
+                  "description": "Required. The name of the project in which the assessment is created, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -179,7 +179,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the project this policy will apply to, in the format `projects/{project}`.",
+                  "description": "Required. The name of the project this policy applies to, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -300,7 +300,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields will be updated.",
+                  "description": "Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields are updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -350,7 +350,7 @@
         "keys": {
           "methods": {
             "addIpOverride": {
-              "description": "Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error will be returned.",
+              "description": "Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error is returned.",
               "flatPath": "v1/projects/{projectsId}/keys/{keysId}:addIpOverride",
               "httpMethod": "POST",
               "id": "recaptchaenterprise.projects.keys.addIpOverride",
@@ -387,7 +387,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the project in which the key will be created, in the format `projects/{project}`.",
+                  "description": "Required. The name of the project in which the key is created, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -501,7 +501,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The name of the project that contains the keys that will be listed, in the format `projects/{project}`.",
+                  "description": "Required. The name of the project that contains the keys that is listed, in the format `projects/{project}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -597,7 +597,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Optional. The mask to control which fields of the key get updated. If the mask is not present, all fields will be updated.",
+                  "description": "Optional. The mask to control which fields of the key get updated. If the mask is not present, all fields are updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -615,7 +615,7 @@
               ]
             },
             "removeIpOverride": {
-              "description": "Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error will be returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error will be returned.",
+              "description": "Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error is returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error is returned.",
               "flatPath": "v1/projects/{projectsId}/keys/{keysId}:removeIpOverride",
               "httpMethod": "POST",
               "id": "recaptchaenterprise.projects.keys.removeIpOverride",
@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20240825",
+  "revision": "20240906",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -918,7 +918,7 @@
           "type": "string"
         },
         "annotation": {
-          "description": "Optional. The annotation that will be assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.",
+          "description": "Optional. The annotation that is assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.",
           "enum": [
             "ANNOTATION_UNSPECIFIED",
             "LEGITIMATE",
@@ -1164,7 +1164,7 @@
           "type": "boolean"
         },
         "firewallPolicyEvaluation": {
-          "description": "Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy will be evaluated and a suggested firewall action will be returned in the response.",
+          "description": "Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy is evaluated and a suggested firewall action is returned in the response.",
           "type": "boolean"
         },
         "fraudPrevention": {
@@ -1249,23 +1249,23 @@
         },
         "block": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction",
-          "description": "This action will deny access to a given page. The user will get an HTTP error code."
+          "description": "This action denies access to a given page. The user gets an HTTP error code."
         },
         "includeRecaptchaScript": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction",
-          "description": "This action will inject reCAPTCHA JavaScript code into the HTML page returned by the site backend."
+          "description": "This action injects reCAPTCHA JavaScript code into the HTML page returned by the site backend."
         },
         "redirect": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction",
-          "description": "This action will redirect the request to a ReCaptcha interstitial to attach a token."
+          "description": "This action redirects the request to a reCAPTCHA interstitial to attach a token."
         },
         "setHeader": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction",
-          "description": "This action will set a custom header but allow the request to continue to the customer backend."
+          "description": "This action sets a custom header but allow the request to continue to the customer backend."
         },
         "substitute": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction",
-          "description": "This action will transparently serve a different page to an offending user."
+          "description": "This action transparently serves a different page to an offending user."
         }
       },
       "type": "object"
@@ -1289,7 +1289,7 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction": {
-      "description": "A redirect action returns a 307 (temporary redirect) response, pointing the user to a ReCaptcha interstitial page to attach a token.",
+      "description": "A redirect action returns a 307 (temporary redirect) response, pointing the user to a reCAPTCHA interstitial page to attach a token.",
       "id": "GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction",
       "properties": {},
       "type": "object"
@@ -1356,12 +1356,12 @@
       "properties": {
         "error": {
           "$ref": "GoogleRpcStatus",
-          "description": "Output only. If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty.",
+          "description": "Output only. If the processing of a policy config fails, an error is populated and the firewall_policy is left empty.",
           "readOnly": true
         },
         "firewallPolicy": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1FirewallPolicy",
-          "description": "Output only. The policy that matched the request. If more than one policy may match, this is the first match. If no policy matches the incoming request, the policy field will be left empty.",
+          "description": "Output only. The policy that matched the request. If more than one policy may match, this is the first match. If no policy matches the incoming request, the policy field is left empty.",
           "readOnly": true
         }
       },
@@ -1514,7 +1514,7 @@
         },
         "appleDeveloperId": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1AppleDeveloperId",
-          "description": "Optional. Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app."
+          "description": "Optional. Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA to get a better assessment of the integrity of your app."
         }
       },
       "type": "object"
@@ -1689,7 +1689,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1Metrics",
       "properties": {
         "challengeMetrics": {
-          "description": "Metrics will be continuous and in order by dates, and in the granularity of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have challenge-based data.",
+          "description": "Metrics are continuous and in order by dates, and in the granularity of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have challenge-based data.",
           "items": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeMetrics"
           },
@@ -1701,7 +1701,7 @@
           "type": "string"
         },
         "scoreMetrics": {
-          "description": "Metrics will be continuous and in order by dates, and in the granularity of day. All Key types should have score-based data.",
+          "description": "Metrics are continuous and in order by dates, and in the granularity of day. All Key types should have score-based data.",
           "items": {
             "$ref": "GoogleCloudRecaptchaenterpriseV1ScoreMetrics"
           },
@@ -2010,7 +2010,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
       "properties": {
         "testingChallenge": {
-          "description": "Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site will return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.",
+          "description": "Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.",
           "enum": [
             "TESTING_CHALLENGE_UNSPECIFIED",
             "NOCAPTCHA",
@@ -2024,7 +2024,7 @@
           "type": "string"
         },
         "testingScore": {
-          "description": "Optional. All assessments for this Key will return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.",
+          "description": "Optional. All assessments for this Key return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.",
           "format": "float",
           "type": "number"
         }
@@ -2410,13 +2410,15 @@
             "WAF_SERVICE_UNSPECIFIED",
             "CA",
             "FASTLY",
-            "CLOUDFLARE"
+            "CLOUDFLARE",
+            "AKAMAI"
           ],
           "enumDescriptions": [
             "Undefined WAF",
             "Cloud Armor",
             "Fastly",
-            "Cloudflare"
+            "Cloudflare",
+            "Akamai"
           ],
           "type": "string"
         }
@@ -2428,7 +2430,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
       "properties": {
         "allowAllDomains": {
-          "description": "Optional. If set to true, it means allowed_domains will not be enforced.",
+          "description": "Optional. If set to true, it means allowed_domains are not enforced.",
           "type": "boolean"
         },
         "allowAmpTraffic": {
@@ -2443,7 +2445,7 @@
           "type": "array"
         },
         "challengeSecurityPreference": {
-          "description": "Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE.",
+          "description": "Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.",
           "enum": [
             "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
             "USABILITY",

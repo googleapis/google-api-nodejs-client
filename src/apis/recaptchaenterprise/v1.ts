@@ -193,7 +193,7 @@ export namespace recaptchaenterprise_v1 {
      */
     accountId?: string | null;
     /**
-     * Optional. The annotation that will be assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.
+     * Optional. The annotation that is assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.
      */
     annotation?: string | null;
     /**
@@ -351,7 +351,7 @@ export namespace recaptchaenterprise_v1 {
      */
     express?: boolean | null;
     /**
-     * Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy will be evaluated and a suggested firewall action will be returned in the response.
+     * Optional. Flag for enabling firewall policy config assessment. If this flag is enabled, the firewall policy is evaluated and a suggested firewall action is returned in the response.
      */
     firewallPolicyEvaluation?: boolean | null;
     /**
@@ -416,23 +416,23 @@ export namespace recaptchaenterprise_v1 {
      */
     allow?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionAllowAction;
     /**
-     * This action will deny access to a given page. The user will get an HTTP error code.
+     * This action denies access to a given page. The user gets an HTTP error code.
      */
     block?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionBlockAction;
     /**
-     * This action will inject reCAPTCHA JavaScript code into the HTML page returned by the site backend.
+     * This action injects reCAPTCHA JavaScript code into the HTML page returned by the site backend.
      */
     includeRecaptchaScript?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction;
     /**
-     * This action will redirect the request to a ReCaptcha interstitial to attach a token.
+     * This action redirects the request to a reCAPTCHA interstitial to attach a token.
      */
     redirect?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction;
     /**
-     * This action will set a custom header but allow the request to continue to the customer backend.
+     * This action sets a custom header but allow the request to continue to the customer backend.
      */
     setHeader?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSetHeaderAction;
     /**
-     * This action will transparently serve a different page to an offending user.
+     * This action transparently serves a different page to an offending user.
      */
     substitute?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionSubstituteAction;
   }
@@ -449,7 +449,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionIncludeRecaptchaScriptAction {}
   /**
-   * A redirect action returns a 307 (temporary redirect) response, pointing the user to a ReCaptcha interstitial page to attach a token.
+   * A redirect action returns a 307 (temporary redirect) response, pointing the user to a reCAPTCHA interstitial page to attach a token.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallActionRedirectAction {}
   /**
@@ -504,11 +504,11 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicyAssessment {
     /**
-     * Output only. If the processing of a policy config fails, an error will be populated and the firewall_policy will be left empty.
+     * Output only. If the processing of a policy config fails, an error is populated and the firewall_policy is left empty.
      */
     error?: Schema$GoogleRpcStatus;
     /**
-     * Output only. The policy that matched the request. If more than one policy may match, this is the first match. If no policy matches the incoming request, the policy field will be left empty.
+     * Output only. The policy that matched the request. If more than one policy may match, this is the first match. If no policy matches the incoming request, the policy field is left empty.
      */
     firewallPolicy?: Schema$GoogleCloudRecaptchaenterpriseV1FirewallPolicy;
   }
@@ -608,7 +608,7 @@ export namespace recaptchaenterprise_v1 {
      */
     allowedBundleIds?: string[] | null;
     /**
-     * Optional. Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA Enterprise leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA Enterprise to get a better assessment of the integrity of your app.
+     * Optional. Apple Developer account details for the app that is protected by the reCAPTCHA Key. reCAPTCHA leverages platform-specific checks like Apple App Attest and Apple DeviceCheck to protect your app from abuse. Providing these fields allows reCAPTCHA to get a better assessment of the integrity of your app.
      */
     appleDeveloperId?: Schema$GoogleCloudRecaptchaenterpriseV1AppleDeveloperId;
   }
@@ -740,7 +740,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Metrics {
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have challenge-based data.
+     * Metrics are continuous and in order by dates, and in the granularity of day. Only challenge-based keys (CHECKBOX, INVISIBLE) have challenge-based data.
      */
     challengeMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ChallengeMetrics[];
     /**
@@ -748,7 +748,7 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string | null;
     /**
-     * Metrics will be continuous and in order by dates, and in the granularity of day. All Key types should have score-based data.
+     * Metrics are continuous and in order by dates, and in the granularity of day. All Key types should have score-based data.
      */
     scoreMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ScoreMetrics[];
     /**
@@ -949,11 +949,11 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1TestingOptions {
     /**
-     * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site will return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.
+     * Optional. For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.
      */
     testingChallenge?: string | null;
     /**
-     * Optional. All assessments for this Key will return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
+     * Optional. All assessments for this Key return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.
      */
     testingScore?: number | null;
   }
@@ -1220,7 +1220,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettings {
     /**
-     * Optional. If set to true, it means allowed_domains will not be enforced.
+     * Optional. If set to true, it means allowed_domains are not enforced.
      */
     allowAllDomains?: boolean | null;
     /**
@@ -1232,7 +1232,7 @@ export namespace recaptchaenterprise_v1 {
      */
     allowedDomains?: string[] | null;
     /**
-     * Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE.
+     * Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
      */
     challengeSecurityPreference?: string | null;
     /**
@@ -1502,7 +1502,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Assessments$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project in which the assessment will be created, in the format `projects/{project\}`.
+     * Required. The name of the project in which the assessment is created, in the format `projects/{project\}`.
      */
     parent?: string;
 
@@ -2095,7 +2095,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Firewallpolicies$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project this policy will apply to, in the format `projects/{project\}`.
+     * Required. The name of the project this policy applies to, in the format `projects/{project\}`.
      */
     parent?: string;
 
@@ -2140,7 +2140,7 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string;
     /**
-     * Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields will be updated.
+     * Optional. The mask to control which fields of the policy get updated. If the mask is not present, all fields are updated.
      */
     updateMask?: string;
 
@@ -2169,7 +2169,7 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
-     * Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error will be returned.
+     * Adds an IP override to a key. The following restrictions hold: * The maximum number of IP overrides per key is 100. * For any conflict (such as IP already exists or IP part of an existing IP range), an error is returned.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3027,7 +3027,7 @@ export namespace recaptchaenterprise_v1 {
     }
 
     /**
-     * Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error will be returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error will be returned.
+     * Removes an IP override from a key. The following restrictions hold: * If the IP isn't found in an existing IP override, a `NOT_FOUND` error is returned. * If the IP is found in an existing IP override, but the override type does not match, a `NOT_FOUND` error is returned.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3238,7 +3238,7 @@ export namespace recaptchaenterprise_v1 {
   export interface Params$Resource$Projects$Keys$Create
     extends StandardParameters {
     /**
-     * Required. The name of the project in which the key will be created, in the format `projects/{project\}`.
+     * Required. The name of the project in which the key is created, in the format `projects/{project\}`.
      */
     parent?: string;
 
@@ -3279,7 +3279,7 @@ export namespace recaptchaenterprise_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project that contains the keys that will be listed, in the format `projects/{project\}`.
+     * Required. The name of the project that contains the keys that is listed, in the format `projects/{project\}`.
      */
     parent?: string;
   }
@@ -3317,7 +3317,7 @@ export namespace recaptchaenterprise_v1 {
      */
     name?: string;
     /**
-     * Optional. The mask to control which fields of the key get updated. If the mask is not present, all fields will be updated.
+     * Optional. The mask to control which fields of the key get updated. If the mask is not present, all fields are updated.
      */
     updateMask?: string;
 
