@@ -389,12 +389,12 @@ export namespace cloudidentity_v1 {
      */
     chromeProfileId?: string | null;
     /**
-     * Timestamp in milliseconds since Epoch when the profile/gcm id was last synced.
+     * Timestamp in milliseconds since the Unix epoch when the profile/gcm id was last synced.
      */
     lastProfileSyncTime?: string | null;
   }
   /**
-   * Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1). LINT.IfChange
+   * Browser-specific fields reported by the [Endpoint Verification extension](https://chromewebstore.google.com/detail/endpoint-verification/callobklhcbilhphinckomhgkigmfocg?pli=1).
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1BrowserInfo {
     /**
@@ -402,7 +402,7 @@ export namespace cloudidentity_v1 {
      */
     browserManagementState?: string | null;
     /**
-     * Version of the request initiating browser.
+     * Version of the request initiating browser. E.g. `91.0.4442.4`.
      */
     browserVersion?: string | null;
     /**
@@ -825,7 +825,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1EndpointVerificationSpecificAttributes {
     /**
-     * Additional signals reported by Endpoint Verification. It includes the following attributes: 1. Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. 2. [Configurable attributes](https://cloud.google.com/endpoint-verification/docs/collect-config-attributes): file, folder, and binary attributes; registry entries; and properties in a plist.
+     * [Additional signals](https://cloud.google.com/endpoint-verification/docs/device-information) reported by Endpoint Verification. It includes the following attributes: * Non-configurable attributes: hotfixes, av_installed, av_enabled, windows_domain_name, is_os_native_firewall_enabled, and is_secure_boot_enabled. * [Configurable attributes](https://cloud.google.com/endpoint-verification/docs/collect-config-attributes): file, folder, and binary attributes; registry entries; and properties in a plist.
      */
     additionalSignals?: {[key: string]: any} | null;
     /**
