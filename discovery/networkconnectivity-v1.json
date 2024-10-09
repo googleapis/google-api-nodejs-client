@@ -2812,7 +2812,7 @@
       }
     }
   },
-  "revision": "20240807",
+  "revision": "20240923",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2942,8 +2942,16 @@
           "type": "string"
         },
         "producerInstanceId": {
-          "description": "Immutable. An immutable identifier for the producer instance.",
+          "deprecated": true,
+          "description": "Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.",
           "type": "string"
+        },
+        "producerInstanceMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Immutable. An immutable map for the producer instance metadata.",
+          "type": "object"
         },
         "project": {
           "description": "The consumer project where PSC connections are allowed to be created in.",
@@ -2994,6 +3002,7 @@
           "readOnly": true
         },
         "errorType": {
+          "deprecated": true,
           "description": "The error type indicates whether the error is consumer facing, producer facing or system internal.",
           "enum": [
             "CONNECTION_ERROR_TYPE_UNSPECIFIED",
@@ -3026,8 +3035,16 @@
           "type": "string"
         },
         "producerInstanceId": {
-          "description": "Immutable. An immutable identifier for the producer instance.",
+          "deprecated": true,
+          "description": "Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.",
           "type": "string"
+        },
+        "producerInstanceMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Immutable. An immutable map for the producer instance metadata.",
+          "type": "object"
         },
         "project": {
           "description": "The consumer project whose PSC forwarding rule is connected to the service attachments in this service connection map.",
@@ -3057,7 +3074,7 @@
           ],
           "enumDescriptions": [
             "An invalid state as the default case.",
-            "The connection is fully established and ready to use.",
+            "The connection has been created successfully. However, for the up-to-date connection status, please use the service attachment's \"ConnectedEndpoint.status\" as the source of truth.",
             "The connection is not functional since some resources on the connection fail to be created.",
             "The connection is being created.",
             "The connection is being deleted."
@@ -3451,7 +3468,7 @@
           "type": "string"
         },
         "ipCidrRange": {
-          "description": "The IP range that this internal range defines.",
+          "description": "The IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.",
           "type": "string"
         },
         "labels": {
@@ -3460,6 +3477,10 @@
           },
           "description": "User-defined labels.",
           "type": "object"
+        },
+        "migration": {
+          "$ref": "Migration",
+          "description": "Optional. Should be present if usage is set to FOR_MIGRATION."
         },
         "name": {
           "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
@@ -3503,7 +3524,7 @@
           "type": "string"
         },
         "prefixLength": {
-          "description": "An alternate to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size.",
+          "description": "An alternate to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.",
           "format": "int32",
           "type": "integer"
         },
@@ -3524,12 +3545,14 @@
           "enum": [
             "USAGE_UNSPECIFIED",
             "FOR_VPC",
-            "EXTERNAL_TO_VPC"
+            "EXTERNAL_TO_VPC",
+            "FOR_MIGRATION"
           ],
           "enumDescriptions": [
             "Unspecified usage is allowed in calls which identify the resource by other fields and do not need Usage set to complete. These are, i.e.: GetInternalRange and DeleteInternalRange. Usage needs to be specified explicitly in CreateInternalRange or UpdateInternalRange calls.",
             "A VPC resource can use the reserved CIDR block by associating it with the internal range resource if usage is set to FOR_VPC.",
-            "Ranges created with EXTERNAL_TO_VPC cannot be associated with VPC resources and are meant to block out address ranges for various use cases, like for example, usage on-prem, with dynamic route announcements via interconnect."
+            "Ranges created with EXTERNAL_TO_VPC cannot be associated with VPC resources and are meant to block out address ranges for various use cases, like for example, usage on-prem, with dynamic route announcements via interconnect.",
+            "Ranges created FOR_MIGRATION can be used to lock a CIDR range between a source and target subnet. If usage is set to FOR_MIGRATION the peering value has to be set to FOR_SELF or default to FOR_SELF when unset."
           ],
           "type": "string"
         },
@@ -3549,7 +3572,7 @@
       "id": "LinkedInterconnectAttachments",
       "properties": {
         "includeImportRanges": {
-          "description": "Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "description": "Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
           "items": {
             "type": "string"
           },
@@ -3574,12 +3597,44 @@
       },
       "type": "object"
     },
+    "LinkedProducerVpcNetwork": {
+      "description": "Next ID: 7",
+      "id": "LinkedProducerVpcNetwork",
+      "properties": {
+        "excludeExportRanges": {
+          "description": "Optional. IP ranges encompassing the subnets to be excluded from peering.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "network": {
+          "description": "Immutable. The URI of the Service Consumer VPC that the Producer VPC is peered with.",
+          "type": "string"
+        },
+        "peering": {
+          "description": "Immutable. The name of the VPC peering between the Service Consumer VPC and the Producer VPC (defined in the Tenant project) which is added to the NCC hub. This peering must be in ACTIVE state.",
+          "type": "string"
+        },
+        "producerNetwork": {
+          "description": "Output only. The URI of the Producer VPC.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceConsumerVpcSpoke": {
+          "description": "Output only. The Service Consumer Network spoke.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LinkedRouterApplianceInstances": {
       "description": "A collection of router appliance instances. If you configure multiple router appliance instances to receive data from the same set of sites outside of Google Cloud, we recommend that you associate those instances with the same spoke.",
       "id": "LinkedRouterApplianceInstances",
       "properties": {
         "includeImportRanges": {
-          "description": "Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "description": "Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
           "items": {
             "type": "string"
           },
@@ -3642,7 +3697,7 @@
       "id": "LinkedVpnTunnels",
       "properties": {
         "includeImportRanges": {
-          "description": "Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "description": "Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
           "items": {
             "type": "string"
           },
@@ -4068,6 +4123,21 @@
       },
       "type": "object"
     },
+    "Migration": {
+      "description": "Specification for migration with source and target resource names.",
+      "id": "Migration",
+      "properties": {
+        "source": {
+          "description": "Immutable. Resource path as an URI of the source resource, for example a subnet. The project for the source resource should match the project for the InternalRange. An example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
+          "type": "string"
+        },
+        "target": {
+          "description": "Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project}/regions/{region}/subnetworks/{subnet}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NextHopInterconnectAttachment": {
       "description": "A route next hop that leads to an interconnect attachment resource.",
       "id": "NextHopInterconnectAttachment",
@@ -4367,7 +4437,7 @@
         "error": {
           "$ref": "GoogleRpcStatus",
           "deprecated": true,
-          "description": "The most recent error during operating this connection."
+          "description": "The most recent error during operating this connection. Deprecated, please use error_info instead."
         },
         "errorInfo": {
           "$ref": "GoogleRpcErrorInfo",
@@ -4375,6 +4445,7 @@
           "readOnly": true
         },
         "errorType": {
+          "deprecated": true,
           "description": "The error type indicates whether the error is consumer facing, producer facing or system internal.",
           "enum": [
             "CONNECTION_ERROR_TYPE_UNSPECIFIED",
@@ -4395,8 +4466,16 @@
           "type": "string"
         },
         "producerInstanceId": {
-          "description": "Immutable. An immutable identifier for the producer instance.",
+          "deprecated": true,
+          "description": "Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.",
           "type": "string"
+        },
+        "producerInstanceMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Immutable. An immutable map for the producer instance metadata.",
+          "type": "object"
         },
         "pscConnectionId": {
           "description": "The PSC connection id of the PSC forwarding rule.",
@@ -4404,6 +4483,11 @@
         },
         "selectedSubnetwork": {
           "description": "Output only. The URI of the subnetwork selected to allocate IP address for this connection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceClass": {
+          "description": "Output only. [Output only] The service class associated with this PSC Connection. The value is derived from the SCPolicy and matches the service class name provided by the customer.",
           "readOnly": true,
           "type": "string"
         },
@@ -4418,7 +4502,7 @@
           ],
           "enumDescriptions": [
             "An invalid state as the default case.",
-            "The connection is fully established and ready to use.",
+            "The connection has been created successfully. However, for the up-to-date connection status, please use the created forwarding rule's \"PscConnectionStatus\" as the source of truth.",
             "The connection is not functional since some resources on the connection fail to be created.",
             "The connection is being created.",
             "The connection is being deleted."
@@ -4882,7 +4966,7 @@
       "id": "ServiceConnectionPolicy",
       "properties": {
         "createTime": {
-          "description": "Output only. Time when the ServiceConnectionMap was created.",
+          "description": "Output only. Time when the ServiceConnectionPolicy was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -4940,7 +5024,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when the ServiceConnectionMap was updated.",
+          "description": "Output only. Time when the ServiceConnectionPolicy was updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -5050,6 +5134,10 @@
           "$ref": "LinkedInterconnectAttachments",
           "description": "VLAN attachments that are associated with the spoke."
         },
+        "linkedProducerVpcNetwork": {
+          "$ref": "LinkedProducerVpcNetwork",
+          "description": "Optional. The linked producer VPC that is associated with the spoke."
+        },
         "linkedRouterApplianceInstances": {
           "$ref": "LinkedRouterApplianceInstances",
           "description": "Router appliance instances that are associated with the spoke."
@@ -5081,14 +5169,16 @@
             "VPN_TUNNEL",
             "INTERCONNECT_ATTACHMENT",
             "ROUTER_APPLIANCE",
-            "VPC_NETWORK"
+            "VPC_NETWORK",
+            "PRODUCER_VPC_NETWORK"
           ],
           "enumDescriptions": [
             "Unspecified spoke type.",
             "Spokes associated with VPN tunnels.",
             "Spokes associated with VLAN attachments.",
             "Spokes associated with router appliance instances.",
-            "Spokes associated with VPC networks."
+            "Spokes associated with VPC networks.",
+            "Spokes that are backed by a producer VPC network."
           ],
           "readOnly": true,
           "type": "string"
@@ -5254,14 +5344,16 @@
             "VPN_TUNNEL",
             "INTERCONNECT_ATTACHMENT",
             "ROUTER_APPLIANCE",
-            "VPC_NETWORK"
+            "VPC_NETWORK",
+            "PRODUCER_VPC_NETWORK"
           ],
           "enumDescriptions": [
             "Unspecified spoke type.",
             "Spokes associated with VPN tunnels.",
             "Spokes associated with VLAN attachments.",
             "Spokes associated with router appliance instances.",
-            "Spokes associated with VPC networks."
+            "Spokes associated with VPC networks.",
+            "Spokes that are backed by a producer VPC network."
           ],
           "readOnly": true,
           "type": "string"

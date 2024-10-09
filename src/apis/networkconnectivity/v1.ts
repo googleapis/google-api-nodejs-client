@@ -215,9 +215,13 @@ export namespace networkconnectivity_v1 {
      */
     network?: string | null;
     /**
-     * Immutable. An immutable identifier for the producer instance.
+     * Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.
      */
     producerInstanceId?: string | null;
+    /**
+     * Immutable. An immutable map for the producer instance metadata.
+     */
+    producerInstanceMetadata?: {[key: string]: string} | null;
     /**
      * The consumer project where PSC connections are allowed to be created in.
      */
@@ -264,9 +268,13 @@ export namespace networkconnectivity_v1 {
      */
     network?: string | null;
     /**
-     * Immutable. An immutable identifier for the producer instance.
+     * Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.
      */
     producerInstanceId?: string | null;
+    /**
+     * Immutable. An immutable map for the producer instance metadata.
+     */
+    producerInstanceMetadata?: {[key: string]: string} | null;
     /**
      * The consumer project whose PSC forwarding rule is connected to the service attachments in this service connection map.
      */
@@ -530,13 +538,17 @@ export namespace networkconnectivity_v1 {
      */
     description?: string | null;
     /**
-     * The IP range that this internal range defines.
+     * The IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.
      */
     ipCidrRange?: string | null;
     /**
      * User-defined labels.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Should be present if usage is set to FOR_MIGRATION.
+     */
+    migration?: Schema$Migration;
     /**
      * Immutable. The name of an internal range. Format: projects/{project\}/locations/{location\}/internalRanges/{internal_range\} See: https://google.aip.dev/122#fields-representing-resource-names
      */
@@ -554,7 +566,7 @@ export namespace networkconnectivity_v1 {
      */
     peering?: string | null;
     /**
-     * An alternate to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size.
+     * An alternate to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.
      */
     prefixLength?: number | null;
     /**
@@ -579,7 +591,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedInterconnectAttachments {
     /**
-     * Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is "ALL_IPV4_RANGES".
+     * Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is "ALL_IPV4_RANGES".
      */
     includeImportRanges?: string[] | null;
     /**
@@ -596,11 +608,36 @@ export namespace networkconnectivity_v1 {
     vpcNetwork?: string | null;
   }
   /**
+   * Next ID: 7
+   */
+  export interface Schema$LinkedProducerVpcNetwork {
+    /**
+     * Optional. IP ranges encompassing the subnets to be excluded from peering.
+     */
+    excludeExportRanges?: string[] | null;
+    /**
+     * Immutable. The URI of the Service Consumer VPC that the Producer VPC is peered with.
+     */
+    network?: string | null;
+    /**
+     * Immutable. The name of the VPC peering between the Service Consumer VPC and the Producer VPC (defined in the Tenant project) which is added to the NCC hub. This peering must be in ACTIVE state.
+     */
+    peering?: string | null;
+    /**
+     * Output only. The URI of the Producer VPC.
+     */
+    producerNetwork?: string | null;
+    /**
+     * Output only. The Service Consumer Network spoke.
+     */
+    serviceConsumerVpcSpoke?: string | null;
+  }
+  /**
    * A collection of router appliance instances. If you configure multiple router appliance instances to receive data from the same set of sites outside of Google Cloud, we recommend that you associate those instances with the same spoke.
    */
   export interface Schema$LinkedRouterApplianceInstances {
     /**
-     * Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is "ALL_IPV4_RANGES".
+     * Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is "ALL_IPV4_RANGES".
      */
     includeImportRanges?: string[] | null;
     /**
@@ -642,7 +679,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedVpnTunnels {
     /**
-     * Optional. IP ranges allowed to be included during import from hub.(does not control transit connectivity) The only allowed value for now is "ALL_IPV4_RANGES".
+     * Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is "ALL_IPV4_RANGES".
      */
     includeImportRanges?: string[] | null;
     /**
@@ -927,6 +964,19 @@ export namespace networkconnectivity_v1 {
     locationFeatures?: string[] | null;
   }
   /**
+   * Specification for migration with source and target resource names.
+   */
+  export interface Schema$Migration {
+    /**
+     * Immutable. Resource path as an URI of the source resource, for example a subnet. The project for the source resource should match the project for the InternalRange. An example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
+     */
+    source?: string | null;
+    /**
+     * Immutable. Resource path of the target resource. The target project can be different, as in the cases when migrating to peer networks. The resource For example: /projects/{project\}/regions/{region\}/subnetworks/{subnet\}
+     */
+    target?: string | null;
+  }
+  /**
    * A route next hop that leads to an interconnect attachment resource.
    */
   export interface Schema$NextHopInterconnectAttachment {
@@ -1149,7 +1199,7 @@ export namespace networkconnectivity_v1 {
      */
     consumerTargetProject?: string | null;
     /**
-     * The most recent error during operating this connection.
+     * The most recent error during operating this connection. Deprecated, please use error_info instead.
      */
     error?: Schema$GoogleRpcStatus;
     /**
@@ -1165,9 +1215,13 @@ export namespace networkconnectivity_v1 {
      */
     gceOperation?: string | null;
     /**
-     * Immutable. An immutable identifier for the producer instance.
+     * Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.
      */
     producerInstanceId?: string | null;
+    /**
+     * Immutable. An immutable map for the producer instance metadata.
+     */
+    producerInstanceMetadata?: {[key: string]: string} | null;
     /**
      * The PSC connection id of the PSC forwarding rule.
      */
@@ -1176,6 +1230,10 @@ export namespace networkconnectivity_v1 {
      * Output only. The URI of the subnetwork selected to allocate IP address for this connection.
      */
     selectedSubnetwork?: string | null;
+    /**
+     * Output only. [Output only] The service class associated with this PSC Connection. The value is derived from the SCPolicy and matches the service class name provided by the customer.
+     */
+    serviceClass?: string | null;
     /**
      * State of the PSC Connection
      */
@@ -1480,7 +1538,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$ServiceConnectionPolicy {
     /**
-     * Output only. Time when the ServiceConnectionMap was created.
+     * Output only. Time when the ServiceConnectionPolicy was created.
      */
     createTime?: string | null;
     /**
@@ -1520,7 +1578,7 @@ export namespace networkconnectivity_v1 {
      */
     serviceClass?: string | null;
     /**
-     * Output only. Time when the ServiceConnectionMap was updated.
+     * Output only. Time when the ServiceConnectionPolicy was updated.
      */
     updateTime?: string | null;
   }
@@ -1606,6 +1664,10 @@ export namespace networkconnectivity_v1 {
      * VLAN attachments that are associated with the spoke.
      */
     linkedInterconnectAttachments?: Schema$LinkedInterconnectAttachments;
+    /**
+     * Optional. The linked producer VPC that is associated with the spoke.
+     */
+    linkedProducerVpcNetwork?: Schema$LinkedProducerVpcNetwork;
     /**
      * Router appliance instances that are associated with the spoke.
      */

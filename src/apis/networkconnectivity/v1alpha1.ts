@@ -301,7 +301,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     description?: string | null;
     /**
-     * IP range that this internal range defines.
+     * IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.
      */
     ipCidrRange?: string | null;
     /**
@@ -329,7 +329,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     peering?: string | null;
     /**
-     * An alternative to ip_cidr_range. Can be set when trying to create a reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size.
+     * An alternative to ip_cidr_range. Can be set when trying to create an IPv4 reservation that automatically finds a free range of the given size. If both ip_cidr_range and prefix_length are set, there is an error if the range sizes do not match. Can also be used during updates to change the range size. NOTE: For IPv6 this field only works if ip_cidr_range is set as well, and both fields must match. In other words, with IPv6 this field only works as a redundant parameter.
      */
     prefixLength?: number | null;
     /**
