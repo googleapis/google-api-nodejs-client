@@ -448,7 +448,7 @@ export namespace secretmanager_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The customer-managed encryption configuration of the Regionalised Secrets. If no configuration is provided, Google-managed default encryption is used. Updates to the Secret encryption configuration only apply to SecretVersions added afterwards. They do not apply retroactively to existing SecretVersions.
+     * Optional. The customer-managed encryption configuration of the regionalized secrets. If no configuration is provided, Google-managed default encryption is used. Updates to the Secret encryption configuration only apply to SecretVersions added afterwards. They do not apply retroactively to existing SecretVersions.
      */
     customerManagedEncryption?: Schema$CustomerManagedEncryption;
     /**
@@ -518,7 +518,7 @@ export namespace secretmanager_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The customer-managed encryption status of the SecretVersion. Only populated if customer-managed encryption is used and Secret is a Regionalised Secret.
+     * Output only. The customer-managed encryption status of the SecretVersion. Only populated if customer-managed encryption is used and Secret is a regionalized secret.
      */
     customerManagedEncryption?: Schema$CustomerManagedEncryptionStatus;
     /**
