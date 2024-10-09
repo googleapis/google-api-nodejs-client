@@ -597,10 +597,7 @@
                   "path": "v1alpha/{+name}:cancel",
                   "response": {
                     "$ref": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaCancelSubscriptionResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
+                  }
                 },
                 "create": {
                   "description": "Creates a new BeyondCorp Enterprise Subscription in a given organization. Location will always be global as BeyondCorp subscriptions are per organization.",
@@ -625,10 +622,7 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
+                  }
                 },
                 "get": {
                   "description": "Gets details of a single Subscription.",
@@ -650,10 +644,7 @@
                   "path": "v1alpha/{+name}",
                   "response": {
                     "$ref": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
+                  }
                 },
                 "list": {
                   "description": "Lists Subscriptions in a given organization and location.",
@@ -686,10 +677,7 @@
                   "path": "v1alpha/{+parent}/subscriptions",
                   "response": {
                     "$ref": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaListSubscriptionsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
+                  }
                 },
                 "patch": {
                   "description": "Updates an existing BeyondCorp Enterprise Subscription in a given organization. Location will always be global as BeyondCorp subscriptions are per organization.",
@@ -725,10 +713,7 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaSubscription"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
+                  }
                 },
                 "restart": {
                   "description": "Restarts an existing BeyondCorp Enterprise Subscription in a given organization, that is scheduled for cancellation. Location will always be global as BeyondCorp subscriptions are per organization. Returns the timestamp for when the cancellation will become effective",
@@ -755,10 +740,7 @@
                   "path": "v1alpha/{+name}:restart",
                   "response": {
                     "$ref": "GoogleCloudBeyondcorpSaasplatformSubscriptionsV1alphaRestartSubscriptionResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
+                  }
                 }
               }
             }
@@ -2714,7 +2696,7 @@
                           ],
                           "parameters": {
                             "applicationId": {
-                              "description": "Optional. User-settable Hub resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.",
+                              "description": "Optional. User-settable Application resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.",
                               "location": "query",
                               "type": "string"
                             },
@@ -2794,115 +2776,6 @@
                               "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+/applications/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+resource}:testIamPermissions",
-                          "request": {
-                            "$ref": "GoogleIamV1TestIamPermissionsRequest"
-                          },
-                          "response": {
-                            "$ref": "GoogleIamV1TestIamPermissionsResponse"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        }
-                      }
-                    },
-                    "hubs": {
-                      "methods": {
-                        "create": {
-                          "description": "Creates a new Hub in a given project and location.",
-                          "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}/hubs",
-                          "httpMethod": "POST",
-                          "id": "beyondcorp.projects.locations.global.securityGateways.hubs.create",
-                          "parameterOrder": [
-                            "parent"
-                          ],
-                          "parameters": {
-                            "hubId": {
-                              "description": "Optional. User-settable Hub resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "parent": {
-                              "description": "Required. The resource name of the parent SecurityGateway using the form: `projects/{project_id}/locations/global/securityGateways/{security_gateway_id}`",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "requestId": {
-                              "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.",
-                              "location": "query",
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+parent}/hubs",
-                          "request": {
-                            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub"
-                          },
-                          "response": {
-                            "$ref": "GoogleLongrunningOperation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "patch": {
-                          "description": "Updates the parameters of a single Hub.",
-                          "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}/hubs/{hubsId}",
-                          "httpMethod": "PATCH",
-                          "id": "beyondcorp.projects.locations.global.securityGateways.hubs.patch",
-                          "parameterOrder": [
-                            "name"
-                          ],
-                          "parameters": {
-                            "name": {
-                              "description": "Identifier. Name of the resource.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+/hubs/[^/]+$",
-                              "required": true,
-                              "type": "string"
-                            },
-                            "requestId": {
-                              "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
-                              "location": "query",
-                              "type": "string"
-                            },
-                            "updateMask": {
-                              "description": "Required. Mutable fields include: display_name.",
-                              "format": "google-fieldmask",
-                              "location": "query",
-                              "type": "string"
-                            }
-                          },
-                          "path": "v1alpha/{+name}",
-                          "request": {
-                            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub"
-                          },
-                          "response": {
-                            "$ref": "GoogleLongrunningOperation"
-                          },
-                          "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform"
-                          ]
-                        },
-                        "testIamPermissions": {
-                          "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                          "flatPath": "v1alpha/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}/hubs/{hubsId}:testIamPermissions",
-                          "httpMethod": "POST",
-                          "id": "beyondcorp.projects.locations.global.securityGateways.hubs.testIamPermissions",
-                          "parameterOrder": [
-                            "resource"
-                          ],
-                          "parameters": {
-                            "resource": {
-                              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                              "location": "path",
-                              "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+/hubs/[^/]+$",
                               "required": true,
                               "type": "string"
                             }
@@ -3514,6 +3387,34 @@
                   },
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setPeering": {
+                  "description": "This is a custom method to allow customers to create a peering connections between Google network and customer networks. This is enabled only for the allowlisted customers.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/securityGateways/{securityGatewaysId}:setPeering",
+                  "httpMethod": "POST",
+                  "id": "beyondcorp.projects.locations.securityGateways.setPeering",
+                  "parameterOrder": [
+                    "securityGateway"
+                  ],
+                  "parameters": {
+                    "securityGateway": {
+                      "description": "Required. BeyondCorp SecurityGateway name using the form: `projects/{project}/locations/{location}/securityGateways/{security_gateway}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/securityGateways/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+securityGateway}:setPeering",
+                  "request": {
+                    "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -5900,6 +5801,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig": {
+      "description": "Represents the NAT Gateway configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig",
+      "properties": {
+        "natIps": {
+          "description": "Output only. List of NAT IPs that will be used for establishing connection to the endpoints.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering": {
+      "description": "VPC Peering details.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering",
+      "properties": {
+        "dnsZones": {
+          "description": "Optional. List of DNS zones for DNS peering with the customer VPC network.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetVpcNetwork": {
+          "description": "Required. The name of the Target VPC network name in the format: `projects/{project}/global/networks/{network}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway": {
       "description": "Information about a BeyondCorp SecurityGateway resource.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway",
@@ -6005,6 +5939,28 @@
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest": {
+      "description": "Set Peering request for creating a VPC peering between Google network and customer networks.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "validateOnly": {
+          "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
+          "type": "boolean"
+        },
+        "vpcPeerings": {
+          "description": "Required. List of Peering connection information.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering"
+          },
+          "type": "array"
         }
       },
       "type": "object"
