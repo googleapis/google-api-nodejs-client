@@ -3220,15 +3220,23 @@
           "description": "Upgrade status of the instance.",
           "enum": [
             "STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
             "SUCCESS",
             "FAILED",
-            "PARTIAL_SUCCESS"
+            "PARTIAL_SUCCESS",
+            "CANCEL_IN_PROGRESS",
+            "CANCELLED"
           ],
           "enumDescriptions": [
             "Unspecified status.",
+            "Not started.",
+            "In progress.",
             "Operation succeeded.",
             "Operation failed.",
-            "Operation partially succeeded."
+            "Operation partially succeeded.",
+            "Cancel is in progress.",
+            "Cancellation complete."
           ],
           "type": "string"
         }
@@ -5666,6 +5674,20 @@
           "description": "Timestamp based retention period i.e. 2024-05-01T00:00:00Z",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageDatabasecenterPartnerapiV1mainTags": {
+      "description": "Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.",
+      "id": "StorageDatabasecenterPartnerapiV1mainTags",
+      "properties": {
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The Tag key/value mappings.",
+          "type": "object"
         }
       },
       "type": "object"

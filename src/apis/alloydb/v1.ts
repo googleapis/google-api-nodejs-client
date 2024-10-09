@@ -2089,6 +2089,15 @@ export namespace alloydb_v1 {
     tags?: {[key: string]: string} | null;
   }
   /**
+   * Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainTags {
+    /**
+     * The Tag key/value mappings.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
    * Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainUserLabels {

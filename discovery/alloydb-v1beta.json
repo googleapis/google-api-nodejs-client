@@ -5617,6 +5617,20 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainTags": {
+      "description": "Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.",
+      "id": "StorageDatabasecenterPartnerapiV1mainTags",
+      "properties": {
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The Tag key/value mappings.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainUserLabels": {
       "description": "Message type for storing user labels. User labels are used to tag App Engine resources, allowing users to search for resources matching a set of labels and to aggregate usage data by labels.",
       "id": "StorageDatabasecenterPartnerapiV1mainUserLabels",
