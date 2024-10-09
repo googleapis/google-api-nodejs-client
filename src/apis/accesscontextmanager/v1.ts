@@ -533,6 +533,10 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string | null;
     /**
+     * Optional. GCSL policy for the group key.
+     */
+    reauthSettings?: Schema$ReauthSettings;
+    /**
      * Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
      */
     restrictedClientApplications?: Schema$Application[];
@@ -797,6 +801,31 @@ export namespace accesscontextmanager_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.
+   */
+  export interface Schema$ReauthSettings {
+    /**
+     * Optional. How long a user is allowed to take between actions before a new access token must be issued. Presently only set for Cloud Apps.
+     */
+    maxInactivity?: string | null;
+    /**
+     * Optional. Reauth method when users GCP session is up.
+     */
+    reauthMethod?: string | null;
+    /**
+     * Optional. The session length. Setting this field to zero is equal to disabling. Reauth. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.
+     */
+    sessionLength?: string | null;
+    /**
+     * Optional. Big red button to turn off GCSL. When false, all fields set above will be disregarded and the session length is basically infinite.
+     */
+    sessionLengthEnabled?: boolean | null;
+    /**
+     * Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.
+     */
+    useOidcMaxAge?: boolean | null;
   }
   /**
    * A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.
