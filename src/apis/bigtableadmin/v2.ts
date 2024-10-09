@@ -254,6 +254,10 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Backup {
     /**
+     * Indicates the backup type of the backup.
+     */
+    backupType?: string | null;
+    /**
      * Output only. The encryption information for the backup.
      */
     encryptionInfo?: Schema$EncryptionInfo;
@@ -265,6 +269,10 @@ export namespace bigtableadmin_v2 {
      * Required. The expiration time of the backup. When creating a backup or updating its `expire_time`, the value must be greater than the backup creation time by: - At least 6 hours - At most 90 days Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
      */
     expireTime?: string | null;
+    /**
+     * The time at which the hot backup will be converted to a standard backup. Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the hot backup to a standard backup. This value must be greater than the backup creation time by: - At least 24 hours This field only applies for hot backups. When creating or updating a standard backup, attempting to set this field will fail the request.
+     */
+    hotToStandardTime?: string | null;
     /**
      * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */

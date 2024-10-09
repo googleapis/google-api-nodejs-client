@@ -3049,6 +3049,20 @@
       "description": "A backup of a Cloud Bigtable table.",
       "id": "Backup",
       "properties": {
+        "backupType": {
+          "description": "Indicates the backup type of the backup.",
+          "enum": [
+            "BACKUP_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "HOT"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The default type for Cloud Bigtable managed backups. Supported for backups created in both HDD and SSD instances. Requires optimization when restored to a table in an SSD instance.",
+            "A backup type with faster restore to SSD performance. Only supported for backups created in SSD instances. A new SSD table restored from a hot backup reaches production performance more quickly than a standard backup."
+          ],
+          "type": "string"
+        },
         "encryptionInfo": {
           "$ref": "EncryptionInfo",
           "description": "Output only. The encryption information for the backup.",
@@ -3062,6 +3076,11 @@
         },
         "expireTime": {
           "description": "Required. The expiration time of the backup. When creating a backup or updating its `expire_time`, the value must be greater than the backup creation time by: - At least 6 hours - At most 90 days Once the `expire_time` has passed, Cloud Bigtable will delete the backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "hotToStandardTime": {
+          "description": "The time at which the hot backup will be converted to a standard backup. Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the hot backup to a standard backup. This value must be greater than the backup creation time by: - At least 24 hours This field only applies for hot backups. When creating or updating a standard backup, attempting to set this field will fail the request.",
           "format": "google-datetime",
           "type": "string"
         },
