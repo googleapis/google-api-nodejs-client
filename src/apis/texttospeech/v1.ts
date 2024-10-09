@@ -131,6 +131,15 @@ export namespace texttospeech_v1 {
   }
 
   /**
+   * Used for advanced voice options.
+   */
+  export interface Schema$AdvancedVoiceOptions {
+    /**
+     * Only for Jounrney voices. If false, the synthesis will be context aware and have higher latency.
+     */
+    lowLatencyJourneySynthesis?: boolean | null;
+  }
+  /**
    * Description of audio data to be synthesized.
    */
   export interface Schema$AudioConfig {
@@ -164,6 +173,32 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Pronunciation customization for a phrase.
+   */
+  export interface Schema$CustomPronunciationParams {
+    /**
+     * The phonetic encoding of the phrase.
+     */
+    phoneticEncoding?: string | null;
+    /**
+     * The phrase to which the customization will be applied. The phrase can be multiple words (in the case of proper nouns etc), but should not span to a whole sentence.
+     */
+    phrase?: string | null;
+    /**
+     * The pronunciation of the phrase. This must be in the phonetic encoding specified above.
+     */
+    pronunciation?: string | null;
+  }
+  /**
+   * A collection of pronunciation customizations.
+   */
+  export interface Schema$CustomPronunciations {
+    /**
+     * The pronunciation customizations to be applied.
+     */
+    pronunciations?: Schema$CustomPronunciationParams[];
+  }
+  /**
    * Description of the custom voice to be synthesized.
    */
   export interface Schema$CustomVoiceParams {
@@ -181,6 +216,36 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Request message for the `GenerateVoiceCloningKey` method.
+   */
+  export interface Schema$GenerateVoiceCloningKeyRequest {
+    /**
+     * Required. The script used for the voice talent statement. The script will be provided to the caller through other channels. It must be returned unchanged in this field.
+     */
+    consentScript?: string | null;
+    /**
+     * Required. The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US". See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes.
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The training audio used to create voice clone. This is currently limited to LINEAR16 PCM WAV files mono audio with 24khz sample rate. This needs to be specified in [InputAudio.audio_config], other values will be explicitly rejected.
+     */
+    referenceAudio?: Schema$InputAudio;
+    /**
+     * Required. The voice talent audio used to verify consent to voice clone.
+     */
+    voiceTalentConsent?: Schema$InputAudio;
+  }
+  /**
+   * Response message for the `GenerateVoiceCloningKey` method.
+   */
+  export interface Schema$GenerateVoiceCloningKeyResponse {
+    /**
+     * The voice clone key. Use it in the SynthesizeSpeechRequest by setting [voice.voice_clone.voice_cloning_key].
+     */
+    voiceCloningKey?: string | null;
+  }
+  /**
    * Metadata for response returned by the `SynthesizeLongAudio` method.
    */
   export interface Schema$GoogleCloudTexttospeechV1SynthesizeLongAudioMetadata {
@@ -196,6 +261,32 @@ export namespace texttospeech_v1 {
      * Time when the request was received.
      */
     startTime?: string | null;
+  }
+  /**
+   * Holds audio content and config.
+   */
+  export interface Schema$InputAudio {
+    /**
+     * Required. Provides information that specifies how to process content.
+     */
+    audioConfig?: Schema$InputAudioConfig;
+    /**
+     * Required. The audio data bytes encoded as specified in `InputAudioConfig`. Note: as with all bytes fields, proto buffers use a pure binary representation, whereas JSON representations use base64. Audio samples should be between 5-25 seconds in length.
+     */
+    content?: string | null;
+  }
+  /**
+   * Description of inputted audio data.
+   */
+  export interface Schema$InputAudioConfig {
+    /**
+     * Required. The format of the audio byte stream.
+     */
+    audioEncoding?: string | null;
+    /**
+     * Required. The sample rate (in hertz) for this audio.
+     */
+    sampleRateHertz?: number | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -266,6 +357,10 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$SynthesisInput {
     /**
+     * Optional. The pronunciation customizations to be applied to the input. If this is set, the input will be synthesized using the given pronunciation customizations. The initial support will be for EFIGS (English, French, Italian, German, Spanish) languages, as provided in VoiceSelectionParams. Journey and Instant Clone voices are not supported yet. In order to customize the pronunciation of a phrase, there must be an exact match of the phrase in the input types. If using SSML, the phrase must not be inside a phoneme tag (entirely or partially).
+     */
+    customPronunciations?: Schema$CustomPronunciations;
+    /**
      * The SSML document to be synthesized. The SSML document must be valid and well-formed. Otherwise the RPC will fail and return google.rpc.Code.INVALID_ARGUMENT. For more information, see [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
      */
     ssml?: string | null;
@@ -317,6 +412,10 @@ export namespace texttospeech_v1 {
    */
   export interface Schema$SynthesizeSpeechRequest {
     /**
+     * Adnanced voice options.
+     */
+    advancedVoiceOptions?: Schema$AdvancedVoiceOptions;
+    /**
      * Required. The configuration of the synthesized audio.
      */
     audioConfig?: Schema$AudioConfig;
@@ -360,6 +459,15 @@ export namespace texttospeech_v1 {
     ssmlGender?: string | null;
   }
   /**
+   * The configuration of Voice Clone feature.
+   */
+  export interface Schema$VoiceCloneParams {
+    /**
+     * Required. Created by GenerateVoiceCloningKey.
+     */
+    voiceCloningKey?: string | null;
+  }
+  /**
    * Description of which voice to use for a synthesis request.
    */
   export interface Schema$VoiceSelectionParams {
@@ -379,6 +487,10 @@ export namespace texttospeech_v1 {
      * The preferred gender of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and name. Note that this is only a preference, not requirement; if a voice of the appropriate gender is not available, the synthesizer should substitute a voice with a different gender rather than failing the request.
      */
     ssmlGender?: string | null;
+    /**
+     * Optional. The configuration for a voice clone. If [VoiceCloneParams.voice_clone_key] is set, the service will choose the voice clone matching the specified configuration.
+     */
+    voiceClone?: Schema$VoiceCloneParams;
   }
 
   export class Resource$Operations {
@@ -1026,6 +1138,103 @@ export namespace texttospeech_v1 {
     }
 
     /**
+     * Generates voice clone key given a short voice prompt. This method validates the voice prompts with a series of checks against the voice talent statement to verify the voice clone is safe to generate.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateVoiceCloningKey(
+      params: Params$Resource$Voices$Generatevoicecloningkey,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateVoiceCloningKey(
+      params?: Params$Resource$Voices$Generatevoicecloningkey,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateVoiceCloningKeyResponse>;
+    generateVoiceCloningKey(
+      params: Params$Resource$Voices$Generatevoicecloningkey,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateVoiceCloningKey(
+      params: Params$Resource$Voices$Generatevoicecloningkey,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateVoiceCloningKeyResponse>,
+      callback: BodyResponseCallback<Schema$GenerateVoiceCloningKeyResponse>
+    ): void;
+    generateVoiceCloningKey(
+      params: Params$Resource$Voices$Generatevoicecloningkey,
+      callback: BodyResponseCallback<Schema$GenerateVoiceCloningKeyResponse>
+    ): void;
+    generateVoiceCloningKey(
+      callback: BodyResponseCallback<Schema$GenerateVoiceCloningKeyResponse>
+    ): void;
+    generateVoiceCloningKey(
+      paramsOrCallback?:
+        | Params$Resource$Voices$Generatevoicecloningkey
+        | BodyResponseCallback<Schema$GenerateVoiceCloningKeyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateVoiceCloningKeyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateVoiceCloningKeyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateVoiceCloningKeyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Voices$Generatevoicecloningkey;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Voices$Generatevoicecloningkey;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://texttospeech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/voices:generateVoiceCloningKey').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateVoiceCloningKeyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateVoiceCloningKeyResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns a list of Voice supported for synthesis.
      *
      * @param params - Parameters for request
@@ -1113,6 +1322,13 @@ export namespace texttospeech_v1 {
     }
   }
 
+  export interface Params$Resource$Voices$Generatevoicecloningkey
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateVoiceCloningKeyRequest;
+  }
   export interface Params$Resource$Voices$List extends StandardParameters {
     /**
      * Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If not specified, the API will return all supported voices. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. For example, if you specify `"en-NZ"`, all `"en-NZ"` voices will be returned. If you specify `"no"`, both `"no-\*"` (Norwegian) and `"nb-\*"` (Norwegian Bokmal) voices will be returned.
