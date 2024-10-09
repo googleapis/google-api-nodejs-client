@@ -937,6 +937,10 @@ export namespace backupdr_v1 {
      */
     keyRevocationActionType?: string | null;
     /**
+     * Labels to apply to instances that are created from these properties.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The machine type to use for instances that are created from these properties.
      */
     machineType?: string | null;
@@ -1179,7 +1183,7 @@ export namespace backupdr_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name.
+     * Output only. Identifier. Name of the datasource to create. It must have the format`"projects/{project\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}"`. `{datasource\}` cannot be changed after creation. It must be between 3-63 characters long and must be unique within the backup vault.
      */
     name?: string | null;
     /**
