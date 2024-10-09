@@ -1469,6 +1469,19 @@ export namespace gkehub_v1 {
     userClaim?: string | null;
   }
   /**
+   * Configuration options for the AIS diagnostic interface.
+   */
+  export interface Schema$IdentityServiceDiagnosticInterface {
+    /**
+     * Determines whether to enable the diagnostic interface.
+     */
+    enabled?: boolean | null;
+    /**
+     * Determines the expiration time of the diagnostic interface enablement. When reached, requests to the interface would be automatically rejected.
+     */
+    expirationTime?: string | null;
+  }
+  /**
    * Configuration for the Google Plugin Auth flow.
    */
   export interface Schema$IdentityServiceGoogleConfig {
@@ -1499,7 +1512,11 @@ export namespace gkehub_v1 {
    */
   export interface Schema$IdentityServiceIdentityServiceOptions {
     /**
-     * Optional. Determines the lifespan of STS tokens issued by Anthos Identity Service.
+     * Configuration options for the AIS diagnostic interface.
+     */
+    diagnosticInterface?: Schema$IdentityServiceDiagnosticInterface;
+    /**
+     * Determines the lifespan of STS tokens issued by Anthos Identity Service.
      */
     sessionDuration?: string | null;
   }

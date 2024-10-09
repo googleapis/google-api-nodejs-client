@@ -2111,7 +2111,7 @@
       }
     }
   },
-  "revision": "20240825",
+  "revision": "20240920",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -4258,6 +4258,22 @@
       },
       "type": "object"
     },
+    "IdentityServiceDiagnosticInterface": {
+      "description": "Configuration options for the AIS diagnostic interface.",
+      "id": "IdentityServiceDiagnosticInterface",
+      "properties": {
+        "enabled": {
+          "description": "Determines whether to enable the diagnostic interface.",
+          "type": "boolean"
+        },
+        "expirationTime": {
+          "description": "Determines the expiration time of the diagnostic interface enablement. When reached, requests to the interface would be automatically rejected.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IdentityServiceGoogleConfig": {
       "description": "Configuration for the Google Plugin Auth flow.",
       "id": "IdentityServiceGoogleConfig",
@@ -4292,8 +4308,12 @@
       "description": "Holds non-protocol-related configuration options.",
       "id": "IdentityServiceIdentityServiceOptions",
       "properties": {
+        "diagnosticInterface": {
+          "$ref": "IdentityServiceDiagnosticInterface",
+          "description": "Configuration options for the AIS diagnostic interface."
+        },
         "sessionDuration": {
-          "description": "Optional. Determines the lifespan of STS tokens issued by Anthos Identity Service.",
+          "description": "Determines the lifespan of STS tokens issued by Anthos Identity Service.",
           "format": "google-duration",
           "type": "string"
         }
@@ -6245,8 +6265,11 @@
             "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
             "CNI_INSTALLATION_FAILED",
             "CNI_POD_UNSCHEDULABLE",
+            "CLUSTER_HAS_ZERO_NODES",
             "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
             "VPCSC_GA_SUPPORTED",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
             "CONFIG_APPLY_INTERNAL_ERROR",
             "CONFIG_VALIDATION_ERROR",
             "CONFIG_VALIDATION_WARNING",
@@ -6264,7 +6287,11 @@
             "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
             "QUOTA_EXCEEDED_HTTP_FILTERS",
             "QUOTA_EXCEEDED_TCP_FILTERS",
-            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS"
+            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "MODERNIZATION_SCHEDULED",
+            "MODERNIZATION_IN_PROGRESS",
+            "MODERNIZATION_COMPLETED",
+            "MODERNIZATION_ABORTED"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -6275,8 +6302,11 @@
             "Nodepool workload identity federation required error code",
             "CNI installation failed error code",
             "CNI pod unschedulable error code",
+            "Cluster has zero node code",
             "Multiple control planes unsupported error code",
             "VPC-SC GA is supported for this control plane.",
+            "User is using deprecated ControlPlaneManagement and they have not yet set Management.",
+            "User is using deprecated ControlPlaneManagement and they have already set Management.",
             "Configuration (Istio/k8s resources) failed to apply due to internal error.",
             "Configuration failed to be applied due to being invalid.",
             "Encountered configuration(s) with possible unintended behavior or invalid configuration. These configs may not have been applied.",
@@ -6294,7 +6324,11 @@
             "ServiceLBPolicy quota exceeded error code.",
             "HTTPFilter quota exceeded error code.",
             "TCPFilter quota exceeded error code.",
-            "NetworkEndpointGroup quota exceeded error code."
+            "NetworkEndpointGroup quota exceeded error code.",
+            "Modernization is scheduled for a cluster.",
+            "Modernization is in progress for a cluster.",
+            "Modernization is completed for a cluster.",
+            "Modernization is aborted for a cluster."
           ],
           "type": "string"
         },

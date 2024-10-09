@@ -793,6 +793,41 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "generateExclusivityManifest": {
+                  "description": "GenerateExclusivityManifest generates the manifests to update the exclusivity artifacts in the cluster if needed. Exclusivity artifacts include the Membership custom resource definition (CRD) and the singleton Membership custom resource (CR). Combined with ValidateExclusivity, exclusivity artifacts guarantee that a Kubernetes cluster is only registered to a single GKE Hub. The Membership CRD is versioned, and may require conversion when the GKE Hub API server begins serving a newer version of the CRD and corresponding CR. The response will be the converted CRD and CR if there are any differences between the versions.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}:generateExclusivityManifest",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.memberships.generateExclusivityManifest",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "crManifest": {
+                      "description": "Optional. The YAML manifest of the membership CR retrieved by `kubectl get memberships membership`. Leave empty if the resource does not exist.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "crdManifest": {
+                      "description": "Optional. The YAML manifest of the membership CRD retrieved by `kubectl get customresourcedefinitions membership`. Leave empty if the resource does not exist.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The Membership resource name in the format `projects/*/locations/*/memberships/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/memberships/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:generateExclusivityManifest",
+                  "response": {
+                    "$ref": "GenerateExclusivityManifestResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets the details of a Membership.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}",
@@ -1059,6 +1094,41 @@
                   },
                   "response": {
                     "$ref": "ValidateCreateMembershipResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "validateExclusivity": {
+                  "description": "ValidateExclusivity validates the state of exclusivity in the cluster. The validation does not depend on an existing Hub membership resource.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/memberships:validateExclusivity",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.memberships.validateExclusivity",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "crManifest": {
+                      "description": "Optional. The YAML of the membership CR in the cluster. Empty if the membership CR does not exist.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "intendedMembership": {
+                      "description": "Required. The intended membership name under the `parent`. This method only does validation in anticipation of a CreateMembership call with the same name.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Memberships will be created. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/memberships:validateExclusivity",
+                  "response": {
+                    "$ref": "ValidateExclusivityResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2185,7 +2255,7 @@
       }
     }
   },
-  "revision": "20240825",
+  "revision": "20240920",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -4351,6 +4421,21 @@
       },
       "type": "object"
     },
+    "GenerateExclusivityManifestResponse": {
+      "description": "The response of the exclusivity artifacts manifests for the client to apply.",
+      "id": "GenerateExclusivityManifestResponse",
+      "properties": {
+        "crManifest": {
+          "description": "The YAML manifest of the membership CR to apply if a new version of the CR is available. Empty if no update needs to be applied.",
+          "type": "string"
+        },
+        "crdManifest": {
+          "description": "The YAML manifest of the membership CRD to apply if a newer version of the CRD is available. Empty if no update needs to be applied.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GenerateMembershipRBACRoleBindingYAMLResponse": {
       "description": "Response for GenerateRBACRoleBindingYAML.",
       "id": "GenerateMembershipRBACRoleBindingYAMLResponse",
@@ -4477,6 +4562,22 @@
       },
       "type": "object"
     },
+    "IdentityServiceDiagnosticInterface": {
+      "description": "Configuration options for the AIS diagnostic interface.",
+      "id": "IdentityServiceDiagnosticInterface",
+      "properties": {
+        "enabled": {
+          "description": "Determines whether to enable the diagnostic interface.",
+          "type": "boolean"
+        },
+        "expirationTime": {
+          "description": "Determines the expiration time of the diagnostic interface enablement. When reached, requests to the interface would be automatically rejected.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IdentityServiceGoogleConfig": {
       "description": "Configuration for the Google Plugin Auth flow.",
       "id": "IdentityServiceGoogleConfig",
@@ -4511,8 +4612,12 @@
       "description": "Holds non-protocol-related configuration options.",
       "id": "IdentityServiceIdentityServiceOptions",
       "properties": {
+        "diagnosticInterface": {
+          "$ref": "IdentityServiceDiagnosticInterface",
+          "description": "Configuration options for the AIS diagnostic interface."
+        },
         "sessionDuration": {
-          "description": "Optional. Determines the lifespan of STS tokens issued by Anthos Identity Service.",
+          "description": "Determines the lifespan of STS tokens issued by Anthos Identity Service.",
           "format": "google-duration",
           "type": "string"
         }
@@ -6606,8 +6711,11 @@
             "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
             "CNI_INSTALLATION_FAILED",
             "CNI_POD_UNSCHEDULABLE",
+            "CLUSTER_HAS_ZERO_NODES",
             "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
             "VPCSC_GA_SUPPORTED",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
+            "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT_SAFE",
             "CONFIG_APPLY_INTERNAL_ERROR",
             "CONFIG_VALIDATION_ERROR",
             "CONFIG_VALIDATION_WARNING",
@@ -6625,7 +6733,11 @@
             "QUOTA_EXCEEDED_SERVICE_LB_POLICIES",
             "QUOTA_EXCEEDED_HTTP_FILTERS",
             "QUOTA_EXCEEDED_TCP_FILTERS",
-            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS"
+            "QUOTA_EXCEEDED_NETWORK_ENDPOINT_GROUPS",
+            "MODERNIZATION_SCHEDULED",
+            "MODERNIZATION_IN_PROGRESS",
+            "MODERNIZATION_COMPLETED",
+            "MODERNIZATION_ABORTED"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -6636,8 +6748,11 @@
             "Nodepool workload identity federation required error code",
             "CNI installation failed error code",
             "CNI pod unschedulable error code",
+            "Cluster has zero node code",
             "Multiple control planes unsupported error code",
             "VPC-SC GA is supported for this control plane.",
+            "User is using deprecated ControlPlaneManagement and they have not yet set Management.",
+            "User is using deprecated ControlPlaneManagement and they have already set Management.",
             "Configuration (Istio/k8s resources) failed to apply due to internal error.",
             "Configuration failed to be applied due to being invalid.",
             "Encountered configuration(s) with possible unintended behavior or invalid configuration. These configs may not have been applied.",
@@ -6655,7 +6770,11 @@
             "ServiceLBPolicy quota exceeded error code.",
             "HTTPFilter quota exceeded error code.",
             "TCPFilter quota exceeded error code.",
-            "NetworkEndpointGroup quota exceeded error code."
+            "NetworkEndpointGroup quota exceeded error code.",
+            "Modernization is scheduled for a cluster.",
+            "Modernization is in progress for a cluster.",
+            "Modernization is completed for a cluster.",
+            "Modernization is aborted for a cluster."
           ],
           "type": "string"
         },
@@ -7039,6 +7158,17 @@
             "$ref": "ValidationResult"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ValidateExclusivityResponse": {
+      "description": "The response of exclusivity artifacts validation result status.",
+      "id": "ValidateExclusivityResponse",
+      "properties": {
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The validation result. * `OK` means that exclusivity is validated, assuming the manifest produced by GenerateExclusivityManifest is successfully applied. * `ALREADY_EXISTS` means that the Membership CRD is already owned by another Hub. See `status.message` for more information."
         }
       },
       "type": "object"
