@@ -254,6 +254,10 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Backup {
     /**
+     * Indicates the backup type of the backup.
+     */
+    backupType?: string | null;
+    /**
      * Output only. The encryption information for the backup.
      */
     encryptionInfo?: Schema$EncryptionInfo;
@@ -265,6 +269,10 @@ export namespace bigtableadmin_v2 {
      * Required. The expiration time of the backup. When creating a backup or updating its `expire_time`, the value must be greater than the backup creation time by: - At least 6 hours - At most 90 days Once the `expire_time` has passed, Cloud Bigtable will delete the backup.
      */
     expireTime?: string | null;
+    /**
+     * The time at which the hot backup will be converted to a standard backup. Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the hot backup to a standard backup. This value must be greater than the backup creation time by: - At least 24 hours This field only applies for hot backups. When creating or updating a standard backup, attempting to set this field will fail the request.
+     */
+    hotToStandardTime?: string | null;
     /**
      * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
@@ -391,6 +399,10 @@ export namespace bigtableadmin_v2 {
      * The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
      */
     name?: string | null;
+    /**
+     * Immutable. The node scaling factor of this cluster.
+     */
+    nodeScalingFactor?: string | null;
     /**
      * The number of nodes in the cluster. If no value is set, Cloud Bigtable automatically allocates nodes based on your data footprint and optimized for 50% storage utilization.
      */
@@ -1275,6 +1287,10 @@ export namespace bigtableadmin_v2 {
      * The set of clusters to route to. The order is ignored; clusters will be tried in order of distance. If left empty, all clusters are eligible.
      */
     clusterIds?: string[] | null;
+    /**
+     * Row affinity sticky routing based on the row key of the request. Requests that span multiple rows are routed non-deterministically.
+     */
+    rowAffinity?: Schema$RowAffinity;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1443,6 +1459,10 @@ export namespace bigtableadmin_v2 {
      */
     tableId?: string | null;
   }
+  /**
+   * If enabled, Bigtable will route the request based on the row key of the request, rather than randomly. Instead, each row key will be assigned to a cluster, and will stick to that cluster. If clusters are added or removed, then this may affect which row keys stick to which clusters. To avoid this, users can use a cluster group to specify which clusters are to be used. In this case, new clusters that are not a part of the cluster group will not be routed to, and routing will be unaffected by the new cluster. Moreover, clusters specified in the cluster group cannot be deleted unless removed from the cluster group.
+   */
+  export interface Schema$RowAffinity {}
   /**
    * Request message for `SetIamPolicy` method.
    */

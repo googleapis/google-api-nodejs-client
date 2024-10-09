@@ -2194,7 +2194,7 @@
       }
     }
   },
-  "revision": "20240824",
+  "revision": "20240918",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2375,6 +2375,20 @@
       "description": "A backup of a Cloud Bigtable table.",
       "id": "Backup",
       "properties": {
+        "backupType": {
+          "description": "Indicates the backup type of the backup.",
+          "enum": [
+            "BACKUP_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "HOT"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The default type for Cloud Bigtable managed backups. Supported for backups created in both HDD and SSD instances. Requires optimization when restored to a table in an SSD instance.",
+            "A backup type with faster restore to SSD performance. Only supported for backups created in SSD instances. A new SSD table restored from a hot backup reaches production performance more quickly than a standard backup."
+          ],
+          "type": "string"
+        },
         "encryptionInfo": {
           "$ref": "EncryptionInfo",
           "description": "Output only. The encryption information for the backup.",
@@ -2388,6 +2402,11 @@
         },
         "expireTime": {
           "description": "Required. The expiration time of the backup. When creating a backup or updating its `expire_time`, the value must be greater than the backup creation time by: - At least 6 hours - At most 90 days Once the `expire_time` has passed, Cloud Bigtable will delete the backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "hotToStandardTime": {
+          "description": "The time at which the hot backup will be converted to a standard backup. Once the `hot_to_standard_time` has passed, Cloud Bigtable will convert the hot backup to a standard backup. This value must be greater than the backup creation time by: - At least 24 hours This field only applies for hot backups. When creating or updating a standard backup, attempting to set this field will fail the request.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2564,6 +2583,20 @@
         },
         "name": {
           "description": "The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.",
+          "type": "string"
+        },
+        "nodeScalingFactor": {
+          "description": "Immutable. The node scaling factor of this cluster.",
+          "enum": [
+            "NODE_SCALING_FACTOR_UNSPECIFIED",
+            "NODE_SCALING_FACTOR_1X",
+            "NODE_SCALING_FACTOR_2X"
+          ],
+          "enumDescriptions": [
+            "No node scaling specified. Defaults to NODE_SCALING_FACTOR_1X.",
+            "The cluster is running with a scaling factor of 1.",
+            "The cluster is running with a scaling factor of 2. All node count values must be in increments of 2 with this scaling factor enabled, otherwise an INVALID_ARGUMENT error will be returned."
+          ],
           "type": "string"
         },
         "serveNodes": {
@@ -3287,6 +3320,7 @@
       "properties": {
         "bytesType": {
           "$ref": "GoogleBigtableAdminV2TypeBytes",
+          "deprecated": true,
           "description": "Deprecated: ignored if set."
         }
       },
@@ -3328,6 +3362,7 @@
         },
         "utf8Raw": {
           "$ref": "GoogleBigtableAdminV2TypeStringEncodingUtf8Raw",
+          "deprecated": true,
           "description": "Deprecated: if set, converts to an empty `utf8_bytes`."
         }
       },
@@ -3340,6 +3375,7 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStringEncodingUtf8Raw": {
+      "deprecated": true,
       "description": "Deprecated: prefer the equivalent `Utf8Bytes`.",
       "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Raw",
       "properties": {},
@@ -3775,6 +3811,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "rowAffinity": {
+          "$ref": "RowAffinity",
+          "description": "Row affinity sticky routing based on the row key of the request. Requests that span multiple rows are routed non-deterministically."
         }
       },
       "type": "object"
@@ -4005,6 +4045,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RowAffinity": {
+      "description": "If enabled, Bigtable will route the request based on the row key of the request, rather than randomly. Instead, each row key will be assigned to a cluster, and will stick to that cluster. If clusters are added or removed, then this may affect which row keys stick to which clusters. To avoid this, users can use a cluster group to specify which clusters are to be used. In this case, new clusters that are not a part of the cluster group will not be routed to, and routing will be unaffected by the new cluster. Moreover, clusters specified in the cluster group cannot be deleted unless removed from the cluster group.",
+      "id": "RowAffinity",
+      "properties": {},
       "type": "object"
     },
     "SetIamPolicyRequest": {
