@@ -653,11 +653,12 @@ export namespace calendar_v3 {
     etag?: string | null;
     /**
      * Specific type of the event. This cannot be modified after the event is created. Possible values are:
+     * - "birthday" - A special all-day event with an annual recurrence.
      * - "default" - A regular event or not further specified.
-     * - "outOfOffice" - An out-of-office event.
      * - "focusTime" - A focus-time event.
-     * - "workingLocation" - A working location event.
      * - "fromGmail" - An event from Gmail. This type of event cannot be created.
+     * - "outOfOffice" - An out-of-office event.
+     * - "workingLocation" - A working location event.
      */
     eventType?: string | null;
     /**
@@ -882,7 +883,7 @@ export namespace calendar_v3 {
      * - "needsAction" - The attendee has not responded to the invitation (recommended for new events).
      * - "declined" - The attendee has declined the invitation.
      * - "tentative" - The attendee has tentatively accepted the invitation.
-     * - "accepted" - The attendee has accepted the invitation.  Warning: If you add an event using the values declined, tentative, or accepted, attendees with the "Add invitations to my calendar" setting set to "When I respond to invitation in email" won't see an event on their calendar unless they choose to change their invitation response in the event invitation email.
+     * - "accepted" - The attendee has accepted the invitation.  Warning: If you add an event using the values declined, tentative, or accepted, attendees with the "Add invitations to my calendar" setting set to "When I respond to invitation in email" or "Only if the sender is known" might have their response reset to needsAction and won't see an event in their calendar unless they change their response in the event invitation email. Furthermore, if more than 200 guests are invited to the event, response status is not propagated to the guests.
      */
     responseStatus?: string | null;
     /**
@@ -3926,7 +3927,7 @@ export namespace calendar_v3 {
     }
 
     /**
-     * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; outOfOffice, focusTime, workingLocation and fromGmail events cannot be moved.
+     * Moves an event to another calendar, i.e. changes an event's organizer. Note that only default events can be moved; birthday, focusTime, fromGmail, outOfOffice and workingLocation events cannot be moved.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
