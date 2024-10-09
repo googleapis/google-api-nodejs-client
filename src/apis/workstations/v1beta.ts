@@ -197,7 +197,7 @@ export namespace workstations_v1beta {
      */
     enableNestedVirtualization?: boolean | null;
     /**
-     * Optional. Required. The id to be used for the boost config.
+     * Optional. Required. The id to be used for the boost configuration.
      */
     id?: string | null;
     /**
@@ -811,7 +811,7 @@ export namespace workstations_v1beta {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Output only. List of available boost configuration ids that this workstation can be boosted up to
+     * Output only. List of available boost configuration IDs that this workstation can be boosted up to.
      */
     boostConfigs?: Schema$WorkstationBoostConfig[];
     /**
@@ -884,11 +884,11 @@ export namespace workstations_v1beta {
     updateTime?: string | null;
   }
   /**
-   * Boost config for this workstation. This object is populated from the parent workstation config.
+   * Boost configuration for this workstation. This object is populated from the parent workstation configuration.
    */
   export interface Schema$WorkstationBoostConfig {
     /**
-     * Output only. Boost config id.
+     * Output only. Boost configuration ID.
      */
     id?: string | null;
   }
@@ -1014,7 +1014,7 @@ export namespace workstations_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service_account must also be specified that has `roles/logging.logWriter` and `roles/monitoring.metricWriter` on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging) and [Container output logging](http://cloud/workstations/docs/container-output-logging#overview). Operating system audit logs are available in the [Cloud Logging](https://cloud.google.com/logging/docs) console by querying: resource.type="gce_instance" log_name:"/logs/linux-auditd"
+     * Optional. Whether to enable Linux `auditd` logging on the workstation. When enabled, a service_account must also be specified that has `roles/logging.logWriter` and `roles/monitoring.metricWriter` on the project. Operating system audit logging is distinct from [Cloud Audit Logs](https://cloud.google.com/workstations/docs/audit-logging) and [Container output logging](https://cloud.google.com/workstations/docs/container-output-logging#overview). Operating system audit logs are available in the [Cloud Logging](https://cloud.google.com/logging/docs) console by querying: resource.type="gce_instance" log_name:"/logs/linux-auditd"
      */
     enableAuditAgent?: boolean | null;
     /**
@@ -1050,7 +1050,7 @@ export namespace workstations_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Maximum number of workstations under this config a user can have `workstations.workstation.use` permission on. Only enforced on CreateWorkstation API calls on the user issuing the API request. Can be overridden by: - granting a user workstations.workstationConfigs.exemptMaxUsableWorkstationLimit permission, or - having a user with that permission create a workstation and granting another user `workstations.workstation.use` permission on that workstation. If not specified defaults to 0 which indicates unlimited.
+     * Optional. Maximum number of workstations under this configuration a user can have `workstations.workstation.use` permission on. Only enforced on CreateWorkstation API calls on the user issuing the API request. Can be overridden by: - granting a user workstations.workstationConfigs.exemptMaxUsableWorkstationLimit permission, or - having a user with that permission create a workstation and granting another user `workstations.workstation.use` permission on that workstation. If not specified, defaults to `0`, which indicates unlimited.
      */
     maxUsableWorkstations?: number | null;
     /**
