@@ -2156,6 +2156,49 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate": {
+      "description": "A workload update is a change to the workload's compliance configuration.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadUpdate",
+      "properties": {
+        "createTime": {
+          "description": "The time the update was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "details": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1UpdateDetails",
+          "description": "The details of the update."
+        },
+        "name": {
+          "description": "Output only. Immutable. Identifier. Resource name of the WorkloadUpdate. Format: organizations/{organization}/locations/{location}/workloads/{workload}/updates/{update}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the update.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "AVAILABLE",
+            "APPLIED",
+            "WITHDRAWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The update is available to be applied.",
+            "The update has been applied.",
+            "The update has been withdrawn by the service."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The time the update was last updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "GoogleLongrunningListOperationsResponse",
