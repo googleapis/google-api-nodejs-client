@@ -378,6 +378,10 @@ export namespace dialogflow_v3beta1 {
      */
     avatarUri?: string | null;
     /**
+     * Optional. The BigQuery export settings for this agent. The conversation data will be exported to BigQuery tables if it is enabled. By default, BigQuery export settings will not be exported with agent. You need to set include_bigquery_export_settings to include it in the exported agent.
+     */
+    bigqueryExportSettings?: Schema$GoogleCloudDialogflowCxV3beta1BigQueryExportSettings;
+    /**
      * Optional. Settings for custom client certificates.
      */
     clientCertificateSettings?: Schema$GoogleCloudDialogflowCxV3beta1AgentClientCertificateSettings;
@@ -649,6 +653,19 @@ export namespace dialogflow_v3beta1 {
      * The test case results. The detailed conversation turns are empty in this response.
      */
     results?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult[];
+  }
+  /**
+   * The settings of BigQuery export.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1BigQueryExportSettings {
+    /**
+     * The BigQuery table to export. Format: `projects//datasets//tables/`.
+     */
+    bigqueryTable?: string | null;
+    /**
+     * The field to indicate whether the BigQuery export is enabled.
+     */
+    enabled?: boolean | null;
   }
   /**
    * Boost specification to boost certain documents. A copy of google.cloud.discoveryengine.v1main.BoostSpec, field documentation is available at https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/BoostSpec
@@ -1602,7 +1619,7 @@ export namespace dialogflow_v3beta1 {
      */
     displayName?: string | null;
     /**
-     * Optional. The language code of the example. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language code of the example. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. Note: example's language code is not currently used in dialogflow agents.
      */
     languageCode?: string | null;
     /**
@@ -3258,7 +3275,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1NluSettings {
     /**
-     * To filter out false positive results and still get variety in matched natural language inputs for your agent, you can tune the machine learning classification threshold. If the returned score value is less than the threshold value, then a no-match event will be triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used.
+     * To filter out false positive results and still get variety in matched natural language inputs for your agent, you can tune the machine learning classification threshold. If the returned score value is less than the threshold value, then a no-match event will be triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used. You can set a separate classification threshold for the flow in each language enabled for the agent.
      */
     classificationThreshold?: number | null;
     /**
@@ -3691,7 +3708,7 @@ export namespace dialogflow_v3beta1 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
     /**
-     * Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate data_store_connection_quality_signals is set to true in the request.
+     * Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate_data_store_connection_signals is set to true in the request.
      */
     dataStoreConnectionSignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignals;
     /**
@@ -4078,6 +4095,10 @@ export namespace dialogflow_v3beta1 {
      * Banned phrases for generated text.
      */
     bannedPhrases?: Schema$GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase[];
+    /**
+     * Optional. Default phrase match strategy for banned phrases.
+     */
+    defaultBannedPhraseMatchStrategy?: string | null;
   }
   /**
    * Text input which can be used for prompt or banned phrases.
@@ -4534,6 +4555,10 @@ export namespace dialogflow_v3beta1 {
      * Required. OAuth grant types.
      */
     oauthGrantType?: string | null;
+    /**
+     * Optional. The OAuth scopes to grant.
+     */
+    scopes?: string[] | null;
     /**
      * Required. The token endpoint in the OAuth provider to exchange for an access token.
      */
@@ -8905,6 +8930,14 @@ export namespace dialogflow_v3beta1 {
      * ConversationModel resource name. Format: `projects//conversationModels/`
      */
     name?: string | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of the model.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of the model.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Metadata for smart reply models.
      */
@@ -21648,7 +21681,7 @@ export namespace dialogflow_v3beta1 {
   export interface Params$Resource$Projects$Locations$Agents$Playbooks$Examples$List
     extends StandardParameters {
     /**
-     * Optional. The language to list examples for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used.
+     * Optional. The language to list examples for. If not specified, list all examples under the playbook. Note: languages must be enabled in the agent before they can be used.
      */
     languageCode?: string;
     /**

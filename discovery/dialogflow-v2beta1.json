@@ -8082,7 +8082,7 @@
       }
     }
   },
-  "revision": "20240828",
+  "revision": "20240924",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9046,7 +9046,8 @@
             "AUDIO_ENCODING_AMR",
             "AUDIO_ENCODING_AMR_WB",
             "AUDIO_ENCODING_OGG_OPUS",
-            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            "AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -9056,7 +9057,8 @@
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000.",
-            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
+            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -11351,7 +11353,8 @@
             "AUDIO_ENCODING_AMR",
             "AUDIO_ENCODING_AMR_WB",
             "AUDIO_ENCODING_OGG_OPUS",
-            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            "AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -11361,7 +11364,8 @@
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000.",
-            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
+            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -13001,6 +13005,16 @@
         "name": {
           "description": "ConversationModel resource name. Format: `projects//conversationModels/`",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. A read only boolean field reflecting Zone Isolation status of the model.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. A read only boolean field reflecting Zone Separation status of the model.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "smartReplyModelMetadata": {
           "$ref": "GoogleCloudDialogflowV2SmartReplyModelMetadata",
@@ -17585,7 +17599,8 @@
             "AUDIO_ENCODING_AMR",
             "AUDIO_ENCODING_AMR_WB",
             "AUDIO_ENCODING_OGG_OPUS",
-            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            "AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -17595,7 +17610,8 @@
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000.",
-            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
+            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -19614,7 +19630,8 @@
             "OUTPUT_AUDIO_ENCODING_MP3",
             "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
             "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
-            "OUTPUT_AUDIO_ENCODING_MULAW"
+            "OUTPUT_AUDIO_ENCODING_MULAW",
+            "OUTPUT_AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -19622,7 +19639,8 @@
             "MP3 audio at 32kbps.",
             "MP3 audio at 64kbps.",
             "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
-            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law."
+            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -20345,7 +20363,8 @@
             "AUDIO_ENCODING_AMR",
             "AUDIO_ENCODING_AMR_WB",
             "AUDIO_ENCODING_OGG_OPUS",
-            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            "AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -20355,7 +20374,8 @@
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000.",
-            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
+            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -21096,7 +21116,8 @@
             "OUTPUT_AUDIO_ENCODING_MP3",
             "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
             "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
-            "OUTPUT_AUDIO_ENCODING_MULAW"
+            "OUTPUT_AUDIO_ENCODING_MULAW",
+            "OUTPUT_AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -21104,7 +21125,8 @@
             "MP3 audio at 32kbps.",
             "MP3 audio at 64kbps.",
             "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
-            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law."
+            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },

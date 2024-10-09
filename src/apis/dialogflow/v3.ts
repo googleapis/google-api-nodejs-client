@@ -4450,7 +4450,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3NluSettings {
     /**
-     * To filter out false positive results and still get variety in matched natural language inputs for your agent, you can tune the machine learning classification threshold. If the returned score value is less than the threshold value, then a no-match event will be triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used.
+     * To filter out false positive results and still get variety in matched natural language inputs for your agent, you can tune the machine learning classification threshold. If the returned score value is less than the threshold value, then a no-match event will be triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used. You can set a separate classification threshold for the flow in each language enabled for the agent.
      */
     classificationThreshold?: number | null;
     /**
@@ -4695,7 +4695,7 @@ export namespace dialogflow_v3 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3Page;
     /**
-     * Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate data_store_connection_quality_signals is set to true in the request.
+     * Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate_data_store_connection_signals is set to true in the request.
      */
     dataStoreConnectionSignals?: Schema$GoogleCloudDialogflowCxV3DataStoreConnectionSignals;
     /**
@@ -7995,6 +7995,14 @@ export namespace dialogflow_v3 {
      * ConversationModel resource name. Format: `projects//conversationModels/`
      */
     name?: string | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of the model.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of the model.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Metadata for smart reply models.
      */

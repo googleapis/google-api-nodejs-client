@@ -3381,7 +3381,7 @@
                           ],
                           "parameters": {
                             "languageCode": {
-                              "description": "Optional. The language to list examples for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used.",
+                              "description": "Optional. The language to list examples for. If not specified, list all examples under the playbook. Note: languages must be enabled in the agent before they can be used.",
                               "location": "query",
                               "type": "string"
                             },
@@ -5185,7 +5185,7 @@
       }
     }
   },
-  "revision": "20240828",
+  "revision": "20240924",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -6149,7 +6149,8 @@
             "AUDIO_ENCODING_AMR",
             "AUDIO_ENCODING_AMR_WB",
             "AUDIO_ENCODING_OGG_OPUS",
-            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            "AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -6159,7 +6160,8 @@
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000.",
-            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
+            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -7636,6 +7638,10 @@
           "description": "The URI of the agent's avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo) integration.",
           "type": "string"
         },
+        "bigqueryExportSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1BigQueryExportSettings",
+          "description": "Optional. The BigQuery export settings for this agent. The conversation data will be exported to BigQuery tables if it is enabled. By default, BigQuery export settings will not be exported with agent. You need to set include_bigquery_export_settings to include it in the exported agent."
+        },
         "clientCertificateSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1AgentClientCertificateSettings",
           "description": "Optional. Settings for custom client certificates."
@@ -7981,6 +7987,21 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1TestCaseResult"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1BigQueryExportSettings": {
+      "description": "The settings of BigQuery export.",
+      "id": "GoogleCloudDialogflowCxV3beta1BigQueryExportSettings",
+      "properties": {
+        "bigqueryTable": {
+          "description": "The BigQuery table to export. Format: `projects//datasets//tables/`.",
+          "type": "string"
+        },
+        "enabled": {
+          "description": "The field to indicate whether the BigQuery export is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -9317,7 +9338,7 @@
           "type": "string"
         },
         "languageCode": {
-          "description": "Optional. The language code of the example. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used.",
+          "description": "Optional. The language code of the example. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. Note: example's language code is not currently used in dialogflow agents.",
           "type": "string"
         },
         "name": {
@@ -10809,7 +10830,8 @@
             "AUDIO_ENCODING_AMR",
             "AUDIO_ENCODING_AMR_WB",
             "AUDIO_ENCODING_OGG_OPUS",
-            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE"
+            "AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE",
+            "AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -10819,7 +10841,8 @@
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000.",
-            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000."
+            "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -11653,7 +11676,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1NluSettings",
       "properties": {
         "classificationThreshold": {
-          "description": "To filter out false positive results and still get variety in matched natural language inputs for your agent, you can tune the machine learning classification threshold. If the returned score value is less than the threshold value, then a no-match event will be triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used.",
+          "description": "To filter out false positive results and still get variety in matched natural language inputs for your agent, you can tune the machine learning classification threshold. If the returned score value is less than the threshold value, then a no-match event will be triggered. The score values range from 0.0 (completely uncertain) to 1.0 (completely certain). If set to 0.0, the default of 0.3 is used. You can set a separate classification threshold for the flow in each language enabled for the agent.",
           "format": "float",
           "type": "number"
         },
@@ -11700,7 +11723,8 @@
             "OUTPUT_AUDIO_ENCODING_MP3",
             "OUTPUT_AUDIO_ENCODING_MP3_64_KBPS",
             "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
-            "OUTPUT_AUDIO_ENCODING_MULAW"
+            "OUTPUT_AUDIO_ENCODING_MULAW",
+            "OUTPUT_AUDIO_ENCODING_ALAW"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -11708,7 +11732,8 @@
             "MP3 audio at 32kbps.",
             "MP3 audio at 64kbps.",
             "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
-            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law."
+            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
+            "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
           ],
           "type": "string"
         },
@@ -12284,7 +12309,7 @@
         },
         "dataStoreConnectionSignals": {
           "$ref": "GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignals",
-          "description": "Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate data_store_connection_quality_signals is set to true in the request."
+          "description": "Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate_data_store_connection_signals is set to true in the request."
         },
         "diagnosticInfo": {
           "additionalProperties": {
@@ -12803,6 +12828,20 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1SafetySettingsPhrase"
           },
           "type": "array"
+        },
+        "defaultBannedPhraseMatchStrategy": {
+          "description": "Optional. Default phrase match strategy for banned phrases.",
+          "enum": [
+            "PHRASE_MATCH_STRATEGY_UNSPECIFIED",
+            "PARTIAL_MATCH",
+            "WORD_MATCH"
+          ],
+          "enumDescriptions": [
+            "Unspecified, defaults to PARTIAL_MATCH.",
+            "Text that contains the phrase as a substring will be matched, e.g. \"foo\" will match \"afoobar\".",
+            "Text that contains the tokenized words of the phrase will be matched, e.g. \"foo\" will match \"a foo bar\" and \"foo bar\", but not \"foobar\"."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -13460,6 +13499,13 @@
             "Represents the [client credential flow](https://oauth.net/2/grant-types/client-credentials)."
           ],
           "type": "string"
+        },
+        "scopes": {
+          "description": "Optional. The OAuth scopes to grant.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "tokenEndpoint": {
           "description": "Required. The token endpoint in the OAuth provider to exchange for an access token.",
@@ -14860,6 +14906,16 @@
         "name": {
           "description": "ConversationModel resource name. Format: `projects//conversationModels/`",
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. A read only boolean field reflecting Zone Isolation status of the model.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. A read only boolean field reflecting Zone Separation status of the model.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "smartReplyModelMetadata": {
           "$ref": "GoogleCloudDialogflowV2SmartReplyModelMetadata",
