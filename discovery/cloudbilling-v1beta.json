@@ -761,7 +761,7 @@
       }
     }
   },
-  "revision": "20240531",
+  "revision": "20240906",
   "rootUrl": "https://cloudbilling.googleapis.com/",
   "schemas": {
     "CacheFillRegions": {
@@ -961,7 +961,7 @@
       "type": "object"
     },
     "CloudStorageEgressWorkload": {
-      "description": "Specification of a network type. Network data transfer within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network data transfer within Google Cloud and the general network usage.",
+      "description": "Specification of a network type. Network data transfer within Google Cloud applies when you move or copy data from one Cloud Storage bucket to another or when another Google Cloud service accesses data in your Cloud Storage bucket.This includes the network data transfer within Google Cloud and the general network usage. * If transferring data between two regions, the source and destination fields are set to different values. For example: `source_continent` = \"SOURCE_CONTINENT_ASIA_PACIFIC\", `destination_continent` = \"SOURCE_CONTINENT_SOUTH_AMERICA\". * If transferring data within one region, the source and destination fields are set to the same value. For example: `source_continent` = \"SOURCE_CONTINENT_ASIA_PACIFIC\", `destination_continent` = \"SOURCE_CONTINENT_ASIA_PACIFIC\". Some examples for the Network data transfer traffic type on the pricing page. * Data moves between different locations on the same continent. `source_continent` = \"SOURCE_CONTINENT_ASIA_PACIFIC\", `destination_continent` = \"SOURCE_CONTINENT_ASIA_PACIFIC\". * Data moves between different continents and neither is Australia. `source_continent` = \"SOURCE_CONTINENT_NORTH_AMERICA\", `destination_continent` = \"SOURCE_CONTINENT_ASIA_PACIFIC\". * Data moves between different continents and one is Australia. `source_continent` = \"SOURCE_CONTINENT_NORTH_AMERICA\", `destination_continent` = \"SOURCE_CONTINENT_AUSTRALIA\".",
       "id": "CloudStorageEgressWorkload",
       "properties": {
         "destinationContinent": {
