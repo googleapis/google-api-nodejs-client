@@ -1772,6 +1772,19 @@ export namespace spanner_v1 {
     targetConfig?: string | null;
   }
   /**
+   * When a read-write transaction is executed on a multiplexed session, this precommit token is sent back to the client as a part of the [Transaction] message in the BeginTransaction response and also as a part of the [ResultSet] and [PartialResultSet] responses.
+   */
+  export interface Schema$MultiplexedSessionPrecommitToken {
+    /**
+     * Opaque precommit token.
+     */
+    precommitToken?: string | null;
+    /**
+     * An incrementing seq number is generated on every precommit token that is returned. Clients should remember the precommit token with the highest sequence number from the current transaction attempt.
+     */
+    seqNum?: number | null;
+  }
+  /**
    * A modification to one or more Cloud Spanner rows. Mutations can be applied to a Cloud Spanner database by sending them in a Commit call.
    */
   export interface Schema$Mutation {
@@ -2572,6 +2585,10 @@ export namespace spanner_v1 {
      * `id` may be used to identify the transaction in subsequent Read, ExecuteSql, Commit, or Rollback calls. Single-use read-only transactions do not have IDs, because single-use transactions do not support multiple requests.
      */
     id?: string | null;
+    /**
+     * A precommit token will be included in the response of a BeginTransaction request if the read-write transaction is on a multiplexed session and a mutation_key was specified in the BeginTransaction. The precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction.
+     */
+    precommitToken?: Schema$MultiplexedSessionPrecommitToken;
     /**
      * For snapshot read-only transactions, the read timestamp chosen for the transaction. Not returned by default: see TransactionOptions.ReadOnly.return_read_timestamp. A timestamp in RFC3339 UTC \"Zulu\" format, accurate to nanoseconds. Example: `"2014-10-02T15:01:23.045123456Z"`.
      */

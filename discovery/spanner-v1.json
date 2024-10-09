@@ -29,13 +29,33 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-east1.rep.googleapis.com/",
       "location": "us-east1"
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://spanner.us-west1.rep.googleapis.com/",
       "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://spanner.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -3264,7 +3284,7 @@
       }
     }
   },
-  "revision": "20240831",
+  "revision": "20240918",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "AutoscalingConfig": {
@@ -4547,7 +4567,7 @@
           "enumDescriptions": [
             "The default mode. Only the statement results are returned.",
             "This mode returns only the query plan, without any results or execution statistics information.",
-            "This mode returns both the query plan and the execution statistics along with the results. This has a performance overhead compared to the NORMAL mode. It is not recommended to use this mode for production traffic."
+            "This mode returns the query plan, overall execution statistics, operator level execution statistics along with the results. This has a performance overhead compared to the other modes. It is not recommended to use this mode for production traffic."
           ],
           "type": "string"
         },
@@ -5643,6 +5663,23 @@
         "targetConfig": {
           "description": "Required. The target instance configuration where to move the instance. Values are of the form `projects//instanceConfigs/`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MultiplexedSessionPrecommitToken": {
+      "description": "When a read-write transaction is executed on a multiplexed session, this precommit token is sent back to the client as a part of the [Transaction] message in the BeginTransaction response and also as a part of the [ResultSet] and [PartialResultSet] responses.",
+      "id": "MultiplexedSessionPrecommitToken",
+      "properties": {
+        "precommitToken": {
+          "description": "Opaque precommit token.",
+          "format": "byte",
+          "type": "string"
+        },
+        "seqNum": {
+          "description": "An incrementing seq number is generated on every precommit token that is returned. Clients should remember the precommit token with the highest sequence number from the current transaction attempt.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -6789,6 +6826,10 @@
           "description": "`id` may be used to identify the transaction in subsequent Read, ExecuteSql, Commit, or Rollback calls. Single-use read-only transactions do not have IDs, because single-use transactions do not support multiple requests.",
           "format": "byte",
           "type": "string"
+        },
+        "precommitToken": {
+          "$ref": "MultiplexedSessionPrecommitToken",
+          "description": "A precommit token will be included in the response of a BeginTransaction request if the read-write transaction is on a multiplexed session and a mutation_key was specified in the BeginTransaction. The precommit token with the highest sequence number from this transaction attempt should be passed to the Commit request for this transaction."
         },
         "readTimestamp": {
           "description": "For snapshot read-only transactions, the read timestamp chosen for the transaction. Not returned by default: see TransactionOptions.ReadOnly.return_read_timestamp. A timestamp in RFC3339 UTC \\\"Zulu\\\" format, accurate to nanoseconds. Example: `\"2014-10-02T15:01:23.045123456Z\"`.",
