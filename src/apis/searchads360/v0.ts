@@ -621,9 +621,17 @@ export namespace searchads360_v0 {
      */
     crossDeviceConversions?: number | null;
     /**
+     * The number of cross-device conversions by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.
+     */
+    crossDeviceConversionsByConversionDate?: number | null;
+    /**
      * The sum of the value of cross-device conversions.
      */
     crossDeviceConversionsValue?: number | null;
+    /**
+     * The sum of cross-device conversions value by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.
+     */
+    crossDeviceConversionsValueByConversionDate?: number | null;
     /**
      * Cross-sell cost of goods sold (COGS) is the total cost of products sold as a result of advertising a different product. How it works: You report conversions with cart data for completed purchases on your website. If the ad that was interacted with before the purchase has an associated product (see Shopping Ads) then this product is considered the advertised product. Any product included in the order the customer places is a sold product. If these products don't match then this is considered cross-sell. Cross-sell cost of goods sold is the total cost of the products sold that weren't advertised. Example: Someone clicked on a Shopping ad for a hat then bought the same hat and a shirt. The hat has a cost of goods sold value of $3, the shirt has a cost of goods sold value of $5. The cross-sell cost of goods sold for this order is $5. This metric is only available if you report conversions with cart data. This metric is a monetary value and returned in the customer's currency by default. See the metrics_currency parameter at https://developers.google.com/search-ads/reporting/query/query-structure#parameters_clause
      */
@@ -644,6 +652,14 @@ export namespace searchads360_v0 {
      * The number of clicks your ad receives (Clicks) divided by the number of times your ad is shown (Impressions).
      */
     ctr?: number | null;
+    /**
+     * The percentage of clicks that have been filtered out of your total number of clicks (filtered + non-filtered clicks) due to being general invalid clicks. These are clicks Google considers illegitimate that are detected through routine means of filtration (that is, known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.
+     */
+    generalInvalidClickRate?: number | null;
+    /**
+     * Number of general invalid clicks. These are a subset of your invalid clicks that are detected through routine means of filtration (such as known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc.). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.
+     */
+    generalInvalidClicks?: string | null;
     /**
      * The creative historical quality score.
      */
@@ -1824,7 +1840,7 @@ export namespace searchads360_v0 {
    */
   export interface Schema$GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization {
     /**
-     * The selected set of conversion actions for optimizing this campaign.
+     * The selected set of resource names for conversion actions for optimizing this campaign.
      */
     conversionActions?: string[] | null;
   }
@@ -2119,6 +2135,10 @@ export namespace searchads360_v0 {
      * Output only. The timestamp when this ad_group was created. The timestamp is in the customer's time zone and in "yyyy-MM-dd HH:mm:ss" format.
      */
     creationTime?: string | null;
+    /**
+     * Output only. The resource names of effective labels attached to this ad group. An effective label is a label inherited or directly assigned to this ad group.
+     */
+    effectiveLabels?: string[] | null;
     /**
      * Output only. Date when the ad group ends serving ads. By default, the ad group ends on the ad group's end date. If this field is set, then the ad group ends at the end of the specified date in the customer's time zone. This field is only available for Microsoft Advertising and Facebook gateway accounts. Format: YYYY-MM-DD Example: 2019-03-14
      */
@@ -2425,6 +2445,27 @@ export namespace searchads360_v0 {
     ownerCustomerId?: string | null;
     /**
      * Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{customer_id\}/adGroupCriterionLabels/{ad_group_id\}~{criterion_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
+  }
+  /**
+   * A relationship between an ad group and an effective label. An effective label is a label inherited or directly assigned to this ad group.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel {
+    /**
+     * Immutable. The ad group to which the effective label is attached.
+     */
+    adGroup?: string | null;
+    /**
+     * Immutable. The effective label assigned to the ad group.
+     */
+    label?: string | null;
+    /**
+     * Output only. The ID of the Customer which owns the effective label.
+     */
+    ownerCustomerId?: string | null;
+    /**
+     * Immutable. The resource name of the ad group effective label. Ad group effective label resource names have the form: `customers/{customer_id\}/adGroupEffectiveLabels/{ad_group_id\}~{label_id\}`
      */
     resourceName?: string | null;
   }
@@ -2838,7 +2879,7 @@ export namespace searchads360_v0 {
      */
     advertisingChannelType?: string | null;
     /**
-     * Portfolio bidding strategy used by campaign.
+     * The resource name of the portfolio bidding strategy used by the campaign.
      */
     biddingStrategy?: string | null;
     /**
@@ -2850,7 +2891,7 @@ export namespace searchads360_v0 {
      */
     biddingStrategyType?: string | null;
     /**
-     * The budget of the campaign.
+     * The resource name of the campaign budget of the campaign.
      */
     campaignBudget?: string | null;
     /**
@@ -2865,6 +2906,10 @@ export namespace searchads360_v0 {
      * The setting for controlling Dynamic Search Ads (DSA).
      */
     dynamicSearchAdsSetting?: Schema$GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting;
+    /**
+     * Output only. The resource names of effective labels attached to this campaign. An effective label is a label inherited or directly assigned to this campaign.
+     */
+    effectiveLabels?: string[] | null;
     /**
      * The last day of the campaign in serving customer's timezone in YYYY-MM-DD format. On create, defaults to 2037-12-30, which means the campaign will run indefinitely. To set an existing campaign to run indefinitely, set this field to 2037-12-30.
      */
@@ -3146,6 +3191,27 @@ export namespace searchads360_v0 {
      * Immutable. Webpage.
      */
     webpage?: Schema$GoogleAdsSearchads360V0Common__WebpageInfo;
+  }
+  /**
+   * Represents a relationship between a campaign and an effective label. An effective label is a label inherited or directly assigned to this campaign.
+   */
+  export interface Schema$GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel {
+    /**
+     * Immutable. The campaign to which the effective label is attached.
+     */
+    campaign?: string | null;
+    /**
+     * Immutable. The effective label assigned to the campaign.
+     */
+    label?: string | null;
+    /**
+     * Output only. The ID of the Customer which owns the effective label.
+     */
+    ownerCustomerId?: string | null;
+    /**
+     * Immutable. Name of the resource. CampaignEffectivelabel resource names have the form: `customers/{customer_id\}/campaignEffectiveLabels/{campaign_id\}~{label_id\}`
+     */
+    resourceName?: string | null;
   }
   /**
    * Represents a relationship between a campaign and a label.
@@ -4184,6 +4250,10 @@ export namespace searchads360_v0 {
      */
     adGroupCriterionLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel;
     /**
+     * The ad group effective label referenced in the query.
+     */
+    adGroupEffectiveLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel;
+    /**
      * The ad group label referenced in the query.
      */
     adGroupLabel?: Schema$GoogleAdsSearchads360V0Resources__AdGroupLabel;
@@ -4255,6 +4325,10 @@ export namespace searchads360_v0 {
      * The campaign criterion referenced in the query.
      */
     campaignCriterion?: Schema$GoogleAdsSearchads360V0Resources__CampaignCriterion;
+    /**
+     * The campaign effective label referenced in the query.
+     */
+    campaignEffectiveLabel?: Schema$GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel;
     /**
      * The campaign label referenced in the query.
      */

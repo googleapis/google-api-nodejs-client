@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20241002",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -1170,8 +1170,18 @@
           "format": "double",
           "type": "number"
         },
+        "crossDeviceConversionsByConversionDate": {
+          "description": "The number of cross-device conversions by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
+          "format": "double",
+          "type": "number"
+        },
         "crossDeviceConversionsValue": {
           "description": "The sum of the value of cross-device conversions.",
+          "format": "double",
+          "type": "number"
+        },
+        "crossDeviceConversionsValueByConversionDate": {
+          "description": "The sum of cross-device conversions value by conversion date. Details for the by_conversion_date columns are available at https://support.google.com/sa360/answer/9250611.",
           "format": "double",
           "type": "number"
         },
@@ -1199,6 +1209,16 @@
           "description": "The number of clicks your ad receives (Clicks) divided by the number of times your ad is shown (Impressions).",
           "format": "double",
           "type": "number"
+        },
+        "generalInvalidClickRate": {
+          "description": "The percentage of clicks that have been filtered out of your total number of clicks (filtered + non-filtered clicks) due to being general invalid clicks. These are clicks Google considers illegitimate that are detected through routine means of filtration (that is, known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.",
+          "format": "double",
+          "type": "number"
+        },
+        "generalInvalidClicks": {
+          "description": "Number of general invalid clicks. These are a subset of your invalid clicks that are detected through routine means of filtration (such as known invalid data-center traffic, bots and spiders or other crawlers, irregular patterns, etc.). You're not charged for them, and they don't affect your account statistics. See the help page at https://support.google.com/campaignmanager/answer/6076504 for details.",
+          "format": "int64",
+          "type": "string"
         },
         "historicalCreativeQualityScore": {
           "description": "The creative historical quality score.",
@@ -3384,7 +3404,7 @@
       "id": "GoogleAdsSearchads360V0Resources_Campaign_SelectiveOptimization",
       "properties": {
         "conversionActions": {
-          "description": "The selected set of conversion actions for optimizing this campaign.",
+          "description": "The selected set of resource names for conversion actions for optimizing this campaign.",
           "items": {
             "type": "string"
           },
@@ -4019,6 +4039,14 @@
           "description": "Output only. The timestamp when this ad_group was created. The timestamp is in the customer's time zone and in \"yyyy-MM-dd HH:mm:ss\" format.",
           "readOnly": true,
           "type": "string"
+        },
+        "effectiveLabels": {
+          "description": "Output only. The resource names of effective labels attached to this ad group. An effective label is a label inherited or directly assigned to this ad group.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "endDate": {
           "description": "Output only. Date when the ad group ends serving ads. By default, the ad group ends on the ad group's end date. If this field is set, then the ad group ends at the end of the specified date in the customer's time zone. This field is only available for Microsoft Advertising and Facebook gateway accounts. Format: YYYY-MM-DD Example: 2019-03-14",
@@ -4756,6 +4784,31 @@
         },
         "resourceName": {
           "description": "Immutable. The resource name of the ad group criterion label. Ad group criterion label resource names have the form: `customers/{customer_id}/adGroupCriterionLabels/{ad_group_id}~{criterion_id}~{label_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel": {
+      "description": "A relationship between an ad group and an effective label. An effective label is a label inherited or directly assigned to this ad group.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel",
+      "properties": {
+        "adGroup": {
+          "description": "Immutable. The ad group to which the effective label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The effective label assigned to the ad group.",
+          "type": "string"
+        },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the effective label.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group effective label. Ad group effective label resource names have the form: `customers/{customer_id}/adGroupEffectiveLabels/{ad_group_id}~{label_id}`",
           "type": "string"
         }
       },
@@ -5651,7 +5704,7 @@
           "type": "string"
         },
         "biddingStrategy": {
-          "description": "Portfolio bidding strategy used by campaign.",
+          "description": "The resource name of the portfolio bidding strategy used by the campaign.",
           "type": "string"
         },
         "biddingStrategySystemStatus": {
@@ -5765,7 +5818,7 @@
           "type": "string"
         },
         "campaignBudget": {
-          "description": "The budget of the campaign.",
+          "description": "The resource name of the campaign budget of the campaign.",
           "type": "string"
         },
         "createTime": {
@@ -5781,6 +5834,14 @@
         "dynamicSearchAdsSetting": {
           "$ref": "GoogleAdsSearchads360V0Resources_Campaign_DynamicSearchAdsSetting",
           "description": "The setting for controlling Dynamic Search Ads (DSA)."
+        },
+        "effectiveLabels": {
+          "description": "Output only. The resource names of effective labels attached to this campaign. An effective label is a label inherited or directly assigned to this campaign.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "endDate": {
           "description": "The last day of the campaign in serving customer's timezone in YYYY-MM-DD format. On create, defaults to 2037-12-30, which means the campaign will run indefinitely. To set an existing campaign to run indefinitely, set this field to 2037-12-30.",
@@ -6347,6 +6408,31 @@
         "webpage": {
           "$ref": "GoogleAdsSearchads360V0Common__WebpageInfo",
           "description": "Immutable. Webpage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel": {
+      "description": "Represents a relationship between a campaign and an effective label. An effective label is a label inherited or directly assigned to this campaign.",
+      "id": "GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel",
+      "properties": {
+        "campaign": {
+          "description": "Immutable. The campaign to which the effective label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The effective label assigned to the campaign.",
+          "type": "string"
+        },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the effective label.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. Name of the resource. CampaignEffectivelabel resource names have the form: `customers/{customer_id}/campaignEffectiveLabels/{campaign_id}~{label_id}`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8339,6 +8425,10 @@
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel",
           "description": "The ad group criterion label referenced in the query."
         },
+        "adGroupEffectiveLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupEffectiveLabel",
+          "description": "The ad group effective label referenced in the query."
+        },
         "adGroupLabel": {
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupLabel",
           "description": "The ad group label referenced in the query."
@@ -8410,6 +8500,10 @@
         "campaignCriterion": {
           "$ref": "GoogleAdsSearchads360V0Resources__CampaignCriterion",
           "description": "The campaign criterion referenced in the query."
+        },
+        "campaignEffectiveLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__CampaignEffectiveLabel",
+          "description": "The campaign effective label referenced in the query."
         },
         "campaignLabel": {
           "$ref": "GoogleAdsSearchads360V0Resources__CampaignLabel",
