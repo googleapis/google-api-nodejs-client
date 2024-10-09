@@ -3027,6 +3027,172 @@
                 }
               }
             },
+            "logScopes": {
+              "methods": {
+                "create": {
+                  "description": "Creates a log scope.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/logScopes",
+                  "httpMethod": "POST",
+                  "id": "logging.folders.locations.logScopes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "logScopeId": {
+                      "description": "Required. A client-assigned identifier such as \"log-scope\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent project in which to create the log scope \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logScopes",
+                  "request": {
+                    "$ref": "LogScope"
+                  },
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a log scope.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "DELETE",
+                  "id": "logging.folders.locations.logScopes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a log scope.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.folders.locations.logScopes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "list": {
+                  "description": "Lists log scopes.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/logScopes",
+                  "httpMethod": "GET",
+                  "id": "logging.folders.locations.logScopes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource whose log scopes are to be listed: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" ",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logScopes",
+                  "response": {
+                    "$ref": "ListLogScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a log scope.",
+                  "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.folders.locations.logScopes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask that specifies the fields in log_scope that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=description",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "LogScope"
+                  },
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -5679,6 +5845,172 @@
                 }
               }
             },
+            "logScopes": {
+              "methods": {
+                "create": {
+                  "description": "Creates a log scope.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/logScopes",
+                  "httpMethod": "POST",
+                  "id": "logging.organizations.locations.logScopes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "logScopeId": {
+                      "description": "Required. A client-assigned identifier such as \"log-scope\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent project in which to create the log scope \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logScopes",
+                  "request": {
+                    "$ref": "LogScope"
+                  },
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a log scope.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "DELETE",
+                  "id": "logging.organizations.locations.logScopes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a log scope.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.organizations.locations.logScopes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "list": {
+                  "description": "Lists log scopes.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/logScopes",
+                  "httpMethod": "GET",
+                  "id": "logging.organizations.locations.logScopes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource whose log scopes are to be listed: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" ",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logScopes",
+                  "response": {
+                    "$ref": "ListLogScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a log scope.",
+                  "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.organizations.locations.logScopes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask that specifies the fields in log_scope that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=description",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "LogScope"
+                  },
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -7315,6 +7647,172 @@
                 }
               }
             },
+            "logScopes": {
+              "methods": {
+                "create": {
+                  "description": "Creates a log scope.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/logScopes",
+                  "httpMethod": "POST",
+                  "id": "logging.projects.locations.logScopes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "logScopeId": {
+                      "description": "Required. A client-assigned identifier such as \"log-scope\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent project in which to create the log scope \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" For example:\"projects/my-project/locations/global\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logScopes",
+                  "request": {
+                    "$ref": "LogScope"
+                  },
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a log scope.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "DELETE",
+                  "id": "logging.projects.locations.logScopes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the log scope to delete: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a log scope.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "GET",
+                  "id": "logging.projects.locations.logScopes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the log scope: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]\" For example:\"projects/my-project/locations/global/logScopes/my-log-scope\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "list": {
+                  "description": "Lists log scopes.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/logScopes",
+                  "httpMethod": "GET",
+                  "id": "logging.projects.locations.logScopes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request.Non-positive values are ignored. The presence of nextPageToken in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. pageToken must be the value of nextPageToken from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource whose log scopes are to be listed: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]\" ",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/logScopes",
+                  "response": {
+                    "$ref": "ListLogScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/logging.admin",
+                    "https://www.googleapis.com/auth/logging.read"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a log scope.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/logScopes/{logScopesId}",
+                  "httpMethod": "PATCH",
+                  "id": "logging.projects.locations.logScopes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/logScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask that specifies the fields in log_scope that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskFor example: updateMask=description",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "LogScope"
+                  },
+                  "response": {
+                    "$ref": "LogScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/logging.admin"
+                  ]
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -8424,7 +8922,7 @@
       }
     }
   },
-  "revision": "20240726",
+  "revision": "20240913",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -9297,6 +9795,24 @@
       },
       "type": "object"
     },
+    "ListLogScopesResponse": {
+      "description": "The response from ListLogScopes. Every project has a _Default log scope that cannot be modified or deleted.",
+      "id": "ListLogScopesResponse",
+      "properties": {
+        "logScopes": {
+          "description": "A list of log scopes.",
+          "items": {
+            "$ref": "LogScope"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If there might be more results than appear in this response, then nextPageToken is included. To get the next set of results, call the same method again using the value of nextPageToken as pageToken.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListLogsResponse": {
       "description": "Result returned from ListLogs.",
       "id": "ListLogsResponse",
@@ -9487,7 +10003,7 @@
       "id": "LogBucket",
       "properties": {
         "analyticsEnabled": {
-          "description": "Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.",
+          "description": "Optional. Whether log analytics is enabled for this bucket.Once enabled, log analytics features cannot be disabled.",
           "type": "boolean"
         },
         "cmekSettings": {
@@ -9899,6 +10415,41 @@
       },
       "type": "object"
     },
+    "LogScope": {
+      "description": "Describes a group of resources to read log entries from.",
+      "id": "LogScope",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation timestamp of the log scope.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Describes this log scope.The maximum length of the description is 8000 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceNames": {
+          "description": "Required. Names of one or more parent resources: projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 50 projects and a maximum of 100 resources in total.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last update timestamp of the log scope.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LogSink": {
       "description": "Describes a sink used to export log entries to one of the following destinations: a Cloud Logging log bucket, a Cloud Storage bucket, a BigQuery dataset, a Pub/Sub topic, a Cloud project.A logs filter controls which log entries are exported. The sink must be created within a project, organization, billing account, or folder.",
       "id": "LogSink",
@@ -10209,6 +10760,25 @@
           "description": "The sampling period of metric data points. For metrics which are written periodically, consecutive data points are stored at this time interval, excluding data loss due to errors. Metrics with a higher granularity have a smaller sampling period.",
           "format": "google-duration",
           "type": "string"
+        },
+        "timeSeriesResourceHierarchyLevel": {
+          "description": "The scope of the timeseries data of the metric.",
+          "items": {
+            "enum": [
+              "TIME_SERIES_RESOURCE_HIERARCHY_LEVEL_UNSPECIFIED",
+              "PROJECT",
+              "ORGANIZATION",
+              "FOLDER"
+            ],
+            "enumDescriptions": [
+              "Do not use this default value.",
+              "Scopes a metric to a project.",
+              "Scopes a metric to an organization.",
+              "Scopes a metric to a folder."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
