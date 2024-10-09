@@ -146,9 +146,13 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$AdvancedSecurityOverrides {
     /**
-     * Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Common Criteria Mode is only supported on company-owned devices running Android 11 or above.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.
+     * Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, see CommonCriteriaMode for details.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required. If Common Criteria Mode is turned off after being enabled previously, all user-configured Wi-Fi networks may be lost and any enterprise-configured Wi-Fi networks that require user input may need to be reconfigured.
      */
     commonCriteriaMode?: string | null;
+    /**
+     * Optional. Controls whether content protection, which scans for deceptive apps, is enabled. This is supported on Android 15 and above.
+     */
+    contentProtectionPolicy?: string | null;
     /**
      * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated).
      */
@@ -715,6 +719,10 @@ export namespace androidmanagement_v1 {
      * Whether Common Criteria Mode is enabled.
      */
     commonCriteriaModeStatus?: string | null;
+    /**
+     * Output only. The status of policy signature verification.
+     */
+    policySignatureVerificationStatus?: string | null;
   }
   /**
    * A rule declaring which mitigating actions to take when a device is not compliant with its policy. For every rule, there is always an implicit mitigating action to set policy_compliant to false for the Device resource, and display a message on the device indicating that the device is not compliant with its policy. Other mitigating actions may optionally be taken as well, depending on the field values in the rule.
@@ -1024,6 +1032,10 @@ export namespace androidmanagement_v1 {
      * Controls configuring and using Wi-Fi direct settings. Supported on company-owned devices running Android 13 and above.
      */
     wifiDirectSettings?: string | null;
+    /**
+     * Optional. Wi-Fi roaming policy.
+     */
+    wifiRoamingPolicy?: Schema$WifiRoamingPolicy;
     /**
      * Restrictions on which Wi-Fi SSIDs the device can connect to. Note that this does not affect which networks can be configured on the device. Supported on company-owned devices running Android 13 and above.
      */
@@ -2722,7 +2734,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$ScreenBrightnessSettings {
     /**
-     * Optional. The screen brightness between 1 and 255 where 1 is the lowest and 255 is the highest brightness. A value of 0 (default) means no screen brightness set. Any other value is rejected. screenBrightnessMode must be either BRIGHTNESS_AUTOMATIC or BRIGHTNESS_FIXED to set this. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.
+     * Optional. The screen brightness between 1 and 255 where 1 is the lowest and 255 is the highest brightness. A value of 0 (default) means no screen brightness set. Any other value is rejected. screenBrightnessMode must be either BRIGHTNESS_AUTOMATIC or BRIGHTNESS_FIXED to set this. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9. Supported on work profiles on company-owned devices on Android 15 and above.
      */
     screenBrightness?: number | null;
     /**
@@ -2735,7 +2747,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$ScreenTimeoutSettings {
     /**
-     * Optional. Controls the screen timeout duration. The screen timeout duration must be greater than 0, otherwise it is rejected. Additionally, it should not be greater than maximumTimeToLock, otherwise the screen timeout is set to maximumTimeToLock and a NonComplianceDetail with INVALID_VALUE reason and SCREEN_TIMEOUT_GREATER_THAN_MAXIMUM_TIME_TO_LOCK specific reason is reported. If the screen timeout is less than a certain lower bound, it is set to the lower bound. The lower bound may vary across devices. If this is set, screenTimeoutMode must be SCREEN_TIMEOUT_ENFORCED. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9.
+     * Optional. Controls the screen timeout duration. The screen timeout duration must be greater than 0, otherwise it is rejected. Additionally, it should not be greater than maximumTimeToLock, otherwise the screen timeout is set to maximumTimeToLock and a NonComplianceDetail with INVALID_VALUE reason and SCREEN_TIMEOUT_GREATER_THAN_MAXIMUM_TIME_TO_LOCK specific reason is reported. If the screen timeout is less than a certain lower bound, it is set to the lower bound. The lower bound may vary across devices. If this is set, screenTimeoutMode must be SCREEN_TIMEOUT_ENFORCED. Supported on Android 9 and above on fully managed devices. A NonComplianceDetail with API_LEVEL is reported if the Android version is less than 9. Supported on work profiles on company-owned devices on Android 15 and above.
      */
     screenTimeout?: string | null;
     /**
@@ -3301,6 +3313,28 @@ export namespace androidmanagement_v1 {
      * The token value which is used in the hosting page to generate the iframe with the embedded UI. This is a read-only field generated by the server.
      */
     value?: string | null;
+  }
+  /**
+   * Wi-Fi roaming policy.
+   */
+  export interface Schema$WifiRoamingPolicy {
+    /**
+     * Optional. Wi-Fi roaming settings. SSIDs provided in this list must be unique, the policy will be rejected otherwise.
+     */
+    wifiRoamingSettings?: Schema$WifiRoamingSetting[];
+  }
+  /**
+   * Wi-Fi roaming setting.
+   */
+  export interface Schema$WifiRoamingSetting {
+    /**
+     * Required. Wi-Fi roaming mode for the specified SSID.
+     */
+    wifiRoamingMode?: string | null;
+    /**
+     * Required. SSID of the Wi-Fi network.
+     */
+    wifiSsid?: string | null;
   }
   /**
    * Represents a Wi-Fi SSID.
