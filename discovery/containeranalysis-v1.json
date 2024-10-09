@@ -1655,7 +1655,7 @@
       }
     }
   },
-  "revision": "20240816",
+  "revision": "20240924",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -3150,11 +3150,13 @@
           "description": "Optional. Option to specify how default logs buckets are setup.",
           "enum": [
             "DEFAULT_LOGS_BUCKET_BEHAVIOR_UNSPECIFIED",
-            "REGIONAL_USER_OWNED_BUCKET"
+            "REGIONAL_USER_OWNED_BUCKET",
+            "LEGACY_BUCKET"
           ],
           "enumDescriptions": [
             "Unspecified.",
-            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project."
+            "Bucket is located in user-owned project in the same region as the build. The builder service account must have access to create and write to Cloud Storage buckets in the build project.",
+            "Bucket is located in a Google-owned project and is not regionalized."
           ],
           "type": "string"
         },
