@@ -682,7 +682,7 @@
       }
     }
   },
-  "revision": "20240623",
+  "revision": "20240909",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -741,7 +741,7 @@
         },
         "policyDelegationSettings": {
           "$ref": "PolicyDelegationSettings",
-          "description": "Optional. Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY."
+          "description": "Optional. Settings to allow google-internal teams to use IAP for apps hosted in a tenant project."
         },
         "reauthSettings": {
           "$ref": "ReauthSettings",
@@ -1188,7 +1188,7 @@
           "type": "string"
         },
         "method": {
-          "description": "Reauth method requested.",
+          "description": "Optional. Reauth method requested.",
           "enum": [
             "METHOD_UNSPECIFIED",
             "LOGIN",

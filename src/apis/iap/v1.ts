@@ -168,7 +168,7 @@ export namespace iap_v1 {
      */
     oauthSettings?: Schema$OAuthSettings;
     /**
-     * Optional. Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY.
+     * Optional. Settings to allow google-internal teams to use IAP for apps hosted in a tenant project.
      */
     policyDelegationSettings?: Schema$PolicyDelegationSettings;
     /**
@@ -514,7 +514,7 @@ export namespace iap_v1 {
      */
     maxAge?: string | null;
     /**
-     * Reauth method requested.
+     * Optional. Reauth method requested.
      */
     method?: string | null;
     /**
