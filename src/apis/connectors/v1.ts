@@ -2930,6 +2930,23 @@ export namespace connectors_v1 {
     scopes?: string[] | null;
   }
   /**
+   * Parameters to support Oauth 2.0 Auth Code Grant Authentication using Google Provided OAuth Client. See https://tools.ietf.org/html/rfc6749#section-1.3.1 for more details.
+   */
+  export interface Schema$Oauth2AuthCodeFlowGoogleManaged {
+    /**
+     * Optional. Authorization code to be exchanged for access and refresh tokens.
+     */
+    authCode?: string | null;
+    /**
+     * Optional. Redirect URI to be provided during the auth code exchange.
+     */
+    redirectUri?: string | null;
+    /**
+     * Required. Scopes the connection will request when the user performs the auth code flow.
+     */
+    scopes?: string[] | null;
+  }
+  /**
    * Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.
    */
   export interface Schema$Oauth2ClientCredentials {
