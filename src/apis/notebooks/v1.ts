@@ -641,7 +641,7 @@ export namespace notebooks_v1 {
      */
     subnet?: string | null;
     /**
-     * Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * Optional. The Compute Engine network tags to add to runtime (see [Add network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      */
     tags?: string[] | null;
     /**
@@ -1729,7 +1729,7 @@ export namespace notebooks_v1 {
      */
     subnet?: string | null;
     /**
-     * Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     * Optional. The Compute Engine network tags to add to runtime (see [Add network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags)).
      */
     tags?: string[] | null;
     /**
