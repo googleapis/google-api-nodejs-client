@@ -849,7 +849,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20240924",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -871,6 +871,42 @@
             "fsync every time new write commands are appended to the AOF. It has the best data loss protection at the cost of performance"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AssetLocation": {
+      "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
+      "id": "AssetLocation",
+      "properties": {
+        "ccfeRmsPath": {
+          "description": "Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.",
+          "type": "string"
+        },
+        "expected": {
+          "$ref": "IsolationExpectations",
+          "description": "Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation."
+        },
+        "extraParameters": {
+          "description": "Defines extra parameters required for specific asset types.",
+          "items": {
+            "$ref": "ExtraParameter"
+          },
+          "type": "array"
+        },
+        "locationData": {
+          "description": "Contains all kinds of physical location definitions for this asset.",
+          "items": {
+            "$ref": "LocationData"
+          },
+          "type": "array"
+        },
+        "parentAsset": {
+          "description": "Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.",
+          "items": {
+            "$ref": "CloudAsset"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -968,6 +1004,19 @@
       },
       "type": "object"
     },
+    "BlobstoreLocation": {
+      "description": "Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains",
+      "id": "BlobstoreLocation",
+      "properties": {
+        "policyId": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CertChain": {
       "id": "CertChain",
       "properties": {
@@ -991,6 +1040,30 @@
         "name": {
           "description": "Identifier. Unique name of the resource in this scope including project, location and cluster using the form: `projects/{project}/locations/{location}/clusters/{cluster}/certificateAuthority`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAsset": {
+      "id": "CloudAsset",
+      "properties": {
+        "assetName": {
+          "type": "string"
+        },
+        "assetType": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAssetComposition": {
+      "id": "CloudAssetComposition",
+      "properties": {
+        "childAsset": {
+          "items": {
+            "$ref": "CloudAsset"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1058,7 +1131,7 @@
             "REDIS_STANDARD_SMALL"
           ],
           "enumDescriptions": [
-            "",
+            "Node type unspecified",
             "Redis shared core nano node_type.",
             "Redis highmem medium node_type.",
             "Redis highmem xlarge node_type.",
@@ -1084,7 +1157,7 @@
           "type": "array"
         },
         "pscConnections": {
-          "description": "Output only. PSC connections for discovery of the cluster topology and accessing the cluster.",
+          "description": "Output only. The list of PSC connections that are auto-created through service connectivity automation.",
           "items": {
             "$ref": "PscConnection"
           },
@@ -1200,12 +1273,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "scheduleDeadlineTime": {
-          "description": "Output only. The deadline that the maintenance schedule start time can not go beyond, including reschedule.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
         "startTime": {
           "description": "Output only. The start time of any upcoming scheduled maintenance for this instance.",
           "format": "google-datetime",
@@ -1272,11 +1339,6 @@
             "Saturday",
             "Sunday"
           ],
-          "type": "string"
-        },
-        "duration": {
-          "description": "Duration of the time window.",
-          "format": "google-duration",
           "type": "string"
         },
         "startTime": {
@@ -1822,7 +1884,7 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata.",
+      "description": "Common model for database resource instance metadata. Next ID: 23",
       "id": "DatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -1865,6 +1927,20 @@
         "customMetadata": {
           "$ref": "CustomMetadataData",
           "description": "Any custom metadata associated with the resource"
+        },
+        "edition": {
+          "description": "Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ENTERPRISE",
+            "EDITION_ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "Default, to make it consistent with instance edition enum.",
+            "Represents the enterprise edition.",
+            "Represents the enterprise plus edition."
+          ],
+          "type": "string"
         },
         "entitlements": {
           "description": "Entitlements associated with the resource",
@@ -1949,6 +2025,10 @@
           "$ref": "DatabaseResourceId",
           "description": "Identifier for this resource's immediate parent/primary resource if the current resource is a replica or derived form of another Database resource. Else it would be NULL. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional."
         },
+        "primaryResourceLocation": {
+          "description": "Primary resource location. REQUIRED if the immediate parent exists when first time resource is getting ingested, otherwise optional.",
+          "type": "string"
+        },
         "product": {
           "$ref": "Product",
           "description": "The product this resource represents."
@@ -1960,6 +2040,10 @@
         "resourceName": {
           "description": "Required. Different from DatabaseResourceId.unique_id, a resource name can be reused over time. That is, after a resource named \"ABC\" is deleted, the name \"ABC\" can be used to to create a new resource within the same source. Resource name to follow CAIS resource_name format as noted here go/condor-common-datamodel",
           "type": "string"
+        },
+        "tagsSet": {
+          "$ref": "Tags",
+          "description": "Optional. Tags associated with this resources."
         },
         "updationTime": {
           "description": "The time at which the resource was updated and recorded at partner service.",
@@ -2276,6 +2360,18 @@
       },
       "type": "object"
     },
+    "DirectLocationAssignment": {
+      "id": "DirectLocationAssignment",
+      "properties": {
+        "location": {
+          "items": {
+            "$ref": "LocationAssignment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "DiscoveryEndpoint": {
       "description": "Endpoints on each network, for Redis clients to connect to the cluster.",
       "id": "DiscoveryEndpoint",
@@ -2345,6 +2441,17 @@
         "outputConfig": {
           "$ref": "OutputConfig",
           "description": "Required. Specify data to be exported."
+        }
+      },
+      "type": "object"
+    },
+    "ExtraParameter": {
+      "description": "Defines parameters that should only be used for specific asset types.",
+      "id": "ExtraParameter",
+      "properties": {
+        "regionalMigDistributionPolicy": {
+          "$ref": "RegionalMigDistributionPolicy",
+          "description": "Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances."
         }
       },
       "type": "object"
@@ -2777,6 +2884,131 @@
       },
       "type": "object"
     },
+    "IsolationExpectations": {
+      "id": "IsolationExpectations",
+      "properties": {
+        "requirementOverride": {
+          "$ref": "RequirementOverride",
+          "description": "Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic."
+        },
+        "ziOrgPolicy": {
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "ziRegionPolicy": {
+          "enum": [
+            "ZI_REGION_POLICY_UNSPECIFIED",
+            "ZI_REGION_POLICY_UNKNOWN",
+            "ZI_REGION_POLICY_NOT_SET",
+            "ZI_REGION_POLICY_FAIL_OPEN",
+            "ZI_REGION_POLICY_FAIL_CLOSED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "ziRegionState": {
+          "enum": [
+            "ZI_REGION_UNSPECIFIED",
+            "ZI_REGION_UNKNOWN",
+            "ZI_REGION_NOT_ENABLED",
+            "ZI_REGION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zoneIsolation": {
+          "deprecated": true,
+          "description": "Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.",
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zoneSeparation": {
+          "deprecated": true,
+          "description": "Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.",
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsOrgPolicy": {
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsRegionState": {
+          "enum": [
+            "ZS_REGION_UNSPECIFIED",
+            "ZS_REGION_UNKNOWN",
+            "ZS_REGION_NOT_ENABLED",
+            "ZS_REGION_ENABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking of the asset ZS-bit is not available",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListClustersResponse": {
       "description": "Response for ListClusters.",
       "id": "ListClustersResponse",
@@ -2897,6 +3129,64 @@
       },
       "type": "object"
     },
+    "LocationAssignment": {
+      "id": "LocationAssignment",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "locationType": {
+          "enum": [
+            "UNSPECIFIED",
+            "CLUSTER",
+            "POP",
+            "CLOUD_ZONE",
+            "CLOUD_REGION",
+            "MULTI_REGION_GEO",
+            "MULTI_REGION_JURISDICTION",
+            "GLOBAL",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "",
+            "1-10: Physical failure domains.",
+            "",
+            "11-20: Logical failure domains.",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LocationData": {
+      "id": "LocationData",
+      "properties": {
+        "blobstoreLocation": {
+          "$ref": "BlobstoreLocation"
+        },
+        "childAssetLocation": {
+          "$ref": "CloudAssetComposition"
+        },
+        "directLocation": {
+          "$ref": "DirectLocationAssignment"
+        },
+        "gcpProjectProxy": {
+          "$ref": "TenantProjectProxy"
+        },
+        "placerLocation": {
+          "$ref": "PlacerLocation"
+        },
+        "spannerLocation": {
+          "$ref": "SpannerLocation"
+        }
+      },
+      "type": "object"
+    },
     "MachineConfiguration": {
       "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
       "id": "MachineConfiguration",
@@ -2910,6 +3200,11 @@
           "description": "Memory size in bytes. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
           "format": "int64",
           "type": "string"
+        },
+        "shardCount": {
+          "description": "Optional. Number of shards (if applicable).",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3257,6 +3552,17 @@
       },
       "type": "object"
     },
+    "PlacerLocation": {
+      "description": "Message describing that the location of the customer resource is tied to placer allocations",
+      "id": "PlacerLocation",
+      "properties": {
+        "placerConfig": {
+          "description": "Directory with a config related to it in placer (e.g. \"/placer/prod/home/my-root/my-dir\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Product": {
       "description": "Product specification for Condor resources.",
       "id": "Product",
@@ -3387,27 +3693,27 @@
       "id": "PscConnection",
       "properties": {
         "address": {
-          "description": "Output only. The IP allocated on the consumer network for the PSC forwarding rule.",
-          "readOnly": true,
+          "description": "Required. The IP allocated on the consumer network for the PSC forwarding rule.",
           "type": "string"
         },
         "forwardingRule": {
-          "description": "Output only. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.",
-          "readOnly": true,
+          "description": "Required. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.",
           "type": "string"
         },
         "network": {
-          "description": "The consumer network where the IP address resides, in the form of projects/{project_id}/global/networks/{network_id}.",
+          "description": "Required. The consumer network where the IP address resides, in the form of projects/{project_id}/global/networks/{network_id}.",
           "type": "string"
         },
         "projectId": {
-          "description": "Output only. The consumer project_id where the forwarding rule is created from.",
-          "readOnly": true,
+          "description": "Optional. Project ID of the consumer project where the forwarding rule is created in.",
           "type": "string"
         },
         "pscConnectionId": {
-          "description": "Output only. The PSC connection id of the forwarding rule connected to the service attachment.",
-          "readOnly": true,
+          "description": "Required. The PSC connection id of the forwarding rule connected to the service attachment.",
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Required. The service attachment which is the target of the PSC connection, in the form of projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.",
           "type": "string"
         }
       },
@@ -3474,6 +3780,25 @@
       },
       "type": "object"
     },
+    "RegionalMigDistributionPolicy": {
+      "description": "To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances",
+      "id": "RegionalMigDistributionPolicy",
+      "properties": {
+        "targetShape": {
+          "description": "The shape in which the group converges around distribution of resources. Instance of proto2 enum",
+          "format": "int32",
+          "type": "integer"
+        },
+        "zones": {
+          "description": "Cloud zones used by regional MIG to create instances.",
+          "items": {
+            "$ref": "ZoneConfiguration"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RemoteCluster": {
       "description": "Details of the remote cluster associated with this cluster in a cross cluster replication setup.",
       "id": "RemoteCluster",
@@ -3485,6 +3810,44 @@
         "uid": {
           "description": "Output only. The unique identifier of the remote cluster.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequirementOverride": {
+      "id": "RequirementOverride",
+      "properties": {
+        "ziOverride": {
+          "enum": [
+            "ZI_UNSPECIFIED",
+            "ZI_UNKNOWN",
+            "ZI_NOT_REQUIRED",
+            "ZI_PREFERRED",
+            "ZI_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "zsOverride": {
+          "enum": [
+            "ZS_UNSPECIFIED",
+            "ZS_UNKNOWN",
+            "ZS_NOT_REQUIRED",
+            "ZS_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "To be used if tracking is not available",
+            "",
+            ""
+          ],
           "type": "string"
         }
       },
@@ -3547,6 +3910,11 @@
     "RetentionSettings": {
       "id": "RetentionSettings",
       "properties": {
+        "durationBasedRetention": {
+          "description": "Duration based retention period i.e. 172800 seconds (2 days)",
+          "format": "google-duration",
+          "type": "string"
+        },
         "quantityBasedRetention": {
           "format": "int32",
           "type": "integer"
@@ -3557,12 +3925,14 @@
             "RETENTION_UNIT_UNSPECIFIED",
             "COUNT",
             "TIME",
+            "DURATION",
             "RETENTION_UNIT_OTHER"
           ],
           "enumDescriptions": [
             "Backup retention unit is unspecified, will be treated as COUNT.",
             "Retention will be by count, eg. \"retain the most recent 7 backups\".",
-            "Retention will be by Time, eg. \"retain the last 7 days backups\".",
+            "Retention will be by Time, eg. \"retain backups till a specific time\" i.e. till 2024-05-01T00:00:00Z.",
+            "Retention will be by duration, eg. \"retain the backups for 172800 seconds (2 days)\".",
             "For rest of the other category"
           ],
           "type": "string"
@@ -3570,6 +3940,26 @@
         "timeBasedRetention": {
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SpannerLocation": {
+      "id": "SpannerLocation",
+      "properties": {
+        "backupName": {
+          "description": "Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dbName": {
+          "description": "Set of databases used by the resource in format /span//",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3608,6 +3998,32 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Tags": {
+      "description": "Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.",
+      "id": "Tags",
+      "properties": {
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The Tag key/value mappings.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "TenantProjectProxy": {
+      "id": "TenantProjectProxy",
+      "properties": {
+        "projectNumbers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3773,6 +4189,15 @@
         "startTime": {
           "$ref": "TimeOfDay",
           "description": "Required. Start time of the window in UTC time."
+        }
+      },
+      "type": "object"
+    },
+    "ZoneConfiguration": {
+      "id": "ZoneConfiguration",
+      "properties": {
+        "zone": {
+          "type": "string"
         }
       },
       "type": "object"
