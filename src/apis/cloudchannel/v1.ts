@@ -113,7 +113,6 @@ export namespace cloudchannel_v1 {
   export class Cloudchannel {
     context: APIRequestContext;
     accounts: Resource$Accounts;
-    integrators: Resource$Integrators;
     operations: Resource$Operations;
     products: Resource$Products;
 
@@ -124,7 +123,6 @@ export namespace cloudchannel_v1 {
       };
 
       this.accounts = new Resource$Accounts(this.context);
-      this.integrators = new Resource$Integrators(this.context);
       this.operations = new Resource$Operations(this.context);
       this.products = new Resource$Products(this.context);
     }
@@ -757,11 +755,11 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest {
     /**
-     * Required. Domain to fetch for Cloud Identity account customers, including domained and domainless.
+     * Required. Domain to fetch for Cloud Identity account customers, including domain and team customers. For team customers, please use the domain for their emails.
      */
     domain?: string | null;
     /**
-     * Optional. Primary admin email to fetch for Cloud Identity account domainless customer.
+     * Optional. Primary admin email to fetch for Cloud Identity account team customer.
      */
     primaryAdminEmail?: string | null;
   }
@@ -1270,7 +1268,7 @@ export namespace cloudchannel_v1 {
      */
     overwriteIfExists?: boolean | null;
     /**
-     * Optional. Customer's primary admin email.
+     * Required. Customer's primary admin email.
      */
     primaryAdminEmail?: string | null;
   }
@@ -1901,10 +1899,6 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1RegisterSubscriberRequest {
     /**
-     * Optional. Resource name of the integrator.
-     */
-    integrator?: string | null;
-    /**
      * Required. Service account that provides subscriber access to the registered topic.
      */
     serviceAccount?: string | null;
@@ -2325,10 +2319,6 @@ export namespace cloudchannel_v1 {
    * Request Message for UnregisterSubscriber.
    */
   export interface Schema$GoogleCloudChannelV1UnregisterSubscriberRequest {
-    /**
-     * Optional. Resource name of the integrator.
-     */
-    integrator?: string | null;
     /**
      * Required. Service account to unregister from subscriber access to the topic.
      */
@@ -3211,10 +3201,6 @@ export namespace cloudchannel_v1 {
      * Optional. Resource name of the account.
      */
     account?: string;
-    /**
-     * Optional. Resource name of the integrator.
-     */
-    integrator?: string;
     /**
      * Optional. The maximum number of service accounts to return. The service may return fewer than this value. If unspecified, returns at most 100 service accounts. The maximum value is 1000; the server will coerce values above 1000.
      */
@@ -8824,354 +8810,6 @@ export namespace cloudchannel_v1 {
      * Required. Resource name of the SKU group. Format: accounts/{account\}/skuGroups/{sku_group\}.
      */
     parent?: string;
-  }
-
-  export class Resource$Integrators {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists service accounts with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: A list of service email addresses.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    listSubscribers(
-      params: Params$Resource$Integrators$Listsubscribers,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    listSubscribers(
-      params?: Params$Resource$Integrators$Listsubscribers,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1ListSubscribersResponse>;
-    listSubscribers(
-      params: Params$Resource$Integrators$Listsubscribers,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    listSubscribers(
-      params: Params$Resource$Integrators$Listsubscribers,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSubscribersResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSubscribersResponse>
-    ): void;
-    listSubscribers(
-      params: Params$Resource$Integrators$Listsubscribers,
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSubscribersResponse>
-    ): void;
-    listSubscribers(
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1ListSubscribersResponse>
-    ): void;
-    listSubscribers(
-      paramsOrCallback?:
-        | Params$Resource$Integrators$Listsubscribers
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSubscribersResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSubscribersResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1ListSubscribersResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudChannelV1ListSubscribersResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Integrators$Listsubscribers;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Integrators$Listsubscribers;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+integrator}:listSubscribers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['integrator'],
-        pathParams: ['integrator'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudChannelV1ListSubscribersResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudChannelV1ListSubscribersResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Registers a service account with subscriber privileges on the Cloud Pub/Sub topic for this Channel Services account. After you create a subscriber, you get the events through SubscriberEvent Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name with the registered service email address.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    register(
-      params: Params$Resource$Integrators$Register,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    register(
-      params?: Params$Resource$Integrators$Register,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>;
-    register(
-      params: Params$Resource$Integrators$Register,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    register(
-      params: Params$Resource$Integrators$Register,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>
-    ): void;
-    register(
-      params: Params$Resource$Integrators$Register,
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>
-    ): void;
-    register(
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>
-    ): void;
-    register(
-      paramsOrCallback?:
-        | Params$Resource$Integrators$Register
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Integrators$Register;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Integrators$Register;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+integrator}:register').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['integrator'],
-        pathParams: ['integrator'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudChannelV1RegisterSubscriberResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Unregisters a service account with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. If there are no service accounts left with subscriber privileges, this deletes the topic. You can call ListSubscribers to check for these accounts. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name that unregistered the service email address. Returns a success response if the service email address wasn't registered with the topic.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    unregister(
-      params: Params$Resource$Integrators$Unregister,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    unregister(
-      params?: Params$Resource$Integrators$Unregister,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>;
-    unregister(
-      params: Params$Resource$Integrators$Unregister,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    unregister(
-      params: Params$Resource$Integrators$Unregister,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>
-    ): void;
-    unregister(
-      params: Params$Resource$Integrators$Unregister,
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>
-    ): void;
-    unregister(
-      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>
-    ): void;
-    unregister(
-      paramsOrCallback?:
-        | Params$Resource$Integrators$Unregister
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Integrators$Unregister;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Integrators$Unregister;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+integrator}:unregister').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['integrator'],
-        pathParams: ['integrator'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudChannelV1UnregisterSubscriberResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Integrators$Listsubscribers
-    extends StandardParameters {
-    /**
-     * Optional. Resource name of the account.
-     */
-    account?: string;
-    /**
-     * Optional. Resource name of the integrator.
-     */
-    integrator?: string;
-    /**
-     * Optional. The maximum number of service accounts to return. The service may return fewer than this value. If unspecified, returns at most 100 service accounts. The maximum value is 1000; the server will coerce values above 1000.
-     */
-    pageSize?: number;
-    /**
-     * Optional. A page token, received from a previous `ListSubscribers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscribers` must match the call that provided the page token.
-     */
-    pageToken?: string;
-  }
-  export interface Params$Resource$Integrators$Register
-    extends StandardParameters {
-    /**
-     * Optional. Resource name of the account.
-     */
-    account?: string;
-    /**
-     * Optional. Resource name of the integrator.
-     */
-    integrator?: string;
-    /**
-     * Required. Service account that provides subscriber access to the registered topic.
-     */
-    serviceAccount?: string;
-  }
-  export interface Params$Resource$Integrators$Unregister
-    extends StandardParameters {
-    /**
-     * Optional. Resource name of the account.
-     */
-    account?: string;
-    /**
-     * Optional. Resource name of the integrator.
-     */
-    integrator?: string;
-    /**
-     * Required. Service account to unregister from subscriber access to the topic.
-     */
-    serviceAccount?: string;
   }
 
   export class Resource$Operations {
