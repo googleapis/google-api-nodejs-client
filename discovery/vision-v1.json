@@ -1282,7 +1282,7 @@
       }
     }
   },
-  "revision": "20231219",
+  "revision": "20240823",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AddProductToProductSetRequest": {
@@ -2748,7 +2748,7 @@
       "type": "object"
     },
     "GoogleCloudVisionV1p1beta1FaceAnnotationLandmark": {
-      "description": "A face-specific landmark (for example, a face feature).",
+      "description": "A face-specific landmark (for example, a face feature). Landmark positions may fall outside the bounds of the image if the face is near one or more edges of the image. Therefore it is NOT guaranteed that `0 <= x < width` or `0 <= y < height`.",
       "id": "GoogleCloudVisionV1p1beta1FaceAnnotationLandmark",
       "properties": {
         "position": {
@@ -4162,7 +4162,7 @@
       "type": "object"
     },
     "GoogleCloudVisionV1p2beta1FaceAnnotationLandmark": {
-      "description": "A face-specific landmark (for example, a face feature).",
+      "description": "A face-specific landmark (for example, a face feature). Landmark positions may fall outside the bounds of the image if the face is near one or more edges of the image. Therefore it is NOT guaranteed that `0 <= x < width` or `0 <= y < height`.",
       "id": "GoogleCloudVisionV1p2beta1FaceAnnotationLandmark",
       "properties": {
         "position": {
@@ -5611,7 +5611,7 @@
       "type": "object"
     },
     "GoogleCloudVisionV1p3beta1FaceAnnotationLandmark": {
-      "description": "A face-specific landmark (for example, a face feature).",
+      "description": "A face-specific landmark (for example, a face feature). Landmark positions may fall outside the bounds of the image if the face is near one or more edges of the image. Therefore it is NOT guaranteed that `0 <= x < width` or `0 <= y < height`.",
       "id": "GoogleCloudVisionV1p3beta1FaceAnnotationLandmark",
       "properties": {
         "position": {
@@ -7154,7 +7154,7 @@
       "type": "object"
     },
     "GoogleCloudVisionV1p4beta1FaceAnnotationLandmark": {
-      "description": "A face-specific landmark (for example, a face feature).",
+      "description": "A face-specific landmark (for example, a face feature). Landmark positions may fall outside the bounds of the image if the face is near one or more edges of the image. Therefore it is NOT guaranteed that `0 <= x < width` or `0 <= y < height`.",
       "id": "GoogleCloudVisionV1p4beta1FaceAnnotationLandmark",
       "properties": {
         "position": {
@@ -8322,7 +8322,7 @@
       "type": "object"
     },
     "Landmark": {
-      "description": "A face-specific landmark (for example, a face feature).",
+      "description": "A face-specific landmark (for example, a face feature). Landmark positions may fall outside the bounds of the image if the face is near one or more edges of the image. Therefore it is NOT guaranteed that `0 <= x < width` or `0 <= y < height`.",
       "id": "Landmark",
       "properties": {
         "position": {
