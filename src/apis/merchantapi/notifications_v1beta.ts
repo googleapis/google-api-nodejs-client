@@ -238,7 +238,7 @@ export namespace merchantapi_notifications_v1beta {
     }
 
     /**
-     * Creates a notification subscription for a merchant. We will allow the following types of notification subscriptions to exist together (per merchant as a subscriber per event type): 1. Subscription for all managed accounts + subscription for self 2. Multiple "partial" subscriptions for managed accounts + subscription for self we will not allow (per merchant as a subscriber per event type): 1. multiple self subscriptions. 2. multiple "all managed accounts" subscriptions. 3. all and partial subscriptions at the same time. 4. multiple partial subscriptions for the same target account
+     * Creates a notification subscription for a business. For standalone or subaccounts accounts, the business can create a subscription for self. For MCAs, the business can create a subscription for all managed accounts or for a specific subaccount. We will allow the following types of notification subscriptions to exist together (per business as a subscriber per event type): 1. Subscription for all managed accounts + subscription for self. 2. Multiple "partial" subscriptions for managed accounts + subscription for self. we will not allow (per business as a subscriber per event type): 1. Multiple self subscriptions. 2. Multiple "all managed accounts" subscriptions. 3. "All managed accounts" subscription and partial subscriptions at the same time. 4. Multiple partial subscriptions for the same target account.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

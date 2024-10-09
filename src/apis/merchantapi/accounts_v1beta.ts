@@ -144,19 +144,6 @@ export namespace merchantapi_accounts_v1beta {
     validUntil?: Schema$Date;
   }
   /**
-   * Reference to a Terms of Service resource.
-   */
-  export interface Schema$AcceptTermsOfService {
-    /**
-     * Required. The resource name of the terms of service version.
-     */
-    name?: string | null;
-    /**
-     * Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or `001` when it applies globally.
-     */
-    regionCode?: string | null;
-  }
-  /**
    * An account.
    */
   export interface Schema$Account {
@@ -189,6 +176,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     timeZone?: Schema$TimeZone;
   }
+  /**
+   * `AccountAggregation` payload.
+   */
+  export interface Schema$AccountAggregation {}
   /**
    * An [`AccountIssue`](https://support.google.com/merchants/answer/12153802?sjid=17798438912526418908-EU#account).
    */
@@ -223,9 +214,9 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$AddAccountService {
     /**
-     * The provider is an aggregator for the account.
+     * The provider is an [aggregator](https://support.google.com/merchants/answer/188487) for the account. Payload for service type Account Aggregation.
      */
-    accountAggregation?: Schema$Empty;
+    accountAggregation?: Schema$AccountAggregation;
     /**
      * Optional. The provider of the service. Format: `accounts/{account\}`
      */
@@ -255,6 +246,23 @@ export namespace merchantapi_accounts_v1beta {
      * Street-level part of the address. For example: `111w 31st Street`.
      */
     streetAddress?: string | null;
+  }
+  /**
+   * Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings.
+   */
+  export interface Schema$AutofeedSettings {
+    /**
+     * Output only. Determines whether merchant is eligible for being enrolled into an autofeed.
+     */
+    eligible?: boolean | null;
+    /**
+     * Required. Enables or disables product crawling through the autofeed for the given account. Autofeed accounts must meet [certain conditions](https://support.google.com/merchants/answer/7538732#Configure_automated_feeds_Standard_Experience), which can be checked through the `eligible` field. The account must **not** be a marketplace. When the autofeed is enabled for the first time, the products usually appear instantly. When re-enabling, it might take up to 24 hours for products to appear.
+     */
+    enableProducts?: boolean | null;
+    /**
+     * Identifier. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`.
+     */
+    name?: string | null;
   }
   /**
    * Business days of the warehouse.
@@ -365,15 +373,11 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$CreateAndConfigureAccountRequest {
     /**
-     * Optional. The Terms of Service (ToS) to be accepted immediately upon account creation.
-     */
-    acceptTermsOfService?: Schema$AcceptTermsOfService;
-    /**
      * Required. The account to be created.
      */
     account?: Schema$Account;
     /**
-     * Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently only `account_aggregation` is supported which means the newly created account will be a subaccount of the provider defined in the `account_aggregation` service.
+     * Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation`, which means you can only create sub accounts, not standalone account through this method. Additional `account_management` or `product_management` services may be provided.
      */
     service?: Schema$AddAccountService[];
     /**
@@ -479,7 +483,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     handlingBusinessDayConfig?: Schema$BusinessDayConfig;
     /**
-     * Maximum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. Must be greater than or equal to `min_handling_days`.
+     * Maximum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. Must be greater than or equal to `min_handling_days`. 'min_handling_days' and 'max_handling_days' should be either set or not set at the same time.
      */
     maxHandlingDays?: number | null;
     /**
@@ -487,7 +491,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     maxTransitDays?: number | null;
     /**
-     * Minimum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped.
+     * Minimum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. 'min_handling_days' and 'max_handling_days' should be either set or not set at the same time.
      */
     minHandlingDays?: number | null;
     /**
@@ -1509,9 +1513,10 @@ export namespace merchantapi_accounts_v1beta {
 
   export class Resource$Accounts {
     context: APIRequestContext;
+    autofeedSettings: Resource$Accounts$Autofeedsettings;
     businessIdentity: Resource$Accounts$Businessidentity;
     businessInfo: Resource$Accounts$Businessinfo;
-    emailpreferences: Resource$Accounts$Emailpreferences;
+    emailPreferences: Resource$Accounts$Emailpreferences;
     homepage: Resource$Accounts$Homepage;
     issues: Resource$Accounts$Issues;
     onlineReturnPolicies: Resource$Accounts$Onlinereturnpolicies;
@@ -1522,11 +1527,14 @@ export namespace merchantapi_accounts_v1beta {
     users: Resource$Accounts$Users;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.autofeedSettings = new Resource$Accounts$Autofeedsettings(
+        this.context
+      );
       this.businessIdentity = new Resource$Accounts$Businessidentity(
         this.context
       );
       this.businessInfo = new Resource$Accounts$Businessinfo(this.context);
-      this.emailpreferences = new Resource$Accounts$Emailpreferences(
+      this.emailPreferences = new Resource$Accounts$Emailpreferences(
         this.context
       );
       this.homepage = new Resource$Accounts$Homepage(this.context);
@@ -1632,7 +1640,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Deletes the specified account regardless of its type: standalone, MCA or sub-account. Deleting an MCA leads to the deletion of all of its sub-accounts. Executing this method requires admin access.
+     * Deletes the specified account regardless of its type: standalone, MCA or sub-account. Deleting an MCA leads to the deletion of all of its sub-accounts. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1806,7 +1814,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on.
+     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2088,6 +2096,10 @@ export namespace merchantapi_accounts_v1beta {
   }
   export interface Params$Resource$Accounts$Delete extends StandardParameters {
     /**
+     * Optional. If set to `true`, the account is deleted even if it provides services to other accounts or has processed offers.
+     */
+    force?: boolean;
+    /**
      * Required. The name of the account to delete. Format: `accounts/{account\}`
      */
     name?: string;
@@ -2141,6 +2153,219 @@ export namespace merchantapi_accounts_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Account;
+  }
+
+  export class Resource$Accounts$Autofeedsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the autofeed settings of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAutofeedSettings(
+      params?: Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutofeedSettings>;
+    getAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$AutofeedSettings>,
+      callback: BodyResponseCallback<Schema$AutofeedSettings>
+    ): void;
+    getAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings,
+      callback: BodyResponseCallback<Schema$AutofeedSettings>
+    ): void;
+    getAutofeedSettings(
+      callback: BodyResponseCallback<Schema$AutofeedSettings>
+    ): void;
+    getAutofeedSettings(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings
+        | BodyResponseCallback<Schema$AutofeedSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutofeedSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutofeedSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AutofeedSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutofeedSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutofeedSettings>(parameters);
+      }
+    }
+
+    /**
+     * Updates the autofeed settings of an account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateAutofeedSettings(
+      params?: Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AutofeedSettings>;
+    updateAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$AutofeedSettings>,
+      callback: BodyResponseCallback<Schema$AutofeedSettings>
+    ): void;
+    updateAutofeedSettings(
+      params: Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings,
+      callback: BodyResponseCallback<Schema$AutofeedSettings>
+    ): void;
+    updateAutofeedSettings(
+      callback: BodyResponseCallback<Schema$AutofeedSettings>
+    ): void;
+    updateAutofeedSettings(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings
+        | BodyResponseCallback<Schema$AutofeedSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AutofeedSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AutofeedSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AutofeedSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AutofeedSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AutofeedSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Autofeedsettings$Getautofeedsettings
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Autofeedsettings$Updateautofeedsettings
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`.
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AutofeedSettings;
   }
 
   export class Resource$Accounts$Businessidentity {
@@ -3306,13 +3531,9 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in human-readable fields. For example 'America/Los_Angeles'. If not set, 'America/Los_Angeles' will be used.
      */
-    'timeZone.id'?: string;
-    /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
-     */
-    'timeZone.version'?: string;
+    timeZone?: string;
   }
 
   export class Resource$Accounts$Onlinereturnpolicies {
@@ -5685,11 +5906,11 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Termsofservice$Retrievelatest
     extends StandardParameters {
     /**
-     * The Kind this terms of service version applies to.
+     * Required. The Kind this terms of service version applies to.
      */
     kind?: string;
     /**
-     * Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or 001 when it applies globally.
+     * Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or 001 when it applies globally.
      */
     regionCode?: string;
   }

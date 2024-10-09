@@ -170,6 +170,32 @@ export namespace merchantapi_datasources_v1beta {
     supplementalProductDataSource?: Schema$SupplementalProductDataSource;
   }
   /**
+   * Data source reference can be used to manage related data sources within the data source service.
+   */
+  export interface Schema$DataSourceReference {
+    /**
+     * Optional. The name of the primary data source. Format: `accounts/{account\}/dataSources/{datasource\}`
+     */
+    primaryDataSourceName?: string | null;
+    /**
+     * Self should be used to reference the primary data source itself.
+     */
+    self?: boolean | null;
+    /**
+     * Optional. The name of the supplemental data source. Format: `accounts/{account\}/dataSources/{datasource\}`
+     */
+    supplementalDataSourceName?: string | null;
+  }
+  /**
+   * Default rule management of the data source.
+   */
+  export interface Schema$DefaultRule {
+    /**
+     * Required. The list of data sources linked in the [default rule](https://support.google.com/merchants/answer/7450276). This list is ordered by the default rule priority of joining the data. It might include none or multiple references to `self` and supplemental data sources. The list must not be empty. To link the data source to the default rule, you need to add a new reference to this list (in sequential order). To unlink the data source from the default rule, you need to remove the given reference from this list. Changing the order of this list will result in changing the priority of data sources in the default rule. For example, providing the following list: [`1001`, `self`] will take attribute values from supplemental data source `1001`, and fallback to `self` if the attribute is not set in `1001`.
+     */
+    takeFromDataSources?: Schema$DataSourceReference[];
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -236,6 +262,72 @@ export namespace merchantapi_datasources_v1beta {
     fileName?: string | null;
   }
   /**
+   * The file upload of a specific data source, that is, the result of the retrieval of the data source at a certain timestamp computed asynchronously when the data source processing is finished. Only applicable to file data sources.
+   */
+  export interface Schema$FileUpload {
+    /**
+     * Output only. The data source id.
+     */
+    dataSourceId?: string | null;
+    /**
+     * Output only. The list of issues occurring in the data source.
+     */
+    issues?: Schema$Issue[];
+    /**
+     * Output only. The number of items in the data source that were created.
+     */
+    itemsCreated?: string | null;
+    /**
+     * Output only. The number of items in the data source that were processed.
+     */
+    itemsTotal?: string | null;
+    /**
+     * Output only. The number of items in the data source that were updated.
+     */
+    itemsUpdated?: string | null;
+    /**
+     * Identifier. The name of the data source file upload. Format: `{datasource.name=accounts/{account\}/dataSources/{datasource\}/fileUploads/{fileupload\}\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The processing state of the data source.
+     */
+    processingState?: string | null;
+    /**
+     * Output only. The date at which the file of the data source was uploaded.
+     */
+    uploadTime?: string | null;
+  }
+  /**
+   * An error occurring in the data source, like "invalid price".
+   */
+  export interface Schema$Issue {
+    /**
+     * Output only. The code of the error, for example, "validation/invalid_value". Returns "?" if the code is unknown.
+     */
+    code?: string | null;
+    /**
+     * Output only. The number of occurrences of the error in the file upload.
+     */
+    count?: string | null;
+    /**
+     * Output only. The error description, for example, "Your data source contains items which have too many attributes, or are too big. These items will be dropped".
+     */
+    description?: string | null;
+    /**
+     * Output only. Link to the documentation explaining the issue in more details, if available.
+     */
+    documentationUri?: string | null;
+    /**
+     * Output only. The severity of the issue.
+     */
+    severity?: string | null;
+    /**
+     * Output only. The title of the issue, for example, "Item too big".
+     */
+    title?: string | null;
+  }
+  /**
    * Response message for the ListDataSources method.
    */
   export interface Schema$ListDataSourcesResponse {
@@ -277,6 +369,10 @@ export namespace merchantapi_datasources_v1beta {
      * Optional. The countries where the items may be displayed. Represented as a [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).
      */
     countries?: string[] | null;
+    /**
+     * Optional. Default rule management of the data source. If set, the linked data sources will be replaced.
+     */
+    defaultRule?: Schema$DefaultRule;
     /**
      * Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept products without that restriction.
      */
@@ -374,6 +470,10 @@ export namespace merchantapi_datasources_v1beta {
      * Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.
      */
     feedLabel?: string | null;
+    /**
+     * Output only. The (unordered and deduplicated) list of all primary data sources linked to this data source in either default or custom rules. Supplemental data source cannot be deleted before all links are removed.
+     */
+    referencingPrimaryDataSources?: Schema$DataSourceReference[];
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -408,8 +508,12 @@ export namespace merchantapi_datasources_v1beta {
 
   export class Resource$Accounts$Datasources {
     context: APIRequestContext;
+    fileUploads: Resource$Accounts$Datasources$Fileuploads;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.fileUploads = new Resource$Accounts$Datasources$Fileuploads(
+        this.context
+      );
     }
 
     /**
@@ -1012,5 +1116,108 @@ export namespace merchantapi_datasources_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$DataSource;
+  }
+
+  export class Resource$Accounts$Datasources$Fileuploads {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the latest data source file upload. Only the `latest` alias is accepted for a file upload.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Datasources$Fileuploads$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FileUpload>;
+    get(
+      params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$FileUpload>,
+      callback: BodyResponseCallback<Schema$FileUpload>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Datasources$Fileuploads$Get,
+      callback: BodyResponseCallback<Schema$FileUpload>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$FileUpload>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Datasources$Fileuploads$Get
+        | BodyResponseCallback<Schema$FileUpload>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FileUpload>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FileUpload>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$FileUpload> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Datasources$Fileuploads$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Datasources$Fileuploads$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/datasources/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FileUpload>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FileUpload>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Datasources$Fileuploads$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the data source file upload to retrieve. Format: `accounts/{account\}/dataSources/{datasource\}/fileUploads/latest`
+     */
+    name?: string;
   }
 }

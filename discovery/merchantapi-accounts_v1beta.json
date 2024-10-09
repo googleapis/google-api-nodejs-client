@@ -126,7 +126,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes the specified account regardless of its type: standalone, MCA or sub-account. Deleting an MCA leads to the deletion of all of its sub-accounts. Executing this method requires admin access.",
+          "description": "Deletes the specified account regardless of its type: standalone, MCA or sub-account. Deleting an MCA leads to the deletion of all of its sub-accounts. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.",
           "flatPath": "accounts/v1beta/accounts/{accountsId}",
           "httpMethod": "DELETE",
           "id": "merchantapi.accounts.delete",
@@ -134,6 +134,11 @@
             "name"
           ],
           "parameters": {
+            "force": {
+              "description": "Optional. If set to `true`, the account is deleted even if it provides services to other accounts or has processed offers.",
+              "location": "query",
+              "type": "boolean"
+            },
             "name": {
               "description": "Required. The name of the account to delete. Format: `accounts/{account}`",
               "location": "path",
@@ -176,7 +181,7 @@
           ]
         },
         "list": {
-          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on.",
+          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns accounts the user is directly added to.",
           "flatPath": "accounts/v1beta/accounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.list",
@@ -279,6 +284,69 @@
         }
       },
       "resources": {
+        "autofeedSettings": {
+          "methods": {
+            "getAutofeedSettings": {
+              "description": "Retrieves the autofeed settings of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/autofeedSettings",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.autofeedSettings.getAutofeedSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the autofeed settings. Format: `accounts/{account}/autofeedSettings`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/autofeedSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "AutofeedSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "updateAutofeedSettings": {
+              "description": "Updates the autofeed settings of an account.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/autofeedSettings",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.autofeedSettings.updateAutofeedSettings",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the autofeed settings. Format: `accounts/{account}/autofeedSettings`.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/autofeedSettings$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. List of fields being updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "AutofeedSettings"
+              },
+              "response": {
+                "$ref": "AutofeedSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
         "businessIdentity": {
           "methods": {
             "getBusinessIdentity": {
@@ -405,13 +473,13 @@
             }
           }
         },
-        "emailpreferences": {
+        "emailPreferences": {
           "methods": {
             "getEmailPreferences": {
               "description": "Returns the email preferences for a Merchant Center account user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
               "httpMethod": "GET",
-              "id": "merchantapi.accounts.emailpreferences.getEmailPreferences",
+              "id": "merchantapi.accounts.emailPreferences.getEmailPreferences",
               "parameterOrder": [
                 "name"
               ],
@@ -436,7 +504,7 @@
               "description": "Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/*/users/me/emailPreferences alias to update preferences for the authenticated user.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
               "httpMethod": "PATCH",
-              "id": "merchantapi.accounts.emailpreferences.updateEmailPreferences",
+              "id": "merchantapi.accounts.emailPreferences.updateEmailPreferences",
               "parameterOrder": [
                 "name"
               ],
@@ -621,13 +689,8 @@
                   "required": true,
                   "type": "string"
                 },
-                "timeZone.id": {
-                  "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
-                  "location": "query",
-                  "type": "string"
-                },
-                "timeZone.version": {
-                  "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+                "timeZone": {
+                  "description": "Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in human-readable fields. For example 'America/Los_Angeles'. If not set, 'America/Los_Angeles' will be used.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1325,7 +1388,7 @@
           "parameterOrder": [],
           "parameters": {
             "kind": {
-              "description": "The Kind this terms of service version applies to.",
+              "description": "Required. The Kind this terms of service version applies to.",
               "enum": [
                 "TERMS_OF_SERVICE_KIND_UNSPECIFIED",
                 "MERCHANT_CENTER"
@@ -1338,7 +1401,7 @@
               "type": "string"
             },
             "regionCode": {
-              "description": "Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or 001 when it applies globally.",
+              "description": "Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or 001 when it applies globally.",
               "location": "query",
               "type": "string"
             }
@@ -1354,24 +1417,9 @@
       }
     }
   },
-  "revision": "20240830",
+  "revision": "20241004",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
-    "AcceptTermsOfService": {
-      "description": "Reference to a Terms of Service resource.",
-      "id": "AcceptTermsOfService",
-      "properties": {
-        "name": {
-          "description": "Required. The resource name of the terms of service version.",
-          "type": "string"
-        },
-        "regionCode": {
-          "description": "Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or `001` when it applies globally.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Accepted": {
       "description": "Describes the accepted terms of service.",
       "id": "Accepted",
@@ -1429,6 +1477,12 @@
       },
       "type": "object"
     },
+    "AccountAggregation": {
+      "description": "`AccountAggregation` payload.",
+      "id": "AccountAggregation",
+      "properties": {},
+      "type": "object"
+    },
     "AccountIssue": {
       "description": "An [`AccountIssue`](https://support.google.com/merchants/answer/12153802?sjid=17798438912526418908-EU#account).",
       "id": "AccountIssue",
@@ -1480,8 +1534,8 @@
       "id": "AddAccountService",
       "properties": {
         "accountAggregation": {
-          "$ref": "Empty",
-          "description": "The provider is an aggregator for the account."
+          "$ref": "AccountAggregation",
+          "description": "The provider is an [aggregator](https://support.google.com/merchants/answer/188487) for the account. Payload for service type Account Aggregation."
         },
         "provider": {
           "description": "Optional. The provider of the service. Format: `accounts/{account}`",
@@ -1512,6 +1566,26 @@
         },
         "streetAddress": {
           "description": "Street-level part of the address. For example: `111w 31st Street`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AutofeedSettings": {
+      "description": "Collection of information related to the [autofeed](https://support.google.com/merchants/answer/7538732) settings.",
+      "id": "AutofeedSettings",
+      "properties": {
+        "eligible": {
+          "description": "Output only. Determines whether merchant is eligible for being enrolled into an autofeed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "enableProducts": {
+          "description": "Required. Enables or disables product crawling through the autofeed for the given account. Autofeed accounts must meet [certain conditions](https://support.google.com/merchants/answer/7538732#Configure_automated_feeds_Standard_Experience), which can be checked through the `eligible` field. The account must **not** be a marketplace. When the autofeed is enabled for the first time, the products usually appear instantly. When re-enabling, it might take up to 24 hours for products to appear.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the autofeed settings. Format: `accounts/{account}/autofeedSettings`.",
           "type": "string"
         }
       },
@@ -1680,16 +1754,12 @@
       "description": "Request message for the `CreateAndConfigureAccount` method.",
       "id": "CreateAndConfigureAccountRequest",
       "properties": {
-        "acceptTermsOfService": {
-          "$ref": "AcceptTermsOfService",
-          "description": "Optional. The Terms of Service (ToS) to be accepted immediately upon account creation."
-        },
         "account": {
           "$ref": "Account",
           "description": "Required. The account to be created."
         },
         "service": {
-          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently only `account_aggregation` is supported which means the newly created account will be a subaccount of the provider defined in the `account_aggregation` service.",
+          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation`, which means you can only create sub accounts, not standalone account through this method. Additional `account_management` or `product_management` services may be provided.",
           "items": {
             "$ref": "AddAccountService"
           },
@@ -1819,7 +1889,7 @@
           "description": "The business days during which orders can be handled. If not provided, Monday to Friday business days will be assumed."
         },
         "maxHandlingDays": {
-          "description": "Maximum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. Must be greater than or equal to `min_handling_days`.",
+          "description": "Maximum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. Must be greater than or equal to `min_handling_days`. 'min_handling_days' and 'max_handling_days' should be either set or not set at the same time.",
           "format": "int32",
           "type": "integer"
         },
@@ -1829,7 +1899,7 @@
           "type": "integer"
         },
         "minHandlingDays": {
-          "description": "Minimum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped.",
+          "description": "Minimum number of business days spent before an order is shipped. 0 means same day shipped, 1 means next day shipped. 'min_handling_days' and 'max_handling_days' should be either set or not set at the same time.",
           "format": "int32",
           "type": "integer"
         },

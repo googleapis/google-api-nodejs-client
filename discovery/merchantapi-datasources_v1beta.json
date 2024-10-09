@@ -285,12 +285,43 @@
                 "https://www.googleapis.com/auth/content"
               ]
             }
+          },
+          "resources": {
+            "fileUploads": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest data source file upload. Only the `latest` alias is accepted for a file upload.",
+                  "flatPath": "datasources/v1beta/accounts/{accountsId}/dataSources/{dataSourcesId}/fileUploads/{fileUploadsId}",
+                  "httpMethod": "GET",
+                  "id": "merchantapi.accounts.dataSources.fileUploads.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the data source file upload to retrieve. Format: `accounts/{account}/dataSources/{datasource}/fileUploads/latest`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/dataSources/[^/]+/fileUploads/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "datasources/v1beta/{+name}",
+                  "response": {
+                    "$ref": "FileUpload"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20240909",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -353,6 +384,39 @@
         "supplementalProductDataSource": {
           "$ref": "SupplementalProductDataSource",
           "description": "Required. The [supplemental data source](https://support.google.com/merchants/answer/7439058) for local and online products."
+        }
+      },
+      "type": "object"
+    },
+    "DataSourceReference": {
+      "description": "Data source reference can be used to manage related data sources within the data source service.",
+      "id": "DataSourceReference",
+      "properties": {
+        "primaryDataSourceName": {
+          "description": "Optional. The name of the primary data source. Format: `accounts/{account}/dataSources/{datasource}`",
+          "type": "string"
+        },
+        "self": {
+          "description": "Self should be used to reference the primary data source itself.",
+          "type": "boolean"
+        },
+        "supplementalDataSourceName": {
+          "description": "Optional. The name of the supplemental data source. Format: `accounts/{account}/dataSources/{datasource}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DefaultRule": {
+      "description": "Default rule management of the data source.",
+      "id": "DefaultRule",
+      "properties": {
+        "takeFromDataSources": {
+          "description": "Required. The list of data sources linked in the [default rule](https://support.google.com/merchants/answer/7450276). This list is ordered by the default rule priority of joining the data. It might include none or multiple references to `self` and supplemental data sources. The list must not be empty. To link the data source to the default rule, you need to add a new reference to this list (in sequential order). To unlink the data source from the default rule, you need to remove the given reference from this list. Changing the order of this list will result in changing the priority of data sources in the default rule. For example, providing the following list: [`1001`, `self`] will take attribute values from supplemental data source `1001`, and fallback to `self` if the attribute is not set in `1001`.",
+          "items": {
+            "$ref": "DataSourceReference"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -477,6 +541,120 @@
       },
       "type": "object"
     },
+    "FileUpload": {
+      "description": "The file upload of a specific data source, that is, the result of the retrieval of the data source at a certain timestamp computed asynchronously when the data source processing is finished. Only applicable to file data sources.",
+      "id": "FileUpload",
+      "properties": {
+        "dataSourceId": {
+          "description": "Output only. The data source id.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "issues": {
+          "description": "Output only. The list of issues occurring in the data source.",
+          "items": {
+            "$ref": "Issue"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "itemsCreated": {
+          "description": "Output only. The number of items in the data source that were created.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "itemsTotal": {
+          "description": "Output only. The number of items in the data source that were processed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "itemsUpdated": {
+          "description": "Output only. The number of items in the data source that were updated.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the data source file upload. Format: `{datasource.name=accounts/{account}/dataSources/{datasource}/fileUploads/{fileupload}}`",
+          "type": "string"
+        },
+        "processingState": {
+          "description": "Output only. The processing state of the data source.",
+          "enum": [
+            "PROCESSING_STATE_UNSPECIFIED",
+            "FAILED",
+            "IN_PROGRESS",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Processing state unspecified.",
+            "The data source could not be processed or all the items had errors.",
+            "The data source is being processed.",
+            "The data source was processed successfully, though some items might have had errors."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uploadTime": {
+          "description": "Output only. The date at which the file of the data source was uploaded.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Issue": {
+      "description": "An error occurring in the data source, like \"invalid price\".",
+      "id": "Issue",
+      "properties": {
+        "code": {
+          "description": "Output only. The code of the error, for example, \"validation/invalid_value\". Returns \"?\" if the code is unknown.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "count": {
+          "description": "Output only. The number of occurrences of the error in the file upload.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. The error description, for example, \"Your data source contains items which have too many attributes, or are too big. These items will be dropped\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentationUri": {
+          "description": "Output only. Link to the documentation explaining the issue in more details, if available.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "severity": {
+          "description": "Output only. The severity of the issue.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "WARNING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Severity unspecified.",
+            "The issue is the warning.",
+            "The issue is an error."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "description": "Output only. The title of the issue, for example, \"Item too big\".",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDataSourcesResponse": {
       "description": "Response message for the ListDataSources method.",
       "id": "ListDataSourcesResponse",
@@ -540,6 +718,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "defaultRule": {
+          "$ref": "DefaultRule",
+          "description": "Optional. Default rule management of the data source. If set, the linked data sources will be replaced."
         },
         "feedLabel": {
           "description": "Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept products without that restriction.",
@@ -723,6 +905,14 @@
         "feedLabel": {
           "description": "Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.",
           "type": "string"
+        },
+        "referencingPrimaryDataSources": {
+          "description": "Output only. The (unordered and deduplicated) list of all primary data sources linked to this data source in either default or custom rules. Supplemental data source cannot be deleted before all links are removed.",
+          "items": {
+            "$ref": "DataSourceReference"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
