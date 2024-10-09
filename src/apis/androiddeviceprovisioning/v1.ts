@@ -440,6 +440,10 @@ export namespace androiddeviceprovisioning_v1 {
      */
     imei?: string | null;
     /**
+     * The device’s second IMEI number.
+     */
+    imei2?: string | null;
+    /**
      * The device manufacturer’s name. Matches the device's built-in value returned from `android.os.Build.MANUFACTURER`. Allowed values are listed in [Android manufacturers](/zero-touch/resources/manufacturer-names#manufacturers-names).
      */
     manufacturer?: string | null;
@@ -447,6 +451,10 @@ export namespace androiddeviceprovisioning_v1 {
      * The device’s MEID number.
      */
     meid?: string | null;
+    /**
+     * The device’s second MEID number.
+     */
+    meid2?: string | null;
     /**
      * The device model's name. Allowed values are listed in [Android models](/zero-touch/resources/manufacturer-names#model-names) and [Chrome OS models](https://support.google.com/chrome/a/answer/10130175#identify_compatible).
      */
