@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20240319",
+  "revision": "20240917",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -663,6 +663,11 @@
         "id": {
           "description": "The unique opaque id for this model. Use this for invoking the TestExecutionService.",
           "type": "string"
+        },
+        "labInfo": {
+          "$ref": "LabInfo",
+          "description": "Output only. Lab info of this device.",
+          "readOnly": true
         },
         "lowFpsVideoRecording": {
           "description": "True if and only if tests with this model are recorded by stitching together screenshots. See use_low_spec_video_recording in device config.",
@@ -1701,6 +1706,17 @@
         "xctestrun": {
           "$ref": "FileReference",
           "description": "An .xctestrun file that will override the .xctestrun file in the tests zip. Because the .xctestrun file contains environment variables along with test methods to run and/or ignore, this can be useful for sharding tests. Default is taken from the tests zip."
+        }
+      },
+      "type": "object"
+    },
+    "LabInfo": {
+      "description": "Lab specific information for a device.",
+      "id": "LabInfo",
+      "properties": {
+        "name": {
+          "description": "Lab name where the device is hosted. If empty, the device is hosted in a Google owned lab.",
+          "type": "string"
         }
       },
       "type": "object"

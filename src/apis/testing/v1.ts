@@ -275,6 +275,10 @@ export namespace testing_v1 {
      */
     id?: string | null;
     /**
+     * Output only. Lab info of this device.
+     */
+    labInfo?: Schema$LabInfo;
+    /**
      * True if and only if tests with this model are recorded by stitching together screenshots. See use_low_spec_video_recording in device config.
      */
     lowFpsVideoRecording?: boolean | null;
@@ -1004,6 +1008,15 @@ export namespace testing_v1 {
      * An .xctestrun file that will override the .xctestrun file in the tests zip. Because the .xctestrun file contains environment variables along with test methods to run and/or ignore, this can be useful for sharding tests. Default is taken from the tests zip.
      */
     xctestrun?: Schema$FileReference;
+  }
+  /**
+   * Lab specific information for a device.
+   */
+  export interface Schema$LabInfo {
+    /**
+     * Lab name where the device is hosted. If empty, the device is hosted in a Google owned lab.
+     */
+    name?: string | null;
   }
   /**
    * Specifies an intent that starts the main launcher activity.
