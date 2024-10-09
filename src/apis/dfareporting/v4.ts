@@ -170,6 +170,8 @@ export namespace dfareporting_v4 {
     subaccounts: Resource$Subaccounts;
     targetableRemarketingLists: Resource$Targetableremarketinglists;
     targetingTemplates: Resource$Targetingtemplates;
+    tvCampaignDetails: Resource$Tvcampaigndetails;
+    tvCampaignSummaries: Resource$Tvcampaignsummaries;
     userProfiles: Resource$Userprofiles;
     userRolePermissionGroups: Resource$Userrolepermissiongroups;
     userRolePermissions: Resource$Userrolepermissions;
@@ -261,6 +263,8 @@ export namespace dfareporting_v4 {
         this.context
       );
       this.targetingTemplates = new Resource$Targetingtemplates(this.context);
+      this.tvCampaignDetails = new Resource$Tvcampaigndetails(this.context);
+      this.tvCampaignSummaries = new Resource$Tvcampaignsummaries(this.context);
       this.userProfiles = new Resource$Userprofiles(this.context);
       this.userRolePermissionGroups = new Resource$Userrolepermissiongroups(
         this.context
@@ -1382,7 +1386,7 @@ export namespace dfareporting_v4 {
     totalAmountMicros?: string | null;
   }
   /**
-   * Contains additional information about cart data.
+   * Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate.
    */
   export interface Schema$CartData {
     /**
@@ -1398,7 +1402,7 @@ export namespace dfareporting_v4 {
      */
     merchantFeedLanguage?: string | null;
     /**
-     * The Merchant Center ID where the items are uploaded.
+     * The Merchant Center ID where the items are uploaded. This is a required field.
      */
     merchantId?: string | null;
   }
@@ -1634,13 +1638,17 @@ export namespace dfareporting_v4 {
     kind?: string | null;
   }
   /**
-   * Represents a response to the queryCompatibleFields method.
+   * Represents a response to the queryCompatibleFields method. Next ID: 10
    */
   export interface Schema$CompatibleFields {
     /**
      * Contains items that are compatible to be selected for a report of type "CROSS_DIMENSION_REACH".
      */
     crossDimensionReachReportCompatibleFields?: Schema$CrossDimensionReachReportCompatibleFields;
+    /**
+     * Contains items that are compatible to be selected for a report of type "CROSS_MEDIA_REACH".
+     */
+    crossMediaReachReportCompatibleFields?: Schema$CrossMediaReachReportCompatibleFields;
     /**
      * Contains items that are compatible to be selected for a report of type "FLOODLIGHT".
      */
@@ -1744,7 +1752,7 @@ export namespace dfareporting_v4 {
      */
     childDirectedTreatment?: boolean | null;
     /**
-     * Custom floodlight variables. This field may only be used when calling batchinsert; it is not supported by batchupdate.
+     * Custom floodlight variables.
      */
     customVariables?: Schema$CustomFloodlightVariable[];
     /**
@@ -2867,6 +2875,27 @@ export namespace dfareporting_v4 {
     overlapMetrics?: Schema$Metric[];
   }
   /**
+   * Represents fields that are compatible to be selected for a report of type "CROSS_MEDIA_REACH".
+   */
+  export interface Schema$CrossMediaReachReportCompatibleFields {
+    /**
+     * Dimensions which are compatible to be selected in the "dimensionFilters" section of the report.
+     */
+    dimensionFilters?: Schema$Dimension[];
+    /**
+     * Dimensions which are compatible to be selected in the "dimensions" section of the report.
+     */
+    dimensions?: Schema$Dimension[];
+    /**
+     * The kind of resource this is, in this case dfareporting#crossMediaReachReportCompatibleFields.
+     */
+    kind?: string | null;
+    /**
+     * Metrics which are compatible to be selected in the "metricNames" section of the report.
+     */
+    metrics?: Schema$Metric[];
+  }
+  /**
    * A custom floodlight variable. This field may only be used when calling batchinsert; it is not supported by batchupdate.
    */
   export interface Schema$CustomFloodlightVariable {
@@ -2875,7 +2904,7 @@ export namespace dfareporting_v4 {
      */
     kind?: string | null;
     /**
-     * The type of custom floodlight variable to supply a value for. These map to the "u[1-20]=" in the tags.
+     * The type of custom floodlight variable to supply a value for. These map to the "u[1-100]=" in the tags.
      */
     type?: string | null;
     /**
@@ -5740,6 +5769,15 @@ export namespace dfareporting_v4 {
       pivoted?: boolean;
     } | null;
     /**
+     * Optional. The report criteria for a report of type "CROSS_MEDIA_REACH".
+     */
+    crossMediaReachCriteria?: {
+      dateRange?: Schema$DateRange;
+      dimensionFilters?: Schema$DimensionValue[];
+      dimensions?: Schema$SortedDimension[];
+      metricNames?: string[];
+    } | null;
+    /**
      * The report's email delivery settings.
      */
     delivery?: {
@@ -6589,6 +6627,94 @@ export namespace dfareporting_v4 {
      * Identifies what kind of resource this is. Value: the fixed string "dfareporting#transcodeSetting".
      */
     kind?: string | null;
+  }
+  /**
+   * TvCampaignDetail contains data from a TV campaign for specific start dates and date windows.
+   */
+  export interface Schema$TvCampaignDetail {
+    /**
+     * ID of this TV campaign.
+     */
+    id?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#tvCampaignSummary".
+     */
+    kind?: string | null;
+    /**
+     * The timepoints of the TV campaign.
+     */
+    timepoints?: Schema$TvCampaignTimepoint[];
+  }
+  /**
+   * Response message for TvCampaignSummariesService.List.
+   */
+  export interface Schema$TvCampaignSummariesListResponse {
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#tvCampaignSummariesListResponse".
+     */
+    kind?: string | null;
+    /**
+     * List of TV campaign summaries.
+     */
+    tvCampaignSummaries?: Schema$TvCampaignSummary[];
+  }
+  /**
+   * TvCampaignSummary contains aggregate data from a TV campaign.
+   */
+  export interface Schema$TvCampaignSummary {
+    /**
+     * The end date of the TV campaign, inclusive. A string of the format: "yyyy-MM-dd".
+     */
+    endDate?: string | null;
+    /**
+     * GRP of this TV campaign.
+     */
+    grp?: string | null;
+    /**
+     * ID of this TV campaign.
+     */
+    id?: string | null;
+    /**
+     * Impressions across the entire TV campaign.
+     */
+    impressions?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#tvCampaignSummary".
+     */
+    kind?: string | null;
+    /**
+     * Identifier. Name of this TV campaign.
+     */
+    name?: string | null;
+    /**
+     * Spend across the entire TV campaign.
+     */
+    spend?: number | null;
+    /**
+     * The start date of the TV campaign, inclusive. A string of the format: "yyyy-MM-dd".
+     */
+    startDate?: string | null;
+    /**
+     * "CampaignComponentType" of this TV campaign.
+     */
+    type?: string | null;
+  }
+  /**
+   * A single data point for TvCampaignDetail, which holds information about the TV campaign for a specific start date and date window.
+   */
+  export interface Schema$TvCampaignTimepoint {
+    /**
+     * The date window of the timepoint.
+     */
+    dateWindow?: string | null;
+    /**
+     * The spend within the time range of the timepoint.
+     */
+    spend?: number | null;
+    /**
+     * The start date of the timepoint. A string in the format of "yyyy-MM-dd".
+     */
+    startDate?: string | null;
   }
   /**
    * A Universal Ad ID as per the VAST 4.0 spec. Applicable to the following creative types: INSTREAM_AUDIO, INSTREAM_VIDEO and VPAID.
@@ -28465,6 +28591,237 @@ export namespace dfareporting_v4 {
      * Request body metadata
      */
     requestBody?: Schema$TargetingTemplate;
+  }
+
+  export class Resource$Tvcampaigndetails {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets one TvCampaignDetail by ID.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Tvcampaigndetails$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Tvcampaigndetails$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TvCampaignDetail>;
+    get(
+      params: Params$Resource$Tvcampaigndetails$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Tvcampaigndetails$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TvCampaignDetail>,
+      callback: BodyResponseCallback<Schema$TvCampaignDetail>
+    ): void;
+    get(
+      params: Params$Resource$Tvcampaigndetails$Get,
+      callback: BodyResponseCallback<Schema$TvCampaignDetail>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TvCampaignDetail>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Tvcampaigndetails$Get
+        | BodyResponseCallback<Schema$TvCampaignDetail>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TvCampaignDetail>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TvCampaignDetail>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TvCampaignDetail> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tvcampaigndetails$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tvcampaigndetails$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{+profileId}/tvCampaignDetails/{+id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId', 'id'],
+        pathParams: ['id', 'profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TvCampaignDetail>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TvCampaignDetail>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Tvcampaigndetails$Get
+    extends StandardParameters {
+    /**
+     * Required. Account ID associated with this request.
+     */
+    accountId?: string;
+    /**
+     * Required. TV Campaign ID.
+     */
+    id?: string;
+    /**
+     * Required. User profile ID associated with this request.
+     */
+    profileId?: string;
+  }
+
+  export class Resource$Tvcampaignsummaries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a list of TV campaign summaries.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Tvcampaignsummaries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Tvcampaignsummaries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TvCampaignSummariesListResponse>;
+    list(
+      params: Params$Resource$Tvcampaignsummaries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Tvcampaignsummaries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TvCampaignSummariesListResponse>,
+      callback: BodyResponseCallback<Schema$TvCampaignSummariesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Tvcampaignsummaries$List,
+      callback: BodyResponseCallback<Schema$TvCampaignSummariesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$TvCampaignSummariesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Tvcampaignsummaries$List
+        | BodyResponseCallback<Schema$TvCampaignSummariesListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TvCampaignSummariesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TvCampaignSummariesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TvCampaignSummariesListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Tvcampaignsummaries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Tvcampaignsummaries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/userprofiles/{+profileId}/tvCampaignSummaries'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['profileId'],
+        pathParams: ['profileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TvCampaignSummariesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TvCampaignSummariesListResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Tvcampaignsummaries$List
+    extends StandardParameters {
+    /**
+     * Required. Account ID associated with this request.
+     */
+    accountId?: string;
+    /**
+     * Required. Search string to filter the list of TV campaign summaries. Matches any substring. Required field.
+     */
+    name?: string;
+    /**
+     * Required. User profile ID associated with this request.
+     */
+    profileId?: string;
   }
 
   export class Resource$Userprofiles {

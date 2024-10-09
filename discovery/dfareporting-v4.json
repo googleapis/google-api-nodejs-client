@@ -9561,6 +9561,91 @@
         }
       }
     },
+    "tvCampaignDetails": {
+      "methods": {
+        "get": {
+          "description": "Gets one TvCampaignDetail by ID.",
+          "flatPath": "userprofiles/{userprofilesId}/tvCampaignDetails/{tvCampaignDetailsId}",
+          "httpMethod": "GET",
+          "id": "dfareporting.tvCampaignDetails.get",
+          "parameterOrder": [
+            "profileId",
+            "id"
+          ],
+          "parameters": {
+            "accountId": {
+              "description": "Required. Account ID associated with this request.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "id": {
+              "description": "Required. TV Campaign ID.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "profileId": {
+              "description": "Required. User profile ID associated with this request.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "userprofiles/{+profileId}/tvCampaignDetails/{+id}",
+          "response": {
+            "$ref": "TvCampaignDetail"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        }
+      }
+    },
+    "tvCampaignSummaries": {
+      "methods": {
+        "list": {
+          "description": "Retrieves a list of TV campaign summaries.",
+          "flatPath": "userprofiles/{userprofilesId}/tvCampaignSummaries",
+          "httpMethod": "GET",
+          "id": "dfareporting.tvCampaignSummaries.list",
+          "parameterOrder": [
+            "profileId"
+          ],
+          "parameters": {
+            "accountId": {
+              "description": "Required. Account ID associated with this request.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. Search string to filter the list of TV campaign summaries. Matches any substring. Required field.",
+              "location": "query",
+              "type": "string"
+            },
+            "profileId": {
+              "description": "Required. User profile ID associated with this request.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "userprofiles/{+profileId}/tvCampaignSummaries",
+          "response": {
+            "$ref": "TvCampaignSummariesListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        }
+      }
+    },
     "userProfiles": {
       "methods": {
         "get": {
@@ -10067,7 +10152,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20240926",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11664,7 +11749,7 @@
       "type": "object"
     },
     "CartData": {
-      "description": "Contains additional information about cart data.",
+      "description": "Contains additional information about cart data. This field may only be used when calling batchinsert; it is not supported by batchupdate.",
       "id": "CartData",
       "properties": {
         "items": {
@@ -11683,7 +11768,7 @@
           "type": "string"
         },
         "merchantId": {
-          "description": "The Merchant Center ID where the items are uploaded.",
+          "description": "The Merchant Center ID where the items are uploaded. This is a required field.",
           "format": "int64",
           "type": "string"
         }
@@ -11968,12 +12053,16 @@
       "type": "object"
     },
     "CompatibleFields": {
-      "description": "Represents a response to the queryCompatibleFields method.",
+      "description": "Represents a response to the queryCompatibleFields method. Next ID: 10",
       "id": "CompatibleFields",
       "properties": {
         "crossDimensionReachReportCompatibleFields": {
           "$ref": "CrossDimensionReachReportCompatibleFields",
           "description": "Contains items that are compatible to be selected for a report of type \"CROSS_DIMENSION_REACH\"."
+        },
+        "crossMediaReachReportCompatibleFields": {
+          "$ref": "CrossMediaReachReportCompatibleFields",
+          "description": "Contains items that are compatible to be selected for a report of type \"CROSS_MEDIA_REACH\"."
         },
         "floodlightReportCompatibleFields": {
           "$ref": "FloodlightReportCompatibleFields",
@@ -12107,7 +12196,7 @@
           "type": "boolean"
         },
         "customVariables": {
-          "description": "Custom floodlight variables. This field may only be used when calling batchinsert; it is not supported by batchupdate.",
+          "description": "Custom floodlight variables.",
           "items": {
             "$ref": "CustomFloodlightVariable"
           },
@@ -14300,6 +14389,38 @@
       },
       "type": "object"
     },
+    "CrossMediaReachReportCompatibleFields": {
+      "description": "Represents fields that are compatible to be selected for a report of type \"CROSS_MEDIA_REACH\".",
+      "id": "CrossMediaReachReportCompatibleFields",
+      "properties": {
+        "dimensionFilters": {
+          "description": "Dimensions which are compatible to be selected in the \"dimensionFilters\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "dimensions": {
+          "description": "Dimensions which are compatible to be selected in the \"dimensions\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#crossMediaReachReportCompatibleFields.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics which are compatible to be selected in the \"metricNames\" section of the report.",
+          "items": {
+            "$ref": "Metric"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CustomFloodlightVariable": {
       "description": "A custom floodlight variable. This field may only be used when calling batchinsert; it is not supported by batchupdate.",
       "id": "CustomFloodlightVariable",
@@ -14309,7 +14430,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of custom floodlight variable to supply a value for. These map to the \"u[1-20]=\" in the tags.",
+          "description": "The type of custom floodlight variable to supply a value for. These map to the \"u[1-100]=\" in the tags.",
           "enum": [
             "U1",
             "U2",
@@ -19117,6 +19238,37 @@
           },
           "type": "object"
         },
+        "crossMediaReachCriteria": {
+          "description": "Optional. The report criteria for a report of type \"CROSS_MEDIA_REACH\".",
+          "properties": {
+            "dateRange": {
+              "$ref": "DateRange",
+              "description": "Required. The date range this report should be run for."
+            },
+            "dimensionFilters": {
+              "description": "Required. The list of filters on which dimensions are filtered. Filters for different dimensions are ANDed, filters for the same dimension are grouped together and ORed.",
+              "items": {
+                "$ref": "DimensionValue"
+              },
+              "type": "array"
+            },
+            "dimensions": {
+              "description": "Required. The list of dimensions the report should include.",
+              "items": {
+                "$ref": "SortedDimension"
+              },
+              "type": "array"
+            },
+            "metricNames": {
+              "description": "Required. The list of names of metrics the report should include.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
         "delivery": {
           "description": "The report's email delivery settings.",
           "properties": {
@@ -19486,9 +19638,11 @@
             "REACH",
             "PATH_TO_CONVERSION",
             "CROSS_DIMENSION_REACH",
-            "FLOODLIGHT"
+            "FLOODLIGHT",
+            "CROSS_MEDIA_REACH"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -20556,6 +20710,140 @@
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#transcodeSetting\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TvCampaignDetail": {
+      "description": "TvCampaignDetail contains data from a TV campaign for specific start dates and date windows.",
+      "id": "TvCampaignDetail",
+      "properties": {
+        "id": {
+          "description": "ID of this TV campaign.",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#tvCampaignSummary\".",
+          "type": "string"
+        },
+        "timepoints": {
+          "description": "The timepoints of the TV campaign.",
+          "items": {
+            "$ref": "TvCampaignTimepoint"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TvCampaignSummariesListResponse": {
+      "description": "Response message for TvCampaignSummariesService.List.",
+      "id": "TvCampaignSummariesListResponse",
+      "properties": {
+        "kind": {
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#tvCampaignSummariesListResponse\".",
+          "type": "string"
+        },
+        "tvCampaignSummaries": {
+          "description": "List of TV campaign summaries.",
+          "items": {
+            "$ref": "TvCampaignSummary"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TvCampaignSummary": {
+      "description": "TvCampaignSummary contains aggregate data from a TV campaign.",
+      "id": "TvCampaignSummary",
+      "properties": {
+        "endDate": {
+          "description": "The end date of the TV campaign, inclusive. A string of the format: \"yyyy-MM-dd\".",
+          "type": "string"
+        },
+        "grp": {
+          "description": "GRP of this TV campaign.",
+          "format": "int64",
+          "type": "string"
+        },
+        "id": {
+          "description": "ID of this TV campaign.",
+          "type": "string"
+        },
+        "impressions": {
+          "description": "Impressions across the entire TV campaign.",
+          "format": "int64",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#tvCampaignSummary\".",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Name of this TV campaign.",
+          "type": "string"
+        },
+        "spend": {
+          "description": "Spend across the entire TV campaign.",
+          "format": "double",
+          "type": "number"
+        },
+        "startDate": {
+          "description": "The start date of the TV campaign, inclusive. A string of the format: \"yyyy-MM-dd\".",
+          "type": "string"
+        },
+        "type": {
+          "description": "\"CampaignComponentType\" of this TV campaign.",
+          "enum": [
+            "CAMPAIGN_COMPONENT_TYPE_UNSPECIFIED",
+            "COMPANY",
+            "BRAND",
+            "PRODUCT",
+            "CAMPAIGN"
+          ],
+          "enumDescriptions": [
+            "Required to exist; do not use.",
+            "Company.",
+            "Brand.",
+            "Product.",
+            "Campaign."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TvCampaignTimepoint": {
+      "description": "A single data point for TvCampaignDetail, which holds information about the TV campaign for a specific start date and date window.",
+      "id": "TvCampaignTimepoint",
+      "properties": {
+        "dateWindow": {
+          "description": "The date window of the timepoint.",
+          "enum": [
+            "WEEKS_UNSPECIFIED",
+            "WEEKS_ONE",
+            "WEEKS_FOUR",
+            "WEEKS_EIGHT",
+            "WEEKS_TWELVE"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be set.",
+            "One week.",
+            "Four weeks.",
+            "Eight weeks.",
+            "Twelve weeks."
+          ],
+          "type": "string"
+        },
+        "spend": {
+          "description": "The spend within the time range of the timepoint.",
+          "format": "double",
+          "type": "number"
+        },
+        "startDate": {
+          "description": "The start date of the timepoint. A string in the format of \"yyyy-MM-dd\".",
           "type": "string"
         }
       },
