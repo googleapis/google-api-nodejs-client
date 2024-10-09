@@ -223,7 +223,7 @@ export namespace sts_v1 {
      */
     options?: string | null;
     /**
-     * Required. An identifier for the type of requested security token. Can be `urn:ietf:params:oauth:token-type:access_token` or `urn:ietf:params:oauth:token-type:access_boundary_intermediate_token`.
+     * Required. An identifier for the type of requested security token. Can be `urn:ietf:params:oauth:token-type:access_token` or `urn:ietf:params:oauth:token-type:access_boundary_intermediary_token`.
      */
     requestedTokenType?: string | null;
     /**
@@ -244,7 +244,7 @@ export namespace sts_v1 {
    */
   export interface Schema$GoogleIdentityStsV1ExchangeTokenResponse {
     /**
-     * The access boundary session key. This key is used along with the access boundary intermediate token to generate Credential Access Boundary tokens at client side. This field is absent when the `requested_token_type` from the request is not `urn:ietf:params:oauth:token-type:access_boundary_intermediate_token`.
+     * The access boundary session key. This key is used along with the access boundary intermediary token to generate Credential Access Boundary tokens at client side. This field is absent when the `requested_token_type` from the request is not `urn:ietf:params:oauth:token-type:access_boundary_intermediary_token`.
      */
     access_boundary_session_key?: string | null;
     /**
