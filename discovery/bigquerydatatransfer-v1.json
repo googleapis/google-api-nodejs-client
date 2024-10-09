@@ -29,6 +29,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigquerydatatransfer.europe-west9.rep.googleapis.com/",
       "location": "europe-west9"
     },
@@ -39,8 +44,28 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigquerydatatransfer.us-east4.rep.googleapis.com/",
       "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
     },
     {
       "description": "Regional Endpoint",
@@ -49,8 +74,33 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigquerydatatransfer.us-west1.rep.googleapis.com/",
       "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquerydatatransfer.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1407,7 +1457,7 @@
       }
     }
   },
-  "revision": "20240806",
+  "revision": "20240922",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1691,6 +1741,17 @@
       },
       "type": "object"
     },
+    "EventDrivenSchedule": {
+      "description": "Options customizing EventDriven transfers schedule.",
+      "id": "EventDrivenSchedule",
+      "properties": {
+        "pubsubSubscription": {
+          "description": "Pub/Sub subscription name used to receive events. Only Google Cloud Storage data source support this option. Format: projects/{project}/subscriptions/{subscription}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListDataSourcesResponse": {
       "description": "Returns list of supported data sources and their metadata.",
       "id": "ListDataSourcesResponse",
@@ -1822,6 +1883,12 @@
       },
       "type": "object"
     },
+    "ManualSchedule": {
+      "description": "Options customizing manual transfers schedule.",
+      "id": "ManualSchedule",
+      "properties": {},
+      "type": "object"
+    },
     "ScheduleOptions": {
       "description": "Options customizing the data transfer schedule.",
       "id": "ScheduleOptions",
@@ -1839,6 +1906,25 @@
           "description": "Specifies time to start scheduling transfer runs. The first run will be scheduled at or after the start time according to a recurrence pattern defined in the schedule string. The start time can be changed at any moment. The time when a data transfer can be triggered manually is not limited by this option.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScheduleOptionsV2": {
+      "description": "V2 options customizing different types of data transfer schedule. This field supports existing time-based and manual transfer schedule. Also supports Event-Driven transfer schedule. ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule.",
+      "id": "ScheduleOptionsV2",
+      "properties": {
+        "eventDrivenSchedule": {
+          "$ref": "EventDrivenSchedule",
+          "description": "Event driven transfer schedule options. If set, the transfer will be scheduled upon events arrial."
+        },
+        "manualSchedule": {
+          "$ref": "ManualSchedule",
+          "description": "Manual transfer schedule. If set, the transfer run will not be auto-scheduled by the system, unless the client invokes StartManualTransferRuns. This is equivalent to disable_auto_scheduling = true."
+        },
+        "timeBasedSchedule": {
+          "$ref": "TimeBasedSchedule",
+          "description": "Time based transfer schedule options. This is the default schedule option."
         }
       },
       "type": "object"
@@ -1931,6 +2017,27 @@
       },
       "type": "object"
     },
+    "TimeBasedSchedule": {
+      "description": "Options customizing the time based transfer schedule. Options are migrated from the original ScheduleOptions message.",
+      "id": "TimeBasedSchedule",
+      "properties": {
+        "endTime": {
+          "description": "Defines time to stop scheduling transfer runs. A transfer run cannot be scheduled at or after the end time. The end time can be changed at any moment.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "schedule": {
+          "description": "Data transfer schedule. If the data source does not support a custom schedule, this should be empty. If it is empty, the default value for the data source will be used. The specified times are in UTC. Examples of valid format: `1st,3rd monday of month 15:30`, `every wed,fri of jan,jun 13:15`, and `first sunday of quarter 00:00`. See more explanation about the format here: https://cloud.google.com/appengine/docs/flexible/python/scheduling-jobs-with-cron-yaml#the_schedule_format NOTE: The minimum interval time between recurring transfers depends on the data source; refer to the documentation for your data source.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Specifies time to start scheduling transfer runs. The first run will be scheduled at or after the start time according to a recurrence pattern defined in the schedule string. The start time can be changed at any moment.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TimeRange": {
       "description": "A specification for a time range, this will request transfer runs with run_time between start_time (inclusive) and end_time (exclusive).",
       "id": "TimeRange",
@@ -1986,6 +2093,11 @@
           "$ref": "EncryptionConfiguration",
           "description": "The encryption configuration part. Currently, it is only used for the optional KMS key name. The BigQuery service account of your project must be granted permissions to use the key. Read methods will return the key name applied in effect. Write methods will apply the key if it is present, or otherwise try to apply project default keys if it is absent."
         },
+        "error": {
+          "$ref": "Status",
+          "description": "Output only. Error code with detailed information about reason of the latest config failure.",
+          "readOnly": true
+        },
         "name": {
           "description": "Identifier. The resource name of the transfer config. Transfer config names have the form either `projects/{project_id}/locations/{region}/transferConfigs/{config_id}` or `projects/{project_id}/transferConfigs/{config_id}`, where `config_id` is usually a UUID, even though it is not guaranteed or required. The name is ignored when creating a transfer config.",
           "type": "string"
@@ -2020,6 +2132,10 @@
         "scheduleOptions": {
           "$ref": "ScheduleOptions",
           "description": "Options customizing the data transfer schedule."
+        },
+        "scheduleOptionsV2": {
+          "$ref": "ScheduleOptionsV2",
+          "description": "Options customizing different types of data transfer schedule. This field replaces \"schedule\" and \"schedule_options\" fields. ScheduleOptionsV2 cannot be used together with ScheduleOptions/Schedule."
         },
         "state": {
           "description": "Output only. State of the most recently updated transfer run.",
