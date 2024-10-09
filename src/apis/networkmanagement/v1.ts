@@ -495,6 +495,14 @@ export namespace networkmanagement_v1 {
      * Project ID where the endpoint is located. The Project ID can be derived from the URI if you provide a VM instance or network URI. The following are two cases where you must provide the project ID: 1. Only the IP address is specified, and the IP address is within a Google Cloud project. 2. When you are using Shared VPC and the IP address that you provide is from the service project. In this case, the network that the IP address resides in is defined in the host project.
      */
     projectId?: string | null;
+    /**
+     * A [Redis Cluster](https://cloud.google.com/memorystore/docs/cluster) URI.
+     */
+    redisCluster?: string | null;
+    /**
+     * A [Redis Instance](https://cloud.google.com/memorystore/docs/redis) URI.
+     */
+    redisInstance?: string | null;
   }
   /**
    * For display only. The specification of the endpoints for the test. EndpointInfo is derived from source and destination Endpoint and validated by the backend data plane model.
@@ -987,7 +995,7 @@ export namespace networkmanagement_v1 {
     type?: string | null;
   }
   /**
-   * For display only. Metadata associated with a Compute Engine network.
+   * For display only. Metadata associated with a Compute Engine network. Next ID: 7
    */
   export interface Schema$NetworkInfo {
     /**
@@ -995,9 +1003,17 @@ export namespace networkmanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * The IP range that matches the test.
+     * The IP range of the subnet matching the source IP address of the test.
      */
     matchedIpRange?: string | null;
+    /**
+     * URI of the subnet matching the source IP address of the test.
+     */
+    matchedSubnetUri?: string | null;
+    /**
+     * The region of the subnet matching the source IP address of the test.
+     */
+    region?: string | null;
     /**
      * URI of a Compute Engine network.
      */
@@ -1194,6 +1210,35 @@ export namespace networkmanagement_v1 {
     verifyTime?: string | null;
   }
   /**
+   * For display only. Metadata associated with a Redis Cluster.
+   */
+  export interface Schema$RedisClusterInfo {
+    /**
+     * Discovery endpoint IP address of a Redis Cluster.
+     */
+    discoveryEndpointIpAddress?: string | null;
+    /**
+     * Name of a Redis Cluster.
+     */
+    displayName?: string | null;
+    /**
+     * Name of the region in which the Redis Cluster is defined. For example, "us-central1".
+     */
+    location?: string | null;
+    /**
+     * URI of a Redis Cluster network in format "projects/{project_id\}/global/networks/{network_id\}".
+     */
+    networkUri?: string | null;
+    /**
+     * Secondary endpoint IP address of a Redis Cluster.
+     */
+    secondaryEndpointIpAddress?: string | null;
+    /**
+     * URI of a Redis Cluster in format "projects/{project_id\}/locations/{location\}/clusters/{cluster_id\}"
+     */
+    uri?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Cloud Redis Instance.
    */
   export interface Schema$RedisInstanceInfo {
@@ -1230,6 +1275,14 @@ export namespace networkmanagement_v1 {
    * For display only. Metadata associated with a Compute Engine route.
    */
   export interface Schema$RouteInfo {
+    /**
+     * For advertised routes, the URI of their next hop, i.e. the URI of the hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance) the advertised prefix is advertised through, or URI of the source peered network.
+     */
+    advertisedRouteNextHopUri?: string | null;
+    /**
+     * For advertised dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix.
+     */
+    advertisedRouteSourceRouterUri?: string | null;
     /**
      * Destination IP range of the route.
      */
@@ -1275,6 +1328,10 @@ export namespace networkmanagement_v1 {
      */
     protocols?: string[] | null;
     /**
+     * Region of the route (if applicable).
+     */
+    region?: string | null;
+    /**
      * Indicates where route is applicable.
      */
     routeScope?: string | null;
@@ -1291,7 +1348,7 @@ export namespace networkmanagement_v1 {
      */
     srcPortRanges?: string[] | null;
     /**
-     * URI of a route. Dynamic, peering static and peering dynamic routes do not have an URI. Advertised route from Google Cloud VPC to on-premises network also does not have an URI.
+     * URI of a route (if applicable).
      */
     uri?: string | null;
   }
@@ -1426,6 +1483,10 @@ export namespace networkmanagement_v1 {
      * Display information of a ProxyConnection.
      */
     proxyConnection?: Schema$ProxyConnectionInfo;
+    /**
+     * Display information of a Redis Cluster.
+     */
+    redisCluster?: Schema$RedisClusterInfo;
     /**
      * Display information of a Redis Instance.
      */
