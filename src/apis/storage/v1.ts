@@ -1059,6 +1059,10 @@ export namespace storage_v1 {
      */
     owner?: {entity?: string; entityId?: string} | null;
     /**
+     * Restore token used to differentiate deleted objects with the same name and generation. This field is only returned for deleted objects in hierarchical namespace buckets.
+     */
+    restoreToken?: string | null;
+    /**
      * A collection of object level retention parameters.
      */
     retention?: {mode?: string; retainUntilTime?: string} | null;
@@ -1233,6 +1237,23 @@ export namespace storage_v1 {
      * The IAM policy format version.
      */
     version?: number | null;
+  }
+  /**
+   * A Relocate Bucket request.
+   */
+  export interface Schema$RelocateBucketRequest {
+    /**
+     * The bucket's new custom placement configuration if relocating to a Custom Dual Region.
+     */
+    destinationCustomPlacementConfig?: {dataLocations?: string[]} | null;
+    /**
+     * The new location the bucket will be relocated to.
+     */
+    destinationLocation?: string | null;
+    /**
+     * If true, validate the operation, but do not actually relocate the bucket.
+     */
+    validateOnly?: boolean | null;
   }
   /**
    * A rewrite response.
@@ -3385,6 +3406,100 @@ export namespace storage_v1 {
     }
 
     /**
+     * Initiates a long-running Relocate Bucket operation on the specified bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    relocate(
+      params: Params$Resource$Buckets$Relocate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    relocate(
+      params?: Params$Resource$Buckets$Relocate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    relocate(
+      params: Params$Resource$Buckets$Relocate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    relocate(
+      params: Params$Resource$Buckets$Relocate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    relocate(
+      params: Params$Resource$Buckets$Relocate,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    relocate(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    relocate(
+      paramsOrCallback?:
+        | Params$Resource$Buckets$Relocate
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Relocate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buckets$Relocate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/storage/v1/b/{bucket}/relocate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket'],
+        pathParams: ['bucket'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Restores a soft-deleted bucket.
      *
      * @param params - Parameters for request
@@ -3923,6 +4038,17 @@ export namespace storage_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Bucket;
+  }
+  export interface Params$Resource$Buckets$Relocate extends StandardParameters {
+    /**
+     * Name of the bucket to be moved.
+     */
+    bucket?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RelocateBucketRequest;
   }
   export interface Params$Resource$Buckets$Restore extends StandardParameters {
     /**
@@ -8710,6 +8836,10 @@ export namespace storage_v1 {
      */
     projection?: string;
     /**
+     * Restore token used to differentiate soft-deleted objects with the same name and generation. Only applicable for hierarchical namespace buckets and if softDeleted is set to true. This parameter is optional, and is only required in the rare case when there are multiple soft-deleted objects with the same name and generation.
+     */
+    restoreToken?: string;
+    /**
      * If true, only soft-deleted object versions will be listed. The default is false. For more information, see [Soft Delete](https://cloud.google.com/storage/docs/soft-delete).
      */
     softDeleted?: boolean;
@@ -8949,6 +9079,10 @@ export namespace storage_v1 {
      * Set of properties to return. Defaults to full.
      */
     projection?: string;
+    /**
+     * Restore token used to differentiate sof-deleted objects with the same name and generation. Only applicable for hierarchical namespace buckets. This parameter is optional, and is only required in the rare case when there are multiple soft-deleted objects with the same name and generation.
+     */
+    restoreToken?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
