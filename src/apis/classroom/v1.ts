@@ -155,7 +155,7 @@ export namespace classroom_v1 {
      */
     id?: string | null;
     /**
-     * Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. Unique per course.
+     * Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. Unique per course.
      */
     itemId?: string | null;
     /**
@@ -163,19 +163,19 @@ export namespace classroom_v1 {
      */
     maxPoints?: number | null;
     /**
-     * Immutable. Deprecated, use item_id instead.
+     * Immutable. Deprecated, use `item_id` instead.
      */
     postId?: string | null;
     /**
-     * Required. URI to show the student view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set.
+     * Required. URI to show the student view of the attachment. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, and `attachmentId` query parameters set.
      */
     studentViewUri?: Schema$EmbedUri;
     /**
-     * URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `postId`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned by google.classroom.AddOns.GetAddOnContext when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded.
+     * URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](//devsite.google.com/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded.
      */
     studentWorkReviewUri?: Schema$EmbedUri;
     /**
-     * Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set.
+     * Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, and `attachmentId` query parameters set.
      */
     teacherViewUri?: Schema$EmbedUri;
     /**
@@ -205,11 +205,11 @@ export namespace classroom_v1 {
      */
     courseId?: string | null;
     /**
-     * Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.
+     * Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached.
      */
     itemId?: string | null;
     /**
-     * Immutable. Deprecated, use item_id instead.
+     * Immutable. Deprecated, use `item_id` instead.
      */
     postId?: string | null;
     /**
@@ -339,11 +339,11 @@ export namespace classroom_v1 {
      */
     courseId?: string | null;
     /**
-     * Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.
+     * Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached.
      */
     itemId?: string | null;
     /**
-     * Immutable. Deprecated, use item_id instead.
+     * Immutable. Deprecated, use `item_id` instead.
      */
     postId?: string | null;
   }
@@ -3088,11 +3088,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -3628,11 +3628,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
 
@@ -3652,11 +3652,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -3671,11 +3671,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -3686,7 +3686,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
@@ -3698,7 +3698,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -4414,11 +4414,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -4957,11 +4957,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
 
@@ -4981,11 +4981,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -5000,11 +5000,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -5015,7 +5015,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
@@ -5027,7 +5027,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -5274,11 +5274,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
     /**
@@ -5297,11 +5297,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
     /**
@@ -6721,11 +6721,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -7253,11 +7253,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
 
@@ -7277,11 +7277,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -7296,11 +7296,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -7311,7 +7311,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
@@ -7323,7 +7323,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -7469,11 +7469,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -7948,11 +7948,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
 
@@ -7972,11 +7972,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -7991,11 +7991,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -8006,7 +8006,7 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
@@ -8018,7 +8018,7 @@ export namespace classroom_v1 {
      */
     pageToken?: string;
     /**
-     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.
+     * Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.
      */
     postId?: string;
   }
@@ -8265,11 +8265,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
     /**
@@ -8288,11 +8288,11 @@ export namespace classroom_v1 {
      */
     courseId?: string;
     /**
-     * Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
+     * Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.
      */
     itemId?: string;
     /**
-     * Optional. Deprecated, use item_id instead.
+     * Optional. Deprecated, use `item_id` instead.
      */
     postId?: string;
     /**
