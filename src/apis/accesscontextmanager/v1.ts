@@ -185,6 +185,28 @@ export namespace accesscontextmanager_v1 {
     title?: string | null;
   }
   /**
+   * Access scope represents the client scope, etc. to which the settings will be applied to.
+   */
+  export interface Schema$AccessScope {
+    /**
+     * Optional. Client scope for this access scope.
+     */
+    clientScope?: Schema$ClientScope;
+  }
+  /**
+   * Access settings represent the set of conditions that must be met for access to be granted. At least one of the fields must be set.
+   */
+  export interface Schema$AccessSettings {
+    /**
+     * Optional. Access level that a user must have to be granted access. Only one access level is supported, not multiple. This repeated field must have exactly one element. Example: "accessPolicies/9522/accessLevels/device_trusted"
+     */
+    accessLevels?: string[] | null;
+    /**
+     * Optional. Reauth settings applied to user access on a given AccessScope.
+     */
+    reauthSettings?: Schema$ReauthSettings;
+  }
+  /**
    * Identification for an API Operation.
    */
   export interface Schema$ApiOperation {
@@ -295,6 +317,15 @@ export namespace accesscontextmanager_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Client scope represents the application, etc. subject to this binding's restrictions.
+   */
+  export interface Schema$ClientScope {
+    /**
+     * Optional. The application that is subject to this binding's scope.
+     */
+    restrictedClientApplication?: Schema$Application;
+  }
   /**
    * A request to commit dry-run specs in all Service Perimeters belonging to an Access Policy.
    */
@@ -490,9 +521,17 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string | null;
     /**
+     * Optional. GCSL policy for the group key.
+     */
+    reauthSettings?: Schema$ReauthSettings;
+    /**
      * Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.
      */
     restrictedClientApplications?: Schema$Application[];
+    /**
+     * Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications. This field cannot be set if restricted_client_applications is set.
+     */
+    scopedAccessSettings?: Schema$ScopedAccessSettings[];
   }
   /**
    * Metadata of GCP Access Binding Long Running Operations.
@@ -740,6 +779,31 @@ export namespace accesscontextmanager_v1 {
     version?: number | null;
   }
   /**
+   * Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.
+   */
+  export interface Schema$ReauthSettings {
+    /**
+     * Optional. How long a user is allowed to take between actions before a new access token must be issued. Presently only set for Cloud Apps.
+     */
+    maxInactivity?: string | null;
+    /**
+     * Optional. Reauth method when users GCP session is up.
+     */
+    reauthMethod?: string | null;
+    /**
+     * Optional. The session length. Setting this field to zero is equal to disabling. Reauth. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.
+     */
+    sessionLength?: string | null;
+    /**
+     * Optional. Big red button to turn off GCSL. When false, all fields set above will be disregarded and the session length is basically infinite.
+     */
+    sessionLengthEnabled?: boolean | null;
+    /**
+     * Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.
+     */
+    useOidcMaxAge?: boolean | null;
+  }
+  /**
    * A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.
    */
   export interface Schema$ReplaceAccessLevelsRequest {
@@ -782,6 +846,23 @@ export namespace accesscontextmanager_v1 {
      * List of the Service Perimeter instances.
      */
     servicePerimeters?: Schema$ServicePerimeter[];
+  }
+  /**
+   * A relationship between access settings and its scope.
+   */
+  export interface Schema$ScopedAccessSettings {
+    /**
+     * Optional. Access settings for this scoped access settings. This field may be empty if dry_run_settings is set.
+     */
+    activeSettings?: Schema$AccessSettings;
+    /**
+     * Optional. Dry-run access settings for this scoped access settings. This field may be empty if active_settings is set.
+     */
+    dryRunSettings?: Schema$AccessSettings;
+    /**
+     * Optional. Application, etc. to which the access settings will be applied to. Implicitly, this is the scoped access settings key; as such, it must be unique and non-empty.
+     */
+    scope?: Schema$AccessScope;
   }
   /**
    * `ServicePerimeter` describes a set of Google Cloud resources which can freely import and export data amongst themselves, but not export outside of the `ServicePerimeter`. If a request with a source within this `ServicePerimeter` has a target outside of the `ServicePerimeter`, the request will be blocked. Otherwise the request is allowed. There are two types of Service Perimeter - Regular and Bridge. Regular Service Perimeters cannot overlap, a single Google Cloud project or VPC network can only belong to a single regular Service Perimeter. Service Perimeter Bridges can contain only Google Cloud projects as members, a single Google Cloud project may belong to multiple Service Perimeter Bridges.
@@ -4752,11 +4833,15 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Organizations$Gcpuseraccessbindings$Patch
     extends StandardParameters {
     /**
+     * Optional. This field will be used to control whether or not scoped access settings are appended to the existing list of scoped access settings. If true, the scoped access settings in the request will be appended to the existing list of scoped access settings. If false, the scoped access settings in the request replace the existing list of scoped access settings.
+     */
+    appendScopedAccessSettings?: boolean;
+    /**
      * Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string;
     /**
-     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`. update_mask { paths: "access_levels" \}
+     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings`, `scoped_access_settings`. update_mask { paths: "access_levels" \}
      */
     updateMask?: string;
 
