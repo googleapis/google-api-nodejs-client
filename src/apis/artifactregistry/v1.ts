@@ -167,6 +167,47 @@ export namespace artifactregistry_v1 {
     publicRepository?: Schema$GoogleDevtoolsArtifactregistryV1RemoteRepositoryConfigAptRepositoryPublicRepository;
   }
   /**
+   * An Attachment refers to additional metadata that can be attached to artifacts in Artifact Registry. An attachment consists of one or more files.
+   */
+  export interface Schema$Attachment {
+    /**
+     * Optional. User annotations. These attributes can only be set and used by the user, and not by Artifact Registry. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * The namespace this attachment belongs to. E.g. If an Attachment is created by artifact analysis, namespace is set to `artifactanalysis.googleapis.com`.
+     */
+    attachmentNamespace?: string | null;
+    /**
+     * Output only. The time when the attachment was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The files that belong to this attachment. If the file ID part contains slashes, they are escaped. E.g. `projects/p1/locations/us-central1/repositories/repo1/files/sha:`.
+     */
+    files?: string[] | null;
+    /**
+     * The name of the attachment. E.g. "projects/p1/locations/us/repositories/repo/attachments/sbom".
+     */
+    name?: string | null;
+    /**
+     * Output only. The name of the OCI version that this attachment created. Only populated for Docker attachments. E.g. `projects/p1/locations/us-central1/repositories/repo1/packages/p1/versions/v1`.
+     */
+    ociVersionName?: string | null;
+    /**
+     * Required. The target the attachment is for, can be a Version, Package or Repository. E.g. "projects/p1/locations/us-central1/repositories/repo1/packages/p1/versions/v1".
+     */
+    target?: string | null;
+    /**
+     * Type of Attachment. E.g. `application/vnd.spdx+json`
+     */
+    type?: string | null;
+    /**
+     * Output only. The time when the attachment was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The metadata of an LRO from deleting multiple versions.
    */
   export interface Schema$BatchDeleteVersionsMetadata {
@@ -267,6 +308,15 @@ export namespace artifactregistry_v1 {
      * List of package name prefixes that will apply this rule.
      */
     packageNamePrefixes?: string[] | null;
+  }
+  /**
+   * Common remote repository settings type.
+   */
+  export interface Schema$CommonRemoteRepository {
+    /**
+     * Required. A common public repository base for remote repository.
+     */
+    uri?: string | null;
   }
   /**
    * DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): * imageSizeBytes * mediaType * buildTime
@@ -420,6 +470,10 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1File {
     /**
+     * Optional. Client specified annotations.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
      * Output only. The time when the File was created.
      */
     createTime?: string | null;
@@ -527,6 +581,28 @@ export namespace artifactregistry_v1 {
      * A custom field to define a path to a specific repository from the base.
      */
     repositoryPath?: string | null;
+  }
+  /**
+   * A Rule applies to repository or package level. It defines the deny or allow action of the operation when the conditions in the rule are met.
+   */
+  export interface Schema$GoogleDevtoolsArtifactregistryV1Rule {
+    /**
+     * The action this rule makes.
+     */
+    action?: string | null;
+    /**
+     * Optional. The condition of the rule in CEL expression. If not provided, the rule matches all the objects.
+     */
+    condition?: Schema$Expr;
+    /**
+     * The name of the rule, for example: "projects/p1/locations/us-central1/repositories/repo1/rules/rule1".
+     */
+    name?: string | null;
+    operation?: string | null;
+    /**
+     * The package ID the rule applies to. If empty, this rule applies to all the packages inside the repository.
+     */
+    packageId?: string | null;
   }
   /**
    * A hash of file content.
@@ -711,6 +787,19 @@ export namespace artifactregistry_v1 {
     version?: string | null;
   }
   /**
+   * The response from listing attachments.
+   */
+  export interface Schema$ListAttachmentsResponse {
+    /**
+     * The Attachments returned.
+     */
+    attachments?: Schema$Attachment[];
+    /**
+     * The token to retrieve the next page of attachments, or empty if there are no more attachments to return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response from listing docker images.
    */
   export interface Schema$ListDockerImagesResponse {
@@ -813,6 +902,19 @@ export namespace artifactregistry_v1 {
      * The repositories returned.
      */
     repositories?: Schema$Repository[];
+  }
+  /**
+   * The response from listing rules.
+   */
+  export interface Schema$ListRulesResponse {
+    /**
+     * The token to retrieve the next page of rules, or empty if there are no more rules to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The rules returned.
+     */
+    rules?: Schema$GoogleDevtoolsArtifactregistryV1Rule[];
   }
   /**
    * The response from listing tags.
@@ -1055,10 +1157,6 @@ export namespace artifactregistry_v1 {
     pullPercent?: number | null;
   }
   /**
-   * The metadata for promote artifact long running operation.
-   */
-  export interface Schema$PromoteArtifactMetadata {}
-  /**
    * PythonPackage represents a python artifact.
    */
   export interface Schema$PythonPackage {
@@ -1108,6 +1206,10 @@ export namespace artifactregistry_v1 {
      * Specific settings for an Apt remote repository.
      */
     aptRepository?: Schema$AptRepository;
+    /**
+     * Common remote repository settings. Used as the RemoteRepository upstream URL instead of Predefined and Custom remote repositories. Google Cloud Console and Google Cloud CLI will map all the new remote repositories to this field.
+     */
+    commonRepository?: Schema$CommonRemoteRepository;
     /**
      * The description of the remote source.
      */
@@ -1304,6 +1406,24 @@ export namespace artifactregistry_v1 {
   /**
    * The response to upload a generic artifact.
    */
+  export interface Schema$UploadFileMediaResponse {
+    /**
+     * Operation that will be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The request to upload a file.
+   */
+  export interface Schema$UploadFileRequest {
+    /**
+     * Optional. The ID of the file. If left empty will default to sha256 digest of the content uploaded.
+     */
+    fileId?: string | null;
+  }
+  /**
+   * The response to upload a generic artifact.
+   */
   export interface Schema$UploadGenericArtifactMediaResponse {
     /**
      * Operation that will be returned to the user.
@@ -1470,6 +1590,10 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$Version {
     /**
+     * Optional. Client specified annotations.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
      * The time when the version was created.
      */
     createTime?: string | null;
@@ -1482,7 +1606,7 @@ export namespace artifactregistry_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The name of the version, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1". If the package or version ID parts contain slashes, the slashes are escaped.
+     * The name of the version, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1`. If the package or version ID parts contain slashes, the slashes are escaped.
      */
     name?: string | null;
     /**
@@ -2281,6 +2405,7 @@ export namespace artifactregistry_v1 {
   export class Resource$Projects$Locations$Repositories {
     context: APIRequestContext;
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
+    attachments: Resource$Projects$Locations$Repositories$Attachments;
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     files: Resource$Projects$Locations$Repositories$Files;
     genericArtifacts: Resource$Projects$Locations$Repositories$Genericartifacts;
@@ -2291,11 +2416,14 @@ export namespace artifactregistry_v1 {
     npmPackages: Resource$Projects$Locations$Repositories$Npmpackages;
     packages: Resource$Projects$Locations$Repositories$Packages;
     pythonPackages: Resource$Projects$Locations$Repositories$Pythonpackages;
+    rules: Resource$Projects$Locations$Repositories$Rules;
     yumArtifacts: Resource$Projects$Locations$Repositories$Yumartifacts;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.aptArtifacts =
         new Resource$Projects$Locations$Repositories$Aptartifacts(this.context);
+      this.attachments =
+        new Resource$Projects$Locations$Repositories$Attachments(this.context);
       this.dockerImages =
         new Resource$Projects$Locations$Repositories$Dockerimages(this.context);
       this.files = new Resource$Projects$Locations$Repositories$Files(
@@ -2327,6 +2455,9 @@ export namespace artifactregistry_v1 {
         new Resource$Projects$Locations$Repositories$Pythonpackages(
           this.context
         );
+      this.rules = new Resource$Projects$Locations$Repositories$Rules(
+        this.context
+      );
       this.yumArtifacts =
         new Resource$Projects$Locations$Repositories$Yumartifacts(this.context);
     }
@@ -3094,7 +3225,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` Examples of using a filter: To filter the results of your request to repositories with the name "my-repo" in project my-project in the us-central region, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-*"` * `name="projects/my-project/locations/us-central1/repositories/xrepo"` * `name="projects/my-project/locations/us-central1/repositories/xrepo*"`
+     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` Examples of using a filter: To filter the results of your request to repositories with the name `my-repo` in project `my-project` in the `us-central` region, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-*"` * `name="projects/my-project/locations/us-central1/repositories/xrepo"` * `name="projects/my-project/locations/us-central1/repositories/xrepo*"`
      */
     filter?: string;
     /**
@@ -3392,6 +3523,422 @@ export namespace artifactregistry_v1 {
        */
       body?: any;
     };
+  }
+
+  export class Resource$Projects$Locations$Repositories$Attachments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an attachment. The returned Operation will finish once the attachment has been created. Its response will be the created attachment.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Attachments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Attachments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Attachments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an attachment. The returned Operation will finish once the attachments has been deleted. It will not have any Operation metadata and will return a `google.protobuf.Empty` response.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Attachments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Attachments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Attachments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets an attachment.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Attachment>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Attachment>,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$Get,
+      callback: BodyResponseCallback<Schema$Attachment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Attachment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Attachments$Get
+        | BodyResponseCallback<Schema$Attachment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Attachment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Attachment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Attachment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Attachments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Attachments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Attachment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Attachment>(parameters);
+      }
+    }
+
+    /**
+     * Lists attachments.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$Attachments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAttachmentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttachmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListAttachmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Attachments$List,
+      callback: BodyResponseCallback<Schema$ListAttachmentsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAttachmentsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Attachments$List
+        | BodyResponseCallback<Schema$ListAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttachmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttachmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAttachmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Attachments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Attachments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attachments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAttachmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAttachmentsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Attachments$Create
+    extends StandardParameters {
+    /**
+     * Required. The attachment id to use for this attachment.
+     */
+    attachmentId?: string;
+    /**
+     * Required. The name of the parent resource where the attachment will be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Attachment;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Attachments$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the attachment to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Attachments$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the attachment to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Attachments$List
+    extends StandardParameters {
+    /**
+     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `target` * `type` * `attachment_namespace`
+     */
+    filter?: string;
+    /**
+     * The maximum number of attachments to return. Maximum page size is 1,000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource whose attachments will be listed.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Repositories$Dockerimages {
@@ -3986,6 +4533,203 @@ export namespace artifactregistry_v1 {
         return createAPIRequest<Schema$ListFilesResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a file.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Repositories$Files$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1File>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1File>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Patch,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1File>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1File>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Files$Patch
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1File>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1File>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1File>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1File>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Files$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Files$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1File>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1File>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Directly uploads a file to a repository. The returned Operation will complete once the resources are uploaded.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Files$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadFileMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadFileMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadFileMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Files$Upload,
+      callback: BodyResponseCallback<Schema$UploadFileMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadFileMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Files$Upload
+        | BodyResponseCallback<Schema$UploadFileMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadFileMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadFileMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadFileMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Files$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Files$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/files:upload').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/v1/{+parent}/files:upload').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadFileMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadFileMediaResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Repositories$Files$Delete
@@ -4012,7 +4756,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Files$List
     extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` * `annotations` Examples of using a filter: To filter the results of your request to files with the name "my_file.txt" in project my-project in the us-central region, in repository my-repo, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-file.txt"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile.txt"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile*"` To filter the results of your request to files owned by the version `1.0` in package `pkg1`, append the following filter expression to your request: * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"` To filter the results of your request to files with the annotation key-value pair [`external_link`:`external_link_value`], append the following filter expression to your request: * "annotations.external_link:external_link_value" To filter just for a specific annotation key `external_link`, append the following filter expression to your request: * "annotations.external_link" If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to files with the annotation key-value pair [`external.link`:`https://example.com/my-file`], append the following filter expression to your request: * "annotations.`external.link`:`https://example.com/my-file`" You can also filter with annotations with a wildcard to match any number of characters before or after the value: * "annotations.*_link:`*example.com*`"
+     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` * `annotations` Examples of using a filter: To filter the results of your request to files with the name `my_file.txt` in project `my-project` in the `us-central` region, in repository `my-repo`, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-file.txt"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/my-*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile.txt"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/files/xfile*"` To filter the results of your request to files owned by the version `1.0` in package `pkg1`, append the following filter expression to your request: * `owner="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"` To filter the results of your request to files with the annotation key-value pair [`external_link`: `external_link_value`], append the following filter expression to your request: * `"annotations.external_link:external_link_value"` To filter just for a specific annotation key `external_link`, append the following filter expression to your request: * `"annotations.external_link"` If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to files with the annotation key-value pair [`external.link`:`https://example.com/my-file`], append the following filter expression to your request: * `` "annotations.`external.link`:`https://example.com/my-file`" `` You can also filter with annotations with a wildcard to match any number of characters before or after the value: * `` "annotations.*_link:`*example.com*`" ``
      */
     filter?: string;
     /**
@@ -4031,6 +4775,49 @@ export namespace artifactregistry_v1 {
      * Required. The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Files$Patch
+    extends StandardParameters {
+    /**
+     * The name of the file, for example: `projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt`. If the file ID part contains slashes, they are escaped.
+     */
+    name?: string;
+    /**
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleDevtoolsArtifactregistryV1File;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Files$Upload
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the repository where the file will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadFileRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Projects$Locations$Repositories$Genericartifacts {
@@ -5497,7 +6284,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `annotations` Examples of using a filter: To filter the results of your request to packages with the name "my-package" in project my-project in the us-central region, in repository my-repo, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/xpackage"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/xpack*"` To filter the results of your request to packages with the annotation key-value pair [`external_link`:`external_link_value`], append the following filter expression to your request": * "annotations.external_link:external_link_value" To filter the results just for a specific annotation key `external_link`, append the following filter expression to your request: * "annotations.external_link" If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to packages with the annotation key-value pair [`external.link`:`https://example.com/my-package`], append the following filter expression to your request: * "annotations.`external.link`:`https://example.com/my-package`" You can also filter with annotations with a wildcard to match any number of characters before or after the value: * "annotations.*_link:`*example.com*`"
+     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `annotations` Examples of using a filter: To filter the results of your request to packages with the name `my-package` in project `my-project` in the `us-central` region, in repository `my-repo`, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/xpackage"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/xpack*"` To filter the results of your request to packages with the annotation key-value pair [`external_link`: `external_link_value`], append the following filter expression to your request": * `"annotations.external_link:external_link_value"` To filter the results just for a specific annotation key `external_link`, append the following filter expression to your request: * `"annotations.external_link"` If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to packages with the annotation key-value pair [`external.link`:`https://example.com/my-package`], append the following filter expression to your request: * `` "annotations.`external.link`:`https://example.com/my-package`" `` You can also filter with annotations with a wildcard to match any number of characters before or after the value: * `` "annotations.*_link:`*example.com*`" ``
      */
     filter?: string;
     /**
@@ -6009,7 +6796,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$List
     extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `version` Examples of using a filter: To filter the results of your request to tags with the name "my-tag" in package "my-package" in repository "my-repo" in project "my-project" in the us-central region, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my-tag"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag*"` To filter the results of your request to tags applied to the version `1.0` in package `my-package`, append the following filter expression to your request: * `version="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`
+     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `version` Examples of using a filter: To filter the results of your request to tags with the name `my-tag` in package `my-package` in repository `my-repo` in project "`y-project` in the us-central region, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my-tag"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/my*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/tags/xtag*"` To filter the results of your request to tags applied to the version `1.0` in package `my-package`, append the following filter expression to your request: * `version="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/1.0"`
      */
     filter?: string;
     /**
@@ -6406,6 +7193,93 @@ export namespace artifactregistry_v1 {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a version.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Version>;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Version>,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch,
+      callback: BodyResponseCallback<Schema$Version>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Version>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Version>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Version> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Version>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Version>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Batchdelete
@@ -6445,7 +7319,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$List
     extends StandardParameters {
     /**
-     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `annotations` Examples of using a filter: To filter the results of your request to versions with the name "my-version" in project my-project in the us-central region, in repository my-repo, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my-version"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/xversion"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/xversion*"` To filter the results of your request to versions with the annotation key-value pair [`external_link`:`external_link_value`], append the following filter expression to your request: * "annotations.external_link:external_link_value" To filter just for a specific annotation key `external_link`, append the following filter expression to your request: * "annotations.external_link" If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to versions with the annotation key-value pair [`external.link`:`https://example.com/my-version`], append the following filter expression to your request: * "annotations.`external.link`:`https://example.com/my-version`" You can also filter with annotations with a wildcard to match any number of characters before or after the value: * "annotations.*_link:`*example.com*`"
+     * Optional. An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `annotations` Examples of using a filter: To filter the results of your request to versions with the name `my-version` in project `my-project` in the `us-central` region, in repository `my-repo`, append the following filter expression to your request: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my-version"` You can also use wildcards to match any number of characters before or after the value: * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/xversion"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/my*"` * `name="projects/my-project/locations/us-central1/repositories/my-repo/packages/my-package/versions/xversion*"` To filter the results of your request to versions with the annotation key-value pair [`external_link`: `external_link_value`], append the following filter expression to your request: * `"annotations.external_link:external_link_value"` To filter just for a specific annotation key `external_link`, append the following filter expression to your request: * `"annotations.external_link"` If the annotation key or value contains special characters, you can escape them by surrounding the value with backticks. For example, to filter the results of your request to versions with the annotation key-value pair [`external.link`:`https://example.com/my-version`], append the following filter expression to your request: * `` "annotations.`external.link`:`https://example.com/my-version`" `` You can also filter with annotations with a wildcard to match any number of characters before or after the value: * `` "annotations.*_link:`*example.com*`" ``
      */
     filter?: string;
     /**
@@ -6468,6 +7342,22 @@ export namespace artifactregistry_v1 {
      * The view that should be returned in the response.
      */
     view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$Patch
+    extends StandardParameters {
+    /**
+     * The name of the version, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1`. If the package or version ID parts contain slashes, the slashes are escaped.
+     */
+    name?: string;
+    /**
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Version;
   }
 
   export class Resource$Projects$Locations$Repositories$Pythonpackages {
@@ -6682,6 +7572,546 @@ export namespace artifactregistry_v1 {
      * Required. The name of the parent resource whose python packages will be listed.
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Rules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a rule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Repositories$Rules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Create,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Rules$Create
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Rules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Rules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/rules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1Rule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1Rule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a rule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Rules$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Rules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Rules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a rule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Rules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Get,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Rules$Get
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Rules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Rules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1Rule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1Rule>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists rules.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$Rules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRulesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRulesResponse>,
+      callback: BodyResponseCallback<Schema$ListRulesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$List,
+      callback: BodyResponseCallback<Schema$ListRulesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRulesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Rules$List
+        | BodyResponseCallback<Schema$ListRulesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRulesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRulesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRulesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Rules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Rules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/rules').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRulesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRulesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a rule.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Repositories$Rules$Patch,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Rules$Patch
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1Rule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Rules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Rules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1Rule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1Rule>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Rules$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource where the rule will be created.
+     */
+    parent?: string;
+    /**
+     * The rule id to use for this repository.
+     */
+    ruleId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleDevtoolsArtifactregistryV1Rule;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Rules$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the rule to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Rules$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the rule to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Rules$List
+    extends StandardParameters {
+    /**
+     * The maximum number of rules to return. Maximum page size is 1,000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent repository whose rules will be listed. For example: `projects/p1/locations/us-central1/repositories/repo1`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$Rules$Patch
+    extends StandardParameters {
+    /**
+     * The name of the rule, for example: "projects/p1/locations/us-central1/repositories/repo1/rules/rule1".
+     */
+    name?: string;
+    /**
+     * The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleDevtoolsArtifactregistryV1Rule;
   }
 
   export class Resource$Projects$Locations$Repositories$Yumartifacts {
