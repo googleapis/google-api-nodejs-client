@@ -1526,6 +1526,19 @@ export namespace gkehub_v1alpha {
     manifest?: Schema$ConnectAgentResource[];
   }
   /**
+   * The response of the exclusivity artifacts manifests for the client to apply.
+   */
+  export interface Schema$GenerateExclusivityManifestResponse {
+    /**
+     * The YAML manifest of the membership CRD to apply if a newer version of the CRD is available. Empty if no update needs to be applied.
+     */
+    crdManifest?: string | null;
+    /**
+     * The YAML manifest of the membership CR to apply if a new version of the CR is available. Empty if no update needs to be applied.
+     */
+    crManifest?: string | null;
+  }
+  /**
    * Response for GenerateRBACRoleBindingYAML.
    */
   export interface Schema$GenerateMembershipRBACRoleBindingYAMLResponse {
@@ -1631,6 +1644,19 @@ export namespace gkehub_v1alpha {
     userClaim?: string | null;
   }
   /**
+   * Configuration options for the AIS diagnostic interface.
+   */
+  export interface Schema$IdentityServiceDiagnosticInterface {
+    /**
+     * Determines whether to enable the diagnostic interface.
+     */
+    enabled?: boolean | null;
+    /**
+     * Determines the expiration time of the diagnostic interface enablement. When reached, requests to the interface would be automatically rejected.
+     */
+    expirationTime?: string | null;
+  }
+  /**
    * Configuration for the Google Plugin Auth flow.
    */
   export interface Schema$IdentityServiceGoogleConfig {
@@ -1661,7 +1687,11 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$IdentityServiceIdentityServiceOptions {
     /**
-     * Optional. Determines the lifespan of STS tokens issued by Anthos Identity Service.
+     * Configuration options for the AIS diagnostic interface.
+     */
+    diagnosticInterface?: Schema$IdentityServiceDiagnosticInterface;
+    /**
+     * Determines the lifespan of STS tokens issued by Anthos Identity Service.
      */
     sessionDuration?: string | null;
   }
@@ -3292,6 +3322,15 @@ export namespace gkehub_v1alpha {
      * Wraps all the validator results.
      */
     validationResults?: Schema$ValidationResult[];
+  }
+  /**
+   * The response of exclusivity artifacts validation result status.
+   */
+  export interface Schema$ValidateExclusivityResponse {
+    /**
+     * The validation result. * `OK` means that exclusivity is validated, assuming the manifest produced by GenerateExclusivityManifest is successfully applied. * `ALREADY_EXISTS` means that the Membership CRD is already owned by another Hub. See `status.message` for more information.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * ValidationResults are results set by each validator running during ValidateCreateMembership.
@@ -5308,6 +5347,103 @@ export namespace gkehub_v1alpha {
     }
 
     /**
+     * GenerateExclusivityManifest generates the manifests to update the exclusivity artifacts in the cluster if needed. Exclusivity artifacts include the Membership custom resource definition (CRD) and the singleton Membership custom resource (CR). Combined with ValidateExclusivity, exclusivity artifacts guarantee that a Kubernetes cluster is only registered to a single GKE Hub. The Membership CRD is versioned, and may require conversion when the GKE Hub API server begins serving a newer version of the CRD and corresponding CR. The response will be the converted CRD and CR if there are any differences between the versions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateExclusivityManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateExclusivityManifest(
+      params?: Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateExclusivityManifestResponse>;
+    generateExclusivityManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateExclusivityManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateExclusivityManifestResponse>,
+      callback: BodyResponseCallback<Schema$GenerateExclusivityManifestResponse>
+    ): void;
+    generateExclusivityManifest(
+      params: Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest,
+      callback: BodyResponseCallback<Schema$GenerateExclusivityManifestResponse>
+    ): void;
+    generateExclusivityManifest(
+      callback: BodyResponseCallback<Schema$GenerateExclusivityManifestResponse>
+    ): void;
+    generateExclusivityManifest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest
+        | BodyResponseCallback<Schema$GenerateExclusivityManifestResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateExclusivityManifestResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateExclusivityManifestResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateExclusivityManifestResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+name}:generateExclusivityManifest'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateExclusivityManifestResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateExclusivityManifestResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the details of a Membership.
      *
      * @param params - Parameters for request
@@ -6037,6 +6173,101 @@ export namespace gkehub_v1alpha {
         );
       }
     }
+
+    /**
+     * ValidateExclusivity validates the state of exclusivity in the cluster. The validation does not depend on an existing Hub membership resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateExclusivity(
+      params: Params$Resource$Projects$Locations$Memberships$Validateexclusivity,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateExclusivity(
+      params?: Params$Resource$Projects$Locations$Memberships$Validateexclusivity,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateExclusivityResponse>;
+    validateExclusivity(
+      params: Params$Resource$Projects$Locations$Memberships$Validateexclusivity,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateExclusivity(
+      params: Params$Resource$Projects$Locations$Memberships$Validateexclusivity,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateExclusivityResponse>,
+      callback: BodyResponseCallback<Schema$ValidateExclusivityResponse>
+    ): void;
+    validateExclusivity(
+      params: Params$Resource$Projects$Locations$Memberships$Validateexclusivity,
+      callback: BodyResponseCallback<Schema$ValidateExclusivityResponse>
+    ): void;
+    validateExclusivity(
+      callback: BodyResponseCallback<Schema$ValidateExclusivityResponse>
+    ): void;
+    validateExclusivity(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Validateexclusivity
+        | BodyResponseCallback<Schema$ValidateExclusivityResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateExclusivityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateExclusivityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateExclusivityResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Validateexclusivity;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Validateexclusivity;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/memberships:validateExclusivity'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateExclusivityResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateExclusivityResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Memberships$Create
@@ -6104,6 +6335,21 @@ export namespace gkehub_v1alpha {
      * Optional. The Connect agent version to use. Defaults to the most current version.
      */
     version?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest
+    extends StandardParameters {
+    /**
+     * Optional. The YAML manifest of the membership CRD retrieved by `kubectl get customresourcedefinitions membership`. Leave empty if the resource does not exist.
+     */
+    crdManifest?: string;
+    /**
+     * Optional. The YAML manifest of the membership CR retrieved by `kubectl get memberships membership`. Leave empty if the resource does not exist.
+     */
+    crManifest?: string;
+    /**
+     * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Memberships$Get
     extends StandardParameters {
@@ -6224,6 +6470,21 @@ export namespace gkehub_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$ValidateCreateMembershipRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Validateexclusivity
+    extends StandardParameters {
+    /**
+     * Optional. The YAML of the membership CR in the cluster. Empty if the membership CR does not exist.
+     */
+    crManifest?: string;
+    /**
+     * Required. The intended membership name under the `parent`. This method only does validation in anticipation of a CreateMembership call with the same name.
+     */
+    intendedMembership?: string;
+    /**
+     * Required. The parent (project and location) where the Memberships will be created. Specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Memberships$Bindings {
