@@ -872,7 +872,7 @@ export namespace merchantapi_conversions_v1beta {
   export interface Params$Resource$Accounts$Conversionsources$Get
     extends StandardParameters {
     /**
-     * Required. The name of the conversion source to be fetched. Format: accounts/{account\}/conversionsources/{conversion_source\}
+     * Required. The name of the conversion source to be fetched. Format: accounts/{account\}/conversionSources/{conversion_source\}
      */
     name?: string;
   }

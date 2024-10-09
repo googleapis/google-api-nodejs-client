@@ -269,9 +269,9 @@ export namespace merchantapi_products_v1beta {
      */
     googleProductCategory?: string | null;
     /**
-     * Global Trade Item Number ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item.
+     * Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
      */
-    gtin?: string | null;
+    gtin?: string[] | null;
     /**
      * Set this value to false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Defaults to true, if not provided.
      */
@@ -786,7 +786,7 @@ export namespace merchantapi_products_v1beta {
      */
     feedLabel?: string | null;
     /**
-     * The name of the product. Format: `"{product.name=accounts/{account\}/products/{product\}\}"`
+     * The name of the product. Format: `"{product.name=accounts/{account\}/products/{product\}\}"` where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/products/online~en~US~sku123"
      */
     name?: string | null;
     /**
@@ -878,7 +878,7 @@ export namespace merchantapi_products_v1beta {
      */
     feedLabel?: string | null;
     /**
-     * Identifier. The name of the product input. Format: `"{productinput.name=accounts/{account\}/productInputs/{productinput\}\}"`
+     * Identifier. The name of the product input. Format: `"{productinput.name=accounts/{account\}/productInputs/{productinput\}\}"` where the last section `productinput` consists of 4 parts: channel~content_language~feed_label~offer_id example for product input name is "accounts/123/productInputs/online~en~US~sku123"
      */
     name?: string | null;
     /**
@@ -1558,7 +1558,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Products$List
     extends StandardParameters {
     /**
-     * The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of products will be returned.
+     * The maximum number of products to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of products will be returned.
      */
     pageSize?: number;
     /**

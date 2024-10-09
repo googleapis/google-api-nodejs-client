@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the conversion source to be fetched. Format: accounts/{account}/conversionsources/{conversion_source}",
+                  "description": "Required. The name of the conversion source to be fetched. Format: accounts/{account}/conversionSources/{conversion_source}",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/conversionSources/[^/]+$",
                   "required": true,
@@ -295,7 +295,7 @@
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20241001",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AttributionSettings": {
