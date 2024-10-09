@@ -575,14 +575,14 @@
                   "type": "string"
                 },
                 "itemId": {
-                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "postId": {
                   "deprecated": true,
-                  "description": "Optional. Deprecated, use item_id instead.",
+                  "description": "Optional. Deprecated, use `item_id` instead.",
                   "location": "query",
                   "type": "string"
                 }
@@ -751,14 +751,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -795,14 +795,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -836,14 +836,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -870,7 +870,7 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -888,7 +888,7 @@
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1072,14 +1072,14 @@
                   "type": "string"
                 },
                 "itemId": {
-                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "postId": {
                   "deprecated": true,
-                  "description": "Optional. Deprecated, use item_id instead.",
+                  "description": "Optional. Deprecated, use `item_id` instead.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1250,14 +1250,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1294,14 +1294,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1335,14 +1335,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1369,7 +1369,7 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -1387,7 +1387,7 @@
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1475,14 +1475,14 @@
                           "type": "string"
                         },
                         "itemId": {
-                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "postId": {
                           "deprecated": true,
-                          "description": "Optional. Deprecated, use item_id instead.",
+                          "description": "Optional. Deprecated, use `item_id` instead.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1526,14 +1526,14 @@
                           "type": "string"
                         },
                         "itemId": {
-                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                           "location": "path",
                           "required": true,
                           "type": "string"
                         },
                         "postId": {
                           "deprecated": true,
-                          "description": "Optional. Deprecated, use item_id instead.",
+                          "description": "Optional. Deprecated, use `item_id` instead.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2032,14 +2032,14 @@
                   "type": "string"
                 },
                 "itemId": {
-                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "postId": {
                   "deprecated": true,
-                  "description": "Optional. Deprecated, use item_id instead.",
+                  "description": "Optional. Deprecated, use `item_id` instead.",
                   "location": "query",
                   "type": "string"
                 }
@@ -2184,14 +2184,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2228,14 +2228,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2269,14 +2269,14 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2303,7 +2303,7 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -2321,7 +2321,7 @@
                     },
                     "postId": {
                       "deprecated": true,
-                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.",
                       "location": "query",
                       "type": "string"
                     }
@@ -2413,12 +2413,12 @@
                   "type": "string"
                 },
                 "itemId": {
-                  "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                  "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                   "location": "query",
                   "type": "string"
                 },
                 "postId": {
-                  "description": "Optional. Deprecated, use item_id instead.",
+                  "description": "Optional. Deprecated, use `item_id` instead.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2455,12 +2455,12 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which to create the attachment. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "query",
                       "type": "string"
                     },
                     "postId": {
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -2498,12 +2498,12 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "query",
                       "type": "string"
                     },
                     "postId": {
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -2538,12 +2538,12 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "query",
                       "type": "string"
                     },
                     "postId": {
-                      "description": "Optional. Deprecated, use item_id instead.",
+                      "description": "Optional. Deprecated, use `item_id` instead.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -2571,7 +2571,7 @@
                       "type": "string"
                     },
                     "itemId": {
-                      "description": "Identifier of the announcement, courseWork, or courseWorkMaterial whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
+                      "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` whose attachments should be enumerated. This field is required, but is not marked as such while we are migrating from post_id.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2587,7 +2587,7 @@
                       "type": "string"
                     },
                     "postId": {
-                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use item_id instead.",
+                      "description": "Optional. Identifier of the post under the course whose attachments to enumerate. Deprecated, use `item_id` instead.",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -2676,12 +2676,12 @@
                           "type": "string"
                         },
                         "itemId": {
-                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                           "location": "query",
                           "type": "string"
                         },
                         "postId": {
-                          "description": "Optional. Deprecated, use item_id instead.",
+                          "description": "Optional. Deprecated, use `item_id` instead.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -2726,12 +2726,12 @@
                           "type": "string"
                         },
                         "itemId": {
-                          "description": "Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
+                          "description": "Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. This field is required, but is not marked as such while we are migrating from post_id.",
                           "location": "query",
                           "type": "string"
                         },
                         "postId": {
-                          "description": "Optional. Deprecated, use item_id instead.",
+                          "description": "Optional. Deprecated, use `item_id` instead.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -3695,7 +3695,7 @@
       }
     }
   },
-  "revision": "20240713",
+  "revision": "20240911",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -3727,7 +3727,7 @@
           "type": "string"
         },
         "itemId": {
-          "description": "Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached. Unique per course.",
+          "description": "Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached. Unique per course.",
           "type": "string"
         },
         "maxPoints": {
@@ -3737,20 +3737,20 @@
         },
         "postId": {
           "deprecated": true,
-          "description": "Immutable. Deprecated, use item_id instead.",
+          "description": "Immutable. Deprecated, use `item_id` instead.",
           "type": "string"
         },
         "studentViewUri": {
           "$ref": "EmbedUri",
-          "description": "Required. URI to show the student view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set."
+          "description": "Required. URI to show the student view of the attachment. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, and `attachmentId` query parameters set."
         },
         "studentWorkReviewUri": {
           "$ref": "EmbedUri",
-          "description": "URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `postId`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned by google.classroom.AddOns.GetAddOnContext when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded."
+          "description": "URI for the teacher to see student work on the attachment, if applicable. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, `attachmentId`, and `submissionId` query parameters set. This is the same `submissionId` returned in the [`AddOnContext.studentContext`](//devsite.google.com/classroom/reference/rest/v1/AddOnContext#StudentContext) field when a student views the attachment. If the URI is omitted or removed, `max_points` will also be discarded."
         },
         "teacherViewUri": {
           "$ref": "EmbedUri",
-          "description": "Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `postId`, and `attachmentId` query parameters set."
+          "description": "Required. URI to show the teacher view of the attachment. The URI will be opened in an iframe with the `courseId`, `itemId`, `itemType`, and `attachmentId` query parameters set."
         },
         "title": {
           "description": "Required. Title of this attachment. The title must be between 1 and 1000 characters.",
@@ -3800,12 +3800,12 @@
           "type": "string"
         },
         "itemId": {
-          "description": "Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.",
+          "description": "Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached.",
           "type": "string"
         },
         "postId": {
           "deprecated": true,
-          "description": "Immutable. Deprecated, use item_id instead.",
+          "description": "Immutable. Deprecated, use `item_id` instead.",
           "type": "string"
         },
         "studentContext": {
@@ -3978,12 +3978,12 @@
           "type": "string"
         },
         "itemId": {
-          "description": "Immutable. Identifier of the announcement, courseWork, or courseWorkMaterial under which the attachment is attached.",
+          "description": "Immutable. Identifier of the `Announcement`, `CourseWork`, or `CourseWorkMaterial` under which the attachment is attached.",
           "type": "string"
         },
         "postId": {
           "deprecated": true,
-          "description": "Immutable. Deprecated, use item_id instead.",
+          "description": "Immutable. Deprecated, use `item_id` instead.",
           "type": "string"
         }
       },
