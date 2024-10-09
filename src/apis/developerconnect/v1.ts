@@ -141,6 +141,10 @@ export namespace developerconnect_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature.
+     */
+    cryptoKeyConfig?: Schema$CryptoKeyConfig;
+    /**
      * Output only. [Output only] Delete timestamp
      */
     deleteTime?: string | null;
@@ -156,6 +160,18 @@ export namespace developerconnect_v1 {
      * Configuration for connections to github.com.
      */
     githubConfig?: Schema$GitHubConfig;
+    /**
+     * Configuration for connections to an instance of GitHub Enterprise.
+     */
+    githubEnterpriseConfig?: Schema$GitHubEnterpriseConfig;
+    /**
+     * Configuration for connections to gitlab.com.
+     */
+    gitlabConfig?: Schema$GitLabConfig;
+    /**
+     * Configuration for connections to an instance of GitLab Enterprise.
+     */
+    gitlabEnterpriseConfig?: Schema$GitLabEnterpriseConfig;
     /**
      * Output only. Installation state of the Connection.
      */
@@ -180,6 +196,15 @@ export namespace developerconnect_v1 {
      * Output only. [Output only] Update timestamp
      */
     updateTime?: string | null;
+  }
+  /**
+   * The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature.
+   */
+  export interface Schema$CryptoKeyConfig {
+    /**
+     * Required. The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    keyReference?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -284,6 +309,101 @@ export namespace developerconnect_v1 {
     installationUri?: string | null;
   }
   /**
+   * Configuration for connections to an instance of GitHub Enterprise.
+   */
+  export interface Schema$GitHubEnterpriseConfig {
+    /**
+     * Optional. ID of the GitHub App created from the manifest.
+     */
+    appId?: string | null;
+    /**
+     * Optional. ID of the installation of the GitHub App.
+     */
+    appInstallationId?: string | null;
+    /**
+     * Output only. The URL-friendly name of the GitHub App.
+     */
+    appSlug?: string | null;
+    /**
+     * Required. The URI of the GitHub Enterprise host this connection is for.
+     */
+    hostUri?: string | null;
+    /**
+     * Output only. The URI to navigate to in order to manage the installation associated with this GitHubEnterpriseConfig.
+     */
+    installationUri?: string | null;
+    /**
+     * Optional. SecretManager resource containing the private key of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
+     */
+    privateKeySecretVersion?: string | null;
+    /**
+     * Output only. GitHub Enterprise version installed at the host_uri.
+     */
+    serverVersion?: string | null;
+    /**
+     * Optional. Configuration for using Service Directory to privately connect to a GitHub Enterprise server. This should only be set if the GitHub Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitHub Enterprise server will be made over the public internet.
+     */
+    serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
+    /**
+     * Optional. SSL certificate to use for requests to GitHub Enterprise.
+     */
+    sslCaCertificate?: string | null;
+    /**
+     * Optional. SecretManager resource containing the webhook secret of the GitHub App, formatted as `projects/x/secrets/x/versions/x`.
+     */
+    webhookSecretSecretVersion?: string | null;
+  }
+  /**
+   * Configuration for connections to gitlab.com.
+   */
+  export interface Schema$GitLabConfig {
+    /**
+     * Required. A GitLab personal access token with the minimum `api` scope access and a minimum role of `maintainer`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to.
+     */
+    authorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. A GitLab personal access token with the minimum `read_api` scope access and a minimum role of `reporter`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to.
+     */
+    readAuthorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/x/secrets/x/versions/x`. This is used to validate webhooks.
+     */
+    webhookSecretSecretVersion?: string | null;
+  }
+  /**
+   * Configuration for connections to an instance of GitLab Enterprise.
+   */
+  export interface Schema$GitLabEnterpriseConfig {
+    /**
+     * Required. A GitLab personal access token with the minimum `api` scope access and a minimum role of `maintainer`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to.
+     */
+    authorizerCredential?: Schema$UserCredential;
+    /**
+     * Required. The URI of the GitLab Enterprise host this connection is for.
+     */
+    hostUri?: string | null;
+    /**
+     * Required. A GitLab personal access token with the minimum `read_api` scope access and a minimum role of `reporter`. The GitLab Projects visible to this Personal Access Token will control which Projects Developer Connect has access to.
+     */
+    readAuthorizerCredential?: Schema$UserCredential;
+    /**
+     * Output only. Version of the GitLab Enterprise server running on the `host_uri`.
+     */
+    serverVersion?: string | null;
+    /**
+     * Optional. Configuration for using Service Directory to privately connect to a GitLab Enterprise instance. This should only be set if the GitLab Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, calls to the GitLab Enterprise server will be made over the public internet.
+     */
+    serviceDirectoryConfig?: Schema$ServiceDirectoryConfig;
+    /**
+     * Optional. SSL Certificate Authority certificate to use for requests to GitLab Enterprise instance.
+     */
+    sslCaCertificate?: string | null;
+    /**
+     * Required. Immutable. SecretManager resource containing the webhook secret of a GitLab project, formatted as `projects/x/secrets/x/versions/x`. This is used to validate webhooks.
+     */
+    webhookSecretSecretVersion?: string | null;
+  }
+  /**
    * Message describing the GitRepositoryLink object
    */
   export interface Schema$GitRepositoryLink {
@@ -327,6 +447,10 @@ export namespace developerconnect_v1 {
      * Output only. [Output only] Update timestamp
      */
     updateTime?: string | null;
+    /**
+     * Output only. External ID of the webhook created for the repository.
+     */
+    webhookId?: string | null;
   }
   /**
    * Represents an installation of the GitHub App.
@@ -528,6 +652,15 @@ export namespace developerconnect_v1 {
     verb?: string | null;
   }
   /**
+   * ServiceDirectoryConfig represents Service Directory configuration for a connection.
+   */
+  export interface Schema$ServiceDirectoryConfig {
+    /**
+     * Required. The Service Directory service name. Format: projects/{project\}/locations/{location\}/namespaces/{namespace\}/services/{service\}.
+     */
+    service?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -543,6 +676,19 @@ export namespace developerconnect_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Represents a personal access token that authorized the Connection, and associated metadata.
+   */
+  export interface Schema$UserCredential {
+    /**
+     * Output only. The username associated with this token.
+     */
+    username?: string | null;
+    /**
+     * Required. A SecretManager resource containing the user token that authorizes the Developer Connect connection. Format: `projects/x/secrets/x/versions/x`.
+     */
+    userTokenSecretVersion?: string | null;
   }
 
   export class Resource$Projects {
@@ -1535,7 +1681,7 @@ export namespace developerconnect_v1 {
      */
     requestId?: string;
     /**
-     * Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
     /**
