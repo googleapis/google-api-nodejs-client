@@ -9624,6 +9624,28 @@
       },
       "type": "object"
     },
+    "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlowGoogleManaged": {
+      "description": "Parameters to support Oauth 2.0 Auth Code Grant Authentication using Google Provided OAuth Client. See https://tools.ietf.org/html/rfc6749#section-1.3.1 for more details.",
+      "id": "GoogleCloudConnectorsV1AuthConfigOauth2AuthCodeFlowGoogleManaged",
+      "properties": {
+        "authCode": {
+          "description": "Optional. Authorization code to be exchanged for access and refresh tokens.",
+          "type": "string"
+        },
+        "redirectUri": {
+          "description": "Optional. Redirect URI to be provided during the auth code exchange.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "Required. Scopes the connection will request when the user performs the auth code flow.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials": {
       "description": "Parameters to support Oauth 2.0 Client Credentials Grant Authentication. See https://tools.ietf.org/html/rfc6749#section-1.3.4 for more details.",
       "id": "GoogleCloudConnectorsV1AuthConfigOauth2ClientCredentials",
@@ -11778,6 +11800,60 @@
             "$ref": "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest": {
+      "description": "The request for executing a functional test.",
+      "id": "GoogleCloudIntegrationsV1alphaExecuteTestCaseRequest",
+      "properties": {
+        "inputParameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudIntegrationsV1alphaValueType"
+          },
+          "description": "Optional. Input parameters used by test case execution.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse": {
+      "description": "The response for executing a functional test.",
+      "id": "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse",
+      "properties": {
+        "assertionResults": {
+          "description": "Results of each assertions ran during execution of test case.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaAssertionResult"
+          },
+          "type": "array"
+        },
+        "executionId": {
+          "description": "The id of the execution corresponding to this run of integration.",
+          "type": "string"
+        },
+        "outputParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
+          "type": "object"
+        },
+        "testExecutionState": {
+          "description": "State of the test case execution",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state",
+            "Test case execution passed",
+            "Test case execution failed"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
