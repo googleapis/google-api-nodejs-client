@@ -257,6 +257,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     screenshot?: Schema$GoogleFirebaseAppdistroV1alphaScreenshot;
   }
+  /**
+   * The (empty) response message for `CancelReleaseTest`.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse {}
   export interface Schema$GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest {
     /**
      * The actual release notes body from the user
@@ -581,6 +585,10 @@ export namespace firebaseappdistribution_v1alpha {
      * The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
      */
     name?: string | null;
+    /**
+     * Output only. The state of the release test.
+     */
+    testState?: string | null;
   }
   /**
    * Configuration for Robo crawler
@@ -1942,6 +1950,104 @@ export namespace firebaseappdistribution_v1alpha {
     }
 
     /**
+     * Abort automated test run on release.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Apps$Releases$Tests$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Apps$Releases$Tests$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>;
+    cancel(
+      params: Params$Resource$Projects$Apps$Releases$Tests$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Apps$Releases$Tests$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Apps$Releases$Tests$Cancel,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>
+    ): void;
+    cancel(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>
+    ): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Releases$Tests$Cancel
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Releases$Tests$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Releases$Tests$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappdistribution.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Run automated test(s) on release.
      *
      * @param params - Parameters for request
@@ -2233,6 +2339,13 @@ export namespace firebaseappdistribution_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Apps$Releases$Tests$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The name of the release test resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}/tests/{test_id\}`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Apps$Releases$Tests$Create
     extends StandardParameters {
     /**
@@ -2240,7 +2353,7 @@ export namespace firebaseappdistribution_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. The ID to use for the test, which will become the final component of the tests's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. If it is not provided one will be automatically generated.
+     * Optional. The ID to use for the test, which will become the final component of the test's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. If it is not provided one will be automatically generated.
      */
     releaseTestId?: string;
 

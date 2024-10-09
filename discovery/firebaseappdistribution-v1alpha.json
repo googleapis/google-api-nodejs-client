@@ -448,6 +448,31 @@
               "resources": {
                 "tests": {
                   "methods": {
+                    "cancel": {
+                      "description": "Abort automated test run on release.",
+                      "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/releases/{releasesId}/tests/{testsId}:cancel",
+                      "httpMethod": "GET",
+                      "id": "firebaseappdistribution.projects.apps.releases.tests.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the release test resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}/tests/{test_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+/tests/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}:cancel",
+                      "response": {
+                        "$ref": "GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Run automated test(s) on release.",
                       "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/releases/{releasesId}/tests",
@@ -465,7 +490,7 @@
                           "type": "string"
                         },
                         "releaseTestId": {
-                          "description": "Optional. The ID to use for the test, which will become the final component of the tests's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. If it is not provided one will be automatically generated.",
+                          "description": "Optional. The ID to use for the test, which will become the final component of the test's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. If it is not provided one will be automatically generated.",
                           "location": "query",
                           "type": "string"
                         }
@@ -585,7 +610,7 @@
       }
     }
   },
-  "revision": "20240726",
+  "revision": "20241004",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -874,6 +899,12 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse": {
+      "description": "The (empty) response message for `CancelReleaseTest`.",
+      "id": "GoogleFirebaseAppdistroV1alphaCancelReleaseTestResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest": {
       "id": "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest",
       "properties": {
@@ -943,7 +974,8 @@
             "NOT_INSTALLED",
             "UNABLE_TO_CRAWL",
             "DEVICE_OUT_OF_MEMORY",
-            "FAILED_AI_STEP"
+            "FAILED_AI_STEP",
+            "TIMED_OUT"
           ],
           "enumDescriptions": [
             "Reason unspecified.",
@@ -951,7 +983,8 @@
             "If an app is not installed and thus no test can be run with the app. This might be caused by trying to run a test on an unsupported platform.",
             "If the app could not be crawled (possibly because the app did not start).",
             "If the device ran out of memory during the test.",
-            "At least one AI step failed."
+            "At least one AI step failed.",
+            "The crawl reached the time limit before the test could be completed."
           ],
           "readOnly": true,
           "type": "string"
@@ -1437,6 +1470,25 @@
         },
         "name": {
           "description": "The name of the release test resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}/tests/{test_id}`",
+          "type": "string"
+        },
+        "testState": {
+          "description": "Output only. The state of the release test.",
+          "enum": [
+            "TEST_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "PASSED",
+            "FAILED",
+            "INCONCLUSIVE"
+          ],
+          "enumDescriptions": [
+            "Test state unspecified.",
+            "The test is in progress.",
+            "The test has passed.",
+            "The test has failed.",
+            "The test was inconclusive."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
