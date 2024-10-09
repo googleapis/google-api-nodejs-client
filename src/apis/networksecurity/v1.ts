@@ -281,6 +281,15 @@ export namespace networksecurity_v1 {
     sourceAddressGroup?: string | null;
   }
   /**
+   * CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup
+   */
+  export interface Schema$CustomMirroringProfile {
+    /**
+     * Required. The MirroringEndpointGroup to which traffic associated with the SP should be mirrored.
+     */
+    mirroringEndpointGroup?: string | null;
+  }
+  /**
    * Specification of traffic destination attributes.
    */
   export interface Schema$Destination {
@@ -1000,6 +1009,10 @@ export namespace networksecurity_v1 {
      */
     createTime?: string | null;
     /**
+     * The custom Packet Mirroring v2 configuration for the SecurityProfile.
+     */
+    customMirroringProfile?: Schema$CustomMirroringProfile;
+    /**
      * Optional. An optional description of the profile. Max length 512 characters.
      */
     description?: string | null;
@@ -1036,6 +1049,10 @@ export namespace networksecurity_v1 {
      * Output only. Resource creation timestamp.
      */
     createTime?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the CustomMirroring configuration.
+     */
+    customMirroringProfile?: string | null;
     /**
      * Optional. An optional description of the profile group. Max length 2048 characters.
      */
