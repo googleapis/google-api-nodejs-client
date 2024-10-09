@@ -131,7 +131,7 @@
       }
     }
   },
-  "revision": "20240103",
+  "revision": "20240916",
   "rootUrl": "https://chromeuxreport.googleapis.com/",
   "schemas": {
     "Bin": {
@@ -140,8 +140,7 @@
       "properties": {
         "density": {
           "description": "The proportion of users that experienced this bin's value for the given metric.",
-          "format": "double",
-          "type": "number"
+          "type": "any"
         },
         "end": {
           "description": "End is the end of the data bin. If end is not populated, then the bin has no end and is valid from start to +inf.",
