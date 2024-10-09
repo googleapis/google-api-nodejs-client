@@ -543,6 +543,10 @@ export namespace contactcenterinsights_v1 {
      */
     medium?: string | null;
     /**
+     * Input only. JSON Metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insights' supported formats.
+     */
+    metadataJson?: string | null;
+    /**
      * Immutable. The resource name of the conversation. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}
      */
     name?: string | null;
@@ -2270,6 +2274,10 @@ export namespace contactcenterinsights_v1 {
      * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
      */
     medium?: string | null;
+    /**
+     * Input only. JSON Metadata encoded as a string. This field is primarily used by Insights integrations with various telphony systems and must be in one of Insights' supported formats.
+     */
+    metadataJson?: string | null;
     /**
      * Immutable. The resource name of the conversation. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}
      */
@@ -4508,7 +4516,7 @@ export namespace contactcenterinsights_v1 {
     }
 
     /**
-     * Creates a conversation. Does not support audio transcription or DLP redaction. Use `conversations.upload` instead.
+     * Creates a conversation. Note that this method does not support audio transcription or redaction. Use `conversations.upload` instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5271,7 +5279,7 @@ export namespace contactcenterinsights_v1 {
      */
     orderBy?: string;
     /**
-     * The maximum number of conversations to return in the response. A valid page size ranges from 0 to 1,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.
+     * The maximum number of conversations to return in the response. A valid page size ranges from 0 to 100,000 inclusive. If the page size is zero or unspecified, a default page size of 100 will be chosen. Note that a call might return fewer results than the requested page size.
      */
     pageSize?: number;
     /**
