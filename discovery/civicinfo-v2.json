@@ -97,6 +97,23 @@
   "resources": {
     "divisions": {
       "methods": {
+        "queryDivisionByAddress": {
+          "description": "Lookup OCDIDs and names for divisions related to an address.",
+          "flatPath": "civicinfo/v2/divisionsByAddress",
+          "httpMethod": "GET",
+          "id": "civicinfo.divisions.queryDivisionByAddress",
+          "parameterOrder": [],
+          "parameters": {
+            "address": {
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "civicinfo/v2/divisionsByAddress",
+          "response": {
+            "$ref": "DivisionByAddressResponse"
+          }
+        },
         "search": {
           "description": "Searches for political divisions by their natural name or OCD ID.",
           "flatPath": "civicinfo/v2/divisions",
@@ -362,7 +379,7 @@
       }
     }
   },
-  "revision": "20240620",
+  "revision": "20240910",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "AdministrationRegion": {
@@ -692,6 +709,22 @@
         "type": {
           "description": "The type of contest. Usually this will be 'General', 'Primary', or 'Run-off' for contests with candidates. For referenda this will be 'Referendum'. For Retention contests this will typically be 'Retention'.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DivisionByAddressResponse": {
+      "id": "DivisionByAddressResponse",
+      "properties": {
+        "divisions": {
+          "additionalProperties": {
+            "$ref": "GeographicDivision"
+          },
+          "type": "object"
+        },
+        "normalizedInput": {
+          "$ref": "SimpleAddressType",
+          "description": "The normalized version of the requested address."
         }
       },
       "type": "object"
