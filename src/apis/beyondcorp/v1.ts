@@ -1030,6 +1030,194 @@ export namespace beyondcorp_v1 {
     verb?: string | null;
   }
   /**
+   * A Beyondcorp Application resource information.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application {
+    /**
+     * Output only. Timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. An arbitrary user-provided name for the Application resource. Cannot exceed 64 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matcher is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one the conditions are met. The conditions can be one of the following combination (Hostname), (Hostname & Ports) EXAMPLES: Hostname - ("*.abc.com"), ("xyz.abc.com") Hostname and Ports - ("abc.com" and "22"), ("abc.com" and "22,33") etc
+     */
+    endpointMatchers?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1EndpointMatcher[];
+    /**
+     * Identifier. Name of the resource.
+     */
+    name?: string | null;
+    /**
+     * Output only. Timestamp when the resource was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * EndpointMatcher contains the information of the endpoint that will match the application.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1EndpointMatcher {
+    /**
+     * Required. Hostname of the application.
+     */
+    hostname?: string | null;
+    /**
+     * Optional. Ports of the application.
+     */
+    ports?: number[] | null;
+  }
+  /**
+   * The Hub message contains information pertaining to the regional data path deployments.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Hub {
+    /**
+     * Optional. NAT gateway setup to ensure enough NAT IP addresses are available to handle the traffic needed to access the applications. Allows to explicitly enable or disable the NAT in the Hub along with the total IPs allocated to handle the capacity limits.
+     */
+    natGatewayConfig?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1NatGatewayConfig;
+  }
+  /**
+   * Message for response to listing Applications.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse {
+    /**
+     * A list of BeyondCorp Application in the project.
+     */
+    applications?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application[];
+    /**
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing SecurityGateways.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse {
+    /**
+     * A token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of BeyondCorp SecurityGateway in the project.
+     */
+    securityGateways?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway[];
+    /**
+     * A list of locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Represents the NAT Gateway configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1NatGatewayConfig {
+    /**
+     * Output only. List of NAT IPs that will be used for establishing connection to the endpoints.
+     */
+    natIps?: string[] | null;
+  }
+  /**
+   * VPC Peering details.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Peering {
+    /**
+     * Optional. List of DNS zones for DNS peering with the customer VPC network.
+     */
+    dnsZones?: string[] | null;
+    /**
+     * Required. The name of the Target VPC network name in the format: `projects/{project\}/global/networks/{network\}
+     */
+    targetVpcNetwork?: string | null;
+  }
+  /**
+   * Information about a BeyoncCorp SecurityGateway resource.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway {
+    /**
+     * Output only. Timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. An arbitrary user-provided name for the SecurityGateway. Cannot exceed 64 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. IP addresses that will be used for establishing connection to the endpoints.
+     */
+    externalIps?: string[] | null;
+    /**
+     * Optional. Map of Hubs that represents regional data path deployment with GCP region as a key.
+     */
+    hubs?: {
+      [key: string]: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Hub;
+    } | null;
+    /**
+     * Identifier. Name of the resource.
+     */
+    name?: string | null;
+    /**
+     * Output only. The operational state of the SecurityGateway.
+     */
+    state?: string | null;
+    /**
+     * Output only. Timestamp when the resource was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGatewayOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Set Peering request for creating a VPC peering between Google network and customer networks.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SetPeeringRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
+     */
+    validateOnly?: boolean | null;
+    /**
+     * Required. List of Peering connection information.
+     */
+    vpcPeerings?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Peering[];
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$GoogleCloudLocationListLocationsResponse {
@@ -2768,7 +2956,9 @@ export namespace beyondcorp_v1 {
     appGateways: Resource$Projects$Locations$Appgateways;
     clientConnectorServices: Resource$Projects$Locations$Clientconnectorservices;
     clientGateways: Resource$Projects$Locations$Clientgateways;
+    global: Resource$Projects$Locations$Global;
     operations: Resource$Projects$Locations$Operations;
+    securityGateways: Resource$Projects$Locations$Securitygateways;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.appConnections = new Resource$Projects$Locations$Appconnections(
@@ -2785,7 +2975,11 @@ export namespace beyondcorp_v1 {
       this.clientGateways = new Resource$Projects$Locations$Clientgateways(
         this.context
       );
+      this.global = new Resource$Projects$Locations$Global(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.securityGateways = new Resource$Projects$Locations$Securitygateways(
         this.context
       );
     }
@@ -6656,6 +6850,265 @@ export namespace beyondcorp_v1 {
     requestBody?: Schema$GoogleIamV1TestIamPermissionsRequest;
   }
 
+  export class Resource$Projects$Locations$Global {
+    context: APIRequestContext;
+    securityGateways: Resource$Projects$Locations$Global$Securitygateways;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.securityGateways =
+        new Resource$Projects$Locations$Global$Securitygateways(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Global$Securitygateways {
+    context: APIRequestContext;
+    applications: Resource$Projects$Locations$Global$Securitygateways$Applications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.applications =
+        new Resource$Projects$Locations$Global$Securitygateways$Applications(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Global$Securitygateways$Applications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new Application in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/applications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Create
+    extends StandardParameters {
+    /**
+     * Optional. User-settable Application resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.
+     */
+    applicationId?: string;
+    /**
+     * Required. The resource name of the parent SecurityGateway using the form: `projects/{project_id\}/locations/global/securityGateways/{security_gateway_id\}`
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Securitygateways$Applications$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Mutable fields include: display_name.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7066,5 +7519,1023 @@ export namespace beyondcorp_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Securitygateways {
+    context: APIRequestContext;
+    applications: Resource$Projects$Locations$Securitygateways$Applications;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.applications =
+        new Resource$Projects$Locations$Securitygateways$Applications(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new SecurityGateway in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Securitygateways$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/securityGateways').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single SecurityGateway.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single SecurityGateway.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Get
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Securitygateways$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists SecurityGateways in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Securitygateways$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$List
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Securitygateways$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/securityGateways').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListSecurityGatewaysResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single SecurityGateway.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Securitygateways$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * This is a custom method to allow customers to create a peering connections between Google network and customer networks. This is enabled only for the allowlisted customers.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setPeering(
+      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setPeering(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    setPeering(
+      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setPeering(
+      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setPeering(
+      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setPeering(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setPeering(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Setpeering
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Setpeering;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Setpeering;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+securityGateway}:setPeering').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['securityGateway'],
+        pathParams: ['securityGateway'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Securitygateways$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource project name of the SecurityGateway location using the form: `projects/{project_id\}/locations/{location_id\}`
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
+     */
+    requestId?: string;
+    /**
+     * Optional. User-settable SecurityGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.
+     */
+    securityGatewayId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Delete
+    extends StandardParameters {
+    /**
+     * Required. BeyondCorp SecurityGateway name using the form: `projects/{project_id\}/locations/{location_id\}/securityGateways/{security_gateway_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the PartnerTenant using the form: `projects/{project_id\}/locations/{location_id\}/securityGateway/{security_gateway_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter specifying constraints of a list operation. All fields in the SecurityGateway message are supported. For example, the following query will return the SecurityGateway with displayName "test-security-gateway" For more information, please refer to https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous ListSecurityGatewayRequest, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent location to which the resources belong. `projects/{project_id\}/locations/{location_id\}/`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Mutable fields include: display_name, hubs.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SecurityGateway;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Setpeering
+    extends StandardParameters {
+    /**
+     * Required. BeyondCorp SecurityGateway name using the form: `projects/{project\}/locations/{location\}/securityGateways/{security_gateway\}`
+     */
+    securityGateway?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1SetPeeringRequest;
+  }
+
+  export class Resource$Projects$Locations$Securitygateways$Applications {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a single Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Applications$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Applications$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Application.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Applications$Get
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Applications$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1Application>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists Applications in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Securitygateways$Applications$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Securitygateways$Applications$List
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Securitygateways$Applications$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Securitygateways$Applications$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/applications').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudBeyondcorpSecuritygatewaysV1ListApplicationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Application using the form: `projects/{project_id\}/locations/global/securityGateway/{security_gateway_id\}/applications/{application_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Securitygateways$Applications$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter specifying constraints of a list operation. All fields in the Application message are supported. For example, the following query will return the Application with displayName "test-application" For more information, please refer to https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies the ordering of results. See [Sorting order](https://cloud.google.com/apis/design/design_patterns#sorting_order) for more information.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 50 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous ListApplicationsRequest, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent location to which the resources belong. `projects/{project_id\}/locations/global/securityGateways/{security_gateway_id\}`
+     */
+    parent?: string;
   }
 }
