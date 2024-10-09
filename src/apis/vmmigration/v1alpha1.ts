@@ -4165,11 +4165,11 @@ export namespace vmmigration_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Imageimports$List
     extends StandardParameters {
     /**
-     * Optional. The filter request (according to https://google.aip.dev/160).
+     * Optional. The filter request (according to AIP-160).
      */
     filter?: string;
     /**
-     * Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by "name" field.
+     * Optional. The order by fields for the result (according to AIP-132). Currently ordering is only possible by "name" field.
      */
     orderBy?: string;
     /**
@@ -4486,11 +4486,11 @@ export namespace vmmigration_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Imageimports$Imageimportjobs$List
     extends StandardParameters {
     /**
-     * Optional. The filter request (according to https://google.aip.dev/160).
+     * Optional. The filter request (according to AIP-160).
      */
     filter?: string;
     /**
-     * Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by "name" field.
+     * Optional. The order by fields for the result (according to AIP-132). Currently ordering is only possible by "name" field.
      */
     orderBy?: string;
     /**

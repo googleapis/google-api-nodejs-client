@@ -520,12 +520,12 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. The filter request (according to https://google.aip.dev/160).",
+                      "description": "Optional. The filter request (according to AIP-160).",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by \"name\" field.",
+                      "description": "Optional. The order by fields for the result (according to AIP-132). Currently ordering is only possible by \"name\" field.",
                       "location": "query",
                       "type": "string"
                     },
@@ -623,12 +623,12 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. The filter request (according to https://google.aip.dev/160).",
+                          "description": "Optional. The filter request (according to AIP-160).",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. The order by fields for the result (according to https://google.aip.dev/132#ordering). Currently ordering is only possible by \"name\" field.",
+                          "description": "Optional. The order by fields for the result (according to AIP-132). Currently ordering is only possible by \"name\" field.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2220,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20240912",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
