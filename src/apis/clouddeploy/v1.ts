@@ -175,6 +175,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$AdvanceRolloutRequest {
     /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[] | null;
+    /**
      * Required. The phase ID to advance the `Rollout` to.
      */
     phaseId?: string | null;
@@ -221,6 +225,10 @@ export namespace clouddeploy_v1 {
      * Required. True = approve; false = reject
      */
     approved?: boolean | null;
+    /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[] | null;
   }
   /**
    * The response object from `ApproveRollout`.
@@ -411,6 +419,10 @@ export namespace clouddeploy_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Contains information about what policies prevented the `AutomationRun` from proceeding.
+     */
+    policyViolation?: Schema$PolicyViolation;
+    /**
      * Output only. Promotes a release to a specified 'Target'.
      */
     promoteReleaseOperation?: Schema$PromoteReleaseOperation;
@@ -563,7 +575,12 @@ export namespace clouddeploy_v1 {
   /**
    * The request object used by `CancelRollout`.
    */
-  export interface Schema$CancelRolloutRequest {}
+  export interface Schema$CancelRolloutRequest {
+    /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[] | null;
+  }
   /**
    * The response object from `CancelRollout`.
    */
@@ -874,6 +891,19 @@ export namespace clouddeploy_v1 {
     updateTime?: string | null;
   }
   /**
+   * Contains criteria for selecting DeliveryPipelines.
+   */
+  export interface Schema$DeliveryPipelineAttribute {
+    /**
+     * ID of the `DeliveryPipeline`. The value of this field could be one of the following: * The last segment of a pipeline name * "*", all delivery pipelines in a location
+     */
+    id?: string | null;
+    /**
+     * DeliveryPipeline labels.
+     */
+    labels?: {[key: string]: string} | null;
+  }
+  /**
    * Payload proto for "clouddeploy.googleapis.com/deliverypipeline_notification" Platform Log event that describes the failure to send delivery pipeline status change Pub/Sub notification.
    */
   export interface Schema$DeliveryPipelineNotificationEvent {
@@ -988,6 +1018,112 @@ export namespace clouddeploy_v1 {
     values?: {[key: string]: string} | null;
   }
   /**
+   * A `DeployPolicy` resource in the Cloud Deploy API. A `DeployPolicy` inhibits manual or automation-driven actions within a Delivery Pipeline or Target.
+   */
+  export interface Schema$DeployPolicy {
+    /**
+     * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. Annotations must meet the following constraints: * Annotations are key/value pairs. * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (`/`). * The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. * The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots(`.`), not longer than 253 characters in total, followed by a slash (`/`). See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set for more details.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. Time at which the deploy policy was created.
+     */
+    createTime?: string | null;
+    /**
+     * Description of the `DeployPolicy`. Max length is 255 characters.
+     */
+    description?: string | null;
+    /**
+     * The weak etag of the `Automation` resource. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Labels are attributes that can be set and used by both the user and by Cloud Deploy. Labels must meet the following constraints: * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. * All characters must use UTF-8 encoding, and international characters are allowed. * Keys must start with a lowercase letter or international character. * Each resource is limited to a maximum of 64 labels. Both keys and values are additionally constrained to be <= 128 bytes.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Name of the `DeployPolicy`. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`. The `deployPolicy` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     */
+    name?: string | null;
+    /**
+     * Required. Rules to apply. At least one rule must be present.
+     */
+    rules?: Schema$PolicyRule[];
+    /**
+     * Required. Selected resources to which the policy will be applied. At least one selector is required. If one selector matches the resource the policy applies. For example, if there are two selectors and the action being attempted matches one of them, the policy will apply to that action.
+     */
+    selectors?: Schema$DeployPolicyResourceSelector[];
+    /**
+     * When suspended, the policy will not prevent actions from occurring, even if the action violates the policy.
+     */
+    suspended?: boolean | null;
+    /**
+     * Output only. Unique identifier of the `DeployPolicy`.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Most recent time at which the deploy policy was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Payload proto for "clouddeploy.googleapis.com/deploypolicy_evaluation" Platform Log event that describes the deploy policy evaluation event.
+   */
+  export interface Schema$DeployPolicyEvaluationEvent {
+    /**
+     * Whether the request is allowed. Allowed is set as true if: (1) the request complies with the policy; or (2) the request doesn't comply with the policy but the policy was overridden; or (3) the request doesn't comply with the policy but the policy was suspended
+     */
+    allowed?: boolean | null;
+    /**
+     * The name of the `Delivery Pipeline`.
+     */
+    deliveryPipeline?: string | null;
+    /**
+     * The name of the `DeployPolicy`.
+     */
+    deployPolicy?: string | null;
+    /**
+     * Unique identifier of the `DeployPolicy`.
+     */
+    deployPolicyUid?: string | null;
+    /**
+     * What invoked the action (e.g. a user or automation).
+     */
+    invoker?: string | null;
+    /**
+     * Debug message for when a deploy policy event occurs.
+     */
+    message?: string | null;
+    /**
+     * Things that could have overridden the policy verdict. Overrides together with verdict decide whether the request is allowed.
+     */
+    overrides?: string[] | null;
+    /**
+     * Unique identifier of the `Delivery Pipeline`.
+     */
+    pipelineUid?: string | null;
+    /**
+     * Rule id.
+     */
+    rule?: string | null;
+    /**
+     * Rule type (e.g. Restrict Rollouts).
+     */
+    ruleType?: string | null;
+    /**
+     * The name of the `Target`. This is an optional field, as a `Target` may not always be applicable to a policy.
+     */
+    target?: string | null;
+    /**
+     * Unique identifier of the `Target`. This is an optional field, as a `Target` may not always be applicable to a policy.
+     */
+    targetUid?: string | null;
+    /**
+     * The policy verdict of the request.
+     */
+    verdict?: string | null;
+  }
+  /**
    * Payload proto for "clouddeploy.googleapis.com/deploypolicy_notification". Platform Log event that describes the failure to send a pub/sub notification when there is a DeployPolicy status change.
    */
   export interface Schema$DeployPolicyNotificationEvent {
@@ -1007,6 +1143,19 @@ export namespace clouddeploy_v1 {
      * Type of this notification, e.g. for a Pub/Sub failure.
      */
     type?: string | null;
+  }
+  /**
+   * Contains information on the resources to select for a deploy policy. Attributes provided must all match the resource in order for policy restrictions to apply. For example, if delivery pipelines attributes given are an id "prod" and labels "foo: bar", a delivery pipeline resource must match both that id and have that label in order to be subject to the policy.
+   */
+  export interface Schema$DeployPolicyResourceSelector {
+    /**
+     * Optional. Contains attributes about a delivery pipeline.
+     */
+    deliveryPipeline?: Schema$DeliveryPipelineAttribute;
+    /**
+     * Optional. Contains attributes about a target.
+     */
+    target?: Schema$TargetAttribute;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -1124,6 +1273,10 @@ export namespace clouddeploy_v1 {
      * Required. The job ID for the Job to ignore.
      */
     jobId?: string | null;
+    /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[] | null;
     /**
      * Required. The phase ID the Job to ignore belongs to.
      */
@@ -1366,6 +1519,23 @@ export namespace clouddeploy_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * The response object from `ListDeployPolicies`.
+   */
+  export interface Schema$ListDeployPoliciesResponse {
+    /**
+     * The `DeployPolicy` objects.
+     */
+    deployPolicies?: Schema$DeployPolicy[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * ListJobRunsResponse is the response object returned by `ListJobRuns`.
    */
   export interface Schema$ListJobRunsResponse {
@@ -1509,6 +1679,27 @@ export namespace clouddeploy_v1 {
      * Required. The target_ids of this multiTarget.
      */
     targetIds?: string[] | null;
+  }
+  /**
+   * One-time window within which actions are restricted. For example, blocking actions over New Year's Eve from December 31st at 5pm to January 1st at 9am.
+   */
+  export interface Schema$OneTimeWindow {
+    /**
+     * Required. End date.
+     */
+    endDate?: Schema$Date;
+    /**
+     * Required. End time (exclusive). You may use 24:00 for the end of the day.
+     */
+    endTime?: Schema$TimeOfDay;
+    /**
+     * Required. Start date.
+     */
+    startDate?: Schema$Date;
+    /**
+     * Required. Start time (inclusive). Use 00:00 for the beginning of the day.
+     */
+    startTime?: Schema$TimeOfDay;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1689,6 +1880,41 @@ export namespace clouddeploy_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Deploy Policy rule.
+   */
+  export interface Schema$PolicyRule {
+    /**
+     * Rollout restrictions.
+     */
+    rolloutRestriction?: Schema$RolloutRestriction;
+  }
+  /**
+   * Returned from an action if one or more policies were violated, and therefore the action was prevented. Contains information about what policies were violated and why.
+   */
+  export interface Schema$PolicyViolation {
+    /**
+     * Policy violation details.
+     */
+    policyViolationDetails?: Schema$PolicyViolationDetails[];
+  }
+  /**
+   * Policy violation details.
+   */
+  export interface Schema$PolicyViolationDetails {
+    /**
+     * User readable message about why the request violated a policy. This is not intended for machine parsing.
+     */
+    failureMessage?: string | null;
+    /**
+     * Name of the policy that was violated. Policy resource will be in the format of `projects/{project\}/locations/{location\}/policies/{policy\}`.
+     */
+    policy?: string | null;
+    /**
+     * Id of the rule that triggered the policy violation.
+     */
+    ruleId?: string | null;
   }
   /**
    * Postdeploy contains the postdeploy job configuration information.
@@ -2015,9 +2241,26 @@ export namespace clouddeploy_v1 {
     rollback?: Schema$RollbackAttempt;
   }
   /**
+   * Configuration of the repair phase.
+   */
+  export interface Schema$RepairPhaseConfig {
+    /**
+     * Optional. Retries a failed job.
+     */
+    retry?: Schema$Retry;
+    /**
+     * Optional. Rolls back a `Rollout`.
+     */
+    rollback?: Schema$Rollback;
+  }
+  /**
    * Contains the information for an automated `repair rollout` operation.
    */
   export interface Schema$RepairRolloutOperation {
+    /**
+     * Output only. The index of the current repair action in the repair sequence.
+     */
+    currentRepairPhaseIndex?: string | null;
     /**
      * Output only. The job ID for the Job to repair.
      */
@@ -2051,6 +2294,31 @@ export namespace clouddeploy_v1 {
      * Optional. Jobs to repair. Proceeds only after job name matched any one in the list, or for all jobs if unspecified or empty. The phase that includes the job must match the phase ID specified in `source_phase`. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
      */
     jobs?: string[] | null;
+    /**
+     * Optional. Phases within which jobs are subject to automatic repair actions on failure. Proceeds only after phase name matched any one in the list, or for all phases if unspecified. This value must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    phases?: string[] | null;
+    /**
+     * Required. Defines the types of automatic repair phases for failed jobs.
+     */
+    repairPhases?: Schema$RepairPhaseConfig[];
+  }
+  /**
+   * Retries the failed job.
+   */
+  export interface Schema$Retry {
+    /**
+     * Required. Total number of retries. Retry is skipped if set to 0; The minimum value is 1, and the maximum value is 10.
+     */
+    attempts?: string | null;
+    /**
+     * Optional. The pattern of how wait time will be increased. Default is linear. Backoff mode will be ignored if `wait` is 0.
+     */
+    backoffMode?: string | null;
+    /**
+     * Optional. How long to wait for the first retry. Default is 0, and the maximum value is 14d.
+     */
+    wait?: string | null;
   }
   /**
    * RetryAttempt represents an action of retrying the failed Cloud Deploy job.
@@ -2082,6 +2350,10 @@ export namespace clouddeploy_v1 {
      */
     jobId?: string | null;
     /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[] | null;
+    /**
      * Required. The phase ID the Job to retry belongs to.
      */
     phaseId?: string | null;
@@ -2108,6 +2380,19 @@ export namespace clouddeploy_v1 {
     totalAttempts?: string | null;
   }
   /**
+   * Rolls back a `Rollout`.
+   */
+  export interface Schema$Rollback {
+    /**
+     * Optional. The starting phase ID for the `Rollout`. If unspecified, the `Rollout` will start in the stable phase.
+     */
+    destinationPhase?: string | null;
+    /**
+     * Optional. If pending rollout exists on the target, the rollback operation will be aborted.
+     */
+    disableRollbackIfRolloutPending?: boolean | null;
+  }
+  /**
    * RollbackAttempt represents an action of rolling back a Cloud Deploy 'Target'.
    */
   export interface Schema$RollbackAttempt {
@@ -2115,6 +2400,10 @@ export namespace clouddeploy_v1 {
      * Output only. The phase to which the rollout will be rolled back to.
      */
     destinationPhase?: string | null;
+    /**
+     * Output only. If active rollout exists on the target, abort this rollback.
+     */
+    disableRollbackIfRolloutPending?: boolean | null;
     /**
      * Output only. ID of the rollback `Rollout` to create.
      */
@@ -2145,6 +2434,10 @@ export namespace clouddeploy_v1 {
    * The request object for `RollbackTarget`.
    */
   export interface Schema$RollbackTargetRequest {
+    /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deploy_policy\}`.
+     */
+    overrideDeployPolicy?: string[] | null;
     /**
      * Optional. ID of the `Release` to roll back to. If this isn't specified, the previous successful `Rollout` to the specified target will be used to determine the `Release`.
      */
@@ -2183,6 +2476,10 @@ export namespace clouddeploy_v1 {
    * A `Rollout` resource in the Cloud Deploy API. A `Rollout` contains information around a specific deployment to a `Target`.
    */
   export interface Schema$Rollout {
+    /**
+     * Output only. The AutomationRun actively repairing the rollout.
+     */
+    activeRepairAutomationRun?: string | null;
     /**
      * User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
      */
@@ -2308,6 +2605,27 @@ export namespace clouddeploy_v1 {
      * Type of this notification, e.g. for a Pub/Sub failure.
      */
     type?: string | null;
+  }
+  /**
+   * Rollout restrictions.
+   */
+  export interface Schema$RolloutRestriction {
+    /**
+     * Optional. Rollout actions to be restricted as part of the policy. If left empty, all actions will be restricted.
+     */
+    actions?: string[] | null;
+    /**
+     * Required. Restriction rule ID. Required and must be unique within a DeployPolicy. The format is `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`.
+     */
+    id?: string | null;
+    /**
+     * Optional. What invoked the action. If left empty, all invoker types will be restricted.
+     */
+    invokers?: string[] | null;
+    /**
+     * Required. Time window within which actions are restricted.
+     */
+    timeWindows?: Schema$TimeWindows;
   }
   /**
    * Payload proto for "clouddeploy.googleapis.com/rollout_update" Platform Log event that describes the rollout update event.
@@ -2675,7 +2993,7 @@ export namespace clouddeploy_v1 {
     skaffoldConfigPath?: string | null;
   }
   /**
-   * Contains criteria for selecting Targets.
+   * Contains criteria for selecting Targets. This could be used to select targets for a Deploy Policy or for an Automation.
    */
   export interface Schema$TargetAttribute {
     /**
@@ -2762,7 +3080,12 @@ export namespace clouddeploy_v1 {
   /**
    * The request object used by `TerminateJobRun`.
    */
-  export interface Schema$TerminateJobRunRequest {}
+  export interface Schema$TerminateJobRunRequest {
+    /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[] | null;
+  }
   /**
    * The response object from `TerminateJobRun`.
    */
@@ -2784,6 +3107,44 @@ export namespace clouddeploy_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
+   * Time windows within which actions are restricted. See the [documentation](https://cloud.google.com/deploy/docs/deploy-policy#dates_times) for more information on how to configure dates/times.
+   */
+  export interface Schema$TimeWindows {
+    /**
+     * Optional. One-time windows within which actions are restricted.
+     */
+    oneTimeWindows?: Schema$OneTimeWindow[];
+    /**
+     * Required. The time zone in IANA format [IANA Time Zone Database](https://www.iana.org/time-zones) (e.g. America/New_York).
+     */
+    timeZone?: string | null;
+    /**
+     * Optional. Recurring weekly windows within which actions are restricted.
+     */
+    weeklyWindows?: Schema$WeeklyWindow[];
   }
   /**
    * A verify Job.
@@ -2814,6 +3175,23 @@ export namespace clouddeploy_v1 {
      */
     failureMessage?: string | null;
   }
+  /**
+   * Weekly windows. For example, blocking actions every Saturday and Sunday. Another example would be blocking actions every weekday from 5pm to midnight.
+   */
+  export interface Schema$WeeklyWindow {
+    /**
+     * Optional. Days of week. If left empty, all days of the week will be included.
+     */
+    daysOfWeek?: string[] | null;
+    /**
+     * Optional. End time (exclusive). Use 24:00 to indicate midnight. If you specify end_time you must also specify start_time. If left empty, this will block for the entire day for the days specified in days_of_week.
+     */
+    endTime?: Schema$TimeOfDay;
+    /**
+     * Optional. Start time (inclusive). Use 00:00 for the beginning of the day. If you specify start_time you must also specify end_time. If left empty, this will block for the entire day for the days specified in days_of_week.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -2828,6 +3206,7 @@ export namespace clouddeploy_v1 {
     context: APIRequestContext;
     customTargetTypes: Resource$Projects$Locations$Customtargettypes;
     deliveryPipelines: Resource$Projects$Locations$Deliverypipelines;
+    deployPolicies: Resource$Projects$Locations$Deploypolicies;
     operations: Resource$Projects$Locations$Operations;
     targets: Resource$Projects$Locations$Targets;
     constructor(context: APIRequestContext) {
@@ -2836,6 +3215,9 @@ export namespace clouddeploy_v1 {
         new Resource$Projects$Locations$Customtargettypes(this.context);
       this.deliveryPipelines =
         new Resource$Projects$Locations$Deliverypipelines(this.context);
+      this.deployPolicies = new Resource$Projects$Locations$Deploypolicies(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -6162,6 +6544,10 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Create
     extends StandardParameters {
     /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[];
+    /**
      * Required. The parent collection in which the `Release` is created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}`.
      */
     parent?: string;
@@ -6998,6 +7384,10 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$Create
     extends StandardParameters {
     /**
+     * Optional. Deploy policies to override. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`.
+     */
+    overrideDeployPolicy?: string[];
+    /**
      * Required. The parent collection in which the `Rollout` must be created. The format is `projects/{project_id\}/locations/{location_name\}/deliveryPipelines/{pipeline_name\}/releases/{release_name\}`.
      */
     parent?: string;
@@ -7400,6 +7790,557 @@ export namespace clouddeploy_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TerminateJobRunRequest;
+  }
+
+  export class Resource$Projects$Locations$Deploypolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new DeployPolicy in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Deploypolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypolicies$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deploypolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/deployPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single DeployPolicy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Deploypolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypolicies$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deploypolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single DeployPolicy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Deploypolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeployPolicy>;
+    get(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DeployPolicy>,
+      callback: BodyResponseCallback<Schema$DeployPolicy>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Get,
+      callback: BodyResponseCallback<Schema$DeployPolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DeployPolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypolicies$Get
+        | BodyResponseCallback<Schema$DeployPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeployPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeployPolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeployPolicy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deploypolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeployPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeployPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Lists DeployPolicies in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Deploypolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Deploypolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDeployPoliciesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Deploypolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deploypolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeployPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListDeployPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Deploypolicies$List,
+      callback: BodyResponseCallback<Schema$ListDeployPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDeployPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypolicies$List
+        | BodyResponseCallback<Schema$ListDeployPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeployPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeployPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeployPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deploypolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/deployPolicies').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeployPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDeployPoliciesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single DeployPolicy.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Deploypolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Deploypolicies$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Deploypolicies$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Deploypolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Deploypolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://clouddeploy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Create
+    extends StandardParameters {
+    /**
+     * Required. ID of the `DeployPolicy`.
+     */
+    deployPolicyId?: string;
+    /**
+     * Required. The parent collection in which the `DeployPolicy` must be created. The format is `projects/{project_id\}/locations/{location_name\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeployPolicy;
+  }
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Delete
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, then deleting an already deleted or non-existing `DeployPolicy` will succeed.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the `DeployPolicy` to delete. The format is `projects/{project_id\}/locations/{location_name\}/deployPolicies/{deploy_policy_name\}`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. If set, validate the request and preview the review, but do not actually post it.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the `DeployPolicy`. Format must be `projects/{project_id\}/locations/{location_name\}/deployPolicies/{deploy_policy_name\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deploypolicies$List
+    extends StandardParameters {
+    /**
+     * Filter deploy policies to be returned. See https://google.aip.dev/160 for more details. All fields can be used in the filter.
+     */
+    filter?: string;
+    /**
+     * Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of deploy policies to return. The service may return fewer than this value. If unspecified, at most 50 deploy policies will be returned. The maximum value is 1000; values above 1000 will be set to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListDeployPolicies` call. Provide this to retrieve the subsequent page. When paginating, all other provided parameters match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of deploy policies. Format must be `projects/{project_id\}/locations/{location_name\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Deploypolicies$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, updating a `DeployPolicy` that does not exist will result in the creation of a new `DeployPolicy`.
+     */
+    allowMissing?: boolean;
+    /**
+     * Output only. Name of the `DeployPolicy`. Format is `projects/{project\}/locations/{location\}/deployPolicies/{deployPolicy\}`. The `deployPolicy` component must match `[a-z]([a-z0-9-]{0,61\}[a-z0-9])?`
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server knows to ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten by the update in the `DeployPolicy` resource. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it's in the mask. If the user doesn't provide a mask then all fields are overwritten.
+     */
+    updateMask?: string;
+    /**
+     * Optional. If set to true, the request is validated and the user is provided with an expected result, but no actual change is made.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeployPolicy;
   }
 
   export class Resource$Projects$Locations$Operations {
