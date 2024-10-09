@@ -4930,6 +4930,24 @@
           ],
           "type": "string"
         },
+        "permissionSettings": {
+          "$ref": "PermissionSettings",
+          "description": "Optional. Exact permission settings which can be set to update the space. Input for updating a space. Otherwise, output only. For space creation, use `predefined_permission_settings` instead."
+        },
+        "predefinedPermissionSettings": {
+          "description": "Optional. Input only. Space permission settings. Input for creating a space, a collaboration space is created if this field is not set. After you create the space, settings are populated in the `PermissionSettings` field.",
+          "enum": [
+            "PREDEFINED_PERMISSION_SETTINGS_UNSPECIFIED",
+            "COLLABORATION_SPACE",
+            "ANNOUNCEMENT_SPACE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Don't use.",
+            "Setting to make the space a collaboration space where all members can post messages.",
+            "Setting to make the space an announcement space where only space managers can post messages."
+          ],
+          "type": "string"
+        },
         "singleUserBotDm": {
           "description": "Optional. Whether the space is a DM between a Chat app and a single human.",
           "type": "boolean"
