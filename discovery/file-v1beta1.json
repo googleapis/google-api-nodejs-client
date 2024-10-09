@@ -1646,6 +1646,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "configurablePerformanceEnabled": {
+          "description": "Output only. Indicates whether this instance's performance is configurable. If enabled, adjust it using the 'performance_config' field.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",
