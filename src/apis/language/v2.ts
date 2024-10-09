@@ -271,6 +271,10 @@ export namespace language_v2 {
      * The name of the category representing the document.
      */
     name?: string | null;
+    /**
+     * Optional. The classifier's severity of the category. This is only present when the ModerateTextRequest.ModelVersion is set to MODEL_VERSION_2, and the corresponding category has a severity score.
+     */
+    severity?: number | null;
   }
   /**
    * The document classification request message.
@@ -472,6 +476,10 @@ export namespace language_v2 {
      * Required. Input document.
      */
     document?: Schema$Document;
+    /**
+     * Optional. The model version to use for ModerateText.
+     */
+    modelVersion?: string | null;
   }
   /**
    * The document moderation response message.

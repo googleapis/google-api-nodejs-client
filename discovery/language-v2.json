@@ -208,7 +208,7 @@
       }
     }
   },
-  "revision": "20240713",
+  "revision": "20240929",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {
@@ -426,6 +426,11 @@
         "name": {
           "description": "The name of the category representing the document.",
           "type": "string"
+        },
+        "severity": {
+          "description": "Optional. The classifier's severity of the category. This is only present when the ModerateTextRequest.ModelVersion is set to MODEL_VERSION_2, and the corresponding category has a severity score.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -576,6 +581,9 @@
             "A2_ULTRAGPU_2G",
             "A2_ULTRAGPU_4G",
             "A2_ULTRAGPU_8G",
+            "A3_HIGHGPU_1G",
+            "A3_HIGHGPU_2G",
+            "A3_HIGHGPU_4G",
             "A3_HIGHGPU_8G",
             "A3_MEGAGPU_8G",
             "E2_STANDARD_2",
@@ -706,6 +714,9 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -1109,6 +1120,9 @@
             "A2_ULTRAGPU_2G",
             "A2_ULTRAGPU_4G",
             "A2_ULTRAGPU_8G",
+            "A3_HIGHGPU_1G",
+            "A3_HIGHGPU_2G",
+            "A3_HIGHGPU_4G",
             "A3_HIGHGPU_8G",
             "A3_MEGAGPU_8G",
             "E2_STANDARD_2",
@@ -1239,6 +1253,9 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -1460,6 +1477,20 @@
         "document": {
           "$ref": "Document",
           "description": "Required. Input document."
+        },
+        "modelVersion": {
+          "description": "Optional. The model version to use for ModerateText.",
+          "enum": [
+            "MODEL_VERSION_UNSPECIFIED",
+            "MODEL_VERSION_1",
+            "MODEL_VERSION_2"
+          ],
+          "enumDescriptions": [
+            "The default model version.",
+            "Use the v1 model, this model is used by default when not provided. The v1 model only returns probability (confidence) score for each category.",
+            "Use the v2 model. The v2 model only returns probability (confidence) score for each category, and returns severity score for a subset of the categories."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1528,6 +1559,9 @@
             "A2_ULTRAGPU_2G",
             "A2_ULTRAGPU_4G",
             "A2_ULTRAGPU_8G",
+            "A3_HIGHGPU_1G",
+            "A3_HIGHGPU_2G",
+            "A3_HIGHGPU_4G",
             "A3_HIGHGPU_8G",
             "A3_MEGAGPU_8G",
             "E2_STANDARD_2",
@@ -1658,6 +1692,9 @@
             "C3_HIGHMEM_176"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
             "",
             "",
             "",
