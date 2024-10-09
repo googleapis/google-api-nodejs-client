@@ -368,6 +368,36 @@
               }
             }
           }
+        },
+        "repos": {
+          "resources": {
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/repos/{reposId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "checks.accounts.repos.operations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the operation resource.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/repos/[^/]+/operations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -414,7 +444,7 @@
       }
     }
   },
-  "revision": "20240627",
+  "revision": "20240904",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
