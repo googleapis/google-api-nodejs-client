@@ -2016,6 +2016,10 @@ export namespace sqladmin_v1beta4 {
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
+    /**
+     * List of warnings that occurred while handling the request.
+     */
+    warnings?: Schema$ApiWarning[];
   }
   /**
    * Read-only password status.
@@ -12173,6 +12177,10 @@ export namespace sqladmin_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
+    /**
+     * Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.
+     */
+    filter?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */

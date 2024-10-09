@@ -1897,6 +1897,11 @@
             "project"
           ],
           "parameters": {
+            "filter": {
+              "description": "Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.",
+              "location": "query",
+              "type": "string"
+            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "query",
@@ -6395,6 +6400,13 @@
         "nextPageToken": {
           "description": "The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.",
           "type": "string"
+        },
+        "warnings": {
+          "description": "List of warnings that occurred while handling the request.",
+          "items": {
+            "$ref": "ApiWarning"
+          },
+          "type": "array"
         }
       },
       "type": "object"
