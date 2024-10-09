@@ -4203,7 +4203,7 @@ export namespace sheets_v4 {
      */
     defaultFormat?: Schema$CellFormat;
     /**
-     * Whether to allow external URL access for image and import functions. Read only when true. When false, you can set to true. This value will be bypassed and always return true if the admin has enabled the allowlisting feature.
+     * Whether to allow external URL access for image and import functions. Read only when true. When false, you can set to true. This value will be bypassed and always return true if the admin has enabled the [allowlisting feature](https://support.google.com/a?p=url_allowlist).
      */
     importFunctionsExternalUrlAccessAllowed?: boolean | null;
     /**
