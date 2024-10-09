@@ -253,7 +253,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
     quotas?: Schema$Quota[];
   }
   /**
-   * Instances in this Channel will receive updates after all instances in `Critical` were updated + 2 days. They also will only be updated outside of their peak hours.
+   * Instances in this Channel will receive updates after all instances in `Normal` were updated. They also will only be updated outside of their peak hours.
    */
   export interface Schema$Critical {
     /**
@@ -470,6 +470,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      * The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components.
      */
     allowedConsumerProjectIds?: string[] | null;
+    /**
+     * Output only. The CCAIP tenant project ids.
+     */
+    producerProjectIds?: string[] | null;
   }
   /**
    * Quota details.
