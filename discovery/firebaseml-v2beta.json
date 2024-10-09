@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20241003",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -312,6 +312,11 @@
           "readOnly": true,
           "type": "integer"
         },
+        "logprobsResult": {
+          "$ref": "GoogleCloudAiplatformV1beta1LogprobsResult",
+          "description": "Output only. Log-likelihood scores for the response tokens and top tokens",
+          "readOnly": true
+        },
         "safetyRatings": {
           "description": "Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.",
           "items": {
@@ -406,6 +411,10 @@
           },
           "type": "array"
         },
+        "generationConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfig",
+          "description": "Optional. Generation config that the model will use to generate the response."
+        },
         "instances": {
           "description": "Optional. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.",
           "items": {
@@ -444,6 +453,30 @@
           "description": "The total number of tokens counted across all instances from the request.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DynamicRetrievalConfig": {
+      "description": "Describes the options to customize dynamic retrieval.",
+      "id": "GoogleCloudAiplatformV1beta1DynamicRetrievalConfig",
+      "properties": {
+        "dynamicThreshold": {
+          "description": "Optional. The threshold to be used in dynamic retrieval. If not set, a system default value is used.",
+          "format": "float",
+          "type": "number"
+        },
+        "mode": {
+          "description": "The mode of the predictor to be used in dynamic retrieval.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "MODE_DYNAMIC"
+          ],
+          "enumDescriptions": [
+            "Always trigger retrieval.",
+            "Run retrieval only when system decides it is necessary."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -573,6 +606,13 @@
           "$ref": "GoogleCloudAiplatformV1beta1GenerationConfig",
           "description": "Optional. Generation config."
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels with user-defined metadata for the request. It is used for billing and reporting only. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.",
+          "type": "object"
+        },
         "safetySettings": {
           "description": "Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.",
           "items": {
@@ -609,6 +649,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "modelVersion": {
+          "description": "Output only. The model version used to generate the response.",
+          "readOnly": true,
+          "type": "string"
         },
         "promptFeedback": {
           "$ref": "GoogleCloudAiplatformV1beta1GenerateContentResponsePromptFeedback",
@@ -693,6 +738,10 @@
       "description": "Generation config.",
       "id": "GoogleCloudAiplatformV1beta1GenerationConfig",
       "properties": {
+        "audioTimestamp": {
+          "description": "Optional. If enabled, audio timestamp will be included in the request to the model.",
+          "type": "boolean"
+        },
         "candidateCount": {
           "description": "Optional. Number of candidates to generate.",
           "format": "int32",
@@ -703,6 +752,11 @@
           "format": "float",
           "type": "number"
         },
+        "logprobs": {
+          "description": "Optional. Logit probabilities.",
+          "format": "int32",
+          "type": "integer"
+        },
         "maxOutputTokens": {
           "description": "Optional. The maximum number of output tokens to generate per message.",
           "format": "int32",
@@ -712,6 +766,10 @@
           "description": "Optional. Positive penalties.",
           "format": "float",
           "type": "number"
+        },
+        "responseLogprobs": {
+          "description": "Optional. If true, export the logprobs results in response.",
+          "type": "boolean"
         },
         "responseMimeType": {
           "description": "Optional. Output response mimetype of the generated candidate text. Supported mimetype: - `text/plain`: (default) Text output. - `application/json`: JSON response in the candidates. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. This is a preview feature.",
@@ -807,7 +865,12 @@
     "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval": {
       "description": "Tool to retrieve public web data for grounding, powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval",
-      "properties": {},
+      "properties": {
+        "dynamicRetrievalConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1DynamicRetrievalConfig",
+          "description": "Specifies the dynamic retrieval configuration for the given source."
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GroundingChunk": {
@@ -873,6 +936,11 @@
           },
           "type": "array"
         },
+        "retrievalMetadata": {
+          "$ref": "GoogleCloudAiplatformV1beta1RetrievalMetadata",
+          "description": "Optional. Output only. Retrieval metadata.",
+          "readOnly": true
+        },
         "retrievalQueries": {
           "description": "Optional. Queries executed by the retrieval tools.",
           "items": {
@@ -917,6 +985,62 @@
         "segment": {
           "$ref": "GoogleCloudAiplatformV1beta1Segment",
           "description": "Segment of the content this support belongs to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1LogprobsResult": {
+      "description": "Logprobs Result",
+      "id": "GoogleCloudAiplatformV1beta1LogprobsResult",
+      "properties": {
+        "chosenCandidates": {
+          "description": "Length = total number of decoding steps. The chosen candidates may or may not be in top_candidates.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1LogprobsResultCandidate"
+          },
+          "type": "array"
+        },
+        "topCandidates": {
+          "description": "Length = total number of decoding steps.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1LogprobsResultCandidate": {
+      "description": "Candidate for the logprobs token and score.",
+      "id": "GoogleCloudAiplatformV1beta1LogprobsResultCandidate",
+      "properties": {
+        "logProbability": {
+          "description": "The candidate's log probability.",
+          "format": "float",
+          "type": "number"
+        },
+        "token": {
+          "description": "The candidate's token string value.",
+          "type": "string"
+        },
+        "tokenId": {
+          "description": "The candidate's token id value.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates": {
+      "description": "Candidates with top log probabilities at each decoding step.",
+      "id": "GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates",
+      "properties": {
+        "candidates": {
+          "description": "Sorted by log probability in descending order.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1LogprobsResultCandidate"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -972,6 +1096,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1RetrievalMetadata": {
+      "description": "Metadata related to retrieval in the grounding flow.",
+      "id": "GoogleCloudAiplatformV1beta1RetrievalMetadata",
+      "properties": {
+        "googleSearchDynamicRetrievalScore": {
+          "description": "Optional. Score indicating how likely information from Google Search could help answer the prompt. The score is in the range `[0, 1]`, where 0 is the least likely and 1 is the most likely. This score is only populated when Google Search grounding and dynamic retrieval is enabled. It will be compared to the threshold to determine whether to trigger Google Search.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1SafetyRating": {
       "description": "Safety rating corresponding to the generated content.",
       "id": "GoogleCloudAiplatformV1beta1SafetyRating",
@@ -988,14 +1124,16 @@
             "HARM_CATEGORY_HATE_SPEECH",
             "HARM_CATEGORY_DANGEROUS_CONTENT",
             "HARM_CATEGORY_HARASSMENT",
-            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_CIVIC_INTEGRITY"
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
             "The harm category is dangerous content.",
             "The harm category is harassment.",
-            "The harm category is sexually explicit content."
+            "The harm category is sexually explicit content.",
+            "The harm category is civic integrity."
           ],
           "readOnly": true,
           "type": "string"
@@ -1064,14 +1202,16 @@
             "HARM_CATEGORY_HATE_SPEECH",
             "HARM_CATEGORY_DANGEROUS_CONTENT",
             "HARM_CATEGORY_HARASSMENT",
-            "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+            "HARM_CATEGORY_SEXUALLY_EXPLICIT",
+            "HARM_CATEGORY_CIVIC_INTEGRITY"
           ],
           "enumDescriptions": [
             "The harm category is unspecified.",
             "The harm category is hate speech.",
             "The harm category is dangerous content.",
             "The harm category is harassment.",
-            "The harm category is sexually explicit content."
+            "The harm category is sexually explicit content.",
+            "The harm category is civic integrity."
           ],
           "type": "string"
         },
@@ -1096,14 +1236,16 @@
             "BLOCK_LOW_AND_ABOVE",
             "BLOCK_MEDIUM_AND_ABOVE",
             "BLOCK_ONLY_HIGH",
-            "BLOCK_NONE"
+            "BLOCK_NONE",
+            "OFF"
           ],
           "enumDescriptions": [
             "Unspecified harm block threshold.",
             "Block low threshold and above (i.e. block more).",
             "Block medium threshold and above.",
             "Block only high threshold (i.e. block less).",
-            "Block none."
+            "Block none.",
+            "Turn off the safety filter."
           ],
           "type": "string"
         }
@@ -1114,6 +1256,13 @@
       "description": "Schema is used to define the format of input/output data. Represents a select subset of an [OpenAPI 3.0 schema object](https://spec.openapis.org/oas/v3.0.3#schema-object). More fields may be added in the future as needed.",
       "id": "GoogleCloudAiplatformV1beta1Schema",
       "properties": {
+        "anyOf": {
+          "description": "Optional. The value should be validated against any (one or more) of the subschemas in the list.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Schema"
+          },
+          "type": "array"
+        },
         "default": {
           "description": "Optional. Default value of the data.",
           "type": "any"
@@ -1123,7 +1272,7 @@
           "type": "string"
         },
         "enum": {
-          "description": "Optional. Possible values of the element of Type.STRING with enum format. For example we can define an Enum Direction as : {type:STRING, format:enum, enum:[\"EAST\", NORTH\", \"SOUTH\", \"WEST\"]}",
+          "description": "Optional. Possible values of the element of primitive type with enum format. Examples: 1. We can define direction as : {type:STRING, format:enum, enum:[\"EAST\", NORTH\", \"SOUTH\", \"WEST\"]} 2. We can define apartment number as : {type:INTEGER, format:enum, enum:[\"101\", \"201\", \"301\"]}",
           "items": {
             "type": "string"
           },
@@ -1195,6 +1344,13 @@
           },
           "description": "Optional. SCHEMA FIELDS FOR TYPE OBJECT Properties of Type.OBJECT.",
           "type": "object"
+        },
+        "propertyOrdering": {
+          "description": "Optional. The order of the properties. Not a standard field in open api spec. Only used to support the order of the properties.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "required": {
           "description": "Optional. Required properties of Type.OBJECT.",
@@ -1283,7 +1439,7 @@
       "id": "GoogleCloudAiplatformV1beta1Tool",
       "properties": {
         "functionDeclarations": {
-          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.",
+          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1FunctionDeclaration"
           },

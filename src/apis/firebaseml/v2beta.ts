@@ -187,6 +187,10 @@ export namespace firebaseml_v2beta {
      */
     index?: number | null;
     /**
+     * Output only. Log-likelihood scores for the response tokens and top tokens
+     */
+    logprobsResult?: Schema$GoogleCloudAiplatformV1beta1LogprobsResult;
+    /**
      * Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.
      */
     safetyRatings?: Schema$GoogleCloudAiplatformV1beta1SafetyRating[];
@@ -251,6 +255,10 @@ export namespace firebaseml_v2beta {
      */
     contents?: Schema$GoogleCloudAiplatformV1beta1Content[];
     /**
+     * Optional. Generation config that the model will use to generate the response.
+     */
+    generationConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfig;
+    /**
      * Optional. The instances that are the input to token counting call. Schema is identical to the prediction schema of the underlying model.
      */
     instances?: any[] | null;
@@ -279,6 +287,19 @@ export namespace firebaseml_v2beta {
      * The total number of tokens counted across all instances from the request.
      */
     totalTokens?: number | null;
+  }
+  /**
+   * Describes the options to customize dynamic retrieval.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1DynamicRetrievalConfig {
+    /**
+     * Optional. The threshold to be used in dynamic retrieval. If not set, a system default value is used.
+     */
+    dynamicThreshold?: number | null;
+    /**
+     * The mode of the predictor to be used in dynamic retrieval.
+     */
+    mode?: string | null;
   }
   /**
    * URI based data.
@@ -370,6 +391,10 @@ export namespace firebaseml_v2beta {
      */
     generationConfig?: Schema$GoogleCloudAiplatformV1beta1GenerationConfig;
     /**
+     * Optional. The labels with user-defined metadata for the request. It is used for billing and reporting only. Label keys and values can be no longer than 63 characters (Unicode codepoints) and can only contain lowercase letters, numeric characters, underscores, and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.
      */
     safetySettings?: Schema$GoogleCloudAiplatformV1beta1SafetySetting[];
@@ -394,6 +419,10 @@ export namespace firebaseml_v2beta {
      * Output only. Generated candidates.
      */
     candidates?: Schema$GoogleCloudAiplatformV1beta1Candidate[];
+    /**
+     * Output only. The model version used to generate the response.
+     */
+    modelVersion?: string | null;
     /**
      * Output only. Content filter results for a prompt sent in the request. Note: Sent only in the first stream chunk. Only happens when no candidates were generated due to content violations.
      */
@@ -446,6 +475,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GenerationConfig {
     /**
+     * Optional. If enabled, audio timestamp will be included in the request to the model.
+     */
+    audioTimestamp?: boolean | null;
+    /**
      * Optional. Number of candidates to generate.
      */
     candidateCount?: number | null;
@@ -454,6 +487,10 @@ export namespace firebaseml_v2beta {
      */
     frequencyPenalty?: number | null;
     /**
+     * Optional. Logit probabilities.
+     */
+    logprobs?: number | null;
+    /**
      * Optional. The maximum number of output tokens to generate per message.
      */
     maxOutputTokens?: number | null;
@@ -461,6 +498,10 @@ export namespace firebaseml_v2beta {
      * Optional. Positive penalties.
      */
     presencePenalty?: number | null;
+    /**
+     * Optional. If true, export the logprobs results in response.
+     */
+    responseLogprobs?: boolean | null;
     /**
      * Optional. Output response mimetype of the generated candidate text. Supported mimetype: - `text/plain`: (default) Text output. - `application/json`: JSON response in the candidates. The model needs to be prompted to output the appropriate response type, otherwise the behavior is undefined. This is a preview feature.
      */
@@ -528,7 +569,12 @@ export namespace firebaseml_v2beta {
   /**
    * Tool to retrieve public web data for grounding, powered by Google.
    */
-  export interface Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval {}
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval {
+    /**
+     * Specifies the dynamic retrieval configuration for the given source.
+     */
+    dynamicRetrievalConfig?: Schema$GoogleCloudAiplatformV1beta1DynamicRetrievalConfig;
+  }
   /**
    * Grounding chunk.
    */
@@ -581,6 +627,10 @@ export namespace firebaseml_v2beta {
      */
     groundingSupports?: Schema$GoogleCloudAiplatformV1beta1GroundingSupport[];
     /**
+     * Optional. Output only. Retrieval metadata.
+     */
+    retrievalMetadata?: Schema$GoogleCloudAiplatformV1beta1RetrievalMetadata;
+    /**
      * Optional. Queries executed by the retrieval tools.
      */
     retrievalQueries?: string[] | null;
@@ -609,6 +659,45 @@ export namespace firebaseml_v2beta {
      * Segment of the content this support belongs to.
      */
     segment?: Schema$GoogleCloudAiplatformV1beta1Segment;
+  }
+  /**
+   * Logprobs Result
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1LogprobsResult {
+    /**
+     * Length = total number of decoding steps. The chosen candidates may or may not be in top_candidates.
+     */
+    chosenCandidates?: Schema$GoogleCloudAiplatformV1beta1LogprobsResultCandidate[];
+    /**
+     * Length = total number of decoding steps.
+     */
+    topCandidates?: Schema$GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates[];
+  }
+  /**
+   * Candidate for the logprobs token and score.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1LogprobsResultCandidate {
+    /**
+     * The candidate's log probability.
+     */
+    logProbability?: number | null;
+    /**
+     * The candidate's token string value.
+     */
+    token?: string | null;
+    /**
+     * The candidate's token id value.
+     */
+    tokenId?: number | null;
+  }
+  /**
+   * Candidates with top log probabilities at each decoding step.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1LogprobsResultTopCandidates {
+    /**
+     * Sorted by log probability in descending order.
+     */
+    candidates?: Schema$GoogleCloudAiplatformV1beta1LogprobsResultCandidate[];
   }
   /**
    * A datatype containing media that is part of a multi-part `Content` message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. A `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.
@@ -655,6 +744,15 @@ export namespace firebaseml_v2beta {
      * Set to use data source powered by Vertex RAG store. User data is uploaded via the VertexRagDataService.
      */
     vertexRagStore?: Schema$GoogleCloudAiplatformV1beta1VertexRagStore;
+  }
+  /**
+   * Metadata related to retrieval in the grounding flow.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1RetrievalMetadata {
+    /**
+     * Optional. Score indicating how likely information from Google Search could help answer the prompt. The score is in the range `[0, 1]`, where 0 is the least likely and 1 is the most likely. This score is only populated when Google Search grounding and dynamic retrieval is enabled. It will be compared to the threshold to determine whether to trigger Google Search.
+     */
+    googleSearchDynamicRetrievalScore?: number | null;
   }
   /**
    * Safety rating corresponding to the generated content.
@@ -707,6 +805,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Schema {
     /**
+     * Optional. The value should be validated against any (one or more) of the subschemas in the list.
+     */
+    anyOf?: Schema$GoogleCloudAiplatformV1beta1Schema[];
+    /**
      * Optional. Default value of the data.
      */
     default?: any | null;
@@ -715,7 +817,7 @@ export namespace firebaseml_v2beta {
      */
     description?: string | null;
     /**
-     * Optional. Possible values of the element of Type.STRING with enum format. For example we can define an Enum Direction as : {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]\}
+     * Optional. Possible values of the element of primitive type with enum format. Examples: 1. We can define direction as : {type:STRING, format:enum, enum:["EAST", NORTH", "SOUTH", "WEST"]\} 2. We can define apartment number as : {type:INTEGER, format:enum, enum:["101", "201", "301"]\}
      */
     enum?: string[] | null;
     /**
@@ -777,6 +879,10 @@ export namespace firebaseml_v2beta {
       [key: string]: Schema$GoogleCloudAiplatformV1beta1Schema;
     } | null;
     /**
+     * Optional. The order of the properties. Not a standard field in open api spec. Only used to support the order of the properties.
+     */
+    propertyOrdering?: string[] | null;
+    /**
      * Optional. Required properties of Type.OBJECT.
      */
     required?: string[] | null;
@@ -828,7 +934,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Tool {
     /**
-     * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 64 function declarations can be provided.
+     * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration[];
     /**
