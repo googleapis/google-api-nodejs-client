@@ -8142,6 +8142,14 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string | null;
     /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of the model.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of the model.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Metadata for smart reply models.
      */
     smartReplyModelMetadata?: Schema$GoogleCloudDialogflowV2SmartReplyModelMetadata;

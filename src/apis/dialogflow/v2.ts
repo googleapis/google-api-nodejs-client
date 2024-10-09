@@ -6029,6 +6029,14 @@ export namespace dialogflow_v2 {
      * Output only. ConversationDataset resource name. Format: `projects//locations//conversationDatasets/`
      */
     name?: string | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of the dataset.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of the dataset.
+     */
+    satisfiesPzs?: boolean | null;
   }
   /**
    * Represents a notification sent to Pub/Sub subscribers for conversation lifecycle events.
@@ -6088,6 +6096,14 @@ export namespace dialogflow_v2 {
      * ConversationModel resource name. Format: `projects//conversationModels/`
      */
     name?: string | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Isolation status of the model.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. A read only boolean field reflecting Zone Separation status of the model.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Metadata for smart reply models.
      */
