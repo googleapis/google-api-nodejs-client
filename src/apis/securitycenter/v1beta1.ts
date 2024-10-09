@@ -437,6 +437,10 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$AzureResourceGroup {
     /**
+     * The ID of the Azure resource group.
+     */
+    id?: string | null;
+    /**
      * The name of the Azure resource group. This is not a UUID.
      */
     name?: string | null;
@@ -458,6 +462,10 @@ export namespace securitycenter_v1beta1 {
    * Represents a Microsoft Entra tenant.
    */
   export interface Schema$AzureTenant {
+    /**
+     * The display name of the Azure tenant.
+     */
+    displayName?: string | null;
     /**
      * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */
@@ -529,6 +537,15 @@ export namespace securitycenter_v1beta1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * YAML-based rule that uses CEL, which supports the declaration of variables and a filtering predicate. A vulnerable resource is emitted if the evaluation is false. Given: 1) the resource types as: - resource_types: "compute.googleapis.com/Instance" - resource_types: "compute.googleapis.com/Firewall" 2) the CEL policy spec as: name: bad_instance resource_filters: - name: instance resource_type: compute.googleapis.com/Instance filter: \> instance.status == 'RUNNING' && 'public' in instance.tags.items - name: firewall resource_type: compute.googleapis.com/Firewall filter: \> firewall.direction == 'INGRESS' && !firewall.disabled && firewall.allowed.exists(rule, rule.IPProtocol.upperAscii() in ['TCP', 'ALL'] && rule.ports.exists(port, network.portsInRange(port, '11-256'))) rule: match: - predicate: \> instance.networkInterfaces.exists(net, firewall.network == net.network) output: \> {'message': 'Compute instance with publicly accessible ports', 'instance': instance.name\} Users are able to join resource types together using the exact format as Kubernetes Validating Admission policies.
+   */
+  export interface Schema$CelPolicySpec {
+    /**
+     * The CEL policy to evaluate to produce findings. A finding is generated when the policy validation evaluates to false.
+     */
+    spec?: string | null;
+  }
   /**
    * Fields related to Google Cloud Armor findings.
    */
@@ -1458,6 +1475,10 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1CustomConfig {
     /**
+     * The CEL policy spec attached to the custom module.
+     */
+    celPolicy?: Schema$CelPolicySpec;
+    /**
      * Custom output properties.
      */
     customOutput?: Schema$GoogleCloudSecuritycenterV1CustomOutputSpec;
@@ -2205,6 +2226,10 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2AzureResourceGroup {
     /**
+     * The ID of the Azure resource group.
+     */
+    id?: string | null;
+    /**
      * The name of the Azure resource group. This is not a UUID.
      */
     name?: string | null;
@@ -2226,6 +2251,10 @@ export namespace securitycenter_v1beta1 {
    * Represents a Microsoft Entra tenant.
    */
   export interface Schema$GoogleCloudSecuritycenterV2AzureTenant {
+    /**
+     * The display name of the Azure tenant.
+     */
+    displayName?: string | null;
     /**
      * The ID of the Microsoft Entra tenant, for example, "a11aaa11-aa11-1aa1-11aa-1aaa11a".
      */

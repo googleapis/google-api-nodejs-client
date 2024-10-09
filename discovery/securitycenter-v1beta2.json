@@ -512,6 +512,11 @@
                   "pattern": "^folders/[^/]+/containerThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -541,6 +546,11 @@
                   "pattern": "^folders/[^/]+/eventThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -599,6 +609,11 @@
                   "pattern": "^folders/[^/]+/securityHealthAnalyticsSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -628,6 +643,11 @@
                   "pattern": "^folders/[^/]+/virtualMachineThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -657,6 +677,11 @@
                   "pattern": "^folders/[^/]+/webSecurityScannerSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1096,6 +1121,11 @@
                   "pattern": "^organizations/[^/]+/containerThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1125,6 +1155,11 @@
                   "pattern": "^organizations/[^/]+/eventThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1183,6 +1218,11 @@
                   "pattern": "^organizations/[^/]+/securityHealthAnalyticsSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1212,6 +1252,11 @@
                   "pattern": "^organizations/[^/]+/virtualMachineThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1241,6 +1286,11 @@
                   "pattern": "^organizations/[^/]+/webSecurityScannerSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1655,6 +1705,11 @@
                   "pattern": "^projects/[^/]+/containerThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1684,6 +1739,11 @@
                   "pattern": "^projects/[^/]+/eventThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1778,6 +1838,11 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+/containerThreatDetectionSettings$",
                           "required": true,
                           "type": "string"
+                        },
+                        "showEligibleModulesOnly": {
+                          "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1beta2/{+name}:calculate",
@@ -1840,6 +1905,11 @@
                   "pattern": "^projects/[^/]+/securityHealthAnalyticsSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1869,6 +1939,11 @@
                   "pattern": "^projects/[^/]+/virtualMachineThreatDetectionSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1898,6 +1973,11 @@
                   "pattern": "^projects/[^/]+/webSecurityScannerSettings$",
                   "required": true,
                   "type": "string"
+                },
+                "showEligibleModulesOnly": {
+                  "description": "Optional. When set, will only retrieve the modules that are in scope. By default, all modules will be shown.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1beta2/{+name}:calculate",
@@ -1913,7 +1993,7 @@
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20240927",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2237,6 +2317,10 @@
       "description": "Represents a Microsoft Entra tenant.",
       "id": "AzureTenant",
       "properties": {
+        "displayName": {
+          "description": "The display name of the Azure tenant.",
+          "type": "string"
+        },
         "id": {
           "description": "The ID of the Microsoft Entra tenant, for example, \"a11aaa11-aa11-1aa1-11aa-1aaa11a\".",
           "type": "string"
@@ -4806,6 +4890,10 @@
       "description": "Represents a Microsoft Entra tenant.",
       "id": "GoogleCloudSecuritycenterV2AzureTenant",
       "properties": {
+        "displayName": {
+          "description": "The display name of the Azure tenant.",
+          "type": "string"
+        },
         "id": {
           "description": "The ID of the Microsoft Entra tenant, for example, \"a11aaa11-aa11-1aa1-11aa-1aaa11a\".",
           "type": "string"
