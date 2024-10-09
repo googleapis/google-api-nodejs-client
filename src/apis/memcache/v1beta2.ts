@@ -151,9 +151,47 @@ export namespace memcache_v1beta2 {
     nodeIds?: string[] | null;
   }
   /**
+   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
+   */
+  export interface Schema$AssetLocation {
+    /**
+     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
+     */
+    ccfeRmsPath?: string | null;
+    /**
+     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
+     */
+    expected?: Schema$IsolationExpectations;
+    /**
+     * Defines extra parameters required for specific asset types.
+     */
+    extraParameters?: Schema$ExtraParameter[];
+    /**
+     * Contains all kinds of physical location definitions for this asset.
+     */
+    locationData?: Schema$LocationData[];
+    /**
+     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
+     */
+    parentAsset?: Schema$CloudAsset[];
+  }
+  /**
+   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
+   */
+  export interface Schema$BlobstoreLocation {
+    policyId?: string[] | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  export interface Schema$CloudAsset {
+    assetName?: string | null;
+    assetType?: string | null;
+  }
+  export interface Schema$CloudAssetComposition {
+    childAsset?: Schema$CloudAsset[];
+  }
   /**
    * Time window specified for daily operations.
    */
@@ -201,10 +239,22 @@ export namespace memcache_v1beta2 {
      */
     time?: Schema$TimeOfDay;
   }
+  export interface Schema$DirectLocationAssignment {
+    location?: Schema$LocationAssignment[];
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Defines parameters that should only be used for specific asset types.
+   */
+  export interface Schema$ExtraParameter {
+    /**
+     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
+     */
+    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
+  }
   /**
    * Metadata for the given google.cloud.location.Location.
    */
@@ -588,6 +638,25 @@ export namespace memcache_v1beta2 {
      */
     message?: string | null;
   }
+  export interface Schema$IsolationExpectations {
+    /**
+     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
+     */
+    requirementOverride?: Schema$RequirementOverride;
+    ziOrgPolicy?: string | null;
+    ziRegionPolicy?: string | null;
+    ziRegionState?: string | null;
+    /**
+     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
+     */
+    zoneIsolation?: string | null;
+    /**
+     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
+     */
+    zoneSeparation?: string | null;
+    zsOrgPolicy?: string | null;
+    zsRegionState?: string | null;
+  }
   /**
    * Response for ListInstances.
    */
@@ -655,6 +724,18 @@ export namespace memcache_v1beta2 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  export interface Schema$LocationAssignment {
+    location?: string | null;
+    locationType?: string | null;
+  }
+  export interface Schema$LocationData {
+    blobstoreLocation?: Schema$BlobstoreLocation;
+    childAssetLocation?: Schema$CloudAssetComposition;
+    directLocation?: Schema$DirectLocationAssignment;
+    gcpProjectProxy?: Schema$TenantProjectProxy;
+    placerLocation?: Schema$PlacerLocation;
+    spannerLocation?: Schema$SpannerLocation;
   }
   /**
    * Metadata for the given google.cloud.location.Location.
@@ -848,6 +929,32 @@ export namespace memcache_v1beta2 {
     verb?: string | null;
   }
   /**
+   * Message describing that the location of the customer resource is tied to placer allocations
+   */
+  export interface Schema$PlacerLocation {
+    /**
+     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
+     */
+    placerConfig?: string | null;
+  }
+  /**
+   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
+   */
+  export interface Schema$RegionalMigDistributionPolicy {
+    /**
+     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
+     */
+    targetShape?: number | null;
+    /**
+     * Cloud zones used by regional MIG to create instances.
+     */
+    zones?: Schema$ZoneConfiguration[];
+  }
+  export interface Schema$RequirementOverride {
+    ziOverride?: string | null;
+    zsOverride?: string | null;
+  }
+  /**
    * Request for RescheduleMaintenance.
    */
   export interface Schema$RescheduleMaintenanceRequest {
@@ -877,6 +984,16 @@ export namespace memcache_v1beta2 {
      */
     startTime?: Schema$TimeOfDay;
   }
+  export interface Schema$SpannerLocation {
+    /**
+     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
+     */
+    backupName?: string[] | null;
+    /**
+     * Set of databases used by the resource in format /span//
+     */
+    dbName?: string[] | null;
+  }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -893,6 +1010,9 @@ export namespace memcache_v1beta2 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  export interface Schema$TenantProjectProxy {
+    projectNumbers?: string[] | null;
   }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
@@ -970,6 +1090,9 @@ export namespace memcache_v1beta2 {
      * Required. Start time of the window in UTC.
      */
     startTime?: Schema$TimeOfDay;
+  }
+  export interface Schema$ZoneConfiguration {
+    zone?: string | null;
   }
   export interface Schema$ZoneMetadata {}
 
