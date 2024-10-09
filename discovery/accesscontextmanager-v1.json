@@ -1205,6 +1205,11 @@
                 "name"
               ],
               "parameters": {
+                "appendScopedAccessSettings": {
+                  "description": "Optional. This field will be used to control whether or not scoped access settings are appended to the existing list of scoped access settings. If true, the scoped access settings in the request will be appended to the existing list of scoped access settings. If false, the scoped access settings in the request replace the existing list of scoped access settings.",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "name": {
                   "description": "Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: \"organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N\"",
                   "location": "path",
@@ -1213,7 +1218,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`. update_mask { paths: \"access_levels\" }",
+                  "description": "Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings`, `scoped_access_settings`. update_mask { paths: \"access_levels\" }",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1290,7 +1295,7 @@
       }
     }
   },
-  "revision": "20240811",
+  "revision": "20240923",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1353,6 +1358,35 @@
         "title": {
           "description": "Required. Human readable title. Does not affect behavior.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccessScope": {
+      "description": "Access scope represents the client scope, etc. to which the settings will be applied to.",
+      "id": "AccessScope",
+      "properties": {
+        "clientScope": {
+          "$ref": "ClientScope",
+          "description": "Optional. Client scope for this access scope."
+        }
+      },
+      "type": "object"
+    },
+    "AccessSettings": {
+      "description": "Access settings represent the set of conditions that must be met for access to be granted. At least one of the fields must be set.",
+      "id": "AccessSettings",
+      "properties": {
+        "accessLevels": {
+          "description": "Optional. Access level that a user must have to be granted access. Only one access level is supported, not multiple. This repeated field must have exactly one element. Example: \"accessPolicies/9522/accessLevels/device_trusted\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reauthSettings": {
+          "$ref": "ReauthSettings",
+          "description": "Optional. Reauth settings applied to user access on a given AccessScope."
         }
       },
       "type": "object"
@@ -1548,6 +1582,17 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ClientScope": {
+      "description": "Client scope represents the application, etc. subject to this binding's restrictions.",
+      "id": "ClientScope",
+      "properties": {
+        "restrictedClientApplication": {
+          "$ref": "Application",
+          "description": "Optional. The application that is subject to this binding's scope."
+        }
+      },
       "type": "object"
     },
     "CommitServicePerimetersRequest": {
@@ -1860,10 +1905,21 @@
           "description": "Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: \"organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N\"",
           "type": "string"
         },
+        "reauthSettings": {
+          "$ref": "ReauthSettings",
+          "description": "Optional. GCSL policy for the group key."
+        },
         "restrictedClientApplications": {
           "description": "Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.",
           "items": {
             "$ref": "Application"
+          },
+          "type": "array"
+        },
+        "scopedAccessSettings": {
+          "description": "Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications. This field cannot be set if restricted_client_applications is set.",
+          "items": {
+            "$ref": "ScopedAccessSettings"
           },
           "type": "array"
         }
@@ -2231,6 +2287,47 @@
       },
       "type": "object"
     },
+    "ReauthSettings": {
+      "description": "Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.",
+      "id": "ReauthSettings",
+      "properties": {
+        "maxInactivity": {
+          "description": "Optional. How long a user is allowed to take between actions before a new access token must be issued. Presently only set for Cloud Apps.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "reauthMethod": {
+          "description": "Optional. Reauth method when users GCP session is up.",
+          "enum": [
+            "REAUTH_METHOD_UNSPECIFIED",
+            "LOGIN",
+            "SECURITY_KEY",
+            "PASSWORD"
+          ],
+          "enumDescriptions": [
+            "If method undefined in API, we will use LOGIN by default.",
+            "The user will prompted to perform regular login. Users who are enrolled for two-step verification and haven't chosen to \"Remember this computer\" will be prompted for their second factor.",
+            "The user will be prompted to autheticate using their security key. If no security key has been configured, then we will fallback to LOGIN.",
+            "The user will be prompted for their password."
+          ],
+          "type": "string"
+        },
+        "sessionLength": {
+          "description": "Optional. The session length. Setting this field to zero is equal to disabling. Reauth. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "sessionLengthEnabled": {
+          "description": "Optional. Big red button to turn off GCSL. When false, all fields set above will be disregarded and the session length is basically infinite.",
+          "type": "boolean"
+        },
+        "useOidcMaxAge": {
+          "description": "Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ReplaceAccessLevelsRequest": {
       "description": "A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.",
       "id": "ReplaceAccessLevelsRequest",
@@ -2291,6 +2388,25 @@
             "$ref": "ServicePerimeter"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ScopedAccessSettings": {
+      "description": "A relationship between access settings and its scope.",
+      "id": "ScopedAccessSettings",
+      "properties": {
+        "activeSettings": {
+          "$ref": "AccessSettings",
+          "description": "Optional. Access settings for this scoped access settings. This field may be empty if dry_run_settings is set."
+        },
+        "dryRunSettings": {
+          "$ref": "AccessSettings",
+          "description": "Optional. Dry-run access settings for this scoped access settings. This field may be empty if active_settings is set."
+        },
+        "scope": {
+          "$ref": "AccessScope",
+          "description": "Optional. Application, etc. to which the access settings will be applied to. Implicitly, this is the scoped access settings key; as such, it must be unique and non-empty."
         }
       },
       "type": "object"
