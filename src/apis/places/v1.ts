@@ -1029,6 +1029,15 @@ export namespace places_v1 {
     name?: string | null;
   }
   /**
+   * A route polyline. Only supports an [encoded polyline](https://developers.google.com/maps/documentation/utilities/polylinealgorithm), which can be passed as a string and includes compression with minimal lossiness. This is the Routes API default output.
+   */
+  export interface Schema$GoogleMapsPlacesV1Polyline {
+    /**
+     * An [encoded polyline](https://developers.google.com/maps/documentation/utilities/polylinealgorithm), as returned by the [Routes API by default](https://developers.google.com/maps/documentation/routes/reference/rest/v2/TopLevel/computeRoutes#polylineencoding). See the [encoder](https://developers.google.com/maps/documentation/utilities/polylineutility) and [decoder](https://developers.google.com/maps/documentation/routes/polylinedecoder) tools.
+     */
+    encodedPolyline?: string | null;
+  }
+  /**
    * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Reference that the generative content is related to.
    */
   export interface Schema$GoogleMapsPlacesV1References {
@@ -1075,6 +1084,70 @@ export namespace places_v1 {
     text?: Schema$GoogleTypeLocalizedText;
   }
   /**
+   * Encapsulates a set of optional conditions to satisfy when calculating the routes.
+   */
+  export interface Schema$GoogleMapsPlacesV1RouteModifiers {
+    /**
+     * Optional. When set to true, avoids ferries where reasonable, giving preference to routes not containing ferries. Applies only to the `DRIVE` and `TWO_WHEELER` `TravelMode`.
+     */
+    avoidFerries?: boolean | null;
+    /**
+     * Optional. When set to true, avoids highways where reasonable, giving preference to routes not containing highways. Applies only to the `DRIVE` and `TWO_WHEELER` `TravelMode`.
+     */
+    avoidHighways?: boolean | null;
+    /**
+     * Optional. When set to true, avoids navigating indoors where reasonable, giving preference to routes not containing indoor navigation. Applies only to the `WALK` `TravelMode`.
+     */
+    avoidIndoor?: boolean | null;
+    /**
+     * Optional. When set to true, avoids toll roads where reasonable, giving preference to routes not containing toll roads. Applies only to the `DRIVE` and `TWO_WHEELER` `TravelMode`.
+     */
+    avoidTolls?: boolean | null;
+  }
+  /**
+   * Parameters to configure the routing calculations to the places in the response, both along a route (where result ranking will be influenced) and for calculating travel times on results.
+   */
+  export interface Schema$GoogleMapsPlacesV1RoutingParameters {
+    /**
+     * Optional. An explicit routing origin that overrides the origin defined in the polyline. By default, the polyline origin is used.
+     */
+    origin?: Schema$GoogleTypeLatLng;
+    /**
+     * Optional. The route modifiers.
+     */
+    routeModifiers?: Schema$GoogleMapsPlacesV1RouteModifiers;
+    /**
+     * Optional. Specifies how to compute the routing summaries. The server attempts to use the selected routing preference to compute the route. The traffic aware routing preference is only available for the `DRIVE` or `TWO_WHEELER` `travelMode`.
+     */
+    routingPreference?: string | null;
+    /**
+     * Optional. The travel mode.
+     */
+    travelMode?: string | null;
+  }
+  /**
+   * The duration and distance from the routing origin to a place in the response, and a second leg from that place to the destination, if requested. **Note:** Adding `routingSummaries` in the field mask without also including either the `routingParameters.origin` parameter or the `searchAlongRouteParameters.polyline.encodedPolyline` parameter in the request causes an error.
+   */
+  export interface Schema$GoogleMapsPlacesV1RoutingSummary {
+    /**
+     * The legs of the trip. When you calculate travel duration and distance from a set origin, `legs` contains a single leg containing the duration and distance from the origin to the destination. When you do a search along route, `legs` contains two legs: one from the origin to place, and one from the place to the destination.
+     */
+    legs?: Schema$GoogleMapsPlacesV1RoutingSummaryLeg[];
+  }
+  /**
+   * A leg is a single portion of a journey from one location to another.
+   */
+  export interface Schema$GoogleMapsPlacesV1RoutingSummaryLeg {
+    /**
+     * The distance of this leg of the trip.
+     */
+    distanceMeters?: number | null;
+    /**
+     * The time it takes to complete this leg of the trip.
+     */
+    duration?: string | null;
+  }
+  /**
    * Request proto for Search Nearby.
    */
   export interface Schema$GoogleMapsPlacesV1SearchNearbyRequest {
@@ -1114,6 +1187,10 @@ export namespace places_v1 {
      * The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html. Note that 3-digit region codes are not currently supported.
      */
     regionCode?: string | null;
+    /**
+     * Optional. Parameters that affect the routing to the search results.
+     */
+    routingParameters?: Schema$GoogleMapsPlacesV1RoutingParameters;
   }
   /**
    * The region to search.
@@ -1132,6 +1209,10 @@ export namespace places_v1 {
      * A list of places that meets user's requirements like places types, number of places and specific location restriction.
      */
     places?: Schema$GoogleMapsPlacesV1Place[];
+    /**
+     * A list of routing summaries where each entry associates to the corresponding place in the same index in the `places` field. If the routing summary is not available for one of the places, it will contain an empty entry. This list should have as many entries as the list of places if requested.
+     */
+    routingSummaries?: Schema$GoogleMapsPlacesV1RoutingSummary[];
   }
   /**
    * Request proto for SearchText.
@@ -1190,6 +1271,14 @@ export namespace places_v1 {
      */
     regionCode?: string | null;
     /**
+     * Optional. Additional parameters for routing to results.
+     */
+    routingParameters?: Schema$GoogleMapsPlacesV1RoutingParameters;
+    /**
+     * Optional. Additional parameters proto for searching along a route.
+     */
+    searchAlongRouteParameters?: Schema$GoogleMapsPlacesV1SearchTextRequestSearchAlongRouteParameters;
+    /**
      * Used to set strict type filtering for included_type. If set to true, only results of the same type will be returned. Default to false.
      */
     strictTypeFiltering?: boolean | null;
@@ -1234,6 +1323,15 @@ export namespace places_v1 {
     rectangle?: Schema$GoogleGeoTypeViewport;
   }
   /**
+   * Specifies a precalculated polyline from the [Routes API](https://developers.google.com/maps/documentation/routes) defining the route to search. Searching along a route is similar to using the `locationBias` or `locationRestriction` request option to bias the search results. However, while the `locationBias` and `locationRestriction` options let you specify a region to bias the search results, this option lets you bias the results along a trip route. Results are not guaranteed to be along the route provided, but rather are ranked within the search area defined by the polyline and, optionally, by the `locationBias` or `locationRestriction` based on minimal detour times from origin to destination. The results might be along an alternate route, especially if the provided polyline does not define an optimal route from origin to destination.
+   */
+  export interface Schema$GoogleMapsPlacesV1SearchTextRequestSearchAlongRouteParameters {
+    /**
+     * Required. The route polyline.
+     */
+    polyline?: Schema$GoogleMapsPlacesV1Polyline;
+  }
+  /**
    * Response proto for SearchText.
    */
   export interface Schema$GoogleMapsPlacesV1SearchTextResponse {
@@ -1249,6 +1347,10 @@ export namespace places_v1 {
      * A list of places that meet the user's text search criteria.
      */
     places?: Schema$GoogleMapsPlacesV1Place[];
+    /**
+     * A list of routing summaries where each entry associates to the corresponding place in the same index in the `places` field. If the routing summary is not available for one of the places, it will contain an empty entry. This list will have as many entries as the list of places if requested.
+     */
+    routingSummaries?: Schema$GoogleMapsPlacesV1RoutingSummary[];
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
