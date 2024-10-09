@@ -279,6 +279,10 @@ export namespace css_v1 {
      */
     headlineOfferCondition?: string | null;
     /**
+     * Number and amount of installments to pay for an item.
+     */
+    headlineOfferInstallment?: Schema$HeadlineOfferInstallment;
+    /**
      * Link to the headline offer.
      */
     headlineOfferLink?: string | null;
@@ -294,6 +298,10 @@ export namespace css_v1 {
      * Headline Price of the aggregate offer.
      */
     headlineOfferShippingPrice?: Schema$Price;
+    /**
+     * Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract.
+     */
+    headlineOfferSubscriptionCost?: Schema$HeadlineOfferSubscriptionCost;
     /**
      * High Price of the aggregate offer.
      */
@@ -541,6 +549,40 @@ export namespace css_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * A message that represents installment.
+   */
+  export interface Schema$HeadlineOfferInstallment {
+    /**
+     * The amount the buyer has to pay per month.
+     */
+    amount?: Schema$Price;
+    /**
+     * The up-front down payment amount the buyer has to pay.
+     */
+    downpayment?: Schema$Price;
+    /**
+     * The number of installments the buyer has to pay.
+     */
+    months?: string | null;
+  }
+  /**
+   * The SubscriptionCost of the product.
+   */
+  export interface Schema$HeadlineOfferSubscriptionCost {
+    /**
+     * The amount the buyer has to pay per subscription period.
+     */
+    amount?: Schema$Price;
+    /**
+     * The type of subscription period. Supported values are: * "`month`" * "`year`"
+     */
+    period?: string | null;
+    /**
+     * The number of subscription periods the buyer has to pay.
+     */
+    periodLength?: string | null;
+  }
   /**
    * The ItemLevelIssue of the product status.
    */
