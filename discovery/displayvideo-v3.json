@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20240808",
+  "revision": "20241003",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -12920,7 +12920,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false
@@ -14045,14 +14045,16 @@
             "DEVICE_TYPE_COMPUTER",
             "DEVICE_TYPE_CONNECTED_TV",
             "DEVICE_TYPE_SMART_PHONE",
-            "DEVICE_TYPE_TABLET"
+            "DEVICE_TYPE_TABLET",
+            "DEVICE_TYPE_CONNECTED_DEVICE"
           ],
           "enumDescriptions": [
             "Default value when device type is not specified in this version. This enum is a placeholder for default value and does not represent a real device type option.",
             "Computer.",
             "Connected TV.",
             "Smart phone.",
-            "Tablet."
+            "Tablet.",
+            "Connected device."
           ],
           "type": "string"
         },
@@ -14076,14 +14078,16 @@
             "DEVICE_TYPE_COMPUTER",
             "DEVICE_TYPE_CONNECTED_TV",
             "DEVICE_TYPE_SMART_PHONE",
-            "DEVICE_TYPE_TABLET"
+            "DEVICE_TYPE_TABLET",
+            "DEVICE_TYPE_CONNECTED_DEVICE"
           ],
           "enumDescriptions": [
             "Default value when device type is not specified in this version. This enum is a placeholder for default value and does not represent a real device type option.",
             "Computer.",
             "Connected TV.",
             "Smart phone.",
-            "Tablet."
+            "Tablet.",
+            "Connected device."
           ],
           "readOnly": true,
           "type": "string"
@@ -16925,7 +16929,7 @@
         },
         "pacing": {
           "$ref": "Pacing",
-          "description": "Required. The budget spending speed setting of the insertion order."
+          "description": "Required. The budget spending speed setting of the insertion order. *Warning*: Starting on **November 5, 2024**, pacing_type `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT`. [Read more about this announced change](/display-video/api/deprecations#features.io_asap)."
         },
         "partnerCosts": {
           "description": "The partner costs associated with the insertion order. If absent or empty in CreateInsertionOrder method, the newly created insertion order will inherit partner costs from the partner settings.",
@@ -19594,7 +19598,7 @@
           "type": "string"
         },
         "pacingType": {
-          "description": "Required. The type of pacing that defines how the budget amount will be spent across the pacing_period.",
+          "description": "Required. The type of pacing that defines how the budget amount will be spent across the pacing_period. *Warning*: Starting on **November 5, 2024**, `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT` for insertion orders. [Read more about this announced change](/display-video/api/deprecations#features.io_asap).",
           "enum": [
             "PACING_TYPE_UNSPECIFIED",
             "PACING_TYPE_AHEAD",
@@ -20021,6 +20025,7 @@
             "PERFORMANCE_GOAL_TYPE_VIEWABILITY",
             "PERFORMANCE_GOAL_TYPE_CPIAVC",
             "PERFORMANCE_GOAL_TYPE_CPE",
+            "PERFORMANCE_GOAL_TYPE_CPV",
             "PERFORMANCE_GOAL_TYPE_CLICK_CVR",
             "PERFORMANCE_GOAL_TYPE_IMPRESSION_CVR",
             "PERFORMANCE_GOAL_TYPE_VCPM",
@@ -20038,6 +20043,7 @@
             "The performance goal is set in Viewability percentage.",
             "The performance goal is set as CPIAVC (cost per impression audible and visible at completion).",
             "The performance goal is set in CPE (cost per engagement).",
+            "The performance goal is set in CPV (cost per view).",
             "The performance goal is set in click conversion rate (conversions per click) percentage.",
             "The performance goal is set in impression conversion rate (conversions per impression) percentage.",
             "The performance goal is set in VCPM (cost per thousand viewable impressions).",
@@ -20627,7 +20633,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false
@@ -20707,7 +20713,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false
@@ -20831,8 +20837,8 @@
             "Content related to motor vehicle, aviation or other transportation accidents.",
             "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
             "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
-            "YouTube videos embedded on websites outside of YouTube.com. Only applicable to YouTube and Partners line items.",
-            "Video of live events streamed over the internet. Only applicable to YouTube and Partners line items."
+            "YouTube videos embedded on websites outside of YouTube.com.",
+            "Video of live events streamed over the internet."
           ],
           "type": "string"
         }
@@ -20886,8 +20892,8 @@
             "Content related to motor vehicle, aviation or other transportation accidents.",
             "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
             "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor.",
-            "YouTube videos embedded on websites outside of YouTube.com. Only applicable to YouTube and Partners line items.",
-            "Video of live events streamed over the internet. Only applicable to YouTube and Partners line items."
+            "YouTube videos embedded on websites outside of YouTube.com.",
+            "Video of live events streamed over the internet."
           ],
           "readOnly": true,
           "type": "string"
@@ -21048,7 +21054,7 @@
           "type": "boolean"
         },
         "enableOptimizedTargeting": {
-          "description": "Required. Whether to enable Optimized Targeting for the line item.",
+          "description": "Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`",
           "type": "boolean"
         }
       },

@@ -3556,7 +3556,7 @@ export namespace displayvideo_v3 {
      */
     optimizationObjective?: string | null;
     /**
-     * Required. The budget spending speed setting of the insertion order.
+     * Required. The budget spending speed setting of the insertion order. *Warning*: Starting on **November 5, 2024**, pacing_type `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT`. [Read more about this announced change](/display-video/api/deprecations#features.io_asap).
      */
     pacing?: Schema$Pacing;
     /**
@@ -4981,7 +4981,7 @@ export namespace displayvideo_v3 {
      */
     pacingPeriod?: string | null;
     /**
-     * Required. The type of pacing that defines how the budget amount will be spent across the pacing_period.
+     * Required. The type of pacing that defines how the budget amount will be spent across the pacing_period. *Warning*: Starting on **November 5, 2024**, `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT` for insertion orders. [Read more about this announced change](/display-video/api/deprecations#features.io_asap).
      */
     pacingType?: string | null;
   }
@@ -5657,7 +5657,7 @@ export namespace displayvideo_v3 {
      */
     audienceExpansionSeedListExcluded?: boolean | null;
     /**
-     * Required. Whether to enable Optimized Targeting for the line item.
+     * Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible with all bid strategies. Attempting to set this field to `true` for a line item using one of the following combinations of BiddingStrategy fields and BiddingStrategyPerformanceGoalType will result in an error: maximize_auto_spend_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_CIVA` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_IVO_TEN` * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_AV_VIEWED` performance_goal_auto_bid: * `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM`
      */
     enableOptimizedTargeting?: boolean | null;
   }
