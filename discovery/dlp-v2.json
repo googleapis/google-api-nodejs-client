@@ -1432,7 +1432,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like \"gs://bucket\". - `data_source_type` - The profile's data source type, like \"google/storage/bucket\". - `data_storage_location` - The location where the file store's data is stored, like \"us-central1\". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = \"gs://mybucket\"` The length of this field should be no more than 500 characters.",
+                      "description": "Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `account_id` - The AWS account ID. - `file_store_path` - The path like \"gs://bucket\". - `data_source_type` - The profile's data source type, like \"google/storage/bucket\". - `data_storage_location` - The location where the file store's data is stored, like \"us-central1\". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = \"gs://mybucket\"` The length of this field should be no more than 500 characters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -4065,7 +4065,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `file_store_path` - The path like \"gs://bucket\". - `data_source_type` - The profile's data source type, like \"google/storage/bucket\". - `data_storage_location` - The location where the file store's data is stored, like \"us-central1\". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = \"gs://mybucket\"` The length of this field should be no more than 500 characters.",
+                      "description": "Optional. Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * Supported fields/values: - `project_id` - The Google Cloud project ID. - `account_id` - The AWS account ID. - `file_store_path` - The path like \"gs://bucket\". - `data_source_type` - The profile's data source type, like \"google/storage/bucket\". - `data_storage_location` - The location where the file store's data is stored, like \"us-central1\". - `sensitivity_level` - HIGH|MODERATE|LOW - `data_risk_level` - HIGH|MODERATE|LOW - `resource_visibility`: PUBLIC|RESTRICTED - `status_code` - an RPC status code as defined in https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto * The operator must be `=` or `!=`. Examples: * `project_id = 12345 AND status_code = 1` * `project_id = 12345 AND sensitivity_level = HIGH` * `project_id = 12345 AND resource_visibility = PUBLIC` * `file_store_path = \"gs://mybucket\"` The length of this field should be no more than 500 characters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -5015,7 +5015,7 @@
       }
     }
   },
-  "revision": "20240825",
+  "revision": "20240916",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5100,6 +5100,83 @@
       "properties": {},
       "type": "object"
     },
+    "GooglePrivacyDlpV2AmazonS3Bucket": {
+      "description": "Amazon S3 bucket.",
+      "id": "GooglePrivacyDlpV2AmazonS3Bucket",
+      "properties": {
+        "awsAccount": {
+          "$ref": "GooglePrivacyDlpV2AwsAccount",
+          "description": "The AWS account."
+        },
+        "bucketName": {
+          "description": "Required. The bucket name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AmazonS3BucketConditions": {
+      "description": "Amazon S3 bucket conditions.",
+      "id": "GooglePrivacyDlpV2AmazonS3BucketConditions",
+      "properties": {
+        "bucketTypes": {
+          "description": "Optional. Bucket types that should be profiled. Optional. Defaults to TYPE_ALL_SUPPORTED if unspecified.",
+          "items": {
+            "enum": [
+              "TYPE_UNSPECIFIED",
+              "TYPE_ALL_SUPPORTED",
+              "TYPE_GENERAL_PURPOSE"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "All supported classes.",
+              "A general purpose Amazon S3 bucket."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "objectStorageClasses": {
+          "description": "Optional. Object classes that should be profiled. Optional. Defaults to ALL_SUPPORTED_CLASSES if unspecified.",
+          "items": {
+            "enum": [
+              "UNSPECIFIED",
+              "ALL_SUPPORTED_CLASSES",
+              "STANDARD",
+              "STANDARD_INFREQUENT_ACCESS",
+              "GLACIER_INSTANT_RETRIEVAL",
+              "INTELLIGENT_TIERING"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "All supported classes.",
+              "Standard object class.",
+              "Standard - infrequent access object class.",
+              "Glacier - instant retrieval object class.",
+              "Objects in the S3 Intelligent-Tiering access tiers."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AmazonS3BucketRegex": {
+      "description": "Amazon S3 bucket regex.",
+      "id": "GooglePrivacyDlpV2AmazonS3BucketRegex",
+      "properties": {
+        "awsAccountRegex": {
+          "$ref": "GooglePrivacyDlpV2AwsAccountRegex",
+          "description": "The AWS account regex."
+        },
+        "bucketNameRegex": {
+          "description": "Optional. Regex to test the bucket name against. If empty, all buckets match.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails": {
       "description": "Result of a risk analysis operation request.",
       "id": "GooglePrivacyDlpV2AnalyzeDataSourceRiskDetails",
@@ -5161,6 +5238,43 @@
         "table": {
           "$ref": "GooglePrivacyDlpV2BigQueryTable",
           "description": "Required. Auxiliary table location."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AwsAccount": {
+      "description": "AWS account.",
+      "id": "GooglePrivacyDlpV2AwsAccount",
+      "properties": {
+        "accountId": {
+          "description": "Required. AWS account ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AwsAccountRegex": {
+      "description": "AWS account regex.",
+      "id": "GooglePrivacyDlpV2AwsAccountRegex",
+      "properties": {
+        "accountIdRegex": {
+          "description": "Optional. Regex to test the AWS account ID against. If empty, all accounts match.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2AwsDiscoveryStartingLocation": {
+      "description": "The AWS starting location for discovery.",
+      "id": "GooglePrivacyDlpV2AwsDiscoveryStartingLocation",
+      "properties": {
+        "accountId": {
+          "description": "The AWS account ID that this discovery config applies to. Within an AWS organization, you can find the AWS account ID inside an AWS account ARN. Example: arn:{partition}:organizations::{management_account_id}:account/{org_id}/{account_id}",
+          "type": "string"
+        },
+        "allAssetInventoryAssets": {
+          "description": "All AWS assets stored in Asset Inventory that didn't match other AWS discovery configs.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6525,6 +6639,14 @@
           "$ref": "GooglePrivacyDlpV2PubSubNotification",
           "description": "Publish a message into the Pub/Sub topic."
         },
+        "publishToChronicle": {
+          "$ref": "GooglePrivacyDlpV2PublishToChronicle",
+          "description": "Publishes generated data profiles to Google Security Operations. For more information, see [Use Sensitive Data Protection data in context-aware analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download)."
+        },
+        "publishToScc": {
+          "$ref": "GooglePrivacyDlpV2PublishToSecurityCommandCenter",
+          "description": "Publishes findings to SCC for each data profile."
+        },
         "tagResources": {
           "$ref": "GooglePrivacyDlpV2TagResources",
           "description": "Tags the profiled resources with the specified tag values."
@@ -6601,6 +6723,10 @@
         "location": {
           "$ref": "GooglePrivacyDlpV2DataProfileLocation",
           "description": "The data to scan."
+        },
+        "otherCloudStartingLocation": {
+          "$ref": "GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation",
+          "description": "Must be set only when scanning other clouds."
         },
         "projectId": {
           "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.",
@@ -7487,6 +7613,10 @@
           "$ref": "GooglePrivacyDlpV2OrgConfig",
           "description": "Only set when the parent is an org."
         },
+        "otherCloudStartingLocation": {
+          "$ref": "GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation",
+          "description": "Must be set only when scanning other clouds."
+        },
         "status": {
           "description": "Required. A status for this configuration.",
           "enum": [
@@ -7579,6 +7709,68 @@
       "properties": {
         "frequency": {
           "description": "How frequently data profiles can be updated when the template is modified. Defaults to never.",
+          "enum": [
+            "UPDATE_FREQUENCY_UNSPECIFIED",
+            "UPDATE_FREQUENCY_NEVER",
+            "UPDATE_FREQUENCY_DAILY",
+            "UPDATE_FREQUENCY_MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "After the data profile is created, it will never be updated.",
+            "The data profile can be updated up to once every 24 hours.",
+            "The data profile can be updated up to once every 30 days. Default."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryOtherCloudConditions": {
+      "description": "Requirements that must be true before a resource is profiled for the first time.",
+      "id": "GooglePrivacyDlpV2DiscoveryOtherCloudConditions",
+      "properties": {
+        "amazonS3BucketConditions": {
+          "$ref": "GooglePrivacyDlpV2AmazonS3BucketConditions",
+          "description": "Amazon S3 bucket conditions."
+        },
+        "minAge": {
+          "description": "Minimum age a resource must be before Cloud DLP can profile it. Value must be 1 hour or greater.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryOtherCloudFilter": {
+      "description": "Determines which resources from the other cloud will have profiles generated. Includes the ability to filter by resource names.",
+      "id": "GooglePrivacyDlpV2DiscoveryOtherCloudFilter",
+      "properties": {
+        "collection": {
+          "$ref": "GooglePrivacyDlpV2OtherCloudResourceCollection",
+          "description": "A collection of resources for this filter to apply to."
+        },
+        "others": {
+          "$ref": "GooglePrivacyDlpV2AllOtherResources",
+          "description": "Optional. Catch-all. This should always be the last target in the list because anything above it will apply first. Should only appear once in a configuration. If none is specified, a default one will be added automatically."
+        },
+        "singleResource": {
+          "$ref": "GooglePrivacyDlpV2OtherCloudSingleResourceReference",
+          "description": "The resource to scan. Configs using this filter can only have one target (the target with this single resource reference)."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence": {
+      "description": "How often existing resources should have their profiles refreshed. New resources are scanned as quickly as possible depending on system capacity.",
+      "id": "GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence",
+      "properties": {
+        "inspectTemplateModifiedCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryInspectTemplateModifiedCadence",
+          "description": "Optional. Governs when to update data profiles when the inspection rules defined by the `InspectTemplate` change. If not set, changing the template will not cause a data profile to update."
+        },
+        "refreshFrequency": {
+          "description": "Optional. Frequency to update profiles regardless of whether the underlying resource has changes. Defaults to never.",
           "enum": [
             "UPDATE_FREQUENCY_UNSPECIFIED",
             "UPDATE_FREQUENCY_NEVER",
@@ -7706,6 +7898,10 @@
         "cloudStorageTarget": {
           "$ref": "GooglePrivacyDlpV2CloudStorageDiscoveryTarget",
           "description": "Cloud Storage target for Discovery. The first target to match a table will be the one applied."
+        },
+        "otherCloudTarget": {
+          "$ref": "GooglePrivacyDlpV2OtherCloudDiscoveryTarget",
+          "description": "Other clouds target for discovery. The first target to match a resource will be the one applied."
         },
         "secretsTarget": {
           "$ref": "GooglePrivacyDlpV2SecretsDiscoveryTarget",
@@ -8126,7 +8322,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2FileStoreDataProfile": {
-      "description": "The profile for a file store. * Cloud Storage: maps 1:1 with a bucket.",
+      "description": "The profile for a file store. * Cloud Storage: maps 1:1 with a bucket. * Amazon S3: maps 1:1 with a bucket.",
       "id": "GooglePrivacyDlpV2FileStoreDataProfile",
       "properties": {
         "configSnapshot": {
@@ -8172,15 +8368,15 @@
           "type": "boolean"
         },
         "fileStoreLocation": {
-          "description": "The location of the file store. * Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations",
+          "description": "The location of the file store. * Cloud Storage: https://cloud.google.com/storage/docs/locations#available-locations * Amazon S3: https://docs.aws.amazon.com/general/latest/gr/rande.html#regional-endpoints",
           "type": "string"
         },
         "fileStorePath": {
-          "description": "The file store path. * Cloud Storage: `gs://{bucket}`",
+          "description": "The file store path. * Cloud Storage: `gs://{bucket}` * Amazon S3: `s3://{bucket}`",
           "type": "string"
         },
         "fullResource": {
-          "description": "The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "description": "The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name Example format of an S3 bucket full resource name: `//cloudasset.googleapis.com/organizations/{org_id}/otherCloudConnections/aws/arn:aws:s3:::{bucket_name}`",
           "type": "string"
         },
         "lastModifiedTime": {
@@ -8210,7 +8406,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "The Google Cloud project ID that owns the resource.",
+          "description": "The Google Cloud project ID that owns the resource. For Amazon S3 buckets, this is the AWS Account Id.",
           "type": "string"
         },
         "resourceAttributes": {
@@ -10034,6 +10230,91 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation": {
+      "description": "The other cloud starting location for discovery.",
+      "id": "GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation",
+      "properties": {
+        "awsLocation": {
+          "$ref": "GooglePrivacyDlpV2AwsDiscoveryStartingLocation",
+          "description": "The AWS starting location for discovery."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2OtherCloudDiscoveryTarget": {
+      "description": "Target used to match against for discovery of resources from other clouds. An [AWS connector in Security Command Center (Enterprise](https://cloud.google.com/security-command-center/docs/connect-scc-to-aws) is required to use this feature.",
+      "id": "GooglePrivacyDlpV2OtherCloudDiscoveryTarget",
+      "properties": {
+        "conditions": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryOtherCloudConditions",
+          "description": "Optional. In addition to matching the filter, these conditions must be true before a profile is generated."
+        },
+        "dataSourceType": {
+          "$ref": "GooglePrivacyDlpV2DataSourceType",
+          "description": "Required. The type of data profiles generated by this discovery target. Supported values are: * aws/s3/bucket"
+        },
+        "disabled": {
+          "$ref": "GooglePrivacyDlpV2Disabled",
+          "description": "Disable profiling for resources that match this filter."
+        },
+        "filter": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryOtherCloudFilter",
+          "description": "Required. The resources that the discovery cadence applies to. The first target with a matching filter will be the one to apply to a resource."
+        },
+        "generationCadence": {
+          "$ref": "GooglePrivacyDlpV2DiscoveryOtherCloudGenerationCadence",
+          "description": "How often and when to update data profiles. New resources that match both the filter and conditions are scanned as quickly as possible depending on system capacity."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2OtherCloudResourceCollection": {
+      "description": "Match resources using regex filters.",
+      "id": "GooglePrivacyDlpV2OtherCloudResourceCollection",
+      "properties": {
+        "includeRegexes": {
+          "$ref": "GooglePrivacyDlpV2OtherCloudResourceRegexes",
+          "description": "A collection of regular expressions to match a resource against."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2OtherCloudResourceRegex": {
+      "description": "A pattern to match against one or more resources. At least one pattern must be specified. Regular expressions use RE2 [syntax](https://github.com/google/re2/wiki/Syntax); a guide can be found under the google/re2 repository on GitHub.",
+      "id": "GooglePrivacyDlpV2OtherCloudResourceRegex",
+      "properties": {
+        "amazonS3BucketRegex": {
+          "$ref": "GooglePrivacyDlpV2AmazonS3BucketRegex",
+          "description": "Regex for Amazon S3 buckets."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2OtherCloudResourceRegexes": {
+      "description": "A collection of regular expressions to determine what resources to match against.",
+      "id": "GooglePrivacyDlpV2OtherCloudResourceRegexes",
+      "properties": {
+        "patterns": {
+          "description": "A group of regular expression patterns to match against one or more resources. Maximum of 100 entries. The sum of all regular expression's length can't exceed 10 KiB.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2OtherCloudResourceRegex"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2OtherCloudSingleResourceReference": {
+      "description": "Identifies a single resource, like a single Amazon S3 bucket.",
+      "id": "GooglePrivacyDlpV2OtherCloudSingleResourceReference",
+      "properties": {
+        "amazonS3Bucket": {
+          "$ref": "GooglePrivacyDlpV2AmazonS3Bucket",
+          "description": "Amazon S3 bucket."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2OtherInfoTypeSummary": {
       "description": "Infotype details for other infoTypes found within a column.",
       "id": "GooglePrivacyDlpV2OtherInfoTypeSummary",
@@ -10405,6 +10686,12 @@
       "properties": {},
       "type": "object"
     },
+    "GooglePrivacyDlpV2PublishToChronicle": {
+      "description": "Message expressing intention to publish to Google Security Operations.",
+      "id": "GooglePrivacyDlpV2PublishToChronicle",
+      "properties": {},
+      "type": "object"
+    },
     "GooglePrivacyDlpV2PublishToPubSub": {
       "description": "Publish a message into a given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job's [`DlpJob.name`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk",
       "id": "GooglePrivacyDlpV2PublishToPubSub",
@@ -10414,6 +10701,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2PublishToSecurityCommandCenter": {
+      "description": "If set, a summary finding will be created/updated in SCC for each profile.",
+      "id": "GooglePrivacyDlpV2PublishToSecurityCommandCenter",
+      "properties": {},
       "type": "object"
     },
     "GooglePrivacyDlpV2PublishToStackdriver": {
