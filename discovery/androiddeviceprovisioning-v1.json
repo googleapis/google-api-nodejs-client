@@ -851,7 +851,7 @@
       }
     }
   },
-  "revision": "20231120",
+  "revision": "20240916",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
@@ -1291,12 +1291,20 @@
           "description": "The device’s IMEI number. Validated on input.",
           "type": "string"
         },
+        "imei2": {
+          "description": "The device’s second IMEI number.",
+          "type": "string"
+        },
         "manufacturer": {
           "description": "The device manufacturer’s name. Matches the device's built-in value returned from `android.os.Build.MANUFACTURER`. Allowed values are listed in [Android manufacturers](/zero-touch/resources/manufacturer-names#manufacturers-names).",
           "type": "string"
         },
         "meid": {
           "description": "The device’s MEID number.",
+          "type": "string"
+        },
+        "meid2": {
+          "description": "The device’s second MEID number.",
           "type": "string"
         },
         "model": {
