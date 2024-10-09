@@ -2973,6 +2973,10 @@
       "description": "Defines the properties in a custom module configuration for Security Health Analytics. Use the custom module configuration to create custom detectors that generate custom findings for resources that you specify.",
       "id": "GoogleCloudSecuritycenterV1CustomConfig",
       "properties": {
+        "celPolicy": {
+          "$ref": "CelPolicySpec",
+          "description": "The CEL policy spec attached to the custom module."
+        },
         "customOutput": {
           "$ref": "GoogleCloudSecuritycenterV1CustomOutputSpec",
           "description": "Custom output properties."
