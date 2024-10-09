@@ -384,7 +384,7 @@
       }
     }
   },
-  "revision": "20231214",
+  "revision": "20240905",
   "rootUrl": "https://vpcaccess.googleapis.com/",
   "schemas": {
     "Connector": {
@@ -406,7 +406,7 @@
           "type": "string"
         },
         "ipCidrRange": {
-          "description": "The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.",
+          "description": "Optional. The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.",
           "type": "string"
         },
         "lastRestartTime": {
@@ -425,6 +425,7 @@
           "type": "integer"
         },
         "maxThroughput": {
+          "deprecated": true,
           "description": "Maximum throughput of the connector in Mbps. Refers to the expected throughput when using an `e2-micro` machine type. Value must be a multiple of 100 from 300 through 1000. Must be higher than the value specified by --min-throughput. If both max-throughput and max-instances are provided, max-instances takes precedence over max-throughput. The use of `max-throughput` is discouraged in favor of `max-instances`.",
           "format": "int32",
           "type": "integer"
@@ -435,6 +436,7 @@
           "type": "integer"
         },
         "minThroughput": {
+          "deprecated": true,
           "description": "Minimum throughput of the connector in Mbps. Refers to the expected throughput when using an `e2-micro` machine type. Value must be a multiple of 100 from 200 through 900. Must be lower than the value specified by --max-throughput. If both min-throughput and min-instances are provided, min-instances takes precedence over min-throughput. The use of `min-throughput` is discouraged in favor of `min-instances`.",
           "format": "int32",
           "type": "integer"
@@ -444,7 +446,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Name of a VPC network.",
+          "description": "Optional. Name of a VPC network.",
           "type": "string"
         },
         "state": {
@@ -470,7 +472,7 @@
         },
         "subnet": {
           "$ref": "Subnet",
-          "description": "The subnet in which to house the VPC Access Connector."
+          "description": "Optional. The subnet in which to house the VPC Access Connector."
         }
       },
       "type": "object"
@@ -717,11 +719,11 @@
       "id": "Subnet",
       "properties": {
         "name": {
-          "description": "Subnet name (relative, not fully qualified). E.g. if the full subnet selfLink is https://compute.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetName} the correct input for this field would be {subnetName}",
+          "description": "Optional. Subnet name (relative, not fully qualified). E.g. if the full subnet selfLink is https://compute.googleapis.com/compute/v1/projects/{project}/regions/{region}/subnetworks/{subnetName} the correct input for this field would be {subnetName}",
           "type": "string"
         },
         "projectId": {
-          "description": "Project in which the subnet exists. If not set, this project is assumed to be the project for which the connector create request was issued.",
+          "description": "Optional. Project in which the subnet exists. If not set, this project is assumed to be the project for which the connector create request was issued.",
           "type": "string"
         }
       },

@@ -137,7 +137,7 @@ export namespace vpcaccess_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
+     * Optional. The range of internal addresses that follows RFC 4632 notation. Example: `10.132.0.0/28`.
      */
     ipCidrRange?: string | null;
     /**
@@ -169,7 +169,7 @@ export namespace vpcaccess_v1beta1 {
      */
     name?: string | null;
     /**
-     * Name of a VPC network.
+     * Optional. Name of a VPC network.
      */
     network?: string | null;
     /**
@@ -177,7 +177,7 @@ export namespace vpcaccess_v1beta1 {
      */
     state?: string | null;
     /**
-     * The subnet in which to house the VPC Access Connector.
+     * Optional. The subnet in which to house the VPC Access Connector.
      */
     subnet?: Schema$Subnet;
   }
@@ -355,11 +355,11 @@ export namespace vpcaccess_v1beta1 {
    */
   export interface Schema$Subnet {
     /**
-     * Subnet name (relative, not fully qualified). E.g. if the full subnet selfLink is https://compute.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/subnetworks/{subnetName\} the correct input for this field would be {subnetName\}
+     * Optional. Subnet name (relative, not fully qualified). E.g. if the full subnet selfLink is https://compute.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/subnetworks/{subnetName\} the correct input for this field would be {subnetName\}
      */
     name?: string | null;
     /**
-     * Project in which the subnet exists. If not set, this project is assumed to be the project for which the connector create request was issued.
+     * Optional. Project in which the subnet exists. If not set, this project is assumed to be the project for which the connector create request was issued.
      */
     projectId?: string | null;
   }
