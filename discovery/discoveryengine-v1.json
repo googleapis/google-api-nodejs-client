@@ -14,7 +14,7 @@
   "canonicalName": "Discovery Engine",
   "description": "Discovery Engine API.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/discovery-engine/docs",
+  "documentationLink": "https://cloud.google.com/generative-ai-app-builder/docs/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -921,7 +921,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -949,7 +949,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Control to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "description": "Required. The resource name of the Control to delete. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/controls/[^/]+$",
                               "required": true,
@@ -974,7 +974,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Control to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "description": "Required. The resource name of the Control to get. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/controls/[^/]+$",
                               "required": true,
@@ -1015,7 +1015,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -1078,7 +1078,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -1106,7 +1106,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -1134,7 +1134,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -1159,7 +1159,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -1205,7 +1205,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -1757,7 +1757,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -1785,7 +1785,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Session to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
+                              "description": "Required. The resource name of the Session to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/sessions/[^/]+$",
                               "required": true,
@@ -1810,7 +1810,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Session to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
+                              "description": "Required. The resource name of the Session to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/sessions/[^/]+$",
                               "required": true,
@@ -1856,7 +1856,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -1919,7 +1919,7 @@
                               ],
                               "parameters": {
                                 "name": {
-                                  "description": "Required. The resource name of the Answer to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`",
+                                  "description": "Required. The resource name of the Answer to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/sessions/[^/]+/answers/[^/]+$",
                                   "required": true,
@@ -2549,7 +2549,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The resource name of the catalog under which the events are created. The format is `projects/${projectId}/locations/global/collections/{$collectionId}/dataStores/${dataStoreId}`",
+                              "description": "Required. The resource name of the catalog under which the events are created. The format is `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                               "required": true,
@@ -2740,7 +2740,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+                          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                           "required": true,
@@ -2783,7 +2783,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -2811,7 +2811,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Control to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "description": "Required. The resource name of the Control to delete. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/controls/[^/]+$",
                               "required": true,
@@ -2836,7 +2836,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Control to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                              "description": "Required. The resource name of the Control to get. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/controls/[^/]+$",
                               "required": true,
@@ -2877,7 +2877,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                              "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -2940,7 +2940,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -2968,7 +2968,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -2996,7 +2996,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -3021,7 +3021,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                              "description": "Required. The resource name of the Conversation to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/conversations/[^/]+$",
                               "required": true,
@@ -3067,7 +3067,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -3288,7 +3288,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -3316,7 +3316,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Session to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
+                              "description": "Required. The resource name of the Session to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
                               "required": true,
@@ -3341,7 +3341,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Session to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
+                              "description": "Required. The resource name of the Session to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
                               "required": true,
@@ -3387,7 +3387,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                              "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                               "required": true,
@@ -3450,7 +3450,7 @@
                               ],
                               "parameters": {
                                 "name": {
-                                  "description": "Required. The resource name of the Answer to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`",
+                                  "description": "Required. The resource name of the Answer to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`",
                                   "location": "path",
                                   "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+/answers/[^/]+$",
                                   "required": true,
@@ -4221,7 +4221,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                          "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -4249,7 +4249,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Control to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                          "description": "Required. The resource name of the Control to delete. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/controls/[^/]+$",
                           "required": true,
@@ -4274,7 +4274,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Control to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
+                          "description": "Required. The resource name of the Control to get. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/controls/{control_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/controls/[^/]+$",
                           "required": true,
@@ -4315,7 +4315,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`.",
+                          "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}` or `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -4378,7 +4378,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
+                          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`. Use `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                           "required": true,
@@ -4406,7 +4406,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                          "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -4434,7 +4434,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                          "description": "Required. The resource name of the Conversation to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                           "required": true,
@@ -4459,7 +4459,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
+                          "description": "Required. The resource name of the Conversation to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/conversations/{conversation_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/conversations/[^/]+$",
                           "required": true,
@@ -4505,7 +4505,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                          "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -4956,7 +4956,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Full resource name of parent data store. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                          "description": "Required. Full resource name of parent data store. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -4984,7 +4984,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Session to delete. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
+                          "description": "Required. The resource name of the Session to delete. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/sessions/[^/]+$",
                           "required": true,
@@ -5009,7 +5009,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Session to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
+                          "description": "Required. The resource name of the Session to get. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/sessions/{session_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/sessions/[^/]+$",
                           "required": true,
@@ -5055,7 +5055,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The data store resource name. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}`",
+                          "description": "Required. The data store resource name. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -5118,7 +5118,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The resource name of the Answer to get. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`",
+                              "description": "Required. The resource name of the Answer to get. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine_id}/sessions/{session_id}/answers/{answer_id}`",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/sessions/[^/]+/answers/[^/]+$",
                               "required": true,
@@ -5542,7 +5542,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The resource name of the catalog under which the events are created. The format is `projects/${projectId}/locations/global/collections/{$collectionId}/dataStores/${dataStoreId}`",
+                          "description": "Required. The resource name of the catalog under which the events are created. The format is `projects/{project}/locations/global/collections/{collection}/dataStores/{dataStore}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -5629,15 +5629,15 @@
                 }
               }
             },
-            "identity_mapping_stores": {
+            "identityMappingStores": {
               "resources": {
                 "operations": {
                   "methods": {
                     "get": {
                       "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identity_mapping_stores/{identity_mapping_storesId}/operations/{operationsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}/operations/{operationsId}",
                       "httpMethod": "GET",
-                      "id": "discoveryengine.projects.locations.identity_mapping_stores.operations.get",
+                      "id": "discoveryengine.projects.locations.identityMappingStores.operations.get",
                       "parameterOrder": [
                         "name"
                       ],
@@ -5645,7 +5645,7 @@
                         "name": {
                           "description": "The name of the operation resource.",
                           "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/identity_mapping_stores/[^/]+/operations/[^/]+$",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+/operations/[^/]+$",
                           "required": true,
                           "type": "string"
                         }
@@ -5660,9 +5660,9 @@
                     },
                     "list": {
                       "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identity_mapping_stores/{identity_mapping_storesId}/operations",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/identityMappingStores/{identityMappingStoresId}/operations",
                       "httpMethod": "GET",
-                      "id": "discoveryengine.projects.locations.identity_mapping_stores.operations.list",
+                      "id": "discoveryengine.projects.locations.identityMappingStores.operations.list",
                       "parameterOrder": [
                         "name"
                       ],
@@ -5675,7 +5675,7 @@
                         "name": {
                           "description": "The name of the operation's parent resource.",
                           "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/identity_mapping_stores/[^/]+$",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/identityMappingStores/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
@@ -5785,7 +5785,7 @@
                   ],
                   "parameters": {
                     "rankingConfig": {
-                      "description": "Required. The resource name of the rank service config, such as `projects/{project_num}/locations/{location_id}/rankingConfigs/default_ranking_config`.",
+                      "description": "Required. The resource name of the rank service config, such as `projects/{project_num}/locations/{location}/rankingConfigs/default_ranking_config`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/rankingConfigs/[^/]+$",
                       "required": true,
@@ -5986,7 +5986,7 @@
       }
     }
   },
-  "revision": "20240826",
+  "revision": "20240930",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6181,17 +6181,19 @@
               "POTENTIAL_POLICY_VIOLATION",
               "NO_RELEVANT_CONTENT",
               "JAIL_BREAKING_QUERY_IGNORED",
-              "CUSTOMER_POLICY_VIOLATION"
+              "CUSTOMER_POLICY_VIOLATION",
+              "NON_ANSWER_SEEKING_QUERY_IGNORED_V2"
             ],
             "enumDescriptions": [
               "Default value. The answer skipped reason is not specified.",
               "The adversarial query ignored case.",
-              "The non-answer seeking query ignored case.",
+              "The non-answer seeking query ignored case Google skips the answer if the query is chit chat.",
               "The out-of-domain query ignored case. Google skips the answer if there are no high-relevance search results.",
               "The potential policy violation case. Google skips the answer if there is a potential policy violation detected. This includes content that may be violent or toxic.",
               "The no relevant content case. Google skips the answer if there is no relevant content in the retrieved search results.",
               "The jail-breaking query ignored case. For example, \"Reply in the tone of a competing company's CEO\". Google skips the answer if the query is classified as a jail-breaking query.",
-              "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer."
+              "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer.",
+              "The non-answer seeking query ignored case. Google skips the answer if the query doesn't have clear intent."
             ],
             "type": "string"
           },
@@ -6312,7 +6314,8 @@
           "description": "Answer generation specification."
         },
         "asynchronousMode": {
-          "description": "Asynchronous mode control. If enabled, the response will be returned with answer/session resource name without final answer. The API users need to do the polling to get the latest status of answer/session by calling ConversationalSearchService.GetAnswer or ConversationalSearchService.GetSession method.",
+          "deprecated": true,
+          "description": "Deprecated: This field is deprecated. Streaming Answer API will be supported. Asynchronous mode control. If enabled, the response will be returned with answer/session resource name without final answer. The API users need to do the polling to get the latest status of answer/session by calling ConversationalSearchService.GetAnswer or ConversationalSearchService.GetSession method.",
           "type": "boolean"
         },
         "query": {
@@ -6363,6 +6366,10 @@
         },
         "ignoreAdversarialQuery": {
           "description": "Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No answer is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating answers for adversarial queries and return fallback messages instead.",
+          "type": "boolean"
+        },
+        "ignoreJailBreakingQuery": {
+          "description": "Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. \"Reply in the tone of a competing company's CEO\". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.",
           "type": "boolean"
         },
         "ignoreLowRelevantContent": {
@@ -6436,13 +6443,15 @@
               "TYPE_UNSPECIFIED",
               "ADVERSARIAL_QUERY",
               "NON_ANSWER_SEEKING_QUERY",
-              "JAIL_BREAKING_QUERY"
+              "JAIL_BREAKING_QUERY",
+              "NON_ANSWER_SEEKING_QUERY_V2"
             ],
             "enumDescriptions": [
               "Unspecified query classification type.",
               "Adversarial query classification type.",
-              "Non-answer-seeking query classification type.",
-              "Jail-breaking query classification type."
+              "Non-answer-seeking query classification type, for chit chat.",
+              "Jail-breaking query classification type.",
+              "Non-answer-seeking query classification type, for no clear intent."
             ],
             "type": "string"
           },
@@ -6589,6 +6598,25 @@
         "content": {
           "description": "Chunk textual content.",
           "type": "string"
+        },
+        "documentMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultChunkInfoDocumentMetadata",
+          "description": "Metadata of the document from the current chunk."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultChunkInfoDocumentMetadata": {
+      "description": "Document metadata contains the information of the document of the current chunk.",
+      "id": "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultChunkInfoDocumentMetadata",
+      "properties": {
+        "title": {
+          "description": "Title of the document.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Uri of the document.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6602,14 +6630,15 @@
           "type": "string"
         },
         "documentContexts": {
-          "description": "List of document contexts.",
+          "description": "List of document contexts. The content will be used for Answer Generation. This is supposed to be the main content of the document that can be long and comprehensive.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoDocumentContext"
           },
           "type": "array"
         },
         "extractiveAnswers": {
-          "description": "List of extractive answers.",
+          "deprecated": true,
+          "description": "Deprecated: This field is deprecated and will have no effect on the Answer generation. Please use document_contexts and extractive_segments fields. List of extractive answers.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoExtractiveAnswer"
           },
@@ -6638,7 +6667,7 @@
       "id": "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoDocumentContext",
       "properties": {
         "content": {
-          "description": "Document content.",
+          "description": "Document content to be used for answer generation.",
           "type": "string"
         },
         "pageIdentifier": {
@@ -6664,7 +6693,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoExtractiveSegment": {
-      "description": "Extractive segment. [Guide](https://cloud.google.com/generative-ai-app-builder/docs/snippets#extractive-segments)",
+      "description": "Extractive segment. [Guide](https://cloud.google.com/generative-ai-app-builder/docs/snippets#extractive-segments) Answer generation will only use it if document_contexts is empty. This is supposed to be shorter snippets.",
       "id": "GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoExtractiveSegment",
       "properties": {
         "content": {
@@ -6725,13 +6754,15 @@
             "TYPE_UNSPECIFIED",
             "ADVERSARIAL_QUERY",
             "NON_ANSWER_SEEKING_QUERY",
-            "JAIL_BREAKING_QUERY"
+            "JAIL_BREAKING_QUERY",
+            "NON_ANSWER_SEEKING_QUERY_V2"
           ],
           "enumDescriptions": [
             "Unspecified query classification type.",
             "Adversarial query classification type.",
-            "Non-answer-seeking query classification type.",
-            "Jail-breaking query classification type."
+            "Non-answer-seeking query classification type, for chit chat.",
+            "Jail-breaking query classification type.",
+            "Non-answer-seeking query classification type, for no clear intent."
           ],
           "type": "string"
         }
@@ -6978,7 +7009,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document , or the Chunk in search result .",
+          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document, or the Chunk in search result. .",
           "type": "object"
         },
         "title": {
@@ -7114,13 +7145,13 @@
           "$ref": "GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadataMatcherValue",
           "description": "The value of the matcher that was used to match the Document."
         },
-        "status": {
-          "description": "The status of the document.",
+        "state": {
+          "description": "The state of the document.",
           "enum": [
-            "STATUS_UNSPECIFIED",
-            "STATUS_INDEXED",
-            "STATUS_NOT_IN_TARGET_SITE",
-            "STATUS_NOT_IN_INDEX"
+            "STATE_UNSPECIFIED",
+            "INDEXED",
+            "NOT_IN_TARGET_SITE",
+            "NOT_IN_INDEX"
           ],
           "enumDescriptions": [
             "Should never be set.",
@@ -7974,7 +8005,7 @@
           "type": "boolean"
         },
         "servingConfig": {
-          "description": "The resource name of the Serving Config to use. Format: `projects/{project_number}/locations/{location_id}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}` If this is not set, the default serving config will be used.",
+          "description": "The resource name of the Serving Config to use. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store_id}/servingConfigs/{serving_config_id}` If this is not set, the default serving config will be used.",
           "type": "string"
         },
         "summarySpec": {
@@ -8132,6 +8163,10 @@
           "description": "The display name of the model.",
           "type": "string"
         },
+        "errorMessage": {
+          "description": "Currently this is only populated if the model state is `INPUT_VALIDATION_FAILED`.",
+          "type": "string"
+        },
         "metrics": {
           "additionalProperties": {
             "format": "double",
@@ -8170,7 +8205,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}` model must be an alpha-numerical string with limit of 40 characters.",
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`. Model must be an alpha-numerical string with limit of 40 characters.",
           "type": "string"
         },
         "trainingStartTime": {
@@ -8185,6 +8220,11 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1DataStore",
       "properties": {
+        "billingEstimation": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataStoreBillingEstimation",
+          "description": "Output only. Data size estimation for billing.",
+          "readOnly": true
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -8242,6 +8282,10 @@
           "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
+        "servingConfigDataStore": {
+          "$ref": "GoogleCloudDiscoveryengineV1ServingConfigDataStore",
+          "description": "Optional. Stores serving config at DataStore level."
+        },
         "solutionTypes": {
           "description": "The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.",
           "items": {
@@ -8270,6 +8314,43 @@
         "workspaceConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1WorkspaceConfig",
           "description": "Config to store data store type configuration for workspace data. This must be set when DataStore.content_config is set as DataStore.ContentConfig.GOOGLE_WORKSPACE."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataStoreBillingEstimation": {
+      "description": "Estimation of data size per data store.",
+      "id": "GoogleCloudDiscoveryengineV1DataStoreBillingEstimation",
+      "properties": {
+        "structuredDataSize": {
+          "description": "Data size for structured data in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "structuredDataUpdateTime": {
+          "description": "Last updated timestamp for structured data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "unstructuredDataSize": {
+          "description": "Data size for unstructured data in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unstructuredDataUpdateTime": {
+          "description": "Last updated timestamp for unstructured data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "websiteDataSize": {
+          "description": "Data size for websites in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "websiteDataUpdateTime": {
+          "description": "Last updated timestamp for websites.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8392,6 +8473,11 @@
           "description": "Immutable. The identifier of the document. Id should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.",
           "type": "string"
         },
+        "indexStatus": {
+          "$ref": "GoogleCloudDiscoveryengineV1DocumentIndexStatus",
+          "description": "Output only. The index status of the document. * If document is indexed successfully, the index_time field is populated. * Otherwise, if document is not indexed due to errors, the error_samples field is populated. * Otherwise, index_status is unset.",
+          "readOnly": true
+        },
         "indexTime": {
           "description": "Output only. The last time the document was indexed. If this field is set, the document could be returned in search results. This field is OUTPUT_ONLY. If this field is not populated, it means the document has never been indexed.",
           "format": "google-datetime",
@@ -8445,6 +8531,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1DocumentIndexStatus": {
+      "description": "Index status of the document.",
+      "id": "GoogleCloudDiscoveryengineV1DocumentIndexStatus",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while indexing the document. If this field is populated, the document is not indexed due to errors.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "indexTime": {
+          "description": "The time when the document was indexed. If this field is populated, it means the document has been indexed.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1DocumentInfo": {
       "description": "Detailed document information associated with a user event.",
       "id": "GoogleCloudDiscoveryengineV1DocumentInfo",
@@ -8459,7 +8564,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The Document resource full name, of the form: `projects/{project_id}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`",
+          "description": "The Document resource full name, of the form: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}/branches/{branch_id}/documents/{document_id}`",
           "type": "string"
         },
         "promotionIds": {
@@ -8501,7 +8606,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsm`: Override parsing config for XLSM files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.",
           "type": "object"
         }
       },
@@ -8643,6 +8748,10 @@
           },
           "type": "array"
         },
+        "disableAnalytics": {
+          "description": "Optional. Whether to disable analytics for searches performed on this engine.",
+          "type": "boolean"
+        },
         "displayName": {
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
@@ -8664,7 +8773,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
         "searchEngineConfig": {
@@ -9584,7 +9693,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Full resource name of the project, for example `projects/{project_number}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
+          "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
           "readOnly": true,
           "type": "string"
         },
@@ -10052,6 +10161,10 @@
       "description": "Request message for SiteSearchEngineService.RecrawlUris method.",
       "id": "GoogleCloudDiscoveryengineV1RecrawlUrisRequest",
       "properties": {
+        "siteCredential": {
+          "description": "Optional. Full resource name of the SiteCredential, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/siteCredentials/*`. Only set to crawl private URIs.",
+          "type": "string"
+        },
         "uris": {
           "description": "Required. List of URIs to crawl. At most 10K URIs are supported, otherwise an INVALID_ARGUMENT error is thrown. Each URI should match at least one TargetSite in `site_search_engine`.",
           "items": {
@@ -10256,9 +10369,73 @@
           "format": "float",
           "type": "number"
         },
+        "boostControlSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpec",
+          "description": "Complex specification for custom ranking based on customer defined attribute value."
+        },
         "condition": {
           "description": "An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID \"doc_1\" or \"doc_2\", and color \"Red\" or \"Blue\": `(document_id: ANY(\"doc_1\", \"doc_2\")) AND (color: ANY(\"Red\", \"Blue\"))`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpec": {
+      "description": "Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.",
+      "id": "GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpec",
+      "properties": {
+        "attributeType": {
+          "description": "The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "NUMERICAL",
+            "FRESHNESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified AttributeType.",
+            "The value of the numerical field will be used to dynamically update the boost amount. In this case, the attribute_value (the x value) of the control point will be the actual value of the numerical field for which the boost_amount is specified.",
+            "For the freshness use case the attribute value will be the duration between the current time and the date in the datetime field specified. The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`. For example, `5D`, `3DT12H30M`, `T24H`."
+          ],
+          "type": "string"
+        },
+        "controlPoints": {
+          "description": "The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint"
+          },
+          "type": "array"
+        },
+        "fieldName": {
+          "description": "The name of the field whose value will be used to determine the boost amount.",
+          "type": "string"
+        },
+        "interpolationType": {
+          "description": "The interpolation type to be applied to connect the control points listed below.",
+          "enum": [
+            "INTERPOLATION_TYPE_UNSPECIFIED",
+            "LINEAR"
+          ],
+          "enumDescriptions": [
+            "Interpolation type is unspecified. In this case, it defaults to Linear.",
+            "Piecewise linear interpolation will be applied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint": {
+      "description": "The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).",
+      "id": "GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint",
+      "properties": {
+        "attributeValue": {
+          "description": "Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.",
+          "type": "string"
+        },
+        "boostAmount": {
+          "description": "The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -10378,6 +10555,10 @@
           "description": "Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No summary is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating summaries for adversarial queries and return fallback messages instead.",
           "type": "boolean"
         },
+        "ignoreJailBreakingQuery": {
+          "description": "Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. \"Reply in the tone of a competing company's CEO\". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.",
+          "type": "boolean"
+        },
         "ignoreLowRelevantContent": {
           "description": "Specifies whether to filter out queries that have low relevance. The default value is `false`. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true`, only queries with high relevance search results will generate answers.",
           "type": "boolean"
@@ -10442,6 +10623,10 @@
       "properties": {
         "dataStore": {
           "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
         }
       },
@@ -10781,18 +10966,20 @@
               "LLM_ADDON_NOT_ENABLED",
               "NO_RELEVANT_CONTENT",
               "JAIL_BREAKING_QUERY_IGNORED",
-              "CUSTOMER_POLICY_VIOLATION"
+              "CUSTOMER_POLICY_VIOLATION",
+              "NON_SUMMARY_SEEKING_QUERY_IGNORED_V2"
             ],
             "enumDescriptions": [
               "Default value. The summary skipped reason is not specified.",
               "The adversarial query ignored case. Only used when SummarySpec.ignore_adversarial_query is set to `true`.",
-              "The non-summary seeking query ignored case. Only used when SummarySpec.ignore_non_summary_seeking_query is set to `true`.",
+              "The non-summary seeking query ignored case. Google skips the summary if the query is chit chat. Only used when SummarySpec.ignore_non_summary_seeking_query is set to `true`.",
               "The out-of-domain query ignored case. Google skips the summary if there are no high-relevance search results. For example, the data store contains facts about company A but the user query is asking questions about company B.",
               "The potential policy violation case. Google skips the summary if there is a potential policy violation detected. This includes content that may be violent or toxic.",
               "The LLM addon not enabled case. Google skips the summary if the LLM addon is not enabled.",
               "The no relevant content case. Google skips the summary if there is no relevant content in the retrieved search results.",
               "The jail-breaking query ignored case. For example, \"Reply in the tone of a competing company's CEO\". Only used when [SearchRequest.ContentSearchSpec.SummarySpec.ignore_jail_breaking_query] is set to `true`.",
-              "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer."
+              "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer.",
+              "The non-answer seeking query ignored case. Google skips the summary if the query doesn't have clear intent. Only used when [SearchRequest.ContentSearchSpec.SummarySpec.ignore_non_answer_seeking_query] is set to `true`."
             ],
             "type": "string"
           },
@@ -10940,6 +11127,17 @@
         "summary": {
           "description": "Summary text with no citation information.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1ServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -11502,6 +11700,14 @@
           "description": "Obfuscated Dasher customer ID.",
           "type": "string"
         },
+        "superAdminEmailAddress": {
+          "description": "Optional. The super admin email address for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.",
+          "type": "string"
+        },
+        "superAdminServiceAccount": {
+          "description": "Optional. The super admin service account for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.",
+          "type": "string"
+        },
         "type": {
           "description": "The Google Workspace data source.",
           "enum": [
@@ -11510,15 +11716,19 @@
             "GOOGLE_MAIL",
             "GOOGLE_SITES",
             "GOOGLE_CALENDAR",
-            "GOOGLE_GROUPS"
+            "GOOGLE_CHAT",
+            "GOOGLE_GROUPS",
+            "GOOGLE_KEEP"
           ],
           "enumDescriptions": [
-            "Default value.",
-            "The data store is used to store content from Google Drive.",
-            "The data store is used to store content from Gmail.",
-            "The data store is used to store content from Google Sites.",
-            "The data store is used to store content from Google Calendar.",
-            "The data store is used to store content from Google Groups."
+            "Defaults to an unspecified Workspace type.",
+            "Workspace Data Store contains Drive data",
+            "Workspace Data Store contains Mail data",
+            "Workspace Data Store contains Sites data",
+            "Workspace Data Store contains Calendar data",
+            "Workspace Data Store contains Chat data",
+            "Workspace Data Store contains Groups data",
+            "Workspace Data Store contains Keep data"
           ],
           "type": "string"
         }
@@ -11555,17 +11765,19 @@
               "POTENTIAL_POLICY_VIOLATION",
               "NO_RELEVANT_CONTENT",
               "JAIL_BREAKING_QUERY_IGNORED",
-              "CUSTOMER_POLICY_VIOLATION"
+              "CUSTOMER_POLICY_VIOLATION",
+              "NON_ANSWER_SEEKING_QUERY_IGNORED_V2"
             ],
             "enumDescriptions": [
               "Default value. The answer skipped reason is not specified.",
               "The adversarial query ignored case.",
-              "The non-answer seeking query ignored case.",
+              "The non-answer seeking query ignored case Google skips the answer if the query is chit chat.",
               "The out-of-domain query ignored case. Google skips the answer if there are no high-relevance search results.",
               "The potential policy violation case. Google skips the answer if there is a potential policy violation detected. This includes content that may be violent or toxic.",
               "The no relevant content case. Google skips the answer if there is no relevant content in the retrieved search results.",
               "The jail-breaking query ignored case. For example, \"Reply in the tone of a competing company's CEO\". Google skips the answer if the query is classified as a jail-breaking query.",
-              "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer."
+              "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer.",
+              "The non-answer seeking query ignored case. Google skips the answer if the query doesn't have clear intent."
             ],
             "type": "string"
           },
@@ -11705,13 +11917,15 @@
             "TYPE_UNSPECIFIED",
             "ADVERSARIAL_QUERY",
             "NON_ANSWER_SEEKING_QUERY",
-            "JAIL_BREAKING_QUERY"
+            "JAIL_BREAKING_QUERY",
+            "NON_ANSWER_SEEKING_QUERY_V2"
           ],
           "enumDescriptions": [
             "Unspecified query classification type.",
             "Adversarial query classification type.",
-            "Non-answer-seeking query classification type.",
-            "Jail-breaking query classification type."
+            "Non-answer-seeking query classification type, for chit chat.",
+            "Jail-breaking query classification type.",
+            "Non-answer-seeking query classification type, for no clear intent."
           ],
           "type": "string"
         }
@@ -11958,7 +12172,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document , or the Chunk in search result .",
+          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document, or the Chunk in search result. .",
           "type": "object"
         },
         "title": {
@@ -12342,6 +12556,10 @@
           "description": "The display name of the model.",
           "type": "string"
         },
+        "errorMessage": {
+          "description": "Currently this is only populated if the model state is `INPUT_VALIDATION_FAILED`.",
+          "type": "string"
+        },
         "metrics": {
           "additionalProperties": {
             "format": "double",
@@ -12380,7 +12598,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}` model must be an alpha-numerical string with limit of 40 characters.",
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`. Model must be an alpha-numerical string with limit of 40 characters.",
           "type": "string"
         },
         "trainingStartTime": {
@@ -12398,6 +12616,11 @@
         "aclEnabled": {
           "description": "Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.",
           "type": "boolean"
+        },
+        "billingEstimation": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataStoreBillingEstimation",
+          "description": "Output only. Data size estimation for billing.",
+          "readOnly": true
         },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
@@ -12465,6 +12688,14 @@
           "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
+        "naturalLanguageQueryUnderstandingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaNaturalLanguageQueryUnderstandingConfig",
+          "description": "Optional. Configuration for Natural Language Query Understanding."
+        },
+        "servingConfigDataStore": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore",
+          "description": "Optional. Stores serving config at DataStore level."
+        },
         "solutionTypes": {
           "description": "The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.",
           "items": {
@@ -12493,6 +12724,43 @@
         "workspaceConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaWorkspaceConfig",
           "description": "Config to store data store type configuration for workspace data. This must be set when DataStore.content_config is set as DataStore.ContentConfig.GOOGLE_WORKSPACE."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataStoreBillingEstimation": {
+      "description": "Estimation of data size per data store.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataStoreBillingEstimation",
+      "properties": {
+        "structuredDataSize": {
+          "description": "Data size for structured data in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "structuredDataUpdateTime": {
+          "description": "Last updated timestamp for structured data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "unstructuredDataSize": {
+          "description": "Data size for unstructured data in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unstructuredDataUpdateTime": {
+          "description": "Last updated timestamp for unstructured data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "websiteDataSize": {
+          "description": "Data size for websites in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "websiteDataUpdateTime": {
+          "description": "Last updated timestamp for websites.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -12608,7 +12876,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsm`: Override parsing config for XLSM files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.",
           "type": "object"
         }
       },
@@ -12744,6 +13012,10 @@
           },
           "type": "array"
         },
+        "disableAnalytics": {
+          "description": "Optional. Whether to disable analytics for searches performed on this engine.",
+          "type": "boolean"
+        },
         "displayName": {
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
@@ -12769,7 +13041,7 @@
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
         },
         "name": {
-          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
         "recommendationMetadata": {
@@ -13233,6 +13505,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "metatagName": {
+          "description": "Optional. The metatag name found in the HTML page. If user defines this field, the value of this metatag name will be used to extract metatag. If the user does not define this field, the FieldConfig.field_path will be used to extract metatag.",
+          "type": "string"
+        },
         "recsFilterableOption": {
           "description": "If recs_filterable_option is FILTERABLE_ENABLED, field values are filterable by filter expression in RecommendationService.Recommend. If FILTERABLE_ENABLED but the field type is numerical, field values are not filterable by text queries in RecommendationService.Recommend. Only textual fields are supported. If recs_filterable_option is unset, the default setting is FILTERABLE_DISABLED for fields that support setting filterable options. When a field set to [FILTERABLE_DISABLED] is filtered, a warning is generated and an empty result is returned.",
           "enum": [
@@ -13658,6 +13934,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaNaturalLanguageQueryUnderstandingConfig": {
+      "description": "Configuration for Natural Language Query Understanding.",
+      "id": "GoogleCloudDiscoveryengineV1alphaNaturalLanguageQueryUnderstandingConfig",
+      "properties": {
+        "mode": {
+          "description": "Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Natural Language Query Understanding is disabled.",
+            "Natural Language Query Understanding is enabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaProject": {
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1alphaProject",
@@ -13669,7 +13966,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Full resource name of the project, for example `projects/{project_number}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
+          "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
           "readOnly": true,
           "type": "string"
         },
@@ -14189,6 +14486,10 @@
           "description": "Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. For example, `user_country_code: \"au\"` For available codes see [Country Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes) * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching. For example, `search_type: 1`",
           "type": "object"
         },
+        "personalizationSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestPersonalizationSpec",
+          "description": "The specification for personalization. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set, SearchRequest.personalization_spec overrides ServingConfig.personalization_spec."
+        },
         "query": {
           "description": "Raw search query.",
           "type": "string"
@@ -14474,6 +14775,10 @@
           "description": "Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No summary is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating summaries for adversarial queries and return fallback messages instead.",
           "type": "boolean"
         },
+        "ignoreJailBreakingQuery": {
+          "description": "Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. \"Reply in the tone of a competing company's CEO\". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.",
+          "type": "boolean"
+        },
         "ignoreLowRelevantContent": {
           "description": "Specifies whether to filter out queries that have low relevance. The default value is `false`. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true`, only queries with high relevance search results will generate answers.",
           "type": "boolean"
@@ -14538,6 +14843,10 @@
       "properties": {
         "dataStore": {
           "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
         }
       },
@@ -14689,6 +14998,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSearchRequestPersonalizationSpec": {
+      "description": "The specification for personalization.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestPersonalizationSpec",
+      "properties": {
+        "mode": {
+          "description": "The personalization mode of the search request. Defaults to Mode.AUTO.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "AUTO",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. In this case, server behavior defaults to Mode.AUTO.",
+            "Personalization is enabled if data quality requirements are met.",
+            "Disable personalization."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec": {
       "description": "Specification to determine under which conditions query expansion should occur.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec",
@@ -14768,6 +15098,17 @@
             "Automatic spell correction built by the Search API. Search will be based on the corrected query if found."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -15042,7 +15383,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaTuneEngineMetadata",
       "properties": {
         "engine": {
-          "description": "Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`",
+          "description": "Required. The resource name of the engine that this tune applies to. Format: `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`",
           "type": "string"
         }
       },
@@ -15111,6 +15452,14 @@
           "description": "Obfuscated Dasher customer ID.",
           "type": "string"
         },
+        "superAdminEmailAddress": {
+          "description": "Optional. The super admin email address for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.",
+          "type": "string"
+        },
+        "superAdminServiceAccount": {
+          "description": "Optional. The super admin service account for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.",
+          "type": "string"
+        },
         "type": {
           "description": "The Google Workspace data source.",
           "enum": [
@@ -15119,15 +15468,19 @@
             "GOOGLE_MAIL",
             "GOOGLE_SITES",
             "GOOGLE_CALENDAR",
-            "GOOGLE_GROUPS"
+            "GOOGLE_CHAT",
+            "GOOGLE_GROUPS",
+            "GOOGLE_KEEP"
           ],
           "enumDescriptions": [
-            "Default value.",
-            "The data store is used to store content from Google Drive.",
-            "The data store is used to store content from Gmail.",
-            "The data store is used to store content from Google Sites.",
-            "The data store is used to store content from Google Calendar.",
-            "The data store is used to store content from Google Groups."
+            "Defaults to an unspecified Workspace type.",
+            "Workspace Data Store contains Drive data",
+            "Workspace Data Store contains Mail data",
+            "Workspace Data Store contains Sites data",
+            "Workspace Data Store contains Calendar data",
+            "Workspace Data Store contains Chat data",
+            "Workspace Data Store contains Groups data",
+            "Workspace Data Store contains Keep data"
           ],
           "type": "string"
         }
@@ -15447,6 +15800,10 @@
           "description": "The display name of the model.",
           "type": "string"
         },
+        "errorMessage": {
+          "description": "Currently this is only populated if the model state is `INPUT_VALIDATION_FAILED`.",
+          "type": "string"
+        },
         "metrics": {
           "additionalProperties": {
             "format": "double",
@@ -15485,7 +15842,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project_number}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}` model must be an alpha-numerical string with limit of 40 characters.",
+          "description": "Required. The fully qualified resource name of the model. Format: `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/customTuningModels/{custom_tuning_model}`. Model must be an alpha-numerical string with limit of 40 characters.",
           "type": "string"
         },
         "trainingStartTime": {
@@ -15500,6 +15857,11 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1betaDataStore",
       "properties": {
+        "billingEstimation": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation",
+          "description": "Output only. Data size estimation for billing.",
+          "readOnly": true
+        },
         "contentConfig": {
           "description": "Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.",
           "enum": [
@@ -15561,6 +15923,14 @@
           "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
+        "naturalLanguageQueryUnderstandingConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig",
+          "description": "Optional. Configuration for Natural Language Query Understanding."
+        },
+        "servingConfigDataStore": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaServingConfigDataStore",
+          "description": "Optional. Stores serving config at DataStore level."
+        },
         "solutionTypes": {
           "description": "The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.",
           "items": {
@@ -15589,6 +15959,43 @@
         "workspaceConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaWorkspaceConfig",
           "description": "Config to store data store type configuration for workspace data. This must be set when DataStore.content_config is set as DataStore.ContentConfig.GOOGLE_WORKSPACE."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation": {
+      "description": "Estimation of data size per data store.",
+      "id": "GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation",
+      "properties": {
+        "structuredDataSize": {
+          "description": "Data size for structured data in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "structuredDataUpdateTime": {
+          "description": "Last updated timestamp for structured data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "unstructuredDataSize": {
+          "description": "Data size for unstructured data in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "unstructuredDataUpdateTime": {
+          "description": "Last updated timestamp for unstructured data.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "websiteDataSize": {
+          "description": "Data size for websites in terms of bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "websiteDataUpdateTime": {
+          "description": "Last updated timestamp for websites.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -15704,7 +16111,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfig"
           },
-          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.",
+          "description": "Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsm`: Override parsing config for XLSM files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.",
           "type": "object"
         }
       },
@@ -15840,6 +16247,10 @@
           },
           "type": "array"
         },
+        "disableAnalytics": {
+          "description": "Optional. Whether to disable analytics for searches performed on this engine.",
+          "type": "boolean"
+        },
         "displayName": {
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
@@ -15861,7 +16272,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
         "searchEngineConfig": {
@@ -16400,6 +16811,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig": {
+      "description": "Configuration for Natural Language Query Understanding.",
+      "id": "GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig",
+      "properties": {
+        "mode": {
+          "description": "Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Natural Language Query Understanding is disabled.",
+            "Natural Language Query Understanding is enabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaProject": {
       "description": "Metadata and configurations for a Google Cloud project in the service.",
       "id": "GoogleCloudDiscoveryengineV1betaProject",
@@ -16411,7 +16843,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Full resource name of the project, for example `projects/{project_number}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
+          "description": "Output only. Full resource name of the project, for example `projects/{project}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.",
           "readOnly": true,
           "type": "string"
         },
@@ -16722,6 +17154,10 @@
           "description": "Additional search parameters. For public website search only, supported values are: * `user_country_code`: string. Default empty. If set to non-empty, results are restricted or boosted based on the location provided. For example, `user_country_code: \"au\"` For available codes see [Country Codes](https://developers.google.com/custom-search/docs/json_api_reference#countryCodes) * `search_type`: double. Default empty. Enables non-webpage searching depending on the value. The only valid non-default value is 1, which enables image searching. For example, `search_type: 1`",
           "type": "object"
         },
+        "personalizationSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestPersonalizationSpec",
+          "description": "The specification for personalization. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set, SearchRequest.personalization_spec overrides ServingConfig.personalization_spec."
+        },
         "query": {
           "description": "Raw search query.",
           "type": "string"
@@ -17007,6 +17443,10 @@
           "description": "Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No summary is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating summaries for adversarial queries and return fallback messages instead.",
           "type": "boolean"
         },
+        "ignoreJailBreakingQuery": {
+          "description": "Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. \"Reply in the tone of a competing company's CEO\". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.",
+          "type": "boolean"
+        },
         "ignoreLowRelevantContent": {
           "description": "Specifies whether to filter out queries that have low relevance. The default value is `false`. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true`, only queries with high relevance search results will generate answers.",
           "type": "boolean"
@@ -17071,6 +17511,10 @@
       "properties": {
         "dataStore": {
           "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
         }
       },
@@ -17222,6 +17666,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaSearchRequestPersonalizationSpec": {
+      "description": "The specification for personalization.",
+      "id": "GoogleCloudDiscoveryengineV1betaSearchRequestPersonalizationSpec",
+      "properties": {
+        "mode": {
+          "description": "The personalization mode of the search request. Defaults to Mode.AUTO.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "AUTO",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. In this case, server behavior defaults to Mode.AUTO.",
+            "Personalization is enabled if data quality requirements are met.",
+            "Disable personalization."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec": {
       "description": "Specification to determine under which conditions query expansion should occur.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec",
@@ -17301,6 +17766,17 @@
             "Automatic spell correction built by the Search API. Search will be based on the corrected query if found."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1betaServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -17491,7 +17967,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaTuneEngineMetadata",
       "properties": {
         "engine": {
-          "description": "Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number}/locations/{location_id}/collections/{collection_id}/engines/{engine_id}`",
+          "description": "Required. The resource name of the engine that this tune applies to. Format: `projects/{project}/locations/{location}/collections/{collection_id}/engines/{engine_id}`",
           "type": "string"
         }
       },
@@ -17560,6 +18036,14 @@
           "description": "Obfuscated Dasher customer ID.",
           "type": "string"
         },
+        "superAdminEmailAddress": {
+          "description": "Optional. The super admin email address for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.",
+          "type": "string"
+        },
+        "superAdminServiceAccount": {
+          "description": "Optional. The super admin service account for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.",
+          "type": "string"
+        },
         "type": {
           "description": "The Google Workspace data source.",
           "enum": [
@@ -17568,15 +18052,19 @@
             "GOOGLE_MAIL",
             "GOOGLE_SITES",
             "GOOGLE_CALENDAR",
-            "GOOGLE_GROUPS"
+            "GOOGLE_CHAT",
+            "GOOGLE_GROUPS",
+            "GOOGLE_KEEP"
           ],
           "enumDescriptions": [
-            "Default value.",
-            "The data store is used to store content from Google Drive.",
-            "The data store is used to store content from Gmail.",
-            "The data store is used to store content from Google Sites.",
-            "The data store is used to store content from Google Calendar.",
-            "The data store is used to store content from Google Groups."
+            "Defaults to an unspecified Workspace type.",
+            "Workspace Data Store contains Drive data",
+            "Workspace Data Store contains Mail data",
+            "Workspace Data Store contains Sites data",
+            "Workspace Data Store contains Calendar data",
+            "Workspace Data Store contains Chat data",
+            "Workspace Data Store contains Groups data",
+            "Workspace Data Store contains Keep data"
           ],
           "type": "string"
         }

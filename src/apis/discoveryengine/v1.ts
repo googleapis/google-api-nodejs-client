@@ -553,7 +553,7 @@ export namespace discoveryengine_v1 {
      */
     snippetInfo?: Schema$GoogleCloudDiscoveryengineV1alphaAnswerStepActionObservationSearchResultSnippetInfo[];
     /**
-     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document , or the Chunk in search result .
+     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document, or the Chunk in search result. .
      */
     structData?: {[key: string]: any} | null;
     /**
@@ -836,6 +836,10 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
+     * Currently this is only populated if the model state is `INPUT_VALIDATION_FAILED`.
+     */
+    errorMessage?: string | null;
+    /**
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
@@ -848,7 +852,7 @@ export namespace discoveryengine_v1 {
      */
     modelVersion?: string | null;
     /**
-     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     * Required. The fully qualified resource name of the model. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}`. Model must be an alpha-numerical string with limit of 40 characters.
      */
     name?: string | null;
     /**
@@ -864,6 +868,10 @@ export namespace discoveryengine_v1 {
      * Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.
      */
     aclEnabled?: boolean | null;
+    /**
+     * Output only. Data size estimation for billing.
+     */
+    billingEstimation?: Schema$GoogleCloudDiscoveryengineV1alphaDataStoreBillingEstimation;
     /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
@@ -901,6 +909,14 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Configuration for Natural Language Query Understanding.
+     */
+    naturalLanguageQueryUnderstandingConfig?: Schema$GoogleCloudDiscoveryengineV1alphaNaturalLanguageQueryUnderstandingConfig;
+    /**
+     * Optional. Stores serving config at DataStore level.
+     */
+    servingConfigDataStore?: Schema$GoogleCloudDiscoveryengineV1alphaServingConfigDataStore;
+    /**
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
@@ -912,6 +928,35 @@ export namespace discoveryengine_v1 {
      * Config to store data store type configuration for workspace data. This must be set when DataStore.content_config is set as DataStore.ContentConfig.GOOGLE_WORKSPACE.
      */
     workspaceConfig?: Schema$GoogleCloudDiscoveryengineV1alphaWorkspaceConfig;
+  }
+  /**
+   * Estimation of data size per data store.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStoreBillingEstimation {
+    /**
+     * Data size for structured data in terms of bytes.
+     */
+    structuredDataSize?: string | null;
+    /**
+     * Last updated timestamp for structured data.
+     */
+    structuredDataUpdateTime?: string | null;
+    /**
+     * Data size for unstructured data in terms of bytes.
+     */
+    unstructuredDataSize?: string | null;
+    /**
+     * Last updated timestamp for unstructured data.
+     */
+    unstructuredDataUpdateTime?: string | null;
+    /**
+     * Data size for websites in terms of bytes.
+     */
+    websiteDataSize?: string | null;
+    /**
+     * Last updated timestamp for websites.
+     */
+    websiteDataUpdateTime?: string | null;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -999,7 +1044,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsm`: Override parsing config for XLSM files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -1109,6 +1154,10 @@ export namespace discoveryengine_v1 {
      */
     dataStoreIds?: string[] | null;
     /**
+     * Optional. Whether to disable analytics for searches performed on this engine.
+     */
+    disableAnalytics?: boolean | null;
+    /**
      * Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.
      */
     displayName?: string | null;
@@ -1121,7 +1170,7 @@ export namespace discoveryengine_v1 {
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -1382,6 +1431,10 @@ export namespace discoveryengine_v1 {
      * Output only. Type of the key property that this field is mapped to. Empty string if this is not annotated as mapped to a key property. Example types are `title`, `description`. Full list is defined by `keyPropertyMapping` in the schema field annotation. If the schema field has a `KeyPropertyMapping` annotation, `indexable_option` and `searchable_option` of this field cannot be modified.
      */
     keyPropertyType?: string | null;
+    /**
+     * Optional. The metatag name found in the HTML page. If user defines this field, the value of this metatag name will be used to extract metatag. If the user does not define this field, the FieldConfig.field_path will be used to extract metatag.
+     */
+    metatagName?: string | null;
     /**
      * If recs_filterable_option is FILTERABLE_ENABLED, field values are filterable by filter expression in RecommendationService.Recommend. If FILTERABLE_ENABLED but the field type is numerical, field values are not filterable by text queries in RecommendationService.Recommend. Only textual fields are supported. If recs_filterable_option is unset, the default setting is FILTERABLE_DISABLED for fields that support setting filterable options. When a field set to [FILTERABLE_DISABLED] is filtered, a warning is generated and an empty result is returned.
      */
@@ -1673,6 +1726,15 @@ export namespace discoveryengine_v1 {
     models?: Schema$GoogleCloudDiscoveryengineV1alphaCustomTuningModel[];
   }
   /**
+   * Configuration for Natural Language Query Understanding.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaNaturalLanguageQueryUnderstandingConfig {
+    /**
+     * Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.
+     */
+    mode?: string | null;
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaProject {
@@ -1681,7 +1743,7 @@ export namespace discoveryengine_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. Full resource name of the project, for example `projects/{project_number\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
+     * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
     name?: string | null;
     /**
@@ -2071,6 +2133,10 @@ export namespace discoveryengine_v1 {
      */
     params?: {[key: string]: any} | null;
     /**
+     * The specification for personalization. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set, SearchRequest.personalization_spec overrides ServingConfig.personalization_spec.
+     */
+    personalizationSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestPersonalizationSpec;
+    /**
      * Raw search query.
      */
     query?: string | null;
@@ -2276,6 +2342,10 @@ export namespace discoveryengine_v1 {
      */
     ignoreAdversarialQuery?: boolean | null;
     /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. "Reply in the tone of a competing company's CEO". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.
+     */
+    ignoreJailBreakingQuery?: boolean | null;
+    /**
      * Specifies whether to filter out queries that have low relevance. The default value is `false`. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true`, only queries with high relevance search results will generate answers.
      */
     ignoreLowRelevantContent?: boolean | null;
@@ -2334,6 +2404,10 @@ export namespace discoveryengine_v1 {
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
      */
     dataStore?: string | null;
+    /**
+     * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
   }
   /**
    * The specification that uses customized query embedding vector to do semantic document retrieval.
@@ -2434,6 +2508,15 @@ export namespace discoveryengine_v1 {
     geoSearchQueryDetectionFieldNames?: string[] | null;
   }
   /**
+   * The specification for personalization.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestPersonalizationSpec {
+    /**
+     * The personalization mode of the search request. Defaults to Mode.AUTO.
+     */
+    mode?: string | null;
+  }
+  /**
    * Specification to determine under which conditions query expansion should occur.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec {
@@ -2476,6 +2559,15 @@ export namespace discoveryengine_v1 {
      * The mode under which spell correction replaces the original search query. Defaults to Mode.AUTO.
      */
     mode?: string | null;
+  }
+  /**
+   * Stores information regarding the serving configurations at DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfigDataStore {
+    /**
+     * If set true, the DataStore will not be available for serving search requests.
+     */
+    disabledForServing?: boolean | null;
   }
   /**
    * External session proto definition.
@@ -2655,7 +2747,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaTuneEngineMetadata {
     /**
-     * Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`
+     * Required. The resource name of the engine that this tune applies to. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
      */
     engine?: string | null;
   }
@@ -2710,6 +2802,14 @@ export namespace discoveryengine_v1 {
      * Obfuscated Dasher customer ID.
      */
     dasherCustomerId?: string | null;
+    /**
+     * Optional. The super admin email address for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.
+     */
+    superAdminEmailAddress?: string | null;
+    /**
+     * Optional. The super admin service account for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.
+     */
+    superAdminServiceAccount?: string | null;
     /**
      * The Google Workspace data source.
      */
@@ -2799,7 +2899,7 @@ export namespace discoveryengine_v1 {
      */
     answerGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1AnswerQueryRequestAnswerGenerationSpec;
     /**
-     * Asynchronous mode control. If enabled, the response will be returned with answer/session resource name without final answer. The API users need to do the polling to get the latest status of answer/session by calling ConversationalSearchService.GetAnswer or ConversationalSearchService.GetSession method.
+     * Deprecated: This field is deprecated. Streaming Answer API will be supported. Asynchronous mode control. If enabled, the response will be returned with answer/session resource name without final answer. The API users need to do the polling to get the latest status of answer/session by calling ConversationalSearchService.GetAnswer or ConversationalSearchService.GetSession method.
      */
     asynchronousMode?: boolean | null;
     /**
@@ -2847,6 +2947,10 @@ export namespace discoveryengine_v1 {
      * Specifies whether to filter out adversarial queries. The default value is `false`. Google employs search-query classification to detect adversarial queries. No answer is returned if the search query is classified as an adversarial query. For example, a user might ask a question regarding negative comments about the company or submit a query designed to generate unsafe, policy-violating output. If this field is set to `true`, we skip generating answers for adversarial queries and return fallback messages instead.
      */
     ignoreAdversarialQuery?: boolean | null;
+    /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. "Reply in the tone of a competing company's CEO". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.
+     */
+    ignoreJailBreakingQuery?: boolean | null;
     /**
      * Specifies whether to filter out queries that have low relevance. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true` or unset, the behavior will be determined automatically by the service.
      */
@@ -3015,6 +3119,23 @@ export namespace discoveryengine_v1 {
      * Chunk textual content.
      */
     content?: string | null;
+    /**
+     * Metadata of the document from the current chunk.
+     */
+    documentMetadata?: Schema$GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultChunkInfoDocumentMetadata;
+  }
+  /**
+   * Document metadata contains the information of the document of the current chunk.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultChunkInfoDocumentMetadata {
+    /**
+     * Title of the document.
+     */
+    title?: string | null;
+    /**
+     * Uri of the document.
+     */
+    uri?: string | null;
   }
   /**
    * Unstructured document information.
@@ -3025,11 +3146,11 @@ export namespace discoveryengine_v1 {
      */
     document?: string | null;
     /**
-     * List of document contexts.
+     * List of document contexts. The content will be used for Answer Generation. This is supposed to be the main content of the document that can be long and comprehensive.
      */
     documentContexts?: Schema$GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoDocumentContext[];
     /**
-     * List of extractive answers.
+     * Deprecated: This field is deprecated and will have no effect on the Answer generation. Please use document_contexts and extractive_segments fields. List of extractive answers.
      */
     extractiveAnswers?: Schema$GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoExtractiveAnswer[];
     /**
@@ -3050,7 +3171,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoDocumentContext {
     /**
-     * Document content.
+     * Document content to be used for answer generation.
      */
     content?: string | null;
     /**
@@ -3072,7 +3193,7 @@ export namespace discoveryengine_v1 {
     pageIdentifier?: string | null;
   }
   /**
-   * Extractive segment. [Guide](https://cloud.google.com/generative-ai-app-builder/docs/snippets#extractive-segments)
+   * Extractive segment. [Guide](https://cloud.google.com/generative-ai-app-builder/docs/snippets#extractive-segments) Answer generation will only use it if document_contexts is empty. This is supposed to be shorter snippets.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AnswerQueryRequestSearchSpecSearchResultListSearchResultUnstructuredDocumentInfoExtractiveSegment {
     /**
@@ -3298,7 +3419,7 @@ export namespace discoveryengine_v1 {
      */
     snippetInfo?: Schema$GoogleCloudDiscoveryengineV1AnswerStepActionObservationSearchResultSnippetInfo[];
     /**
-     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document , or the Chunk in search result .
+     * Data representation. The structured JSON data for the document. It's populated from the struct data from the Document, or the Chunk in search result. .
      */
     structData?: {[key: string]: any} | null;
     /**
@@ -3406,9 +3527,9 @@ export namespace discoveryengine_v1 {
      */
     matcherValue?: Schema$GoogleCloudDiscoveryengineV1BatchGetDocumentsMetadataResponseDocumentMetadataMatcherValue;
     /**
-     * The status of the document.
+     * The state of the document.
      */
-    status?: string | null;
+    state?: string | null;
   }
   /**
    * The value of the matcher that was used to match the Document.
@@ -3650,6 +3771,10 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
+     * Currently this is only populated if the model state is `INPUT_VALIDATION_FAILED`.
+     */
+    errorMessage?: string | null;
+    /**
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
@@ -3662,7 +3787,7 @@ export namespace discoveryengine_v1 {
      */
     modelVersion?: string | null;
     /**
-     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     * Required. The fully qualified resource name of the model. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}`. Model must be an alpha-numerical string with limit of 40 characters.
      */
     name?: string | null;
     /**
@@ -3674,6 +3799,10 @@ export namespace discoveryengine_v1 {
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStore {
+    /**
+     * Output only. Data size estimation for billing.
+     */
+    billingEstimation?: Schema$GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation;
     /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
@@ -3707,6 +3836,14 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Configuration for Natural Language Query Understanding.
+     */
+    naturalLanguageQueryUnderstandingConfig?: Schema$GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig;
+    /**
+     * Optional. Stores serving config at DataStore level.
+     */
+    servingConfigDataStore?: Schema$GoogleCloudDiscoveryengineV1betaServingConfigDataStore;
+    /**
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
@@ -3718,6 +3855,35 @@ export namespace discoveryengine_v1 {
      * Config to store data store type configuration for workspace data. This must be set when DataStore.content_config is set as DataStore.ContentConfig.GOOGLE_WORKSPACE.
      */
     workspaceConfig?: Schema$GoogleCloudDiscoveryengineV1betaWorkspaceConfig;
+  }
+  /**
+   * Estimation of data size per data store.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation {
+    /**
+     * Data size for structured data in terms of bytes.
+     */
+    structuredDataSize?: string | null;
+    /**
+     * Last updated timestamp for structured data.
+     */
+    structuredDataUpdateTime?: string | null;
+    /**
+     * Data size for unstructured data in terms of bytes.
+     */
+    unstructuredDataSize?: string | null;
+    /**
+     * Last updated timestamp for unstructured data.
+     */
+    unstructuredDataUpdateTime?: string | null;
+    /**
+     * Data size for websites in terms of bytes.
+     */
+    websiteDataSize?: string | null;
+    /**
+     * Last updated timestamp for websites.
+     */
+    websiteDataUpdateTime?: string | null;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -3805,7 +3971,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsm`: Override parsing config for XLSM files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -3915,6 +4081,10 @@ export namespace discoveryengine_v1 {
      */
     dataStoreIds?: string[] | null;
     /**
+     * Optional. Whether to disable analytics for searches performed on this engine.
+     */
+    disableAnalytics?: boolean | null;
+    /**
      * Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.
      */
     displayName?: string | null;
@@ -3923,7 +4093,7 @@ export namespace discoveryengine_v1 {
      */
     industryVertical?: string | null;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -4306,6 +4476,15 @@ export namespace discoveryengine_v1 {
     models?: Schema$GoogleCloudDiscoveryengineV1betaCustomTuningModel[];
   }
   /**
+   * Configuration for Natural Language Query Understanding.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaNaturalLanguageQueryUnderstandingConfig {
+    /**
+     * Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.
+     */
+    mode?: string | null;
+  }
+  /**
    * Metadata and configurations for a Google Cloud project in the service.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaProject {
@@ -4314,7 +4493,7 @@ export namespace discoveryengine_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. Full resource name of the project, for example `projects/{project_number\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
+     * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
     name?: string | null;
     /**
@@ -4553,6 +4732,10 @@ export namespace discoveryengine_v1 {
      */
     params?: {[key: string]: any} | null;
     /**
+     * The specification for personalization. Notice that if both ServingConfig.personalization_spec and SearchRequest.personalization_spec are set, SearchRequest.personalization_spec overrides ServingConfig.personalization_spec.
+     */
+    personalizationSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestPersonalizationSpec;
+    /**
      * Raw search query.
      */
     query?: string | null;
@@ -4758,6 +4941,10 @@ export namespace discoveryengine_v1 {
      */
     ignoreAdversarialQuery?: boolean | null;
     /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. "Reply in the tone of a competing company's CEO". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.
+     */
+    ignoreJailBreakingQuery?: boolean | null;
+    /**
      * Specifies whether to filter out queries that have low relevance. The default value is `false`. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true`, only queries with high relevance search results will generate answers.
      */
     ignoreLowRelevantContent?: boolean | null;
@@ -4816,6 +5003,10 @@ export namespace discoveryengine_v1 {
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
      */
     dataStore?: string | null;
+    /**
+     * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
   }
   /**
    * The specification that uses customized query embedding vector to do semantic document retrieval.
@@ -4916,6 +5107,15 @@ export namespace discoveryengine_v1 {
     geoSearchQueryDetectionFieldNames?: string[] | null;
   }
   /**
+   * The specification for personalization.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestPersonalizationSpec {
+    /**
+     * The personalization mode of the search request. Defaults to Mode.AUTO.
+     */
+    mode?: string | null;
+  }
+  /**
    * Specification to determine under which conditions query expansion should occur.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec {
@@ -4958,6 +5158,15 @@ export namespace discoveryengine_v1 {
      * The mode under which spell correction replaces the original search query. Defaults to Mode.AUTO.
      */
     mode?: string | null;
+  }
+  /**
+   * Stores information regarding the serving configurations at DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaServingConfigDataStore {
+    /**
+     * If set true, the DataStore will not be available for serving search requests.
+     */
+    disabledForServing?: boolean | null;
   }
   /**
    * Verification information for target sites in advanced site search.
@@ -5078,7 +5287,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaTuneEngineMetadata {
     /**
-     * Required. The resource name of the engine that this tune applies to. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`
+     * Required. The resource name of the engine that this tune applies to. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
      */
     engine?: string | null;
   }
@@ -5133,6 +5342,14 @@ export namespace discoveryengine_v1 {
      * Obfuscated Dasher customer ID.
      */
     dasherCustomerId?: string | null;
+    /**
+     * Optional. The super admin email address for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.
+     */
+    superAdminEmailAddress?: string | null;
+    /**
+     * Optional. The super admin service account for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.
+     */
+    superAdminServiceAccount?: string | null;
     /**
      * The Google Workspace data source.
      */
@@ -5716,7 +5933,7 @@ export namespace discoveryengine_v1 {
      */
     safeSearch?: boolean | null;
     /**
-     * The resource name of the Serving Config to use. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}` If this is not set, the default serving config will be used.
+     * The resource name of the Serving Config to use. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/servingConfigs/{serving_config_id\}` If this is not set, the default serving config will be used.
      */
     servingConfig?: string | null;
     /**
@@ -5836,6 +6053,10 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
+     * Currently this is only populated if the model state is `INPUT_VALIDATION_FAILED`.
+     */
+    errorMessage?: string | null;
+    /**
      * The metrics of the trained model.
      */
     metrics?: {[key: string]: number} | null;
@@ -5848,7 +6069,7 @@ export namespace discoveryengine_v1 {
      */
     modelVersion?: string | null;
     /**
-     * Required. The fully qualified resource name of the model. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}` model must be an alpha-numerical string with limit of 40 characters.
+     * Required. The fully qualified resource name of the model. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/customTuningModels/{custom_tuning_model\}`. Model must be an alpha-numerical string with limit of 40 characters.
      */
     name?: string | null;
     /**
@@ -5860,6 +6081,10 @@ export namespace discoveryengine_v1 {
    * DataStore captures global settings and configs at the DataStore level.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStore {
+    /**
+     * Output only. Data size estimation for billing.
+     */
+    billingEstimation?: Schema$GoogleCloudDiscoveryengineV1DataStoreBillingEstimation;
     /**
      * Immutable. The content config of the data store. If this field is unset, the server behavior defaults to ContentConfig.NO_CONTENT.
      */
@@ -5889,6 +6114,10 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Stores serving config at DataStore level.
+     */
+    servingConfigDataStore?: Schema$GoogleCloudDiscoveryengineV1ServingConfigDataStore;
+    /**
      * The solutions that the data store enrolls. Available solutions for each industry_vertical: * `MEDIA`: `SOLUTION_TYPE_RECOMMENDATION` and `SOLUTION_TYPE_SEARCH`. * `SITE_SEARCH`: `SOLUTION_TYPE_SEARCH` is automatically enrolled. Other solutions cannot be enrolled.
      */
     solutionTypes?: string[] | null;
@@ -5900,6 +6129,35 @@ export namespace discoveryengine_v1 {
      * Config to store data store type configuration for workspace data. This must be set when DataStore.content_config is set as DataStore.ContentConfig.GOOGLE_WORKSPACE.
      */
     workspaceConfig?: Schema$GoogleCloudDiscoveryengineV1WorkspaceConfig;
+  }
+  /**
+   * Estimation of data size per data store.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DataStoreBillingEstimation {
+    /**
+     * Data size for structured data in terms of bytes.
+     */
+    structuredDataSize?: string | null;
+    /**
+     * Last updated timestamp for structured data.
+     */
+    structuredDataUpdateTime?: string | null;
+    /**
+     * Data size for unstructured data in terms of bytes.
+     */
+    unstructuredDataSize?: string | null;
+    /**
+     * Last updated timestamp for unstructured data.
+     */
+    unstructuredDataUpdateTime?: string | null;
+    /**
+     * Data size for websites in terms of bytes.
+     */
+    websiteDataSize?: string | null;
+    /**
+     * Last updated timestamp for websites.
+     */
+    websiteDataUpdateTime?: string | null;
   }
   /**
    * Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -5991,6 +6249,10 @@ export namespace discoveryengine_v1 {
      */
     id?: string | null;
     /**
+     * Output only. The index status of the document. * If document is indexed successfully, the index_time field is populated. * Otherwise, if document is not indexed due to errors, the error_samples field is populated. * Otherwise, index_status is unset.
+     */
+    indexStatus?: Schema$GoogleCloudDiscoveryengineV1DocumentIndexStatus;
+    /**
      * Output only. The last time the document was indexed. If this field is set, the document could be returned in search results. This field is OUTPUT_ONLY. If this field is not populated, it means the document has never been indexed.
      */
     indexTime?: string | null;
@@ -6033,6 +6295,19 @@ export namespace discoveryengine_v1 {
     uri?: string | null;
   }
   /**
+   * Index status of the document.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1DocumentIndexStatus {
+    /**
+     * A sample of errors encountered while indexing the document. If this field is populated, the document is not indexed due to errors.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * The time when the document was indexed. If this field is populated, it means the document has been indexed.
+     */
+    indexTime?: string | null;
+  }
+  /**
    * Detailed document information associated with a user event.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DocumentInfo {
@@ -6045,7 +6320,7 @@ export namespace discoveryengine_v1 {
      */
     joined?: boolean | null;
     /**
-     * The Document resource full name, of the form: `projects/{project_id\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/branches/{branch_id\}/documents/{document_id\}`
+     * The Document resource full name, of the form: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/branches/{branch_id\}/documents/{document_id\}`
      */
     name?: string | null;
     /**
@@ -6078,7 +6353,7 @@ export namespace discoveryengine_v1 {
      */
     name?: string | null;
     /**
-     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.
+     * Map from file type to override the default parsing configuration based on the file type. Supported keys: * `pdf`: Override parsing config for PDF files, either digital parsing, ocr parsing or layout parsing is supported. * `html`: Override parsing config for HTML files, only digital parsing and layout parsing are supported. * `docx`: Override parsing config for DOCX files, only digital parsing and layout parsing are supported. * `pptx`: Override parsing config for PPTX files, only digital parsing and layout parsing are supported. * `xlsm`: Override parsing config for XLSM files, only digital parsing and layout parsing are supported. * `xlsx`: Override parsing config for XLSX files, only digital parsing and layout parsing are supported.
      */
     parsingConfigOverrides?: {
       [
@@ -6192,6 +6467,10 @@ export namespace discoveryengine_v1 {
      */
     dataStoreIds?: string[] | null;
     /**
+     * Optional. Whether to disable analytics for searches performed on this engine.
+     */
+    disableAnalytics?: boolean | null;
+    /**
      * Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.
      */
     displayName?: string | null;
@@ -6200,7 +6479,7 @@ export namespace discoveryengine_v1 {
      */
     industryVertical?: string | null;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -6890,7 +7169,7 @@ export namespace discoveryengine_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. Full resource name of the project, for example `projects/{project_number\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
+     * Output only. Full resource name of the project, for example `projects/{project\}`. Note that when making requests, project number and project id are both acceptable, but the server will always respond in project number.
      */
     name?: string | null;
     /**
@@ -7244,6 +7523,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1RecrawlUrisRequest {
     /**
+     * Optional. Full resource name of the SiteCredential, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine/siteCredentials/x`. Only set to crawl private URIs.
+     */
+    siteCredential?: string | null;
+    /**
      * Required. List of URIs to crawl. At most 10K URIs are supported, otherwise an INVALID_ARGUMENT error is thrown. Each URI should match at least one TargetSite in `site_search_engine`.
      */
     uris?: string[] | null;
@@ -7410,9 +7693,47 @@ export namespace discoveryengine_v1 {
      */
     boost?: number | null;
     /**
+     * Complex specification for custom ranking based on customer defined attribute value.
+     */
+    boostControlSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpec;
+    /**
      * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": `(document_id: ANY("doc_1", "doc_2")) AND (color: ANY("Red", "Blue"))`
      */
     condition?: string | null;
+  }
+  /**
+   * Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpec {
+    /**
+     * The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).
+     */
+    attributeType?: string | null;
+    /**
+     * The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.
+     */
+    controlPoints?: Schema$GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint[];
+    /**
+     * The name of the field whose value will be used to determine the boost amount.
+     */
+    fieldName?: string | null;
+    /**
+     * The interpolation type to be applied to connect the control points listed below.
+     */
+    interpolationType?: string | null;
+  }
+  /**
+   * The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1SearchRequestBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
+    /**
+     * Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.
+     */
+    attributeValue?: string | null;
+    /**
+     * The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.
+     */
+    boostAmount?: number | null;
   }
   /**
    * A specification for configuring the behavior of content search.
@@ -7503,6 +7824,10 @@ export namespace discoveryengine_v1 {
      */
     ignoreAdversarialQuery?: boolean | null;
     /**
+     * Optional. Specifies whether to filter out jail-breaking queries. The default value is `false`. Google employs search-query classification to detect jail-breaking queries. No summary is returned if the search query is classified as a jail-breaking query. A user might add instructions to the query to change the tone, style, language, content of the answer, or ask the model to act as a different entity, e.g. "Reply in the tone of a competing company's CEO". If this field is set to `true`, we skip generating summaries for jail-breaking queries and return fallback messages instead.
+     */
+    ignoreJailBreakingQuery?: boolean | null;
+    /**
      * Specifies whether to filter out queries that have low relevance. The default value is `false`. If this field is set to `false`, all search results are used regardless of relevance to generate answers. If set to `true`, only queries with high relevance search results will generate answers.
      */
     ignoreLowRelevantContent?: boolean | null;
@@ -7561,6 +7886,10 @@ export namespace discoveryengine_v1 {
      * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
      */
     dataStore?: string | null;
+    /**
+     * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
   }
   /**
    * A facet specification to perform faceted search.
@@ -7910,6 +8239,15 @@ export namespace discoveryengine_v1 {
      * Summary text with no citation information.
      */
     summary?: string | null;
+  }
+  /**
+   * Stores information regarding the serving configurations at DataStore level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ServingConfigDataStore {
+    /**
+     * If set true, the DataStore will not be available for serving search requests.
+     */
+    disabledForServing?: boolean | null;
   }
   /**
    * External session proto definition.
@@ -8333,6 +8671,14 @@ export namespace discoveryengine_v1 {
      */
     dasherCustomerId?: string | null;
     /**
+     * Optional. The super admin email address for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.
+     */
+    superAdminEmailAddress?: string | null;
+    /**
+     * Optional. The super admin service account for the workspace that will be used for access token generation. For now we only use it for Native Google Drive connector data ingestion.
+     */
+    superAdminServiceAccount?: string | null;
+    /**
      * The Google Workspace data source.
      */
     type?: string | null;
@@ -8543,7 +8889,7 @@ export namespace discoveryengine_v1 {
     collections: Resource$Projects$Locations$Collections;
     dataStores: Resource$Projects$Locations$Datastores;
     groundingConfigs: Resource$Projects$Locations$Groundingconfigs;
-    identity_mapping_stores: Resource$Projects$Locations$Identity_mapping_stores;
+    identityMappingStores: Resource$Projects$Locations$Identitymappingstores;
     operations: Resource$Projects$Locations$Operations;
     rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
     userEvents: Resource$Projects$Locations$Userevents;
@@ -8558,8 +8904,8 @@ export namespace discoveryengine_v1 {
       this.groundingConfigs = new Resource$Projects$Locations$Groundingconfigs(
         this.context
       );
-      this.identity_mapping_stores =
-        new Resource$Projects$Locations$Identity_mapping_stores(this.context);
+      this.identityMappingStores =
+        new Resource$Projects$Locations$Identitymappingstores(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -11745,7 +12091,7 @@ export namespace discoveryengine_v1 {
      */
     controlId?: string;
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
 
@@ -11757,14 +12103,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     * Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Controls$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     * Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
@@ -11783,7 +12129,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
   }
@@ -12393,7 +12739,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Converse
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
+     * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
      */
     name?: string;
 
@@ -12405,7 +12751,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Create
     extends StandardParameters {
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
 
@@ -12417,14 +12763,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     * Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Conversations$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
@@ -12447,7 +12793,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
   }
@@ -14665,7 +15011,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Create
     extends StandardParameters {
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
 
@@ -14677,14 +15023,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Session to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     * Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Session to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     * Required. The resource name of the Session to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
@@ -14707,7 +15053,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
   }
@@ -14834,7 +15180,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$Answers$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Answer to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
+     * Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
      */
     name?: string;
   }
@@ -17164,7 +17510,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Userevents$Purge
     extends StandardParameters {
     /**
-     * Required. The resource name of the catalog under which the events are created. The format is `projects/${projectId\}/locations/global/collections/{$collectionId\}/dataStores/${dataStoreId\}`
+     * Required. The resource name of the catalog under which the events are created. The format is `projects/{project\}/locations/global/collections/{collection\}/dataStores/{dataStore\}`.
      */
     parent?: string;
 
@@ -17756,7 +18102,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Patch
     extends StandardParameters {
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project_number\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string;
     /**
@@ -18264,7 +18610,7 @@ export namespace discoveryengine_v1 {
      */
     controlId?: string;
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
 
@@ -18276,14 +18622,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     * Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Controls$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     * Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
@@ -18302,7 +18648,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
   }
@@ -18912,7 +19258,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Converse
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
+     * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
      */
     name?: string;
 
@@ -18924,7 +19270,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Create
     extends StandardParameters {
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
 
@@ -18936,14 +19282,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     * Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Conversations$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
@@ -18966,7 +19312,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
   }
@@ -20050,7 +20396,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Create
     extends StandardParameters {
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
 
@@ -20062,14 +20408,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Session to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     * Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Session to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     * Required. The resource name of the Session to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
@@ -20092,7 +20438,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
   }
@@ -20219,7 +20565,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Answers$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Answer to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
+     * Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
      */
     name?: string;
   }
@@ -23233,7 +23579,7 @@ export namespace discoveryengine_v1 {
      */
     controlId?: string;
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
 
@@ -23245,14 +23591,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Controls$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     * Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datastores$Controls$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Control to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     * Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
      */
     name?: string;
   }
@@ -23271,7 +23617,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project_number\}/locations/{location_id\}/collections/{collection_id\}/engines/{engine_id\}`.
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
      */
     parent?: string;
   }
@@ -23881,7 +24227,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Conversations$Converse
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
+     * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
      */
     name?: string;
 
@@ -23893,7 +24239,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Conversations$Create
     extends StandardParameters {
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
 
@@ -23905,14 +24251,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Conversations$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     * Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datastores$Conversations$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Conversation to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     * Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
      */
     name?: string;
   }
@@ -23935,7 +24281,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
   }
@@ -25807,7 +26153,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$Create
     extends StandardParameters {
     /**
-     * Required. Full resource name of parent data store. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
 
@@ -25819,14 +26165,14 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Session to delete. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     * Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Session to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     * Required. The resource name of the Session to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
      */
     name?: string;
   }
@@ -25849,7 +26195,7 @@ export namespace discoveryengine_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The data store resource name. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/dataStores/{data_store_id\}`
+     * Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
      */
     parent?: string;
   }
@@ -25976,7 +26322,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$Answers$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Answer to get. Format: `projects/{project_number\}/locations/{location_id\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
+     * Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
      */
     name?: string;
   }
@@ -27620,7 +27966,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Userevents$Purge
     extends StandardParameters {
     /**
-     * Required. The resource name of the catalog under which the events are created. The format is `projects/${projectId\}/locations/global/collections/{$collectionId\}/dataStores/${dataStoreId\}`
+     * Required. The resource name of the catalog under which the events are created. The format is `projects/{project\}/locations/global/collections/{collection\}/dataStores/{dataStore\}`.
      */
     parent?: string;
 
@@ -27765,19 +28111,19 @@ export namespace discoveryengine_v1 {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1CheckGroundingRequest;
   }
 
-  export class Resource$Projects$Locations$Identity_mapping_stores {
+  export class Resource$Projects$Locations$Identitymappingstores {
     context: APIRequestContext;
-    operations: Resource$Projects$Locations$Identity_mapping_stores$Operations;
+    operations: Resource$Projects$Locations$Identitymappingstores$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations =
-        new Resource$Projects$Locations$Identity_mapping_stores$Operations(
+        new Resource$Projects$Locations$Identitymappingstores$Operations(
           this.context
         );
     }
   }
 
-  export class Resource$Projects$Locations$Identity_mapping_stores$Operations {
+  export class Resource$Projects$Locations$Identitymappingstores$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -27792,27 +28138,27 @@ export namespace discoveryengine_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      params?: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -27820,7 +28166,7 @@ export namespace discoveryengine_v1 {
     ): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get
+        | Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -27836,13 +28182,13 @@ export namespace discoveryengine_v1 {
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get;
+        {}) as Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get;
+          {} as Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get;
         options = {};
       }
 
@@ -27886,27 +28232,27 @@ export namespace discoveryengine_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      params?: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
     list(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      params: Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List,
+      params: Params$Resource$Projects$Locations$Identitymappingstores$Operations$List,
       callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
@@ -27914,7 +28260,7 @@ export namespace discoveryengine_v1 {
     ): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List
+        | Params$Resource$Projects$Locations$Identitymappingstores$Operations$List
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -27930,13 +28276,13 @@ export namespace discoveryengine_v1 {
       | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List;
+        {}) as Params$Resource$Projects$Locations$Identitymappingstores$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List;
+          {} as Params$Resource$Projects$Locations$Identitymappingstores$Operations$List;
         options = {};
       }
 
@@ -27977,14 +28323,14 @@ export namespace discoveryengine_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$Get
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Operations$Get
     extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Identity_mapping_stores$Operations$List
+  export interface Params$Resource$Projects$Locations$Identitymappingstores$Operations$List
     extends StandardParameters {
     /**
      * The standard list filter.
@@ -28337,7 +28683,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Rankingconfigs$Rank
     extends StandardParameters {
     /**
-     * Required. The resource name of the rank service config, such as `projects/{project_num\}/locations/{location_id\}/rankingConfigs/default_ranking_config`.
+     * Required. The resource name of the rank service config, such as `projects/{project_num\}/locations/{location\}/rankingConfigs/default_ranking_config`.
      */
     rankingConfig?: string;
 
