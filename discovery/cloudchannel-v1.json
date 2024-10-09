@@ -154,11 +154,6 @@
               "required": true,
               "type": "string"
             },
-            "integrator": {
-              "description": "Optional. Resource name of the integrator.",
-              "location": "query",
-              "type": "string"
-            },
             "pageSize": {
               "description": "Optional. The maximum number of service accounts to return. The service may return fewer than this value. If unspecified, returns at most 100 service accounts. The maximum value is 1000; the server will coerce values above 1000.",
               "format": "int32",
@@ -1971,121 +1966,6 @@
         }
       }
     },
-    "integrators": {
-      "methods": {
-        "listSubscribers": {
-          "description": "Lists service accounts with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: A list of service email addresses.",
-          "flatPath": "v1/integrators/{integratorsId}:listSubscribers",
-          "httpMethod": "GET",
-          "id": "cloudchannel.integrators.listSubscribers",
-          "parameterOrder": [
-            "integrator"
-          ],
-          "parameters": {
-            "account": {
-              "description": "Optional. Resource name of the account.",
-              "location": "query",
-              "type": "string"
-            },
-            "integrator": {
-              "description": "Optional. Resource name of the integrator.",
-              "location": "path",
-              "pattern": "^integrators/[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "Optional. The maximum number of service accounts to return. The service may return fewer than this value. If unspecified, returns at most 100 service accounts. The maximum value is 1000; the server will coerce values above 1000.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Optional. A page token, received from a previous `ListSubscribers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscribers` must match the call that provided the page token.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1/{+integrator}:listSubscribers",
-          "response": {
-            "$ref": "GoogleCloudChannelV1ListSubscribersResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/apps.order"
-          ]
-        },
-        "register": {
-          "description": "Registers a service account with subscriber privileges on the Cloud Pub/Sub topic for this Channel Services account. After you create a subscriber, you get the events through SubscriberEvent Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name with the registered service email address.",
-          "flatPath": "v1/integrators/{integratorsId}:register",
-          "httpMethod": "POST",
-          "id": "cloudchannel.integrators.register",
-          "parameterOrder": [
-            "integrator"
-          ],
-          "parameters": {
-            "account": {
-              "description": "Optional. Resource name of the account.",
-              "location": "query",
-              "type": "string"
-            },
-            "integrator": {
-              "description": "Optional. Resource name of the integrator.",
-              "location": "path",
-              "pattern": "^integrators/[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "serviceAccount": {
-              "description": "Required. Service account that provides subscriber access to the registered topic.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1/{+integrator}:register",
-          "response": {
-            "$ref": "GoogleCloudChannelV1RegisterSubscriberResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/apps.order"
-          ]
-        },
-        "unregister": {
-          "description": "Unregisters a service account with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. If there are no service accounts left with subscriber privileges, this deletes the topic. You can call ListSubscribers to check for these accounts. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name that unregistered the service email address. Returns a success response if the service email address wasn't registered with the topic.",
-          "flatPath": "v1/integrators/{integratorsId}:unregister",
-          "httpMethod": "POST",
-          "id": "cloudchannel.integrators.unregister",
-          "parameterOrder": [
-            "integrator"
-          ],
-          "parameters": {
-            "account": {
-              "description": "Optional. Resource name of the account.",
-              "location": "query",
-              "type": "string"
-            },
-            "integrator": {
-              "description": "Optional. Resource name of the integrator.",
-              "location": "path",
-              "pattern": "^integrators/[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "serviceAccount": {
-              "description": "Required. Service account to unregister from subscriber access to the topic.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1/{+integrator}:unregister",
-          "response": {
-            "$ref": "GoogleCloudChannelV1UnregisterSubscriberResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/apps.order"
-          ]
-        }
-      }
-    },
     "operations": {
       "methods": {
         "cancel": {
@@ -2303,7 +2183,7 @@
       }
     }
   },
-  "revision": "20240828",
+  "revision": "20240913",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2579,11 +2459,11 @@
       "id": "GoogleCloudChannelV1CheckCloudIdentityAccountsExistRequest",
       "properties": {
         "domain": {
-          "description": "Required. Domain to fetch for Cloud Identity account customers, including domained and domainless.",
+          "description": "Required. Domain to fetch for Cloud Identity account customers, including domain and team customers. For team customers, please use the domain for their emails.",
           "type": "string"
         },
         "primaryAdminEmail": {
-          "description": "Optional. Primary admin email to fetch for Cloud Identity account domainless customer.",
+          "description": "Optional. Primary admin email to fetch for Cloud Identity account team customer.",
           "type": "string"
         }
       },
@@ -3450,7 +3330,7 @@
           "type": "boolean"
         },
         "primaryAdminEmail": {
-          "description": "Optional. Customer's primary admin email.",
+          "description": "Required. Customer's primary admin email.",
           "type": "string"
         }
       },
@@ -4363,10 +4243,6 @@
       "description": "Request Message for RegisterSubscriber.",
       "id": "GoogleCloudChannelV1RegisterSubscriberRequest",
       "properties": {
-        "integrator": {
-          "description": "Optional. Resource name of the integrator.",
-          "type": "string"
-        },
         "serviceAccount": {
           "description": "Required. Service account that provides subscriber access to the registered topic.",
           "type": "string"
@@ -4941,10 +4817,6 @@
       "description": "Request Message for UnregisterSubscriber.",
       "id": "GoogleCloudChannelV1UnregisterSubscriberRequest",
       "properties": {
-        "integrator": {
-          "description": "Optional. Resource name of the integrator.",
-          "type": "string"
-        },
         "serviceAccount": {
           "description": "Required. Service account to unregister from subscriber access to the topic.",
           "type": "string"
