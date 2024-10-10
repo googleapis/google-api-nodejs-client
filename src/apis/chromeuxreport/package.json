@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/chromeuxreport",
-  "version": "1.5.2",
+  "version": "2.0.0",
   "description": "chromeuxreport",
   "main": "build/index.js",
   "types": "build/index.d.ts",
