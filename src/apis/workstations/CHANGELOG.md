@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v11.0.0...workstations-v11.0.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* **workstations:** update the API ([332cca5](https://github.com/googleapis/google-api-nodejs-client/commit/332cca5067767705cf75bef717315e1417a78ca4))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v10.1.0...workstations-v11.0.0) (2024-08-27)
 
 

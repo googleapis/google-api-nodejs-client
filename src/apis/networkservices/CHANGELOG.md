@@ -1,5 +1,16 @@
 # Changelog
 
+## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v20.0.0...networkservices-v21.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **networkservices:** This release has breaking changes.
+
+### Features
+
+* **networkservices:** update the API ([35a4402](https://github.com/googleapis/google-api-nodejs-client/commit/35a4402cb3e63a66603e1c2f429e1ddf9b7b67a0))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v19.1.0...networkservices-v20.0.0) (2024-08-27)
 
 

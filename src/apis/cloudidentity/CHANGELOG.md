@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v16.0.0...cloudidentity-v16.0.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* **cloudidentity:** update the API ([702423d](https://github.com/googleapis/google-api-nodejs-client/commit/702423d1967a8190cfe79f5fe5f57f124a6fda91))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v15.0.0...cloudidentity-v16.0.0) (2024-08-16)
 
 
