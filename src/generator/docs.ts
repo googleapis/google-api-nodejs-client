@@ -54,7 +54,7 @@ export async function main() {
   const q = new Q({concurrency: 50});
   console.log(`Generating docs for ${dirs.length} APIs...`);
   let i = 0;
-  const promises = dirs.map(async dir => {
+  const promises = dirs.map(dir => {
     return q
       .add(() =>
         gfs.execa(process.execPath, [
