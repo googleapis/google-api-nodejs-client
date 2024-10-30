@@ -58,10 +58,9 @@ export async function main() {
       .add(() =>
         gfs.execa(process.execPath, [
           '--max-old-space-size=8192',
-          './node_modules/.bin/compodoc',
-          `src/apis/${dir}`,
-          '-d',
-          `./docs/${dir}`,
+          './node_modules/.bin/jsdoc',
+          '-c',
+          `.jsdoc.js`,
         ])
       )
       .then(() => {
