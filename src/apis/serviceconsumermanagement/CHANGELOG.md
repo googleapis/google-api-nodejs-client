@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v20.0.0...serviceconsumermanagement-v20.1.0) (2024-10-30)
+
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([70bd2b3](https://github.com/googleapis/google-api-nodejs-client/commit/70bd2b3554e931e101ddca8c9d6b8d2b698db8f6))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v19.0.0...serviceconsumermanagement-v20.0.0) (2024-08-16)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.9](https://github.com/googleapis/google-api-nodejs-client/compare/businessprofileperformance-v1.1.8...businessprofileperformance-v1.1.9) (2024-10-30)
+
+
+### Bug Fixes
+
+* **businessprofileperformance:** update the API ([ece71e5](https://github.com/googleapis/google-api-nodejs-client/commit/ece71e560f7bf74d6e823304ee1501c5a981e971))
+
 ## [1.1.8](https://github.com/googleapis/google-api-nodejs-client/compare/businessprofileperformance-v1.1.7...businessprofileperformance-v1.1.8) (2024-05-02)
 
 

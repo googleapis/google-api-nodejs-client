@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.5.1](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v8.5.0...notebooks-v8.5.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* **notebooks:** update the API ([820337f](https://github.com/googleapis/google-api-nodejs-client/commit/820337f5cd11f456b3cbfd21f54a7497548bfb81))
+
 ## [8.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v8.4.0...notebooks-v8.5.0) (2024-08-27)
 
 

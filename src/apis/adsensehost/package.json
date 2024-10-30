@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/adsensehost",
-  "version": "5.0.7",
+  "version": "5.0.8",
   "description": "adsensehost",
   "main": "build/index.js",
   "types": "build/index.d.ts",

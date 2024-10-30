@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v4.2.0...privateca-v4.2.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* **privateca:** update the API ([ecf5c60](https://github.com/googleapis/google-api-nodejs-client/commit/ecf5c60be112f44d6d77ca52f90e7f17f77a314f))
+
 ## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v4.1.0...privateca-v4.2.0) (2024-08-27)
 
 

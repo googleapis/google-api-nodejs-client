@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v9.0.0...analyticshub-v9.0.1) (2024-10-30)
+
+
+### Bug Fixes
+
+* **analyticshub:** update the API ([e82f3d3](https://github.com/googleapis/google-api-nodejs-client/commit/e82f3d3a647af2c7528f419adc866f1777dfbefc))
+* **analyticshub:** update the API ([dc9cac0](https://github.com/googleapis/google-api-nodejs-client/commit/dc9cac09c85fde7721f21b6565d999ccb2e9bf3a))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v8.0.0...analyticshub-v9.0.0) (2024-08-16)
 
 

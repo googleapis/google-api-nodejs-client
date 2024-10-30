@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v10.0.0...testing-v10.1.0) (2024-10-30)
+
+
+### Features
+
+* **testing:** update the API ([89acbc3](https://github.com/googleapis/google-api-nodejs-client/commit/89acbc39bdde866596132de464a2b70a64988936))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v9.0.1...testing-v10.0.0) (2024-05-02)
 
 

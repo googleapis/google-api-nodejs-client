@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v1.5.2...chromeuxreport-v2.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chromeuxreport:** This release has breaking changes.
+
+### Features
+
+* **chromeuxreport:** update the API ([79ddbf0](https://github.com/googleapis/google-api-nodejs-client/commit/79ddbf083680ed1ad771814d8e1c34048e186a61))
+
 ## [1.5.2](https://github.com/googleapis/google-api-nodejs-client/compare/chromeuxreport-v1.5.1...chromeuxreport-v1.5.2) (2024-05-02)
 
 
