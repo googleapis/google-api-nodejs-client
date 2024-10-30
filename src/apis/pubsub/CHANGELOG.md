@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v6.1.0...pubsub-v7.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **pubsub:** update the API ([36809dc](https://github.com/googleapis/google-api-nodejs-client/commit/36809dcc1820abf18bf6acf964ebbf1315cac655))
+* **pubsub:** update the API ([4237ab0](https://github.com/googleapis/google-api-nodejs-client/commit/4237ab0546cb7cea4df031cf4e6eef60bd371356))
+* **pubsub:** update the API ([904f72d](https://github.com/googleapis/google-api-nodejs-client/commit/904f72d1bb060312aa37e2c7a18c44aeff7fe84e))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [6.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/pubsub-v6.0.0...pubsub-v6.1.0) (2024-10-30)
 
 
