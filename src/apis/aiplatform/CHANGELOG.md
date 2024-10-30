@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v16.0.0...aiplatform-v16.1.0) (2024-10-30)
+
+
+### Features
+
+* **aiplatform:** update the API ([cc53b10](https://github.com/googleapis/google-api-nodejs-client/commit/cc53b10a3e91b094907d1b7c2ea78b211a9240c6))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v15.0.0...aiplatform-v16.0.0) (2024-08-30)
 
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [18.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v18.1.0...run-v18.2.0) (2024-10-30)
+
+
+### Features
+
+* **run:** update the API ([a68919f](https://github.com/googleapis/google-api-nodejs-client/commit/a68919f789bbd6258d9fd3e4fe4aa595e7b35bb5))
+
+
+### Bug Fixes
+
+* **run:** update the API ([515cb27](https://github.com/googleapis/google-api-nodejs-client/commit/515cb27c897b38e167b2f6899def280d20090316))
+
 ## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v18.0.0...run-v18.1.0) (2024-08-27)
 
 
