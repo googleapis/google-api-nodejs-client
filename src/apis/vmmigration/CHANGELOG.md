@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v11.0.1...vmmigration-v12.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **vmmigration:** This release has breaking changes.
+
+### Features
+
+* **vmmigration:** update the API ([614baa2](https://github.com/googleapis/google-api-nodejs-client/commit/614baa252fdccd0fb3d7b444570733ae34374af4))
+* **vmmigration:** update the API ([5eabdc7](https://github.com/googleapis/google-api-nodejs-client/commit/5eabdc7b734394d450609ebdf755951cd3a51972))
+* **vmmigration:** update the API ([d450bd8](https://github.com/googleapis/google-api-nodejs-client/commit/d450bd8e46085d2f04d81c0611ea855da35fddc2))
+
+
+### Bug Fixes
+
+* **vmmigration:** update the API ([fd0c642](https://github.com/googleapis/google-api-nodejs-client/commit/fd0c642f2ee280a024aa87f539151c5d229f3015))
+* **vmmigration:** update the API ([a00e01a](https://github.com/googleapis/google-api-nodejs-client/commit/a00e01a4400ca06d7ca83edfdb65b71138ac4b92))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v11.0.0...vmmigration-v11.0.1) (2024-10-30)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.1.0...bigquery-v15.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **bigquery:** This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([6ca0027](https://github.com/googleapis/google-api-nodejs-client/commit/6ca00276facbb58a97d4e0cc219e4464c976227a))
+* **bigquery:** update the API ([e4d60b1](https://github.com/googleapis/google-api-nodejs-client/commit/e4d60b1b12fe4b9592485d0b80429ef747147f9f))
+* **bigquery:** update the API ([80f27f2](https://github.com/googleapis/google-api-nodejs-client/commit/80f27f2db6b99a5322aeaba25e1f18b9a299a536))
+
+
+### Bug Fixes
+
+* **bigquery:** update the API ([2aca035](https://github.com/googleapis/google-api-nodejs-client/commit/2aca0358c5cd5f5d83b9aaf276ebe84dd5a93a44))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquery-v14.0.0...bigquery-v14.1.0) (2024-10-30)
 
 

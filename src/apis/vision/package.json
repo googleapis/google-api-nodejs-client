@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/vision",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "vision",
   "main": "build/index.js",
   "types": "build/index.d.ts",

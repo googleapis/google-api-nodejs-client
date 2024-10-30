@@ -1,5 +1,18 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v8.1.0...logging-v9.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **logging:** update the API ([195ac69](https://github.com/googleapis/google-api-nodejs-client/commit/195ac69647342a7f36cf73ff8c3b1f6a60f4c35b))
+* **logging:** update the API ([92a6cc5](https://github.com/googleapis/google-api-nodejs-client/commit/92a6cc5b462272034fddab3b727b29cffc65ba34))
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v8.0.0...logging-v8.1.0) (2024-10-30)
 
 

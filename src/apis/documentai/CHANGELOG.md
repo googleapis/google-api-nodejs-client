@@ -1,5 +1,22 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v9.0.0...documentai-v10.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **documentai:** This release has breaking changes.
+
+### Features
+
+* **documentai:** update the API ([5dd74eb](https://github.com/googleapis/google-api-nodejs-client/commit/5dd74ebf677bef836a8337aaecc6eb69b7085500))
+* **documentai:** update the API ([2564050](https://github.com/googleapis/google-api-nodejs-client/commit/25640505e1da176fd71e97b3fece70c22190b4aa))
+
+
+### Bug Fixes
+
+* **documentai:** update the API ([539970a](https://github.com/googleapis/google-api-nodejs-client/commit/539970a4fba426c8860ed0448c6bfb6cfebf5852))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v8.4.0...documentai-v9.0.0) (2024-10-30)
 
 
