@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbilling-v4.0.2...cloudbilling-v4.0.3) (2024-10-30)
+
+
+### Bug Fixes
+
+* **cloudbilling:** update the API ([f533be2](https://github.com/googleapis/google-api-nodejs-client/commit/f533be2bafae11ff556205a58b84c79dd377ed1e))
+
 ## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbilling-v4.0.1...cloudbilling-v4.0.2) (2024-06-03)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v14.0.0...serviceusage-v14.1.0) (2024-10-30)
+
+
+### Features
+
+* **serviceusage:** update the API ([6e1037d](https://github.com/googleapis/google-api-nodejs-client/commit/6e1037de478666cd053fe82f59c3b30c7c6545be))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v13.0.1...serviceusage-v14.0.0) (2024-08-16)
 
 
