@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v8.1.0...appengine-v8.2.0) (2024-10-30)
+
+
+### Features
+
+* **appengine:** update the API ([2110d96](https://github.com/googleapis/google-api-nodejs-client/commit/2110d96100bd9cdd9aef6b322c93b8ec060f0aad))
+
 ## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v8.0.0...appengine-v8.1.0) (2024-08-16)
 
 
