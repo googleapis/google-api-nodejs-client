@@ -19,10 +19,11 @@ import * as path from 'path';
 import {promisify} from 'util';
 import Q from 'p-queue';
 
-const srcPath = path.join(__dirname, '../../../src');
+const rootPath = path.join(__dirname, '../../..');
+const srcPath = path.join(rootPath, 'src');
 const apiPath = path.join(srcPath, 'apis');
 const templatePath = path.join(srcPath, 'generator/templates/index.html.njk');
-const docsPath = path.join(__dirname, '../../../docs');
+const docsPath = path.join(rootPath, 'docs');
 const indexPath = path.join(docsPath, 'index.html');
 
 export const gfs = {
@@ -53,14 +54,14 @@ export async function main() {
   const q = new Q({concurrency: 50});
   console.log(`Generating docs for ${dirs.length} APIs...`);
   let i = 0;
-  const promises = dirs.map(dir => {
+  const promises = dirs.map(async dir => {
     return q
       .add(() =>
         gfs.execa(process.execPath, [
           '--max-old-space-size=8192',
           './node_modules/.bin/jsdoc',
           '-c',
-          `.jsdoc.js`,
+          '.jsdoc.js',
         ])
       )
       .then(() => {
