@@ -1,5 +1,23 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v11.0.2...analyticsadmin-v12.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([87ff45f](https://github.com/googleapis/google-api-nodejs-client/commit/87ff45f903d170a3c5570070a621e8ca6c4e0f59))
+
+
+### Bug Fixes
+
+* **analyticsadmin:** update the API ([7a7a7d4](https://github.com/googleapis/google-api-nodejs-client/commit/7a7a7d4ef1d7253919161cdfd3370222b64f561a))
+* **analyticsadmin:** update the API ([9b434bb](https://github.com/googleapis/google-api-nodejs-client/commit/9b434bb40d59f70cdf0873986109d68fd5f0c4ee))
+* **analyticsadmin:** update the API ([90c32f5](https://github.com/googleapis/google-api-nodejs-client/commit/90c32f578b1ca14cc97b972430dc3c46b90225d8))
+
 ## [11.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v11.0.1...analyticsadmin-v11.0.2) (2024-10-30)
 
 

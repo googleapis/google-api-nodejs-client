@@ -1,5 +1,24 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v8.0.0...cloudasset-v9.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudasset:** This release has breaking changes.
+
+### Features
+
+* **cloudasset:** update the API ([ea0679e](https://github.com/googleapis/google-api-nodejs-client/commit/ea0679ee289c3630ef31b077d6eb4a60bd6709a9))
+* **cloudasset:** update the API ([2f72369](https://github.com/googleapis/google-api-nodejs-client/commit/2f7236928e32e49a3144b2fd4937931ac770f9ff))
+* **cloudasset:** update the API ([1c506b6](https://github.com/googleapis/google-api-nodejs-client/commit/1c506b62cc9ad1d8975c31c23150d812d6430338))
+
+
+### Bug Fixes
+
+* **cloudasset:** update the API ([09063b6](https://github.com/googleapis/google-api-nodejs-client/commit/09063b6fa3f09756153326cef180c5750409d655))
+* **cloudasset:** update the API ([663abb4](https://github.com/googleapis/google-api-nodejs-client/commit/663abb42ba1409aa2ee9062eedb836cba07f1c29))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudasset-v7.4.1...cloudasset-v8.0.0) (2024-10-30)
 
 

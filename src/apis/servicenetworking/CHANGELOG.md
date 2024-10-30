@@ -1,5 +1,25 @@
 # Changelog
 
+## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v21.2.0...servicenetworking-v22.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3510](https://github.com/googleapis/google-api-nodejs-client/issues/3510)) ([c16d5c8](https://github.com/googleapis/google-api-nodejs-client/commit/c16d5c87fb36b2aa38626fa4f8ff12d25a2385ad))
+* **servicenetworking:** update the API ([524ddae](https://github.com/googleapis/google-api-nodejs-client/commit/524ddae5a824da5f5741c8fd9a3827c430a70d0b))
+* **servicenetworking:** update the API ([770e82d](https://github.com/googleapis/google-api-nodejs-client/commit/770e82d4274e4121b68730ee809c841a7cf103d5))
+* **servicenetworking:** update the API ([e673e80](https://github.com/googleapis/google-api-nodejs-client/commit/e673e80007c4ce25a1e7ebb808b5f677e7f32d59))
+
+
+### Bug Fixes
+
+* **servicenetworking:** update the API ([acaf25f](https://github.com/googleapis/google-api-nodejs-client/commit/acaf25f76bcb206b0ce760cdec5fe5312157edf0))
+* **servicenetworking:** update the API ([6065c0d](https://github.com/googleapis/google-api-nodejs-client/commit/6065c0d1d86c240cdddd19d0c381d8cc7a4d802b))
+
 ## [21.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v21.1.0...servicenetworking-v21.2.0) (2024-10-30)
 
 
