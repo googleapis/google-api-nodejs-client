@@ -27,7 +27,7 @@ module.exports = {
   plugins: ['plugins/markdown', 'jsdoc-region-tag'],
   source: {
     excludePattern: '(^|\\/|\\\\)[._]',
-    include: ['src'],
+    include: ['build/src'],
     includePattern: '\\.js$',
   },
   templates: {
