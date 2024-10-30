@@ -1,5 +1,16 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v12.0.0...redis-v13.0.0) (2024-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **redis:** This release has breaking changes.
+
+### Features
+
+* **redis:** update the API ([6f56f8c](https://github.com/googleapis/google-api-nodejs-client/commit/6f56f8c1dc6df84fa23184bafcedfd022badf98c))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v11.1.0...redis-v12.0.0) (2024-08-27)
 
 

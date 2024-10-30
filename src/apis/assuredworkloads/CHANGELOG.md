@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v10.0.1...assuredworkloads-v10.1.0) (2024-10-30)
+
+
+### Features
+
+* **assuredworkloads:** update the API ([f9ffc89](https://github.com/googleapis/google-api-nodejs-client/commit/f9ffc89418f9e01fbadfdb89fabdcfb6583399bc))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v10.0.0...assuredworkloads-v10.0.1) (2024-08-30)
 
 

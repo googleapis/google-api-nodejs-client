@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/checks-v4.0.2...checks-v4.1.0) (2024-10-30)
+
+
+### Features
+
+* **checks:** update the API ([d58f064](https://github.com/googleapis/google-api-nodejs-client/commit/d58f064f91451600a0113edefd1b6b113e39536f))
+
 ## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/checks-v4.0.1...checks-v4.0.2) (2024-05-02)
 
 

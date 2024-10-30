@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v3.0.0...firebaseappdistribution-v3.1.0) (2024-10-30)
+
+
+### Features
+
+* **firebaseappdistribution:** update the API ([8488ea7](https://github.com/googleapis/google-api-nodejs-client/commit/8488ea738ea6b28849ee2d208fc9c8ddc7896ecf))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v2.0.0...firebaseappdistribution-v3.0.0) (2024-08-16)
 
 

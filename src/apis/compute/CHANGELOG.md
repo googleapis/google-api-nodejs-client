@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v21.0.0...compute-v21.1.0) (2024-10-30)
+
+
+### Features
+
+* **compute:** update the API ([d17c4da](https://github.com/googleapis/google-api-nodejs-client/commit/d17c4da1b00762ba782cc4970eb10882bc6837bf))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v20.0.0...compute-v21.0.0) (2024-08-30)
 
 

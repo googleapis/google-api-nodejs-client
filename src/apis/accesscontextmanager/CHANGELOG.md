@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v7.4.0...accesscontextmanager-v7.5.0) (2024-10-30)
+
+
+### Features
+
+* **accesscontextmanager:** update the API ([a99ade3](https://github.com/googleapis/google-api-nodejs-client/commit/a99ade3ec8f0090e75e85c8641e4353aefac6219))
+
 ## [7.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/accesscontextmanager-v7.3.0...accesscontextmanager-v7.4.0) (2024-08-16)
 
 

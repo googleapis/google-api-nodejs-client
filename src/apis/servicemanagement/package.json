@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/servicemanagement",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "servicemanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",
