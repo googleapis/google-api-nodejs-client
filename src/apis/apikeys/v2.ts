@@ -269,6 +269,10 @@ export namespace apikeys_v2 {
      */
     restrictions?: Schema$V2Restrictions;
     /**
+     * Optional. The email address of [the service account](https://cloud.google.com/iam/docs/service-accounts) the key is bound to.
+     */
+    serviceAccountEmail?: string | null;
+    /**
      * Output only. Unique id in UUID4 format.
      */
     uid?: string | null;
