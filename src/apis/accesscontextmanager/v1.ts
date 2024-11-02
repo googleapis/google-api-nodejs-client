@@ -205,6 +205,10 @@ export namespace accesscontextmanager_v1 {
      * Optional. Reauth settings applied to user access on a given AccessScope.
      */
     reauthSettings?: Schema$ReauthSettings;
+    /**
+     * Optional. Session settings applied to user access on a given AccessScope. Migrated from ReauthSettings
+     */
+    sessionSettings?: Schema$SessionSettings;
   }
   /**
    * Identification for an API Operation.
@@ -532,6 +536,10 @@ export namespace accesscontextmanager_v1 {
      * Optional. A list of scoped access settings that set this binding's restrictions on a subset of applications. This field cannot be set if restricted_client_applications is set.
      */
     scopedAccessSettings?: Schema$ScopedAccessSettings[];
+    /**
+     * Optional. GCSL policy for the group key. Migrated from ReauthSettings
+     */
+    sessionSettings?: Schema$SessionSettings;
   }
   /**
    * Metadata of GCP Access Binding Long Running Operations.
@@ -925,6 +933,31 @@ export namespace accesscontextmanager_v1 {
      * Configuration for APIs allowed within Perimeter.
      */
     vpcAccessibleServices?: Schema$VpcAccessibleServices;
+  }
+  /**
+   * Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.
+   */
+  export interface Schema$SessionSettings {
+    /**
+     * Optional. How long a user is allowed to take between actions before a new access token must be issued. Presently only set for Cloud Apps.
+     */
+    maxInactivity?: string | null;
+    /**
+     * Optional. The session length. Setting this field to zero is equal to disabling. Session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.
+     */
+    sessionLength?: string | null;
+    /**
+     * Optional. Big red button to turn off GCSL. When false, all fields set above will be disregarded and the session length is basically infinite.
+     */
+    sessionLengthEnabled?: boolean | null;
+    /**
+     * Optional. Session method when users GCP session is up.
+     */
+    sessionReauthMethod?: string | null;
+    /**
+     * Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.
+     */
+    useOidcMaxAge?: boolean | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -4833,15 +4866,15 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Organizations$Gcpuseraccessbindings$Patch
     extends StandardParameters {
     /**
-     * Optional. This field will be used to control whether or not scoped access settings are appended to the existing list of scoped access settings. If true, the scoped access settings in the request will be appended to the existing list of scoped access settings. If false, the scoped access settings in the request replace the existing list of scoped access settings.
+     * Optional. This field controls whether or not certain repeated settings in the update request overwrite or append to existing settings on the binding. If true, then append. Otherwise overwrite. So far, only scoped_access_settings with reauth_settings supports appending. Global access_levels, access_levels in scoped_access_settings, dry_run_access_levels, reauth_settings, and session_settings are not compatible with append functionality, and the request will return an error if append=true when these settings are in the update_mask. The request will also return an error if append=true when "scoped_access_settings" is not set in the update_mask.
      */
-    appendScopedAccessSettings?: boolean;
+    append?: boolean;
     /**
      * Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string;
     /**
-     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings`, `scoped_access_settings`. update_mask { paths: "access_levels" \}
+     * Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings` `session_settings`, `scoped_access_settings`. update_mask { paths: "access_levels" \}
      */
     updateMask?: string;
 
