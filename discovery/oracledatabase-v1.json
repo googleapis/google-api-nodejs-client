@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241009",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -2237,8 +2237,9 @@
           "type": "integer"
         },
         "cpuCount": {
-          "description": "Optional. The number of enabled CPU cores.",
+          "description": "Output only. The number of enabled CPU cores.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customerContacts": {
@@ -2255,8 +2256,9 @@
           "type": "number"
         },
         "dbNodeStorageSizeGb": {
-          "description": "Optional. The local node storage allocated in GBs.",
+          "description": "Output only. The local node storage allocated in GBs.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dbServerVersion": {
@@ -2293,8 +2295,9 @@
           "type": "integer"
         },
         "memorySizeGb": {
-          "description": "Optional. The memory allocated in GBs.",
+          "description": "Output only. The memory allocated in GBs.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "monthlyDbServerVersion": {
@@ -3719,22 +3722,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
