@@ -2218,7 +2218,7 @@
       }
     }
   },
-  "revision": "20240930",
+  "revision": "20241022",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2949,6 +2949,20 @@
             "Amazon RDS is the source instance provider.",
             "Amazon Aurora is the source instance provider.",
             "AlloyDB for PostgreSQL is the source instance provider."
+          ],
+          "type": "string"
+        },
+        "role": {
+          "description": "Optional. The connection profile role.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "SOURCE",
+            "DESTINATION"
+          ],
+          "enumDescriptions": [
+            "The role is unspecified.",
+            "The role is source.",
+            "The role is destination."
           ],
           "type": "string"
         },
@@ -6072,18 +6086,21 @@
           "type": "string"
         },
         "type": {
-          "description": "Output only. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.",
+          "description": "Optional. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.",
           "enum": [
             "SSL_TYPE_UNSPECIFIED",
             "SERVER_ONLY",
-            "SERVER_CLIENT"
+            "SERVER_CLIENT",
+            "REQUIRED",
+            "NONE"
           ],
           "enumDescriptions": [
             "Unspecified.",
             "Only 'ca_certificate' specified.",
-            "Both server ('ca_certificate'), and client ('client_key', 'client_certificate') specified."
+            "Both server ('ca_certificate'), and client ('client_key', 'client_certificate') specified.",
+            "Mandates SSL encryption for all connections. This doesn’t require certificate verification.",
+            "Connection is not encrypted."
           ],
-          "readOnly": true,
           "type": "string"
         }
       },
