@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Output only. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of promotions will be returned.",
+                  "description": "Output only. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -203,7 +203,7 @@
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20241022",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -390,7 +390,13 @@
               "LOCAL_INVENTORY_ADS",
               "FREE_LISTINGS",
               "FREE_LOCAL_LISTINGS",
-              "YOUTUBE_SHOPPING"
+              "YOUTUBE_SHOPPING",
+              "YOUTUBE_SHOPPING_CHECKOUT",
+              "YOUTUBE_AFFILIATE",
+              "FREE_VEHICLE_LISTINGS",
+              "VEHICLE_ADS",
+              "CLOUD_RETAIL",
+              "LOCAL_CLOUD_RETAIL"
             ],
             "enumDescriptions": [
               "Not specified.",
@@ -399,7 +405,13 @@
               "[Local inventory ads](https://support.google.com/merchants/answer/3057972).",
               "[Free listings](https://support.google.com/merchants/answer/9199328).",
               "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
-              "[YouTube Shopping](https://support.google.com/merchants/answer/12362804)."
+              "[YouTube Shopping](https://support.google.com/merchants/answer/12362804).",
+              "Youtube shopping checkout.",
+              "Youtube affiliate.",
+              "Free vehicle listings.",
+              "Vehicle ads.",
+              "Cloud retail.",
+              "Local cloud retail."
             ],
             "type": "string"
           },
@@ -858,6 +870,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",

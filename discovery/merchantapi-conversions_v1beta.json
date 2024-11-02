@@ -245,7 +245,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -295,7 +295,7 @@
       }
     }
   },
-  "revision": "20241001",
+  "revision": "20241023",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AttributionSettings": {
@@ -592,6 +592,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",

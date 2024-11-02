@@ -124,7 +124,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The name of the product input resource to delete. Format: accounts/{account}/productInputs/{product}",
+                  "description": "Required. The name of the product input resource to delete. Format: accounts/{account}/productInputs/{product} where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is \"accounts/123/productInputs/online~en~US~sku123\"",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/productInputs/[^/]+$",
                   "required": true,
@@ -186,7 +186,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the product to retrieve. Format: `accounts/{account}/products/{product}`",
+                  "description": "Required. The name of the product to retrieve. Format: `accounts/{account}/products/{product}` where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is \"accounts/123/products/online~en~US~sku123\"",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/products/[^/]+$",
                   "required": true,
@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20241001",
+  "revision": "20241022",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -1440,6 +1440,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",

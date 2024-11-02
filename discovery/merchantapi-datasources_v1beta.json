@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20240909",
+  "revision": "20241022",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -365,6 +365,10 @@
           "$ref": "LocalInventoryDataSource",
           "description": "Required. The [local inventory](https://support.google.com/merchants/answer/7023001) data source."
         },
+        "merchantReviewDataSource": {
+          "$ref": "MerchantReviewDataSource",
+          "description": "Required. The [merchant review](https://support.google.com/merchants/answer/7045996) data source."
+        },
         "name": {
           "description": "Identifier. The name of the data source. Format: `{datasource.name=accounts/{account}/dataSources/{datasource}}`",
           "type": "string"
@@ -372,6 +376,10 @@
         "primaryProductDataSource": {
           "$ref": "PrimaryProductDataSource",
           "description": "Required. The [primary data source](https://support.google.com/merchants/answer/7439058) for local and online products."
+        },
+        "productReviewDataSource": {
+          "$ref": "ProductReviewDataSource",
+          "description": "Required. The [product review](https://support.google.com/merchants/answer/7045996) data source."
         },
         "promotionDataSource": {
           "$ref": "PromotionDataSource",
@@ -688,6 +696,12 @@
       },
       "type": "object"
     },
+    "MerchantReviewDataSource": {
+      "description": "The merchant review data source.",
+      "id": "MerchantReviewDataSource",
+      "properties": {},
+      "type": "object"
+    },
     "PrimaryProductDataSource": {
       "description": "The primary data source for local and online products.",
       "id": "PrimaryProductDataSource",
@@ -810,6 +824,12 @@
       },
       "type": "object"
     },
+    "ProductReviewDataSource": {
+      "description": "The product review data source.",
+      "id": "ProductReviewDataSource",
+      "properties": {},
+      "type": "object"
+    },
     "ProductStatusChangeMessage": {
       "description": "The message that the merchant will receive to notify about product status change event",
       "id": "ProductStatusChangeMessage",
@@ -836,6 +856,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",
@@ -895,7 +920,7 @@
       "type": "object"
     },
     "SupplementalProductDataSource": {
-      "description": "The supplemental data source for local and online products.",
+      "description": "The supplemental data source for local and online products. After creation, you should make sure to link the supplemental product data source into one or more primary product data sources.",
       "id": "SupplementalProductDataSource",
       "properties": {
         "contentLanguage": {
@@ -903,7 +928,7 @@
           "type": "string"
         },
         "feedLabel": {
-          "description": "Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.",
+          "description": "Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. The fields must be unset for data sources without file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.",
           "type": "string"
         },
         "referencingPrimaryDataSources": {
@@ -922,22 +947,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }

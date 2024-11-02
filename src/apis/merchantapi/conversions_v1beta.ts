@@ -276,6 +276,10 @@ export namespace merchantapi_conversions_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The product expiration time.
+     */
+    expirationTime?: string | null;
+    /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
     managingAccount?: string | null;
@@ -902,7 +906,7 @@ export namespace merchantapi_conversions_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated.
      */
     updateMask?: string;
 
