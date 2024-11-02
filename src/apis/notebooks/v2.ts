@@ -278,7 +278,7 @@ export namespace notebooks_v2 {
      */
     diagnosticConfig?: Schema$DiagnosticConfig;
     /**
-     * Optional. Maxmium amount of time in minutes before the operation times out.
+     * Optional. Maximum amount of time in minutes before the operation times out.
      */
     timeoutMinutes?: number | null;
   }
