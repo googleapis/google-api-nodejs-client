@@ -4978,7 +4978,7 @@
       }
     }
   },
-  "revision": "20240928",
+  "revision": "20241025",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -9032,7 +9032,7 @@
       "type": "object"
     },
     "PySparkJob": {
-      "description": "A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.",
+      "description": "A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/latest/api/python/index.html#pyspark-overview) applications on YARN.",
       "id": "PySparkJob",
       "properties": {
         "archiveUris": {
@@ -10444,6 +10444,7 @@
               "HBASE",
               "HIVE_WEBHCAT",
               "HUDI",
+              "ICEBERG",
               "JUPYTER",
               "PRESTO",
               "TRINO",
@@ -10461,6 +10462,7 @@
               "HBase. (beta)",
               "The Hive Web HCatalog (the REST service for accessing HCatalog).",
               "Hudi.",
+              "Iceberg.",
               "The Jupyter Notebook.",
               "The Presto query engine.",
               "The Trino query engine.",

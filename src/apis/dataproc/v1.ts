@@ -2606,7 +2606,7 @@ export namespace dataproc_v1 {
     pythonFileUris?: string[] | null;
   }
   /**
-   * A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.
+   * A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/latest/api/python/index.html#pyspark-overview) applications on YARN.
    */
   export interface Schema$PySparkJob {
     /**
