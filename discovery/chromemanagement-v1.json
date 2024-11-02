@@ -591,12 +591,12 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id * manifest_versions",
+                  "description": "Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id * manifest_versions * risk_score",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id * manifest_versions",
+                  "description": "Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id * manifest_versions * risk_score",
                   "location": "query",
                   "type": "string"
                 },
@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20241003",
+  "revision": "20241023",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -2849,6 +2849,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "riskAssessment": {
+          "$ref": "GoogleChromeManagementV1RiskAssessmentData",
+          "description": "Output only. If available, the risk assessment data about this extension.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3414,6 +3419,96 @@
         "userCount": {
           "description": "Number of users that have sent print jobs to the printer.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1RiskAssessment": {
+      "description": "Risk assessment for a Chrome extension.",
+      "id": "GoogleChromeManagementV1RiskAssessment",
+      "properties": {
+        "assessment": {
+          "description": "Risk assessment for the extension. Currently, this is a numerical value, and its interpretation is specific to each risk assessment provider.",
+          "type": "string"
+        },
+        "detailsUrl": {
+          "description": "A URL that a user can navigate to for more information about the risk assessment.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the extension that this assessment applies to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1RiskAssessmentData": {
+      "description": "Risk assessment data about an extension/app.",
+      "id": "GoogleChromeManagementV1RiskAssessmentData",
+      "properties": {
+        "entries": {
+          "description": "Individual risk assessments.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1RiskAssessmentEntry"
+          },
+          "type": "array"
+        },
+        "overallRiskLevel": {
+          "description": "Overall assessed risk level across all entries. This will be the highest risk level from all entries.",
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "RISK_LEVEL_LOW",
+            "RISK_LEVEL_MEDIUM",
+            "RISK_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Risk level not specified.",
+            "Extension that represents a low risk.",
+            "Extension that represents a medium risk.",
+            "Extension that represents a high risk."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1RiskAssessmentEntry": {
+      "description": "One risk assessment entry.",
+      "id": "GoogleChromeManagementV1RiskAssessmentEntry",
+      "properties": {
+        "provider": {
+          "description": "The risk assessment provider from which this entry comes from.",
+          "enum": [
+            "RISK_ASSESSMENT_PROVIDER_UNSPECIFIED",
+            "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
+            "RISK_ASSESSMENT_PROVIDER_SPIN_AI"
+          ],
+          "enumDescriptions": [
+            "Default value when no provider is specified.",
+            "CRXcavator.",
+            "Spin.Ai."
+          ],
+          "type": "string"
+        },
+        "riskAssessment": {
+          "$ref": "GoogleChromeManagementV1RiskAssessment",
+          "description": "The details of the provider's risk assessment."
+        },
+        "riskLevel": {
+          "description": "The bucketed risk level for the risk assessment.",
+          "enum": [
+            "RISK_LEVEL_UNSPECIFIED",
+            "RISK_LEVEL_LOW",
+            "RISK_LEVEL_MEDIUM",
+            "RISK_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Risk level not specified.",
+            "Extension that represents a low risk.",
+            "Extension that represents a medium risk.",
+            "Extension that represents a high risk."
+          ],
           "type": "string"
         }
       },
