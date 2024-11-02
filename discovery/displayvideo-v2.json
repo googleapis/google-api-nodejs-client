@@ -9267,7 +9267,7 @@
       }
     }
   },
-  "revision": "20241003",
+  "revision": "20241031",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -9421,11 +9421,11 @@
       "type": "object"
     },
     "Adloox": {
-      "description": "Details of Adloox settings.",
+      "description": "Details of Adloox brand safety settings.",
       "id": "Adloox",
       "properties": {
         "excludedAdlooxCategories": {
-          "description": "Adloox's brand safety settings.",
+          "description": "Adloox categories to exclude.",
           "items": {
             "enum": [
               "ADLOOX_UNSPECIFIED",
@@ -9439,7 +9439,7 @@
               "FRAUD"
             ],
             "enumDescriptions": [
-              "This enum is only a placeholder and it doesn't specify any Adloox option.",
+              "Default value when a Adloox category is not specified or is unknown in this version.",
               "Adult content (hard).",
               "Adult content (soft).",
               "Illegal content.",
@@ -9472,7 +9472,7 @@
         },
         "billingConfig": {
           "$ref": "AdvertiserBillingConfig",
-          "description": "Optional. Required. Billing related settings of the advertiser."
+          "description": "Required. Billing related settings of the advertiser."
         },
         "creativeConfig": {
           "$ref": "AdvertiserCreativeConfig",
@@ -9561,7 +9561,7 @@
       "id": "AdvertiserBillingConfig",
       "properties": {
         "billingProfileId": {
-          "description": "Optional. The ID of a billing profile assigned to the advertiser.",
+          "description": "Required. The ID of a billing profile assigned to the advertiser.",
           "format": "int64",
           "type": "string"
         }
@@ -12332,7 +12332,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -12346,6 +12347,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -12364,7 +12366,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. **This SDF version is in beta. It is only available to a subset of users.**"
           ],
           "type": "string"
         }
@@ -14110,7 +14113,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14195,7 +14199,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         }
@@ -14305,7 +14310,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14390,7 +14396,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -14501,7 +14508,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14586,7 +14594,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -14698,7 +14707,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14783,7 +14793,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "readOnly": true,
           "type": "string"
@@ -15746,7 +15757,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15831,7 +15843,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -16659,7 +16672,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16744,7 +16758,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -19849,7 +19864,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -19863,6 +19879,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -19881,7 +19898,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. **This SDF version is in beta. It is only available to a subset of users.**"
           ],
           "type": "string"
         }
@@ -19929,7 +19947,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -19943,6 +19962,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -19961,7 +19981,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. **This SDF version is in beta. It is only available to a subset of users.**"
           ],
           "type": "string"
         }

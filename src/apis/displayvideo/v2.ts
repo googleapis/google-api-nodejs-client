@@ -187,11 +187,11 @@ export namespace displayvideo_v2 {
     minimumVolume?: string | null;
   }
   /**
-   * Details of Adloox settings.
+   * Details of Adloox brand safety settings.
    */
   export interface Schema$Adloox {
     /**
-     * Adloox's brand safety settings.
+     * Adloox categories to exclude.
      */
     excludedAdlooxCategories?: string[] | null;
   }
@@ -221,7 +221,7 @@ export namespace displayvideo_v2 {
      */
     advertiserId?: string | null;
     /**
-     * Optional. Required. Billing related settings of the advertiser.
+     * Required. Billing related settings of the advertiser.
      */
     billingConfig?: Schema$AdvertiserBillingConfig;
     /**
@@ -287,7 +287,7 @@ export namespace displayvideo_v2 {
    */
   export interface Schema$AdvertiserBillingConfig {
     /**
-     * Optional. The ID of a billing profile assigned to the advertiser.
+     * Required. The ID of a billing profile assigned to the advertiser.
      */
     billingProfileId?: string | null;
   }

@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20241003",
+  "revision": "20241031",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9563,11 +9563,121 @@
       "type": "object"
     },
     "Adloox": {
-      "description": "Details of Adloox settings.",
+      "description": "Details of Adloox brand safety settings.",
       "id": "Adloox",
       "properties": {
+        "adultExplicitSexualContent": {
+          "description": "Optional. Adult and Explicit Sexual Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "armsAmmunitionContent": {
+          "description": "Optional. Arms and Ammunition Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "crimeHarmfulActsIndividualsSocietyHumanRightsViolationsContent": {
+          "description": "Optional. Crime and Harmful Acts Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "deathInjuryMilitaryConflictContent": {
+          "description": "Optional. Death, Injury, or Military Conflict Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "debatedSensitiveSocialIssueContent": {
+          "description": "Optional. Debated Sensitive Social Issue Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "displayIabViewability": {
+          "description": "Optional. IAB viewability threshold for display ads.",
+          "enum": [
+            "DISPLAY_IAB_VIEWABILITY_UNSPECIFIED",
+            "DISPLAY_IAB_VIEWABILITY_10",
+            "DISPLAY_IAB_VIEWABILITY_20",
+            "DISPLAY_IAB_VIEWABILITY_35",
+            "DISPLAY_IAB_VIEWABILITY_50",
+            "DISPLAY_IAB_VIEWABILITY_75"
+          ],
+          "enumDescriptions": [
+            "Default value when not specified or is unknown in this version.",
+            "10%+ in view (IAB display viewability standard).",
+            "20%+ in view (IAB display viewability standard).",
+            "35%+ in view (IAB display viewability standard).",
+            "50%+ in view (IAB display viewability standard).",
+            "75%+ in view (IAB display viewability standard)."
+          ],
+          "type": "string"
+        },
         "excludedAdlooxCategories": {
-          "description": "Adloox's brand safety settings.",
+          "description": "Adloox categories to exclude.",
           "items": {
             "enum": [
               "ADLOOX_UNSPECIFIED",
@@ -9581,7 +9691,7 @@
               "FRAUD"
             ],
             "enumDescriptions": [
-              "This enum is only a placeholder and it doesn't specify any Adloox option.",
+              "Default value when a Adloox category is not specified or is unknown in this version.",
               "Adult content (hard).",
               "Adult content (soft).",
               "Illegal content.",
@@ -9594,6 +9704,167 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "excludedFraudIvtMfaCategories": {
+          "description": "Optional. Adloox's fraud IVT MFA categories to exclude.",
+          "items": {
+            "enum": [
+              "FRAUD_IVT_MFA_CATEGORY_UNSPECIFIED",
+              "FRAUD_IVT_MFA"
+            ],
+            "enumDescriptions": [
+              "Default value when a Adloox Fraud, IVT, MFA category is not specified or is unknown in this version.",
+              "FRAUD, IVT, MFA."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hateSpeechActsAggressionContent": {
+          "description": "Optional. Hate Speech and Acts of Aggression Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "illegalDrugsTobaccoEcigarettesVapingAlcoholContent": {
+          "description": "Optional. Illegal Drugs/Alcohol Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "misinformationContent": {
+          "description": "Optional. Misinformation Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "obscenityProfanityContent": {
+          "description": "Optional. Obscenity and Profanity Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "onlinePiracyContent": {
+          "description": "Optional. Online Piracy Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "spamHarmfulContent": {
+          "description": "Optional. Spam or Harmful Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "terrorismContent": {
+          "description": "Optional. Terrorism Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "videoIabViewability": {
+          "description": "Optional. IAB viewability threshold for video ads.",
+          "enum": [
+            "VIDEO_IAB_VIEWABILITY_UNSPECIFIED",
+            "VIDEO_IAB_VIEWABILITY_10",
+            "VIDEO_IAB_VIEWABILITY_20",
+            "VIDEO_IAB_VIEWABILITY_35",
+            "VIDEO_IAB_VIEWABILITY_50",
+            "VIDEO_IAB_VIEWABILITY_75"
+          ],
+          "enumDescriptions": [
+            "Default value when not specified or is unknown in this version.",
+            "10%+ in view (IAB video viewability standard).",
+            "20%+ in view (IAB video viewability standard).",
+            "35%+ in view (IAB video viewability standard).",
+            "50%+ in view (IAB video viewability standard).",
+            "75%+ in view (IAB video viewability standard)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9614,7 +9885,7 @@
         },
         "billingConfig": {
           "$ref": "AdvertiserBillingConfig",
-          "description": "Optional. Required. Billing related settings of the advertiser."
+          "description": "Required. Billing related settings of the advertiser."
         },
         "creativeConfig": {
           "$ref": "AdvertiserCreativeConfig",
@@ -9703,7 +9974,7 @@
       "id": "AdvertiserBillingConfig",
       "properties": {
         "billingProfileId": {
-          "description": "Optional. The ID of a billing profile assigned to the advertiser.",
+          "description": "Required. The ID of a billing profile assigned to the advertiser.",
           "format": "int64",
           "type": "string"
         }
@@ -10049,7 +10320,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -10134,7 +10406,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -12907,7 +13180,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -12921,6 +13195,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -12939,7 +13214,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. **This SDF version is in beta. It is only available to a subset of users.**"
           ],
           "type": "string"
         }
@@ -14826,7 +15102,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14911,7 +15188,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         }
@@ -15021,7 +15299,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15106,7 +15385,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -15217,7 +15497,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15302,7 +15583,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -15414,7 +15696,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15499,7 +15782,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "readOnly": true,
           "type": "string"
@@ -16462,7 +16746,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16547,7 +16832,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -17389,7 +17675,8 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17474,7 +17761,8 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -20620,7 +20908,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -20634,6 +20923,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20652,7 +20942,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. **This SDF version is in beta. It is only available to a subset of users.**"
           ],
           "type": "string"
         }
@@ -20700,7 +20991,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -20714,6 +21006,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20732,7 +21025,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. **This SDF version is in beta. It is only available to a subset of users.**"
           ],
           "type": "string"
         }
