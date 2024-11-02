@@ -474,6 +474,19 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Represents a data capacity with some amount of current usage in bytes.
+   */
+  export interface Schema$ByteUsage {
+    /**
+     * Output only. The total capacity value, in bytes.
+     */
+    capacityBytes?: string | null;
+    /**
+     * Output only. The current usage value, in bytes.
+     */
+    usedBytes?: string | null;
+  }
+  /**
    * Public API: Resources.calendars
    */
   export interface Schema$CalendarResource {
@@ -708,6 +721,10 @@ export namespace admin_directory_v1 {
      * Output only. Device license type.
      */
     deviceLicenseType?: string | null;
+    /**
+     * Output only. How much disk space the device has available and is currently using.
+     */
+    diskSpaceUsage?: Schema$ByteUsage;
     /**
      * Reports of disk space and other info about mounted/connected volumes.
      */
