@@ -508,7 +508,7 @@ export namespace gkehub_v1 {
      */
     git?: Schema$ConfigManagementGitConfig;
     /**
-     * The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA.
+     * The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA. Deprecated: If Workload Identity Federation for GKE is enabled, Google Cloud Service Account is no longer needed for exporting Config Sync metrics: https://cloud.google.com/kubernetes-engine/enterprise/config-sync/docs/how-to/monitor-config-sync-cloud-monitoring#custom-monitoring.
      */
     metricsGcpServiceAccountEmail?: string | null;
     /**
@@ -578,6 +578,14 @@ export namespace gkehub_v1 {
    * State information for ConfigSync
    */
   export interface Schema$ConfigManagementConfigSyncState {
+    /**
+     * Whether syncing resources to the cluster is stopped at the cluster level.
+     */
+    clusterLevelStopSyncingState?: string | null;
+    /**
+     * Output only. The number of RootSync and RepoSync CRs in the cluster.
+     */
+    crCount?: number | null;
     /**
      * Information about the deployment of ConfigSync, including the version of the various Pods deployed
      */
@@ -1992,6 +2000,10 @@ export namespace gkehub_v1 {
      * Optional. How to identify workloads from this Membership. See the documentation on Workload Identity for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
      */
     authority?: Schema$Authority;
+    /**
+     * Output only. The tier of the cluster.
+     */
+    clusterTier?: string | null;
     /**
      * Output only. When the Membership was created.
      */
