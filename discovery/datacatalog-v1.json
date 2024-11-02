@@ -172,9 +172,150 @@
         }
       }
     },
+    "organizations": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "retrieveConfig": {
+              "description": "Retrieves the configuration related to the migration from Data Catalog to Dataplex for a specific organization, including all the projects under it which have a separate configuration set.",
+              "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:retrieveConfig",
+              "httpMethod": "GET",
+              "id": "datacatalog.organizations.locations.retrieveConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The organization whose config is being retrieved.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:retrieveConfig",
+              "response": {
+                "$ref": "GoogleCloudDatacatalogV1OrganizationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "retrieveEffectiveConfig": {
+              "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
+              "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:retrieveEffectiveConfig",
+              "httpMethod": "GET",
+              "id": "datacatalog.organizations.locations.retrieveEffectiveConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource whose effective config is being retrieved.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:retrieveEffectiveConfig",
+              "response": {
+                "$ref": "GoogleCloudDatacatalogV1MigrationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "setConfig": {
+              "description": "Sets the configuration related to the migration to Dataplex for an organization or project.",
+              "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}:setConfig",
+              "httpMethod": "POST",
+              "id": "datacatalog.organizations.locations.setConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The organization or project whose config is being specified.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:setConfig",
+              "request": {
+                "$ref": "GoogleCloudDatacatalogV1SetConfigRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDatacatalogV1MigrationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
     "projects": {
       "resources": {
         "locations": {
+          "methods": {
+            "retrieveEffectiveConfig": {
+              "description": "Retrieves the effective configuration related to the migration from Data Catalog to Dataplex for a specific organization or project. If there is no specific configuration set for the resource, the setting is checked hierarchicahlly through the ancestors of the resource, starting from the resource itself.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:retrieveEffectiveConfig",
+              "httpMethod": "GET",
+              "id": "datacatalog.projects.locations.retrieveEffectiveConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource whose effective config is being retrieved.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:retrieveEffectiveConfig",
+              "response": {
+                "$ref": "GoogleCloudDatacatalogV1MigrationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "setConfig": {
+              "description": "Sets the configuration related to the migration to Dataplex for an organization or project.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:setConfig",
+              "httpMethod": "POST",
+              "id": "datacatalog.projects.locations.setConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The organization or project whose config is being specified.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:setConfig",
+              "request": {
+                "$ref": "GoogleCloudDatacatalogV1SetConfigRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDatacatalogV1MigrationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
           "resources": {
             "entryGroups": {
               "methods": {
@@ -2144,7 +2285,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20241021",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3024,6 +3165,10 @@
         "name": {
           "description": "Identifier. The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
           "type": "string"
+        },
+        "transferredToDataplex": {
+          "description": "Optional. When set to [true], it means DataCatalog EntryGroup was transferred to Dataplex Catalog Service. It makes EntryGroup and its Entries to be read-only in DataCatalog. However, new Tags on EntryGroup and its Entries can be created. After setting the flag to [true] it cannot be unset.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3411,6 +3556,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1MigrationConfig": {
+      "description": "The configuration related to the migration to Dataplex applied to an organization or project. It is the response message for SetConfig and RetrieveEffectiveConfig.",
+      "id": "GoogleCloudDatacatalogV1MigrationConfig",
+      "properties": {
+        "catalogUiExperience": {
+          "description": "Opt-in status for the UI switch to Dataplex.",
+          "enum": [
+            "CATALOG_UI_EXPERIENCE_UNSPECIFIED",
+            "CATALOG_UI_EXPERIENCE_ENABLED",
+            "CATALOG_UI_EXPERIENCE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. The default UI is Dataplex.",
+            "The UI is Dataplex.",
+            "The UI is Data Catalog."
+          ],
+          "type": "string"
+        },
+        "tagTemplateMigration": {
+          "description": "Opt-in status for the migration of Tag Templates to Dataplex.",
+          "enum": [
+            "TAG_TEMPLATE_MIGRATION_UNSPECIFIED",
+            "TAG_TEMPLATE_MIGRATION_ENABLED",
+            "TAG_TEMPLATE_MIGRATION_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed.",
+            "Migration of Tag Templates from Data Catalog to Dataplex is enabled.",
+            "Migration of Tag Templates from Data Catalog to Dataplex is disabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1ModelSpec": {
       "description": "Specification that applies to a model. Valid only for entries with the `MODEL` type.",
       "id": "GoogleCloudDatacatalogV1ModelSpec",
@@ -3440,6 +3620,20 @@
         "entryOverview": {
           "$ref": "GoogleCloudDatacatalogV1EntryOverview",
           "description": "Required. The new value for the Entry Overview."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1OrganizationConfig": {
+      "description": "The configuration related to the migration from Data Catalog to Dataplex that has been applied to an organization and any projects under it. It is the response message for RetrieveConfig.",
+      "id": "GoogleCloudDatacatalogV1OrganizationConfig",
+      "properties": {
+        "config": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDatacatalogV1MigrationConfig"
+          },
+          "description": "Map of organizations and project resource names and their configuration. The format for the map keys is `organizations/{organizationId}` or `projects/{projectId}`.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -4031,6 +4225,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1SetConfigRequest": {
+      "description": "Request message for SetConfig.",
+      "id": "GoogleCloudDatacatalogV1SetConfigRequest",
+      "properties": {
+        "catalogUiExperience": {
+          "description": "Opt-in status for the UI switch to Dataplex.",
+          "enum": [
+            "CATALOG_UI_EXPERIENCE_UNSPECIFIED",
+            "CATALOG_UI_EXPERIENCE_ENABLED",
+            "CATALOG_UI_EXPERIENCE_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. The default UI is Dataplex.",
+            "The UI is Dataplex.",
+            "The UI is Data Catalog."
+          ],
+          "type": "string"
+        },
+        "tagTemplateMigration": {
+          "description": "Opt-in status for the migration of Tag Templates to Dataplex.",
+          "enum": [
+            "TAG_TEMPLATE_MIGRATION_UNSPECIFIED",
+            "TAG_TEMPLATE_MIGRATION_ENABLED",
+            "TAG_TEMPLATE_MIGRATION_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. Migration of Tag Templates from Data Catalog to Dataplex is not performed.",
+            "Migration of Tag Templates from Data Catalog to Dataplex is enabled.",
+            "Migration of Tag Templates from Data Catalog to Dataplex is disabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1SqlDatabaseSystemSpec": {
       "description": "Specification that applies to entries that are part `SQL_DATABASE` system (user_specified_type)",
       "id": "GoogleCloudDatacatalogV1SqlDatabaseSystemSpec",
@@ -4123,6 +4352,26 @@
           "description": "Resources like entry can have schemas associated with them. This scope allows you to attach tags to an individual column based on that schema. To attach a tag to a nested column, separate column names with a dot (`.`). Example: `column.nested_column`.",
           "type": "string"
         },
+        "dataplexTransferStatus": {
+          "description": "Output only. Denotes the transfer status of the Tag Template.",
+          "enum": [
+            "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
+            "MIGRATED",
+            "TRANSFERRED"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Default value. TagTemplate and its tags are only visible and editable in DataCatalog.",
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in.",
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in Dataplex, read-only in DataCatalog."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "fields": {
           "additionalProperties": {
             "$ref": "GoogleCloudDatacatalogV1TagField"
@@ -4209,15 +4458,18 @@
           "description": "Optional. Transfer status of the TagTemplate",
           "enum": [
             "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
-            "MIGRATED"
+            "MIGRATED",
+            "TRANSFERRED"
           ],
           "enumDeprecated": [
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "Default value. TagTemplate and its tags are only visible and editable in DataCatalog.",
-            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in."
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in.",
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in Dataplex, read-only in DataCatalog."
           ],
           "type": "string"
         },
