@@ -411,10 +411,6 @@ export namespace dataform_v1beta1 {
      */
     canonicalTarget?: Schema$Target;
     /**
-     * The data preparation executed by this action.
-     */
-    dataPreparation?: Schema$DataPreparation;
-    /**
      * The declaration declared by this action.
      */
     declaration?: Schema$Declaration;
@@ -469,27 +465,6 @@ export namespace dataform_v1beta1 {
      * The KMS key version name with which data of a resource is encrypted.
      */
     kmsKeyVersionName?: string | null;
-  }
-  /**
-   * Defines a compiled Data Preparation entity
-   */
-  export interface Schema$DataPreparation {
-    /**
-     * The data preparation definition, stored as a binary encoded proto.
-     */
-    contents?: string | null;
-    /**
-     * A list of actions that this action depends on.
-     */
-    dependencyTargets?: Schema$Target[];
-    /**
-     * Whether this action is disabled (i.e. should not be run).
-     */
-    disabled?: boolean | null;
-    /**
-     * Arbitrary, user-defined tags on this action.
-     */
-    tags?: string[] | null;
   }
   /**
    * Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.
@@ -1228,7 +1203,7 @@ export namespace dataform_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. Records of the 10 most recent scheduled release attempts, ordered in in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.
+     * Output only. Records of the 10 most recent scheduled release attempts, ordered in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.
      */
     recentScheduledReleaseRecords?: Schema$ScheduledReleaseRecord[];
     /**
@@ -1279,7 +1254,7 @@ export namespace dataform_v1beta1 {
      */
     gitRemoteSettings?: Schema$GitRemoteSettings;
     /**
-     * Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     * Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/{kms_project\}/locations/{location\}/keyRings/{key_location\}/cryptoKeys/{key\}`
      */
     kmsKeyName?: string | null;
     /**
@@ -1488,7 +1463,7 @@ export namespace dataform_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. Records of the 10 most recent scheduled execution attempts, ordered in in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.
+     * Output only. Records of the 10 most recent scheduled execution attempts, ordered in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.
      */
     recentScheduledExecutionRecords?: Schema$ScheduledExecutionRecord[];
     /**
@@ -1578,6 +1553,10 @@ export namespace dataform_v1beta1 {
    * Represents a Dataform Git workspace.
    */
   export interface Schema$Workspace {
+    /**
+     * Output only. The timestamp of when the workspace was created.
+     */
+    createTime?: string | null;
     /**
      * Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.
      */
@@ -3754,7 +3733,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.
+     * Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -3798,7 +3777,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -3837,7 +3816,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -4726,7 +4705,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -4749,7 +4728,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -5241,7 +5220,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -5753,7 +5732,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -6390,7 +6369,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -6409,7 +6388,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -8732,7 +8711,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -8807,7 +8786,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -8881,7 +8860,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest` must match the call that provided the page token.
+     * Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
