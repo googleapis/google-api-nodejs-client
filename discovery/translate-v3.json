@@ -291,7 +291,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-translation"
               ]
             },
             "batchTranslateText": {
@@ -319,7 +320,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-translation"
               ]
             },
             "detectLanguage": {
@@ -1708,7 +1710,7 @@
       }
     }
   },
-  "revision": "20240912",
+  "revision": "20241029",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "AdaptiveMtDataset": {

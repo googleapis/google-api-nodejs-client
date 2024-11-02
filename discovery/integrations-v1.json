@@ -1410,7 +1410,7 @@
                       ]
                     },
                     "replay": {
-                      "description": "Re-execute an existing execution, with same request parameters and execution strategy",
+                      "description": "Re-execute an existing execution, with same request parameters and execution strategy.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions/{executionsId}:replay",
                       "httpMethod": "POST",
                       "id": "integrations.projects.locations.integrations.executions.replay",
@@ -1419,7 +1419,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The execution resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration}/executions/{execution_id}",
+                          "description": "Required. Next ID: 3 The execution resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration}/executions/{execution_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -4497,7 +4497,7 @@
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20241020",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -8869,11 +8869,8 @@
           "type": "string"
         },
         "inputVariables": {
-          "description": "Optional. List of input variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables",
+          "description": "Optional. List of input variables for the api trigger."
         },
         "label": {
           "description": "The user created label for a particular trigger.",
@@ -8894,11 +8891,8 @@
           "type": "string"
         },
         "outputVariables": {
-          "description": "Optional. List of output variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables",
+          "description": "Optional. List of output variables for the api trigger."
         },
         "pauseWorkflowExecutions": {
           "description": "Optional. If set to true, any upcoming requests for this trigger config will be paused and the executions will be resumed later when the flag is reset. The workflow to which this trigger config belongs has to be in ACTIVE status for the executions to be paused or resumed.",
@@ -8974,6 +8968,20 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables": {
+      "description": "Variables names mapped to api trigger.",
+      "id": "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables",
+      "properties": {
+        "names": {
+          "description": "Optional. List of variable names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10456,7 +10464,7 @@
       "id": "GoogleCloudIntegrationsV1alphaCancelExecutionRequest",
       "properties": {
         "cancelReason": {
-          "description": "Optional. Reason for cancelling the execution This is provided by the client requesting the cancellation Platform will not use this field",
+          "description": "Required. Reason for cancelling the execution. This is provided by the client requesting the cancellation, and is not used by the Platform.",
           "type": "string"
         }
       },
@@ -10467,7 +10475,7 @@
       "id": "GoogleCloudIntegrationsV1alphaCancelExecutionResponse",
       "properties": {
         "isCanceled": {
-          "description": "True if cancellation performed successfully",
+          "description": "True if cancellation performed successfully.",
           "type": "boolean"
         }
       },
@@ -12936,22 +12944,22 @@
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaReplayExecutionRequest": {
-      "description": "Request for replaying an execution Next ID: 3",
+      "description": "Request for replaying an execution.",
       "id": "GoogleCloudIntegrationsV1alphaReplayExecutionRequest",
       "properties": {
         "replayReason": {
-          "description": "Optional. The user provided reason for replaying the execution.",
+          "description": "Required. The user provided reason for replaying the execution.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaReplayExecutionResponse": {
-      "description": "Response for replaying an execution Next ID: 4",
+      "description": "Response for replaying an execution.",
       "id": "GoogleCloudIntegrationsV1alphaReplayExecutionResponse",
       "properties": {
         "executionId": {
-          "description": "The id of the execution corresponding to this run of integration.",
+          "description": "Next ID: 4 The id of the execution corresponding to this run of the integration.",
           "type": "string"
         },
         "outputParameters": {
@@ -12959,11 +12967,11 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. The parameters would only be present in case of synchrounous execution Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
+          "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. The parameters would only be present in case of synchrounous execution. Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
           "type": "object"
         },
         "replayedExecutionId": {
-          "description": "The execution id which is replayed",
+          "description": "The execution id which is replayed.",
           "type": "string"
         }
       },
@@ -14037,11 +14045,8 @@
           "type": "string"
         },
         "inputVariables": {
-          "description": "Optional. List of input variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "GoogleCloudIntegrationsV1alphaTriggerConfigVariables",
+          "description": "Optional. List of input variables for the api trigger."
         },
         "label": {
           "description": "Optional. The user created label for a particular trigger.",
@@ -14062,11 +14067,8 @@
           "type": "string"
         },
         "outputVariables": {
-          "description": "Optional. List of output variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "GoogleCloudIntegrationsV1alphaTriggerConfigVariables",
+          "description": "Optional. List of output variables for the api trigger."
         },
         "position": {
           "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
@@ -14125,6 +14127,20 @@
             "Trigger by cloud pub/sub for internal ip"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaTriggerConfigVariables": {
+      "description": "Variables names mapped to api trigger.",
+      "id": "GoogleCloudIntegrationsV1alphaTriggerConfigVariables",
+      "properties": {
+        "names": {
+          "description": "Optional. List of variable names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -15,6 +15,18 @@
   "description": "Use the Apigee API to programmatically develop and manage APIs with a set of RESTful operations. Develop and secure API proxies, deploy and undeploy API proxy revisions, monitor APIs, configure environments, manage users, and more. Note: This product is available as a free trial for a time period of 60 days.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/apigee-api-management/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://apigee.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://apigee.eu.rep.googleapis.com/",
+      "location": "eu"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -9574,7 +9586,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent resource name.",
+                  "description": "Required. The parent resource name. Format: `organizations/{org}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -9607,7 +9619,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the security profile v2 to delete.",
+                  "description": "Required. The name of the security profile v2 to delete. Format: `organizations/{org}/securityProfilesV2/{profile}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
                   "required": true,
@@ -9632,7 +9644,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The security profile id.",
+                  "description": "Required. The name of the security profile v2 to get. Format: `organizations/{org}/securityProfilesV2/{profile}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
                   "required": true,
@@ -9700,7 +9712,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The list of fields to update.",
+                  "description": "Optional. The list of fields to update. Valid fields to update are `description` and `profileAssessmentConfigs`.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -10373,7 +10385,7 @@
       }
     }
   },
-  "revision": "20241004",
+  "revision": "20241017",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
