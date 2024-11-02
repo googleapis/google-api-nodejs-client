@@ -211,6 +211,10 @@ export namespace networkconnectivity_v1 {
      */
     disableGlobalAccess?: boolean | null;
     /**
+     * The requested IP version for the PSC connection.
+     */
+    ipVersion?: string | null;
+    /**
      * The resource path of the consumer network where PSC connections are allowed to be created in. Note, this network does not need be in the ConsumerPscConfig.project in the case of SharedVPC. Example: projects/{projectNumOrId\}/global/networks/{networkId\}.
      */
     network?: string | null;
@@ -263,6 +267,10 @@ export namespace networkconnectivity_v1 {
      * The IP literal allocated on the consumer network for the PSC forwarding rule that is created to connect to the producer service attachment in this service connection map.
      */
     ip?: string | null;
+    /**
+     * The requested IP version for the PSC connection.
+     */
+    ipVersion?: string | null;
     /**
      * The consumer network whose PSC forwarding rule is connected to the service attachments in this service connection map. Note that the network could be on a different project (shared VPC).
      */
@@ -546,7 +554,7 @@ export namespace networkconnectivity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Should be present if usage is set to FOR_MIGRATION.
+     * Optional. Must be present if usage is set to FOR_MIGRATION. This field is for internal use.
      */
     migration?: Schema$Migration;
     /**
@@ -1214,6 +1222,10 @@ export namespace networkconnectivity_v1 {
      * The last Compute Engine operation to setup PSC connection.
      */
     gceOperation?: string | null;
+    /**
+     * The requested IP version for the PSC connection.
+     */
+    ipVersion?: string | null;
     /**
      * Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.
      */
