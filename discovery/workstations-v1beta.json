@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20241009",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -2267,6 +2267,13 @@
         "subnetwork": {
           "description": "Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.",
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
         },
         "uid": {
           "description": "Output only. A system-assigned unique identifier for this workstation cluster.",
