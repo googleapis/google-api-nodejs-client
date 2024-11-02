@@ -269,7 +269,7 @@ export namespace networkservices_v1beta1 {
    */
   export interface Schema$ExtensionChainExtension {
     /**
-     * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. Required for Callout extensions.
+     * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. Required for Callout extensions. This field is not supported for plugin extensions and must not be set.
      */
     authority?: string | null;
     /**
@@ -281,11 +281,15 @@ export namespace networkservices_v1beta1 {
      */
     forwardHeaders?: string[] | null;
     /**
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions and must not be set.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Required. The name for this extension. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.
      */
     name?: string | null;
     /**
-     * Required. The reference to the service that runs the extension. Currently only callout extensions are supported here. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`.
+     * Required. The reference to the service that runs the extension. Currently only callout extensions are supported here. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, this must be a reference to a [wasm plugin](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`.
      */
     service?: string | null;
     /**
@@ -293,7 +297,7 @@ export namespace networkservices_v1beta1 {
      */
     supportedEvents?: string[] | null;
     /**
-     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between 10-1000 milliseconds. Required for Callout extensions.
+     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between 10-1000 milliseconds. Required for callout extensions. This field is not supported for plugin extensions and must not be set.
      */
     timeout?: string | null;
   }
@@ -1055,7 +1059,7 @@ export namespace networkservices_v1beta1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions and must not be set.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1096,7 +1100,7 @@ export namespace networkservices_v1beta1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here is included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata is available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     * Optional. The metadata provided here is included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata is available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions and must not be set.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1305,6 +1309,32 @@ export namespace networkservices_v1beta1 {
      * List of TlsRoute resources.
      */
     tlsRoutes?: Schema$TlsRoute[];
+  }
+  /**
+   * Response returned by the `ListWasmPlugins` method.
+   */
+  export interface Schema$ListWasmPluginsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of `WasmPlugin` resources.
+     */
+    wasmPlugins?: Schema$WasmPlugin[];
+  }
+  /**
+   * Response returned by the `ListWasmPluginVersions` method.
+   */
+  export interface Schema$ListWasmPluginVersionsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of `WasmPluginVersion` resources.
+     */
+    wasmPluginVersions?: Schema$WasmPluginVersion[];
   }
   /**
    * A resource that represents a Google Cloud location.
@@ -1529,7 +1559,7 @@ export namespace networkservices_v1beta1 {
      */
     loadBalancingAlgorithm?: string | null;
     /**
-     * Required. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
+     * Identifier. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
      */
     name?: string | null;
     /**
@@ -1771,6 +1801,159 @@ export namespace networkservices_v1beta1 {
      */
     ports?: string[] | null;
   }
+  /**
+   * `WasmPlugin` is a resource representing a service executing a customer-provided Wasm module.
+   */
+  export interface Schema$WasmPlugin {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Specifies the logging options for the activity performed by this `WasmPlugin`. If logging is enabled, plugin logs are exported to Cloud Logging. Note that the settings relate to the logs generated by using logging statements in your Wasm code.
+     */
+    logConfig?: Schema$WasmPluginLogConfig;
+    /**
+     * Optional. The ID of the `WasmPluginVersion` resource that is the currently serving one. The version referred to must be a child of this `WasmPlugin` resource.
+     */
+    mainVersionId?: string | null;
+    /**
+     * Identifier. Name of the `WasmPlugin` resource in the following format: `projects/{project\}/locations/{location\}/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. List of all [Service Extensions](https://cloud.google.com/service-extensions/docs/overview) that use this `WasmPlugin`.
+     */
+    usedBy?: Schema$WasmPluginUsedBy[];
+    /**
+     * Optional. All versions of this `WasmPlugin` in the key-value format. The key is the resource ID, the value is the `VersionDetails`. Allows to create or update `WasmPlugin` and its WasmPluginVersions in a single request. When the `main_version_id` field is not empty it must point to one of the VersionDetails in the map. If provided in the update request, the new versions replace the previous set. Any version omitted from the `versions` will be removed. Since the `WasmPluginVersion` resource is immutable, if the WasmPluginVersion with the same name already exists and differs the Update request will fail. Note: In the GET request, this field is populated only if the GetWasmPluginRequest.view is set to WASM_PLUGIN_VIEW_FULL.
+     */
+    versions?: {[key: string]: Schema$WasmPluginVersionDetails} | null;
+  }
+  /**
+   * Specifies the logging options for the activity performed by this `WasmPlugin`. If logging is enabled, plugin logs are exported to Cloud Logging.
+   */
+  export interface Schema$WasmPluginLogConfig {
+    /**
+     * Optional. Specifies whether to enable logging for activity by this `WasmPlugin`. Defaults to `false`.
+     */
+    enable?: boolean | null;
+    /**
+     * Non-empty default. Specificies the lowest level of the plugin logs that are exported to Cloud Logging. This setting relates to the logs generated by using logging statements in your Wasm code. This field is can be set only if logging is enabled for the `WasmPlugin` resource. If the field is not provided when logging is enabled, it is set to `INFO` by default.
+     */
+    minLogLevel?: string | null;
+    /**
+     * Non-empty default. Configures the sampling rate of activity logs, where `1.0` means all logged activity is reported and `0.0` means no activity is reported. A floating point value between `0.0` and `1.0` indicates that a percentage of log messages is stored. The default value when logging is enabled is `1.0`. The value of the field must be between `0` and `1` (inclusive). This field can only be specified if logging is enabled for this `WasmPlugin`.
+     */
+    sampleRate?: number | null;
+  }
+  /**
+   * Defines a resource that uses the `WasmPlugin`.
+   */
+  export interface Schema$WasmPluginUsedBy {
+    /**
+     * Output only. Full name of the resource https://google.aip.dev/122#full-resource-names, e.g. `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/lbRouteExtensions/{extension\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * A single immutable version of a `WasmPlugin`. Defines the Wasm module used and optionally its runtime config.
+   */
+  export interface Schema$WasmPluginVersion {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The resolved digest for the image specified in `image`. The digest is resolved during the creation of `WasmPluginVersion` resource. This field holds the digest value regardless of whether a tag or digest was originally specified in the `image` field.
+     */
+    imageDigest?: string | null;
+    /**
+     * Optional. URI of the container image containing the Wasm plugin, stored in the Artifact Registry. When a new `WasmPluginVersion` resource is created, the digest of the container image is saved in the `image_digest` field. When downloading an image, the digest value is used instead of an image tag.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. Set of labels associated with the `WasmPluginVersion` resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the `WasmPluginVersion` resource in the following format: `projects/{project\}/locations/{location\}/wasmPlugins/{wasm_plugin\}/ versions/{wasm_plugin_version\}`.
+     */
+    name?: string | null;
+    /**
+     * Configuration for the Wasm plugin. The configuration is provided to the Wasm plugin at runtime through the `ON_CONFIGURE` callback. When a new `WasmPluginVersion` resource is created, the digest of the contents is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigData?: string | null;
+    /**
+     * Output only. This field holds the digest (usually checksum) value for the plugin configuration. The value is calculated based on the contents of the `plugin_config_data` or the container image defined by the `plugin_config_uri` field.
+     */
+    pluginConfigDigest?: string | null;
+    /**
+     * URI of the Wasm plugin configuration stored in the Artifact Registry. The configuration is provided to the plugin at runtime through the `ON_CONFIGURE` callback. The container image must contain only a single file with the name `plugin.config`. When a new `WasmPluginVersion` resource is created, the digest of the container image is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigUri?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Details of a `WasmPluginVersion` resource to be inlined in the `WasmPlugin` resource.
+   */
+  export interface Schema$WasmPluginVersionDetails {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The resolved digest for the image specified in `image`. The digest is resolved during the creation of a `WasmPluginVersion` resource. This field holds the digest value regardless of whether a tag or digest was originally specified in the `image` field.
+     */
+    imageDigest?: string | null;
+    /**
+     * Optional. URI of the container image containing the Wasm module, stored in the Artifact Registry. The container image must contain only a single file with the name `plugin.wasm`. When a new `WasmPluginVersion` resource is created, the URI gets resolved to an image digest and saved in the `image_digest` field.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. Set of labels associated with the `WasmPluginVersion` resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Configuration for the Wasm plugin. The configuration is provided to the Wasm plugin at runtime through the `ON_CONFIGURE` callback. When a new `WasmPluginVersion` version is created, the digest of the contents is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigData?: string | null;
+    /**
+     * Output only. This field holds the digest (usually checksum) value for the plugin configuration. The value is calculated based on the contents of the `plugin_config_data` or the container image defined by the `plugin_config_uri` field.
+     */
+    pluginConfigDigest?: string | null;
+    /**
+     * URI of the WasmPlugin configuration stored in the Artifact Registry. The configuration is provided to the Wasm plugin at runtime through the `ON_CONFIGURE` callback. The container image must contain only a single file with the name `plugin.config`. When a new `WasmPluginVersion` resource is created, the digest of the container image is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigUri?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1796,6 +1979,7 @@ export namespace networkservices_v1beta1 {
     serviceLbPolicies: Resource$Projects$Locations$Servicelbpolicies;
     tcpRoutes: Resource$Projects$Locations$Tcproutes;
     tlsRoutes: Resource$Projects$Locations$Tlsroutes;
+    wasmPlugins: Resource$Projects$Locations$Wasmplugins;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.authzExtensions = new Resource$Projects$Locations$Authzextensions(
@@ -1826,6 +2010,9 @@ export namespace networkservices_v1beta1 {
         new Resource$Projects$Locations$Servicelbpolicies(this.context);
       this.tcpRoutes = new Resource$Projects$Locations$Tcproutes(this.context);
       this.tlsRoutes = new Resource$Projects$Locations$Tlsroutes(this.context);
+      this.wasmPlugins = new Resource$Projects$Locations$Wasmplugins(
+        this.context
+      );
     }
 
     /**
@@ -7529,7 +7716,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Servicelbpolicies$Patch
     extends StandardParameters {
     /**
-     * Required. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
+     * Identifier. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
      */
     name?: string;
     /**
@@ -8561,5 +8748,942 @@ export namespace networkservices_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$TlsRoute;
+  }
+
+  export class Resource$Projects$Locations$Wasmplugins {
+    context: APIRequestContext;
+    versions: Resource$Projects$Locations$Wasmplugins$Versions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.versions = new Resource$Projects$Locations$Wasmplugins$Versions(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a new `WasmPlugin` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/wasmPlugins').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `WasmPlugin` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `WasmPlugin` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WasmPlugin>;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WasmPlugin>,
+      callback: BodyResponseCallback<Schema$WasmPlugin>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      callback: BodyResponseCallback<Schema$WasmPlugin>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WasmPlugin>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Get
+        | BodyResponseCallback<Schema$WasmPlugin>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WasmPlugin>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WasmPlugin>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WasmPlugin> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WasmPlugin>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WasmPlugin>(parameters);
+      }
+    }
+
+    /**
+     * Lists `WasmPlugin` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWasmPluginsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>,
+      callback: BodyResponseCallback<Schema$ListWasmPluginsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      callback: BodyResponseCallback<Schema$ListWasmPluginsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWasmPluginsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$List
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWasmPluginsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/wasmPlugins').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWasmPluginsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWasmPluginsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `WasmPlugin` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the `WasmPlugin` resource. Must be in the format `projects/{project\}/locations/global`.
+     */
+    parent?: string;
+    /**
+     * Required. User-provided ID of the `WasmPlugin` resource to be created.
+     */
+    wasmPluginId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WasmPlugin;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Delete
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPlugin` resource to delete. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPlugin` resource to get. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string;
+    /**
+     * Determine how much data should be returned by the API. See [AIP-157](https://google.aip.dev/157).
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$List
+    extends StandardParameters {
+    /**
+     * Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin`s are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `WasmPlugin` resources are listed, specified in the following format: `projects/{project\}/locations/global`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the `WasmPlugin` resource in the following format: `projects/{project\}/locations/{location\}/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string;
+    /**
+     * Optional. Used to specify the fields to be overwritten in the `WasmPlugin` resource by the update. The fields specified in the `update_mask` field are relative to the resource, not the full request. An omitted `update_mask` field is treated as an implied `update_mask` field equivalent to all fields that are populated (that have a non-empty value). The `update_mask` field supports a special value `*`, which means that each field in the given `WasmPlugin` resource (including the empty ones) replaces the current value.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WasmPlugin;
+  }
+
+  export class Resource$Projects$Locations$Wasmplugins$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `WasmPluginVersion` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `WasmPluginVersion` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `WasmPluginVersion` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WasmPluginVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WasmPluginVersion>,
+      callback: BodyResponseCallback<Schema$WasmPluginVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      callback: BodyResponseCallback<Schema$WasmPluginVersion>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WasmPluginVersion>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$Get
+        | BodyResponseCallback<Schema$WasmPluginVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WasmPluginVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WasmPluginVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WasmPluginVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WasmPluginVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WasmPluginVersion>(parameters);
+      }
+    }
+
+    /**
+     * Lists `WasmPluginVersion` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWasmPluginVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      callback: BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$List
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWasmPluginVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWasmPluginVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWasmPluginVersionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the `WasmPluginVersion` resource. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    parent?: string;
+    /**
+     * Required. User-provided ID of the `WasmPluginVersion` resource to be created.
+     */
+    wasmPluginVersionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WasmPluginVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPluginVersion` resource to delete. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}/versions/{wasm_plugin_version\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPluginVersion` resource to get. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}/versions/{wasm_plugin_version\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$List
+    extends StandardParameters {
+    /**
+     * Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion`s are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The `WasmPlugin` resource whose `WasmPluginVersion`s are listed, specified in the following format: `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    parent?: string;
   }
 }
