@@ -177,7 +177,75 @@ export namespace orgpolicy_v2 {
   /**
    * A constraint that is either enforced or not. For example, a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
    */
-  export interface Schema$GoogleCloudOrgpolicyV2ConstraintBooleanConstraint {}
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintBooleanConstraint {
+    /**
+     * Custom constraint definition. This is set only for Managed Constraints
+     */
+    customConstraintDefinition?: Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition;
+  }
+  /**
+   * Currently used for Managed Constraints. This represents a subset of fields missing from Constraint proto that are required to describe CustomConstraint
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition {
+    /**
+     * Allow or deny type.
+     */
+    actionType?: string | null;
+    /**
+     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     */
+    condition?: string | null;
+    /**
+     * All the operations being applied for this constraint.
+     */
+    methodTypes?: string[] | null;
+    /**
+     * Stores Structure of parameters used by Constraint condition. Key of map represents name of the parameter.
+     */
+    parameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter;
+    } | null;
+    /**
+     * The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.
+     */
+    resourceTypes?: string[] | null;
+  }
+  /**
+   * Defines a parameter structure.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter {
+    /**
+     * Sets the value of the parameter in an assignment if no value is given.
+     */
+    defaultValue?: any | null;
+    /**
+     * Determines the parameter’s value structure. For example, LIST can be specified by defining type : LIST, and item type as : STRING.
+     */
+    item?: string | null;
+    /**
+     * Defines subproperties primarily used by the UI to display user-friendly information.
+     */
+    metadata?: Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata;
+    /**
+     * Type of the parameter.
+     */
+    type?: string | null;
+    /**
+     * Provides a CEL expression to specify the acceptable parameter values during assignment. For example, parameterName in ("parameterValue1", "parameterValue2")
+     */
+    validValuesExpr?: string | null;
+  }
+  /**
+   * Defines Medata structure.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata {
+    /**
+     * Detailed description of what this `parameter` is and use of it. Mutable.
+     */
+    description?: string | null;
+  }
   /**
    * A constraint that allows or disallows a list of string values, which are configured by an Organization Policy administrator with a policy.
    */
