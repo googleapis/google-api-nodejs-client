@@ -822,7 +822,7 @@ export namespace recaptchaenterprise_v1 {
     name?: string | null;
   }
   /**
-   * The removeIpOverride request message.
+   * The RemoveIpOverride request message.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest {
     /**
@@ -860,6 +860,10 @@ export namespace recaptchaenterprise_v1 {
    * Risk analysis result for an event.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RiskAnalysis {
+    /**
+     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE keys
+     */
+    challenge?: string | null;
     /**
      * Output only. Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.
      */
