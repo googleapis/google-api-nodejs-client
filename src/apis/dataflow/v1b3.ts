@@ -983,7 +983,7 @@ export namespace dataflow_v1b3 {
     inputs?: Schema$InstructionInput[];
   }
   /**
-   * The environment values to be set at runtime for flex template. LINT.IfChange
+   * The environment values to be set at runtime for flex template.
    */
   export interface Schema$FlexTemplateRuntimeEnvironment {
     /**
@@ -1155,6 +1155,28 @@ export namespace dataflow_v1b3 {
      * Template Type.
      */
     templateType?: string | null;
+  }
+  /**
+   * Information about the GPU usage on the worker.
+   */
+  export interface Schema$GPUUsage {
+    /**
+     * Required. Timestamp of the measurement.
+     */
+    timestamp?: string | null;
+    /**
+     * Required. Utilization info about the GPU.
+     */
+    utilization?: Schema$GPUUtilization;
+  }
+  /**
+   * Utilization details about the GPU.
+   */
+  export interface Schema$GPUUtilization {
+    /**
+     * Required. GPU utilization rate of any kernel over the last sample period in the range of [0, 1].
+     */
+    rate?: number | null;
   }
   /**
    * Histogram of value counts for a distribution. Buckets have an inclusive lower bound and exclusive upper bound and use "1,2,5 bucketing": The first bucket range is from [0,1) and all subsequent bucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not supported.
@@ -2392,6 +2414,10 @@ export namespace dataflow_v1b3 {
      */
     cpuTime?: Schema$CPUTime[];
     /**
+     * Optional. GPU usage samples.
+     */
+    gpuUsage?: Schema$GPUUsage[];
+    /**
      * Memory utilization samples.
      */
     memoryInfo?: Schema$MemInfo[];
@@ -2401,7 +2427,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ResourceUtilizationReportResponse {}
   /**
-   * The environment values to set at runtime. LINT.IfChange
+   * The environment values to set at runtime.
    */
   export interface Schema$RuntimeEnvironment {
     /**

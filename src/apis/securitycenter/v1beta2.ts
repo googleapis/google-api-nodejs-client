@@ -373,6 +373,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$AzureResourceGroup {
     /**
+     * The ID of the Azure resource group.
+     */
+    id?: string | null;
+    /**
      * The name of the Azure resource group. This is not a UUID.
      */
     name?: string | null;
@@ -2119,6 +2123,10 @@ export namespace securitycenter_v1beta2 {
    * Represents an Azure resource group.
    */
   export interface Schema$GoogleCloudSecuritycenterV2AzureResourceGroup {
+    /**
+     * The ID of the Azure resource group.
+     */
+    id?: string | null;
     /**
      * The name of the Azure resource group. This is not a UUID.
      */

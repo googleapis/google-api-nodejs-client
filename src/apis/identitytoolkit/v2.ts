@@ -831,7 +831,7 @@ export namespace identitytoolkit_v2 {
    */
   export interface Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig {
     /**
-     * The reCAPTCHA config for email/password provider, containing the enforcement status. The email/password provider contains all related user flows protected by reCAPTCHA.
+     * The reCAPTCHA config for email/password provider, containing the enforcement status. The email/password provider contains all email related user flows protected by reCAPTCHA.
      */
     emailPasswordEnforcementState?: string | null;
     /**
@@ -839,13 +839,29 @@ export namespace identitytoolkit_v2 {
      */
     managedRules?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaManagedRule[];
     /**
+     * The reCAPTCHA config for phone provider, containing the enforcement status. The phone provider contains all SMS related user flows protected by reCAPTCHA.
+     */
+    phoneEnforcementState?: string | null;
+    /**
      * The reCAPTCHA keys.
      */
     recaptchaKeys?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaKey[];
     /**
+     * The managed rules for the authentication action based on reCAPTCHA toll fraud risk scores. Toll fraud managed rules will only take effect when the phone_enforcement_state is AUDIT or ENFORCE and use_sms_toll_fraud_protection is true.
+     */
+    tollFraudManagedRules?: Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule[];
+    /**
      * Whether to use the account defender for reCAPTCHA assessment. Defaults to `false`.
      */
     useAccountDefender?: boolean | null;
+    /**
+     * Whether to use the rCE bot score for reCAPTCHA phone provider. Can only be true when the phone_enforcement_state is AUDIT or ENFORCE.
+     */
+    useSmsBotScore?: boolean | null;
+    /**
+     * Whether to use the rCE sms toll fraud protection risk score for reCAPTCHA phone provider. Can only be true when the phone_enforcement_state is AUDIT or ENFORCE.
+     */
+    useSmsTollFraudProtection?: boolean | null;
   }
   /**
    * The reCAPTCHA key config. reCAPTCHA Enterprise offers different keys for different client platforms.
@@ -872,6 +888,19 @@ export namespace identitytoolkit_v2 {
      * The end score (inclusive) of the score range for an action. Must be a value between 0.0 and 1.0, at 11 discrete values; e.g. 0, 0.1, 0.2, 0.3, ... 0.9, 1.0. A score of 0.0 indicates the riskiest request (likely a bot), whereas 1.0 indicates the safest request (likely a human). See https://cloud.google.com/recaptcha-enterprise/docs/interpret-assessment.
      */
     endScore?: number | null;
+  }
+  /**
+   * The config for a reCAPTCHA toll fraud assessment managed rule. Models a single interval [start_score, end_score]. The end_score is implicit. It is either the closest smaller end_score (if one is available) or 0. Intervals in aggregate span [0, 1] without overlapping.
+   */
+  export interface Schema$GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule {
+    /**
+     * The action taken if the reCAPTCHA score of a request is within the interval [start_score, end_score].
+     */
+    action?: string | null;
+    /**
+     * The start score (inclusive) for an action. Must be a value between 0.0 and 1.0, at 11 discrete values; e.g. 0, 0.1, 0.2, 0.3, ... 0.9, 1.0. A score of 0.0 indicates the safest request (likely legitimate), whereas 1.0 indicates the riskiest request (likely toll fraud). See https://cloud.google.com/recaptcha-enterprise/docs/sms-fraud-detection#create-assessment-sms.
+     */
+    startScore?: number | null;
   }
   /**
    * Configuration for logging requests made to this project to Stackdriver Logging
@@ -1381,6 +1410,14 @@ export namespace identitytoolkit_v2 {
      * The reCAPTCHA Enterprise key resource name, e.g. "projects/{project\}/keys/{key\}". This will only be returned when the reCAPTCHA enforcement state is AUDIT or ENFORCE on at least one of the reCAPTCHA providers.
      */
     recaptchaKey?: string | null;
+    /**
+     * Whether to use the rCE bot score for reCAPTCHA phone provider.
+     */
+    useSmsBotScore?: boolean | null;
+    /**
+     * Whether to use the rCE sms toll fraud protection risk score for reCAPTCHA phone provider.
+     */
+    useSmsTollFraudProtection?: boolean | null;
   }
   /**
    * Enforcement states for reCAPTCHA protection.
@@ -1471,6 +1508,14 @@ export namespace identitytoolkit_v2 {
      */
     autoRetrievalInfo?: Schema$GoogleCloudIdentitytoolkitV2AutoRetrievalInfo;
     /**
+     * The reCAPTCHA Enterprise token provided by the reCAPTCHA client-side integration. Required when reCAPTCHA enterprise is enabled.
+     */
+    captchaResponse?: string | null;
+    /**
+     * The client type, web, android or ios. Required when reCAPTCHA Enterprise is enabled.
+     */
+    clientType?: string | null;
+    /**
      * iOS only. Receipt of successful app token validation with APNS.
      */
     iosReceipt?: string | null;
@@ -1490,6 +1535,10 @@ export namespace identitytoolkit_v2 {
      * Web only. Recaptcha solution.
      */
     recaptchaToken?: string | null;
+    /**
+     * The reCAPTCHA version of the reCAPTCHA token in the captcha_response. Required when reCAPTCHA Enterprise is enabled.
+     */
+    recaptchaVersion?: string | null;
     /**
      * Android only. Used to assert application identity in place of a recaptcha token. A SafetyNet Token can be generated via the [SafetyNet Android Attestation API](https://developer.android.com/training/safetynet/attestation.html), with the Base64 encoding of the `phone_number` field as the nonce.
      */

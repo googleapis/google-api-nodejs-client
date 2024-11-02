@@ -1702,6 +1702,111 @@
           ],
           "supportsSubscription": true
         }
+      },
+      "resources": {
+        "accessproposals": {
+          "methods": {
+            "list": {
+              "description": "List the AccessProposals on a file. Note: Only approvers are able to list AccessProposals on a file. If the user is not an approver, returns a 403.",
+              "flatPath": "files/{fileId}/accessproposals",
+              "httpMethod": "GET",
+              "id": "drive.files.accessproposals.list",
+              "parameterOrder": [
+                "fileId"
+              ],
+              "parameters": {
+                "fileId": {
+                  "description": "Required. The id of the item the request is on.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The number of results per page",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The continuation token on the list of access requests.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "files/{fileId}/accessproposals",
+              "response": {
+                "$ref": "ListAccessProposalsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/drive",
+                "https://www.googleapis.com/auth/drive.file",
+                "https://www.googleapis.com/auth/drive.metadata",
+                "https://www.googleapis.com/auth/drive.metadata.readonly",
+                "https://www.googleapis.com/auth/drive.readonly"
+              ]
+            },
+            "resolve": {
+              "description": "Used to approve or deny an Access Proposal.",
+              "flatPath": "files/{fileId}/accessproposals/{proposalId}:resolve",
+              "httpMethod": "POST",
+              "id": "drive.files.accessproposals.resolve",
+              "parameterOrder": [
+                "fileId",
+                "proposalId"
+              ],
+              "parameters": {
+                "action": {
+                  "description": "Required. The action to take on the AccessProposal.",
+                  "enum": [
+                    "ACTION_UNSPECIFIED",
+                    "ACCEPT",
+                    "DENY"
+                  ],
+                  "enumDescriptions": [
+                    "Unspecified action",
+                    "The user accepts the proposal. Note: If this action is used, the `role` field must have at least one value.",
+                    "The user denies the proposal"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "fileId": {
+                  "description": "Required. The id of the item the request is on.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "proposalId": {
+                  "description": "Required. The id of the access proposal to resolve.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "role": {
+                  "description": "Optional. The roles the approver has allowed, if any. Note: This field is required for the `ACCEPT` action.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
+                "sendNotification": {
+                  "description": "Optional. Whether to send an email to the requester when the AccessProposal is denied or accepted.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "view": {
+                  "description": "Optional. Indicates the view for this access proposal. This should only be set when the proposal belongs to a view. `published` is the only supported value.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "files/{fileId}/accessproposals/{proposalId}:resolve",
+              "scopes": [
+                "https://www.googleapis.com/auth/drive",
+                "https://www.googleapis.com/auth/drive.file"
+              ]
+            }
+          }
+        }
       }
     },
     "operation": {
@@ -2664,7 +2769,7 @@
       }
     }
   },
-  "revision": "20240914",
+  "revision": "20241027",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2804,6 +2909,60 @@
         "user": {
           "$ref": "User",
           "description": "The authenticated user."
+        }
+      },
+      "type": "object"
+    },
+    "AccessProposal": {
+      "description": "The Access Proposal resource for outstanding access proposals on a file",
+      "id": "AccessProposal",
+      "properties": {
+        "createTime": {
+          "description": "The creation time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "The file id that the proposal for access is on",
+          "type": "string"
+        },
+        "proposalId": {
+          "description": "The id of the access proposal",
+          "type": "string"
+        },
+        "recipientEmailAddress": {
+          "description": "The email address of the user that will receive permissions if accepted",
+          "type": "string"
+        },
+        "requestMessage": {
+          "description": "The message that the requester added to the proposal",
+          "type": "string"
+        },
+        "requesterEmailAddress": {
+          "description": "The email address of the requesting user",
+          "type": "string"
+        },
+        "rolesAndViews": {
+          "description": "A wrapper for the role and view of an access proposal.",
+          "items": {
+            "$ref": "AccessProposalRoleAndView"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AccessProposalRoleAndView": {
+      "description": "A wrapper for the role and view of an access proposal.",
+      "id": "AccessProposalRoleAndView",
+      "properties": {
+        "role": {
+          "description": "The role that was proposed by the requester New values may be added in the future, but the following are currently possible: * `writer` * `commenter` * `reader`",
+          "type": "string"
+        },
+        "view": {
+          "description": "Indicates the view for this access proposal. Only populated for proposals that belong to a view. `published` is the only supported value.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4344,6 +4503,24 @@
         "removeLabel": {
           "description": "If true, the label will be removed from the file.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ListAccessProposalsResponse": {
+      "description": "The response to an Access Proposal list request.",
+      "id": "ListAccessProposalsResponse",
+      "properties": {
+        "accessProposals": {
+          "description": "The list of Access Proposals. This field is only populated in v3 and v3beta.",
+          "items": {
+            "$ref": "AccessProposal"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The continuation token for the next page of results. This will be absent if the end of the results list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.",
+          "type": "string"
         }
       },
       "type": "object"

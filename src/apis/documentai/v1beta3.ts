@@ -1116,6 +1116,14 @@ export namespace documentai_v1beta3 {
      * Dataset schema resource name. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/dataset/datasetSchema`
      */
     name?: string | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
   }
   /**
    * Configuration specific to spanner-based indexing.

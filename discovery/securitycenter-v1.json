@@ -20,6 +20,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://securitycenter.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://securitycenter.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://securitycenter.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1499,6 +1509,7 @@
                   ],
                   "parameters": {
                     "compareDuration": {
+                      "deprecated": true,
                       "description": "When compare_duration is set, the ListFindingsResult's \"state_change\" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible \"state_change\" values when compare_duration is specified: * \"CHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * \"UNCHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * \"ADDED\": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * \"REMOVED\": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is \"UNUSED\", which will be the state_change set for all findings present at read_time.",
                       "format": "google-duration",
                       "location": "query",
@@ -1539,6 +1550,7 @@
                       "type": "string"
                     },
                     "readTime": {
+                      "deprecated": true,
                       "description": "Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.",
                       "format": "google-datetime",
                       "location": "query",
@@ -3979,6 +3991,7 @@
                   ],
                   "parameters": {
                     "compareDuration": {
+                      "deprecated": true,
                       "description": "When compare_duration is set, the ListFindingsResult's \"state_change\" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible \"state_change\" values when compare_duration is specified: * \"CHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * \"UNCHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * \"ADDED\": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * \"REMOVED\": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is \"UNUSED\", which will be the state_change set for all findings present at read_time.",
                       "format": "google-duration",
                       "location": "query",
@@ -4019,6 +4032,7 @@
                       "type": "string"
                     },
                     "readTime": {
+                      "deprecated": true,
                       "description": "Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.",
                       "format": "google-datetime",
                       "location": "query",
@@ -5646,6 +5660,7 @@
                   ],
                   "parameters": {
                     "compareDuration": {
+                      "deprecated": true,
                       "description": "When compare_duration is set, the ListFindingsResult's \"state_change\" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added in any state during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible \"state_change\" values when compare_duration is specified: * \"CHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * \"UNCHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * \"ADDED\": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * \"REMOVED\": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is \"UNUSED\", which will be the state_change set for all findings present at read_time.",
                       "format": "google-duration",
                       "location": "query",
@@ -5686,6 +5701,7 @@
                       "type": "string"
                     },
                     "readTime": {
+                      "deprecated": true,
                       "description": "Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.",
                       "format": "google-datetime",
                       "location": "query",
@@ -5877,7 +5893,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20241026",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -6596,17 +6612,6 @@
             "Matching findings will be muted (default).",
             "Matching findings will have their mute state cleared."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CelPolicySpec": {
-      "description": "YAML-based rule that uses CEL, which supports the declaration of variables and a filtering predicate. A vulnerable resource is emitted if the evaluation is false. Given: 1) the resource types as: - resource_types: \"compute.googleapis.com/Instance\" - resource_types: \"compute.googleapis.com/Firewall\" 2) the CEL policy spec as: name: bad_instance resource_filters: - name: instance resource_type: compute.googleapis.com/Instance filter: > instance.status == 'RUNNING' && 'public' in instance.tags.items - name: firewall resource_type: compute.googleapis.com/Firewall filter: > firewall.direction == 'INGRESS' && !firewall.disabled && firewall.allowed.exists(rule, rule.IPProtocol.upperAscii() in ['TCP', 'ALL'] && rule.ports.exists(port, network.portsInRange(port, '11-256'))) rule: match: - predicate: > instance.networkInterfaces.exists(net, firewall.network == net.network) output: > {'message': 'Compute instance with publicly accessible ports', 'instance': instance.name} Users are able to join resource types together using the exact format as Kubernetes Validating Admission policies.",
-      "id": "CelPolicySpec",
-      "properties": {
-        "spec": {
-          "description": "The CEL policy to evaluate to produce findings. A finding is generated when the policy validation evaluates to false.",
           "type": "string"
         }
       },
@@ -8050,10 +8055,6 @@
       "description": "Defines the properties in a custom module configuration for Security Health Analytics. Use the custom module configuration to create custom detectors that generate custom findings for resources that you specify.",
       "id": "GoogleCloudSecuritycenterV1CustomConfig",
       "properties": {
-        "celPolicy": {
-          "$ref": "CelPolicySpec",
-          "description": "The CEL policy spec attached to the custom module."
-        },
         "customOutput": {
           "$ref": "GoogleCloudSecuritycenterV1CustomOutputSpec",
           "description": "Custom output properties."
@@ -10760,6 +10761,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -10776,6 +10778,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -10827,6 +10830,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -10843,6 +10847,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -10939,6 +10944,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -10955,6 +10961,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -11006,6 +11013,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -11022,6 +11030,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -12031,6 +12040,7 @@
       "id": "GroupFindingsRequest",
       "properties": {
         "compareDuration": {
+          "deprecated": true,
           "description": "When compare_duration is set, the GroupResult's \"state_change\" attribute is updated to indicate whether the finding had its state changed, the finding's state remained unchanged, or if the finding was added during the compare_duration period of time that precedes the read_time. This is the time between (read_time - compare_duration) and read_time. The state_change value is derived based on the presence and state of the finding at the two points in time. Intermediate state changes between the two times don't affect the result. For example, the results aren't affected if the finding is made inactive and then active again. Possible \"state_change\" values when compare_duration is specified: * \"CHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration, but changed its state at read_time. * \"UNCHANGED\": indicates that the finding was present and matched the given filter at the start of compare_duration and did not change state at read_time. * \"ADDED\": indicates that the finding did not match the given filter or was not present at the start of compare_duration, but was present at read_time. * \"REMOVED\": indicates that the finding was present and matched the filter at the start of compare_duration, but did not match the filter at read_time. If compare_duration is not specified, then the only possible state_change is \"UNUSED\", which will be the state_change set for all findings present at read_time. If this field is set then `state_change` must be a specified field in `group_by`.",
           "format": "google-duration",
           "type": "string"
@@ -12053,6 +12063,7 @@
           "type": "string"
         },
         "readTime": {
+          "deprecated": true,
           "description": "Time used as a reference point when filtering findings. The filter is limited to findings existing at the supplied time and their values are those at that specific time. Absence of this field will default to the API's version of NOW.",
           "format": "google-datetime",
           "type": "string"
@@ -12828,6 +12839,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -12844,6 +12856,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -12895,6 +12908,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -12911,6 +12925,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -13007,6 +13022,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -13023,6 +13039,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -13074,6 +13091,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -13090,6 +13108,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -13925,7 +13944,8 @@
       "id": "SetFindingStateRequest",
       "properties": {
         "startTime": {
-          "description": "Required. The time at which the updated state takes effect.",
+          "deprecated": true,
+          "description": "Optional. The time at which the updated state takes effect. If unset, defaults to the request time.",
           "format": "google-datetime",
           "type": "string"
         },

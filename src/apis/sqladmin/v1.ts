@@ -284,10 +284,6 @@ export namespace sqladmin_v1 {
      * This is always `sql#backupContext`.
      */
     kind?: string | null;
-    /**
-     * The name of the backup. Format: projects/{project\}/backups/{backup\}
-     */
-    name?: string | null;
   }
   /**
    * Backup Reencryption Config
@@ -1317,17 +1313,9 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$InstancesRestoreBackupRequest {
     /**
-     * The name of the backup to restore from in following format: projects/{project-id\}/backups/{backup-uid\} Only one of restore_backup_context or backup can be passed to the input.
-     */
-    backup?: string | null;
-    /**
      * Parameters required to perform the restore backup operation.
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
-    /**
-     * Optional. Restore instance settings overrides the instance settings stored as part of the backup. Instance's major database version cannot be changed and the disk size can only be increased. This feature is only available for restores to new instances using the backup name.
-     */
-    restoreInstanceSettings?: Schema$DatabaseInstance;
   }
   /**
    * Rotate server CA request.
@@ -1708,10 +1696,6 @@ export namespace sqladmin_v1 {
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
-    /**
-     * List of warnings that occurred while handling the request.
-     */
-    warnings?: Schema$ApiWarning[];
   }
   /**
    * Read-only password status.
@@ -1769,6 +1753,31 @@ export namespace sqladmin_v1 {
     targetSizeGb?: string | null;
   }
   /**
+   * Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance.
+   */
+  export interface Schema$PscAutoConnectionConfig {
+    /**
+     * The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.
+     */
+    consumerNetwork?: string | null;
+    /**
+     * The connection policy status of the consumer network.
+     */
+    consumerNetworkStatus?: string | null;
+    /**
+     * This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.
+     */
+    consumerProject?: string | null;
+    /**
+     * The IP address of the consumer endpoint.
+     */
+    ipAddress?: string | null;
+    /**
+     * The connection status of the consumer endpoint.
+     */
+    status?: string | null;
+  }
+  /**
    * PSC settings for a Cloud SQL instance.
    */
   export interface Schema$PscConfig {
@@ -1776,6 +1785,10 @@ export namespace sqladmin_v1 {
      * Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).
      */
     allowedConsumerProjects?: string[] | null;
+    /**
+     * Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.
+     */
+    pscAutoConnections?: Schema$PscAutoConnectionConfig[];
     /**
      * Whether PSC connectivity is enabled for this instance.
      */
@@ -3995,7 +4008,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use AddServerCertificate to add a new server certificate.
+     * Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, use AddServerCertificate to add a new server certificate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4083,7 +4096,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, please use AddServerCa instead.
+     * Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, use AddServerCa instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5140,7 +5153,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.
+     * Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out. For instances not using Certificate Authority Service (CAS) server CA, use ListServerCas instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5858,7 +5871,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use RotateServerCertificate to rotate the server certificate.
+     * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5946,7 +5959,7 @@ export namespace sqladmin_v1 {
     }
 
     /**
-     * Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, please use RotateServerCa instead.
+     * Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, use RotateServerCa instead.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6527,22 +6540,6 @@ export namespace sqladmin_v1 {
     requestBody?: Schema$InstancesCloneRequest;
   }
   export interface Params$Resource$Instances$Delete extends StandardParameters {
-    /**
-     * Flag to opt-in for final backup. By default, it is turned off.
-     */
-    enableFinalBackup?: boolean;
-    /**
-     * Optional. The description of the final backup.
-     */
-    finalBackupDescription?: string;
-    /**
-     * Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.
-     */
-    finalBackupExpiryTime?: string;
-    /**
-     * Optional. Retention period of the final backup.
-     */
-    finalBackupTtlDays?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
@@ -7180,10 +7177,6 @@ export namespace sqladmin_v1 {
     project?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.
-     */
-    filter?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */

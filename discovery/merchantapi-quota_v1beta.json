@@ -150,7 +150,7 @@
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20241022",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "ListQuotaGroupsResponse": {
@@ -304,6 +304,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",

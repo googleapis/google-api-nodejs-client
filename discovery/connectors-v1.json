@@ -1095,6 +1095,11 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "schemaAsString": {
+                          "description": "Optional. Flag to indicate if schema should be returned as string or not",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/runtimeActionSchemas",
@@ -2497,7 +2502,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20241015",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3462,6 +3467,10 @@
           "description": "The window used for ratelimiting runtime requests to connections.",
           "format": "int64",
           "type": "string"
+        },
+        "connectorVersioningEnabled": {
+          "description": "Indicate whether connector versioning is enabled.",
+          "type": "boolean"
         },
         "deploymentModel": {
           "description": "Indicate whether connector is deployed on GKE/CloudRun",
@@ -7036,6 +7045,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "inputSchemaAsString": {
+          "description": "Output only. Input schema as string.",
+          "readOnly": true,
+          "type": "string"
+        },
         "resultJsonSchema": {
           "$ref": "JsonSchema",
           "description": "Output only. JsonSchema representation of this action's result metadata",
@@ -7048,6 +7062,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "resultSchemaAsString": {
+          "description": "Output only. Result schema as string.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -7671,22 +7690,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }

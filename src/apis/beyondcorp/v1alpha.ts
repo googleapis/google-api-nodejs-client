@@ -1663,9 +1663,18 @@ export namespace beyondcorp_v1alpha {
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaHub {
     /**
-     * Optional. NAT gateway setup to ensure enough NAT IP addresses are available to handle the traffic needed to access the applications. Allows to explicitly enable or disable the NAT in the Hub along with the total IPs allocated to handle the capacity limits.
+     * Optional. Internet Gateway configuration.
      */
-    natGatewayConfig?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig;
+    internetGateway?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway;
+  }
+  /**
+   * Represents the Internet Gateway configuration.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaInternetGateway {
+    /**
+     * Output only. List of IP addresses assigned to the Cloud NAT.
+     */
+    assignedIps?: string[] | null;
   }
   /**
    * Message for response to listing Applications.
@@ -1702,15 +1711,6 @@ export namespace beyondcorp_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * Represents the NAT Gateway configuration.
-   */
-  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaNatGatewayConfig {
-    /**
-     * Output only. List of NAT IPs that will be used for establishing connection to the endpoints.
-     */
-    natIps?: string[] | null;
-  }
-  /**
    * VPC Peering details.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering {
@@ -1721,7 +1721,7 @@ export namespace beyondcorp_v1alpha {
     /**
      * Required. The name of the Target VPC network name in the format: `projects/{project\}/global/networks/{network\}
      */
-    targetVpcNetwork?: string | null;
+    targetNetwork?: string | null;
   }
   /**
    * Information about a BeyoncCorp SecurityGateway resource.
@@ -1796,6 +1796,10 @@ export namespace beyondcorp_v1alpha {
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest {
     /**
+     * Required. List of Peering connection information.
+     */
+    peerings?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering[];
+    /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
@@ -1803,10 +1807,6 @@ export namespace beyondcorp_v1alpha {
      * Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.
      */
     validateOnly?: boolean | null;
-    /**
-     * Required. List of Peering connection information.
-     */
-    vpcPeerings?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaPeering[];
   }
   /**
    * Represents the metadata of the long-running operation.

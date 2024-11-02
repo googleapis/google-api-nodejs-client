@@ -656,7 +656,7 @@
       }
     }
   },
-  "revision": "20240923",
+  "revision": "20241007",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1beta1AcknowledgeViolationRequest": {
@@ -1611,6 +1611,10 @@
         "violationNotificationsEnabled": {
           "description": "Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.",
           "type": "boolean"
+        },
+        "workloadOptions": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions",
+          "description": "Optional. Options to be set for the given created workload."
         }
       },
       "type": "object"
@@ -1947,6 +1951,25 @@
         "updateTime": {
           "description": "The time the update was last updated.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions": {
+      "description": "Options to be set for the given created workload.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions",
+      "properties": {
+        "kajEnrollmentType": {
+          "description": "Optional. Specifies type of KAJ Enrollment if provided.",
+          "enum": [
+            "KAJ_ENROLLMENT_TYPE_UNSPECIFIED",
+            "KEY_ACCESS_TRANSPARENCY_OFF"
+          ],
+          "enumDescriptions": [
+            "KAJ Enrollment type is unspecified",
+            "KAT sets External, Hardware, and Software key feature logging only to TRUE. (no enforcement)"
+          ],
           "type": "string"
         }
       },

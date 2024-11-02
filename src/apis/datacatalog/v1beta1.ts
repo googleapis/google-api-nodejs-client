@@ -1770,6 +1770,10 @@ export namespace datacatalog_v1beta1 {
      */
     column?: string | null;
     /**
+     * Output only. Denotes the transfer status of the Tag Template.
+     */
+    dataplexTransferStatus?: string | null;
+    /**
      * Required. Maps the ID of a tag field to its value and additional information about that field. Tag template defines valid field IDs. A tag must have at least 1 field and at most 500 fields.
      */
     fields?: {[key: string]: Schema$GoogleCloudDatacatalogV1TagField} | null;

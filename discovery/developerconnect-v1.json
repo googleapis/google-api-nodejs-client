@@ -473,7 +473,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -494,6 +494,31 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "processGitHubEnterpriseWebhook": {
+                  "description": "ProcessGitHubEnterpriseWebhook is called by the external GitHub Enterprise instances for notifying events.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections:processGitHubEnterpriseWebhook",
+                  "httpMethod": "POST",
+                  "id": "developerconnect.projects.locations.connections.processGitHubEnterpriseWebhook",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Project and location where the webhook will be received. Format: `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/connections:processGitHubEnterpriseWebhook",
+                  "request": {
+                    "$ref": "ProcessGitHubEnterpriseWebhookRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  }
                 }
               },
               "resources": {
@@ -759,6 +784,56 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "processGitLabEnterpriseWebhook": {
+                      "description": "ProcessGitLabEnterpriseWebhook is called by the external GitLab Enterprise instances for notifying events.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:processGitLabEnterpriseWebhook",
+                      "httpMethod": "POST",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.processGitLabEnterpriseWebhook",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The GitRepositoryLink resource where the webhook will be received. Format: `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:processGitLabEnterpriseWebhook",
+                      "request": {
+                        "$ref": "ProcessGitLabEnterpriseWebhookRequest"
+                      },
+                      "response": {
+                        "$ref": "Empty"
+                      }
+                    },
+                    "processGitLabWebhook": {
+                      "description": "ProcessGitLabWebhook is called by the GitLab.com for notifying events.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/gitRepositoryLinks/{gitRepositoryLinksId}:processGitLabWebhook",
+                      "httpMethod": "POST",
+                      "id": "developerconnect.projects.locations.connections.gitRepositoryLinks.processGitLabWebhook",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The GitRepositoryLink resource where the webhook will be received. Format: `projects/*/locations/*/connections/*/gitRepositoryLinks/*`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/gitRepositoryLinks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:processGitLabWebhook",
+                      "request": {
+                        "$ref": "ProcessGitLabWebhookRequest"
+                      },
+                      "response": {
+                        "$ref": "Empty"
+                      }
                     }
                   }
                 }
@@ -892,7 +967,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20241023",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1314,6 +1389,33 @@
       },
       "type": "object"
     },
+    "HttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
+      "id": "HttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Installation": {
       "description": "Represents an installation of the GitHub App.",
       "id": "Installation",
@@ -1592,6 +1694,39 @@
           "description": "Output only. Name of the verb executed by the operation.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProcessGitHubEnterpriseWebhookRequest": {
+      "description": "RPC request object accepted by the ProcessGitHubEnterpriseWebhook RPC method.",
+      "id": "ProcessGitHubEnterpriseWebhookRequest",
+      "properties": {
+        "body": {
+          "$ref": "HttpBody",
+          "description": "Required. HTTP request body."
+        }
+      },
+      "type": "object"
+    },
+    "ProcessGitLabEnterpriseWebhookRequest": {
+      "description": "RPC request object accepted by the ProcessGitLabEnterpriseWebhook RPC method.",
+      "id": "ProcessGitLabEnterpriseWebhookRequest",
+      "properties": {
+        "body": {
+          "$ref": "HttpBody",
+          "description": "Required. HTTP request body."
+        }
+      },
+      "type": "object"
+    },
+    "ProcessGitLabWebhookRequest": {
+      "description": "RPC request object accepted by the ProcessGitLabWebhook RPC method.",
+      "id": "ProcessGitLabWebhookRequest",
+      "properties": {
+        "body": {
+          "$ref": "HttpBody",
+          "description": "Required. HTTP request body."
         }
       },
       "type": "object"

@@ -930,7 +930,7 @@
       }
     }
   },
-  "revision": "20240524",
+  "revision": "20241021",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2AlternatePolicySpec": {
@@ -996,7 +996,136 @@
     "GoogleCloudOrgpolicyV2ConstraintBooleanConstraint": {
       "description": "A constraint that is either enforced or not. For example, a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.",
       "id": "GoogleCloudOrgpolicyV2ConstraintBooleanConstraint",
-      "properties": {},
+      "properties": {
+        "customConstraintDefinition": {
+          "$ref": "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition",
+          "description": "Custom constraint definition. This is set only for Managed Constraints"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition": {
+      "description": "Currently used for Managed Constraints. This represents a subset of fields missing from Constraint proto that are required to describe CustomConstraint",
+      "id": "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition",
+      "properties": {
+        "actionType": {
+          "description": "Allow or deny type.",
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Results in an error.",
+            "Allowed action type.",
+            "Deny action type."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "Org policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.",
+          "type": "string"
+        },
+        "methodTypes": {
+          "description": "All the operations being applied for this constraint.",
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE",
+              "REMOVE_GRANT",
+              "GOVERN_TAGS"
+            ],
+            "enumDescriptions": [
+              "Unspecified. Results in an error.",
+              "Constraint applied when creating the resource.",
+              "Constraint applied when updating the resource.",
+              "Constraint applied when deleting the resource. Not supported yet.",
+              "Constraint applied when removing an IAM grant.",
+              "Constraint applied when enforcing forced tagging."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter"
+          },
+          "description": "Stores Structure of parameters used by Constraint condition. Key of map represents name of the parameter.",
+          "type": "object"
+        },
+        "resourceTypes": {
+          "description": "The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter": {
+      "description": "Defines a parameter structure.",
+      "id": "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter",
+      "properties": {
+        "defaultValue": {
+          "description": "Sets the value of the parameter in an assignment if no value is given.",
+          "type": "any"
+        },
+        "item": {
+          "description": "Determines the parameter’s value structure. For example, LIST can be specified by defining type : LIST, and item type as : STRING.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "LIST",
+            "STRING",
+            "BOOLEAN"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Results in an error.",
+            "List parameter type.",
+            "String parameter type.",
+            "Boolean parameter type."
+          ],
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata",
+          "description": "Defines subproperties primarily used by the UI to display user-friendly information."
+        },
+        "type": {
+          "description": "Type of the parameter.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "LIST",
+            "STRING",
+            "BOOLEAN"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Results in an error.",
+            "List parameter type.",
+            "String parameter type.",
+            "Boolean parameter type."
+          ],
+          "type": "string"
+        },
+        "validValuesExpr": {
+          "description": "Provides a CEL expression to specify the acceptable parameter values during assignment. For example, parameterName in (\"parameterValue1\", \"parameterValue2\")",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata": {
+      "description": "Defines Medata structure.",
+      "id": "GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata",
+      "properties": {
+        "description": {
+          "description": "Detailed description of what this `parameter` is and use of it. Mutable.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudOrgpolicyV2ConstraintListConstraint": {

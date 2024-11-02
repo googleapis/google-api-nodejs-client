@@ -1757,7 +1757,7 @@
             },
             "maxResults": {
               "default": "500",
-              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.",
+              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.",
               "format": "uint32",
               "location": "query",
               "maximum": "2000",
@@ -4067,12 +4067,73 @@
                 "$ref": "CommentThread"
               }
             }
+          },
+          "resources": {
+            "liveChat": {
+              "resources": {
+                "messages": {
+                  "methods": {
+                    "stream": {
+                      "description": "Allows a user to load live chat through a server-streamed RPC.",
+                      "flatPath": "youtube/v3/liveChat/messages/stream",
+                      "httpMethod": "GET",
+                      "id": "youtube.youtube.v3.liveChat.messages.stream",
+                      "parameterOrder": [],
+                      "parameters": {
+                        "hl": {
+                          "description": "Specifies the localization language in which the system messages should be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "liveChatId": {
+                          "description": "The id of the live chat for which comments should be returned.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "maxResults": {
+                          "default": "500",
+                          "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.",
+                          "format": "uint32",
+                          "location": "query",
+                          "maximum": "2000",
+                          "minimum": "200",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "part": {
+                          "description": "The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.",
+                          "location": "query",
+                          "repeated": true,
+                          "type": "string"
+                        },
+                        "profileImageSize": {
+                          "description": "Specifies the size of the profile image that should be returned for each user.",
+                          "format": "uint32",
+                          "location": "query",
+                          "maximum": "720",
+                          "minimum": "16",
+                          "type": "integer"
+                        }
+                      },
+                      "path": "youtube/v3/liveChat/messages/stream",
+                      "response": {
+                        "$ref": "LiveChatMessageListResponse"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20241031",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -8057,7 +8118,7 @@
       "type": "object"
     },
     "InvideoBranding": {
-      "description": "LINT.IfChange Describes an invideo branding.",
+      "description": "Describes an invideo branding.",
       "id": "InvideoBranding",
       "properties": {
         "imageBytes": {
@@ -8071,6 +8132,7 @@
         },
         "position": {
           "$ref": "InvideoPosition",
+          "deprecated": true,
           "description": "The spatial position within the video where the branding watermark will be displayed."
         },
         "targetChannelId": {
@@ -10014,7 +10076,7 @@
         },
         "kind": {
           "default": "youtube#playlistItemListResponse",
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#playlistItemListResponse\". Etag of this resource.",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#playlistItemListResponse\".",
           "type": "string"
         },
         "nextPageToken": {
@@ -10762,6 +10824,10 @@
     "TestItem": {
       "id": "TestItem",
       "properties": {
+        "etag": {
+          "description": "Etag for the resource. See https://en.wikipedia.org/wiki/HTTP_ETag.",
+          "type": "string"
+        },
         "featuredPart": {
           "type": "boolean"
         },
@@ -11952,6 +12018,10 @@
       "description": "Basic details about a video category, such as its localized title. Next Id: 19",
       "id": "VideoStatus",
       "properties": {
+        "containsSyntheticMedia": {
+          "description": "Indicates if the video contains altered or synthetic media.",
+          "type": "boolean"
+        },
         "embeddable": {
           "description": "This value indicates if the video can be embedded on another website. @mutable youtube.videos.insert youtube.videos.update",
           "type": "boolean"

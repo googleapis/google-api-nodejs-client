@@ -1195,7 +1195,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20241009",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1280,6 +1280,42 @@
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BoostConfig": {
+      "description": "A configuration that workstations can boost to.",
+      "id": "BoostConfig",
+      "properties": {
+        "accelerators": {
+          "description": "Optional. A list of the type and count of accelerator cards attached to the boost instance. Defaults to `none`.",
+          "items": {
+            "$ref": "Accelerator"
+          },
+          "type": "array"
+        },
+        "bootDiskSizeGb": {
+          "description": "Optional. The size of the boot disk for the VM in gigabytes (GB). The minimum boot disk size is `30` GB. Defaults to `50` GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "enableNestedVirtualization": {
+          "description": "Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside your workstation. Before enabling nested virtualization, consider the following important considerations. Cloud Workstations instances are subject to the [same restrictions as Compute Engine instances](https://cloud.google.com/compute/docs/instances/nested-virtualization/overview#restrictions): * **Organization policy**: projects, folders, or organizations may be restricted from creating nested VMs if the **Disable VM nested virtualization** constraint is enforced in the organization policy. For more information, see the Compute Engine section, [Checking whether nested virtualization is allowed](https://cloud.google.com/compute/docs/instances/nested-virtualization/managing-constraint#checking_whether_nested_virtualization_is_allowed). * **Performance**: nested VMs might experience a 10% or greater decrease in performance for workloads that are CPU-bound and possibly greater than a 10% decrease for workloads that are input/output bound. * **Machine Type**: nested virtualization can only be enabled on boost configurations that specify a machine_type in the N1 or N2 machine series.",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "Optional. Required. The id to be used for the boost configuration.",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Optional. The type of machine that boosted VM instances will use—for example, `e2-standard-4`. For more information about machine types that Cloud Workstations supports, see the list of [available machine types](https://cloud.google.com/workstations/docs/available-machine-types). Defaults to `e2-standard-4`.",
+          "type": "string"
+        },
+        "poolSize": {
+          "description": "Optional. The number of boost VMs that the system should keep idle so that workstations can be boosted quickly. Defaults to `0`.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1414,6 +1450,13 @@
           "description": "Optional. A list of the type and count of accelerator cards attached to the instance.",
           "items": {
             "$ref": "Accelerator"
+          },
+          "type": "array"
+        },
+        "boostConfigs": {
+          "description": "Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use.",
+          "items": {
+            "$ref": "BoostConfig"
           },
           "type": "array"
         },
@@ -2285,6 +2328,13 @@
         "subnetwork": {
           "description": "Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.",
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
         },
         "uid": {
           "description": "Output only. A system-assigned unique identifier for this workstation cluster.",

@@ -364,7 +364,7 @@ export namespace privateca_v1 {
      */
     lifetime?: string | null;
     /**
-     * Output only. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
+     * Output only. Identifier. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
     name?: string | null;
     /**
@@ -3633,7 +3633,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
+     * Output only. Identifier. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
     name?: string;
     /**

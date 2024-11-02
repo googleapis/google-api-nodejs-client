@@ -3263,7 +3263,7 @@ export namespace cloudsearch_v1 {
     quality?: number | null;
   }
   /**
-   * The search API request.
+   * The search API request. NEXT ID: 17
    */
   export interface Schema$SearchRequest {
     /**
@@ -3301,7 +3301,7 @@ export namespace cloudsearch_v1 {
     start?: number | null;
   }
   /**
-   * The search API response.
+   * The search API response. NEXT ID: 17
    */
   export interface Schema$SearchResponse {
     /**

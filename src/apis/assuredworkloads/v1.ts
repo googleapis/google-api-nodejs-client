@@ -553,6 +553,10 @@ export namespace assuredworkloads_v1 {
      * Optional. Indicates whether the e-mail notification for a violation is enabled for a workload. This value will be by default True, and if not present will be considered as true. This should only be updated via updateWorkload call. Any Changes to this field during the createWorkload call will not be honored. This will always be true while creating the workload.
      */
     violationNotificationsEnabled?: boolean | null;
+    /**
+     * Optional. Options to be set for the given created workload.
+     */
+    workloadOptions?: Schema$GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions;
   }
   /**
    * Represents the Compliance Status of this workload
@@ -668,6 +672,15 @@ export namespace assuredworkloads_v1 {
      * Indicates SAA enrollment status of a given workload.
      */
     setupStatus?: string | null;
+  }
+  /**
+   * Options to be set for the given created workload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadWorkloadOptions {
+    /**
+     * Optional. Specifies type of KAJ Enrollment if provided.
+     */
+    kajEnrollmentType?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.

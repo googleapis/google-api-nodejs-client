@@ -2812,7 +2812,7 @@
       }
     }
   },
-  "revision": "20240923",
+  "revision": "20241009",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -2937,6 +2937,20 @@
           "description": "This is used in PSC consumer ForwardingRule to control whether the PSC endpoint can be accessed from another region.",
           "type": "boolean"
         },
+        "ipVersion": {
+          "description": "The requested IP version for the PSC connection.",
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ],
+          "enumDescriptions": [
+            "Default value. We will use IPv4 or IPv6 depending on the IP version of first available subnetwork.",
+            "Will use IPv4 only.",
+            "Will use IPv6 only."
+          ],
+          "type": "string"
+        },
         "network": {
           "description": "The resource path of the consumer network where PSC connections are allowed to be created in. Note, this network does not need be in the ConsumerPscConfig.project in the case of SharedVPC. Example: projects/{projectNumOrId}/global/networks/{networkId}.",
           "type": "string"
@@ -3030,6 +3044,20 @@
           "description": "The IP literal allocated on the consumer network for the PSC forwarding rule that is created to connect to the producer service attachment in this service connection map.",
           "type": "string"
         },
+        "ipVersion": {
+          "description": "The requested IP version for the PSC connection.",
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ],
+          "enumDescriptions": [
+            "Default value. We will use IPv4 or IPv6 depending on the IP version of first available subnetwork.",
+            "Will use IPv4 only.",
+            "Will use IPv6 only."
+          ],
+          "type": "string"
+        },
         "network": {
           "description": "The consumer network whose PSC forwarding rule is connected to the service attachments in this service connection map. Note that the network could be on a different project (shared VPC).",
           "type": "string"
@@ -3070,14 +3098,18 @@
             "ACTIVE",
             "FAILED",
             "CREATING",
-            "DELETING"
+            "DELETING",
+            "CREATE_REPAIRING",
+            "DELETE_REPAIRING"
           ],
           "enumDescriptions": [
             "An invalid state as the default case.",
             "The connection has been created successfully. However, for the up-to-date connection status, please use the service attachment's \"ConnectedEndpoint.status\" as the source of truth.",
             "The connection is not functional since some resources on the connection fail to be created.",
             "The connection is being created.",
-            "The connection is being deleted."
+            "The connection is being deleted.",
+            "The connection is being repaired to complete creation.",
+            "The connection is being repaired to complete deletion."
           ],
           "type": "string"
         }
@@ -3480,7 +3512,7 @@
         },
         "migration": {
           "$ref": "Migration",
-          "description": "Optional. Should be present if usage is set to FOR_MIGRATION."
+          "description": "Optional. Must be present if usage is set to FOR_MIGRATION. This field is for internal use."
         },
         "name": {
           "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
@@ -3552,7 +3584,7 @@
             "Unspecified usage is allowed in calls which identify the resource by other fields and do not need Usage set to complete. These are, i.e.: GetInternalRange and DeleteInternalRange. Usage needs to be specified explicitly in CreateInternalRange or UpdateInternalRange calls.",
             "A VPC resource can use the reserved CIDR block by associating it with the internal range resource if usage is set to FOR_VPC.",
             "Ranges created with EXTERNAL_TO_VPC cannot be associated with VPC resources and are meant to block out address ranges for various use cases, like for example, usage on-prem, with dynamic route announcements via interconnect.",
-            "Ranges created FOR_MIGRATION can be used to lock a CIDR range between a source and target subnet. If usage is set to FOR_MIGRATION the peering value has to be set to FOR_SELF or default to FOR_SELF when unset."
+            "Ranges created FOR_MIGRATION can be used to lock a CIDR range between a source and target subnet. If usage is set to FOR_MIGRATION, the peering value has to be set to FOR_SELF or default to FOR_SELF when unset. This value is for internal use."
           ],
           "type": "string"
         },
@@ -4465,6 +4497,20 @@
           "description": "The last Compute Engine operation to setup PSC connection.",
           "type": "string"
         },
+        "ipVersion": {
+          "description": "The requested IP version for the PSC connection.",
+          "enum": [
+            "IP_VERSION_UNSPECIFIED",
+            "IPV4",
+            "IPV6"
+          ],
+          "enumDescriptions": [
+            "Default value. We will use IPv4 or IPv6 depending on the IP version of first available subnetwork.",
+            "Will use IPv4 only.",
+            "Will use IPv6 only."
+          ],
+          "type": "string"
+        },
         "producerInstanceId": {
           "deprecated": true,
           "description": "Immutable. Deprecated. Use producer_instance_metadata instead. An immutable identifier for the producer instance.",
@@ -4498,14 +4544,18 @@
             "ACTIVE",
             "FAILED",
             "CREATING",
-            "DELETING"
+            "DELETING",
+            "CREATE_REPAIRING",
+            "DELETE_REPAIRING"
           ],
           "enumDescriptions": [
             "An invalid state as the default case.",
             "The connection has been created successfully. However, for the up-to-date connection status, please use the created forwarding rule's \"PscConnectionStatus\" as the source of truth.",
             "The connection is not functional since some resources on the connection fail to be created.",
             "The connection is being created.",
-            "The connection is being deleted."
+            "The connection is being deleted.",
+            "The connection is being repaired to complete creation.",
+            "The connection is being repaired to complete deletion."
           ],
           "type": "string"
         }

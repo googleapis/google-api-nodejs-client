@@ -4453,7 +4453,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20241025",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -6914,6 +6914,10 @@
           "description": "Required. The human-readable name of the generator, unique within the agent. The prompt contains pre-defined parameters such as $conversation, $last-user-utterance, etc. populated by Dialogflow. It can also contain custom placeholders which will be resolved during fulfillment.",
           "type": "string"
         },
+        "modelParameter": {
+          "$ref": "GoogleCloudDialogflowCxV3GeneratorModelParameter",
+          "description": "Parameters passed to the LLM to configure its behavior."
+        },
         "name": {
           "description": "The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.",
           "type": "string"
@@ -6928,6 +6932,33 @@
         "promptText": {
           "$ref": "GoogleCloudDialogflowCxV3Phrase",
           "description": "Required. Prompt for the LLM model."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3GeneratorModelParameter": {
+      "description": "Parameters to be passed to the LLM. If not set, default values will be used.",
+      "id": "GoogleCloudDialogflowCxV3GeneratorModelParameter",
+      "properties": {
+        "maxDecodeSteps": {
+          "description": "The maximum number of tokens to generate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "temperature": {
+          "description": "The temperature used for sampling. Temperature sampling occurs after both topP and topK have been applied. Valid range: [0.0, 1.0] Low temperature = less random. High temperature = more random.",
+          "format": "float",
+          "type": "number"
+        },
+        "topK": {
+          "description": "If set, the sampling process in each step is limited to the top_k tokens with highest probabilities. Valid range: [1, 40] or 1000+. Small topK = less random. Large topK = more random.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "topP": {
+          "description": "If set, only the tokens comprising the top top_p probability mass are considered. If both top_p and top_k are set, top_p will be used for further refining candidates selected with top_k. Valid range: (0.0, 1.0]. Small topP = less random. Large topP = more random.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -14282,6 +14313,14 @@
       "description": "Snippet Source for a Generative Prediction.",
       "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Metadata of the document.",
+          "type": "object"
+        },
         "text": {
           "description": "Text taken from that URI.",
           "type": "string"
@@ -16704,6 +16743,14 @@
       "description": "Snippet Source for a Generative Prediction.",
       "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Metadata of the document.",
+          "type": "object"
+        },
         "text": {
           "description": "Text taken from that URI.",
           "type": "string"

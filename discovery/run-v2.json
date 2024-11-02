@@ -428,7 +428,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1526,7 +1526,7 @@
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20241025",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1538,7 +1538,7 @@
           "type": "string"
         },
         "policy": {
-          "description": "Optional. The path to a binary authorization policy. Format: projects/{project}/platforms/cloudRun/{policy-name}",
+          "description": "Optional. The path to a binary authorization policy. Format: `projects/{project}/platforms/cloudRun/{policy-name}`",
           "type": "string"
         },
         "useDefault": {
@@ -2266,6 +2266,13 @@
         "bucket": {
           "description": "Cloud Storage Bucket name.",
           "type": "string"
+        },
+        "mountOptions": {
+          "description": "A list of additional flags to pass to the gcsfuse CLI. Options should be specified without the leading \"--\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "readOnly": {
           "description": "If true, the volume will be mounted as read only for all mounts.",
@@ -3056,7 +3063,7 @@
           "type": "object"
         },
         "maxInstanceRequestConcurrency": {
-          "description": "Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, defaults to 80 when requested CPU >= 1 and defaults to 1 when requested CPU < 1.",
+          "description": "Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, defaults to 80 when requested `CPU >= 1` and defaults to 1 when requested `CPU < 1`.",
           "format": "int32",
           "type": "integer"
         },
@@ -3259,7 +3266,7 @@
           "type": "string"
         },
         "invokerIamDisabled": {
-          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This setting should not be used with external ingress.",
+          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This feature is available by invitation only. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.",
           "type": "boolean"
         },
         "labels": {
@@ -3388,7 +3395,7 @@
       "id": "GoogleCloudRunV2ServiceMesh",
       "properties": {
         "mesh": {
-          "description": "The Mesh resource name. Format: projects/{project}/locations/global/meshes/{mesh}, where {project} can be project id or number.",
+          "description": "The Mesh resource name. Format: `projects/{project}/locations/global/meshes/{mesh}`, where `{project}` can be project id or number.",
           "type": "string"
         }
       },
@@ -3472,7 +3479,7 @@
           "type": "array"
         },
         "workerPool": {
-          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where {project} and {region} are the project id and region respectively where the worker pool is defined and {workerPool} is the short name of the worker pool.",
+          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where `{project}` and `{region}` are the project id and region respectively where the worker pool is defined and `{workerPool}` is the short name of the worker pool.",
           "type": "string"
         }
       },
@@ -3921,7 +3928,7 @@
       "id": "GoogleCloudRunV2VpcAccess",
       "properties": {
         "connector": {
-          "description": "VPC Access connector name. Format: projects/{project}/locations/{location}/connectors/{connector}, where {project} can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.",
+          "description": "VPC Access connector name. Format: `projects/{project}/locations/{location}/connectors/{connector}`, where `{project}` can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.",
           "type": "string"
         },
         "egress": {

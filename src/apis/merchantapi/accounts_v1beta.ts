@@ -144,7 +144,7 @@ export namespace merchantapi_accounts_v1beta {
     validUntil?: Schema$Date;
   }
   /**
-   * An account.
+   * The `Account` message represents a merchant's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a multi-client account (MCA) structure. In an MCA setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.
    */
   export interface Schema$Account {
     /**
@@ -218,7 +218,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accountAggregation?: Schema$AccountAggregation;
     /**
-     * Optional. The provider of the service. Format: `accounts/{account\}`
+     * Required. The provider of the service. Format: `accounts/{account\}`
      */
     provider?: string | null;
   }
@@ -307,11 +307,11 @@ export namespace merchantapi_accounts_v1beta {
     womenOwned?: Schema$IdentityAttribute;
   }
   /**
-   * Collection of information related to a business.
+   * The `BusinessInfo` message contains essential information about a merchant's business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.
    */
   export interface Schema$BusinessInfo {
     /**
-     * Optional. The address of the business.
+     * Optional. The address of the business. Only `region_code`, `address_lines`, `postal_code`, `administrative_area` and `locality` fields are supported. All other fields are ignored.
      */
     address?: Schema$PostalAddress;
     /**
@@ -336,7 +336,7 @@ export namespace merchantapi_accounts_v1beta {
     phoneVerificationState?: string | null;
   }
   /**
-   * A list of carrier rates that can be referred to by `main_table` or `single_value`.
+   * A list of carrier rates that can be referred to by `main_table` or `single_value`. Supported carrier services are defined in https://support.google.com/merchants/answer/12577710?hl=en&ref_topic=12570808&sjid=10662598224319463032-NC#zippy=%2Cdelivery-cost-rate-type%2Ccarrier-rate-au-de-uk-and-us-only.
    */
   export interface Schema$CarrierRate {
     /**
@@ -367,7 +367,12 @@ export namespace merchantapi_accounts_v1beta {
   /**
    * Request message for the `ClaimHomepage` method.
    */
-  export interface Schema$ClaimHomepageRequest {}
+  export interface Schema$ClaimHomepageRequest {
+    /**
+     * Optional. When set to `true`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
+     */
+    overwrite?: boolean | null;
+  }
   /**
    * Request message for the `CreateAndConfigureAccount` method.
    */
@@ -584,7 +589,7 @@ export namespace merchantapi_accounts_v1beta {
     weights?: Schema$Weight[];
   }
   /**
-   * A store's homepage.
+   * The `Homepage` message represents a merchant's store homepage within the system. A merchant's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the merchant to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).
    */
   export interface Schema$Homepage {
     /**
@@ -992,6 +997,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The product expiration time.
+     */
+    expirationTime?: string | null;
+    /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
     managingAccount?: string | null;
@@ -1295,7 +1304,7 @@ export namespace merchantapi_accounts_v1beta {
     rows?: Schema$Row[];
   }
   /**
-   * A `TermsOfService`.
+   * The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services (see https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.
    */
   export interface Schema$TermsOfService {
     /**
@@ -1401,7 +1410,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$UnclaimHomepageRequest {}
   /**
-   * A [user](https://support.google.com/merchants/answer/12160472).
+   * The `User` message represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).
    */
   export interface Schema$User {
     /**
@@ -1472,7 +1481,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$WarehouseBasedDeliveryTime {
     /**
-     * Required. Carrier, such as `"UPS"` or `"Fedex"`.
+     * Required. Carrier, such as `"UPS"` or `"Fedex"`. [supported carriers](https://support.google.com/merchants/answer/7050921#zippy=%2Ccarrier-rates-au-de-uk-and-us-only)
      */
     carrier?: string | null;
     /**
@@ -2145,7 +2154,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_name` - `adult_content` - `language_code` - `time_zone`
      */
     updateMask?: string;
 
@@ -2571,7 +2580,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `black_owned` - `latino_owned` - `promotions_consent` - `small_business` - `veteran_owned` - `women_owned`
      */
     updateMask?: string;
 
@@ -2780,7 +2789,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `address` - `customer_service` - `korean_business_registration_number`
      */
     updateMask?: string;
 
@@ -2797,7 +2806,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Returns the email preferences for a Merchant Center account user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
+     * Returns the email preferences for a Merchant Center account user. This service only permits retrieving and updating email preferences for the authenticated user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2993,7 +3002,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `news_and_tips`
      */
     updateMask?: string;
 
@@ -3400,7 +3409,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `uri`
      */
     updateMask?: string;
 
@@ -5194,7 +5203,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Deletes a Merchant Center account user. Executing this method requires admin access.
+     * Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account. Also a user is protected from deletion if it is managed by Business Manager"
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5601,7 +5610,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `access_rights`
      */
     updateMask?: string;
 

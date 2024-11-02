@@ -2440,6 +2440,10 @@ export namespace dialogflow_v3beta1 {
      */
     llmModelSettings?: Schema$GoogleCloudDialogflowCxV3beta1LlmModelSettings;
     /**
+     * Parameters passed to the LLM to configure its behavior.
+     */
+    modelParameter?: Schema$GoogleCloudDialogflowCxV3beta1GeneratorModelParameter;
+    /**
      * The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.
      */
     name?: string | null;
@@ -2451,6 +2455,27 @@ export namespace dialogflow_v3beta1 {
      * Required. Prompt for the LLM model.
      */
     promptText?: Schema$GoogleCloudDialogflowCxV3beta1Phrase;
+  }
+  /**
+   * Parameters to be passed to the LLM. If not set, default values will be used.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GeneratorModelParameter {
+    /**
+     * The maximum number of tokens to generate.
+     */
+    maxDecodeSteps?: number | null;
+    /**
+     * The temperature used for sampling. Temperature sampling occurs after both topP and topK have been applied. Valid range: [0.0, 1.0] Low temperature = less random. High temperature = more random.
+     */
+    temperature?: number | null;
+    /**
+     * If set, the sampling process in each step is limited to the top_k tokens with highest probabilities. Valid range: [1, 40] or 1000+. Small topK = less random. Large topK = more random.
+     */
+    topK?: number | null;
+    /**
+     * If set, only the tokens comprising the top top_p probability mass are considered. If both top_p and top_k are set, top_p will be used for further refining candidates selected with top_k. Valid range: (0.0, 1.0]. Small topP = less random. Large topP = more random.
+     */
+    topP?: number | null;
   }
   /**
    * Represents a custom placeholder in the prompt text.
@@ -8306,6 +8331,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -9944,6 +9973,10 @@ export namespace dialogflow_v3beta1 {
    * Snippet Source for a Generative Prediction.
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
+    /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
     /**
      * Text taken from that URI.
      */

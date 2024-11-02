@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20241027",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -3125,6 +3125,20 @@
       "description": "AWS EC2 specific details.",
       "id": "AwsEc2PlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Optional. Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "The location of the machine in the AWS format.",
           "type": "string"
@@ -3140,6 +3154,20 @@
       "description": "Azure VM specific details.",
       "id": "AzureVmPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "The location of the machine in the Azure format.",
           "type": "string"
@@ -3619,7 +3647,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -3701,7 +3729,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -4171,7 +4199,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -4930,6 +4958,20 @@
       "description": "Generic platform details.",
       "id": "GenericPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "Free text representation of the machine location. The format of this field should not be relied on. Different VMs in the same location may have different string values for this field.",
           "type": "string"
@@ -6644,6 +6686,20 @@
       "description": "Platform specific details for Physical Machines.",
       "id": "PhysicalPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "Free text representation of the machine location. The format of this field should not be relied on. Different machines in the same location may have different string values for this field.",
           "type": "string"
@@ -7413,7 +7469,7 @@
               "PERSISTENT_DISK_TYPE_SSD"
             ],
             "enumDescriptions": [
-              "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+              "Unspecified. Fallback to default value based on context.",
               "Standard HDD Persistent Disk.",
               "Balanced Persistent Disk.",
               "SSD Persistent Disk."
@@ -7762,6 +7818,10 @@
       "description": "Describes the Migration Center settings related to the project.",
       "id": "Settings",
       "properties": {
+        "customerConsentForGoogleSalesToAccessMigrationCenter": {
+          "description": "Customer consent for Google sales to access their Cloud Migration Center project.",
+          "type": "boolean"
+        },
         "disableCloudLogging": {
           "description": "Disable Cloud Logging for the Migration Center API. Users are billed for the logs.",
           "type": "boolean"
@@ -8710,6 +8770,20 @@
       "description": "VMware specific details.",
       "id": "VmwarePlatformDetails",
       "properties": {
+        "esxHyperthreading": {
+          "description": "Whether the ESX is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "esxVersion": {
           "description": "ESX version.",
           "type": "string"

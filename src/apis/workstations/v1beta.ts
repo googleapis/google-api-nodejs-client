@@ -965,6 +965,10 @@ export namespace workstations_v1beta {
      */
     subnetwork?: string | null;
     /**
+     * Optional. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. A system-assigned unique identifier for this workstation cluster.
      */
     uid?: string | null;

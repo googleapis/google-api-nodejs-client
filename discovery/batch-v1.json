@@ -561,7 +561,7 @@
       }
     }
   },
-  "revision": "20240925",
+  "revision": "20241002",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1264,7 +1264,7 @@
           "type": "string"
         },
         "reservation": {
-          "description": "Optional. If specified, VMs will consume only the specified reservation. If not specified (default), VMs will consume any applicable reservation. Additionally, VMs will not consume any reservation if \"NO_RESERVATION\" is specified.",
+          "description": "Optional. If not specified (default), VMs will consume any applicable reservation. If \"NO_RESERVATION\" is specified, VMs will not consume any reservation. Otherwise, if specified, VMs will consume only the specified reservation.",
           "type": "string"
         }
       },

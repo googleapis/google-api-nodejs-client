@@ -5363,6 +5363,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -7077,6 +7081,10 @@ export namespace dialogflow_v2 {
      */
     contextFilterSettings?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigContextFilterSettings;
     /**
+     * Optional. The number of recent messages to include in the context. Supported features: KNOWLEDGE_ASSIST.
+     */
+    contextSize?: number | null;
+    /**
      * Query from Dialogflow agent. It is used by DIALOGFLOW_ASSIST.
      */
     dialogflowQuerySource?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySource;
@@ -7410,6 +7418,10 @@ export namespace dialogflow_v2 {
      * A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details. This field is deprecated. Please use [`speech_contexts`]() instead. If you specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      */
     phraseHints?: string[] | null;
+    /**
+     * A collection of phrase set resources to use for speech adaptation.
+     */
+    phraseSets?: string[] | null;
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
@@ -8173,6 +8185,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -8814,6 +8830,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeAnswerAnswerSource {
     /**
+     * Metadata associated with the article.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * The relevant snippet of the article.
      */
     snippet?: string | null;
@@ -8839,6 +8859,14 @@ export namespace dialogflow_v2 {
      */
     conversationProfile?: string | null;
     /**
+     * Optional. Information about the end-user to improve the relevance and accuracy of generative answers. This will be interpreted and used by a language model, so, for good results, the data should be self-descriptive, and in a simple structure. Example: ```json { "subscription plan": "Business Premium Plus", "devices owned": [ {"model": "Google Pixel 7"\}, {"model": "Google Pixel Tablet"\} ] \} ```
+     */
+    endUserMetadata?: {[key: string]: any} | null;
+    /**
+     * Optional. Whether to search the query exactly without query rewrite.
+     */
+    exactSearch?: boolean | null;
+    /**
      * Optional. The name of the latest conversation message when the request is triggered. Format: `projects//locations//conversations//messages/`.
      */
     latestMessage?: string | null;
@@ -8851,9 +8879,116 @@ export namespace dialogflow_v2 {
      */
     query?: Schema$GoogleCloudDialogflowV2TextInput;
     /**
+     * Optional. The source of the query in the request.
+     */
+    querySource?: string | null;
+    /**
+     * Optional. Configuration specific to search queries with data stores.
+     */
+    searchConfig?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfig;
+    /**
      * Required. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
      */
     sessionId?: string | null;
+  }
+  /**
+   * Configuration specific to search queries with data stores.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfig {
+    /**
+     * Optional. Boost specifications for data stores.
+     */
+    boostSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecs[];
+    /**
+     * Optional. Filter specification for data store queries.
+     */
+    filterSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigFilterSpecs[];
+  }
+  /**
+   * Boost specifications for data stores.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecs {
+    /**
+     * Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}
+     */
+    dataStores?: string[] | null;
+    /**
+     * Optional. A list of boosting specifications.
+     */
+    spec?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec[];
+  }
+  /**
+   * Boost specification to boost certain documents. A copy of google.cloud.discoveryengine.v1main.BoostSpec, field documentation is available at https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/BoostSpec
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec {
+    /**
+     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     */
+    conditionBoostSpecs?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec[];
+  }
+  /**
+   * Boost applies to documents which match a condition.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec {
+    /**
+     * Optional. Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.
+     */
+    boost?: number | null;
+    /**
+     * Optional. Complex specification for custom ranking based on customer defined attribute value.
+     */
+    boostControlSpec?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec;
+    /**
+     * Optional. An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     */
+    condition?: string | null;
+  }
+  /**
+   * Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec {
+    /**
+     * Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).
+     */
+    attributeType?: string | null;
+    /**
+     * Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.
+     */
+    controlPoints?: Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint[];
+    /**
+     * Optional. The name of the field whose value will be used to determine the boost amount.
+     */
+    fieldName?: string | null;
+    /**
+     * Optional. The interpolation type to be applied to connect the control points listed below.
+     */
+    interpolationType?: string | null;
+  }
+  /**
+   * The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
+    /**
+     * Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.
+     */
+    attributeValue?: string | null;
+    /**
+     * Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.
+     */
+    boostAmount?: number | null;
+  }
+  /**
+   * Filter specification for data store queries.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SearchKnowledgeRequestSearchConfigFilterSpecs {
+    /**
+     * Optional. The data store where the filter configuration is applied. Full resource name of data store, such as projects/{project\}/locations/{location\}/collections/{collectionId\}/ dataStores/{dataStoreId\}.
+     */
+    dataStores?: string[] | null;
+    /**
+     * Optional. The filter expression to be applied. Expression syntax is documented at https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax
+     */
+    filter?: string | null;
   }
   /**
    * The response message for Conversations.SearchKnowledge.
@@ -9039,6 +9174,10 @@ export namespace dialogflow_v2 {
      * Which Speech model to select. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then Dialogflow auto-selects a model based on other parameters in the SpeechToTextConfig and Agent settings. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details. If you specify a model, the following models typically have the best performance: - phone_call (best for Agent Assist and telephony) - latest_short (best for Dialogflow non-telephony) - command_and_search Leave this field unspecified to use [Agent Speech settings](https://cloud.google.com/dialogflow/cx/docs/concept/agent#settings-speech) for model selection.
      */
     model?: string | null;
+    /**
+     * List of names of Cloud Speech phrase sets that are used for transcription.
+     */
+    phraseSets?: string[] | null;
     /**
      * Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
@@ -20577,7 +20716,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Conversations$Create
     extends StandardParameters {
     /**
-     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     conversationId?: string;
     /**
@@ -22173,7 +22312,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Generators$Create
     extends StandardParameters {
     /**
-     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     generatorId?: string;
     /**
@@ -33956,7 +34095,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Conversations$Create
     extends StandardParameters {
     /**
-     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     conversationId?: string;
     /**
@@ -35947,7 +36086,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Generators$Create
     extends StandardParameters {
     /**
-     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     generatorId?: string;
     /**
@@ -35970,7 +36109,7 @@ export namespace dialogflow_v2 {
   export interface Params$Resource$Projects$Locations$Generators$Get
     extends StandardParameters {
     /**
-     * Required. The generator resource name to retrieve. Format: `projects//locations/`/generators/`
+     * Required. The generator resource name to retrieve. Format: `projects//locations//generators/`
      */
     name?: string;
   }

@@ -904,7 +904,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241016",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1168,7 +1168,7 @@
           "description": "Required. Defines flags that are used to run the diagnostic tool"
         },
         "timeoutMinutes": {
-          "description": "Optional. Maxmium amount of time in minutes before the operation times out.",
+          "description": "Optional. Maximum amount of time in minutes before the operation times out.",
           "format": "int32",
           "type": "integer"
         }

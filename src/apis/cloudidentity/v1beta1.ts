@@ -118,6 +118,7 @@ export namespace cloudidentity_v1beta1 {
     inboundSamlSsoProfiles: Resource$Inboundsamlssoprofiles;
     inboundSsoAssignments: Resource$Inboundssoassignments;
     orgUnits: Resource$Orgunits;
+    policies: Resource$Policies;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -135,6 +136,7 @@ export namespace cloudidentity_v1beta1 {
         this.context
       );
       this.orgUnits = new Resource$Orgunits(this.context);
+      this.policies = new Resource$Policies(this.context);
     }
   }
 
@@ -1637,6 +1639,19 @@ export namespace cloudidentity_v1beta1 {
     orgMemberships?: Schema$OrgMembership[];
   }
   /**
+   * The response message for PoliciesService.ListPolicies.
+   */
+  export interface Schema$ListPoliciesResponse {
+    /**
+     * The pagination token to retrieve the next page of results. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The results
+     */
+    policies?: Schema$Policy[];
+  }
+  /**
    * Response message for UserInvitation listing request.
    */
   export interface Schema$ListUserInvitationsResponse {
@@ -1913,6 +1928,52 @@ export namespace cloudidentity_v1beta1 {
     type?: string | null;
   }
   /**
+   * A Policy resource binds an instance of a single Setting with the scope of a PolicyQuery. The Setting instance will be applied to all entities that satisfy the query.
+   */
+  export interface Schema$Policy {
+    /**
+     * Immutable. Customer that the Policy belongs to. The value is in the format 'customers/{customerId\}'. The `customerId` must begin with "C" To find your customer ID in Admin Console see https://support.google.com/a/answer/10070793.
+     */
+    customer?: string | null;
+    /**
+     * Output only. Identifier. The [resource name](https://cloud.google.com/apis/design/resource_names) of the Policy. Format: policies/{policy\}.
+     */
+    name?: string | null;
+    /**
+     * Required. The PolicyQuery the Setting applies to.
+     */
+    policyQuery?: Schema$PolicyQuery;
+    /**
+     * Required. The Setting configured by this Policy.
+     */
+    setting?: Schema$Setting;
+    /**
+     * Output only. The type of the policy.
+     */
+    type?: string | null;
+  }
+  /**
+   * PolicyQuery
+   */
+  export interface Schema$PolicyQuery {
+    /**
+     * Immutable. The group that the query applies to. This field is only set if there is a single value for group that satisfies all clauses of the query. If no group applies, this will be the empty string.
+     */
+    group?: string | null;
+    /**
+     * Required. Immutable. Non-empty default. The OrgUnit the query applies to. This field is only set if there is a single value for org_unit that satisfies all clauses of the query.
+     */
+    orgUnit?: string | null;
+    /**
+     * Immutable. The CEL query that defines which entities the Policy applies to (ex. a User entity). For details about CEL see https://opensource.google.com/projects/cel. The OrgUnits the Policy applies to are represented by a clause like so: entity.org_units.exists(org_unit, org_unit.org_unit_id == orgUnitId('{orgUnitId\}')) The Group the Policy applies to are represented by a clause like so: entity.groups.exists(group, group.group_id == groupId('{groupId\}')) The Licenses the Policy applies to are represented by a clause like so: entity.licenses.exists(license, license in ['/product/{productId\}/sku/{skuId\}']) The above clauses can be present in any combination, and used in conjunction with the &&, || and ! operators. The org_unit and group fields below are helper fields that contain the corresponding value(s) as the query to make the query easier to use.
+     */
+    query?: string | null;
+    /**
+     * Output only. The decimal sort order of this PolicyQuery. The value is relative to all other policies with the same setting type within the whole customer. (there are no duplicates within this set).
+     */
+    sortOrder?: number | null;
+  }
+  /**
    * POSIX Group definition to represent a group in a POSIX compliant system. Caution: POSIX groups are deprecated. As of September 26, 2024, you can no longer create new POSIX groups. For more information, see https://cloud.google.com/identity/docs/deprecations/posix-groups
    */
   export interface Schema$PosixGroup {
@@ -2068,6 +2129,19 @@ export namespace cloudidentity_v1beta1 {
    * A request to send email for inviting target user corresponding to the UserInvitation.
    */
   export interface Schema$SendUserInvitationRequest {}
+  /**
+   * Setting
+   */
+  export interface Schema$Setting {
+    /**
+     * Required. Immutable. The type of the Setting. .
+     */
+    type?: string | null;
+    /**
+     * Required. The value of the Setting.
+     */
+    value?: {[key: string]: any} | null;
+  }
   /**
    * Controls sign-in behavior.
    */
@@ -8175,5 +8249,208 @@ export namespace cloudidentity_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$MoveOrgMembershipRequest;
+  }
+
+  export class Resource$Policies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a Policy
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Policies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Policies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    get(
+      params: Params$Resource$Policies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Policies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    get(
+      params: Params$Resource$Policies$Get,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Policy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Policies$Get
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * List Policies
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Policies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Policies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPoliciesResponse>;
+    list(
+      params: Params$Resource$Policies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Policies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Policies$List,
+      callback: BodyResponseCallback<Schema$ListPoliciesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListPoliciesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Policies$List
+        | BodyResponseCallback<Schema$ListPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Policies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Policies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/policies').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPoliciesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Policies$Get extends StandardParameters {
+    /**
+     * Required. The name of the policy to retrieve. Format: "policies/{policy\}".
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Policies$List extends StandardParameters {
+    /**
+     * Optional. A CEL expression for filtering the results. Policies can be filtered by application with this expression: setting.name = 'settings/gmail.*' Policies can be filtered by setting type with this expression: setting.name = '*.service_status' A maximum of one of the above setting.name clauses can be used. Policies can be filtered by customer with this expression: customer = "customers/{customer\}" Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no customer is mentioned it will be default to customers/my_customer. A maximum of one customer clause can be used. The above clauses can only be combined together in a single filter expression with the AND operator.
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will default to 50. The maximum allowed value is 100, though requests with page_size greater than that will be interpreted as 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The pagination token received from a prior call to PoliciesService.ListPolicies to retrieve the next page of results. When paginating, all other parameters provided to `ListPoliciesRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
 }

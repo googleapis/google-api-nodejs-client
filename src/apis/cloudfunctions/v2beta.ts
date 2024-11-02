@@ -1021,7 +1021,7 @@ export namespace cloudfunctions_v2beta {
     permissions?: string[] | null;
   }
   /**
-   * Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration * Current state of migration for function undergoing migration.
+   * Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration and 2nd Gen to CRf detach. * Current state of migration for function undergoing migration/detach.
    */
   export interface Schema$UpgradeInfo {
     /**

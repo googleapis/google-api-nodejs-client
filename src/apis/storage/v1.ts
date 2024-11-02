@@ -140,6 +140,19 @@ export namespace storage_v1 {
   }
 
   /**
+   * An AdvanceRelocateBucketOperation request.
+   */
+  export interface Schema$AdvanceRelocateBucketOperationRequest {
+    /**
+     * Specifies the time when the relocation will revert to the sync stage if the relocation hasn't succeeded.
+     */
+    expireTime?: string | null;
+    /**
+     * Specifies the duration after which the relocation will revert to the sync stage if the relocation hasn't succeeded. Optional, if not supplied, a default value of 12h will be used.
+     */
+    ttl?: string | null;
+  }
+  /**
    * An Anywhere Cache instance.
    */
   export interface Schema$AnywhereCache {
@@ -9328,6 +9341,92 @@ export namespace storage_v1 {
     }
 
     /**
+     * Starts asynchronous advancement of the relocate bucket operation in the case of required write downtime, to allow it to lock the bucket at the source location, and proceed with the bucket location swap. The server makes a best effort to advance the relocate bucket operation, but success is not guaranteed.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    advanceRelocateBucket(
+      params?: Params$Resource$Operations$Advancerelocatebucket,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      callback: BodyResponseCallback<void>
+    ): void;
+    advanceRelocateBucket(callback: BodyResponseCallback<void>): void;
+    advanceRelocateBucket(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Advancerelocatebucket
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Advancerelocatebucket;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Advancerelocatebucket;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/operations/{operationId}/advanceRelocateBucket'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'operationId'],
+        pathParams: ['bucket', 'operationId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed.
      *
      * @param params - Parameters for request
@@ -9602,6 +9701,22 @@ export namespace storage_v1 {
     }
   }
 
+  export interface Params$Resource$Operations$Advancerelocatebucket
+    extends StandardParameters {
+    /**
+     * Name of the bucket to advance the relocate for.
+     */
+    bucket?: string;
+    /**
+     * ID of the operation resource.
+     */
+    operationId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdvanceRelocateBucketOperationRequest;
+  }
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
     /**

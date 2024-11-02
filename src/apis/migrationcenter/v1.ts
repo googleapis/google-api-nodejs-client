@@ -364,6 +364,10 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$AwsEc2PlatformDetails {
     /**
+     * Optional. Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
+    /**
      * The location of the machine in the AWS format.
      */
     location?: string | null;
@@ -376,6 +380,10 @@ export namespace migrationcenter_v1 {
    * Azure VM specific details.
    */
   export interface Schema$AzureVmPlatformDetails {
+    /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
     /**
      * The location of the machine in the Azure format.
      */
@@ -948,6 +956,10 @@ export namespace migrationcenter_v1 {
    * Generic platform details.
    */
   export interface Schema$GenericPlatformDetails {
+    /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
     /**
      * Free text representation of the machine location. The format of this field should not be relied on. Different VMs in the same location may have different string values for this field.
      */
@@ -1951,6 +1963,10 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$PhysicalPlatformDetails {
     /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
+    /**
      * Free text representation of the machine location. The format of this field should not be relied on. Different machines in the same location may have different string values for this field.
      */
     location?: string | null;
@@ -2781,6 +2797,10 @@ export namespace migrationcenter_v1 {
    * VMware specific details.
    */
   export interface Schema$VmwarePlatformDetails {
+    /**
+     * Whether the ESX is hyperthreaded.
+     */
+    esxHyperthreading?: string | null;
     /**
      * ESX version.
      */

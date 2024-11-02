@@ -235,6 +235,19 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$ApproveRolloutResponse {}
   /**
+   * Information about entities associated with a `Target`.
+   */
+  export interface Schema$AssociatedEntities {
+    /**
+     * Optional. Information specifying Anthos clusters as associated entities.
+     */
+    anthosClusters?: Schema$AnthosCluster[];
+    /**
+     * Optional. Information specifying GKE clusters as associated entities.
+     */
+    gkeClusters?: Schema$GkeCluster[];
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -1235,6 +1248,10 @@ export namespace clouddeploy_v1 {
      * Optional. The label to use when selecting Pods for the Deployment and Service resources. This label must already be present in both resources.
      */
     podSelectorLabel?: string | null;
+    /**
+     * Optional. Route destinations allow configuring the Gateway API HTTPRoute to be deployed to additional clusters. This option is available for multi-cluster service mesh set ups that require the route to exist in the clusters that call the service. If unspecified, the HTTPRoute will only be deployed to the Target cluster.
+     */
+    routeDestinations?: Schema$RouteDestinations;
     /**
      * Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.
      */
@@ -2665,6 +2682,19 @@ export namespace clouddeploy_v1 {
     type?: string | null;
   }
   /**
+   * Information about route destinations for the Gateway API service mesh.
+   */
+  export interface Schema$RouteDestinations {
+    /**
+     * Required. The clusters where the Gateway API HTTPRoute resource will be deployed to. Valid entries include the associated entities IDs configured in the Target resource and "@self" to include the Target cluster.
+     */
+    destinationIds?: string[] | null;
+    /**
+     * Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitiate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.
+     */
+    propagateService?: boolean | null;
+  }
+  /**
    * RuntimeConfig contains the runtime specific configurations for a deployment strategy.
    */
   export interface Schema$RuntimeConfig {
@@ -2911,6 +2941,10 @@ export namespace clouddeploy_v1 {
      */
     anthosCluster?: Schema$AnthosCluster;
     /**
+     * Optional. Map of entity IDs to their associated entities. Associated entities allows specifying places other than the deployment target for specific features. For example, the Gateway API canary can be configured to deploy the HTTPRoute to a different cluster(s) than the deployment cluster using associated entities. An entity ID must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61\}[a-z0-9])?$`.
+     */
+    associatedEntities?: {[key: string]: Schema$AssociatedEntities} | null;
+    /**
      * Output only. Time at which the `Target` was created.
      */
     createTime?: string | null;
@@ -3113,19 +3147,19 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }

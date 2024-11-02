@@ -2147,6 +2147,36 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaPauseModelRequest {}
   /**
+   * Metadata for pinning to be returned in the response. This is used for distinguishing between applied vs dropped pins.
+   */
+  export interface Schema$GoogleCloudRetailV2betaPinControlMetadata {
+    /**
+     * Map of all matched pins, keyed by pin position.
+     */
+    allMatchedPins?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudRetailV2betaPinControlMetadataProductPins;
+    } | null;
+    /**
+     * Map of pins that were dropped due to overlap with other matching pins, keyed by pin position.
+     */
+    droppedPins?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudRetailV2betaPinControlMetadataProductPins;
+    } | null;
+  }
+  /**
+   * List of product ids which have associated pins.
+   */
+  export interface Schema$GoogleCloudRetailV2betaPinControlMetadataProductPins {
+    /**
+     * List of product ids which have associated pins.
+     */
+    productId?: string[] | null;
+  }
+  /**
    * Request message for Predict method.
    */
   export interface Schema$GoogleCloudRetailV2betaPredictRequest {
@@ -2370,7 +2400,7 @@ export namespace retail_v2beta {
      */
     rating?: Schema$GoogleCloudRetailV2betaRating;
     /**
-     * Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form "attributes.key" where "key" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info The maximum number of paths is 30. Otherwise, an INVALID_ARGUMENT error is returned. Note: Returning more fields in SearchResponse can increase response payload size and serving latency. This field is deprecated. Use the retrievable site-wide control instead.
+     * Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form "attributes.key" where "key" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info Note: Returning more fields in SearchResponse can increase response payload size and serving latency. This field is deprecated. Use the retrievable site-wide control instead.
      */
     retrievableFields?: string | null;
     /**
@@ -3212,6 +3242,10 @@ export namespace retail_v2beta {
      * A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+    /**
+     * Metadata for pin controls which were applicable to the request. This contains two map fields, one for all matched pins and one for pins which were matched but not applied. The two maps are keyed by pin position, and the values are the product ids which were matched to that pin.
+     */
+    pinControlMetadata?: Schema$GoogleCloudRetailV2betaPinControlMetadata;
     /**
      * Query expansion information for the returned results.
      */

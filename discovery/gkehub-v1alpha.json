@@ -2255,7 +2255,7 @@
       }
     }
   },
-  "revision": "20240920",
+  "revision": "20241017",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityFeatureSpec": {
@@ -2994,7 +2994,8 @@
           "description": "Git repo configuration for the cluster."
         },
         "metricsGcpServiceAccountEmail": {
-          "description": "The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA.",
+          "deprecated": true,
+          "description": "The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA. Deprecated: If Workload Identity Federation for GKE is enabled, Google Cloud Service Account is no longer needed for exporting Config Sync metrics: https://cloud.google.com/kubernetes-engine/enterprise/config-sync/docs/how-to/monitor-config-sync-cloud-monitoring#custom-monitoring.",
           "type": "string"
         },
         "oci": {
@@ -3196,6 +3197,28 @@
       "description": "State information for ConfigSync",
       "id": "ConfigManagementConfigSyncState",
       "properties": {
+        "clusterLevelStopSyncingState": {
+          "description": "Whether syncing resources to the cluster is stopped at the cluster level.",
+          "enum": [
+            "STOP_SYNCING_STATE_UNSPECIFIED",
+            "NOT_STOPPED",
+            "PENDING",
+            "STOPPED"
+          ],
+          "enumDescriptions": [
+            "State cannot be determined",
+            "Syncing resources to the cluster is not stopped at the cluster level.",
+            "Some reconcilers stop syncing resources to the cluster, while others are still syncing.",
+            "Syncing resources to the cluster is stopped at the cluster level."
+          ],
+          "type": "string"
+        },
+        "crCount": {
+          "description": "Output only. The number of RootSync and RepoSync CRs in the cluster.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "deploymentState": {
           "$ref": "ConfigManagementConfigSyncDeploymentState",
           "description": "Information about the deployment of ConfigSync, including the version of the various Pods deployed"
@@ -5265,6 +5288,21 @@
         "authority": {
           "$ref": "Authority",
           "description": "Optional. How to identify workloads from this Membership. See the documentation on Workload Identity for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity"
+        },
+        "clusterTier": {
+          "description": "Output only. The tier of the cluster.",
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The ClusterTier is not set.",
+            "The ClusterTier is standard.",
+            "The ClusterTier is enterprise."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "createTime": {
           "description": "Output only. When the Membership was created.",

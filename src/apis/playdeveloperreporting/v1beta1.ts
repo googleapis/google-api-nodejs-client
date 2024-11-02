@@ -287,6 +287,10 @@ export namespace playdeveloperreporting_v1beta1 {
    */
   export interface Schema$GooglePlayDeveloperReportingV1beta1ErrorIssue {
     /**
+     * List of annotations for an issue. Annotations provide additional information that may help in diagnosing and fixing the issue.
+     */
+    annotations?: Schema$GooglePlayDeveloperReportingV1beta1IssueAnnotation[];
+    /**
      * Cause of the issue. Depending on the type this can be either: * APPLICATION_NOT_RESPONDING: the type of ANR that occurred, e.g., 'Input dispatching timed out'. * CRASH: for Java unhandled exception errors, the type of the innermost exception that was thrown, e.g., IllegalArgumentException. For signals in native code, the signal that was raised, e.g. SIGSEGV.
      */
     cause?: string | null;
@@ -418,6 +422,23 @@ export namespace playdeveloperreporting_v1beta1 {
      * Latest end time for which data is available, for the aggregation period. The time is specified in the metric set's default timezone. *Note:* time ranges in TimelineSpec are represented as `start_time, end_time)`. For example, if the latest available timeline data point for a `DAILY` aggregation period is `2021-06-23 00:00:00 America/Los_Angeles`, the value of this field would be `2021-06-24 00:00:00 America/Los_Angeles` so it can be easily reused in [TimelineSpec.end_time.
      */
     latestEndTime?: Schema$GoogleTypeDateTime;
+  }
+  /**
+   * Representation of an annotation message for an issue.
+   */
+  export interface Schema$GooglePlayDeveloperReportingV1beta1IssueAnnotation {
+    /**
+     * Contains the contents of the annotation message.
+     */
+    body?: string | null;
+    /**
+     * Category that the annotation belongs to. An annotation will belong to a single category. Example categories: "Potential fix", "Insight".
+     */
+    category?: string | null;
+    /**
+     * Title for the annotation.
+     */
+    title?: string | null;
   }
   /**
    * Response with a list of anomalies in datasets.

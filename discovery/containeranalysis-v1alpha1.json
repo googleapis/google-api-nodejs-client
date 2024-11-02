@@ -1420,7 +1420,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20241025",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -4616,11 +4616,13 @@
           "description": "The type of hash that was performed.",
           "enum": [
             "NONE",
-            "SHA256"
+            "SHA256",
+            "GO_MODULE_H1"
           ],
           "enumDescriptions": [
             "No hash requested.",
-            "A sha256 hash."
+            "A sha256 hash.",
+            "Dirhash of a Go module's source code which is then hex-encoded."
           ],
           "type": "string"
         },

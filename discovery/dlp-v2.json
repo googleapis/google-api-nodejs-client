@@ -325,7 +325,7 @@
     "infoTypes": {
       "methods": {
         "list": {
-          "description": "Returns a list of the sensitive information types that DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
+          "description": "Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
           "flatPath": "v2/infoTypes",
           "httpMethod": "GET",
           "id": "dlp.infoTypes.list",
@@ -367,7 +367,7 @@
         "infoTypes": {
           "methods": {
             "list": {
-              "description": "Returns a list of the sensitive information types that DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
+              "description": "Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
               "flatPath": "v2/locations/{locationsId}/infoTypes",
               "httpMethod": "GET",
               "id": "dlp.locations.infoTypes.list",
@@ -5015,7 +5015,7 @@
       }
     }
   },
-  "revision": "20240916",
+  "revision": "20241027",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5431,7 +5431,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "The Google Cloud Platform project ID of the project containing the table. If omitted, project ID is inferred from the API call.",
+          "description": "The Google Cloud project ID of the project containing the table. If omitted, project ID is inferred from the API call.",
           "type": "string"
         },
         "tableId": {
@@ -5462,12 +5462,14 @@
             "enum": [
               "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
               "BIG_QUERY_TABLE_TYPE_TABLE",
-              "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE"
+              "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE",
+              "BIG_QUERY_TABLE_TYPE_SNAPSHOT"
             ],
             "enumDescriptions": [
               "Unused.",
               "A normal BigQuery table.",
-              "A table that references data stored in Cloud Storage."
+              "A table that references data stored in Cloud Storage.",
+              "A snapshot of a BigQuery table."
             ],
             "type": "string"
           },
@@ -5769,7 +5771,7 @@
           "type": "string"
         },
         "maxConnections": {
-          "description": "Required. DLP will limit its connections to max_connections. Must be 2 or greater.",
+          "description": "Required. The DLP API will limit its connections to max_connections. Must be 2 or greater.",
           "format": "int32",
           "type": "integer"
         },
@@ -6038,11 +6040,11 @@
           "description": "The data risk level for this column."
         },
         "datasetId": {
-          "description": "The BigQuery dataset ID.",
+          "description": "The BigQuery dataset ID, if the resource profiled is a BigQuery table.",
           "type": "string"
         },
         "datasetLocation": {
-          "description": "The BigQuery location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
+          "description": "If supported, the location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported BigQuery locations.",
           "type": "string"
         },
         "datasetProjectId": {
@@ -6147,7 +6149,7 @@
           "type": "string"
         },
         "tableId": {
-          "description": "The BigQuery table ID.",
+          "description": "The table ID.",
           "type": "string"
         }
       },
@@ -6207,7 +6209,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2Connection": {
-      "description": "A data connection to allow DLP to profile data in locations that require additional configuration.",
+      "description": "A data connection to allow the DLP API to profile data in locations that require additional configuration.",
       "id": "GooglePrivacyDlpV2Connection",
       "properties": {
         "cloudSql": {
@@ -6237,7 +6239,7 @@
           ],
           "enumDescriptions": [
             "Unused",
-            "DLP automatically created this connection during an initial scan, and it is awaiting full configuration by a user.",
+            "The DLP API automatically created this connection during an initial scan, and it is awaiting full configuration by a user.",
             "A configured connection that has not encountered any errors.",
             "A configured connection that encountered errors during its last use. It will not be used again until it is set to AVAILABLE. If the resolution requires external action, then the client must send a request to set the status to AVAILABLE when the connection is ready for use. If the resolution doesn't require external action, then any changes to the connection properties will automatically mark it as AVAILABLE."
           ],
@@ -6645,7 +6647,7 @@
         },
         "publishToScc": {
           "$ref": "GooglePrivacyDlpV2PublishToSecurityCommandCenter",
-          "description": "Publishes findings to SCC for each data profile."
+          "description": "Publishes findings to Security Command Center for each data profile."
         },
         "tagResources": {
           "$ref": "GooglePrivacyDlpV2TagResources",
@@ -6729,7 +6731,7 @@
           "description": "Must be set only when scanning other clouds."
         },
         "projectId": {
-          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.",
+          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the DLP API must be enabled.",
           "type": "string"
         }
       },
@@ -10224,7 +10226,7 @@
           "description": "The data to scan: folder, org, or project"
         },
         "projectId": {
-          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.",
+          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the DLP API must be enabled.",
           "type": "string"
         }
       },
@@ -10704,7 +10706,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2PublishToSecurityCommandCenter": {
-      "description": "If set, a summary finding will be created/updated in SCC for each profile.",
+      "description": "If set, a summary finding will be created or updated in Security Command Center for each profile.",
       "id": "GooglePrivacyDlpV2PublishToSecurityCommandCenter",
       "properties": {},
       "type": "object"
@@ -11600,7 +11602,7 @@
           "type": "string"
         },
         "fullResource": {
-          "description": "The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "description": "The Cloud Asset Inventory resource that was profiled in order to generate this TableDataProfile. https://cloud.google.com/apis/design/resource_names#full_resource_name",
           "type": "string"
         },
         "lastModifiedTime": {
@@ -11691,7 +11693,7 @@
           "type": "string"
         },
         "tableId": {
-          "description": "If the resource is BigQuery, the BigQuery table ID.",
+          "description": "The table ID.",
           "type": "string"
         },
         "tableSizeBytes": {
@@ -12458,22 +12460,22 @@
       "id": "GoogleTypeTimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }

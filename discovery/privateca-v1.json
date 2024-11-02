@@ -754,7 +754,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
+                          "description": "Output only. Identifier. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/caPools/[^/]+/certificateAuthorities/[^/]+$",
                           "required": true,
@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241002",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -1956,7 +1956,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
+          "description": "Output only. Identifier. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
           "readOnly": true,
           "type": "string"
         },

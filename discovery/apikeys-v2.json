@@ -396,7 +396,7 @@
       }
     }
   },
-  "revision": "20240811",
+  "revision": "20241016",
   "rootUrl": "https://apikeys.googleapis.com/",
   "schemas": {
     "Operation": {
@@ -592,6 +592,10 @@
         "restrictions": {
           "$ref": "V2Restrictions",
           "description": "Key restrictions."
+        },
+        "serviceAccountEmail": {
+          "description": "Optional. The email address of [the service account](https://cloud.google.com/iam/docs/service-accounts) the key is bound to.",
+          "type": "string"
         },
         "uid": {
           "description": "Output only. Unique id in UUID4 format.",

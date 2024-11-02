@@ -309,7 +309,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Should be present if usage is set to FOR_MIGRATION.
+     * Optional. Must be present if usage is set to FOR_MIGRATION. This field is for internal use.
      */
     migration?: Schema$Migration;
     /**

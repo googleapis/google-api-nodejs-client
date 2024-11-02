@@ -113,6 +113,7 @@ export namespace checks_v1alpha {
   export class Checks {
     context: APIRequestContext;
     accounts: Resource$Accounts;
+    aisafety: Resource$Aisafety;
     media: Resource$Media;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -122,6 +123,7 @@ export namespace checks_v1alpha {
       };
 
       this.accounts = new Resource$Accounts(this.context);
+      this.aisafety = new Resource$Aisafety(this.context);
       this.media = new Resource$Media(this.context);
     }
   }
@@ -159,6 +161,97 @@ export namespace checks_v1alpha {
      * A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Request proto for ClassifyContent RPC.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequest {
+    /**
+     * Optional. Version of the classifier to use. If not specified, the latest version will be used.
+     */
+    classifierVersion?: string | null;
+    /**
+     * Optional. Context about the input that will be used to help on the classification.
+     */
+    context?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestContext;
+    /**
+     * Required. Content to be classified.
+     */
+    input?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent;
+    /**
+     * Required. List of policies to classify against.
+     */
+    policies?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig[];
+  }
+  /**
+   * Context about the input that will be used to help on the classification.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestContext {
+    /**
+     * Optional. Prompt that generated the model response.
+     */
+    prompt?: string | null;
+  }
+  /**
+   * Content to be classified.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent {
+    /**
+     * Content in text format.
+     */
+    textInput?: Schema$GoogleChecksAisafetyV1alphaTextInput;
+  }
+  /**
+   * List of policies to classify against.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig {
+    /**
+     * Required. Type of the policy.
+     */
+    policyType?: string | null;
+    /**
+     * Optional. Score threshold to use when deciding if the content is violative or non-violative. If not specified, the default 0.5 threshold for the policy will be used.
+     */
+    threshold?: number | null;
+  }
+  /**
+   * Response proto for ClassifyContent RPC.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse {
+    /**
+     * Results of the classification for each policy.
+     */
+    policyResults?: Schema$GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult[];
+  }
+  /**
+   * Result for one policy against the corresponding input.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult {
+    /**
+     * Type of the policy.
+     */
+    policyType?: string | null;
+    /**
+     * Final score for the results of this policy.
+     */
+    score?: number | null;
+    /**
+     * Result of the classification for the policy.
+     */
+    violationResult?: string | null;
+  }
+  /**
+   * Text input to be classified.
+   */
+  export interface Schema$GoogleChecksAisafetyV1alphaTextInput {
+    /**
+     * Actual piece of text to be classified.
+     */
+    content?: string | null;
+    /**
+     * Optional. Language of the text in ISO 639-1 format. If the language is invalid or not specified, the system will try to detect it.
+     */
+    languageCode?: string | null;
   }
   /**
    * The request message for ReportService.AnalyzeUpload.
@@ -1831,6 +1924,118 @@ export namespace checks_v1alpha {
      * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Aisafety {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Analyze a piece of content with the provided set of policies.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    classifyContent(
+      params?: Params$Resource$Aisafety$Classifycontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>;
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+    ): void;
+    classifyContent(
+      params: Params$Resource$Aisafety$Classifycontent,
+      callback: BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+    ): void;
+    classifyContent(
+      callback: BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+    ): void;
+    classifyContent(
+      paramsOrCallback?:
+        | Params$Resource$Aisafety$Classifycontent
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Aisafety$Classifycontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Aisafety$Classifycontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://checks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/aisafety:classifyContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChecksAisafetyV1alphaClassifyContentResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Aisafety$Classifycontent
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChecksAisafetyV1alphaClassifyContentRequest;
   }
 
   export class Resource$Media {

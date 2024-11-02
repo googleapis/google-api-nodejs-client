@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20241003",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1800,7 +1800,7 @@
       "id": "MosaicLayout",
       "properties": {
         "columns": {
-          "description": "The number of columns in the mosaic grid. The number of columns must be between 1 and 12, inclusive.",
+          "description": "The number of columns in the mosaic grid. The number of columns must be between 1 and 48, inclusive.",
           "format": "int32",
           "type": "integer"
         },

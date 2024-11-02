@@ -467,7 +467,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory`, with the exception of `page_size`, must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     }
@@ -587,7 +587,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories` must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories`, with the exception of `page_size`, must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -669,7 +669,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.",
+                      "description": "Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.",
                       "location": "query",
                       "type": "string"
                     },
@@ -989,7 +989,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1037,7 +1037,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1153,7 +1153,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1310,7 +1310,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1500,7 +1500,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1543,7 +1543,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1841,7 +1841,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2017,7 +2017,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2182,7 +2182,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest` must match the call that provided the page token.",
+                          "description": "Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest`, with the exception of `page_size`, must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2295,7 +2295,7 @@
       }
     }
   },
-  "revision": "20240824",
+  "revision": "20241020",
   "rootUrl": "https://dataform.googleapis.com/",
   "schemas": {
     "Assertion": {
@@ -2655,10 +2655,6 @@
           "$ref": "Target",
           "description": "The action's identifier if the project had been compiled without any overrides configured. Unique within the compilation result."
         },
-        "dataPreparation": {
-          "$ref": "DataPreparation",
-          "description": "The data preparation executed by this action."
-        },
         "declaration": {
           "$ref": "Declaration",
           "description": "The declaration declared by this action."
@@ -2731,36 +2727,6 @@
         "kmsKeyVersionName": {
           "description": "The KMS key version name with which data of a resource is encrypted.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DataPreparation": {
-      "description": "Defines a compiled Data Preparation entity",
-      "id": "DataPreparation",
-      "properties": {
-        "contents": {
-          "description": "The data preparation definition, stored as a binary encoded proto.",
-          "format": "byte",
-          "type": "string"
-        },
-        "dependencyTargets": {
-          "description": "A list of actions that this action depends on.",
-          "items": {
-            "$ref": "Target"
-          },
-          "type": "array"
-        },
-        "disabled": {
-          "description": "Whether this action is disabled (i.e. should not be run).",
-          "type": "boolean"
-        },
-        "tags": {
-          "description": "Arbitrary, user-defined tags on this action.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -3776,7 +3742,7 @@
           "type": "string"
         },
         "recentScheduledReleaseRecords": {
-          "description": "Output only. Records of the 10 most recent scheduled release attempts, ordered in in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.",
+          "description": "Output only. Records of the 10 most recent scheduled release attempts, ordered in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.",
           "items": {
             "$ref": "ScheduledReleaseRecord"
           },
@@ -3840,7 +3806,7 @@
           "description": "Optional. If set, configures this repository to be linked to a Git remote."
         },
         "kmsKeyName": {
-          "description": "Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`",
+          "description": "Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/{kms_project}/locations/{location}/keyRings/{key_location}/cryptoKeys/{key}`",
           "type": "string"
         },
         "labels": {
@@ -4116,7 +4082,7 @@
           "type": "string"
         },
         "recentScheduledExecutionRecords": {
-          "description": "Output only. Records of the 10 most recent scheduled execution attempts, ordered in in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.",
+          "description": "Output only. Records of the 10 most recent scheduled execution attempts, ordered in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.",
           "items": {
             "$ref": "ScheduledExecutionRecord"
           },
@@ -4264,6 +4230,12 @@
       "description": "Represents a Dataform Git workspace.",
       "id": "Workspace",
       "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp of when the workspace was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "dataEncryptionState": {
           "$ref": "DataEncryptionState",
           "description": "Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.",

@@ -20,6 +20,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://securitycenter.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://securitycenter.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://securitycenter.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -903,7 +913,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20241026",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1437,17 +1447,6 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
-      "type": "object"
-    },
-    "CelPolicySpec": {
-      "description": "YAML-based rule that uses CEL, which supports the declaration of variables and a filtering predicate. A vulnerable resource is emitted if the evaluation is false. Given: 1) the resource types as: - resource_types: \"compute.googleapis.com/Instance\" - resource_types: \"compute.googleapis.com/Firewall\" 2) the CEL policy spec as: name: bad_instance resource_filters: - name: instance resource_type: compute.googleapis.com/Instance filter: > instance.status == 'RUNNING' && 'public' in instance.tags.items - name: firewall resource_type: compute.googleapis.com/Firewall filter: > firewall.direction == 'INGRESS' && !firewall.disabled && firewall.allowed.exists(rule, rule.IPProtocol.upperAscii() in ['TCP', 'ALL'] && rule.ports.exists(port, network.portsInRange(port, '11-256'))) rule: match: - predicate: > instance.networkInterfaces.exists(net, firewall.network == net.network) output: > {'message': 'Compute instance with publicly accessible ports', 'instance': instance.name} Users are able to join resource types together using the exact format as Kubernetes Validating Admission policies.",
-      "id": "CelPolicySpec",
-      "properties": {
-        "spec": {
-          "description": "The CEL policy to evaluate to produce findings. A finding is generated when the policy validation evaluates to false.",
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "CloudArmor": {
@@ -2723,10 +2722,6 @@
       "description": "Defines the properties in a custom module configuration for Security Health Analytics. Use the custom module configuration to create custom detectors that generate custom findings for resources that you specify.",
       "id": "GoogleCloudSecuritycenterV1CustomConfig",
       "properties": {
-        "celPolicy": {
-          "$ref": "CelPolicySpec",
-          "description": "The CEL policy spec attached to the custom module."
-        },
         "customOutput": {
           "$ref": "GoogleCloudSecuritycenterV1CustomOutputSpec",
           "description": "Custom output properties."
@@ -5514,6 +5509,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -5530,6 +5526,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -5581,6 +5578,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -5597,6 +5595,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -5693,6 +5692,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -5709,6 +5709,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -5760,6 +5761,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -5776,6 +5778,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -7303,6 +7306,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -7319,6 +7323,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -7370,6 +7375,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -7386,6 +7392,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -7482,6 +7489,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -7498,6 +7506,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -7549,6 +7558,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -7565,6 +7575,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -8222,7 +8233,7 @@
       "id": "SetFindingStateRequest",
       "properties": {
         "startTime": {
-          "description": "Required. The time at which the updated state takes effect.",
+          "description": "Optional. The time at which the updated state takes effect. If not set uses the current time.",
           "format": "google-datetime",
           "type": "string"
         },

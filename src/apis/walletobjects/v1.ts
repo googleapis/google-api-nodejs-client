@@ -874,6 +874,10 @@ export namespace walletobjects_v1 {
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
     /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
+    /**
      * Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap.
      */
     redemptionIssuers?: string[] | null;
@@ -1027,6 +1031,10 @@ export namespace walletobjects_v1 {
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -1304,6 +1312,10 @@ export namespace walletobjects_v1 {
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
     /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
+    /**
      * Required. Origin airport.
      */
     origin?: Schema$AirportInfo;
@@ -1463,6 +1475,10 @@ export namespace walletobjects_v1 {
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -1870,6 +1886,10 @@ export namespace walletobjects_v1 {
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
     /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
+    /**
      * The label to display for the PIN, such as "4-digit PIN".
      */
     pinLabel?: string | null;
@@ -2019,6 +2039,10 @@ export namespace walletobjects_v1 {
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -2405,6 +2429,10 @@ export namespace walletobjects_v1 {
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
     /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
+    /**
      * Required. The logo of the loyalty program or company. This logo is displayed in both the details and list views of the app.
      */
     programLogo?: Schema$Image;
@@ -2570,6 +2598,10 @@ export namespace walletobjects_v1 {
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -3041,6 +3073,10 @@ export namespace walletobjects_v1 {
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
     /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
+    /**
      * Required. The offer provider (either the aggregator name or merchant name). Recommended maximum length is 12 characters to ensure full string is displayed on smaller screens.
      */
     provider?: string | null;
@@ -3186,6 +3222,10 @@ export namespace walletobjects_v1 {
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -3844,6 +3884,10 @@ export namespace walletobjects_v1 {
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
     /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
+    /**
      * Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap.
      */
     redemptionIssuers?: string[] | null;
@@ -4001,6 +4045,10 @@ export namespace walletobjects_v1 {
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */

@@ -936,6 +936,10 @@ export namespace merchantapi_products_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The product expiration time.
+     */
+    expirationTime?: string | null;
+    /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
     managingAccount?: string | null;
@@ -1339,7 +1343,7 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string;
     /**
-     * Required. The name of the product input resource to delete. Format: accounts/{account\}/productInputs/{product\}
+     * Required. The name of the product input resource to delete. Format: accounts/{account\}/productInputs/{product\} where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/productInputs/online~en~US~sku123"
      */
     name?: string;
   }
@@ -1551,7 +1555,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Products$Get
     extends StandardParameters {
     /**
-     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}`
+     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/products/online~en~US~sku123"
      */
     name?: string;
   }

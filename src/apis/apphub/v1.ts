@@ -125,7 +125,7 @@ export namespace apphub_v1 {
   }
 
   /**
-   * Application defines the governance boundary for App Hub Entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.
+   * Application defines the governance boundary for App Hub entities that perform a logical end-to-end business function. App Hub supports application level IAM permission to align with governance requirements.
    */
   export interface Schema$Application {
     /**
@@ -145,7 +145,7 @@ export namespace apphub_v1 {
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of an Application. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"
+     * Identifier. The resource name of an Application. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"`
      */
     name?: string | null;
     /**
@@ -164,6 +164,31 @@ export namespace apphub_v1 {
      * Output only. Update time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
+   */
+  export interface Schema$AssetLocation {
+    /**
+     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
+     */
+    ccfeRmsPath?: string | null;
+    /**
+     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
+     */
+    expected?: Schema$IsolationExpectations;
+    /**
+     * Defines extra parameters required for specific asset types.
+     */
+    extraParameters?: Schema$ExtraParameter[];
+    /**
+     * Contains all kinds of physical location definitions for this asset.
+     */
+    locationData?: Schema$LocationData[];
+    /**
+     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
+     */
+    parentAsset?: Schema$CloudAsset[];
   }
   /**
    * Consumer provided attributes.
@@ -234,9 +259,22 @@ export namespace apphub_v1 {
     role?: string | null;
   }
   /**
+   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
+   */
+  export interface Schema$BlobstoreLocation {
+    policyId?: string[] | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  export interface Schema$CloudAsset {
+    assetName?: string | null;
+    assetType?: string | null;
+  }
+  export interface Schema$CloudAssetComposition {
+    childAsset?: Schema$CloudAsset[];
+  }
   /**
    * Contact information of stakeholders.
    */
@@ -267,12 +305,15 @@ export namespace apphub_v1 {
    * Response for DetachServiceProjectAttachment.
    */
   export interface Schema$DetachServiceProjectAttachmentResponse {}
+  export interface Schema$DirectLocationAssignment {
+    location?: Schema$LocationAssignment[];
+  }
   /**
-   * DiscoveredService is a network/api interface that exposes some functionality to clients for consumption over the network. A discovered service can be registered to a App Hub service.
+   * DiscoveredService is a network or API interface that exposes some functionality to clients for consumption over the network. A discovered service can be registered to a App Hub service.
    */
   export interface Schema$DiscoveredService {
     /**
-     * Identifier. The resource name of the discovered service. Format: "projects/{host-project-id\}/locations/{location\}/discoveredServices/{uuid\}""
+     * Identifier. The resource name of the discovered service. Format: `"projects/{host-project-id\}/locations/{location\}/discoveredServices/{uuid\}"`
      */
     name?: string | null;
     /**
@@ -289,7 +330,7 @@ export namespace apphub_v1 {
    */
   export interface Schema$DiscoveredWorkload {
     /**
-     * Identifier. The resource name of the discovered workload. Format: "projects/{host-project-id\}/locations/{location\}/discoveredWorkloads/{uuid\}"
+     * Identifier. The resource name of the discovered workload. Format: `"projects/{host-project-id\}/locations/{location\}/discoveredWorkloads/{uuid\}"`
      */
     name?: string | null;
     /**
@@ -334,6 +375,34 @@ export namespace apphub_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * Defines parameters that should only be used for specific asset types.
+   */
+  export interface Schema$ExtraParameter {
+    /**
+     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
+     */
+    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
+  }
+  export interface Schema$IsolationExpectations {
+    /**
+     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
+     */
+    requirementOverride?: Schema$RequirementOverride;
+    ziOrgPolicy?: string | null;
+    ziRegionPolicy?: string | null;
+    ziRegionState?: string | null;
+    /**
+     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
+     */
+    zoneIsolation?: string | null;
+    /**
+     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
+     */
+    zoneSeparation?: string | null;
+    zsOrgPolicy?: string | null;
+    zsRegionState?: string | null;
   }
   /**
    * Response for ListApplications.
@@ -488,6 +557,18 @@ export namespace apphub_v1 {
      */
     name?: string | null;
   }
+  export interface Schema$LocationAssignment {
+    location?: string | null;
+    locationType?: string | null;
+  }
+  export interface Schema$LocationData {
+    blobstoreLocation?: Schema$BlobstoreLocation;
+    childAssetLocation?: Schema$CloudAssetComposition;
+    directLocation?: Schema$DirectLocationAssignment;
+    gcpProjectProxy?: Schema$TenantProjectProxy;
+    placerLocation?: Schema$PlacerLocation;
+    spannerLocation?: Schema$SpannerLocation;
+  }
   /**
    * Response for LookupDiscoveredService.
    */
@@ -574,6 +655,15 @@ export namespace apphub_v1 {
     verb?: string | null;
   }
   /**
+   * Message describing that the location of the customer resource is tied to placer allocations
+   */
+  export interface Schema$PlacerLocation {
+    /**
+     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
+     */
+    placerConfig?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -608,6 +698,23 @@ export namespace apphub_v1 {
     exclusiveAction?: string | null;
   }
   /**
+   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
+   */
+  export interface Schema$RegionalMigDistributionPolicy {
+    /**
+     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
+     */
+    targetShape?: number | null;
+    /**
+     * Cloud zones used by regional MIG to create instances.
+     */
+    zones?: Schema$ZoneConfiguration[];
+  }
+  export interface Schema$RequirementOverride {
+    ziOverride?: string | null;
+    zsOverride?: string | null;
+  }
+  /**
    * Scope of an application.
    */
   export interface Schema$Scope {
@@ -617,7 +724,7 @@ export namespace apphub_v1 {
     type?: string | null;
   }
   /**
-   * Service is an App Hub data model that contains a discovered service, which represents a network/api interface that exposes some functionality to clients for consumption over the network.
+   * Service is an App Hub data model that contains a discovered service, which represents a network or API interface that exposes some functionality to clients for consumption over the network.
    */
   export interface Schema$Service {
     /**
@@ -641,7 +748,7 @@ export namespace apphub_v1 {
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of a Service. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"
+     * Identifier. The resource name of a Service. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"`
      */
     name?: string | null;
     /**
@@ -674,11 +781,11 @@ export namespace apphub_v1 {
      */
     createTime?: string | null;
     /**
-     * Identifier. The resource name of a ServiceProjectAttachment. Format: "projects/{host-project-id\}/locations/global/serviceProjectAttachments/{service-project-id\}."
+     * Identifier. The resource name of a ServiceProjectAttachment. Format: `"projects/{host-project-id\}/locations/global/serviceProjectAttachments/{service-project-id\}."`
      */
     name?: string | null;
     /**
-     * Required. Immutable. Service project name in the format: "projects/abc" or "projects/123". As input, project name with either project id or number are accepted. As output, this field will contain project number.
+     * Required. Immutable. Service project name in the format: `"projects/abc"` or `"projects/123"`. As input, project name with either project id or number are accepted. As output, this field will contain project number.
      */
     serviceProject?: string | null;
     /**
@@ -712,7 +819,7 @@ export namespace apphub_v1 {
    */
   export interface Schema$ServiceReference {
     /**
-     * Output only. The underlying resource URI (For example, URI of Forwarding Rule, URL Map, and Backend Service).
+     * Output only. The underlying resource URI. For example, URI of Forwarding Rule, URL Map, and Backend Service.
      */
     uri?: string | null;
   }
@@ -728,6 +835,16 @@ export namespace apphub_v1 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
+  }
+  export interface Schema$SpannerLocation {
+    /**
+     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
+     */
+    backupName?: string[] | null;
+    /**
+     * Set of databases used by the resource in format /span//
+     */
+    dbName?: string[] | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -745,6 +862,9 @@ export namespace apphub_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  export interface Schema$TenantProjectProxy {
+    projectNumbers?: string[] | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -789,7 +909,7 @@ export namespace apphub_v1 {
      */
     displayName?: string | null;
     /**
-     * Identifier. The resource name of the Workload. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"
+     * Identifier. The resource name of the Workload. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"`
      */
     name?: string | null;
     /**
@@ -818,15 +938,15 @@ export namespace apphub_v1 {
    */
   export interface Schema$WorkloadProperties {
     /**
-     * Output only. The service project identifier that the underlying cloud resource resides in. Empty for non cloud resources.
+     * Output only. The service project identifier that the underlying cloud resource resides in. Empty for non-cloud resources.
      */
     gcpProject?: string | null;
     /**
-     * Output only. The location that the underlying compute resource resides in (e.g us-west1).
+     * Output only. The location that the underlying compute resource resides in (for example, us-west1).
      */
     location?: string | null;
     /**
-     * Output only. The location that the underlying compute resource resides in if it is zonal (e.g us-west1-a).
+     * Output only. The location that the underlying compute resource resides in if it is zonal (for example, us-west1-a).
      */
     zone?: string | null;
   }
@@ -838,6 +958,9 @@ export namespace apphub_v1 {
      * Output only. The underlying compute resource uri.
      */
     uri?: string | null;
+  }
+  export interface Schema$ZoneConfiguration {
+    zone?: string | null;
   }
 
   export class Resource$Projects {
@@ -2091,7 +2214,7 @@ export namespace apphub_v1 {
   export interface Params$Resource$Projects$Locations$Applications$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of an Application. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"
+     * Identifier. The resource name of an Application. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}"`
      */
     name?: string;
     /**
@@ -2645,7 +2768,7 @@ export namespace apphub_v1 {
   export interface Params$Resource$Projects$Locations$Applications$Services$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of a Service. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"
+     * Identifier. The resource name of a Service. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/services/{service-id\}"`
      */
     name?: string;
     /**
@@ -3175,7 +3298,7 @@ export namespace apphub_v1 {
   export interface Params$Resource$Projects$Locations$Applications$Workloads$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the Workload. Format: "projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"
+     * Identifier. The resource name of the Workload. Format: `"projects/{host-project-id\}/locations/{location\}/applications/{application-id\}/workloads/{workload-id\}"`
      */
     name?: string;
     /**

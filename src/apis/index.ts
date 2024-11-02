@@ -472,6 +472,7 @@ import {
   VERSIONS as mybusinessverificationsVersions,
   mybusinessverifications,
 } from './mybusinessverifications';
+import {VERSIONS as netappVersions, netapp} from './netapp';
 import {
   VERSIONS as networkconnectivityVersions,
   networkconnectivity,
@@ -925,6 +926,7 @@ export const APIS: APIList = {
   mybusinessplaceactions: mybusinessplaceactionsVersions,
   mybusinessqanda: mybusinessqandaVersions,
   mybusinessverifications: mybusinessverificationsVersions,
+  netapp: netappVersions,
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   networksecurity: networksecurityVersions,
@@ -1230,6 +1232,7 @@ export class GeneratedAPIs {
   mybusinessplaceactions = mybusinessplaceactions;
   mybusinessqanda = mybusinessqanda;
   mybusinessverifications = mybusinessverifications;
+  netapp = netapp;
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   networksecurity = networksecurity;

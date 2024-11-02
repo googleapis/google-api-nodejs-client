@@ -1517,7 +1517,7 @@
       }
     }
   },
-  "revision": "20240923",
+  "revision": "20241015",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1710,6 +1710,13 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` \"123/environment\": \"production\", \"123/costCenter\": \"marketing\" ```",
+          "type": "object"
         },
         "type": {
           "description": "The backup type, which suggests the trigger for the backup.",
@@ -2015,6 +2022,13 @@
             "Trial subscription."
           ],
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` \"123/environment\": \"production\", \"123/costCenter\": \"marketing\" ```",
+          "type": "object"
         },
         "trialMetadata": {
           "$ref": "TrialMetadata",
@@ -2356,22 +2370,22 @@
       "id": "GoogleTypeTimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -3959,7 +3973,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 22",
+      "description": "Common model for database resource instance metadata. Next ID: 23",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -4002,6 +4016,20 @@
         "customMetadata": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
           "description": "Any custom metadata associated with the resource"
+        },
+        "edition": {
+          "description": "Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ENTERPRISE",
+            "EDITION_ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "Default, to make it consistent with instance edition enum.",
+            "Represents the enterprise edition.",
+            "Represents the enterprise plus edition."
+          ],
+          "type": "string"
         },
         "entitlements": {
           "description": "Entitlements associated with the resource",
@@ -4607,6 +4635,7 @@
           "type": "integer"
         },
         "retentionUnit": {
+          "deprecated": true,
           "description": "The unit that 'retained_backups' represents.",
           "enum": [
             "RETENTION_UNIT_UNSPECIFIED",
@@ -4626,6 +4655,11 @@
         },
         "timeBasedRetention": {
           "format": "google-duration",
+          "type": "string"
+        },
+        "timestampBasedRetentionTime": {
+          "description": "Timestamp based retention period i.e. 2024-05-01T00:00:00Z",
+          "format": "google-datetime",
           "type": "string"
         }
       },

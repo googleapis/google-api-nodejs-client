@@ -20,6 +20,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://securitycenter.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://securitycenter.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://securitycenter.eu.rep.googleapis.com/",
+      "location": "eu"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1993,7 +2003,7 @@
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20241018",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2291,6 +2301,10 @@
       "description": "Represents an Azure resource group.",
       "id": "AzureResourceGroup",
       "properties": {
+        "id": {
+          "description": "The ID of the Azure resource group.",
+          "type": "string"
+        },
         "name": {
           "description": "The name of the Azure resource group. This is not a UUID.",
           "type": "string"
@@ -4864,6 +4878,10 @@
       "description": "Represents an Azure resource group.",
       "id": "GoogleCloudSecuritycenterV2AzureResourceGroup",
       "properties": {
+        "id": {
+          "description": "The ID of the Azure resource group.",
+          "type": "string"
+        },
         "name": {
           "description": "The name of the Azure resource group. This is not a UUID.",
           "type": "string"
@@ -6484,6 +6502,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -6500,6 +6519,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -6551,6 +6571,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -6567,6 +6588,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -6663,6 +6685,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -6679,6 +6702,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -6730,6 +6754,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -6746,6 +6771,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -8024,6 +8050,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -8040,6 +8067,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -8091,6 +8119,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -8107,6 +8136,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"
@@ -8203,6 +8233,7 @@
               "ACCOUNT_ACCESS_REMOVAL",
               "STEAL_WEB_SESSION_COOKIE",
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "EVENT_TRIGGERED_EXECUTION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
               "UNSECURED_CREDENTIALS",
               "MODIFY_AUTHENTICATION_PROCESS",
@@ -8219,6 +8250,7 @@
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "CONTAINER_ADMINISTRATION_COMMAND",
+              "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
               "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
@@ -8270,6 +8302,7 @@
               "T1531",
               "T1539",
               "T1543",
+              "T1546",
               "T1548",
               "T1552",
               "T1556",
@@ -8286,6 +8319,7 @@
               "T1595",
               "T1595.001",
               "T1609",
+              "T1610",
               "T1611",
               "T1613",
               "T1649"

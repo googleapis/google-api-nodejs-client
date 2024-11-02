@@ -1324,7 +1324,7 @@
       }
     }
   },
-  "revision": "20240913",
+  "revision": "20241025",
   "rootUrl": "https://firebase.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -1436,7 +1436,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "description": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1569,7 +1569,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "description": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1705,7 +1705,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "description": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2020,7 +2020,7 @@
           "type": "string"
         },
         "immediate": {
-          "description": "Determines whether to _immediately_ delete the AndroidApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteAndroidApp.",
+          "description": "Determines whether to _immediately_ delete the AndroidApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteAndroidApp.",
           "type": "boolean"
         },
         "validateOnly": {
@@ -2042,7 +2042,7 @@
           "type": "string"
         },
         "immediate": {
-          "description": "Determines whether to _immediately_ delete the IosApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteIosApp",
+          "description": "Determines whether to _immediately_ delete the IosApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteIosApp",
           "type": "boolean"
         },
         "validateOnly": {
@@ -2064,7 +2064,7 @@
           "type": "string"
         },
         "immediate": {
-          "description": "Determines whether to _immediately_ delete the WebApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteWebApp",
+          "description": "Determines whether to _immediately_ delete the WebApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteWebApp",
           "type": "boolean"
         },
         "validateOnly": {
@@ -2267,7 +2267,7 @@
           "type": "string"
         },
         "expireTime": {
-          "description": "Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.",
+          "description": "Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"

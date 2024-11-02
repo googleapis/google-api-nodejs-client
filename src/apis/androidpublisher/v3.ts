@@ -1108,6 +1108,10 @@ export namespace androidpublisher_v3 {
      * A device needs to have all these system features to be included by the selector.
      */
     requiredSystemFeatures?: Schema$SystemFeature[];
+    /**
+     * Optional. The SoCs included by this selector. Only works for Android S+ devices.
+     */
+    systemOnChips?: Schema$SystemOnChip[];
   }
   /**
    * The device spec used to generate a system APK.
@@ -3269,6 +3273,19 @@ export namespace androidpublisher_v3 {
    * Information specific to cancellations initiated by Google system.
    */
   export interface Schema$SystemInitiatedCancellation {}
+  /**
+   * Representation of a System-on-Chip (SoC) of an Android device. Can be used to target S+ devices.
+   */
+  export interface Schema$SystemOnChip {
+    /**
+     * Required. The designer of the SoC, eg. "Google" Value of build property "ro.soc.manufacturer" https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER Required.
+     */
+    manufacturer?: string | null;
+    /**
+     * Required. The model of the SoC, eg. "Tensor" Value of build property "ro.soc.model" https://developer.android.com/reference/android/os/Build#SOC_MODEL Required.
+     */
+    model?: string | null;
+  }
   /**
    * Targeting details for a recovery action such as regions, android sdk levels, app versions etc.
    */

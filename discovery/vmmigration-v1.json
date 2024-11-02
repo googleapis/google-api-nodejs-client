@@ -2220,7 +2220,7 @@
       }
     }
   },
-  "revision": "20240912",
+  "revision": "20241013",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2430,6 +2430,21 @@
       "description": "Represent the source AWS VM details.",
       "id": "AwsSourceVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The VM architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "committedStorageBytes": {
           "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
@@ -2700,6 +2715,21 @@
       "description": "Represent the source Azure VM details.",
       "id": "AzureSourceVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The VM architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "committedStorageBytes": {
           "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
@@ -2741,6 +2771,20 @@
       "description": "AzureVmDetails describes a VM in Azure.",
       "id": "AzureVmDetails",
       "properties": {
+        "architecture": {
+          "description": "The CPU architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "type": "string"
+        },
         "bootOption": {
           "description": "The VM Boot Option.",
           "enum": [
@@ -5899,6 +5943,21 @@
       "description": "Represent the source Vmware VM details.",
       "id": "VmwareSourceVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The VM architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "committedStorageBytes": {
           "description": "Output only. The total size of the disks being migrated in bytes.",
           "format": "int64",
@@ -5940,6 +5999,21 @@
       "description": "VmwareVmDetails describes a VM in vCenter.",
       "id": "VmwareVmDetails",
       "properties": {
+        "architecture": {
+          "description": "Output only. The CPU architecture.",
+          "enum": [
+            "VM_ARCHITECTURE_UNSPECIFIED",
+            "VM_ARCHITECTURE_X86_FAMILY",
+            "VM_ARCHITECTURE_ARM64"
+          ],
+          "enumDescriptions": [
+            "The architecture is unknown.",
+            "The architecture is one of the x86 architectures.",
+            "The architecture is ARM64."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "bootOption": {
           "description": "Output only. The VM Boot Option.",
           "enum": [

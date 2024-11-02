@@ -1178,6 +1178,10 @@ export namespace chromemanagement_v1 {
      * Output only. Permissions of the installed app.
      */
     permissions?: string[] | null;
+    /**
+     * Output only. If available, the risk assessment data about this extension.
+     */
+    riskAssessment?: Schema$GoogleChromeManagementV1RiskAssessmentData;
   }
   /**
    * Kiosk app status report of a device. * Available for Kiosks * This field provides the app id and version number running on a kiosk device and the timestamp of when the report was last updated * Data for this field is controlled via policy: [ReportDeviceSessionStatus](https://chromeenterprise.google/policies/#ReportDeviceSessionStatus) * Data Collection Frequency: Only at Upload * Default Data Reporting Frequency: 3 hours - Policy Controlled: Yes * Cache: If the device is offline, the collected data is stored locally, and will be reported when the device is next online: No * Reported for affiliated users only: N/A * Granular permission needed: TELEMETRY_API_APPS_REPORT
@@ -1535,6 +1539,53 @@ export namespace chromemanagement_v1 {
      * The unique Directory API ID of the user who submitted the print job.
      */
     userId?: string | null;
+  }
+  /**
+   * Risk assessment for a Chrome extension.
+   */
+  export interface Schema$GoogleChromeManagementV1RiskAssessment {
+    /**
+     * Risk assessment for the extension. Currently, this is a numerical value, and its interpretation is specific to each risk assessment provider.
+     */
+    assessment?: string | null;
+    /**
+     * A URL that a user can navigate to for more information about the risk assessment.
+     */
+    detailsUrl?: string | null;
+    /**
+     * The version of the extension that this assessment applies to.
+     */
+    version?: string | null;
+  }
+  /**
+   * Risk assessment data about an extension/app.
+   */
+  export interface Schema$GoogleChromeManagementV1RiskAssessmentData {
+    /**
+     * Individual risk assessments.
+     */
+    entries?: Schema$GoogleChromeManagementV1RiskAssessmentEntry[];
+    /**
+     * Overall assessed risk level across all entries. This will be the highest risk level from all entries.
+     */
+    overallRiskLevel?: string | null;
+  }
+  /**
+   * One risk assessment entry.
+   */
+  export interface Schema$GoogleChromeManagementV1RiskAssessmentEntry {
+    /**
+     * The risk assessment provider from which this entry comes from.
+     */
+    provider?: string | null;
+    /**
+     * The details of the provider's risk assessment.
+     */
+    riskAssessment?: Schema$GoogleChromeManagementV1RiskAssessment;
+    /**
+     * The bucketed risk level for the risk assessment.
+     */
+    riskLevel?: string | null;
   }
   /**
    * Runtime counters retrieved from CPU. Currently the runtime counters telemetry is only supported by Intel vPro PSR on Gen 14+.
@@ -4122,11 +4173,11 @@ export namespace chromemanagement_v1 {
      */
     customer?: string;
     /**
-     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id * manifest_versions
+     * Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id * manifest_versions * risk_score
      */
     filter?: string;
     /**
-     * Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id * manifest_versions
+     * Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id * manifest_versions * risk_score
      */
     orderBy?: string;
     /**

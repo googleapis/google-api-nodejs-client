@@ -881,6 +881,7 @@ export namespace bigquery_v2 {
      * Optional. An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER; If you patch a dataset, then this field is overwritten by the patched dataset's access field. To add entities, you must supply the entire existing access array in addition to any new entities that you want to add.
      */
     access?: Array<{
+      condition?: Schema$Expr;
       dataset?: Schema$DatasetAccessEntry;
       domain?: string;
       groupByEmail?: string;
@@ -6004,6 +6005,10 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Datasets$Get extends StandardParameters {
     /**
+     * Optional. The version of the access policy schema to fetch. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for conditional access policy binding in datasets must specify version 3. Dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. This field will be maped to [IAM Policy version] (https://cloud.google.com/iam/docs/policies#versions) and will be used to fetch policy from IAM. If unset or if 0 or 1 value is used for dataset with conditional bindings, access entry with condition will have role string appended by 'withcond' string followed by a hash value. For example : { "access": [ { "role": "roles/bigquery.dataViewer_with_conditionalbinding_7a34awqsda", "userByEmail": "user@example.com", \} ] \} Please refer https://cloud.google.com/iam/docs/troubleshooting-withcond for more details.
+     */
+    accessPolicyVersion?: number;
+    /**
      * Required. Dataset ID of the requested dataset
      */
     datasetId?: string;
@@ -6017,6 +6022,10 @@ export namespace bigquery_v2 {
     projectId?: string;
   }
   export interface Params$Resource$Datasets$Insert extends StandardParameters {
+    /**
+     * Optional. The version of the provided access policy schema. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. This version refers to the schema version of the access policy and not the version of access policy. This field's value can be equal or more than the access policy schema provided in the request. For example, * Requests with conditional access policy binding in datasets must specify version 3. * But dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. If unset or if 0 or 1 value is used for dataset with conditional bindings, request will be rejected. This field will be maped to IAM Policy version (https://cloud.google.com/iam/docs/policies#versions) and will be used to set policy in IAM.
+     */
+    accessPolicyVersion?: number;
     /**
      * Required. Project ID of the new dataset
      */
@@ -6051,6 +6060,10 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Datasets$Patch extends StandardParameters {
     /**
+     * Optional. The version of the provided access policy schema. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. This version refers to the schema version of the access policy and not the version of access policy. This field's value can be equal or more than the access policy schema provided in the request. For example, * Operations updating conditional access policy binding in datasets must specify version 3. Some of the operations are : - Adding a new access policy entry with condition. - Removing an access policy entry with condition. - Updating an access policy entry with condition. * But dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. If unset or if 0 or 1 value is used for dataset with conditional bindings, request will be rejected. This field will be maped to IAM Policy version (https://cloud.google.com/iam/docs/policies#versions) and will be used to set policy in IAM.
+     */
+    accessPolicyVersion?: number;
+    /**
      * Required. Dataset ID of the dataset being updated
      */
     datasetId?: string;
@@ -6081,6 +6094,10 @@ export namespace bigquery_v2 {
     requestBody?: Schema$UndeleteDatasetRequest;
   }
   export interface Params$Resource$Datasets$Update extends StandardParameters {
+    /**
+     * Optional. The version of the provided access policy schema. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. This version refers to the schema version of the access policy and not the version of access policy. This field's value can be equal or more than the access policy schema provided in the request. For example, * Operations updating conditional access policy binding in datasets must specify version 3. Some of the operations are : - Adding a new access policy entry with condition. - Removing an access policy entry with condition. - Updating an access policy entry with condition. * But dataset with no conditional role bindings in access policy may specify any valid value or leave the field unset. If unset or if 0 or 1 value is used for dataset with conditional bindings, request will be rejected. This field will be maped to IAM Policy version (https://cloud.google.com/iam/docs/policies#versions) and will be used to set policy in IAM.
+     */
+    accessPolicyVersion?: number;
     /**
      * Required. Dataset ID of the dataset being updated
      */

@@ -219,6 +219,52 @@ export namespace drive_v3 {
     user?: Schema$User;
   }
   /**
+   * The Access Proposal resource for outstanding access proposals on a file
+   */
+  export interface Schema$AccessProposal {
+    /**
+     * The creation time
+     */
+    createTime?: string | null;
+    /**
+     * The file id that the proposal for access is on
+     */
+    fileId?: string | null;
+    /**
+     * The id of the access proposal
+     */
+    proposalId?: string | null;
+    /**
+     * The email address of the user that will receive permissions if accepted
+     */
+    recipientEmailAddress?: string | null;
+    /**
+     * The email address of the requesting user
+     */
+    requesterEmailAddress?: string | null;
+    /**
+     * The message that the requester added to the proposal
+     */
+    requestMessage?: string | null;
+    /**
+     * A wrapper for the role and view of an access proposal.
+     */
+    rolesAndViews?: Schema$AccessProposalRoleAndView[];
+  }
+  /**
+   * A wrapper for the role and view of an access proposal.
+   */
+  export interface Schema$AccessProposalRoleAndView {
+    /**
+     * The role that was proposed by the requester New values may be added in the future, but the following are currently possible: * `writer` * `commenter` * `reader`
+     */
+    role?: string | null;
+    /**
+     * Indicates the view for this access proposal. Only populated for proposals that belong to a view. `published` is the only supported value.
+     */
+    view?: string | null;
+  }
+  /**
    * The `apps` resource provides a list of apps that a user has installed, with information about each app's supported MIME types, file extensions, and other details. Some resource methods (such as `apps.get`) require an `appId`. Use the `apps.list` method to retrieve the ID for an installed application.
    */
   export interface Schema$App {
@@ -1177,6 +1223,19 @@ export namespace drive_v3 {
      * If true, the label will be removed from the file.
      */
     removeLabel?: boolean | null;
+  }
+  /**
+   * The response to an Access Proposal list request.
+   */
+  export interface Schema$ListAccessProposalsResponse {
+    /**
+     * The list of Access Proposals. This field is only populated in v3 and v3beta.
+     */
+    accessProposals?: Schema$AccessProposal[];
+    /**
+     * The continuation token for the next page of results. This will be absent if the end of the results list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -3627,8 +3686,10 @@ export namespace drive_v3 {
 
   export class Resource$Files {
     context: APIRequestContext;
+    accessproposals: Resource$Files$Accessproposals;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.accessproposals = new Resource$Files$Accessproposals(this.context);
     }
 
     /**
@@ -5146,6 +5207,237 @@ export namespace drive_v3 {
      * Request body metadata
      */
     requestBody?: Schema$Channel;
+  }
+
+  export class Resource$Files$Accessproposals {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List the AccessProposals on a file. Note: Only approvers are able to list AccessProposals on a file. If the user is not an approver, returns a 403.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Files$Accessproposals$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Files$Accessproposals$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccessProposalsResponse>;
+    list(
+      params: Params$Resource$Files$Accessproposals$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Files$Accessproposals$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccessProposalsResponse>,
+      callback: BodyResponseCallback<Schema$ListAccessProposalsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Files$Accessproposals$List,
+      callback: BodyResponseCallback<Schema$ListAccessProposalsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAccessProposalsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Files$Accessproposals$List
+        | BodyResponseCallback<Schema$ListAccessProposalsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccessProposalsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccessProposalsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccessProposalsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Files$Accessproposals$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Accessproposals$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/drive/v3/files/{fileId}/accessproposals').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['fileId'],
+        pathParams: ['fileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAccessProposalsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAccessProposalsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Used to approve or deny an Access Proposal.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resolve(
+      params: Params$Resource$Files$Accessproposals$Resolve,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resolve(
+      params?: Params$Resource$Files$Accessproposals$Resolve,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    resolve(
+      params: Params$Resource$Files$Accessproposals$Resolve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resolve(
+      params: Params$Resource$Files$Accessproposals$Resolve,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resolve(
+      params: Params$Resource$Files$Accessproposals$Resolve,
+      callback: BodyResponseCallback<void>
+    ): void;
+    resolve(callback: BodyResponseCallback<void>): void;
+    resolve(
+      paramsOrCallback?:
+        | Params$Resource$Files$Accessproposals$Resolve
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Files$Accessproposals$Resolve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Files$Accessproposals$Resolve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/drive/v3/files/{fileId}/accessproposals/{proposalId}:resolve'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['fileId', 'proposalId'],
+        pathParams: ['fileId', 'proposalId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Files$Accessproposals$List
+    extends StandardParameters {
+    /**
+     * Required. The id of the item the request is on.
+     */
+    fileId?: string;
+    /**
+     * Optional. The number of results per page
+     */
+    pageSize?: number;
+    /**
+     * Optional. The continuation token on the list of access requests.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Files$Accessproposals$Resolve
+    extends StandardParameters {
+    /**
+     * Required. The action to take on the AccessProposal.
+     */
+    action?: string;
+    /**
+     * Required. The id of the item the request is on.
+     */
+    fileId?: string;
+    /**
+     * Required. The id of the access proposal to resolve.
+     */
+    proposalId?: string;
+    /**
+     * Optional. The roles the approver has allowed, if any. Note: This field is required for the `ACCEPT` action.
+     */
+    role?: string[];
+    /**
+     * Optional. Whether to send an email to the requester when the AccessProposal is denied or accepted.
+     */
+    sendNotification?: boolean;
+    /**
+     * Optional. Indicates the view for this access proposal. This should only be set when the proposal belongs to a view. `published` is the only supported value.
+     */
+    view?: string;
   }
 
   export class Resource$Operation {

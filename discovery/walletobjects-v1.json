@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20241024",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -3955,6 +3955,18 @@
           ],
           "type": "string"
         },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
+        },
         "redemptionIssuers": {
           "description": "Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap.",
           "items": {
@@ -4247,6 +4259,18 @@
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -4762,6 +4786,18 @@
           ],
           "type": "string"
         },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
+        },
         "origin": {
           "$ref": "AirportInfo",
           "description": "Required. Origin airport."
@@ -5011,6 +5047,18 @@
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -5330,6 +5378,7 @@
             "GENERIC_HOME_INSURANCE",
             "GENERIC_ENTRY_TICKET",
             "GENERIC_RECEIPT",
+            "GENERIC_LOYALTY_CARD",
             "GENERIC_OTHER"
           ],
           "enumDescriptions": [
@@ -5345,6 +5394,7 @@
             "Home-insurance cards",
             "Entry tickets",
             "Receipts",
+            "Loyalty cards. Please note that it is advisable to use a dedicated Loyalty card pass type instead of this generic type. A dedicated loyalty card pass type offers more features and functionality than a generic pass type.",
             "Other type"
           ],
           "type": "string"
@@ -5668,6 +5718,18 @@
           ],
           "type": "string"
         },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
+        },
         "pinLabel": {
           "description": "The label to display for the PIN, such as \"4-digit PIN\".",
           "type": "string"
@@ -5902,6 +5964,18 @@
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -6504,6 +6578,18 @@
           ],
           "type": "string"
         },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
+        },
         "programLogo": {
           "$ref": "Image",
           "description": "Required. The logo of the loyalty program or company. This logo is displayed in both the details and list views of the app."
@@ -6757,6 +6843,18 @@
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -7458,6 +7556,18 @@
           ],
           "type": "string"
         },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
+        },
         "provider": {
           "description": "Required. The offer provider (either the aggregator name or merchant name). Recommended maximum length is 12 characters to ensure full string is displayed on smaller screens.",
           "type": "string"
@@ -7720,6 +7830,18 @@
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -8849,6 +8971,18 @@
           ],
           "type": "string"
         },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
+        },
         "redemptionIssuers": {
           "description": "Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap.",
           "items": {
@@ -9156,6 +9290,18 @@
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",

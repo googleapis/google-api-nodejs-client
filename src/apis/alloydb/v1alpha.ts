@@ -255,6 +255,10 @@ export namespace alloydb_v1alpha {
      */
     state?: string | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` "123/environment": "production", "123/costCenter": "marketing" ```
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * The backup type, which suggests the trigger for the backup.
      */
     type?: string | null;
@@ -456,6 +460,10 @@ export namespace alloydb_v1alpha {
      * Optional. Subscription type of the cluster.
      */
     subscriptionType?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` "123/environment": "production", "123/costCenter": "marketing" ```
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Output only. Metadata for free trial clusters
      */
@@ -678,19 +686,19 @@ export namespace alloydb_v1alpha {
    */
   export interface Schema$GoogleTypeTimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -1205,6 +1213,10 @@ export namespace alloydb_v1alpha {
      * Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.
      */
     pscEnabled?: boolean | null;
+    /**
+     * Output only. The project number that needs to be allowlisted on the network attachment to enable outbound connectivity.
+     */
+    serviceOwnedProjectNumber?: string | null;
   }
   /**
    * PscInstanceConfig contains PSC related configuration at an instance level.
@@ -1219,9 +1231,22 @@ export namespace alloydb_v1alpha {
      */
     pscDnsName?: string | null;
     /**
+     * Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. Currently we only support 0 or 1 PSC interface.
+     */
+    pscInterfaceConfigs?: Schema$PscInterfaceConfig[];
+    /**
      * Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`
      */
     serviceAttachmentLink?: string | null;
+  }
+  /**
+   * Configuration for setting up a PSC interface to enable outbound connectivity.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * The network attachment resource created in the consumer network to which the PSC interface will be linked. This is of the format: "projects/${CONSUMER_PROJECT\}/regions/${REGION\}/networkAttachments/${NETWORK_ATTACHMENT_NAME\}". The network attachment must be in the same region as the instance.
+     */
+    networkAttachmentResource?: string | null;
   }
   /**
    * A backup's position in a quantity-based retention queue, of backups with the same source cluster and type, with length, retention, specified by the backup's retention policy. Once the position is greater than the retention, the backup is eligible to be garbage collected. Example: 5 backups from the same source cluster and type with a quantity-based retention of 3 and denoted by backup_id (position, retention). Safe: backup_5 (1, 3), backup_4, (2, 3), backup_3 (3, 3). Awaiting garbage collection: backup_2 (4, 3), backup_1 (5, 3)
@@ -1554,7 +1579,7 @@ export namespace alloydb_v1alpha {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 22
+   * Common model for database resource instance metadata. Next ID: 23
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -1581,6 +1606,10 @@ export namespace alloydb_v1alpha {
      * Any custom metadata associated with the resource
      */
     customMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData;
+    /**
+     * Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.
+     */
+    edition?: string | null;
     /**
      * Entitlements associated with the resource
      */
@@ -1771,6 +1800,10 @@ export namespace alloydb_v1alpha {
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
+    /**
+     * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
+     */
+    timestampBasedRetentionTime?: string | null;
   }
   /**
    * Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.

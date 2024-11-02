@@ -215,7 +215,7 @@ export namespace verifiedaccess_v2 {
      */
     operatingSystem?: string | null;
     /**
-     * The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode.
+     * The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode. The signal is currently not available on MacOS 15 (Sequoia) and later.
      */
     osFirewall?: string | null;
     /**

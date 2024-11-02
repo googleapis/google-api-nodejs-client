@@ -947,7 +947,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20241009",
   "rootUrl": "https://playdeveloperreporting.googleapis.com/",
   "schemas": {
     "GooglePlayDeveloperReportingV1alpha1Anomaly": {
@@ -1133,6 +1133,13 @@
       "description": "A group of related ErrorReports received for an app. Similar error reports are grouped together into issues with a likely identical root cause. **Please note:** this resource is currently in Alpha. There could be changes to the issue grouping that would result in similar but more recent error reports being assigned to different issues. This could also cause some issues disappearing entirely and being replaced by new ones. **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app.",
       "id": "GooglePlayDeveloperReportingV1alpha1ErrorIssue",
       "properties": {
+        "annotations": {
+          "description": "List of annotations for an issue. Annotations provide additional information that may help in diagnosing and fixing the issue.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1alpha1IssueAnnotation"
+          },
+          "type": "array"
+        },
         "cause": {
           "description": "Cause of the issue. Depending on the type this can be either: * APPLICATION_NOT_RESPONDING: the type of ANR that occurred, e.g., 'Input dispatching timed out'. * CRASH: for Java unhandled exception errors, the type of the innermost exception that was thrown, e.g., IllegalArgumentException. For signals in native code, the signal that was raised, e.g. SIGSEGV.",
           "type": "string"
@@ -1319,6 +1326,25 @@
         "latestEndTime": {
           "$ref": "GoogleTypeDateTime",
           "description": "Latest end time for which data is available, for the aggregation period. The time is specified in the metric set's default timezone. *Note:* time ranges in TimelineSpec are represented as `start_time, end_time)`. For example, if the latest available timeline data point for a `DAILY` aggregation period is `2021-06-23 00:00:00 America/Los_Angeles`, the value of this field would be `2021-06-24 00:00:00 America/Los_Angeles` so it can be easily reused in [TimelineSpec.end_time."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1alpha1IssueAnnotation": {
+      "description": "Representation of an annotation message for an issue.",
+      "id": "GooglePlayDeveloperReportingV1alpha1IssueAnnotation",
+      "properties": {
+        "body": {
+          "description": "Contains the contents of the annotation message.",
+          "type": "string"
+        },
+        "category": {
+          "description": "Category that the annotation belongs to. An annotation will belong to a single category. Example categories: \"Potential fix\", \"Insight\".",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title for the annotation.",
+          "type": "string"
         }
       },
       "type": "object"

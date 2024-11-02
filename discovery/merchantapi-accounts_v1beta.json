@@ -265,7 +265,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. List of fields being updated.",
+              "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_name` - `adult_content` - `language_code` - `time_zone`",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -391,7 +391,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `black_owned` - `latino_owned` - `promotions_consent` - `small_business` - `veteran_owned` - `women_owned`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -454,7 +454,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `address` - `customer_service` - `korean_business_registration_number`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -476,7 +476,7 @@
         "emailPreferences": {
           "methods": {
             "getEmailPreferences": {
-              "description": "Returns the email preferences for a Merchant Center account user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
+              "description": "Returns the email preferences for a Merchant Center account user. This service only permits retrieving and updating email preferences for the authenticated user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.emailPreferences.getEmailPreferences",
@@ -517,7 +517,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `news_and_tips`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -636,7 +636,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `uri`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1195,7 +1195,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a Merchant Center account user. Executing this method requires admin access.",
+              "description": "Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account. Also a user is protected from deletion if it is managed by Business Manager\"",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}",
               "httpMethod": "DELETE",
               "id": "merchantapi.accounts.users.delete",
@@ -1297,7 +1297,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `access_rights`",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1417,7 +1417,7 @@
       }
     }
   },
-  "revision": "20241004",
+  "revision": "20241029",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Accepted": {
@@ -1440,7 +1440,7 @@
       "type": "object"
     },
     "Account": {
-      "description": "An account.",
+      "description": "The `Account` message represents a merchant's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a multi-client account (MCA) structure. In an MCA setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.",
       "id": "Account",
       "properties": {
         "accountId": {
@@ -1538,7 +1538,7 @@
           "description": "The provider is an [aggregator](https://support.google.com/merchants/answer/188487) for the account. Payload for service type Account Aggregation."
         },
         "provider": {
-          "description": "Optional. The provider of the service. Format: `accounts/{account}`",
+          "description": "Required. The provider of the service. Format: `accounts/{account}`",
           "type": "string"
         }
       },
@@ -1671,12 +1671,12 @@
       "type": "object"
     },
     "BusinessInfo": {
-      "description": "Collection of information related to a business.",
+      "description": "The `BusinessInfo` message contains essential information about a merchant's business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.",
       "id": "BusinessInfo",
       "properties": {
         "address": {
           "$ref": "PostalAddress",
-          "description": "Optional. The address of the business."
+          "description": "Optional. The address of the business. Only `region_code`, `address_lines`, `postal_code`, `administrative_area` and `locality` fields are supported. All other fields are ignored."
         },
         "customerService": {
           "$ref": "CustomerService",
@@ -1714,7 +1714,7 @@
       "type": "object"
     },
     "CarrierRate": {
-      "description": "A list of carrier rates that can be referred to by `main_table` or `single_value`.",
+      "description": "A list of carrier rates that can be referred to by `main_table` or `single_value`. Supported carrier services are defined in https://support.google.com/merchants/answer/12577710?hl=en&ref_topic=12570808&sjid=10662598224319463032-NC#zippy=%2Cdelivery-cost-rate-type%2Ccarrier-rate-au-de-uk-and-us-only.",
       "id": "CarrierRate",
       "properties": {
         "carrier": {
@@ -1747,7 +1747,12 @@
     "ClaimHomepageRequest": {
       "description": "Request message for the `ClaimHomepage` method.",
       "id": "ClaimHomepageRequest",
-      "properties": {},
+      "properties": {
+        "overwrite": {
+          "description": "Optional. When set to `true`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "CreateAndConfigureAccountRequest": {
@@ -2055,7 +2060,7 @@
       "type": "object"
     },
     "Homepage": {
-      "description": "A store's homepage.",
+      "description": "The `Homepage` message represents a merchant's store homepage within the system. A merchant's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the merchant to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).",
       "id": "Homepage",
       "properties": {
         "claimed": {
@@ -2750,6 +2755,11 @@
           },
           "type": "array"
         },
+        "expirationTime": {
+          "description": "The product expiration time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",
           "type": "string"
@@ -3191,7 +3201,7 @@
       "type": "object"
     },
     "TermsOfService": {
-      "description": "A `TermsOfService`.",
+      "description": "The `TermsOfService` message represents a specific version of the terms of service that merchants must accept to access certain features or services (see https://support.google.com/merchants/answer/160173). This message is important for the onboarding process, ensuring that merchants agree to the necessary legal agreements for using the service. Merchants can retrieve the latest terms of service for a given `kind` and `region` through `RetrieveLatestTermsOfService`, and accept them as required through `AcceptTermsOfService`.",
       "id": "TermsOfService",
       "properties": {
         "external": {
@@ -3341,7 +3351,7 @@
       "type": "object"
     },
     "User": {
-      "description": "A [user](https://support.google.com/merchants/answer/12160472).",
+      "description": "The `User` message represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).",
       "id": "User",
       "properties": {
         "accessRights": {
@@ -3445,7 +3455,7 @@
       "id": "WarehouseBasedDeliveryTime",
       "properties": {
         "carrier": {
-          "description": "Required. Carrier, such as `\"UPS\"` or `\"Fedex\"`.",
+          "description": "Required. Carrier, such as `\"UPS\"` or `\"Fedex\"`. [supported carriers](https://support.google.com/merchants/answer/7050921#zippy=%2Ccarrier-rates-au-de-uk-and-us-only)",
           "type": "string"
         },
         "carrierService": {

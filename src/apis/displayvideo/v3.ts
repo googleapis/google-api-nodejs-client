@@ -306,13 +306,75 @@ export namespace displayvideo_v3 {
     assignedTargetingOption?: Schema$AssignedTargetingOption;
   }
   /**
-   * Details of Adloox settings.
+   * Details of Adloox brand safety settings.
    */
   export interface Schema$Adloox {
     /**
-     * Adloox's brand safety settings.
+     * Optional. Adult and Explicit Sexual Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    adultExplicitSexualContent?: string | null;
+    /**
+     * Optional. Arms and Ammunition Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    armsAmmunitionContent?: string | null;
+    /**
+     * Optional. Crime and Harmful Acts Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    crimeHarmfulActsIndividualsSocietyHumanRightsViolationsContent?:
+      | string
+      | null;
+    /**
+     * Optional. Death, Injury, or Military Conflict Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    deathInjuryMilitaryConflictContent?: string | null;
+    /**
+     * Optional. Debated Sensitive Social Issue Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    debatedSensitiveSocialIssueContent?: string | null;
+    /**
+     * Optional. IAB viewability threshold for display ads.
+     */
+    displayIabViewability?: string | null;
+    /**
+     * Adloox categories to exclude.
      */
     excludedAdlooxCategories?: string[] | null;
+    /**
+     * Optional. Adloox's fraud IVT MFA categories to exclude.
+     */
+    excludedFraudIvtMfaCategories?: string[] | null;
+    /**
+     * Optional. Hate Speech and Acts of Aggression Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    hateSpeechActsAggressionContent?: string | null;
+    /**
+     * Optional. Illegal Drugs/Alcohol Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    illegalDrugsTobaccoEcigarettesVapingAlcoholContent?: string | null;
+    /**
+     * Optional. Misinformation Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    misinformationContent?: string | null;
+    /**
+     * Optional. Obscenity and Profanity Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    obscenityProfanityContent?: string | null;
+    /**
+     * Optional. Online Piracy Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    onlinePiracyContent?: string | null;
+    /**
+     * Optional. Spam or Harmful Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    spamHarmfulContent?: string | null;
+    /**
+     * Optional. Terrorism Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.
+     */
+    terrorismContent?: string | null;
+    /**
+     * Optional. IAB viewability threshold for video ads.
+     */
+    videoIabViewability?: string | null;
   }
   /**
    * Additional URLs related to the ad, including beacons.
@@ -340,7 +402,7 @@ export namespace displayvideo_v3 {
      */
     advertiserId?: string | null;
     /**
-     * Optional. Required. Billing related settings of the advertiser.
+     * Required. Billing related settings of the advertiser.
      */
     billingConfig?: Schema$AdvertiserBillingConfig;
     /**
@@ -406,7 +468,7 @@ export namespace displayvideo_v3 {
    */
   export interface Schema$AdvertiserBillingConfig {
     /**
-     * Optional. The ID of a billing profile assigned to the advertiser.
+     * Required. The ID of a billing profile assigned to the advertiser.
      */
     billingProfileId?: string | null;
   }
