@@ -4732,7 +4732,7 @@
       }
     }
   },
-  "revision": "20241003",
+  "revision": "20241016",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6084,6 +6084,13 @@
           "description": "A device needs to have all these system features to be included by the selector.",
           "items": {
             "$ref": "SystemFeature"
+          },
+          "type": "array"
+        },
+        "systemOnChips": {
+          "description": "Optional. The SoCs included by this selector. Only works for Android S+ devices.",
+          "items": {
+            "$ref": "SystemOnChip"
           },
           "type": "array"
         }
@@ -9129,6 +9136,21 @@
       "description": "Information specific to cancellations initiated by Google system.",
       "id": "SystemInitiatedCancellation",
       "properties": {},
+      "type": "object"
+    },
+    "SystemOnChip": {
+      "description": "Representation of a System-on-Chip (SoC) of an Android device. Can be used to target S+ devices.",
+      "id": "SystemOnChip",
+      "properties": {
+        "manufacturer": {
+          "description": "Required. The designer of the SoC, eg. \"Google\" Value of build property \"ro.soc.manufacturer\" https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER Required.",
+          "type": "string"
+        },
+        "model": {
+          "description": "Required. The model of the SoC, eg. \"Tensor\" Value of build property \"ro.soc.model\" https://developer.android.com/reference/android/os/Build#SOC_MODEL Required.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Targeting": {
