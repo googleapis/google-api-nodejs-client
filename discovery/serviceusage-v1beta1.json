@@ -964,7 +964,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20241025",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AddEnableRulesMetadata": {
@@ -2618,6 +2618,171 @@
     "GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata": {
       "description": "Metadata for the `UpdateConsumerPolicy` method.",
       "id": "GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaAnalysis": {
+      "description": "A message to group the analysis information.",
+      "id": "GoogleApiServiceusageV2betaAnalysis",
+      "properties": {
+        "analysis": {
+          "$ref": "GoogleApiServiceusageV2betaAnalysisResult",
+          "description": "Output only. Analysis result of updating a policy.",
+          "readOnly": true
+        },
+        "analysisType": {
+          "description": "Output only. The type of analysis.",
+          "enum": [
+            "ANALYSIS_TYPE_UNSPECIFIED",
+            "ANALYSIS_TYPE_DEPENDENCY",
+            "ANALYSIS_TYPE_RESOURCE_USAGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified analysis type. Do not use.",
+            "The analysis of service dependencies.",
+            "The analysis of service resource usage."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The user friendly display name of the analysis type. E.g. service dependency analysis, service resource usage analysis, etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "service": {
+          "description": "The names of the service that has analysis result of warnings or blockers. Example: `services/storage.googleapis.com`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaAnalysisResult": {
+      "description": "An analysis result including blockers and warnings.",
+      "id": "GoogleApiServiceusageV2betaAnalysisResult",
+      "properties": {
+        "blockers": {
+          "description": "Blocking information that would prevent the policy changes at runtime.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaImpact"
+          },
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Warning information indicating that the policy changes might be unsafe, but will not block the changes at runtime.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaImpact"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata": {
+      "description": "Metadata for the `AnalyzeConsumerPolicy` method.",
+      "id": "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse": {
+      "description": "The response of analyzing a consumer policy update.",
+      "id": "GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse",
+      "properties": {
+        "analysis": {
+          "description": "The list of analyses returned from performing the intended policy update analysis. The analysis is grouped by service name and different analysis types. The empty analysis list means that the consumer policy can be updated without any warnings or blockers.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaAnalysis"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaConsumerPolicy": {
+      "description": "Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.",
+      "id": "GoogleApiServiceusageV2betaConsumerPolicy",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enableRules": {
+          "description": "Enable rules define usable services, groups, and categories. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.",
+          "items": {
+            "$ref": "GoogleApiServiceusageV2betaEnableRule"
+          },
+          "type": "array"
+        },
+        "etag": {
+          "description": "Output only. An opaque tag indicating the current version of the policy, used for concurrency control.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the policy was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaEnableRule": {
+      "description": "The consumer policy rule that defines enabled services, groups, and categories.",
+      "id": "GoogleApiServiceusageV2betaEnableRule",
+      "properties": {
+        "services": {
+          "description": "The names of the services that are enabled. Example: `services/storage.googleapis.com`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaImpact": {
+      "description": "A message to group impacts of updating a policy.",
+      "id": "GoogleApiServiceusageV2betaImpact",
+      "properties": {
+        "detail": {
+          "description": "Output only. User friendly impact detail in a free form message.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "impactType": {
+          "description": "Output only. The type of impact.",
+          "enum": [
+            "IMPACT_TYPE_UNSPECIFIED",
+            "DEPENDENCY_MISSING_DEPENDENCIES"
+          ],
+          "enumDescriptions": [
+            "Reserved Blocks (Block n contains codes from 100n to 100(n+1) -1 Block 0 - Special/Admin codes Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY Block 2 - Impact Type of ANALYSIS_TYPE_RESOURCE_USAGE ...",
+            "Block 1 - Impact Type of ANALYSIS_TYPE_DEPENDENCY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata": {
+      "description": "Metadata for the `UpdateConsumerPolicy` method.",
+      "id": "GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata",
       "properties": {},
       "type": "object"
     },

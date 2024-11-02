@@ -1260,6 +1260,108 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata {}
   /**
+   * A message to group the analysis information.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalysis {
+    /**
+     * Output only. Analysis result of updating a policy.
+     */
+    analysis?: Schema$GoogleApiServiceusageV2betaAnalysisResult;
+    /**
+     * Output only. The type of analysis.
+     */
+    analysisType?: string | null;
+    /**
+     * Output only. The user friendly display name of the analysis type. E.g. service dependency analysis, service resource usage analysis, etc.
+     */
+    displayName?: string | null;
+    /**
+     * The names of the service that has analysis result of warnings or blockers. Example: `services/storage.googleapis.com`.
+     */
+    service?: string | null;
+  }
+  /**
+   * An analysis result including blockers and warnings.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalysisResult {
+    /**
+     * Blocking information that would prevent the policy changes at runtime.
+     */
+    blockers?: Schema$GoogleApiServiceusageV2betaImpact[];
+    /**
+     * Warning information indicating that the policy changes might be unsafe, but will not block the changes at runtime.
+     */
+    warnings?: Schema$GoogleApiServiceusageV2betaImpact[];
+  }
+  /**
+   * Metadata for the `AnalyzeConsumerPolicy` method.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata {}
+  /**
+   * The response of analyzing a consumer policy update.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse {
+    /**
+     * The list of analyses returned from performing the intended policy update analysis. The analysis is grouped by service name and different analysis types. The empty analysis list means that the consumer policy can be updated without any warnings or blockers.
+     */
+    analysis?: Schema$GoogleApiServiceusageV2betaAnalysis[];
+  }
+  /**
+   * Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaConsumerPolicy {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.
+     */
+    createTime?: string | null;
+    /**
+     * Enable rules define usable services, groups, and categories. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.
+     */
+    enableRules?: Schema$GoogleApiServiceusageV2betaEnableRule[];
+    /**
+     * Output only. An opaque tag indicating the current version of the policy, used for concurrency control.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time the policy was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The consumer policy rule that defines enabled services, groups, and categories.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaEnableRule {
+    /**
+     * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
+     */
+    services?: string[] | null;
+  }
+  /**
+   * A message to group impacts of updating a policy.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaImpact {
+    /**
+     * Output only. User friendly impact detail in a free form message.
+     */
+    detail?: string | null;
+    /**
+     * Output only. The type of impact.
+     */
+    impactType?: string | null;
+  }
+  /**
+   * Metadata for the `UpdateConsumerPolicy` method.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata {}
+  /**
    * Settings for Go client libraries.
    */
   export interface Schema$GoSettings {
