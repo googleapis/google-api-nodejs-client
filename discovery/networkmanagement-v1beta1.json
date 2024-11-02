@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241016",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -783,6 +783,7 @@
             "PERMISSION_DENIED",
             "PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS",
             "PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS",
+            "PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS",
             "NO_SOURCE_LOCATION",
             "INVALID_ARGUMENT",
             "TRACE_TOO_LONG",
@@ -839,6 +840,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -857,6 +859,7 @@
             "Aborted because user lacks permission to access all or part of the network configurations required to run the test.",
             "Aborted because user lacks permission to access Cloud NAT configs required to run the test.",
             "Aborted because user lacks permission to access Network endpoint group endpoint configs required to run the test.",
+            "Aborted because user lacks permission to access Cloud Router configs required to run the test.",
             "Aborted because no valid source or destination endpoint is derived from the input test request.",
             "Aborted because the source or destination endpoint specified in the request is invalid. Some examples: - The request might contain malformed resource URI, project ID, or IP address. - The request might contain inconsistent information (for example, the request might include both the instance and the network, but the instance might not have a NIC in that network).",
             "Aborted because the number of steps in the trace exceeds a certain limit. It might be caused by a routing loop.",
@@ -1064,11 +1067,6 @@
         },
         "location": {
           "description": "Location in which this revision is deployed.",
-          "type": "string"
-        },
-        "serviceName": {
-          "deprecated": true,
-          "description": "ID of Cloud Run Service this revision belongs to. Was never set, is not exported to v1 proto and public protos. Do not export to v1beta1 public proto.",
           "type": "string"
         },
         "serviceUri": {
@@ -1410,7 +1408,7 @@
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
             "Packet sent to Cloud Nat without active NAT IPs.",
             "Packet is stuck in a routing loop.",
-            "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces.",
+            "Packet is dropped inside a Google-managed service due to being delivered in return trace to an endpoint that doesn't match the endpoint the packet was sent from in forward trace. Used only for return traces.",
             "Packet is dropped due to a load balancer backend instance not having a network interface in the network expected by the load balancer.",
             "Packet is dropped due to a backend service named port not being defined on the instance group level.",
             "Packet is dropped due to a destination IP range being part of a Private NAT IP range.",
@@ -3332,6 +3330,21 @@
             "When ENABLED, this configuration will generate logs.",
             "When DISABLED, this configuration will not generate logs."
           ],
+          "type": "string"
+        },
+        "targetResourceState": {
+          "description": "Output only. A diagnostic bit - describes the state of the configured target resource for diagnostic purposes.",
+          "enum": [
+            "TARGET_RESOURCE_STATE_UNSPECIFIED",
+            "TARGET_RESOURCE_EXISTS",
+            "TARGET_RESOURCE_DOES_NOT_EXIST"
+          ],
+          "enumDescriptions": [
+            "Unspecified target resource state.",
+            "Indicates that the target resource exists.",
+            "Indicates that the target resource does not exist."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {

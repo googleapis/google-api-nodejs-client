@@ -274,10 +274,6 @@ export namespace networkmanagement_v1beta1 {
      */
     location?: string | null;
     /**
-     * ID of Cloud Run Service this revision belongs to. Was never set, is not exported to v1 proto and public protos. Do not export to v1beta1 public proto.
-     */
-    serviceName?: string | null;
-    /**
      * URI of Cloud Run service this revision belongs to.
      */
     serviceUri?: string | null;
@@ -1650,6 +1646,10 @@ export namespace networkmanagement_v1beta1 {
      * Optional. The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled.
      */
     state?: string | null;
+    /**
+     * Output only. A diagnostic bit - describes the state of the configured target resource for diagnostic purposes.
+     */
+    targetResourceState?: string | null;
     /**
      * Output only. The time the config was updated.
      */
