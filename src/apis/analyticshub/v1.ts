@@ -990,6 +990,10 @@ export namespace analyticshub_v1 {
      */
     destination?: string | null;
     /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     */
+    destinationDataset?: Schema$DestinationDataset;
+    /**
      * Email of the subscriber.
      */
     subscriberContact?: string | null;
