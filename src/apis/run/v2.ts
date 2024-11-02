@@ -133,7 +133,7 @@ export namespace run_v2 {
      */
     breakglassJustification?: string | null;
     /**
-     * Optional. The path to a binary authorization policy. Format: projects/{project\}/platforms/cloudRun/{policy-name\}
+     * Optional. The path to a binary authorization policy. Format: `projects/{project\}/platforms/cloudRun/{policy-name\}`
      */
     policy?: string | null;
     /**
@@ -565,6 +565,10 @@ export namespace run_v2 {
      * Cloud Storage Bucket name.
      */
     bucket?: string | null;
+    /**
+     * A list of additional flags to pass to the gcsfuse CLI. Options should be specified without the leading "--".
+     */
+    mountOptions?: string[] | null;
     /**
      * If true, the volume will be mounted as read only for all mounts.
      */
@@ -1111,7 +1115,7 @@ export namespace run_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, defaults to 80 when requested CPU \>= 1 and defaults to 1 when requested CPU < 1.
+     * Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, defaults to 80 when requested `CPU \>= 1` and defaults to 1 when requested `CPU < 1`.
      */
     maxInstanceRequestConcurrency?: number | null;
     /**
@@ -1263,7 +1267,7 @@ export namespace run_v2 {
      */
     ingress?: string | null;
     /**
-     * Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This setting should not be used with external ingress.
+     * Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This feature is available by invitation only. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.
      */
     invokerIamDisabled?: boolean | null;
     /**
@@ -1344,7 +1348,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2ServiceMesh {
     /**
-     * The Mesh resource name. Format: projects/{project\}/locations/global/meshes/{mesh\}, where {project\} can be project id or number.
+     * The Mesh resource name. Format: `projects/{project\}/locations/global/meshes/{mesh\}`, where `{project\}` can be project id or number.
      */
     mesh?: string | null;
   }
@@ -1407,7 +1411,7 @@ export namespace run_v2 {
      */
     tags?: string[] | null;
     /**
-     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where {project\} and {region\} are the project id and region respectively where the worker pool is defined and {workerPool\} is the short name of the worker pool.
+     * Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project\}/locations/{region\}/workerPools/{workerPool\}` where `{project\}` and `{region\}` are the project id and region respectively where the worker pool is defined and `{workerPool\}` is the short name of the worker pool.
      */
     workerPool?: string | null;
   }
@@ -1726,7 +1730,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunV2VpcAccess {
     /**
-     * VPC Access connector name. Format: projects/{project\}/locations/{location\}/connectors/{connector\}, where {project\} can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
+     * VPC Access connector name. Format: `projects/{project\}/locations/{location\}/connectors/{connector\}`, where `{project\}` can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.
      */
     connector?: string | null;
     /**
@@ -3369,7 +3373,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Builds$Submit
     extends StandardParameters {
     /**
-     * Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: projects/{project\}/locations/{location\}
+     * Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
 
