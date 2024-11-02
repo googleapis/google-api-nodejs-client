@@ -93,7 +93,7 @@
       "location": "us-west4"
     }
   ],
-  "etag": "\"3133363239393031373133303332303839383336\"",
+  "etag": "\"3132333635343336333933383332343134323139\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/cloud_storage-16.png",
     "x32": "https://www.google.com/images/icons/product/cloud_storage-32.png"
@@ -3869,6 +3869,38 @@
     },
     "operations": {
       "methods": {
+        "advanceRelocateBucket": {
+          "description": "Starts asynchronous advancement of the relocate bucket operation in the case of required write downtime, to allow it to lock the bucket at the source location, and proceed with the bucket location swap. The server makes a best effort to advance the relocate bucket operation, but success is not guaranteed.",
+          "httpMethod": "POST",
+          "id": "storage.buckets.operations.advanceRelocateBucket",
+          "parameterOrder": [
+            "bucket",
+            "operationId"
+          ],
+          "parameters": {
+            "bucket": {
+              "description": "Name of the bucket to advance the relocate for.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "operationId": {
+              "description": "ID of the operation resource.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "b/{bucket}/operations/{operationId}/advanceRelocateBucket",
+          "request": {
+            "$ref": "AdvanceRelocateBucketOperationRequest"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/devstorage.full_control",
+            "https://www.googleapis.com/auth/devstorage.read_write"
+          ]
+        },
         "cancel": {
           "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed.",
           "httpMethod": "POST",
@@ -4224,9 +4256,26 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20241008",
   "rootUrl": "https://storage.googleapis.com/",
   "schemas": {
+    "AdvanceRelocateBucketOperationRequest": {
+      "description": "An AdvanceRelocateBucketOperation request.",
+      "id": "AdvanceRelocateBucketOperationRequest",
+      "properties": {
+        "expireTime": {
+          "description": "Specifies the time when the relocation will revert to the sync stage if the relocation hasn't succeeded.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Specifies the duration after which the relocation will revert to the sync stage if the relocation hasn't succeeded. Optional, if not supplied, a default value of 12h will be used.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AnywhereCache": {
       "description": "An Anywhere Cache instance.",
       "id": "AnywhereCache",
