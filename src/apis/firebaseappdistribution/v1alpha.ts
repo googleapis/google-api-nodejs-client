@@ -175,6 +175,14 @@ export namespace firebaseappdistribution_v1alpha {
      * A goal to be accomplished by the AI
      */
     goal?: string | null;
+    /**
+     * Optional. Hint text containing suggestions to help the agent accomplish the goal
+     */
+    hint?: string | null;
+    /**
+     * Optional. A description of criteria the agent should use to determine if the goal has been successfully completed
+     */
+    successCriteria?: string | null;
   }
   /**
    * Captures the results of an AiStep
@@ -334,6 +342,10 @@ export namespace firebaseappdistribution_v1alpha {
    * An interaction with the device, such as a tap, text entry, wait, etc.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteraction {
+    /**
+     * Output only. Key code for a key event action.
+     */
+    keyCode?: string | null;
     /**
      * Output only. The screenshot used in the context of this action. The screen may have changed before the action was actually taken.
      */
@@ -578,6 +590,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     deviceExecutions?: Schema$GoogleFirebaseAppdistroV1alphaDeviceExecution[];
     /**
+     * Optional. Display name of the release test. Required if the release test is created with multiple goals.
+     */
+    displayName?: string | null;
+    /**
      * Optional. Input only. Login credentials for the test. Input only.
      */
     loginCredential?: Schema$GoogleFirebaseAppdistroV1alphaLoginCredential;
@@ -658,6 +674,10 @@ export namespace firebaseappdistribution_v1alpha {
    * Configuration for automated tests
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaTestConfig {
+    /**
+     * Optional. Display name of the AI driven test. Required if the release test is created with multiple goals.
+     */
+    displayName?: string | null;
     /**
      * Identifier. The name of the test configuration resource. Format: `projects/{project_number\}/apps/{app_id\}/testConfig`
      */
@@ -2383,6 +2403,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Required. The name of the release resource, which is the parent of the tests Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
      */
     parent?: string;
+    /**
+     * Optional. The requested view on the returned ReleaseTests. Defaults to the basic view.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Testers {
