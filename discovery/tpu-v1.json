@@ -659,7 +659,7 @@
       }
     }
   },
-  "revision": "20230803",
+  "revision": "20241009",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -968,7 +968,8 @@
             "TERMINATED",
             "HIDING",
             "HIDDEN",
-            "UNHIDING"
+            "UNHIDING",
+            "UNKNOWN"
           ],
           "enumDescriptions": [
             "TPU node state is not known/set.",
@@ -985,7 +986,8 @@
             "TPU node has been terminated due to maintenance or has reached the end of its life cycle (for preemptible nodes).",
             "TPU node is currently hiding.",
             "TPU node has been hidden.",
-            "TPU node is currently unhiding."
+            "TPU node is currently unhiding.",
+            "TPU node has unknown state after a failed repair."
           ],
           "readOnly": true,
           "type": "string"

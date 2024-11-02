@@ -965,7 +965,7 @@
       }
     }
   },
-  "revision": "20240916",
+  "revision": "20241017",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1461,6 +1461,20 @@
         "nodeIdPrefix": {
           "description": "Prefix of node_ids in case of multi-node request Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. If node_count = 3 and node_id_prefix = \"np\", node ids of nodes created will be \"np-0\", \"np-1\", \"np-2\". If this field is not provided we use queued_resource_id as the node_id_prefix.",
           "type": "string"
+        },
+        "workloadType": {
+          "description": "Optional. The workload type for the multi-node request.",
+          "enum": [
+            "WORKLOAD_TYPE_UNSPECIFIED",
+            "THROUGHPUT_OPTIMIZED",
+            "AVAILABILITY_OPTIMIZED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "All of the nodes are available most of the time. Recommended for training workloads.",
+            "Most of the nodes are available all of the time. Recommended for serving workloads."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1681,7 +1695,8 @@
             "TERMINATED",
             "HIDING",
             "HIDDEN",
-            "UNHIDING"
+            "UNHIDING",
+            "UNKNOWN"
           ],
           "enumDescriptions": [
             "TPU node state is not known/set.",
@@ -1698,7 +1713,8 @@
             "TPU node has been terminated due to maintenance or has reached the end of its life cycle (for preemptible nodes).",
             "TPU node is currently hiding.",
             "TPU node has been hidden.",
-            "TPU node is currently unhiding."
+            "TPU node is currently unhiding.",
+            "TPU node has unknown state after a failed repair."
           ],
           "readOnly": true,
           "type": "string"
