@@ -273,6 +273,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$AwsSourceVmDetails {
     /**
+     * Output only. The VM architecture.
+     */
+    architecture?: string | null;
+    /**
      * Output only. The total size of the disks being migrated in bytes.
      */
     committedStorageBytes?: string | null;
@@ -430,6 +434,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$AzureSourceVmDetails {
     /**
+     * Output only. The VM architecture.
+     */
+    architecture?: string | null;
+    /**
      * Output only. The total size of the disks being migrated in bytes.
      */
     committedStorageBytes?: string | null;
@@ -450,6 +458,10 @@ export namespace vmmigration_v1alpha1 {
    * AzureVmDetails describes a VM in Azure.
    */
   export interface Schema$AzureVmDetails {
+    /**
+     * The CPU architecture.
+     */
+    architecture?: string | null;
     /**
      * The VM Boot Option.
      */
@@ -2714,6 +2726,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$VmwareSourceVmDetails {
     /**
+     * Output only. The VM architecture.
+     */
+    architecture?: string | null;
+    /**
      * Output only. The total size of the disks being migrated in bytes.
      */
     committedStorageBytes?: string | null;
@@ -2734,6 +2750,10 @@ export namespace vmmigration_v1alpha1 {
    * VmwareVmDetails describes a VM in vCenter.
    */
   export interface Schema$VmwareVmDetails {
+    /**
+     * Output only. The CPU architecture.
+     */
+    architecture?: string | null;
     /**
      * Output only. The VM Boot Option.
      */
