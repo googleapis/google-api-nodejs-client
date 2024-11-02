@@ -1168,7 +1168,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20241031",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -3087,7 +3087,7 @@
             "Personal usage restriction is not specified",
             "Personal usage is allowed",
             "Personal usage is disallowed",
-            "Device is not associated with a single user, and thus both personal usage and corporate identity authentication are not expected."
+            "Device is not associated with a single user, and thus both personal usage and corporate identity authentication are not expected. Important: This setting is mandatory for dedicated device enrollment and it is a breaking change. This change needs to be implemented before January 2025.For additional details see the dedicated device provisioning guide (https://developers.google.com/android/management/provision-device#company-owned_devices_for_work_use_only). "
           ],
           "type": "string"
         },
@@ -3216,7 +3216,7 @@
       "type": "object"
     },
     "ExtensionConfig": {
-      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 13 and above.",
+      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 11 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 11 and above.",
       "id": "ExtensionConfig",
       "properties": {
         "notificationReceiver": {
@@ -5800,7 +5800,7 @@
             "Personal usage restriction is not specified",
             "Personal usage is allowed",
             "Personal usage is disallowed",
-            "Device is not associated with a single user, and thus both personal usage and corporate identity authentication are not expected."
+            "Device is not associated with a single user, and thus both personal usage and corporate identity authentication are not expected. Important: This setting is mandatory for dedicated device enrollment and it is a breaking change. This change needs to be implemented before January 2025.For additional details see the dedicated device provisioning guide (https://developers.google.com/android/management/provision-device#company-owned_devices_for_work_use_only). "
           ],
           "type": "string"
         },
