@@ -138,6 +138,73 @@ export namespace places_v1 {
     low?: Schema$GoogleTypeLatLng;
   }
   /**
+   * A relational description of a location. Includes a ranked set of nearby landmarks and precise containing areas and their relationship to the target location.
+   */
+  export interface Schema$GoogleMapsPlacesV1AddressDescriptor {
+    /**
+     * A ranked list of containing or adjacent areas. The most recognizable and precise areas are ranked first.
+     */
+    areas?: Schema$GoogleMapsPlacesV1AddressDescriptorArea[];
+    /**
+     * A ranked list of nearby landmarks. The most recognizable and nearby landmarks are ranked first.
+     */
+    landmarks?: Schema$GoogleMapsPlacesV1AddressDescriptorLandmark[];
+  }
+  /**
+   * Area information and the area's relationship with the target location. Areas includes precise sublocality, neighborhoods, and large compounds that are useful for describing a location.
+   */
+  export interface Schema$GoogleMapsPlacesV1AddressDescriptorArea {
+    /**
+     * Defines the spatial relationship between the target location and the area.
+     */
+    containment?: string | null;
+    /**
+     * The area's display name.
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The area's resource name.
+     */
+    name?: string | null;
+    /**
+     * The area's place id.
+     */
+    placeId?: string | null;
+  }
+  /**
+   * Basic landmark information and the landmark's relationship with the target location. Landmarks are prominent places that can be used to describe a location.
+   */
+  export interface Schema$GoogleMapsPlacesV1AddressDescriptorLandmark {
+    /**
+     * The landmark's display name.
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The landmark's resource name.
+     */
+    name?: string | null;
+    /**
+     * The landmark's place id.
+     */
+    placeId?: string | null;
+    /**
+     * Defines the spatial relationship between the target location and the landmark.
+     */
+    spatialRelationship?: string | null;
+    /**
+     * The straight line distance, in meters, between the center point of the target and the center point of the landmark. In some situations, this value can be longer than `travel_distance_meters`.
+     */
+    straightLineDistanceMeters?: number | null;
+    /**
+     * The travel distance, in meters, along the road network from the target to the landmark, if known. This value does not take into account the mode of transportation, such as walking, driving, or biking.
+     */
+    travelDistanceMeters?: number | null;
+    /**
+     * A set of type tags for this landmark. For a complete list of possible values, see https://developers.google.com/maps/documentation/places/web-service/place-types.
+     */
+    types?: string[] | null;
+  }
+  /**
    * Information about the author of the UGC data. Used in Photo, and Review.
    */
   export interface Schema$GoogleMapsPlacesV1AuthorAttribution {
@@ -513,6 +580,14 @@ export namespace places_v1 {
      */
     authorAttributions?: Schema$GoogleMapsPlacesV1AuthorAttribution[];
     /**
+     * A link where users can flag a problem with the photo.
+     */
+    flagContentUri?: string | null;
+    /**
+     * A link to show the photo on Google Maps.
+     */
+    googleMapsUri?: string | null;
+    /**
      * The maximum available height, in pixels.
      */
     heightPx?: number | null;
@@ -551,6 +626,10 @@ export namespace places_v1 {
      */
     addressComponents?: Schema$GoogleMapsPlacesV1PlaceAddressComponent[];
     /**
+     * The address descriptor of the place. Address descriptors include additional information that help describe a location using landmarks and areas. See address descriptor regional coverage in https://developers.google.com/maps/documentation/geocoding/address-descriptors/coverage.
+     */
+    addressDescriptor?: Schema$GoogleMapsPlacesV1AddressDescriptor;
+    /**
      * The place's address in adr microformat: http://microformats.org/wiki/adr.
      */
     adrFormatAddress?: string | null;
@@ -566,9 +645,6 @@ export namespace places_v1 {
      * A set of data provider that must be shown with this result.
      */
     attributions?: Schema$GoogleMapsPlacesV1PlaceAttribution[];
-    /**
-     * The business status for the place.
-     */
     businessStatus?: string | null;
     /**
      * Specifies if the business supports curbside pickup.
@@ -626,6 +702,10 @@ export namespace places_v1 {
      * Place is suitable for watching sports.
      */
     goodForWatchingSports?: boolean | null;
+    /**
+     * Links to trigger different Google Maps actions.
+     */
+    googleMapsLinks?: Schema$GoogleMapsPlacesV1PlaceGoogleMapsLinks;
     /**
      * A URL providing more information about this place.
      */
@@ -787,7 +867,7 @@ export namespace places_v1 {
      */
     utcOffsetMinutes?: number | null;
     /**
-     * A viewport suitable for displaying the place on an average-sized map.
+     * A viewport suitable for displaying the place on an average-sized map. This viewport should not be used as the physical boundary or the service area of the business.
      */
     viewport?: Schema$GoogleGeoTypeViewport;
     /**
@@ -845,6 +925,10 @@ export namespace places_v1 {
      * Content blocks that compose the area summary. Each block has a separate topic about the area.
      */
     contentBlocks?: Schema$GoogleMapsPlacesV1ContentBlock[];
+    /**
+     * A link where users can flag a problem with the summary.
+     */
+    flagContentUri?: string | null;
   }
   /**
    * Information about data providers of this place.
@@ -868,13 +952,46 @@ export namespace places_v1 {
      */
     description?: Schema$GoogleTypeLocalizedText;
     /**
+     * A link where users can flag a problem with the description summary.
+     */
+    descriptionFlagContentUri?: string | null;
+    /**
      * The overview of the place.
      */
     overview?: Schema$GoogleTypeLocalizedText;
     /**
+     * A link where users can flag a problem with the overview summary.
+     */
+    overviewFlagContentUri?: string | null;
+    /**
      * References that are used to generate the summary description.
      */
     references?: Schema$GoogleMapsPlacesV1References;
+  }
+  /**
+   * Links to trigger different Google Maps actions.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceGoogleMapsLinks {
+    /**
+     * A link to show the directions to the place. The link only populates the destination location and uses the default travel mode `DRIVE`.
+     */
+    directionsUri?: string | null;
+    /**
+     * A link to show photos of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     */
+    photosUri?: string | null;
+    /**
+     * A link to show this place.
+     */
+    placeUri?: string | null;
+    /**
+     * A link to show reviews of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     */
+    reviewsUri?: string | null;
+    /**
+     * A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     */
+    writeAReviewUri?: string | null;
   }
   /**
    * Information about business hour of the place.
@@ -1059,6 +1176,14 @@ export namespace places_v1 {
      */
     authorAttribution?: Schema$GoogleMapsPlacesV1AuthorAttribution;
     /**
+     * A link where users can flag a problem with the review.
+     */
+    flagContentUri?: string | null;
+    /**
+     * A link to show the review on Google Maps.
+     */
+    googleMapsUri?: string | null;
+    /**
      * A reference representing this place review which may be used to look up this place review again (also called the API "resource" name: `places/{place_id\}/reviews/{review\}`).
      */
     name?: string | null;
@@ -1129,6 +1254,10 @@ export namespace places_v1 {
    * The duration and distance from the routing origin to a place in the response, and a second leg from that place to the destination, if requested. **Note:** Adding `routingSummaries` in the field mask without also including either the `routingParameters.origin` parameter or the `searchAlongRouteParameters.polyline.encodedPolyline` parameter in the request causes an error.
    */
   export interface Schema$GoogleMapsPlacesV1RoutingSummary {
+    /**
+     * A link to show directions on Google Maps using the waypoints from the given routing summary. The route generated by this link is not guaranteed to be the same as the route used to generate the routing summary. The link uses information provided in the request, from fields including `routingParameters` and `searchAlongRouteParameters` when applicable, to generate the directions link.
+     */
+    directionsUri?: string | null;
     /**
      * The legs of the trip. When you calculate travel duration and distance from a set origin, `legs` contains a single leg containing the duration and distance from the origin to the destination. When you do a search along route, `legs` contains two legs: one from the origin to place, and one from the place to the destination.
      */
@@ -1351,6 +1480,10 @@ export namespace places_v1 {
      * A list of routing summaries where each entry associates to the corresponding place in the same index in the `places` field. If the routing summary is not available for one of the places, it will contain an empty entry. This list will have as many entries as the list of places if requested.
      */
     routingSummaries?: Schema$GoogleMapsPlacesV1RoutingSummary[];
+    /**
+     * A link allows the user to search with the same text query as specified in the request on Google Maps.
+     */
+    searchUri?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
