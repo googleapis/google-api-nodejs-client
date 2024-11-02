@@ -134,31 +134,6 @@ export namespace redis_v1 {
     appendFsync?: string | null;
   }
   /**
-   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
-   */
-  export interface Schema$AssetLocation {
-    /**
-     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
-     */
-    ccfeRmsPath?: string | null;
-    /**
-     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
-     */
-    expected?: Schema$IsolationExpectations;
-    /**
-     * Defines extra parameters required for specific asset types.
-     */
-    extraParameters?: Schema$ExtraParameter[];
-    /**
-     * Contains all kinds of physical location definitions for this asset.
-     */
-    locationData?: Schema$LocationData[];
-    /**
-     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
-     */
-    parentAsset?: Schema$CloudAsset[];
-  }
-  /**
    * Configuration for availability of database instance
    */
   export interface Schema$AvailabilityConfiguration {
@@ -215,12 +190,6 @@ export namespace redis_v1 {
      */
     status?: string | null;
   }
-  /**
-   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
-   */
-  export interface Schema$BlobstoreLocation {
-    policyId?: string[] | null;
-  }
   export interface Schema$CertChain {
     /**
      * The certificates that form the CA chain, from leaf to root order.
@@ -237,13 +206,6 @@ export namespace redis_v1 {
      */
     name?: string | null;
   }
-  export interface Schema$CloudAsset {
-    assetName?: string | null;
-    assetType?: string | null;
-  }
-  export interface Schema$CloudAssetComposition {
-    childAsset?: Schema$CloudAsset[];
-  }
   /**
    * A cluster instance.
    */
@@ -252,6 +214,10 @@ export namespace redis_v1 {
      * Optional. The authorization mode of the Redis cluster. If not provided, auth feature is disabled for the cluster.
      */
     authorizationMode?: string | null;
+    /**
+     * Optional. A list of cluster enpoints.
+     */
+    clusterEndpoints?: Schema$ClusterEndpoint[];
     /**
      * Output only. The timestamp associated with the cluster creation request.
      */
@@ -293,13 +259,17 @@ export namespace redis_v1 {
      */
     preciseSizeGb?: number | null;
     /**
-     * Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.
+     * Optional. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.
      */
     pscConfigs?: Schema$PscConfig[];
     /**
      * Output only. The list of PSC connections that are auto-created through service connectivity automation.
      */
     pscConnections?: Schema$PscConnection[];
+    /**
+     * Output only. Service attachment details to configure Psc connections
+     */
+    pscServiceAttachments?: Schema$PscServiceAttachment[];
     /**
      * Optional. Key/Value pairs of customer overrides for mutable Redis Configs
      */
@@ -336,6 +306,15 @@ export namespace redis_v1 {
      * Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region.
      */
     zoneDistributionConfig?: Schema$ZoneDistributionConfig;
+  }
+  /**
+   * ClusterEndpoint consists of PSC connections that are created as a group in each VPC network for accessing the cluster. In each group, there shall be one connection for each service attachment in the cluster.
+   */
+  export interface Schema$ClusterEndpoint {
+    /**
+     * A group of PSC connections. They are created in the same VPC network, one for each service attachment in the cluster.
+     */
+    connections?: Schema$ConnectionDetail[];
   }
   /**
    * Maintenance policy per cluster.
@@ -409,6 +388,15 @@ export namespace redis_v1 {
      * Version of the standard or benchmark, for example, 1.1
      */
     version?: string | null;
+  }
+  /**
+   * Detailed information of each PSC connection.
+   */
+  export interface Schema$ConnectionDetail {
+    /**
+     * Detailed information of a PSC connection that is created by the customer who owns the cluster.
+     */
+    pscConnection?: Schema$PscConnection;
   }
   /**
    * Cross cluster replication config.
@@ -670,9 +658,6 @@ export namespace redis_v1 {
      */
     signalType?: string | null;
   }
-  export interface Schema$DirectLocationAssignment {
-    location?: Schema$LocationAssignment[];
-  }
   /**
    * Endpoints on each network, for Redis clients to connect to the cluster.
    */
@@ -715,15 +700,6 @@ export namespace redis_v1 {
      * Required. Specify data to be exported.
      */
     outputConfig?: Schema$OutputConfig;
-  }
-  /**
-   * Defines parameters that should only be used for specific asset types.
-   */
-  export interface Schema$ExtraParameter {
-    /**
-     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
-     */
-    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
   }
   /**
    * Request for Failover.
@@ -999,25 +975,6 @@ export namespace redis_v1 {
      */
     resourceName?: string | null;
   }
-  export interface Schema$IsolationExpectations {
-    /**
-     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
-     */
-    requirementOverride?: Schema$RequirementOverride;
-    ziOrgPolicy?: string | null;
-    ziRegionPolicy?: string | null;
-    ziRegionState?: string | null;
-    /**
-     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
-     */
-    zoneIsolation?: string | null;
-    /**
-     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
-     */
-    zoneSeparation?: string | null;
-    zsOrgPolicy?: string | null;
-    zsRegionState?: string | null;
-  }
   /**
    * Response for ListClusters.
    */
@@ -1102,18 +1059,6 @@ export namespace redis_v1 {
      * Full resource name for the region. For example: "projects/example-project/locations/us-east1".
      */
     name?: string | null;
-  }
-  export interface Schema$LocationAssignment {
-    location?: string | null;
-    locationType?: string | null;
-  }
-  export interface Schema$LocationData {
-    blobstoreLocation?: Schema$BlobstoreLocation;
-    childAssetLocation?: Schema$CloudAssetComposition;
-    directLocation?: Schema$DirectLocationAssignment;
-    gcpProjectProxy?: Schema$TenantProjectProxy;
-    placerLocation?: Schema$PlacerLocation;
-    spannerLocation?: Schema$SpannerLocation;
   }
   /**
    * MachineConfiguration describes the configuration of a machine specific to Database Resource.
@@ -1331,15 +1276,6 @@ export namespace redis_v1 {
     rdbSnapshotStartTime?: string | null;
   }
   /**
-   * Message describing that the location of the customer resource is tied to placer allocations
-   */
-  export interface Schema$PlacerLocation {
-    /**
-     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
-     */
-    placerConfig?: string | null;
-  }
-  /**
    * Product specification for Condor resources.
    */
   export interface Schema$Product {
@@ -1371,6 +1307,10 @@ export namespace redis_v1 {
      */
     address?: string | null;
     /**
+     * Output only. Type of the PSC connection.
+     */
+    connectionType?: string | null;
+    /**
      * Required. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId\}/regions/us-east1/forwardingRules/{resourceId\}.
      */
     forwardingRule?: string | null;
@@ -1387,7 +1327,24 @@ export namespace redis_v1 {
      */
     pscConnectionId?: string | null;
     /**
+     * Output only. The status of the PSC connection. Please note that this value is updated periodically. To get the latest status of a PSC connection, follow https://cloud.google.com/vpc/docs/configure-private-service-connect-services#endpoint-details.
+     */
+    pscConnectionStatus?: string | null;
+    /**
      * Required. The service attachment which is the target of the PSC connection, in the form of projects/{project-id\}/regions/{region\}/serviceAttachments/{service-attachment-id\}.
+     */
+    serviceAttachment?: string | null;
+  }
+  /**
+   * Configuration of a service attachment of the cluster, for creating PSC connections.
+   */
+  export interface Schema$PscServiceAttachment {
+    /**
+     * Output only. Type of a PSC connection targeting this service attachment.
+     */
+    connectionType?: string | null;
+    /**
+     * Output only. Service attachment URI which your self-created PscConnection should use as target
      */
     serviceAttachment?: string | null;
   }
@@ -1418,19 +1375,6 @@ export namespace redis_v1 {
     exclusiveAction?: string | null;
   }
   /**
-   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
-   */
-  export interface Schema$RegionalMigDistributionPolicy {
-    /**
-     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
-     */
-    targetShape?: number | null;
-    /**
-     * Cloud zones used by regional MIG to create instances.
-     */
-    zones?: Schema$ZoneConfiguration[];
-  }
-  /**
    * Details of the remote cluster associated with this cluster in a cross cluster replication setup.
    */
   export interface Schema$RemoteCluster {
@@ -1442,10 +1386,6 @@ export namespace redis_v1 {
      * Output only. The unique identifier of the remote cluster.
      */
     uid?: string | null;
-  }
-  export interface Schema$RequirementOverride {
-    ziOverride?: string | null;
-    zsOverride?: string | null;
   }
   /**
    * Request for rescheduling a cluster maintenance.
@@ -1484,16 +1424,10 @@ export namespace redis_v1 {
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
-  }
-  export interface Schema$SpannerLocation {
     /**
-     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
+     * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
      */
-    backupName?: string[] | null;
-    /**
-     * Set of databases used by the resource in format /span//
-     */
-    dbName?: string[] | null;
+    timestampBasedRetentionTime?: string | null;
   }
   /**
    * Represents additional information about the state of the cluster.
@@ -1530,27 +1464,24 @@ export namespace redis_v1 {
      */
     tags?: {[key: string]: string} | null;
   }
-  export interface Schema$TenantProjectProxy {
-    projectNumbers?: string[] | null;
-  }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -1644,9 +1575,6 @@ export namespace redis_v1 {
      * Required. Start time of the window in UTC time.
      */
     startTime?: Schema$TimeOfDay;
-  }
-  export interface Schema$ZoneConfiguration {
-    zone?: string | null;
   }
   /**
    * Zone distribution config for allocation of cluster resources.
