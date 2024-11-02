@@ -245,6 +245,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getCmekConfig": {
+              "description": "Gets the CmekConfig.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "httpMethod": "GET",
+              "id": "discoveryengine.projects.locations.getCmekConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of CmekConfig, such as `projects/*/locations/*/cmekConfig` or `projects/*/locations/*/cmekConfigs/*`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "updateAclConfig": {
               "description": "Default ACL configuration for use in a location of a customer's project. Updates will only reflect to new data stores. Existing data stores will still use the old value.",
               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/aclConfig",
@@ -272,9 +297,129 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "updateCmekConfig": {
+              "description": "Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/cmekConfig",
+              "httpMethod": "PATCH",
+              "id": "discoveryengine.projects.locations.updateCmekConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfig$",
+                  "required": true,
+                  "type": "string"
+                },
+                "setDefault": {
+                  "description": "Set the following CmekConfig as the default to be used for child resources if one is not specified.",
+                  "location": "query",
+                  "type": "boolean"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           },
           "resources": {
+            "cmekConfigs": {
+              "methods": {
+                "get": {
+                  "description": "Gets the CmekConfig.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/cmekConfigs/{cmekConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.cmekConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of CmekConfig, such as `projects/*/locations/*/cmekConfig` or `projects/*/locations/*/cmekConfigs/*`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the CmekConfigs with the project.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/cmekConfigs",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.cmekConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent location resource name, such as `projects/{project}/locations/{location}`. If the caller does not have permission to list CmekConfigs under this location, regardless of whether or not a CmekConfig exists, a PERMISSION_DENIED error is returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/cmekConfigs",
+                  "response": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaListCmekConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/cmekConfigs/{cmekConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "discoveryengine.projects.locations.cmekConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "setDefault": {
+                      "description": "Set the following CmekConfig as the default to be used for child resources if one is not specified.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "collections": {
               "resources": {
                 "dataConnector": {
@@ -407,6 +552,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "cmekConfigName": {
+                          "description": "Resource name of the CmekConfig to use for protecting this DataStore.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "createAdvancedSiteSearch": {
                           "description": "A boolean flag indicating whether user want to directly create an advanced data store for site search. If the data store is not configured as site search (GENERIC vertical and PUBLIC_WEBSITE content_config), this flag will be ignored.",
                           "location": "query",
@@ -416,6 +566,11 @@
                           "description": "Required. The ID to use for the DataStore, which will become the final component of the DataStore's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
                           "location": "query",
                           "type": "string"
+                        },
+                        "disableCmek": {
+                          "description": "DataStore without CMEK protections. If a default CmekConfig is set for the project, setting this field will override the default CmekConfig as well.",
+                          "location": "query",
+                          "type": "boolean"
                         },
                         "parent": {
                           "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection}`.",
@@ -1158,6 +1313,38 @@
                               ]
                             }
                           }
+                        }
+                      }
+                    },
+                    "completionConfig": {
+                      "methods": {
+                        "completeQuery": {
+                          "description": "Completes the user input with advanced keyword suggestions.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/completionConfig:completeQuery",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.completionConfig.completeQuery",
+                          "parameterOrder": [
+                            "completionConfig"
+                          ],
+                          "parameters": {
+                            "completionConfig": {
+                              "description": "Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/*/completionConfig` `projects/*/locations/global/collections/default_collection/engines/*/completionConfig`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/completionConfig$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+completionConfig}:completeQuery",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     },
@@ -2154,6 +2341,34 @@
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
+                        },
+                        "searchLite": {
+                          "description": "Performs a search. Similar to the SearchService.Search method, but a lite version that allows API key for authentication, where OAuth and IAM checks are not required. Only public website search is supported by this method. If data stores and engines not associated with public website search are specified, a `FAILED_PRECONDITION` error is returned. This method can be used for easy onboarding without having to implement an authentication backend. However, it is strongly recommended to use SearchService.Search instead with required OAuth and IAM checks to provide better data security.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}:searchLite",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.servingConfigs.searchLite",
+                          "parameterOrder": [
+                            "servingConfig"
+                          ],
+                          "parameters": {
+                            "servingConfig": {
+                              "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/engines/*/servingConfigs/default_serving_config`, or `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+servingConfig}:searchLite",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     },
@@ -2618,6 +2833,63 @@
                               "path": "v1alpha/{+name}/operations",
                               "response": {
                                 "$ref": "GoogleLongrunningListOperationsResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        },
+                        "sitemaps": {
+                          "methods": {
+                            "create": {
+                              "description": "Creates a Sitemap.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/sitemaps",
+                              "httpMethod": "POST",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.sitemaps.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. Parent resource name of the SiteSearchEngine, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine`.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/sitemaps",
+                              "request": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaSitemap"
+                              },
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Deletes a Sitemap.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/siteSearchEngine/sitemaps/{sitemapsId}",
+                              "httpMethod": "DELETE",
+                              "id": "discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.sitemaps.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. Full resource name of Sitemap, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/sitemaps/{sitemap}`. If the caller does not have permission to access the Sitemap, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Sitemap does not exist, a NOT_FOUND error is returned.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/siteSearchEngine/sitemaps/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+name}",
+                              "response": {
+                                "$ref": "GoogleLongrunningOperation"
                               },
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform"
@@ -3315,6 +3587,38 @@
                     }
                   },
                   "resources": {
+                    "completionConfig": {
+                      "methods": {
+                        "completeQuery": {
+                          "description": "Completes the user input with advanced keyword suggestions.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/completionConfig:completeQuery",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.completionConfig.completeQuery",
+                          "parameterOrder": [
+                            "completionConfig"
+                          ],
+                          "parameters": {
+                            "completionConfig": {
+                              "description": "Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/*/completionConfig` `projects/*/locations/global/collections/default_collection/engines/*/completionConfig`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/completionConfig$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+completionConfig}:completeQuery",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "controls": {
                       "methods": {
                         "create": {
@@ -3917,6 +4221,34 @@
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
+                        },
+                        "searchLite": {
+                          "description": "Performs a search. Similar to the SearchService.Search method, but a lite version that allows API key for authentication, where OAuth and IAM checks are not required. Only public website search is supported by this method. If data stores and engines not associated with public website search are specified, a `FAILED_PRECONDITION` error is returned. This method can be used for easy onboarding without having to implement an authentication backend. However, it is strongly recommended to use SearchService.Search instead with required OAuth and IAM checks to provide better data security.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/servingConfigs/{servingConfigsId}:searchLite",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.servingConfigs.searchLite",
+                          "parameterOrder": [
+                            "servingConfig"
+                          ],
+                          "parameters": {
+                            "servingConfig": {
+                              "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/engines/*/servingConfigs/default_serving_config`, or `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/servingConfigs/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+servingConfig}:searchLite",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     },
@@ -4243,6 +4575,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "cmekConfigName": {
+                      "description": "Resource name of the CmekConfig to use for protecting this DataStore.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "createAdvancedSiteSearch": {
                       "description": "A boolean flag indicating whether user want to directly create an advanced data store for site search. If the data store is not configured as site search (GENERIC vertical and PUBLIC_WEBSITE content_config), this flag will be ignored.",
                       "location": "query",
@@ -4252,6 +4589,11 @@
                       "description": "Required. The ID to use for the DataStore, which will become the final component of the DataStore's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "disableCmek": {
+                      "description": "DataStore without CMEK protections. If a default CmekConfig is set for the project, setting this field will override the default CmekConfig as well.",
+                      "location": "query",
+                      "type": "boolean"
                     },
                     "parent": {
                       "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}/collections/{collection}`.",
@@ -4966,6 +5308,38 @@
                           ]
                         }
                       }
+                    }
+                  }
+                },
+                "completionConfig": {
+                  "methods": {
+                    "completeQuery": {
+                      "description": "Completes the user input with advanced keyword suggestions.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/completionConfig:completeQuery",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.completionConfig.completeQuery",
+                      "parameterOrder": [
+                        "completionConfig"
+                      ],
+                      "parameters": {
+                        "completionConfig": {
+                          "description": "Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/*/completionConfig` `projects/*/locations/global/collections/default_collection/engines/*/completionConfig`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/completionConfig$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+completionConfig}:completeQuery",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -5861,6 +6235,34 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "searchLite": {
+                      "description": "Performs a search. Similar to the SearchService.Search method, but a lite version that allows API key for authentication, where OAuth and IAM checks are not required. Only public website search is supported by this method. If data stores and engines not associated with public website search are specified, a `FAILED_PRECONDITION` error is returned. This method can be used for easy onboarding without having to implement an authentication backend. However, it is strongly recommended to use SearchService.Search instead with required OAuth and IAM checks to provide better data security.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/servingConfigs/{servingConfigsId}:searchLite",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.servingConfigs.searchLite",
+                      "parameterOrder": [
+                        "servingConfig"
+                      ],
+                      "parameters": {
+                        "servingConfig": {
+                          "description": "Required. The resource name of the Search serving config, such as `projects/*/locations/global/collections/default_collection/engines/*/servingConfigs/default_serving_config`, or `projects/*/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+servingConfig}:searchLite",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -6145,6 +6547,94 @@
                     }
                   },
                   "resources": {
+                    "sitemaps": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a Sitemap.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/sitemaps",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.sitemaps.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. Parent resource name of the SiteSearchEngine, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/sitemaps",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaSitemap"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes a Sitemap.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/sitemaps/{sitemapsId}",
+                          "httpMethod": "DELETE",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.sitemaps.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Full resource name of Sitemap, such as `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/siteSearchEngine/sitemaps/{sitemap}`. If the caller does not have permission to access the Sitemap, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Sitemap does not exist, a NOT_FOUND error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine/sitemaps/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "fetch": {
+                          "description": "Fetch Sitemaps in a DataStore.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/siteSearchEngine/sitemaps:fetch",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.dataStores.siteSearchEngine.sitemaps.fetch",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "matcher.urisMatcher.uris": {
+                              "description": "The Sitemap uris.",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. Parent resource name of the SiteSearchEngine, such as `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/siteSearchEngine$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/sitemaps:fetch",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "targetSites": {
                       "methods": {
                         "batchCreate": {
@@ -7517,7 +8007,7 @@
       }
     }
   },
-  "revision": "20240930",
+  "revision": "20241030",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -7715,6 +8205,24 @@
       },
       "type": "object"
     },
+    "GoogleApiMetric": {
+      "description": "A specific metric, identified by specifying values for all of the labels of a `MetricDescriptor`.",
+      "id": "GoogleApiMetric",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The set of label values that uniquely identify this metric. All labels listed in the `MetricDescriptor` must be assigned values.",
+          "type": "object"
+        },
+        "type": {
+          "description": "An existing metric type, see google.api.MetricDescriptor. For example, `custom.googleapis.com/invoice/paid/amount`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleApiMonitoredResource": {
       "description": "An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The `type` field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the `labels` field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for `\"gce_instance\"` has labels `\"project_id\"`, `\"instance_id\"` and `\"zone\"`: { \"type\": \"gce_instance\", \"labels\": { \"project_id\": \"my-project\", \"instance_id\": \"12345678901234\", \"zone\": \"us-central1-a\" }}",
       "id": "GoogleApiMonitoredResource",
@@ -7729,6 +8237,28 @@
         "type": {
           "description": "Required. The monitored resource type. This field must match the `type` field of a MonitoredResourceDescriptor object. For example, the type of a Compute Engine VM instance is `gce_instance`. Some descriptors include the service name in the type; for example, the type of a Datastream stream is `datastream.googleapis.com/Stream`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleApiMonitoredResourceMetadata": {
+      "description": "Auxiliary metadata for a MonitoredResource object. MonitoredResource objects contain the minimum set of information to uniquely identify a monitored resource instance. There is some other useful auxiliary metadata. Monitoring and Logging use an ingestion pipeline to extract metadata for cloud resources of all types, and store the metadata in this message.",
+      "id": "GoogleApiMonitoredResourceMetadata",
+      "properties": {
+        "systemLabels": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including \"machine_image\", \"vpc\", \"subnet_id\", \"security_group\", \"name\", etc. System label values can be only strings, Boolean values, or a list of strings. For example: { \"name\": \"my-test-instance\", \"security_group\": [\"a\", \"b\", \"c\"], \"spot_instance\": false }",
+          "type": "object"
+        },
+        "userLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. A map of user-defined metadata labels.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -7852,6 +8382,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig": {
+      "description": "Configuration data for advance site search.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata",
@@ -7883,6 +8419,59 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1CmekConfig": {
+      "description": "Configurations used to enable CMEK data encryption with Cloud KMS keys.",
+      "id": "GoogleCloudDiscoveryengineV1CmekConfig",
+      "properties": {
+        "isDefault": {
+          "description": "Output only. The default CmekConfig for the Customer.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kmsKey": {
+          "description": "Kms key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Kms key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "type": "string"
+        },
+        "lastRotationTimestampMicros": {
+          "description": "Output only. The timestamp of the last key rotation.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the CmekConfig.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "KEY_ISSUE",
+            "DELETING",
+            "UNUSABLE",
+            "ACTIVE_ROTATING"
+          ],
+          "enumDescriptions": [
+            "The CmekConfig state is unknown.",
+            "The CmekConfig is creating.",
+            "The CmekConfig can be used with DataStores.",
+            "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
+            "The CmekConfig is deleting.",
+            "The CmekConfig is not usable, most likely due to some internal issue.",
+            "The KMS key version is being rotated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1Condition": {
       "description": "Defines circumstances to be checked before allowing a behavior",
       "id": "GoogleCloudDiscoveryengineV1Condition",
@@ -7894,8 +8483,12 @@
           },
           "type": "array"
         },
+        "queryRegex": {
+          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.",
+          "type": "string"
+        },
         "queryTerms": {
-          "description": "Search only A list of terms to match the query on. Maximum of 10 query terms.",
+          "description": "Search only A list of terms to match the query on. Cannot be set when Condition.query_regex is set. Maximum of 10 query terms.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1ConditionQueryTerm"
           },
@@ -8149,9 +8742,18 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1DataStore",
       "properties": {
+        "advancedSiteSearchConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig",
+          "description": "Optional. Configuration for advanced site search."
+        },
         "billingEstimation": {
           "$ref": "GoogleCloudDiscoveryengineV1DataStoreBillingEstimation",
           "description": "Output only. Data size estimation for billing.",
+          "readOnly": true
+        },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1CmekConfig",
+          "description": "Output only. CMEK-related information for the DataStore.",
           "readOnly": true
         },
         "contentConfig": {
@@ -8207,12 +8809,16 @@
           ],
           "type": "string"
         },
+        "kmsKeyName": {
+          "description": "Input only. The KMS key to be used to protect this DataStore at creation time. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStore will be protected by the KMS key, as indicated in the cmek_config field.",
+          "type": "string"
+        },
         "name": {
           "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
         "servingConfigDataStore": {
-          "$ref": "GoogleCloudDiscoveryengineV1ServingConfigDataStore",
+          "$ref": "GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore",
           "description": "Optional. Stores serving config at DataStore level."
         },
         "solutionTypes": {
@@ -8280,6 +8886,17 @@
           "description": "Last updated timestamp for websites.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8376,7 +8993,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1DocumentProcessingConfig": {
-      "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
+      "description": "A singleton resource of DataStore. If it's empty when DataStore is created and DataStore is set to DataStore.ContentConfig.CONTENT_REQUIRED, the default parser will default to digital parser.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfig",
       "properties": {
         "chunkingConfig": {
@@ -9112,17 +9729,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1ServingConfigDataStore": {
-      "description": "Stores information regarding the serving configurations at DataStore level.",
-      "id": "GoogleCloudDiscoveryengineV1ServingConfigDataStore",
-      "properties": {
-        "disabledForServing": {
-          "description": "If set true, the DataStore will not be available for serving search requests.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1SiteVerificationInfo": {
       "description": "Verification information for target sites in advanced site search.",
       "id": "GoogleCloudDiscoveryengineV1SiteVerificationInfo",
@@ -9304,6 +9910,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1UpdateCmekConfigMetadata": {
+      "description": "Metadata related to the progress of the CmekConfigService.UpdateCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1UpdateCmekConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1UpdateSchemaMetadata": {
       "description": "Metadata for UpdateSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1UpdateSchemaMetadata",
@@ -9396,6 +10019,251 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest": {
+      "description": "Request message for CompletionService.AdvancedCompleteQuery method. .",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequest",
+      "properties": {
+        "boostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec",
+          "description": "Optional. Specification to boost suggestions matching the condition."
+        },
+        "includeTailSuggestions": {
+          "description": "Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.",
+          "type": "boolean"
+        },
+        "query": {
+          "description": "Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters. The query can not be empty for most of the suggestion types. If it is empty, an `INVALID_ARGUMENT` error is returned. The exception is when the suggestion_types contains only the type `RECENT_SEARCH`, the query can be an empty string. The is called \"zero prefix\" feature, which returns user's recently searched queries given the empty query.",
+          "type": "string"
+        },
+        "queryModel": {
+          "description": "Specifies the autocomplete data model. This overrides any model specified in the Configuration > Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
+          "type": "string"
+        },
+        "suggestionTypes": {
+          "description": "Optional. Suggestion types to return. If empty or unspecified, query suggestions are returned. Only one suggestion type is supported at the moment.",
+          "items": {
+            "enum": [
+              "SUGGESTION_TYPE_UNSPECIFIED",
+              "QUERY",
+              "PEOPLE",
+              "CONTENT",
+              "RECENT_SEARCH",
+              "GOOGLE_WORKSPACE"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Returns query suggestions.",
+              "Returns people suggestions.",
+              "Returns content suggestions.",
+              "Returns recent search suggestions.",
+              "Returns Google Workspace suggestions."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaUserInfo",
+          "description": "Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info."
+        },
+        "userPseudoId": {
+          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec": {
+      "description": "Specification to boost suggestions based on the condtion of the suggestion.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpec",
+      "properties": {
+        "conditionBoostSpecs": {
+          "description": "Condition boost specifications. If a suggestion matches multiple conditions in the specifictions, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpecConditionBoostSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpecConditionBoostSpec": {
+      "description": "Boost applies to suggestions which match a condition.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryRequestBoostSpecConditionBoostSpec",
+      "properties": {
+        "boost": {
+          "description": "Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the suggestions a big promotion. However, it does not necessarily mean that the top result will be a boosted suggestion. Setting to -1.0 gives the suggestions a big demotion. However, other suggestions that are relevant might still be shown. Setting to 0.0 means no boost applied. The boosting condition is ignored.",
+          "format": "float",
+          "type": "number"
+        },
+        "condition": {
+          "description": "An expression which specifies a boost condition. The syntax is the same as [filter expression syntax](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax). Currently, the only supported condition is a list of BCP-47 lang codes. Example: * To boost suggestions in languages `en` or `fr`: `(lang_code: ANY(\"en\", \"fr\"))`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponse": {
+      "description": "Response message for CompletionService.AdvancedCompleteQuery method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponse",
+      "properties": {
+        "contentSuggestions": {
+          "description": "Results of the matched content suggestions. The result list is ordered and the first result is the top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseContentSuggestion"
+          },
+          "type": "array"
+        },
+        "peopleSuggestions": {
+          "description": "Results of the matched people suggestions. The result list is ordered and the first result is the top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponsePersonSuggestion"
+          },
+          "type": "array"
+        },
+        "querySuggestions": {
+          "description": "Results of the matched query suggestions. The result list is ordered and the first result is a top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseQuerySuggestion"
+          },
+          "type": "array"
+        },
+        "recentSearchSuggestions": {
+          "description": "Results of the matched \"recent search\" suggestions. The result list is ordered and the first result is the top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseRecentSearchSuggestion"
+          },
+          "type": "array"
+        },
+        "tailMatchTriggered": {
+          "description": "True if the returned suggestions are all tail suggestions. For tail matching to be triggered, include_tail_suggestions in the request must be true and there must be no suggestions that match the full query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseContentSuggestion": {
+      "description": "Suggestions as content.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseContentSuggestion",
+      "properties": {
+        "contentType": {
+          "description": "The type of the content suggestion.",
+          "enum": [
+            "CONTENT_TYPE_UNSPECIFIED",
+            "GOOGLE_WORKSPACE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The suggestion is from a Google Workspace source.",
+            "The suggestion is from a third party source."
+          ],
+          "type": "string"
+        },
+        "dataStore": {
+          "description": "The name of the dataStore that this suggestion belongs to.",
+          "type": "string"
+        },
+        "document": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocument",
+          "description": "The document data snippet in the suggestion. Only a subset of fields will be populated."
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponsePersonSuggestion": {
+      "description": "Suggestions as people.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponsePersonSuggestion",
+      "properties": {
+        "dataStore": {
+          "description": "The name of the dataStore that this suggestion belongs to.",
+          "type": "string"
+        },
+        "document": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDocument",
+          "description": "The document data snippet in the suggestion. Only a subset of fields is populated."
+        },
+        "personType": {
+          "description": "The type of the person.",
+          "enum": [
+            "PERSON_TYPE_UNSPECIFIED",
+            "CLOUD_IDENTITY",
+            "THIRD_PARTY_IDENTITY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The suggestion is from a GOOGLE_IDENTITY source.",
+            "The suggestion is from a THIRD_PARTY_IDENTITY source."
+          ],
+          "type": "string"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseQuerySuggestion": {
+      "description": "Suggestions as search queries.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseQuerySuggestion",
+      "properties": {
+        "completableFieldPaths": {
+          "description": "The unique document field paths that serve as the source of this suggestion if it was generated from completable fields. This field is only populated for the document-completable model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dataStore": {
+          "description": "The name of the dataStore that this suggestion belongs to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseRecentSearchSuggestion": {
+      "description": "Suggestions from recent search history.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedCompleteQueryResponseRecentSearchSuggestion",
+      "properties": {
+        "recentSearchTime": {
+          "description": "The time when this recent rearch happened.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig": {
+      "description": "Configuration data for advance site search.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig",
+      "properties": {
+        "disableAutomaticRefresh": {
+          "description": "If set true, automatic refresh is disabled for the DataStore.",
+          "type": "boolean"
+        },
+        "disableInitialIndex": {
+          "description": "If set true, initial indexing is disabled for the DataStore.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaAlloyDbSource": {
       "description": "AlloyDB source import data from.",
       "id": "GoogleCloudDiscoveryengineV1alphaAlloyDbSource",
@@ -9443,7 +10311,8 @@
               "NO_RELEVANT_CONTENT",
               "JAIL_BREAKING_QUERY_IGNORED",
               "CUSTOMER_POLICY_VIOLATION",
-              "NON_ANSWER_SEEKING_QUERY_IGNORED_V2"
+              "NON_ANSWER_SEEKING_QUERY_IGNORED_V2",
+              "LOW_GROUNDED_ANSWER"
             ],
             "enumDescriptions": [
               "Default value. The answer skipped reason is not specified.",
@@ -9454,7 +10323,8 @@
               "The no relevant content case. Google skips the answer if there is no relevant content in the retrieved search results.",
               "The jail-breaking query ignored case. For example, \"Reply in the tone of a competing company's CEO\". Google skips the answer if the query is classified as a jail-breaking query.",
               "The customer policy violation case. Google skips the summary if there is a customer policy violation detected. The policy is defined by the customer.",
-              "The non-answer seeking query ignored case. Google skips the answer if the query doesn't have clear intent."
+              "The non-answer seeking query ignored case. Google skips the answer if the query doesn't have clear intent.",
+              "The low-grounded answer case. Google skips the answer if a well grounded answer was unable to be generated."
             ],
             "type": "string"
           },
@@ -9579,6 +10449,10 @@
           "description": "Deprecated: This field is deprecated. Streaming Answer API will be supported. Asynchronous mode control. If enabled, the response will be returned with answer/session resource name without final answer. The API users need to do the polling to get the latest status of answer/session by calling ConversationalSearchService.GetAnswer or ConversationalSearchService.GetSession method.",
           "type": "boolean"
         },
+        "groundingSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAnswerQueryRequestGroundingSpec",
+          "description": "Optional. Grounding specification."
+        },
         "query": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaQuery",
           "description": "Required. Current user query."
@@ -9674,6 +10548,31 @@
         "preamble": {
           "description": "Customized preamble.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAnswerQueryRequestGroundingSpec": {
+      "description": "Grounding specification.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAnswerQueryRequestGroundingSpec",
+      "properties": {
+        "filteringLevel": {
+          "description": "Optional. Specifies whether to enable the filtering based on grounding score and at what level.",
+          "enum": [
+            "FILTERING_LEVEL_UNSPECIFIED",
+            "FILTERING_LEVEL_LOW",
+            "FILTERING_LEVEL_HIGH"
+          ],
+          "enumDescriptions": [
+            "Default is no filter",
+            "Filter answers based on a low threshold.",
+            "Filter answers based on a high threshold."
+          ],
+          "type": "string"
+        },
+        "includeGroundingSupports": {
+          "description": "Optional. Specifies whether to include grounding_supports in the answer. The default value is `false`. When this field is set to `true`, returned answer will have `grounding_score` and will contain GroundingSupports for each claim.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -10278,7 +11177,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document, or the Chunk in search result. .",
+          "description": "Data representation. The structured JSON data for the document. It's populated from the struct data from the Document, or the Chunk in search result.",
           "type": "object"
         },
         "title": {
@@ -10438,7 +11337,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaBatchGetDocumentsMetadataResponseDocumentMetadataMatcherValue",
       "properties": {
         "fhirResource": {
-          "description": "Required. Format: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}",
+          "description": "Format: projects/{project}/locations/{location}/datasets/{dataset}/fhirStores/{fhir_store}/fhir/{resource_type}/{fhir_resource_id}",
           "type": "string"
         },
         "uri": {
@@ -10641,7 +11540,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaCheckGroundingRequest",
       "properties": {
         "answerCandidate": {
-          "description": "Answer candidate to check. Can have a maximum length of 1024 characters.",
+          "description": "Answer candidate to check. It can have a maximum length of 4096 tokens.",
           "type": "string"
         },
         "facts": {
@@ -10672,7 +11571,7 @@
         "citedChunks": {
           "description": "List of facts cited across all claims in the answer candidate. These are derived from the facts supplied in the request.",
           "items": {
-            "$ref": "GoogleCloudDiscoveryengineV1alphaFactChunk"
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCheckGroundingResponseFactChunk"
           },
           "type": "array"
         },
@@ -10720,6 +11619,21 @@
           "description": "Position indicating the start of the claim in the answer candidate, measured in bytes.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCheckGroundingResponseFactChunk": {
+      "description": "Fact chunk for grounding check.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCheckGroundingResponseFactChunk",
+      "properties": {
+        "chunkText": {
+          "description": "Text content of the fact chunk. Can be at most 10K characters long.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Source from which this fact chunk was retrieved. For a fact chunk retrieved from inline facts, this field will contain the index of the specific fact from which this chunk was retrieved.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -10964,6 +11878,59 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaCmekConfig": {
+      "description": "Configurations used to enable CMEK data encryption with Cloud KMS keys.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCmekConfig",
+      "properties": {
+        "isDefault": {
+          "description": "Output only. The default CmekConfig for the Customer.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kmsKey": {
+          "description": "Kms key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Kms key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "type": "string"
+        },
+        "lastRotationTimestampMicros": {
+          "description": "Output only. The timestamp of the last key rotation.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the CmekConfig.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "KEY_ISSUE",
+            "DELETING",
+            "UNUSABLE",
+            "ACTIVE_ROTATING"
+          ],
+          "enumDescriptions": [
+            "The CmekConfig state is unknown.",
+            "The CmekConfig is creating.",
+            "The CmekConfig can be used with DataStores.",
+            "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
+            "The CmekConfig is deleting.",
+            "The CmekConfig is not usable, most likely due to some internal issue.",
+            "The KMS key version is being rotated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaCompleteQueryResponse": {
       "description": "Response message for CompletionService.CompleteQuery method.",
       "id": "GoogleCloudDiscoveryengineV1alphaCompleteQueryResponse",
@@ -11068,8 +12035,12 @@
           },
           "type": "array"
         },
+        "queryRegex": {
+          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.",
+          "type": "string"
+        },
         "queryTerms": {
-          "description": "Search only A list of terms to match the query on. Maximum of 10 query terms.",
+          "description": "Search only A list of terms to match the query on. Cannot be set when Condition.query_regex is set. Maximum of 10 query terms.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaConditionQueryTerm"
           },
@@ -11409,6 +12380,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries": {
+      "description": "The historical crawl rate timeseries data, used for monitoring.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
+      "properties": {
+        "qpsTimeSeries": {
+          "$ref": "GoogleMonitoringV3TimeSeries",
+          "description": "The QPS of the crawl rate."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaCreateDataStoreMetadata": {
       "description": "Metadata related to the progress of the DataStoreService.CreateDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaCreateDataStoreMetadata",
@@ -11452,6 +12434,23 @@
     "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata": {
       "description": "Metadata for Create Schema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaCreateSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaCreateSitemapMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.CreateSitemap operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaCreateSitemapMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -11537,7 +12536,7 @@
       "properties": {
         "createTime": {
           "deprecated": true,
-          "description": "Timestamp the Model was created at.",
+          "description": "Deprecated: Timestamp the Model was created at.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -11606,9 +12605,18 @@
           "description": "Immutable. Whether data in the DataStore has ACL information. If set to `true`, the source data must have ACL. ACL will be ingested when data is ingested by DocumentService.ImportDocuments methods. When ACL is enabled for the DataStore, Document can't be accessed by calling DocumentService.GetDocument or DocumentService.ListDocuments. Currently ACL is only supported in `GENERIC` industry vertical with non-`PUBLIC_WEBSITE` content config.",
           "type": "boolean"
         },
+        "advancedSiteSearchConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAdvancedSiteSearchConfig",
+          "description": "Optional. Configuration for advanced site search."
+        },
         "billingEstimation": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaDataStoreBillingEstimation",
           "description": "Output only. Data size estimation for billing.",
+          "readOnly": true
+        },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig",
+          "description": "Output only. CMEK-related information for the DataStore.",
           "readOnly": true
         },
         "contentConfig": {
@@ -11669,6 +12677,10 @@
           ],
           "type": "string"
         },
+        "kmsKeyName": {
+          "description": "Input only. The KMS key to be used to protect this DataStore at creation time. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStore will be protected by the KMS key, as indicated in the cmek_config field.",
+          "type": "string"
+        },
         "languageInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaLanguageInfo",
           "description": "Language info for DataStore."
@@ -11682,7 +12694,7 @@
           "description": "Optional. Configuration for Natural Language Query Understanding."
         },
         "servingConfigDataStore": {
-          "$ref": "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore",
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataStoreServingConfigDataStore",
           "description": "Optional. Stores serving config at DataStore level."
         },
         "solutionTypes": {
@@ -11754,6 +12766,32 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaDataStoreServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataStoreServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDedicatedCrawlRateTimeSeries": {
+      "description": "The historical dedicated crawl rate timeseries data, used for monitoring. Dedicated crawl is used by Vertex AI to crawl the user's website when dedicate crawl is set.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDedicatedCrawlRateTimeSeries",
+      "properties": {
+        "autoRefreshCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
+          "description": "Vertex AI's dedicated crawl rate time series of auto-refresh, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is set, and the crawl rate is for best effort use cases like refreshing urls periodically."
+        },
+        "userTriggeredCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
+          "description": "Vertex AI's dedicated crawl rate time series of user triggered crawl, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is set, and user triggered crawl rate is for deterministic use cases like crawling urls or sitemaps specified by users."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaDeleteDataStoreMetadata": {
       "description": "Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaDeleteDataStoreMetadata",
@@ -11791,6 +12829,23 @@
     "GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata": {
       "description": "Metadata for DeleteSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaDeleteSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDeleteSitemapMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DeleteSitemap operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDeleteSitemapMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -12022,7 +13077,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig": {
-      "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
+      "description": "A singleton resource of DataStore. If it's empty when DataStore is created and DataStore is set to DataStore.ContentConfig.CONTENT_REQUIRED, the default parser will default to digital parser.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig",
       "properties": {
         "chunkingConfig": {
@@ -12664,33 +13719,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaFactChunk": {
-      "description": "Fact Chunk.",
-      "id": "GoogleCloudDiscoveryengineV1alphaFactChunk",
-      "properties": {
-        "chunkText": {
-          "description": "Text content of the fact chunk. Can be at most 10K characters long.",
-          "type": "string"
-        },
-        "index": {
-          "description": "The index of this chunk. Currently, only used for the streaming mode.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "source": {
-          "description": "Source from which this fact chunk was retrieved. If it was retrieved from the GroundingFacts provided in the request then this field will contain the index of the specific fact from which this chunk was retrieved.",
-          "type": "string"
-        },
-        "sourceMetadata": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "More fine-grained information for the source reference.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaFetchDomainVerificationStatusResponse": {
       "description": "Response message for SiteSearchEngineService.FetchDomainVerificationStatus method.",
       "id": "GoogleCloudDiscoveryengineV1alphaFetchDomainVerificationStatusResponse",
@@ -12710,6 +13738,31 @@
           "description": "The total number of items matching the request. This will always be populated in the response.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponse": {
+      "description": "Response message for SiteSearchEngineService.FetchSitemaps method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponse",
+      "properties": {
+        "sitemapsMetadata": {
+          "description": "List of Sitemaps fetched.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseSitemapMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseSitemapMetadata": {
+      "description": "Contains a Sitemap and its metadata.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFetchSitemapsResponseSitemapMetadata",
+      "properties": {
+        "sitemap": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSitemap",
+          "description": "The Sitemap."
         }
       },
       "type": "object"
@@ -13577,6 +14630,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListCmekConfigsResponse": {
+      "description": "Response message for CmekConfigService.ListCmekConfigs method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListCmekConfigsResponse",
+      "properties": {
+        "cmekConfigs": {
+          "description": "All the customer's CmekConfigs.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaCmekConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListControlsResponse": {
       "description": "Response for ListControls method.",
       "id": "GoogleCloudDiscoveryengineV1alphaListControlsResponse",
@@ -13881,6 +14948,55 @@
             "Natural Language Query Understanding is enabled."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateResponse": {
+      "description": "Response message for CrawlRateManagementService.ObtainCrawlRate method. The response contains organcic or dedicated crawl rate time series data for monitoring, depending on whether dedicated crawl rate is set.",
+      "id": "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateResponse",
+      "properties": {
+        "dedicatedCrawlRateTimeSeries": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDedicatedCrawlRateTimeSeries",
+          "description": "The historical dedicated crawl rate timeseries data, used for monitoring."
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Errors from service when handling the request."
+        },
+        "organicCrawlRateTimeSeries": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOrganicCrawlRateTimeSeries",
+          "description": "The historical organic crawl rate timeseries data, used for monitoring."
+        },
+        "state": {
+          "description": "Output only. The state of the response.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The state is successful.",
+            "The state is failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOrganicCrawlRateTimeSeries": {
+      "description": "The historical organic crawl rate timeseries data, used for monitoring. Organic crawl is auto-determined by Google to crawl the user's website when dedicate crawl is not set. Crawl rate is the QPS of crawl request Google sends to the user's website.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOrganicCrawlRateTimeSeries",
+      "properties": {
+        "googleOrganicCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
+          "description": "Google's organic crawl rate time series, which is the sum of all googlebots' crawl rate. Please refer to https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers for more details about googlebots."
+        },
+        "vertexAiOrganicCrawlRate": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
+          "description": "Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot."
         }
       },
       "type": "object"
@@ -14547,11 +15663,16 @@
           "type": "string"
         },
         "invalidUris": {
-          "description": "Unique URIs in the request that don't match any TargetSite in the DataStore, only match TargetSites that haven't been fully indexed, or match a TargetSite with type EXCLUDE.",
+          "description": "Unique URIs in the request that have invalid format. Sample limited to 1000.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "invalidUrisCount": {
+          "description": "Total number of unique URIs in the request that have invalid format.",
+          "format": "int32",
+          "type": "integer"
         },
         "pendingCount": {
           "description": "Total number of URIs that have yet to be crawled.",
@@ -14572,6 +15693,18 @@
           "description": "Operation last update time. If the operation is done, this is also the finish time.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "urisNotMatchingTargetSites": {
+          "description": "Unique URIs in the request that don't match any TargetSite in the DataStore, only match TargetSites that haven't been fully indexed, or match a TargetSite with type EXCLUDE. Sample limited to 1000.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "urisNotMatchingTargetSitesCount": {
+          "description": "Total number of URIs that don't match any TargetSites.",
+          "format": "int32",
+          "type": "integer"
         },
         "validUrisCount": {
           "description": "Total number of unique URIs in the request that are not in invalid_uris.",
@@ -15060,6 +16193,11 @@
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "oneBoxPageSize": {
+          "description": "The maximum number of results to return for OneBox. This applies to each OneBox type individually. Default number is 10.",
           "format": "int32",
           "type": "integer"
         },
@@ -16462,17 +17600,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore": {
-      "description": "Stores information regarding the serving configurations at DataStore level.",
-      "id": "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore",
-      "properties": {
-        "disabledForServing": {
-          "description": "If set true, the DataStore will not be available for serving search requests.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig": {
       "description": "Specifies the configurations needed for Generic Discovery.Currently we support: * `content_search_spec`: configuration for generic content search.",
       "id": "GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig",
@@ -16502,6 +17629,11 @@
           "description": "Specifies the content watched minutes threshold for demotion.",
           "format": "float",
           "type": "number"
+        },
+        "demoteContentWatchedPastDays": {
+          "description": "Optional. Specifies the number of days to look back for demoting watched content. If set to zero or unset, defaults to the maximum of 365 days.",
+          "format": "int32",
+          "type": "integer"
         },
         "demotionEventType": {
           "description": "Specifies the event type used for demoting recommendation result. Currently supported values: * `view-item`: Item viewed. * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc. If unset, watch history demotion will not be applied. Content freshness demotion will still be applied.",
@@ -16658,6 +17790,28 @@
         "verifyTime": {
           "description": "Latest site verification time.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSitemap": {
+      "description": "A sitemap for the SiteSearchEngine.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSitemap",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The sitemap's creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The fully qualified resource name of the sitemap. `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/sitemaps/*` The `sitemap_id` suffix is system-generated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.",
           "type": "string"
         }
       },
@@ -16987,6 +18141,23 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUpdateCmekConfigMetadata": {
+      "description": "Metadata related to the progress of the CmekConfigService.UpdateCmekConfig operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUpdateCmekConfigMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata": {
       "description": "Metadata for UpdateSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1alphaUpdateSchemaMetadata",
@@ -17065,7 +18236,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home > Men > Jeans Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc.",
+          "description": "Required. User event type. Allowed values are: Generic values: * `search`: Search for Documents. * `view-item`: Detailed page view of a Document. * `view-item-list`: View of a panel or ordered list of Documents. * `view-home-page`: View of the home page. * `view-category-page`: View of a category page, e.g. Home > Men > Jeans * `add-feedback`: Add a user feedback. Retail-related values: * `add-to-cart`: Add an item(s) to cart, e.g. in Retail online shopping * `purchase`: Purchase an item(s) Media-related values: * `media-play`: Start/resume watching a video, playing a song, etc. * `media-complete`: Finished or stopped midway through a video, song, etc.",
           "type": "string"
         },
         "filter": {
@@ -17179,6 +18350,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig": {
+      "description": "Configuration data for advance site search.",
+      "id": "GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata",
@@ -17210,6 +18387,59 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaCmekConfig": {
+      "description": "Configurations used to enable CMEK data encryption with Cloud KMS keys.",
+      "id": "GoogleCloudDiscoveryengineV1betaCmekConfig",
+      "properties": {
+        "isDefault": {
+          "description": "Output only. The default CmekConfig for the Customer.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kmsKey": {
+          "description": "Kms key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Kms key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "type": "string"
+        },
+        "lastRotationTimestampMicros": {
+          "description": "Output only. The timestamp of the last key rotation.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of the CmekConfig, of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the CmekConfig.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "KEY_ISSUE",
+            "DELETING",
+            "UNUSABLE",
+            "ACTIVE_ROTATING"
+          ],
+          "enumDescriptions": [
+            "The CmekConfig state is unknown.",
+            "The CmekConfig is creating.",
+            "The CmekConfig can be used with DataStores.",
+            "The CmekConfig is unavailable, most likely due to the KMS Key being revoked.",
+            "The CmekConfig is deleting.",
+            "The CmekConfig is not usable, most likely due to some internal issue.",
+            "The KMS key version is being rotated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaCondition": {
       "description": "Defines circumstances to be checked before allowing a behavior",
       "id": "GoogleCloudDiscoveryengineV1betaCondition",
@@ -17221,8 +18451,12 @@
           },
           "type": "array"
         },
+        "queryRegex": {
+          "description": "Optional. Query regex to match the whole search query. Cannot be set when Condition.query_terms is set. This is currently supporting promotion use case.",
+          "type": "string"
+        },
         "queryTerms": {
-          "description": "Search only A list of terms to match the query on. Maximum of 10 query terms.",
+          "description": "Search only A list of terms to match the query on. Cannot be set when Condition.query_regex is set. Maximum of 10 query terms.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1betaConditionQueryTerm"
           },
@@ -17461,6 +18695,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaCreateSitemapMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.CreateSitemap operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaCreateSitemapMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaCreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.CreateTargetSite operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaCreateTargetSiteMetadata",
@@ -17484,7 +18735,7 @@
       "properties": {
         "createTime": {
           "deprecated": true,
-          "description": "Timestamp the Model was created at.",
+          "description": "Deprecated: Timestamp the Model was created at.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -17549,9 +18800,18 @@
       "description": "DataStore captures global settings and configs at the DataStore level.",
       "id": "GoogleCloudDiscoveryengineV1betaDataStore",
       "properties": {
+        "advancedSiteSearchConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig",
+          "description": "Optional. Configuration for advanced site search."
+        },
         "billingEstimation": {
           "$ref": "GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation",
           "description": "Output only. Data size estimation for billing.",
+          "readOnly": true
+        },
+        "cmekConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaCmekConfig",
+          "description": "Output only. CMEK-related information for the DataStore.",
           "readOnly": true
         },
         "contentConfig": {
@@ -17607,6 +18867,10 @@
           ],
           "type": "string"
         },
+        "kmsKeyName": {
+          "description": "Input only. The KMS key to be used to protect this DataStore at creation time. Must be set for requests that need to comply with CMEK Org Policy protections. If this field is set and processed successfully, the DataStore will be protected by the KMS key, as indicated in the cmek_config field.",
+          "type": "string"
+        },
         "languageInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1betaLanguageInfo",
           "description": "Language info for DataStore."
@@ -17620,7 +18884,7 @@
           "description": "Optional. Configuration for Natural Language Query Understanding."
         },
         "servingConfigDataStore": {
-          "$ref": "GoogleCloudDiscoveryengineV1betaServingConfigDataStore",
+          "$ref": "GoogleCloudDiscoveryengineV1betaDataStoreServingConfigDataStore",
           "description": "Optional. Stores serving config at DataStore level."
         },
         "solutionTypes": {
@@ -17692,6 +18956,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaDataStoreServingConfigDataStore": {
+      "description": "Stores information regarding the serving configurations at DataStore level.",
+      "id": "GoogleCloudDiscoveryengineV1betaDataStoreServingConfigDataStore",
+      "properties": {
+        "disabledForServing": {
+          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaDeleteDataStoreMetadata": {
       "description": "Metadata related to the progress of the DataStoreService.DeleteDataStore operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1betaDeleteDataStoreMetadata",
@@ -17729,6 +19004,23 @@
     "GoogleCloudDiscoveryengineV1betaDeleteSchemaMetadata": {
       "description": "Metadata for DeleteSchema LRO.",
       "id": "GoogleCloudDiscoveryengineV1betaDeleteSchemaMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaDeleteSitemapMetadata": {
+      "description": "Metadata related to the progress of the SiteSearchEngineService.DeleteSitemap operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaDeleteSitemapMetadata",
       "properties": {
         "createTime": {
           "description": "Operation create time.",
@@ -17784,7 +19076,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig": {
-      "description": "A singleton resource of DataStore. It's empty when DataStore is created, which defaults to digital parser. The first call to DataStoreService.UpdateDocumentProcessingConfig method will initialize the config.",
+      "description": "A singleton resource of DataStore. If it's empty when DataStore is created and DataStore is set to DataStore.ContentConfig.CONTENT_REQUIRED, the default parser will default to digital parser.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig",
       "properties": {
         "chunkingConfig": {
@@ -18180,6 +19472,31 @@
         "sampleQuerySet": {
           "description": "Required. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project}/locations/{location}/sampleQuerySets/{sampleQuerySet}`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse": {
+      "description": "Response message for SiteSearchEngineService.FetchSitemaps method.",
+      "id": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse",
+      "properties": {
+        "sitemapsMetadata": {
+          "description": "List of Sitemaps fetched.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata": {
+      "description": "Contains a Sitemap and its metadata.",
+      "id": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata",
+      "properties": {
+        "sitemap": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSitemap",
+          "description": "The Sitemap."
         }
       },
       "type": "object"
@@ -18826,6 +20143,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "oneBoxPageSize": {
+          "description": "The maximum number of results to return for OneBox. This applies to each OneBox type individually. Default number is 10.",
+          "format": "int32",
+          "type": "integer"
+        },
         "orderBy": {
           "description": "The order in which documents are returned. Documents can be ordered by a field in an Document object. Leave it unset if ordered by relevance. `order_by` expression is case-sensitive. For more information on ordering the website search results, see [Order web search results](https://cloud.google.com/generative-ai-app-builder/docs/order-web-search-results). For more information on ordering the healthcare search results, see [Order healthcare search results](https://cloud.google.com/generative-ai-app-builder/docs/order-hc-results). If this field is unrecognizable, an `INVALID_ARGUMENT` is returned.",
           "type": "string"
@@ -19462,17 +20784,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1betaServingConfigDataStore": {
-      "description": "Stores information regarding the serving configurations at DataStore level.",
-      "id": "GoogleCloudDiscoveryengineV1betaServingConfigDataStore",
-      "properties": {
-        "disabledForServing": {
-          "description": "If set true, the DataStore will not be available for serving search requests.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1betaSiteVerificationInfo": {
       "description": "Verification information for target sites in advanced site search.",
       "id": "GoogleCloudDiscoveryengineV1betaSiteVerificationInfo",
@@ -19496,6 +20807,28 @@
         "verifyTime": {
           "description": "Latest site verification time.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaSitemap": {
+      "description": "A sitemap for the SiteSearchEngine.",
+      "id": "GoogleCloudDiscoveryengineV1betaSitemap",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The sitemap's creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The fully qualified resource name of the sitemap. `projects/*/locations/*/collections/*/dataStores/*/siteSearchEngine/sitemaps/*` The `sitemap_id` suffix is system-generated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.",
           "type": "string"
         }
       },
@@ -19818,6 +21151,110 @@
           },
           "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMonitoringV3Point": {
+      "description": "A single data point in a time series.",
+      "id": "GoogleMonitoringV3Point",
+      "properties": {
+        "interval": {
+          "$ref": "GoogleMonitoringV3TimeInterval",
+          "description": "The time interval to which the data point applies. For `GAUGE` metrics, the start time is optional, but if it is supplied, it must equal the end time. For `DELTA` metrics, the start and end time should specify a non-zero interval, with subsequent points specifying contiguous and non-overlapping intervals. For `CUMULATIVE` metrics, the start and end time should specify a non-zero interval, with subsequent points specifying the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points."
+        },
+        "value": {
+          "$ref": "GoogleMonitoringV3TypedValue",
+          "description": "The value of the data point."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMonitoringV3TimeInterval": {
+      "description": "A time interval extending just after a start time through an end time. If the start time is the same as the end time, then the interval represents a single point in time.",
+      "id": "GoogleMonitoringV3TimeInterval",
+      "properties": {
+        "endTime": {
+          "description": "Required. The end of the time interval.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMonitoringV3TimeSeries": {
+      "description": "A collection of data points that describes the time-varying values of a metric. A time series is identified by a combination of a fully-specified monitored resource and a fully-specified metric. This type is used for both listing and creating time series.",
+      "id": "GoogleMonitoringV3TimeSeries",
+      "properties": {
+        "description": {
+          "description": "Input only. A detailed description of the time series that will be associated with the google.api.MetricDescriptor for the metric. Once set, this field cannot be changed through CreateTimeSeries.",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleApiMonitoredResourceMetadata",
+          "description": "Output only. The associated monitored resource metadata. When reading a time series, this field will include metadata labels that are explicitly named in the reduction. When creating a time series, this field is ignored."
+        },
+        "metric": {
+          "$ref": "GoogleApiMetric",
+          "description": "The associated metric. A fully-specified metric used to identify the time series."
+        },
+        "metricKind": {
+          "description": "The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series. When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric's descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either `GAUGE` (the default) or `CUMULATIVE`.",
+          "enum": [
+            "METRIC_KIND_UNSPECIFIED",
+            "GAUGE",
+            "DELTA",
+            "CUMULATIVE"
+          ],
+          "enumDescriptions": [
+            "Do not use this default value.",
+            "An instantaneous measurement of a value.",
+            "The change in a value during a time interval.",
+            "A value accumulated over a time interval. Cumulative measurements in a time series should have the same start time and increasing end times, until an event resets the cumulative value to zero and sets a new start time for the following points."
+          ],
+          "type": "string"
+        },
+        "points": {
+          "description": "The data points of this time series. When listing time series, points are returned in reverse time order. When creating a time series, this field must contain exactly one point and the point's type must be the same as the value type of the associated metric. If the associated metric's descriptor must be auto-created, then the value type of the descriptor is determined by the point's type, which must be `BOOL`, `INT64`, `DOUBLE`, or `DISTRIBUTION`.",
+          "items": {
+            "$ref": "GoogleMonitoringV3Point"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "$ref": "GoogleApiMonitoredResource",
+          "description": "The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data. For more information, see [Monitored resources for custom metrics](https://cloud.google.com/monitoring/custom-metrics/creating-metrics#custom-metric-resources)."
+        },
+        "unit": {
+          "description": "The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values. This field can only be changed through CreateTimeSeries when it is empty.",
+          "type": "string"
+        },
+        "valueType": {
+          "description": "The value type of the time series. When listing time series, this value type might be different from the value type of the associated metric if this time series is an alignment or reduction of other time series. When creating a time series, this field is optional. If present, it must be the same as the type of the data in the `points` field.",
+          "enum": [
+            "VALUE_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INT64",
+            "DOUBLE",
+            "STRING",
+            "DISTRIBUTION",
+            "MONEY"
+          ],
+          "enumDescriptions": [
+            "Do not use this default value.",
+            "The value is a boolean. This value type can be used only if the metric kind is `GAUGE`.",
+            "The value is a signed 64-bit integer.",
+            "The value is a double precision floating point number.",
+            "The value is a text string. This value type can be used only if the metric kind is `GAUGE`.",
+            "The value is a `Distribution`.",
+            "The value is money."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
