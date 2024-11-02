@@ -245,6 +245,10 @@ export namespace container_v1 {
      */
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
     /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     */
+    parallelstoreCsiDriverConfig?: Schema$ParallelstoreCsiDriverConfig;
+    /**
      * Optional. Configuration for Ray Operator addon.
      */
     rayOperatorConfig?: Schema$RayOperatorConfig;
@@ -596,6 +600,10 @@ export namespace container_v1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Configuration for all cluster's control plane endpoints.
+     */
+    controlPlaneEndpointsConfig?: Schema$ControlPlaneEndpointsConfig;
+    /**
      * Configuration for the fine-grained cost management feature.
      */
     costManagementConfig?: Schema$CostManagementConfig;
@@ -716,7 +724,7 @@ export namespace container_v1 {
      */
     masterAuth?: Schema$MasterAuth;
     /**
-     * The configuration options for master authorized networks feature.
+     * The configuration options for master authorized networks feature. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config instead.
      */
     masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
@@ -927,6 +935,10 @@ export namespace container_v1 {
      */
     desiredContainerdConfig?: Schema$ContainerdConfig;
     /**
+     * Control plane endpoints configuration.
+     */
+    desiredControlPlaneEndpointsConfig?: Schema$ControlPlaneEndpointsConfig;
+    /**
      * The desired configuration for the fine-grained cost management feature.
      */
     desiredCostManagementConfig?: Schema$CostManagementConfig;
@@ -938,6 +950,10 @@ export namespace container_v1 {
      * The desired datapath provider for the cluster.
      */
     desiredDatapathProvider?: string | null;
+    /**
+     * Override the default setting of whether future created nodes have private IP addresses only, namely NetworkConfig.default_enable_private_nodes
+     */
+    desiredDefaultEnablePrivateNodes?: boolean | null;
     /**
      * The desired status of whether to disable default sNAT for this cluster.
      */
@@ -959,9 +975,13 @@ export namespace container_v1 {
      */
     desiredEnableMultiNetworking?: boolean | null;
     /**
-     * Enable/Disable private endpoint for the cluster's master.
+     * Enable/Disable private endpoint for the cluster's master. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.enable_public_endpoint instead. Note that the value of enable_public_endpoint is reversed: if enable_private_endpoint is false, then enable_public_endpoint will be true.
      */
     desiredEnablePrivateEndpoint?: boolean | null;
+    /**
+     * The desired enterprise configuration for the cluster.
+     */
+    desiredEnterpriseConfig?: Schema$DesiredEnterpriseConfig;
     /**
      * The desired fleet configuration for the cluster.
      */
@@ -1011,7 +1031,7 @@ export namespace container_v1 {
      */
     desiredLoggingService?: string | null;
     /**
-     * The desired configuration options for master authorized networks feature.
+     * The desired configuration options for master authorized networks feature. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.authorized_networks_config instead.
      */
     desiredMasterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
@@ -1075,7 +1095,7 @@ export namespace container_v1 {
      */
     desiredParentProductConfig?: Schema$ParentProductConfig;
     /**
-     * The desired private cluster configuration. master_global_access_config is the only field that can be changed via this field. See also ClusterUpdate.desired_enable_private_endpoint for modifying other fields within PrivateClusterConfig.
+     * The desired private cluster configuration. master_global_access_config is the only field that can be changed via this field. See also ClusterUpdate.desired_enable_private_endpoint for modifying other fields within PrivateClusterConfig. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.global_access instead.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
     /**
@@ -1223,6 +1243,19 @@ export namespace container_v1 {
     privateRegistryAccessConfig?: Schema$PrivateRegistryAccessConfig;
   }
   /**
+   * Configuration for all of the cluster's control plane endpoints.
+   */
+  export interface Schema$ControlPlaneEndpointsConfig {
+    /**
+     * DNS endpoint configuration.
+     */
+    dnsEndpointConfig?: Schema$DNSEndpointConfig;
+    /**
+     * IP endpoints configuration.
+     */
+    ipEndpointsConfig?: Schema$IPEndpointsConfig;
+  }
+  /**
    * Configuration for fine-grained cost management feature.
    */
   export interface Schema$CostManagementConfig {
@@ -1325,6 +1358,15 @@ export namespace container_v1 {
     disabled?: boolean | null;
   }
   /**
+   * DesiredEnterpriseConfig is a wrapper used for updating enterprise_config.
+   */
+  export interface Schema$DesiredEnterpriseConfig {
+    /**
+     * desired_tier specifies the desired tier of the cluster.
+     */
+    desiredTier?: string | null;
+  }
+  /**
    * Configuration for NodeLocal DNSCache
    */
   export interface Schema$DnsCacheConfig {
@@ -1355,6 +1397,19 @@ export namespace container_v1 {
     clusterDnsScope?: string | null;
   }
   /**
+   * Describes the configuration of a DNS endpoint.
+   */
+  export interface Schema$DNSEndpointConfig {
+    /**
+     * Controls whether user traffic is allowed over this endpoint. Note that GCP-managed services may still use the endpoint even if this is false.
+     */
+    allowExternalTraffic?: boolean | null;
+    /**
+     * Output only. The cluster's DNS endpoint configuration. A DNS format address. This is accessible from the public internet. Ex: uid.us-central1.gke.goog. Always present, but the behavior may change according to the value of DNSEndpointConfig.allow_external_traffic.
+     */
+    endpoint?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1366,6 +1421,10 @@ export namespace container_v1 {
      * Output only. cluster_tier indicates the effective tier of the cluster.
      */
     clusterTier?: string | null;
+    /**
+     * desired_tier specifies the desired tier of the cluster.
+     */
+    desiredTier?: string | null;
   }
   /**
    * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
@@ -1707,6 +1766,39 @@ export namespace container_v1 {
     useRoutes?: boolean | null;
   }
   /**
+   * IP endpoints configuration.
+   */
+  export interface Schema$IPEndpointsConfig {
+    /**
+     * Configuration of authorized networks. If enabled, restricts access to the control plane based on source IP. It is invalid to specify both Cluster.masterAuthorizedNetworksConfig and this field at the same time.
+     */
+    authorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
+    /**
+     * Controls whether to allow direct IP access.
+     */
+    enabled?: boolean | null;
+    /**
+     * Controls whether the control plane allows access through a public IP. It is invalid to specify both PrivateClusterConfig.enablePrivateEndpoint and this field at the same time.
+     */
+    enablePublicEndpoint?: boolean | null;
+    /**
+     * Controls whether the control plane's private endpoint is accessible from sources in other regions. It is invalid to specify both PrivateClusterMasterGlobalAccessConfig.enabled and this field at the same time.
+     */
+    globalAccess?: boolean | null;
+    /**
+     * Output only. The internal IP address of this cluster's control plane. Only populated if enabled.
+     */
+    privateEndpoint?: string | null;
+    /**
+     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format. It is invalid to specify both PrivateClusterConfig.privateEndpointSubnetwork and this field at the same time.
+     */
+    privateEndpointSubnetwork?: string | null;
+    /**
+     * Output only. The external IP address of this cluster's control plane. Only populated if enabled.
+     */
+    publicEndpoint?: string | null;
+  }
+  /**
    * Jwk is a JSON Web Key as specified in RFC 7517
    */
   export interface Schema$Jwk {
@@ -1968,6 +2060,10 @@ export namespace container_v1 {
      * Whether master is accessbile via Google Compute Engine Public IP addresses.
      */
     gcpPublicCidrsAccessEnabled?: boolean | null;
+    /**
+     * Whether master authorized networks is enforced on private endpoint or not.
+     */
+    privateEndpointEnforcementEnabled?: boolean | null;
   }
   /**
    * Constraints applied to pods.
@@ -2042,6 +2138,10 @@ export namespace container_v1 {
      * The desired datapath provider for this cluster. By default, uses the IPTables-based kube-proxy implementation.
      */
     datapathProvider?: string | null;
+    /**
+     * Controls whether by default nodes have private IP addresses only. It is invalid to specify both PrivateClusterConfig.enablePrivateNodes and this field at the same time. To update the default setting, use ClusterUpdate.desired_default_enable_private_nodes
+     */
+    defaultEnablePrivateNodes?: boolean | null;
     /**
      * Whether the cluster disables default in-node sNAT rules. In-node sNAT rules will be disabled when default_snat_status is disabled. When disabled is set to false, default IP masquerade rules will be applied to the nodes to prevent sNAT on cluster internal traffic.
      */
@@ -2414,7 +2514,7 @@ export namespace container_v1 {
      */
     createPodRange?: boolean | null;
     /**
-     * Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from cluster.privateClusterConfig.enablePrivateNodes
+     * Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes
      */
     enablePrivateNodes?: boolean | null;
     /**
@@ -2734,6 +2834,15 @@ export namespace container_v1 {
     status?: string | null;
   }
   /**
+   * Configuration for the Cloud Storage Parallelstore CSI driver.
+   */
+  export interface Schema$ParallelstoreCsiDriverConfig {
+    /**
+     * Whether the Cloud Storage Parallelstore CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * ParentProductConfig is the configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of a GKE cluster and take the ownership of the cluster.
    */
   export interface Schema$ParentProductConfig {
@@ -2777,15 +2886,15 @@ export namespace container_v1 {
    */
   export interface Schema$PrivateClusterConfig {
     /**
-     * Whether the master's internal IP address is used as the cluster endpoint.
+     * Whether the master's internal IP address is used as the cluster endpoint. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_public_endpoint instead. Note that the value of enable_public_endpoint is reversed: if enable_private_endpoint is false, then enable_public_endpoint will be true.
      */
     enablePrivateEndpoint?: boolean | null;
     /**
-     * Whether nodes have internal IP addresses only. If enabled, all nodes are given only RFC 1918 private addresses and communicate with the master via private networking.
+     * Whether nodes have internal IP addresses only. If enabled, all nodes are given only RFC 1918 private addresses and communicate with the master via private networking. Deprecated: Use NetworkConfig.default_enable_private_nodes instead.
      */
     enablePrivateNodes?: boolean | null;
     /**
-     * Controls master global access settings.
+     * Controls master global access settings. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_global_access instead.
      */
     masterGlobalAccessConfig?: Schema$PrivateClusterMasterGlobalAccessConfig;
     /**
@@ -2797,15 +2906,15 @@ export namespace container_v1 {
      */
     peeringName?: string | null;
     /**
-     * Output only. The internal IP address of this cluster's master endpoint.
+     * Output only. The internal IP address of this cluster's master endpoint. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint instead.
      */
     privateEndpoint?: string | null;
     /**
-     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format.
+     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork instead.
      */
     privateEndpointSubnetwork?: string | null;
     /**
-     * Output only. The external IP address of this cluster's master endpoint.
+     * Output only. The external IP address of this cluster's master endpoint. Deprecated:Use ControlPlaneEndpointsConfig.IPEndpointsConfig.public_endpoint instead.
      */
     publicEndpoint?: string | null;
   }
@@ -2952,6 +3061,10 @@ export namespace container_v1 {
      * The default version for newly created clusters on the channel.
      */
     defaultVersion?: string | null;
+    /**
+     * The auto upgrade target version for clusters on the channel.
+     */
+    upgradeTargetVersion?: string | null;
     /**
      * List of valid versions for the channel.
      */
