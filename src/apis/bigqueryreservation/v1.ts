@@ -133,6 +133,10 @@ export namespace bigqueryreservation_v1 {
      */
     assignee?: string | null;
     /**
+     * Optional. This field controls if "Gemini in BigQuery" (https://cloud.google.com/gemini/docs/bigquery/overview) features should be enabled for this reservation assignment, which is not on by default. "Gemini in BigQuery" has a distinct compliance posture from BigQuery. If this field is set to true, the assignment job type is QUERY, and the parent reservation edition is ENTERPRISE_PLUS, then the assignment will give the grantee project/organization access to "Gemini in BigQuery" features.
+     */
+    enableGeminiInBigquery?: boolean | null;
+    /**
      * Which type of jobs will use the reservation.
      */
     jobType?: string | null;
@@ -150,7 +154,7 @@ export namespace bigqueryreservation_v1 {
    */
   export interface Schema$Autoscale {
     /**
-     * Output only. The slot capacity added to this reservation when autoscale happens. Will be between [0, max_slots].
+     * Output only. The slot capacity added to this reservation when autoscale happens. Will be between [0, max_slots]. Note: after users reduce max_slots, it may take a while before it can be propagated, so current_slots may stay in the original value and could be larger than max_slots for that brief period (less than one minute)
      */
     currentSlots?: string | null;
     /**
@@ -321,6 +325,10 @@ export namespace bigqueryreservation_v1 {
      * If false, any query or pipeline job using this reservation will use idle slots from other reservations within the same admin project. If true, a query or pipeline job using this reservation will execute with the slot capacity specified in the slot_capacity field at most.
      */
     ignoreIdleSlots?: boolean | null;
+    /**
+     * Optional. The labels associated with this reservation. You can use these to organize and group your reservations. You can set this property when inserting or updating a reservation.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * Applicable only for reservations located within one of the BigQuery multi-regions (US or EU). If set to true, this reservation is placed in the organization's secondary region which is designated for disaster recovery purposes. If false, this reservation is placed in the organization's default region. NOTE: this is a preview feature. Project must be allow-listed in order to set this field.
      */
