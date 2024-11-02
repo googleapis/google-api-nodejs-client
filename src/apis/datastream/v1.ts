@@ -737,7 +737,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * MySQL database profile.
+   * MySQL database profile. Next ID: 7.
    */
   export interface Schema$MysqlProfile {
     /**
@@ -745,7 +745,7 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. Input only. Password for the MySQL connection.
+     * Optional. Input only. Password for the MySQL connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
@@ -954,7 +954,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * Oracle database profile.
+   * Oracle database profile. Next ID: 10.
    */
   export interface Schema$OracleProfile {
     /**
@@ -974,7 +974,7 @@ export namespace datastream_v1 {
      */
     oracleSslConfig?: Schema$OracleSslConfig;
     /**
-     * Required. Password for the Oracle connection.
+     * Optional. Password for the Oracle connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
@@ -1123,7 +1123,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * PostgreSQL database profile.
+   * PostgreSQL database profile. Next ID: 7.
    */
   export interface Schema$PostgresqlProfile {
     /**
@@ -1135,7 +1135,7 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. Password for the PostgreSQL connection.
+     * Optional. Password for the PostgreSQL connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
@@ -1431,7 +1431,7 @@ export namespace datastream_v1 {
     table?: string | null;
   }
   /**
-   * SQLServer database profile
+   * SQLServer database profile. Next ID: 8.
    */
   export interface Schema$SqlServerProfile {
     /**
@@ -1443,7 +1443,7 @@ export namespace datastream_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. Password for the SQLServer connection.
+     * Optional. Password for the SQLServer connection. Mutually exclusive with the `secret_manager_stored_password` field.
      */
     password?: string | null;
     /**
