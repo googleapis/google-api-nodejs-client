@@ -1795,6 +1795,34 @@
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
+                        },
+                        "testIamPermissions": {
+                          "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}/applications/{applicationsId}:testIamPermissions",
+                          "httpMethod": "POST",
+                          "id": "beyondcorp.projects.locations.global.securityGateways.applications.testIamPermissions",
+                          "parameterOrder": [
+                            "resource"
+                          ],
+                          "parameters": {
+                            "resource": {
+                              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+/applications/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+resource}:testIamPermissions",
+                          "request": {
+                            "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     }
@@ -2025,6 +2053,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/securityGateways/{securityGatewaysId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "beyondcorp.projects.locations.securityGateways.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/securityGateways/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists SecurityGateways in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/securityGateways",
@@ -2137,6 +2196,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/securityGateways/{securityGatewaysId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "beyondcorp.projects.locations.securityGateways.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/securityGateways/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -2202,6 +2289,37 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/securityGateways/{securityGatewaysId}/applications/{applicationsId}:getIamPolicy",
+                      "httpMethod": "GET",
+                      "id": "beyondcorp.projects.locations.securityGateways.applications.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "options.requestedPolicyVersion": {
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/securityGateways/[^/]+/applications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:getIamPolicy",
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "list": {
                       "description": "Lists Applications in a given project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/securityGateways/{securityGatewaysId}/applications",
@@ -2247,6 +2365,78 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/securityGateways/{securityGatewaysId}/applications/{applicationsId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "beyondcorp.projects.locations.securityGateways.applications.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/securityGateways/[^/]+/applications/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "v": {
+      "resources": {
+        "projects": {
+          "resources": {
+            "locations": {
+              "resources": {
+                "securityGateways": {
+                  "methods": {
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                      "flatPath": "v/projects/{projectsId}/locations/{locationsId}/securityGateways/{securityGatewaysId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "beyondcorp.v.projects.locations.securityGateways.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/securityGateways/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "GoogleIamV1SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleIamV1Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 }
@@ -2257,7 +2447,7 @@
       }
     }
   },
-  "revision": "20240925",
+  "revision": "20241011",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -3545,9 +3735,24 @@
       "description": "The Hub message contains information pertaining to the regional data path deployments.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1Hub",
       "properties": {
-        "natGatewayConfig": {
-          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1NatGatewayConfig",
-          "description": "Optional. NAT gateway setup to ensure enough NAT IP addresses are available to handle the traffic needed to access the applications. Allows to explicitly enable or disable the NAT in the Hub along with the total IPs allocated to handle the capacity limits."
+        "internetGateway": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1InternetGateway",
+          "description": "Optional. Internet Gateway configuration."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1InternetGateway": {
+      "description": "Represents the Internet Gateway configuration.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1InternetGateway",
+      "properties": {
+        "assignedIps": {
+          "description": "Output only. List of IP addresses assigned to the Cloud NAT.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -3602,21 +3807,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudBeyondcorpSecuritygatewaysV1NatGatewayConfig": {
-      "description": "Represents the NAT Gateway configuration.",
-      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1NatGatewayConfig",
-      "properties": {
-        "natIps": {
-          "description": "Output only. List of NAT IPs that will be used for establishing connection to the endpoints.",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudBeyondcorpSecuritygatewaysV1Peering": {
       "description": "VPC Peering details.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1Peering",
@@ -3628,7 +3818,7 @@
           },
           "type": "array"
         },
-        "targetVpcNetwork": {
+        "targetNetwork": {
           "description": "Required. The name of the Target VPC network name in the format: `projects/{project}/global/networks/{network}",
           "type": "string"
         }
@@ -3748,6 +3938,13 @@
       "description": "Set Peering request for creating a VPC peering between Google network and customer networks.",
       "id": "GoogleCloudBeyondcorpSecuritygatewaysV1SetPeeringRequest",
       "properties": {
+        "peerings": {
+          "description": "Required. List of Peering connection information.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1Peering"
+          },
+          "type": "array"
+        },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
           "type": "string"
@@ -3755,13 +3952,6 @@
         "validateOnly": {
           "description": "Optional. If set, validates request by executing a dry-run which would not alter the resource in any way.",
           "type": "boolean"
-        },
-        "vpcPeerings": {
-          "description": "Required. List of Peering connection information.",
-          "items": {
-            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1Peering"
-          },
-          "type": "array"
         }
       },
       "type": "object"
