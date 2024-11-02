@@ -1965,7 +1965,7 @@ export namespace youtube_v3 {
     streamName?: string | null;
   }
   /**
-   * LINT.IfChange Describes an invideo branding.
+   * Describes an invideo branding.
    */
   export interface Schema$InvideoBranding {
     /**
@@ -3172,7 +3172,7 @@ export namespace youtube_v3 {
      */
     items?: Schema$PlaylistItem[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "youtube#playlistItemListResponse". Etag of this resource.
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#playlistItemListResponse".
      */
     kind?: string | null;
     /**
@@ -3721,6 +3721,10 @@ export namespace youtube_v3 {
     stickerId?: string | null;
   }
   export interface Schema$TestItem {
+    /**
+     * Etag for the resource. See https://en.wikipedia.org/wiki/HTTP_ETag.
+     */
+    etag?: string | null;
     featuredPart?: boolean | null;
     gaia?: string | null;
     id?: string | null;
@@ -4555,6 +4559,10 @@ export namespace youtube_v3 {
    * Basic details about a video category, such as its localized title. Next Id: 19
    */
   export interface Schema$VideoStatus {
+    /**
+     * Indicates if the video contains altered or synthetic media.
+     */
+    containsSyntheticMedia?: boolean | null;
     /**
      * This value indicates if the video can be embedded on another website. @mutable youtube.videos.insert youtube.videos.update
      */
@@ -8788,7 +8796,7 @@ export namespace youtube_v3 {
      */
     liveChatId?: string;
     /**
-     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
      */
     maxResults?: number;
     /**
@@ -13780,8 +13788,10 @@ export namespace youtube_v3 {
 
   export class Resource$Youtube$V3 {
     context: APIRequestContext;
+    liveChat: Resource$Youtube$V3$Livechat;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.liveChat = new Resource$Youtube$V3$Livechat(this.context);
     }
 
     /**
@@ -13886,5 +13896,144 @@ export namespace youtube_v3 {
      * Request body metadata
      */
     requestBody?: Schema$CommentThread;
+  }
+
+  export class Resource$Youtube$V3$Livechat {
+    context: APIRequestContext;
+    messages: Resource$Youtube$V3$Livechat$Messages;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.messages = new Resource$Youtube$V3$Livechat$Messages(this.context);
+    }
+  }
+
+  export class Resource$Youtube$V3$Livechat$Messages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Allows a user to load live chat through a server-streamed RPC.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stream(
+      params?: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LiveChatMessageListResponse>;
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    stream(
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    stream(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Livechat$Messages$Stream
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LiveChatMessageListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Livechat$Messages$Stream;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Livechat$Messages$Stream;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages/stream').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LiveChatMessageListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LiveChatMessageListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Livechat$Messages$Stream
+    extends StandardParameters {
+    /**
+     * Specifies the localization language in which the system messages should be returned.
+     */
+    hl?: string;
+    /**
+     * The id of the live chat for which comments should be returned.
+     */
+    liveChatId?: string;
+    /**
+     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     */
+    maxResults?: number;
+    /**
+     * The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     */
+    pageToken?: string;
+    /**
+     * The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     */
+    part?: string[];
+    /**
+     * Specifies the size of the profile image that should be returned for each user.
+     */
+    profileImageSize?: number;
   }
 }
