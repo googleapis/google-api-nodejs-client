@@ -401,6 +401,25 @@
         }
       }
     },
+    "aisafety": {
+      "methods": {
+        "classifyContent": {
+          "description": "Analyze a piece of content with the provided set of policies.",
+          "flatPath": "v1alpha/aisafety:classifyContent",
+          "httpMethod": "POST",
+          "id": "checks.aisafety.classifyContent",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha/aisafety:classifyContent",
+          "request": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequest"
+          },
+          "response": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentResponse"
+          }
+        }
+      }
+    },
     "media": {
       "methods": {
         "upload": {
@@ -444,7 +463,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20241029",
   "rootUrl": "https://checks.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -487,6 +506,185 @@
         },
         "nextPageToken": {
           "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequest": {
+      "description": "Request proto for ClassifyContent RPC.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequest",
+      "properties": {
+        "classifierVersion": {
+          "description": "Optional. Version of the classifier to use. If not specified, the latest version will be used.",
+          "enum": [
+            "CLASSIFIER_VERSION_UNSPECIFIED",
+            "STABLE",
+            "LATEST"
+          ],
+          "enumDescriptions": [
+            "Unspecified version.",
+            "Stable version.",
+            "Latest version."
+          ],
+          "type": "string"
+        },
+        "context": {
+          "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequestContext",
+          "description": "Optional. Context about the input that will be used to help on the classification."
+        },
+        "input": {
+          "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent",
+          "description": "Required. Content to be classified."
+        },
+        "policies": {
+          "description": "Required. List of policies to classify against.",
+          "items": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequestContext": {
+      "description": "Context about the input that will be used to help on the classification.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequestContext",
+      "properties": {
+        "prompt": {
+          "description": "Optional. Prompt that generated the model response.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent": {
+      "description": "Content to be classified.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequestInputContent",
+      "properties": {
+        "textInput": {
+          "$ref": "GoogleChecksAisafetyV1alphaTextInput",
+          "description": "Content in text format."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig": {
+      "description": "List of policies to classify against.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentRequestPolicyConfig",
+      "properties": {
+        "policyType": {
+          "description": "Required. Type of the policy.",
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "DANGEROUS_CONTENT",
+            "PII_SOLICITING_RECITING",
+            "HARASSMENT",
+            "SEXUALLY_EXPLICIT",
+            "HATE_SPEECH",
+            "MEDICAL_INFO",
+            "VIOLENCE_AND_GORE",
+            "OBSCENITY_AND_PROFANITY"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "The model facilitates, promotes or enables access to harmful goods, services, and activities.",
+            "The model reveals an individual’s personal information and data.",
+            "The model generates content that is malicious, intimidating, bullying, or abusive towards another individual.",
+            "The model generates content that is sexually explicit in nature.",
+            "The model promotes violence, hatred, discrimination on the basis of race, religion, etc.",
+            "The model facilitates harm by providing health advice or guidance.",
+            "The model generates content that contains gratuitous, realistic descriptions of violence or gore.",
+            ""
+          ],
+          "type": "string"
+        },
+        "threshold": {
+          "description": "Optional. Score threshold to use when deciding if the content is violative or non-violative. If not specified, the default 0.5 threshold for the policy will be used.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentResponse": {
+      "description": "Response proto for ClassifyContent RPC.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentResponse",
+      "properties": {
+        "policyResults": {
+          "description": "Results of the classification for each policy.",
+          "items": {
+            "$ref": "GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult": {
+      "description": "Result for one policy against the corresponding input.",
+      "id": "GoogleChecksAisafetyV1alphaClassifyContentResponsePolicyResult",
+      "properties": {
+        "policyType": {
+          "description": "Type of the policy.",
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "DANGEROUS_CONTENT",
+            "PII_SOLICITING_RECITING",
+            "HARASSMENT",
+            "SEXUALLY_EXPLICIT",
+            "HATE_SPEECH",
+            "MEDICAL_INFO",
+            "VIOLENCE_AND_GORE",
+            "OBSCENITY_AND_PROFANITY"
+          ],
+          "enumDescriptions": [
+            "Default.",
+            "The model facilitates, promotes or enables access to harmful goods, services, and activities.",
+            "The model reveals an individual’s personal information and data.",
+            "The model generates content that is malicious, intimidating, bullying, or abusive towards another individual.",
+            "The model generates content that is sexually explicit in nature.",
+            "The model promotes violence, hatred, discrimination on the basis of race, religion, etc.",
+            "The model facilitates harm by providing health advice or guidance.",
+            "The model generates content that contains gratuitous, realistic descriptions of violence or gore.",
+            ""
+          ],
+          "type": "string"
+        },
+        "score": {
+          "description": "Final score for the results of this policy.",
+          "format": "float",
+          "type": "number"
+        },
+        "violationResult": {
+          "description": "Result of the classification for the policy.",
+          "enum": [
+            "VIOLATION_RESULT_UNSPECIFIED",
+            "VIOLATIVE",
+            "NON_VIOLATIVE",
+            "CLASSIFICATION_ERROR"
+          ],
+          "enumDescriptions": [
+            "Unspecified result.",
+            "The final score is greater or equal the input score threshold.",
+            "The final score is smaller than the input score threshold.",
+            "There was an error and the violation result could not be determined."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChecksAisafetyV1alphaTextInput": {
+      "description": "Text input to be classified.",
+      "id": "GoogleChecksAisafetyV1alphaTextInput",
+      "properties": {
+        "content": {
+          "description": "Actual piece of text to be classified.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. Language of the text in ISO 639-1 format. If the language is invalid or not specified, the system will try to detect it.",
           "type": "string"
         }
       },
@@ -705,7 +903,10 @@
             "DATA_MONITORING_OUTDATED_SDK_VERSION",
             "DATA_MONITORING_CRITICAL_SDK_ISSUE",
             "PRIVACY_POLICY_DATA_TYPE_SENSITIVE_INFO",
-            "DATA_MONITORING_PII_LOGCAT_LEAK"
+            "DATA_MONITORING_PII_LOGCAT_LEAK",
+            "DATA_MONITORING_MINIMIZE_PERMISSION_MEDIA",
+            "DATA_MONITORING_MINIMIZE_PERMISSION_CAMERA",
+            "DATA_MONITORING_MINIMIZE_PERMISSION_DOCUMENTS"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -796,7 +997,10 @@
             "Checks if there are any outdated SDKs.",
             "Checks if there are any SDKs with critical issues.",
             "Checks if the Sensitive Information data type declaration matches usage.",
-            "Checks if there were any PII leaked to device logs."
+            "Checks if there were any PII leaked to device logs.",
+            "Checks if there are media (photo and video) permissions that are considered sensitive and should be minimized for Android.",
+            "Checks if there are camera use permissions that are considered sensitive and should be minimized for Android.",
+            "Checks if there are documents and file permissions that are considered sensitive and should be minimized for Android."
           ],
           "type": "string"
         }
@@ -924,6 +1128,7 @@
             "DATA_TYPE_FITNESS_INFO",
             "DATA_TYPE_EMAILS",
             "DATA_TYPE_TEXT_MESSAGES",
+            "DATA_TYPE_OTHER_IN_APP_MESSAGES",
             "DATA_TYPE_PHOTOS",
             "DATA_TYPE_VIDEOS",
             "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
@@ -964,6 +1169,7 @@
             "Information about a user's fitness, such as exercise or other physical activity.",
             "A user's emails including the email subject line, sender, recipients, and the content of the email.",
             "A user's text messages including the sender, recipients, and the content of the message.",
+            "Any other types of messages. For example, instant messages or chat content.",
             "A user's photos.",
             "A user's videos.",
             "A user's voice such as a voicemail or a sound recording.",
@@ -1298,6 +1504,7 @@
             "DATA_TYPE_FITNESS_INFO",
             "DATA_TYPE_EMAILS",
             "DATA_TYPE_TEXT_MESSAGES",
+            "DATA_TYPE_OTHER_IN_APP_MESSAGES",
             "DATA_TYPE_PHOTOS",
             "DATA_TYPE_VIDEOS",
             "DATA_TYPE_VOICE_OR_SOUND_RECORDINGS",
@@ -1338,6 +1545,7 @@
             "Information about a user's fitness, such as exercise or other physical activity.",
             "A user's emails including the email subject line, sender, recipients, and the content of the email.",
             "A user's text messages including the sender, recipients, and the content of the message.",
+            "Any other types of messages. For example, instant messages or chat content.",
             "A user's photos.",
             "A user's videos.",
             "A user's voice such as a voicemail or a sound recording.",
