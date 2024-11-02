@@ -2289,7 +2289,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20241010",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2440,6 +2440,27 @@
       "description": "The response object from `ApproveRollout`.",
       "id": "ApproveRolloutResponse",
       "properties": {},
+      "type": "object"
+    },
+    "AssociatedEntities": {
+      "description": "Information about entities associated with a `Target`.",
+      "id": "AssociatedEntities",
+      "properties": {
+        "anthosClusters": {
+          "description": "Optional. Information specifying Anthos clusters as associated entities.",
+          "items": {
+            "$ref": "AnthosCluster"
+          },
+          "type": "array"
+        },
+        "gkeClusters": {
+          "description": "Optional. Information specifying GKE clusters as associated entities.",
+          "items": {
+            "$ref": "GkeCluster"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "AuditConfig": {
@@ -3988,6 +4009,10 @@
         "podSelectorLabel": {
           "description": "Optional. The label to use when selecting Pods for the Deployment and Service resources. This label must already be present in both resources.",
           "type": "string"
+        },
+        "routeDestinations": {
+          "$ref": "RouteDestinations",
+          "description": "Optional. Route destinations allow configuring the Gateway API HTTPRoute to be deployed to additional clusters. This option is available for multi-cluster service mesh set ups that require the route to exist in the clusters that call the service. If unspecified, the HTTPRoute will only be deployed to the Target cluster."
         },
         "routeUpdateWaitTime": {
           "description": "Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.",
@@ -6308,6 +6333,24 @@
       },
       "type": "object"
     },
+    "RouteDestinations": {
+      "description": "Information about route destinations for the Gateway API service mesh.",
+      "id": "RouteDestinations",
+      "properties": {
+        "destinationIds": {
+          "description": "Required. The clusters where the Gateway API HTTPRoute resource will be deployed to. Valid entries include the associated entities IDs configured in the Target resource and \"@self\" to include the Target cluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "propagateService": {
+          "description": "Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitiate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "RuntimeConfig": {
       "description": "RuntimeConfig contains the runtime specific configurations for a deployment strategy.",
       "id": "RuntimeConfig",
@@ -6621,6 +6664,13 @@
         "anthosCluster": {
           "$ref": "AnthosCluster",
           "description": "Optional. Information specifying an Anthos Cluster."
+        },
+        "associatedEntities": {
+          "additionalProperties": {
+            "$ref": "AssociatedEntities"
+          },
+          "description": "Optional. Map of entity IDs to their associated entities. Associated entities allows specifying places other than the deployment target for specific features. For example, the Gateway API canary can be configured to deploy the HTTPRoute to a different cluster(s) than the deployment cluster using associated entities. An entity ID must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+          "type": "object"
         },
         "createTime": {
           "description": "Output only. Time at which the `Target` was created.",
@@ -6955,22 +7005,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
