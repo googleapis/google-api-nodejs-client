@@ -609,7 +609,7 @@
     "instances": {
       "methods": {
         "ListServerCertificates": {
-          "description": "Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out.",
+          "description": "Lists all versions of server certificates and certificate authorities (CAs) for the specified instance. There can be up to three sets of certs listed: the certificate that is currently in use, a future that has been added but not yet used to sign a certificate, and a certificate that has been rotated out. For instances not using Certificate Authority Service (CAS) server CA, use ListServerCas instead.",
           "flatPath": "v1/projects/{project}/instances/{instance}/listServerCertificates",
           "httpMethod": "GET",
           "id": "sql.instances.ListServerCertificates",
@@ -641,7 +641,7 @@
           ]
         },
         "RotateServerCertificate": {
-          "description": "Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, please use RotateServerCa instead.",
+          "description": "Rotates the server certificate version to one previously added with the addServerCertificate method. For instances not using Certificate Authority Service (CAS) server CA, use RotateServerCa instead.",
           "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCertificate",
           "httpMethod": "POST",
           "id": "sql.instances.RotateServerCertificate",
@@ -711,7 +711,7 @@
           ]
         },
         "addServerCa": {
-          "description": "Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use AddServerCertificate to add a new server certificate.",
+          "description": "Adds a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in. For instances that have enabled Certificate Authority Service (CAS) based server CA, use AddServerCertificate to add a new server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/addServerCa",
           "httpMethod": "POST",
           "id": "sql.instances.addServerCa",
@@ -743,7 +743,7 @@
           ]
         },
         "addServerCertificate": {
-          "description": "Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, please use AddServerCa instead.",
+          "description": "Add a new trusted server certificate version for the specified instance using Certificate Authority Service (CAS) server CA. Required to prepare for a certificate rotation. If a server certificate version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one certificate version waiting to be rotated in. For instances not using CAS server CA, use AddServerCa instead.",
           "flatPath": "v1/projects/{project}/instances/{instance}/addServerCertificate",
           "httpMethod": "POST",
           "id": "sql.instances.addServerCertificate",
@@ -819,28 +819,6 @@
             "instance"
           ],
           "parameters": {
-            "enableFinalBackup": {
-              "description": "Flag to opt-in for final backup. By default, it is turned off.",
-              "location": "query",
-              "type": "boolean"
-            },
-            "finalBackupDescription": {
-              "description": "Optional. The description of the final backup.",
-              "location": "query",
-              "type": "string"
-            },
-            "finalBackupExpiryTime": {
-              "description": "Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.",
-              "format": "google-datetime",
-              "location": "query",
-              "type": "string"
-            },
-            "finalBackupTtlDays": {
-              "description": "Optional. Retention period of the final backup.",
-              "format": "int64",
-              "location": "query",
-              "type": "string"
-            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "path",
@@ -1408,7 +1386,7 @@
           ]
         },
         "rotateServerCa": {
-          "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, please use RotateServerCertificate to rotate the server certificate.",
+          "description": "Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method. For instances that have enabled Certificate Authority Service (CAS) based server CA, use RotateServerCertificate to rotate the server certificate.",
           "flatPath": "v1/projects/{project}/instances/{instance}/rotateServerCa",
           "httpMethod": "POST",
           "id": "sql.instances.rotateServerCa",
@@ -1691,11 +1669,6 @@
             "project"
           ],
           "parameters": {
-            "filter": {
-              "description": "Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.",
-              "location": "query",
-              "type": "string"
-            },
             "instance": {
               "description": "Cloud SQL instance ID. This does not include the project ID.",
               "location": "query",
@@ -2393,7 +2366,7 @@
       }
     }
   },
-  "revision": "20240925",
+  "revision": "20241011",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2583,10 +2556,6 @@
         "kind": {
           "description": "This is always `sql#backupContext`.",
           "type": "string"
-        },
-        "name": {
-          "description": "The name of the backup. Format: projects/{project}/backups/{backup}",
-          "type": "string"
         }
       },
       "type": "object"
@@ -2654,8 +2623,8 @@
           ],
           "enumDescriptions": [
             "This is an unknown BackupKind.",
-            "The snapshot based backups",
-            "Physical backups"
+            "Snapshot-based backups.",
+            "Physical backups."
           ],
           "type": "string"
         },
@@ -4628,17 +4597,9 @@
       "description": "Database instance restore backup request.",
       "id": "InstancesRestoreBackupRequest",
       "properties": {
-        "backup": {
-          "description": "The name of the backup to restore from in following format: projects/{project-id}/backups/{backup-uid} Only one of restore_backup_context or backup can be passed to the input.",
-          "type": "string"
-        },
         "restoreBackupContext": {
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
-        },
-        "restoreInstanceSettings": {
-          "$ref": "DatabaseInstance",
-          "description": "Optional. Restore instance settings overrides the instance settings stored as part of the backup. Instance's major database version cannot be changed and the disk size can only be increased. This feature is only available for restores to new instances using the backup name."
         }
       },
       "type": "object"
@@ -4719,7 +4680,7 @@
             "GOOGLE_MANAGED_CAS_CA"
           ],
           "enumDescriptions": [
-            "CA mode is unknown.",
+            "CA mode is unspecified. It is effectively the same as `GOOGLE_MANAGED_INTERNAL_CA`.",
             "Google-managed self-signed internal CA.",
             "Google-managed regional CA part of root CA hierarchy hosted on Google Cloud's Certificate Authority Service (CAS)."
           ],
@@ -5037,7 +4998,6 @@
             "AUTO_RESTART",
             "REENCRYPT",
             "SWITCHOVER",
-            "UPDATE_BACKUP",
             "ACQUIRE_SSRS_LEASE",
             "RELEASE_SSRS_LEASE",
             "RECONFIGURE_OLD_PRIMARY",
@@ -5080,7 +5040,6 @@
             true,
             true,
             true,
-            false,
             false,
             false,
             false,
@@ -5135,7 +5094,6 @@
             "Performs auto-restart of an HA-enabled Cloud SQL database for auto recovery.",
             "Re-encrypts CMEK instances with latest key version.",
             "Switches the roles of the primary and replica pair. The target instance should be the replica.",
-            "Update a backup.",
             "Acquire a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Release a lease for the setup of SQL Server Reporting Services (SSRS).",
             "Reconfigures old primary after a promote replica operation. Effect of a promote operation to the old primary is executed in this operation, asynchronously from the promote replica operation executed to the replica.",
@@ -5288,13 +5246,6 @@
         "nextPageToken": {
           "description": "The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.",
           "type": "string"
-        },
-        "warnings": {
-          "description": "List of warnings that occurred while handling the request.",
-          "items": {
-            "$ref": "ApiWarning"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -5374,6 +5325,33 @@
       },
       "type": "object"
     },
+    "PscAutoConnectionConfig": {
+      "description": "Settings for an automatically-setup Private Service Connect consumer endpoint that is used to connect to a Cloud SQL instance.",
+      "id": "PscAutoConnectionConfig",
+      "properties": {
+        "consumerNetwork": {
+          "description": "The consumer network of this consumer endpoint. This must be a resource path that includes both the host project and the network name. For example, `projects/project1/global/networks/network1`. The consumer host project of this network might be different from the consumer service project.",
+          "type": "string"
+        },
+        "consumerNetworkStatus": {
+          "description": "The connection policy status of the consumer network.",
+          "type": "string"
+        },
+        "consumerProject": {
+          "description": "This is the project ID of consumer service project of this consumer endpoint. Optional. This is only applicable if consumer_network is a shared vpc network.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "The IP address of the consumer endpoint.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The connection status of the consumer endpoint.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PscConfig": {
       "description": "PSC settings for a Cloud SQL instance.",
       "id": "PscConfig",
@@ -5382,6 +5360,13 @@
           "description": "Optional. The list of consumer projects that are allow-listed for PSC connections to this instance. This instance can be connected to with PSC from any network in these projects. Each consumer project in this list may be represented by a project number (numeric) or by a project id (alphanumeric).",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "pscAutoConnections": {
+          "description": "Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to connect to this Cloud SQL instance.",
+          "items": {
+            "$ref": "PscAutoConnectionConfig"
           },
           "type": "array"
         },
@@ -5846,7 +5831,8 @@
             "UNSUPPORTED_COLUMNS",
             "USERS_NOT_CREATED_IN_REPLICA",
             "UNSUPPORTED_SYSTEM_OBJECTS",
-            "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY"
+            "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
+            "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE"
           ],
           "enumDescriptions": [
             "",
@@ -5901,7 +5887,8 @@
             "The source database has generated columns that can't be migrated. Please change them to regular columns before migration.",
             "The source database has users that aren't created in the replica. First, create all users, which are in the pg_user_mappings table of the source database, in the destination instance. Then, perform the migration.",
             "The selected objects include system objects that aren't supported for migration.",
-            "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration."
+            "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration.",
+            "The selected objects don't exist on the source instance."
           ],
           "type": "string"
         }
