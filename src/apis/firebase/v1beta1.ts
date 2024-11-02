@@ -213,7 +213,7 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     * Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.
      */
     expireTime?: string | null;
     /**
@@ -302,7 +302,7 @@ export namespace firebase_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     * Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.
      */
     expireTime?: string | null;
     /**
@@ -388,7 +388,7 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     * Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.
      */
     expireTime?: string | null;
     /**
@@ -579,7 +579,7 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Determines whether to _immediately_ delete the AndroidApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteAndroidApp.
+     * Determines whether to _immediately_ delete the AndroidApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteAndroidApp.
      */
     immediate?: boolean | null;
     /**
@@ -597,7 +597,7 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Determines whether to _immediately_ delete the IosApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteIosApp
+     * Determines whether to _immediately_ delete the IosApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteIosApp
      */
     immediate?: boolean | null;
     /**
@@ -615,7 +615,7 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Determines whether to _immediately_ delete the WebApp. If set to true, the App is immediately deleted from the Project and cannot be restored to the Project. If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteWebApp
+     * Determines whether to _immediately_ delete the WebApp. If set to true, the App is immediately deleted from the Project and cannot be undeleted (that is, restored to the Project). If not set, defaults to false, which means the App will be set to expire in 30 days. Within the 30 days, the App may be restored to the Project using UndeleteWebApp
      */
     immediate?: boolean | null;
     /**
@@ -764,7 +764,7 @@ export namespace firebase_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Output only. Timestamp of when the App will be considered expired and cannot be undeleted. This value is only provided if the App is in the `DELETED` state.
+     * Output only. If the App has been removed from the Project, this is the timestamp of when the App is considered expired and will be permanently deleted. After this time, the App cannot be undeleted (that is, restored to the Project). This value is only provided if the App is in the `DELETED` state.
      */
     expireTime?: string | null;
     /**
