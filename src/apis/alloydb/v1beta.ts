@@ -251,6 +251,10 @@ export namespace alloydb_v1beta {
      */
     state?: string | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` "123/environment": "production", "123/costCenter": "marketing" ```
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * The backup type, which suggests the trigger for the backup.
      */
     type?: string | null;
@@ -444,6 +448,10 @@ export namespace alloydb_v1beta {
      * Optional. Subscription type of the cluster.
      */
     subscriptionType?: string | null;
+    /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` "123/environment": "production", "123/costCenter": "marketing" ```
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Output only. Metadata for free trial clusters
      */
@@ -666,19 +674,19 @@ export namespace alloydb_v1beta {
    */
   export interface Schema$GoogleTypeTimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -1538,7 +1546,7 @@ export namespace alloydb_v1beta {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 22
+   * Common model for database resource instance metadata. Next ID: 23
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -1565,6 +1573,10 @@ export namespace alloydb_v1beta {
      * Any custom metadata associated with the resource
      */
     customMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData;
+    /**
+     * Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.
+     */
+    edition?: string | null;
     /**
      * Entitlements associated with the resource
      */
@@ -1755,6 +1767,10 @@ export namespace alloydb_v1beta {
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
+    /**
+     * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
+     */
+    timestampBasedRetentionTime?: string | null;
   }
   /**
    * Message type for storing tags. Tags provide a way to create annotations for resources, and in some cases conditionally allow or deny policies based on whether a resource has a specific tag.
