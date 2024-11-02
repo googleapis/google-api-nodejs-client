@@ -208,6 +208,10 @@ export namespace cloudcontrolspartner_v1beta {
      * Identifier. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}`
      */
     name?: string | null;
+    /**
+     * Output only. The customer organization domain, extracted from CRM Organization’s display_name field. e.g. "google.com"
+     */
+    organizationDomain?: string | null;
   }
   /**
    * Container for customer onboarding steps
@@ -282,6 +286,10 @@ export namespace cloudcontrolspartner_v1beta {
      */
     ekmSolution?: string | null;
   }
+  /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
+   */
+  export interface Schema$Empty {}
   /**
    * Remediation instructions to resolve violation via gcloud cli
    */
@@ -731,6 +739,181 @@ export namespace cloudcontrolspartner_v1beta {
     }
 
     /**
+     * Creates a new customer.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Customers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Customers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Customer>;
+    create(
+      params: Params$Resource$Organizations$Locations$Customers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Customers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Customers$Create,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Customer>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Customers$Create
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Customers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Customers$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudcontrolspartner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/customers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Customer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Customer>(parameters);
+      }
+    }
+
+    /**
+     * Delete details of a single customer
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Customers$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Customers$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Customers$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Customers$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Customers$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Customers$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Customers$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Customers$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudcontrolspartner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single customer
      *
      * @param params - Parameters for request
@@ -909,8 +1092,117 @@ export namespace cloudcontrolspartner_v1beta {
         return createAPIRequest<Schema$ListCustomersResponse>(parameters);
       }
     }
+
+    /**
+     * Update details of a single customer
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Customers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Customers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Customer>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Customers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Customers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Customer>,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Customers$Patch,
+      callback: BodyResponseCallback<Schema$Customer>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Customer>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Customers$Patch
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Customer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Customer> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Customers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Customers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudcontrolspartner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Customer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Customer>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Organizations$Locations$Customers$Create
+    extends StandardParameters {
+    /**
+     * Required. The customer id to use for the customer, which will become the final component of the customer's resource name. The specified value must be a valid Google cloud organization id.
+     */
+    customerId?: string;
+    /**
+     * Required. Parent resource Format: `organizations/{organization\}/locations/{location\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Customer;
+  }
+  export interface Params$Resource$Organizations$Locations$Customers$Delete
+    extends StandardParameters {
+    /**
+     * Required. name of the resource to be deleted format: name=organizations/x/locations/x/customers/x
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Locations$Customers$Get
     extends StandardParameters {
     /**
@@ -940,6 +1232,22 @@ export namespace cloudcontrolspartner_v1beta {
      * Required. Parent resource Format: `organizations/{organization\}/locations/{location\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Customers$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Format: `organizations/{organization\}/locations/{location\}/customers/{customer\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Customer;
   }
 
   export class Resource$Organizations$Locations$Customers$Workloads {
