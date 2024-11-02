@@ -1655,7 +1655,7 @@
       }
     }
   },
-  "revision": "20240522",
+  "revision": "20241024",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitAdminV2AllowByDefault": {
@@ -2616,7 +2616,7 @@
       "id": "GoogleCloudIdentitytoolkitAdminV2RecaptchaConfig",
       "properties": {
         "emailPasswordEnforcementState": {
-          "description": "The reCAPTCHA config for email/password provider, containing the enforcement status. The email/password provider contains all related user flows protected by reCAPTCHA.",
+          "description": "The reCAPTCHA config for email/password provider, containing the enforcement status. The email/password provider contains all email related user flows protected by reCAPTCHA.",
           "enum": [
             "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
             "OFF",
@@ -2638,6 +2638,22 @@
           },
           "type": "array"
         },
+        "phoneEnforcementState": {
+          "description": "The reCAPTCHA config for phone provider, containing the enforcement status. The phone provider contains all SMS related user flows protected by reCAPTCHA.",
+          "enum": [
+            "RECAPTCHA_PROVIDER_ENFORCEMENT_STATE_UNSPECIFIED",
+            "OFF",
+            "AUDIT",
+            "ENFORCE"
+          ],
+          "enumDescriptions": [
+            "Enforcement state has not been set.",
+            "Unenforced.",
+            "reCAPTCHA assessment is created, result is not used to enforce.",
+            "reCAPTCHA assessment is created, result is used to enforce."
+          ],
+          "type": "string"
+        },
         "recaptchaKeys": {
           "description": "The reCAPTCHA keys.",
           "items": {
@@ -2645,8 +2661,23 @@
           },
           "type": "array"
         },
+        "tollFraudManagedRules": {
+          "description": "The managed rules for the authentication action based on reCAPTCHA toll fraud risk scores. Toll fraud managed rules will only take effect when the phone_enforcement_state is AUDIT or ENFORCE and use_sms_toll_fraud_protection is true.",
+          "items": {
+            "$ref": "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule"
+          },
+          "type": "array"
+        },
         "useAccountDefender": {
           "description": "Whether to use the account defender for reCAPTCHA assessment. Defaults to `false`.",
+          "type": "boolean"
+        },
+        "useSmsBotScore": {
+          "description": "Whether to use the rCE bot score for reCAPTCHA phone provider. Can only be true when the phone_enforcement_state is AUDIT or ENFORCE.",
+          "type": "boolean"
+        },
+        "useSmsTollFraudProtection": {
+          "description": "Whether to use the rCE sms toll fraud protection risk score for reCAPTCHA phone provider. Can only be true when the phone_enforcement_state is AUDIT or ENFORCE.",
           "type": "boolean"
         }
       },
@@ -2697,6 +2728,30 @@
         },
         "endScore": {
           "description": "The end score (inclusive) of the score range for an action. Must be a value between 0.0 and 1.0, at 11 discrete values; e.g. 0, 0.1, 0.2, 0.3, ... 0.9, 1.0. A score of 0.0 indicates the riskiest request (likely a bot), whereas 1.0 indicates the safest request (likely a human). See https://cloud.google.com/recaptcha-enterprise/docs/interpret-assessment.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule": {
+      "description": "The config for a reCAPTCHA toll fraud assessment managed rule. Models a single interval [start_score, end_score]. The end_score is implicit. It is either the closest smaller end_score (if one is available) or 0. Intervals in aggregate span [0, 1] without overlapping.",
+      "id": "GoogleCloudIdentitytoolkitAdminV2RecaptchaTollFraudManagedRule",
+      "properties": {
+        "action": {
+          "description": "The action taken if the reCAPTCHA score of a request is within the interval [start_score, end_score].",
+          "enum": [
+            "RECAPTCHA_ACTION_UNSPECIFIED",
+            "BLOCK"
+          ],
+          "enumDescriptions": [
+            "The reCAPTCHA action is not specified.",
+            "The reCAPTCHA-protected request will be blocked."
+          ],
+          "type": "string"
+        },
+        "startScore": {
+          "description": "The start score (inclusive) for an action. Must be a value between 0.0 and 1.0, at 11 discrete values; e.g. 0, 0.1, 0.2, 0.3, ... 0.9, 1.0. A score of 0.0 indicates the safest request (likely legitimate), whereas 1.0 indicates the riskiest request (likely toll fraud). See https://cloud.google.com/recaptcha-enterprise/docs/sms-fraud-detection#create-assessment-sms.",
           "format": "float",
           "type": "number"
         }
@@ -3322,6 +3377,14 @@
         "recaptchaKey": {
           "description": "The reCAPTCHA Enterprise key resource name, e.g. \"projects/{project}/keys/{key}\". This will only be returned when the reCAPTCHA enforcement state is AUDIT or ENFORCE on at least one of the reCAPTCHA providers.",
           "type": "string"
+        },
+        "useSmsBotScore": {
+          "description": "Whether to use the rCE bot score for reCAPTCHA phone provider.",
+          "type": "boolean"
+        },
+        "useSmsTollFraudProtection": {
+          "description": "Whether to use the rCE sms toll fraud protection risk score for reCAPTCHA phone provider.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3350,11 +3413,13 @@
           "description": "The provider that has reCAPTCHA protection.",
           "enum": [
             "RECAPTCHA_PROVIDER_UNSPECIFIED",
-            "EMAIL_PASSWORD_PROVIDER"
+            "EMAIL_PASSWORD_PROVIDER",
+            "PHONE_PROVIDER"
           ],
           "enumDescriptions": [
             "reCAPTCHA provider not specified",
-            "Email password provider"
+            "Email password provider",
+            "Phone auth provider"
           ],
           "type": "string"
         }
@@ -3456,6 +3521,26 @@
           "$ref": "GoogleCloudIdentitytoolkitV2AutoRetrievalInfo",
           "description": "Android only. Used by Google Play Services to identify the app for auto-retrieval."
         },
+        "captchaResponse": {
+          "description": "The reCAPTCHA Enterprise token provided by the reCAPTCHA client-side integration. Required when reCAPTCHA enterprise is enabled.",
+          "type": "string"
+        },
+        "clientType": {
+          "description": "The client type, web, android or ios. Required when reCAPTCHA Enterprise is enabled.",
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "CLIENT_TYPE_WEB",
+            "CLIENT_TYPE_ANDROID",
+            "CLIENT_TYPE_IOS"
+          ],
+          "enumDescriptions": [
+            "Client type is not specified.",
+            "Client type is web.",
+            "Client type is android.",
+            "Client type is ios."
+          ],
+          "type": "string"
+        },
         "iosReceipt": {
           "description": "iOS only. Receipt of successful app token validation with APNS.",
           "type": "string"
@@ -3474,6 +3559,18 @@
         },
         "recaptchaToken": {
           "description": "Web only. Recaptcha solution.",
+          "type": "string"
+        },
+        "recaptchaVersion": {
+          "description": "The reCAPTCHA version of the reCAPTCHA token in the captcha_response. Required when reCAPTCHA Enterprise is enabled.",
+          "enum": [
+            "RECAPTCHA_VERSION_UNSPECIFIED",
+            "RECAPTCHA_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The reCAPTCHA version is not specified.",
+            "The reCAPTCHA enterprise."
+          ],
           "type": "string"
         },
         "safetyNetToken": {
