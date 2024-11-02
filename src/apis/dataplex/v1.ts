@@ -313,6 +313,10 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
+     * The version of the data format used to produce this data. This field is used to indicated when the underlying data format changes (e.g., schema modifications, changes to the source URL format definition, etc).
+     */
+    dataVersion?: string | null;
+    /**
      * The time the aspect was last updated in the source system.
      */
     updateTime?: string | null;
@@ -917,6 +921,109 @@ export namespace dataplex_v1 {
     name?: string | null;
   }
   /**
+   * The output of a data discovery scan.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoveryResult {
+    /**
+     * Output only. Configuration for metadata publishing.
+     */
+    bigqueryPublishing?: Schema$GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing;
+  }
+  /**
+   * Describes BigQuery publishing configurations.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing {
+    /**
+     * Output only. The BigQuery dataset to publish to. It takes the form projects/{project_id\}/datasets/{dataset_id\}. If not set, the service creates a default publishing dataset.
+     */
+    dataset?: string | null;
+  }
+  /**
+   * Spec for a data discovery scan.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpec {
+    /**
+     * Optional. Configuration for metadata publishing.
+     */
+    bigqueryPublishingConfig?: Schema$GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig;
+    /**
+     * Cloud Storage related configurations.
+     */
+    storageConfig?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfig;
+  }
+  /**
+   * Describes BigQuery publishing configurations.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig {
+    /**
+     * Optional. The BigQuery connection used to create BigLake tables. Must be in the form projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
+     */
+    connection?: string | null;
+    /**
+     * Optional. Determines whether to publish discovered tables as BigLake external tables or non-BigLake external tables.
+     */
+    tableType?: string | null;
+  }
+  /**
+   * Configurations related to Cloud Storage as the data source.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfig {
+    /**
+     * Optional. Configuration for CSV data.
+     */
+    csvOptions?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions;
+    /**
+     * Optional. Defines the data to exclude during discovery. Provide a list of patterns that identify the data to exclude. For Cloud Storage bucket assets, these patterns are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these patterns are interpreted as patterns to match table names.
+     */
+    excludePatterns?: string[] | null;
+    /**
+     * Optional. Defines the data to include during discovery when only a subset of the data should be considered. Provide a list of patterns that identify the data to include. For Cloud Storage bucket assets, these patterns are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these patterns are interpreted as patterns to match table names.
+     */
+    includePatterns?: string[] | null;
+    /**
+     * Optional. Configuration for JSON data.
+     */
+    jsonOptions?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions;
+  }
+  /**
+   * Describes CSV and similar semi-structured data formats.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions {
+    /**
+     * Optional. The delimiter that is used to separate values. The default is , (comma).
+     */
+    delimiter?: string | null;
+    /**
+     * Optional. The character encoding of the data. The default is UTF-8.
+     */
+    encoding?: string | null;
+    /**
+     * Optional. The number of rows to interpret as header rows that should be skipped when reading data rows.
+     */
+    headerRows?: number | null;
+    /**
+     * Optional. The character used to quote column values. Accepts " (double quotation mark) or ' (single quotation mark). If unspecified, defaults to " (double quotation mark).
+     */
+    quote?: string | null;
+    /**
+     * Optional. Whether to disable the inference of data types for CSV data. If true, all columns are registered as strings.
+     */
+    typeInferenceDisabled?: boolean | null;
+  }
+  /**
+   * Describes JSON data format.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions {
+    /**
+     * Optional. The character encoding of the data. The default is UTF-8.
+     */
+    encoding?: string | null;
+    /**
+     * Optional. Whether to disable the inference of data types for JSON data. If true, all columns are registered as their primitive types (strings, number, or boolean).
+     */
+    typeInferenceDisabled?: boolean | null;
+  }
+  /**
    * DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResult {
@@ -1172,7 +1279,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
     /**
-     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
+     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
      */
     name?: string | null;
   }
@@ -1265,7 +1372,7 @@ export namespace dataplex_v1 {
      */
     description?: string | null;
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
+     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
      */
     dimension?: string | null;
     /**
@@ -1617,19 +1724,27 @@ export namespace dataplex_v1 {
      */
     data?: Schema$GoogleCloudDataplexV1DataSource;
     /**
-     * Output only. The result of the data profile scan.
+     * Output only. The result of a data discovery scan.
+     */
+    dataDiscoveryResult?: Schema$GoogleCloudDataplexV1DataDiscoveryResult;
+    /**
+     * Settings for a data discovery scan.
+     */
+    dataDiscoverySpec?: Schema$GoogleCloudDataplexV1DataDiscoverySpec;
+    /**
+     * Output only. The result of a data profile scan.
      */
     dataProfileResult?: Schema$GoogleCloudDataplexV1DataProfileResult;
     /**
-     * DataProfileScan related setting.
+     * Settings for a data profile scan.
      */
     dataProfileSpec?: Schema$GoogleCloudDataplexV1DataProfileSpec;
     /**
-     * Output only. The result of the data quality scan.
+     * Output only. The result of a data quality scan.
      */
     dataQualityResult?: Schema$GoogleCloudDataplexV1DataQualityResult;
     /**
-     * DataQualityScan related setting.
+     * Settings for a data quality scan.
      */
     dataQualitySpec?: Schema$GoogleCloudDataplexV1DataQualitySpec;
     /**
@@ -1871,19 +1986,27 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The result of the data profile scan.
+     * Output only. The result of a data discovery scan.
+     */
+    dataDiscoveryResult?: Schema$GoogleCloudDataplexV1DataDiscoveryResult;
+    /**
+     * Output only. Settings for a data discovery scan.
+     */
+    dataDiscoverySpec?: Schema$GoogleCloudDataplexV1DataDiscoverySpec;
+    /**
+     * Output only. The result of a data profile scan.
      */
     dataProfileResult?: Schema$GoogleCloudDataplexV1DataProfileResult;
     /**
-     * Output only. DataProfileScan related setting.
+     * Output only. Settings for a data profile scan.
      */
     dataProfileSpec?: Schema$GoogleCloudDataplexV1DataProfileSpec;
     /**
-     * Output only. The result of the data quality scan.
+     * Output only. The result of a data quality scan.
      */
     dataQualityResult?: Schema$GoogleCloudDataplexV1DataQualityResult;
     /**
-     * Output only. DataQualityScan related setting.
+     * Output only. Settings for a data quality scan.
      */
     dataQualitySpec?: Schema$GoogleCloudDataplexV1DataQualitySpec;
     /**
@@ -2030,6 +2153,10 @@ export namespace dataplex_v1 {
    * Details about the action.
    */
   export interface Schema$GoogleCloudDataplexV1DiscoveryEventActionDetails {
+    /**
+     * The human readable issue associated with the action.
+     */
+    issue?: string | null;
     /**
      * The type of action. Eg. IncompatibleDataSchema, InvalidDataFormat
      */
