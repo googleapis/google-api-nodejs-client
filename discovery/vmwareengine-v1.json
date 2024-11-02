@@ -413,7 +413,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
+                      "description": "Output only. Identifier. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/networkPeerings/[^/]+$",
                       "required": true,
@@ -678,7 +678,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`",
+                      "description": "Output only. Identifier. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/networkPolicies/[^/]+$",
                       "required": true,
@@ -1281,7 +1281,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`",
+                      "description": "Output only. Identifier. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+$",
                       "required": true,
@@ -1515,7 +1515,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`",
+                      "description": "Output only. Identifier. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/dnsForwarding$",
                       "required": true,
@@ -1733,7 +1733,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`",
+                          "description": "Output only. Identifier. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/clusters/[^/]+$",
                           "required": true,
@@ -2043,7 +2043,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`",
+                          "description": "Output only. Identifier. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/externalAddresses/[^/]+$",
                           "required": true,
@@ -2729,7 +2729,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`",
+                          "description": "Output only. Identifier. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+/subnets/[^/]+$",
                           "required": true,
@@ -3137,7 +3137,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`",
+                      "description": "Output only. Identifier. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/vmwareEngineNetworks/[^/]+$",
                       "required": true,
@@ -3173,7 +3173,7 @@
       }
     }
   },
-  "revision": "20240701",
+  "revision": "20241009",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3327,7 +3327,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`",
+          "description": "Output only. Identifier. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`",
           "readOnly": true,
           "type": "string"
         },
@@ -3430,7 +3430,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`",
+          "description": "Output only. Identifier. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`",
           "readOnly": true,
           "type": "string"
         },
@@ -3599,7 +3599,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`",
+          "description": "Output only. Identifier. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`",
           "readOnly": true,
           "type": "string"
         },
@@ -4481,7 +4481,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
+          "description": "Output only. Identifier. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`",
           "readOnly": true,
           "type": "string"
         },
@@ -4587,7 +4587,7 @@
           "description": "Network service that allows VMware workloads to access the internet."
         },
         "name": {
-          "description": "Output only. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`",
+          "description": "Output only. Identifier. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`",
           "readOnly": true,
           "type": "string"
         },
@@ -5065,7 +5065,7 @@
           "description": "Required. Input only. The management cluster for this private cloud. This field is required during creation of the private cloud to provide details for the default cluster. The following fields can't be changed after private cloud creation: `ManagementCluster.clusterId`, `ManagementCluster.nodeTypeId`."
         },
         "name": {
-          "description": "Output only. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`",
+          "description": "Output only. Identifier. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`",
           "readOnly": true,
           "type": "string"
         },
@@ -5378,7 +5378,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`",
+          "description": "Output only. Identifier. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`",
           "readOnly": true,
           "type": "string"
         },
@@ -5528,7 +5528,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`",
+          "description": "Output only. Identifier. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`",
           "readOnly": true,
           "type": "string"
         },
