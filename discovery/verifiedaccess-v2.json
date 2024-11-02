@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20240423",
+  "revision": "20241001",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
@@ -285,7 +285,7 @@
           "type": "string"
         },
         "osFirewall": {
-          "description": "The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode.",
+          "description": "The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode. The signal is currently not available on MacOS 15 (Sequoia) and later.",
           "enum": [
             "OS_FIREWALL_UNSPECIFIED",
             "OS_FIREWALL_UNKNOWN",
