@@ -9,7 +9,7 @@ To run the generator locally:
 
 This command will download all discovery files available via the [discovery index](https://www.googleapis.com/discovery/v1/apis/), and run the code generator against those files.
 
-### Generatoring from the cache
+### Generating from the cache
 There are some situations where you don't want to re-download the discovery files before running the generator. This is particularly useful in situations where you're working on the generator itself, and want to isolate the change. To prevent the generator from re-downloading the discovery files, run:
 
 ```sh
