@@ -63,7 +63,7 @@ If you need to reduce startup times, you can alternatively install a submodule a
 $ npm install @googleapis/docs
 ```
 
-You can run [this search](https://www.npmjs.com/search?q=scope%3Agoogleapis) on `npm`, to find a list of the submodules available.
+You can run [this search](https://www.npmjs.com/search?q=scope%3A@googleapis) on `npm`, to find a list of the submodules available.
 ### Using the client library
 
 This is a very simple example. This creates a Blogger client and retrieves the details of a blog given the blog Id:
