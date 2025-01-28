@@ -337,6 +337,37 @@
         }
       }
     },
+    "enrollmentTokens": {
+      "methods": {
+        "create": {
+          "description": "Returns a token for device enrollment. The DPC can encode this token within the QR/NFC/zero-touch enrollment payload or fetch it before calling the on-device API to authenticate the user. The token can be generated for each device or reused across multiple devices.",
+          "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/enrollmentTokens",
+          "httpMethod": "POST",
+          "id": "androidenterprise.enrollmentTokens.create",
+          "parameterOrder": [
+            "enterpriseId"
+          ],
+          "parameters": {
+            "enterpriseId": {
+              "description": "Required. The ID of the enterprise.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidenterprise/v1/enterprises/{enterpriseId}/enrollmentTokens",
+          "request": {
+            "$ref": "EnrollmentToken"
+          },
+          "response": {
+            "$ref": "EnrollmentToken"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidenterprise"
+          ]
+        }
+      }
+    },
     "enterprises": {
       "methods": {
         "acknowledgeNotificationSet": {
@@ -378,45 +409,6 @@
           "path": "androidenterprise/v1/enterprises/completeSignup",
           "response": {
             "$ref": "Enterprise"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/androidenterprise"
-          ]
-        },
-        "createEnrollmentToken": {
-          "description": "Returns a token for device enrollment. The DPC can encode this token within the QR/NFC/zero-touch enrollment payload or fetch it before calling the on-device API to authenticate the user. The token can be generated for each device or reused across multiple devices.",
-          "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/createEnrollmentToken",
-          "httpMethod": "POST",
-          "id": "androidenterprise.enterprises.createEnrollmentToken",
-          "parameterOrder": [
-            "enterpriseId"
-          ],
-          "parameters": {
-            "deviceType": {
-              "description": "Whether it’s a dedicated device or a knowledge worker device.",
-              "enum": [
-                "unknown",
-                "dedicatedDevice",
-                "knowledgeWorker"
-              ],
-              "enumDescriptions": [
-                "This value is unused",
-                "This device is a dedicated device.",
-                "This device is required to have an authenticated user."
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "enterpriseId": {
-              "description": "The ID of the enterprise.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "androidenterprise/v1/enterprises/{enterpriseId}/createEnrollmentToken",
-          "response": {
-            "$ref": "CreateEnrollmentTokenResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/androidenterprise"
@@ -484,8 +476,14 @@
           "parameterOrder": [],
           "parameters": {
             "adminEmail": {
-              "description": "Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user.",
+              "description": "Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user. If `allowedDomains` is non-empty then this must belong to one of the `allowedDomains`.",
               "location": "query",
+              "type": "string"
+            },
+            "allowedDomains": {
+              "description": "Optional. A list of domains that are permitted for the admin email. The IT admin cannot enter an email address with a domain name that is not in this list. Subdomains of domains in this list are not allowed but can be allowed by adding a second entry which has `*.` prefixed to the domain name (e.g. *.example.com). If the field is not present or is an empty list then the IT admin is free to use any valid domain name. Personal email domains are always allowed, but will result in the creation of a managed Google Play Accounts enterprise.",
+              "location": "query",
+              "repeated": true,
               "type": "string"
             },
             "callbackUrl": {
@@ -1813,8 +1811,10 @@
       }
     },
     "serviceaccountkeys": {
+      "deprecated": true,
       "methods": {
         "delete": {
+          "deprecated": true,
           "description": "Removes and invalidates the specified credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.",
           "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys/{keyId}",
           "httpMethod": "DELETE",
@@ -1843,6 +1843,7 @@
           ]
         },
         "insert": {
+          "deprecated": true,
           "description": "Generates new credentials for the service account associated with this enterprise. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount. Only the type of the key should be populated in the resource to be inserted.",
           "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys",
           "httpMethod": "POST",
@@ -1870,6 +1871,7 @@
           ]
         },
         "list": {
+          "deprecated": true,
           "description": "Lists all active credentials for the service account associated with this enterprise. Only the ID and key type are returned. The calling service account must have been retrieved by calling Enterprises.GetServiceAccount and must have been set as the enterprise service account by calling Enterprises.SetAccount.",
           "flatPath": "androidenterprise/v1/enterprises/{enterpriseId}/serviceAccountKeys",
           "httpMethod": "GET",
@@ -2654,7 +2656,7 @@
       }
     }
   },
-  "revision": "20240820",
+  "revision": "20250122",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -3148,17 +3150,6 @@
       },
       "type": "object"
     },
-    "CreateEnrollmentTokenResponse": {
-      "description": "Response message for create enrollment token.",
-      "id": "CreateEnrollmentTokenResponse",
-      "properties": {
-        "enrollmentToken": {
-          "description": "Enrollment token.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Device": {
       "description": "A Devices resource represents a mobile device managed by the EMM and belonging to a specific enterprise user.",
       "id": "Device",
@@ -3289,6 +3280,36 @@
             "$ref": "Device"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnrollmentToken": {
+      "description": "A token used to enroll a device.",
+      "id": "EnrollmentToken",
+      "properties": {
+        "duration": {
+          "description": "[Optional] The length of time the enrollment token is valid, ranging from 1 minute to [`Durations.MAX_VALUE`](https://developers.google.com/protocol-buffers/docs/reference/java/com/google/protobuf/util/Durations.html#MAX_VALUE), approximately 10,000 years. If not specified, the default duration is 1 hour.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "enrollmentTokenType": {
+          "description": "[Required] The type of the enrollment token.",
+          "enum": [
+            "enrollmentTokenTypeUnspecified",
+            "userlessDevice",
+            "userDevice"
+          ],
+          "enumDescriptions": [
+            "The value is unused.",
+            "The enrollment token is for a userless device.",
+            "The enrollment token is for a user device."
+          ],
+          "type": "string"
+        },
+        "token": {
+          "description": "The token value that's passed to the device and authorizes the device to enroll. This is a read-only field generated by the server.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4015,7 +4036,7 @@
       "properties": {
         "autoUpdatePolicy": {
           "deprecated": true,
-          "description": "Controls when automatic app updates on the device can be applied. Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, autoUpdatePolicy has no effect. \"choiceToTheUser\" allows the device's user to configure the app update policy. \"always\" enables auto updates. \"never\" disables auto updates. \"wifiOnly\" enables auto updates only when the device is connected to wifi.",
+          "description": "Controls when automatic app updates on the device can be applied. Recommended alternative: autoUpdateMode which is set per app, provides greater flexibility around update frequency. When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, autoUpdatePolicy has no effect. - choiceToTheUser allows the device's user to configure the app update policy. - always enables auto updates. - never disables auto updates. - wifiOnly enables auto updates only when the device is connected to wifi. *Important:* Changes to app update policies don't affect updates that are in progress. Any policy changes will apply to subsequent app updates. ",
           "enum": [
             "autoUpdatePolicyUnspecified",
             "choiceToTheUser",
@@ -4049,6 +4070,10 @@
         "maintenanceWindow": {
           "$ref": "MaintenanceWindow",
           "description": "The maintenance window defining when apps running in the foreground should be updated."
+        },
+        "policyId": {
+          "description": "An identifier for the policy that will be passed with the app install feedback sent from the Play Store.",
+          "type": "string"
         },
         "productAvailabilityPolicy": {
           "description": "The availability granted to the device for the specified products. \"all\" gives the device access to all products, regardless of approval status. \"all\" does not enable automatic visibility of \"alpha\" or \"beta\" tracks. \"whitelist\" grants the device access the products specified in productPolicy[]. Only products that are approved or products that were previously approved (products with revoked approval) by the enterprise can be whitelisted. If no value is provided, the availability set at the user level is applied by default.",
@@ -4618,6 +4643,7 @@
       "type": "object"
     },
     "ServiceAccountKeysListResponse": {
+      "deprecated": true,
       "id": "ServiceAccountKeysListResponse",
       "properties": {
         "serviceAccountKey": {
