@@ -382,6 +382,10 @@ export namespace dataform_v1beta1 {
      */
     gitCommitish?: string | null;
     /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
+    /**
      * Output only. The compilation result's name.
      */
     name?: string | null;
@@ -411,10 +415,6 @@ export namespace dataform_v1beta1 {
      */
     canonicalTarget?: Schema$Target;
     /**
-     * The data preparation executed by this action.
-     */
-    dataPreparation?: Schema$DataPreparation;
-    /**
      * The declaration declared by this action.
      */
     declaration?: Schema$Declaration;
@@ -422,6 +422,10 @@ export namespace dataform_v1beta1 {
      * The full path including filename in which this action is located, relative to the workspace root.
      */
     filePath?: string | null;
+    /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
     /**
      * The notebook executed by this action.
      */
@@ -469,27 +473,6 @@ export namespace dataform_v1beta1 {
      * The KMS key version name with which data of a resource is encrypted.
      */
     kmsKeyVersionName?: string | null;
-  }
-  /**
-   * Defines a compiled Data Preparation entity
-   */
-  export interface Schema$DataPreparation {
-    /**
-     * The data preparation definition, stored as a binary encoded proto.
-     */
-    contents?: string | null;
-    /**
-     * A list of actions that this action depends on.
-     */
-    dependencyTargets?: Schema$Target[];
-    /**
-     * Whether this action is disabled (i.e. should not be run).
-     */
-    disabled?: boolean | null;
-    /**
-     * Arbitrary, user-defined tags on this action.
-     */
-    tags?: string[] | null;
   }
   /**
    * Represents a relation which is not managed by Dataform but which may be referenced by Dataform actions.
@@ -944,13 +927,13 @@ export namespace dataform_v1beta1 {
      */
     contents?: string | null;
     /**
-     * Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in GCS buckets. Only set once the job has started to run.
+     * Output only. The ID of the Vertex job that executed the notebook in contents and also the ID used for the outputs created in Google Cloud Storage buckets. Only set once the job has started to run.
      */
     jobId?: string | null;
   }
   export interface Schema$NotebookRuntimeOptions {
     /**
-     * Optional. The GCS location to upload the result to. Format: `gs://bucket-name`.
+     * Optional. The Google Cloud Storage location to upload the result to. Format: `gs://bucket-name`.
      */
     gcsOutputBucket?: string | null;
   }
@@ -963,7 +946,7 @@ export namespace dataform_v1beta1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -1224,11 +1207,15 @@ export namespace dataform_v1beta1 {
      */
     gitCommitish?: string | null;
     /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
+    /**
      * Identifier. The release config's name.
      */
     name?: string | null;
     /**
-     * Output only. Records of the 10 most recent scheduled release attempts, ordered in in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.
+     * Output only. Records of the 10 most recent scheduled release attempts, ordered in descending order of `release_time`. Updated whenever automatic creation of a compilation result is triggered by cron_schedule.
      */
     recentScheduledReleaseRecords?: Schema$ScheduledReleaseRecord[];
     /**
@@ -1279,7 +1266,11 @@ export namespace dataform_v1beta1 {
      */
     gitRemoteSettings?: Schema$GitRemoteSettings;
     /**
-     * Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/[kms_project_id]/locations/[region]/keyRings/[key_region]/cryptoKeys/[key]`
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
+    /**
+     * Optional. The reference to a KMS encryption key. If provided, it will be used to encrypt user data in the repository and all child resources. It is not possible to add or update the encryption key after the repository is created. Example: `projects/{kms_project\}/locations/{location\}/keyRings/{key_location\}/cryptoKeys/{key\}`
      */
     kmsKeyName?: string | null;
     /**
@@ -1480,6 +1471,10 @@ export namespace dataform_v1beta1 {
      */
     cronSchedule?: string | null;
     /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
+    /**
      * Optional. If left unset, a default InvocationConfig will be used.
      */
     invocationConfig?: Schema$InvocationConfig;
@@ -1488,7 +1483,7 @@ export namespace dataform_v1beta1 {
      */
     name?: string | null;
     /**
-     * Output only. Records of the 10 most recent scheduled execution attempts, ordered in in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.
+     * Output only. Records of the 10 most recent scheduled execution attempts, ordered in descending order of `execution_time`. Updated whenever automatic creation of a workflow invocation is triggered by cron_schedule.
      */
     recentScheduledExecutionRecords?: Schema$ScheduledExecutionRecord[];
     /**
@@ -1516,6 +1511,10 @@ export namespace dataform_v1beta1 {
      * Output only. Only set if the repository has a KMS Key.
      */
     dataEncryptionState?: Schema$DataEncryptionState;
+    /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
     /**
      * Immutable. If left unset, a default InvocationConfig will be used.
      */
@@ -1558,6 +1557,10 @@ export namespace dataform_v1beta1 {
      */
     failureReason?: string | null;
     /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
+    /**
      * Output only. This action's timing details. `start_time` will be set if the action is in [RUNNING, SUCCEEDED, CANCELLED, FAILED] state. `end_time` will be set if the action is in [SUCCEEDED, CANCELLED, FAILED] state.
      */
     invocationTiming?: Schema$Interval;
@@ -1579,9 +1582,17 @@ export namespace dataform_v1beta1 {
    */
   export interface Schema$Workspace {
     /**
+     * Output only. The timestamp of when the workspace was created.
+     */
+    createTime?: string | null;
+    /**
      * Output only. A data encryption state of a Git repository if this Workspace is protected by a KMS key.
      */
     dataEncryptionState?: Schema$DataEncryptionState;
+    /**
+     * Output only. All the metadata information that is used internally to serve the resource. For example: timestamps, flags, status fields, etc. The format of this field is a JSON string.
+     */
+    internalMetadata?: string | null;
     /**
      * Identifier. The workspace's name.
      */
@@ -1642,13 +1653,9 @@ export namespace dataform_v1beta1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    collections: Resource$Projects$Locations$Collections;
     repositories: Resource$Projects$Locations$Repositories;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.collections = new Resource$Projects$Locations$Collections(
-        this.context
-      );
       this.repositories = new Resource$Projects$Locations$Repositories(
         this.context
       );
@@ -1918,7 +1925,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Update default config for a given project and location.
+     * Update default config for a given project and location. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2053,326 +2060,8 @@ export namespace dataform_v1beta1 {
     requestBody?: Schema$Config;
   }
 
-  export class Resource$Projects$Locations$Collections {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Collections$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Collections$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Collections$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Collections$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Collections$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Collections$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Collections$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Collections$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Collections$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Collections$Testiampermissions,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Collections$Testiampermissions,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Collections$Testiampermissions,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Collections$Testiampermissions,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      params: Params$Resource$Projects$Locations$Collections$Testiampermissions,
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
-    ): void;
-    testIamPermissions(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Collections$Testiampermissions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$TestIamPermissionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Collections$Testiampermissions;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Collections$Testiampermissions;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TestIamPermissionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Collections$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Collections$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Collections$Testiampermissions
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
   export class Resource$Projects$Locations$Repositories {
     context: APIRequestContext;
-    commentThreads: Resource$Projects$Locations$Repositories$Commentthreads;
     compilationResults: Resource$Projects$Locations$Repositories$Compilationresults;
     releaseConfigs: Resource$Projects$Locations$Repositories$Releaseconfigs;
     workflowConfigs: Resource$Projects$Locations$Repositories$Workflowconfigs;
@@ -2380,10 +2069,6 @@ export namespace dataform_v1beta1 {
     workspaces: Resource$Projects$Locations$Repositories$Workspaces;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.commentThreads =
-        new Resource$Projects$Locations$Repositories$Commentthreads(
-          this.context
-        );
       this.compilationResults =
         new Resource$Projects$Locations$Repositories$Compilationresults(
           this.context
@@ -3234,7 +2919,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single Repository.
+     * Updates a single Repository. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3754,7 +3439,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory` must match the call that provided the page token.
+     * Optional. Page token received from a previous `FetchRepositoryHistory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchRepositoryHistory`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -3798,7 +3483,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListRepositories` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepositories`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -3837,7 +3522,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryRepositoryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryRepositoryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -3883,429 +3568,6 @@ export namespace dataform_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
-  }
-
-  export class Resource$Projects$Locations$Repositories$Commentthreads {
-    context: APIRequestContext;
-    comments: Resource$Projects$Locations$Repositories$Commentthreads$Comments;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.comments =
-        new Resource$Projects$Locations$Repositories$Commentthreads$Comments(
-          this.context
-        );
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
-  }
-
-  export class Resource$Projects$Locations$Repositories$Commentthreads$Comments {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    getIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-
-    /**
-     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Policy>;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
-      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(
-      params: Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy,
-      callback: BodyResponseCallback<Schema$Policy>
-    ): void;
-    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
-    setIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Policy>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataform.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Policy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Policy>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Getiampolicy
-    extends StandardParameters {
-    /**
-     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     */
-    'options.requestedPolicyVersion'?: number;
-    /**
-     * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Repositories$Commentthreads$Comments$Setiampolicy
-    extends StandardParameters {
-    /**
-     * REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SetIamPolicyRequest;
   }
 
   export class Resource$Projects$Locations$Repositories$Compilationresults {
@@ -4726,7 +3988,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListCompilationResults` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCompilationResults`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -4749,7 +4011,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryCompilationResultActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryCompilationResultActions`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -5118,7 +4380,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single ReleaseConfig.
+     * Updates a single ReleaseConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5241,7 +4503,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListReleaseConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleaseConfigs`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -5630,7 +4892,7 @@ export namespace dataform_v1beta1 {
     }
 
     /**
-     * Updates a single WorkflowConfig.
+     * Updates a single WorkflowConfig. **Note:** *This method does not fully implement*, (see [AIP/134](https://google.aip.dev/134), in particular: - The wildcard entry (**\***) is treated as a bad request - When the **field_mask** is omitted, instead of only updating the set fields, the request is treated as a full update on all modifiable fields
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5753,7 +5015,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListWorkflowConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowConfigs`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -6390,7 +5652,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListWorkflowInvocations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkflowInvocations`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -6409,7 +5671,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryWorkflowInvocationActions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryWorkflowInvocationActions`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -8732,7 +7994,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.
+     * Optional. Page token received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -8807,7 +8069,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents` must match the call that provided the page token.
+     * Optional. Page token received from a previous `QueryDirectoryContents` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `QueryDirectoryContents`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -8881,7 +8143,7 @@ export namespace dataform_v1beta1 {
      */
     pageSize?: number;
     /**
-     * Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest` must match the call that provided the page token.
+     * Optional. Page token received from a previous `SearchFilesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchFilesRequest`, with the exception of `page_size`, must match the call that provided the page token.
      */
     pageToken?: string;
     /**
