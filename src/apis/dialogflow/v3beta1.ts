@@ -222,7 +222,7 @@ export namespace dialogflow_v3beta1 {
     config?: Schema$GoogleCloudDialogflowCxV3InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3BargeInConfig {
     /**
@@ -430,6 +430,14 @@ export namespace dialogflow_v3beta1 {
      */
     personalizationSettings?: Schema$GoogleCloudDialogflowCxV3beta1AgentPersonalizationSettings;
     /**
+     * Optional. Output only. A read only boolean field reflecting Zone Isolation status of the agent.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Optional. Output only. A read only boolean field reflecting Zone Separation status of the agent.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Name of the SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.
      */
     securitySettings?: string | null;
@@ -602,7 +610,7 @@ export namespace dialogflow_v3beta1 {
     config?: Schema$GoogleCloudDialogflowCxV3beta1InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1BargeInConfig {
     /**
@@ -907,6 +915,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationInteraction {
     /**
+     * Answer feedback for the final response.
+     */
+    answerFeedback?: Schema$GoogleCloudDialogflowCxV3beta1AnswerFeedback;
+    /**
      * The time that the interaction was created.
      */
     createTime?: string | null;
@@ -934,6 +946,10 @@ export namespace dialogflow_v3beta1 {
      * The output text or the transcript of the output audio in the responses. If multiple output messages are returned, they will be concatenated into one.
      */
     responseUtterances?: string | null;
+    /**
+     * Metrics associated with different processing steps. Names and number of steps depend on the request and can change without a notice.
+     */
+    stepMetrics?: Schema$GoogleCloudDialogflowCxV3beta1ConversationInteractionStepMetrics[];
   }
   /**
    * Information collected for DF CX agents in case NLU predicted an intent that was filtered out as being inactive which may indicate a missing transition and/or absent functionality.
@@ -947,6 +963,19 @@ export namespace dialogflow_v3beta1 {
      * Score of the above intent. The higher it is the more likely a transition was missed on a given page.
      */
     score?: number | null;
+  }
+  /**
+   * Metrics of each processing step.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationInteractionStepMetrics {
+    /**
+     * Processing latency of the step.
+     */
+    latency?: string | null;
+    /**
+     * Name of the request processing step.
+     */
+    name?: string | null;
   }
   /**
    * Represents metrics for the conversation.
@@ -1144,6 +1173,10 @@ export namespace dialogflow_v3beta1 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
+    /**
+     * The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.
+     */
+    documentProcessingMode?: string | null;
   }
   /**
    * Data store connection feature output signals. Might be only partially field if processing stop before the final answer. Reasons for this can be, but are not limited to: empty UCS search results, positive RAI check outcome, grounding failure, ...
@@ -2085,9 +2118,13 @@ export namespace dialogflow_v3beta1 {
     globalImportStrategy?: string | null;
   }
   /**
-   * Stores metadata of the invocation of a CX flow. Next Id: 7
+   * Stores metadata of the invocation of a CX flow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1FlowInvocation {
+    /**
+     * Output only. The display name of the flow.
+     */
+    displayName?: string | null;
     /**
      * Required. The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
      */
@@ -2440,6 +2477,10 @@ export namespace dialogflow_v3beta1 {
      */
     llmModelSettings?: Schema$GoogleCloudDialogflowCxV3beta1LlmModelSettings;
     /**
+     * Parameters passed to the LLM to configure its behavior.
+     */
+    modelParameter?: Schema$GoogleCloudDialogflowCxV3beta1GeneratorModelParameter;
+    /**
      * The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.
      */
     name?: string | null;
@@ -2451,6 +2492,27 @@ export namespace dialogflow_v3beta1 {
      * Required. Prompt for the LLM model.
      */
     promptText?: Schema$GoogleCloudDialogflowCxV3beta1Phrase;
+  }
+  /**
+   * Parameters to be passed to the LLM. If not set, default values will be used.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1GeneratorModelParameter {
+    /**
+     * The maximum number of tokens to generate.
+     */
+    maxDecodeSteps?: number | null;
+    /**
+     * The temperature used for sampling. Temperature sampling occurs after both topP and topK have been applied. Valid range: [0.0, 1.0] Low temperature = less random. High temperature = more random.
+     */
+    temperature?: number | null;
+    /**
+     * If set, the sampling process in each step is limited to the top_k tokens with highest probabilities. Valid range: [1, 40] or 1000+. Small topK = less random. Large topK = more random.
+     */
+    topK?: number | null;
+    /**
+     * If set, only the tokens comprising the top top_p probability mass are considered. If both top_p and top_k are set, top_p will be used for further refining candidates selected with top_k. Valid range: (0.0, 1.0]. Small topP = less random. Large topP = more random.
+     */
+    topP?: number | null;
   }
   /**
    * Represents a custom placeholder in the prompt text.
@@ -3443,7 +3505,7 @@ export namespace dialogflow_v3beta1 {
      */
     displayName?: string | null;
     /**
-     * Required. High level description of the goal the playbook intend to accomplish.
+     * Required. High level description of the goal the playbook intend to accomplish. A goal should be concise since it's visible to other playbooks that may reference this playbook.
      */
     goal?: string | null;
     /**
@@ -3479,6 +3541,10 @@ export namespace dialogflow_v3beta1 {
      */
     referencedTools?: string[] | null;
     /**
+     * Optional. Playbook level Settings for speech to text detection.
+     */
+    speechSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings;
+    /**
      * Output only. Estimated number of tokes current playbook takes when sent to the LLM.
      */
     tokenCount?: string | null;
@@ -3505,14 +3571,22 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookInstruction {
     /**
+     * General guidelines for the playbook. These are unstructured instructions that are not directly part of the goal, e.g. "Always be polite". It's valid for this text to be long and used instead of steps altogether.
+     */
+    guidelines?: string | null;
+    /**
      * Ordered list of step by step execution instructions to accomplish target goal.
      */
     steps?: Schema$GoogleCloudDialogflowCxV3beta1PlaybookStep[];
   }
   /**
-   * Stores metadata of the invocation of a child playbook. Next Id: 5
+   * Stores metadata of the invocation of a child playbook.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1PlaybookInvocation {
+    /**
+     * Output only. The display name of the playbook.
+     */
+    displayName?: string | null;
     /**
      * Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
      */
@@ -3631,7 +3705,7 @@ export namespace dialogflow_v3beta1 {
      */
     currentPage?: string | null;
     /**
-     * Optional. Start the session with the specified playbook. You can only specify the playbook at the beginning of the session. Otherwise, an error will be thrown. Format: `projects//locations//agents//playbooks/`.
+     * Optional. The unique identifier of the playbook to start or continue the session with. If `current_playbook` is specified, the previous state of the session will be ignored by Dialogflow. Format: `projects//locations//agents//playbooks/`.
      */
     currentPlaybook?: string | null;
     /**
@@ -3708,7 +3782,7 @@ export namespace dialogflow_v3beta1 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
     /**
-     * Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate_data_store_connection_signals is set to true in the request.
+     * Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query.
      */
     dataStoreConnectionSignals?: Schema$GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignals;
     /**
@@ -4518,7 +4592,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationApiKeyConfig {
     /**
-     * Required. The API key.
+     * Optional. The API key. If the `secret_version_for_api_key` field is set, this field will be ignored.
      */
     apiKey?: string | null;
     /**
@@ -4535,7 +4609,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ToolAuthenticationBearerTokenConfig {
     /**
-     * Required. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.
+     * Optional. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.
      */
     token?: string | null;
   }
@@ -4548,7 +4622,7 @@ export namespace dialogflow_v3beta1 {
      */
     clientId?: string | null;
     /**
-     * Required. The client secret from the OAuth provider.
+     * Optional. The client secret from the OAuth provider. If the `secret_version_for_client_secret` field is set, this field will be ignored.
      */
     clientSecret?: string | null;
     /**
@@ -4719,6 +4793,10 @@ export namespace dialogflow_v3beta1 {
      * Optional. Name of the action to be called during the tool use.
      */
     action?: string | null;
+    /**
+     * Output only. The display name of the tool.
+     */
+    displayName?: string | null;
     /**
      * Optional. A list of input parameters for the action.
      */
@@ -5485,6 +5563,10 @@ export namespace dialogflow_v3beta1 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
+    /**
+     * The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.
+     */
+    documentProcessingMode?: string | null;
   }
   /**
    * Metadata returned for the Environments.DeployFlow long running operation.
@@ -7139,6 +7221,10 @@ export namespace dialogflow_v3beta1 {
      */
     newMessagePayload?: Schema$GoogleCloudDialogflowV2beta1Message;
     /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     */
+    newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult;
+    /**
      * Required. The type of the event that this notification refers to.
      */
     type?: string | null;
@@ -8306,6 +8392,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -8660,6 +8750,68 @@ export namespace dialogflow_v3beta1 {
     reply?: string | null;
   }
   /**
+   * Information for a word recognized by the speech recognizer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SpeechWordInfo {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.
+     */
+    confidence?: number | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    endOffset?: string | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    startOffset?: string | null;
+    /**
+     * The word this info is for.
+     */
+    word?: string | null;
+  }
+  /**
+   * Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | "tube" | TRANSCRIPT | false 2 | "to be a" | TRANSCRIPT | false 3 | "to be" | TRANSCRIPT | false 4 | "to be or not to be" | TRANSCRIPT | true 5 | "that's" | TRANSCRIPT | false 6 | "that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | " that is the question" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes "to be or not to be that is the question".
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.
+     */
+    confidence?: number | null;
+    /**
+     * DTMF digits. Populated if and only if `message_type` = `DTMF_DIGITS`.
+     */
+    dtmfDigits?: Schema$GoogleCloudDialogflowV2beta1TelephonyDtmfEvents;
+    /**
+     * If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.
+     */
+    isFinal?: boolean | null;
+    /**
+     * Detected language code for the transcript.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the result message.
+     */
+    messageType?: string | null;
+    /**
+     * Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     */
+    speechEndOffset?: string | null;
+    /**
+     * Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.
+     */
+    speechWordInfo?: Schema$GoogleCloudDialogflowV2beta1SpeechWordInfo[];
+    /**
+     * An estimate of the likelihood that the speech recognizer will not change its guess about this interim recognition result: * If the value is unspecified or 0.0, Dialogflow didn't compute the stability. In particular, Dialogflow will only provide stability for `TRANSCRIPT` results with `is_final = false`. * Otherwise, the value is in (0.0, 1.0] where 0.0 means completely unstable and 1.0 means completely stable.
+     */
+    stability?: number | null;
+    /**
+     * Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.
+     */
+    transcript?: string | null;
+  }
+  /**
    * The response message for Participants.SuggestArticles.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse {
@@ -8778,6 +8930,15 @@ export namespace dialogflow_v3beta1 {
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer[];
   }
   /**
+   * A wrapper of repeated TelephonyDtmf digits.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1TelephonyDtmfEvents {
+    /**
+     * A sequence of TelephonyDtmf digits.
+     */
+    dtmfEvents?: string[] | null;
+  }
+  /**
    * The request message for a webhook call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookRequest {
@@ -8844,7 +9005,7 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
-   * Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.
+   * Metadata for a ConversationProfiles.ClearSuggestionFeatureConfig operation.
    */
   export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata {
     /**
@@ -8898,6 +9059,10 @@ export namespace dialogflow_v3beta1 {
      */
     newMessagePayload?: Schema$GoogleCloudDialogflowV2Message;
     /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     */
+    newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2StreamingRecognitionResult;
+    /**
      * The type of the event that this notification refers to.
      */
     type?: string | null;
@@ -8948,7 +9113,7 @@ export namespace dialogflow_v3beta1 {
     state?: string | null;
   }
   /**
-   * Metadata for ConversationDatasets.
+   * Metadata for CreateConversationDataset.
    */
   export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {
     /**
@@ -8995,7 +9160,7 @@ export namespace dialogflow_v3beta1 {
     state?: string | null;
   }
   /**
-   * Metadata for ConversationDatasets.
+   * Metadata for DeleteConversationDataset.
    */
   export interface Schema$GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata {}
   /**
@@ -9945,6 +10110,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -10137,7 +10306,7 @@ export namespace dialogflow_v3beta1 {
     score?: number | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     /**
@@ -10163,7 +10332,7 @@ export namespace dialogflow_v3beta1 {
     name?: string | null;
   }
   /**
-   * Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.
+   * Metadata for a ConversationProfiles.SetSuggestionFeatureConfig operation.
    */
   export interface Schema$GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata {
     /**
@@ -10208,6 +10377,60 @@ export namespace dialogflow_v3beta1 {
      * Optional. Type of the smart reply model. If not provided, model_type is used.
      */
     trainingModelType?: string | null;
+  }
+  /**
+   * Information for a word recognized by the speech recognizer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SpeechWordInfo {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.
+     */
+    confidence?: number | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    endOffset?: string | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    startOffset?: string | null;
+    /**
+     * The word this info is for.
+     */
+    word?: string | null;
+  }
+  /**
+   * Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | "tube" | TRANSCRIPT | false 2 | "to be a" | TRANSCRIPT | false 3 | "to be" | TRANSCRIPT | false 4 | "to be or not to be" | TRANSCRIPT | true 5 | "that's" | TRANSCRIPT | false 6 | "that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | " that is the question" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes "to be or not to be that is the question".
+   */
+  export interface Schema$GoogleCloudDialogflowV2StreamingRecognitionResult {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.
+     */
+    confidence?: number | null;
+    /**
+     * If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.
+     */
+    isFinal?: boolean | null;
+    /**
+     * Detected language code for the transcript.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the result message.
+     */
+    messageType?: string | null;
+    /**
+     * Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     */
+    speechEndOffset?: string | null;
+    /**
+     * Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.
+     */
+    speechWordInfo?: Schema$GoogleCloudDialogflowV2SpeechWordInfo[];
+    /**
+     * Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.
+     */
+    transcript?: string | null;
   }
   /**
    * The response message for Participants.SuggestArticles.
@@ -26321,7 +26544,7 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27180,7 +27403,7 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
