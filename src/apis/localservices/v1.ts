@@ -375,11 +375,11 @@ export namespace localservices_v1 {
    */
   export interface Schema$GoogleTypeTimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
   }
