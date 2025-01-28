@@ -102,7 +102,7 @@ export namespace firebasedataconnect_v1beta {
   /**
    * Firebase Data Connect API
    *
-   *
+   * Firebase Data Connect is a relational database service for mobile and web apps that lets you build and scale using a fully-managed PostgreSQL database powered by Cloud SQL. The REST API lets developers manage the connections to their database, change the schema of their database, and query the database.
    *
    * @example
    * ```js
@@ -347,7 +347,7 @@ export namespace firebasedataconnect_v1beta {
     unauthenticated?: boolean | null;
   }
   /**
-   * Message for response to listing Connectors.
+   * Message for response to listing Connectors. By default, `connectors.source` will not be included in the response. To specify the fields included in the response, the response field mask can be provided by using the query parameter `$fields` or the header `X-Goog-FieldMask`.
    */
   export interface Schema$ListConnectorsResponse {
     /**
@@ -390,7 +390,7 @@ export namespace firebasedataconnect_v1beta {
     operations?: Schema$Operation[];
   }
   /**
-   * Message for response to listing Schemas.
+   * Message for response to listing Schemas. By default, `schemas.source` will not be included in the response. To specify the fields included in the response, the response field mask can be provided by using the query parameter `$fields` or the header `X-Goog-FieldMask`.
    */
   export interface Schema$ListSchemasResponse {
     /**
@@ -519,7 +519,11 @@ export namespace firebasedataconnect_v1beta {
      */
     database?: string | null;
     /**
-     * Optional. Configure how much Postgresql schema validation to perform. Default to `STRICT` if not specified.
+     * Optional. Configure how to perform Postgresql schema migration.
+     */
+    schemaMigration?: string | null;
+    /**
+     * Optional. Configure how much Postgresql schema validation to perform.
      */
     schemaValidation?: string | null;
     /**
@@ -893,7 +897,7 @@ export namespace firebasedataconnect_v1beta {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
