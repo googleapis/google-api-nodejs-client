@@ -15,6 +15,243 @@
   "description": "Dataplex API is used to manage the lifecycle of data lakes.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/dataplex/docs",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.africa-south1.rep.googleapis.com/",
+      "location": "africa-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-east1.rep.googleapis.com/",
+      "location": "asia-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-east2.rep.googleapis.com/",
+      "location": "asia-east2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-northeast1.rep.googleapis.com/",
+      "location": "asia-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-northeast2.rep.googleapis.com/",
+      "location": "asia-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-northeast3.rep.googleapis.com/",
+      "location": "asia-northeast3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-southeast1.rep.googleapis.com/",
+      "location": "asia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.asia-southeast2.rep.googleapis.com/",
+      "location": "asia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.australia-southeast1.rep.googleapis.com/",
+      "location": "australia-southeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.australia-southeast2.rep.googleapis.com/",
+      "location": "australia-southeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-central2.rep.googleapis.com/",
+      "location": "europe-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-north1.rep.googleapis.com/",
+      "location": "europe-north1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-north2.rep.googleapis.com/",
+      "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-southwest1.rep.googleapis.com/",
+      "location": "europe-southwest1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west3.rep.googleapis.com/",
+      "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west4.rep.googleapis.com/",
+      "location": "europe-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west8.rep.googleapis.com/",
+      "location": "europe-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.europe-west9.rep.googleapis.com/",
+      "location": "europe-west9"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.me-central1.rep.googleapis.com/",
+      "location": "me-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.me-central2.rep.googleapis.com/",
+      "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.me-west1.rep.googleapis.com/",
+      "location": "me-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.northamerica-northeast1.rep.googleapis.com/",
+      "location": "northamerica-northeast1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.northamerica-northeast2.rep.googleapis.com/",
+      "location": "northamerica-northeast2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.northamerica-south1.rep.googleapis.com/",
+      "location": "northamerica-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.southamerica-east1.rep.googleapis.com/",
+      "location": "southamerica-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.southamerica-west1.rep.googleapis.com/",
+      "location": "southamerica-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-central1.rep.googleapis.com/",
+      "location": "us-central1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-east1.rep.googleapis.com/",
+      "location": "us-east1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-east4.rep.googleapis.com/",
+      "location": "us-east4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-east5.rep.googleapis.com/",
+      "location": "us-east5"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-south1.rep.googleapis.com/",
+      "location": "us-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-west1.rep.googleapis.com/",
+      "location": "us-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-west2.rep.googleapis.com/",
+      "location": "us-west2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-west3.rep.googleapis.com/",
+      "location": "us-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-west4.rep.googleapis.com/",
+      "location": "us-west4"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us-west8.rep.googleapis.com/",
+      "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://dataplex.eu.rep.googleapis.com/",
+      "location": "eu"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -475,7 +712,7 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Optional. Specifies the ordering of results.",
+                  "description": "Optional. Specifies the ordering of results. Supported values are: relevance (default) last_modified_timestamp last_modified_timestamp asc",
                   "location": "query",
                   "type": "string"
                 },
@@ -491,7 +728,7 @@
                   "type": "string"
                 },
                 "query": {
-                  "description": "Required. The query against which entries in scope should be matched.",
+                  "description": "Required. The query against which entries in scope should be matched. The query syntax is defined in Search syntax for Dataplex Catalog (https://cloud.google.com/dataplex/docs/search-syntax).",
                   "location": "query",
                   "type": "string"
                 },
@@ -1098,6 +1335,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any child resources of this data scan will also be deleted. (Otherwise, the request will only work if the data scan has no child resources.)",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The resource name of the dataScan: projects/{project}/locations/{location_id}/dataScans/{data_scan_id} where project refers to a project_id or project_number and location_id refers to a GCP region.",
                       "location": "path",
@@ -1269,14 +1511,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
+                      "description": "Output only. Identifier. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataScans/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update.",
+                      "description": "Optional. Mask of fields to update.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -2480,7 +2722,7 @@
                           "type": "boolean"
                         },
                         "aspectKeys": {
-                          "description": "Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. For example, to attach an aspect to a field that is specified by the schema aspect, the path should have the format Schema.. * - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.",
+                          "description": "Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. For example, to attach an aspect to a field that is specified by the schema aspect, the path should have the format Schema.. @* - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.",
                           "location": "query",
                           "repeated": true,
                           "type": "string"
@@ -5783,6 +6025,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. The service validates the request without performing any mutations. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/metadataJobs",
@@ -5997,7 +6244,7 @@
       }
     }
   },
-  "revision": "20240925",
+  "revision": "20250116",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -6263,6 +6510,10 @@
         "createTime": {
           "description": "The time the aspect was created in the source system.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "dataVersion": {
+          "description": "The version of the data format used to produce this data. This field is used to indicated when the underlying data format changes (e.g., schema modifications, changes to the source URL format definition, etc).",
           "type": "string"
         },
         "updateTime": {
@@ -7114,6 +7365,142 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataDiscoveryResult": {
+      "description": "The output of a data discovery scan.",
+      "id": "GoogleCloudDataplexV1DataDiscoveryResult",
+      "properties": {
+        "bigqueryPublishing": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing",
+          "description": "Output only. Configuration for metadata publishing.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing": {
+      "description": "Describes BigQuery publishing configurations.",
+      "id": "GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing",
+      "properties": {
+        "dataset": {
+          "description": "Output only. The BigQuery dataset to publish to. It takes the form projects/{project_id}/datasets/{dataset_id}. If not set, the service creates a default publishing dataset.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoverySpec": {
+      "description": "Spec for a data discovery scan.",
+      "id": "GoogleCloudDataplexV1DataDiscoverySpec",
+      "properties": {
+        "bigqueryPublishingConfig": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig",
+          "description": "Optional. Configuration for metadata publishing."
+        },
+        "storageConfig": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpecStorageConfig",
+          "description": "Cloud Storage related configurations."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig": {
+      "description": "Describes BigQuery publishing configurations.",
+      "id": "GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig",
+      "properties": {
+        "connection": {
+          "description": "Optional. The BigQuery connection used to create BigLake tables. Must be in the form projects/{project_id}/locations/{location_id}/connections/{connection_id}",
+          "type": "string"
+        },
+        "tableType": {
+          "description": "Optional. Determines whether to publish discovered tables as BigLake external tables or non-BigLake external tables.",
+          "enum": [
+            "TABLE_TYPE_UNSPECIFIED",
+            "EXTERNAL",
+            "BIGLAKE"
+          ],
+          "enumDescriptions": [
+            "Table type unspecified.",
+            "Default. Discovered tables are published as BigQuery external tables whose data is accessed using the credentials of the user querying the table.",
+            "Discovered tables are published as BigLake external tables whose data is accessed using the credentials of the associated BigQuery connection."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoverySpecStorageConfig": {
+      "description": "Configurations related to Cloud Storage as the data source.",
+      "id": "GoogleCloudDataplexV1DataDiscoverySpecStorageConfig",
+      "properties": {
+        "csvOptions": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions",
+          "description": "Optional. Configuration for CSV data."
+        },
+        "excludePatterns": {
+          "description": "Optional. Defines the data to exclude during discovery. Provide a list of patterns that identify the data to exclude. For Cloud Storage bucket assets, these patterns are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these patterns are interpreted as patterns to match table names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includePatterns": {
+          "description": "Optional. Defines the data to include during discovery when only a subset of the data should be considered. Provide a list of patterns that identify the data to include. For Cloud Storage bucket assets, these patterns are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these patterns are interpreted as patterns to match table names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "jsonOptions": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions",
+          "description": "Optional. Configuration for JSON data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions": {
+      "description": "Describes CSV and similar semi-structured data formats.",
+      "id": "GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions",
+      "properties": {
+        "delimiter": {
+          "description": "Optional. The delimiter that is used to separate values. The default is , (comma).",
+          "type": "string"
+        },
+        "encoding": {
+          "description": "Optional. The character encoding of the data. The default is UTF-8.",
+          "type": "string"
+        },
+        "headerRows": {
+          "description": "Optional. The number of rows to interpret as header rows that should be skipped when reading data rows.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "quote": {
+          "description": "Optional. The character used to quote column values. Accepts \" (double quotation mark) or ' (single quotation mark). If unspecified, defaults to \" (double quotation mark).",
+          "type": "string"
+        },
+        "typeInferenceDisabled": {
+          "description": "Optional. Whether to disable the inference of data types for CSV data. If true, all columns are registered as strings.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions": {
+      "description": "Describes JSON data format.",
+      "id": "GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions",
+      "properties": {
+        "encoding": {
+          "description": "Optional. The character encoding of the data. The default is UTF-8.",
+          "type": "string"
+        },
+        "typeInferenceDisabled": {
+          "description": "Optional. Whether to disable the inference of data types for JSON data. If true, all columns are registered as their primitive types (strings, number, or boolean).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DataProfileResult": {
       "description": "DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.",
       "id": "GoogleCloudDataplexV1DataProfileResult",
@@ -7453,7 +7840,7 @@
       "id": "GoogleCloudDataplexV1DataQualityDimension",
       "properties": {
         "name": {
-          "description": "The dimension name a rule belongs to. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"INTEGRITY\"",
+          "description": "The dimension name a rule belongs to. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"FRESHNESS\", \"VOLUME\"",
           "type": "string"
         }
       },
@@ -7588,7 +7975,7 @@
           "type": "string"
         },
         "dimension": {
-          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"INTEGRITY\"",
+          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"FRESHNESS\", \"VOLUME\"",
           "type": "string"
         },
         "ignoreNull": {
@@ -7698,7 +8085,7 @@
           "type": "string"
         },
         "evaluatedCount": {
-          "description": "The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.",
+          "description": "The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.",
           "format": "int64",
           "type": "string"
         },
@@ -7721,7 +8108,7 @@
           "type": "boolean"
         },
         "passedCount": {
-          "description": "The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.",
+          "description": "This field is not set for rule SqlAssertion.",
           "format": "int64",
           "type": "string"
         },
@@ -8047,7 +8434,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataScan": {
-      "description": "Represents a user-visible job which provides the insights for the related data source.For example: Data Quality: generates queries based on the rules and runs against the data to get data quality check results. Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).",
+      "description": "Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery).",
       "id": "GoogleCloudDataplexV1DataScan",
       "properties": {
         "createTime": {
@@ -8060,23 +8447,32 @@
           "$ref": "GoogleCloudDataplexV1DataSource",
           "description": "Required. The data source for DataScan."
         },
+        "dataDiscoveryResult": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoveryResult",
+          "description": "Output only. The result of a data discovery scan.",
+          "readOnly": true
+        },
+        "dataDiscoverySpec": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpec",
+          "description": "Settings for a data discovery scan."
+        },
         "dataProfileResult": {
           "$ref": "GoogleCloudDataplexV1DataProfileResult",
-          "description": "Output only. The result of the data profile scan.",
+          "description": "Output only. The result of a data profile scan.",
           "readOnly": true
         },
         "dataProfileSpec": {
           "$ref": "GoogleCloudDataplexV1DataProfileSpec",
-          "description": "DataProfileScan related setting."
+          "description": "Settings for a data profile scan."
         },
         "dataQualityResult": {
           "$ref": "GoogleCloudDataplexV1DataQualityResult",
-          "description": "Output only. The result of the data quality scan.",
+          "description": "Output only. The result of a data quality scan.",
           "readOnly": true
         },
         "dataQualitySpec": {
           "$ref": "GoogleCloudDataplexV1DataQualitySpec",
-          "description": "DataQualityScan related setting."
+          "description": "Settings for a data quality scan."
         },
         "description": {
           "description": "Optional. Description of the scan. Must be between 1-1024 characters.",
@@ -8103,7 +8499,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
+          "description": "Output only. Identifier. The relative resource name of the scan, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
           "readOnly": true,
           "type": "string"
         },
@@ -8131,12 +8527,14 @@
           "enum": [
             "DATA_SCAN_TYPE_UNSPECIFIED",
             "DATA_QUALITY",
-            "DATA_PROFILE"
+            "DATA_PROFILE",
+            "DATA_DISCOVERY"
           ],
           "enumDescriptions": [
-            "The DataScan type is unspecified.",
-            "Data Quality scan.",
-            "Data Profile scan."
+            "The data scan type is unspecified.",
+            "Data quality scan.",
+            "Data profile scan.",
+            "Data discovery scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -8156,7 +8554,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataScanEvent": {
-      "description": "These messages contain information about the execution of a datascan. The monitored resource is 'DataScan' Next ID: 13",
+      "description": "These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'",
       "id": "GoogleCloudDataplexV1DataScanEvent",
       "properties": {
         "createTime": {
@@ -8263,12 +8661,14 @@
           "enum": [
             "SCAN_TYPE_UNSPECIFIED",
             "DATA_PROFILE",
-            "DATA_QUALITY"
+            "DATA_QUALITY",
+            "DATA_DISCOVERY"
           ],
           "enumDescriptions": [
             "An unspecified data scan type.",
             "Data scan for data profile.",
-            "Data scan for data quality."
+            "Data scan for data quality.",
+            "Data scan for data discovery."
           ],
           "type": "string"
         }
@@ -8430,12 +8830,12 @@
           "type": "string"
         },
         "latestJobEndTime": {
-          "description": "The time when the latest DataScanJob ended.",
+          "description": "Optional. The time when the latest DataScanJob ended.",
           "format": "google-datetime",
           "type": "string"
         },
         "latestJobStartTime": {
-          "description": "The time when the latest DataScanJob started.",
+          "description": "Optional. The time when the latest DataScanJob started.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -8452,24 +8852,34 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataDiscoveryResult": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoveryResult",
+          "description": "Output only. The result of a data discovery scan.",
+          "readOnly": true
+        },
+        "dataDiscoverySpec": {
+          "$ref": "GoogleCloudDataplexV1DataDiscoverySpec",
+          "description": "Output only. Settings for a data discovery scan.",
+          "readOnly": true
+        },
         "dataProfileResult": {
           "$ref": "GoogleCloudDataplexV1DataProfileResult",
-          "description": "Output only. The result of the data profile scan.",
+          "description": "Output only. The result of a data profile scan.",
           "readOnly": true
         },
         "dataProfileSpec": {
           "$ref": "GoogleCloudDataplexV1DataProfileSpec",
-          "description": "Output only. DataProfileScan related setting.",
+          "description": "Output only. Settings for a data profile scan.",
           "readOnly": true
         },
         "dataQualityResult": {
           "$ref": "GoogleCloudDataplexV1DataQualityResult",
-          "description": "Output only. The result of the data quality scan.",
+          "description": "Output only. The result of a data quality scan.",
           "readOnly": true
         },
         "dataQualitySpec": {
           "$ref": "GoogleCloudDataplexV1DataQualitySpec",
-          "description": "Output only. DataQualityScan related setting.",
+          "description": "Output only. Settings for a data quality scan.",
           "readOnly": true
         },
         "endTime": {
@@ -8484,7 +8894,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The relative resource name of the DataScanJob, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
+          "description": "Output only. Identifier. The relative resource name of the DataScanJob, of the form: projects/{project}/locations/{location_id}/dataScans/{datascan_id}/jobs/{job_id}, where project refers to a project_id or project_number and location_id refers to a GCP region.",
           "readOnly": true,
           "type": "string"
         },
@@ -8522,12 +8932,14 @@
           "enum": [
             "DATA_SCAN_TYPE_UNSPECIFIED",
             "DATA_QUALITY",
-            "DATA_PROFILE"
+            "DATA_PROFILE",
+            "DATA_DISCOVERY"
           ],
           "enumDescriptions": [
-            "The DataScan type is unspecified.",
-            "Data Quality scan.",
-            "Data Profile scan."
+            "The data scan type is unspecified.",
+            "Data quality scan.",
+            "Data profile scan.",
+            "Data discovery scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -8669,7 +9081,11 @@
             "ENTITY_DELETED",
             "PARTITION_CREATED",
             "PARTITION_UPDATED",
-            "PARTITION_DELETED"
+            "PARTITION_DELETED",
+            "TABLE_PUBLISHED",
+            "TABLE_UPDATED",
+            "TABLE_IGNORED",
+            "TABLE_DELETED"
           ],
           "enumDescriptions": [
             "An unspecified event type.",
@@ -8679,7 +9095,11 @@
             "An event representing a metadata entity being deleted.",
             "An event representing a partition being created.",
             "An event representing a partition being updated.",
-            "An event representing a partition being deleted."
+            "An event representing a partition being deleted.",
+            "An event representing a table being published.",
+            "An event representing a table being updated.",
+            "An event representing a table being skipped in publishing.",
+            "An event representing a table being deleted."
           ],
           "type": "string"
         },
@@ -8694,6 +9114,10 @@
       "description": "Details about the action.",
       "id": "GoogleCloudDataplexV1DiscoveryEventActionDetails",
       "properties": {
+        "issue": {
+          "description": "The human readable issue associated with the action.",
+          "type": "string"
+        },
         "type": {
           "description": "The type of action. Eg. IncompatibleDataSchema, InvalidDataFormat",
           "type": "string"
@@ -8979,7 +9403,7 @@
           "type": "string"
         },
         "parentEntry": {
-          "description": "Optional. Immutable. The resource name of the parent entry.",
+          "description": "Optional. Immutable. The resource name of the parent entry, in the format projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}.",
           "type": "string"
         },
         "updateTime": {
@@ -9522,7 +9946,7 @@
       "id": "GoogleCloudDataplexV1ImportItem",
       "properties": {
         "aspectKeys": {
-          "description": "The aspects to modify. Supports the following syntaxes: {aspect_type_reference}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference}@{path}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference}@*: matches aspects that belong to the specified aspect type for all paths.Replace {aspect_type_reference} with a reference to the aspect type, in the format {project_id_or_number}.{location_id}.{aspect_type_id}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.",
+          "description": "The aspects to modify. Supports the following syntaxes: {aspect_type_reference}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference}@{path}: matches aspects that belong to the specified aspect type and path. @* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path. Replace {aspect_type_reference} with a reference to the aspect type, in the format {project_id_or_number}.{location_id}.{aspect_type_id}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.",
           "items": {
             "type": "string"
           },
