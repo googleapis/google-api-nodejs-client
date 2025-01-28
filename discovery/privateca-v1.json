@@ -392,7 +392,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Identifier. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
+                      "description": "Identifier. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/caPools/[^/]+$",
                       "required": true,
@@ -754,7 +754,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
+                          "description": "Identifier. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/caPools/[^/]+/certificateAuthorities/[^/]+$",
                           "required": true,
@@ -927,7 +927,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Output only. The resource name for this CertificateRevocationList in the format `projects/*/locations/*/caPools/*certificateAuthorities/*/ certificateRevocationLists/*`.",
+                              "description": "Identifier. The resource name for this CertificateRevocationList in the format `projects/*/locations/*/caPools/*certificateAuthorities/*/ certificateRevocationLists/*`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/caPools/[^/]+/certificateAuthorities/[^/]+/certificateRevocationLists/[^/]+$",
                               "required": true,
@@ -1028,7 +1028,7 @@
                       ],
                       "parameters": {
                         "certificateId": {
-                          "description": "Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.Tier, but is optional and its value is ignored otherwise.",
+                          "description": "Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.tier, but is optional and its value is ignored otherwise.",
                           "location": "query",
                           "type": "string"
                         },
@@ -1147,7 +1147,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name for this Certificate in the format `projects/*/locations/*/caPools/*/certificates/*`.",
+                          "description": "Identifier. The resource name for this Certificate in the format `projects/*/locations/*/caPools/*/certificates/*`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/caPools/[^/]+/certificates/[^/]+$",
                           "required": true,
@@ -1390,7 +1390,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name for this CertificateTemplate in the format `projects/*/locations/*/certificateTemplates/*`.",
+                      "description": "Identifier. The resource name for this CertificateTemplate in the format `projects/*/locations/*/certificateTemplates/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/certificateTemplates/[^/]+$",
                       "required": true,
@@ -1480,7 +1480,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "privateca.projects.locations.operations.cancel",
@@ -1605,7 +1605,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241204",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -1762,8 +1762,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
-          "readOnly": true,
+          "description": "Identifier. The resource name for this CaPool in the format `projects/*/locations/*/caPools/*`.",
           "type": "string"
         },
         "publishingOptions": {
@@ -1847,8 +1846,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name for this Certificate in the format `projects/*/locations/*/caPools/*/certificates/*`.",
-          "readOnly": true,
+          "description": "Identifier. The resource name for this Certificate in the format `projects/*/locations/*/caPools/*/certificates/*`.",
           "type": "string"
         },
         "pemCertificate": {
@@ -1956,8 +1954,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
-          "readOnly": true,
+          "description": "Identifier. The resource name for this CertificateAuthority in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
           "type": "string"
         },
         "pemCaCertificates": {
@@ -2216,8 +2213,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The resource name for this CertificateRevocationList in the format `projects/*/locations/*/caPools/*certificateAuthorities/*/ certificateRevocationLists/*`.",
-          "readOnly": true,
+          "description": "Identifier. The resource name for this CertificateRevocationList in the format `projects/*/locations/*/caPools/*certificateAuthorities/*/ certificateRevocationLists/*`.",
           "type": "string"
         },
         "pemCrl": {
@@ -2299,8 +2295,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name for this CertificateTemplate in the format `projects/*/locations/*/certificateTemplates/*`.",
-          "readOnly": true,
+          "description": "Identifier. The resource name for this CertificateTemplate in the format `projects/*/locations/*/certificateTemplates/*`.",
           "type": "string"
         },
         "passthroughExtensions": {
@@ -2641,7 +2636,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.next_page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "unreachable": {
@@ -2666,7 +2661,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.next_page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "unreachable": {
@@ -2691,7 +2686,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in ListCertificateRevocationListsRequest.next_page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListCertificateRevocationListsRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "unreachable": {
@@ -2716,7 +2711,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in ListCertificateTemplatesRequest.next_page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListCertificateTemplatesRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "unreachable": {
@@ -2741,7 +2736,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve next page of results. Pass this value in ListCertificatesRequest.next_page_token to retrieve the next page of results.",
+          "description": "A token to retrieve next page of results. Pass this value in ListCertificatesRequest.page_token to retrieve the next page of results.",
           "type": "string"
         },
         "unreachable": {
@@ -2963,7 +2958,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
