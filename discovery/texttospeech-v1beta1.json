@@ -237,24 +237,6 @@
     },
     "voices": {
       "methods": {
-        "generateVoiceCloningKey": {
-          "description": "Generates voice clone key given a short voice prompt. This method validates the voice prompts with a series of checks against the voice talent statement to verify the voice clone is safe to generate.",
-          "flatPath": "v1beta1/voices:generateVoiceCloningKey",
-          "httpMethod": "POST",
-          "id": "texttospeech.voices.generateVoiceCloningKey",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1beta1/voices:generateVoiceCloningKey",
-          "request": {
-            "$ref": "GenerateVoiceCloningKeyRequest"
-          },
-          "response": {
-            "$ref": "GenerateVoiceCloningKeyResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
         "list": {
           "description": "Returns a list of Voice supported for synthesis.",
           "flatPath": "v1beta1/voices",
@@ -279,7 +261,7 @@
       }
     }
   },
-  "revision": "20241001",
+  "revision": "20250114",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
@@ -287,7 +269,7 @@
       "id": "AdvancedVoiceOptions",
       "properties": {
         "lowLatencyJourneySynthesis": {
-          "description": "Only for Jounrney voices. If false, the synthesis will be context aware and have higher latency.",
+          "description": "Only for Journey voices. If false, the synthesis is context aware and has a higher latency.",
           "type": "boolean"
         }
       },
@@ -306,16 +288,18 @@
             "MP3_64_KBPS",
             "OGG_OPUS",
             "MULAW",
-            "ALAW"
+            "ALAW",
+            "PCM"
           ],
           "enumDescriptions": [
             "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
             "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header.",
             "MP3 audio at 32kbps.",
             "MP3 at 64kbps.",
-            "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
+            "Opus encoded audio wrapped in an ogg container. The result is a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. Audio content returned as MULAW also contains a WAV header.",
-            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/A-law. Audio content returned as ALAW also contains a WAV header."
+            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/A-law. Audio content returned as ALAW also contains a WAV header.",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Note that as opposed to LINEAR16, audio won't be wrapped in a WAV (or any other) header."
           ],
           "type": "string"
         },
@@ -362,13 +346,13 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "IPA. (e.g. apple -> ˈæpəl ) https://en.wikipedia.org/wiki/International_Phonetic_Alphabet",
-            "X-SAMPA (e.g. apple -> \"{p@l\" ) https://en.wikipedia.org/wiki/X-SAMPA"
+            "IPA, such as apple -> ˈæpəl. https://en.wikipedia.org/wiki/International_Phonetic_Alphabet",
+            "X-SAMPA, such as apple -> \"{p@l\". https://en.wikipedia.org/wiki/X-SAMPA"
           ],
           "type": "string"
         },
         "phrase": {
-          "description": "The phrase to which the customization will be applied. The phrase can be multiple words (in the case of proper nouns etc), but should not span to a whole sentence.",
+          "description": "The phrase to which the customization is applied. The phrase can be multiple words, such as proper nouns, but shouldn't span the length of the sentence.",
           "type": "string"
         },
         "pronunciation": {
@@ -383,7 +367,7 @@
       "id": "CustomPronunciations",
       "properties": {
         "pronunciations": {
-          "description": "The pronunciation customizations to be applied.",
+          "description": "The pronunciation customizations are applied.",
           "items": {
             "$ref": "CustomPronunciationParams"
           },
@@ -418,40 +402,6 @@
       },
       "type": "object"
     },
-    "GenerateVoiceCloningKeyRequest": {
-      "description": "Request message for the `GenerateVoiceCloningKey` method.",
-      "id": "GenerateVoiceCloningKeyRequest",
-      "properties": {
-        "consentScript": {
-          "description": "Required. The script used for the voice talent statement. The script will be provided to the caller through other channels. It must be returned unchanged in this field.",
-          "type": "string"
-        },
-        "languageCode": {
-          "description": "Required. The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: \"en-US\". See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes.",
-          "type": "string"
-        },
-        "referenceAudio": {
-          "$ref": "InputAudio",
-          "description": "Required. The training audio used to create voice clone. This is currently limited to LINEAR16 PCM WAV files mono audio with 24khz sample rate. This needs to be specified in [InputAudio.audio_config], other values will be explicitly rejected."
-        },
-        "voiceTalentConsent": {
-          "$ref": "InputAudio",
-          "description": "Required. The voice talent audio used to verify consent to voice clone."
-        }
-      },
-      "type": "object"
-    },
-    "GenerateVoiceCloningKeyResponse": {
-      "description": "Response message for the `GenerateVoiceCloningKey` method.",
-      "id": "GenerateVoiceCloningKeyResponse",
-      "properties": {
-        "voiceCloningKey": {
-          "description": "The voice clone key. Use it in the SynthesizeSpeechRequest by setting [voice.voice_clone.voice_cloning_key].",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudTexttospeechV1beta1SynthesizeLongAudioMetadata": {
       "description": "Metadata for response returned by the `SynthesizeLongAudio` method.",
       "id": "GoogleCloudTexttospeechV1beta1SynthesizeLongAudioMetadata",
@@ -471,56 +421,6 @@
           "description": "Time when the request was received.",
           "format": "google-datetime",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "InputAudio": {
-      "description": "Holds audio content and config.",
-      "id": "InputAudio",
-      "properties": {
-        "audioConfig": {
-          "$ref": "InputAudioConfig",
-          "description": "Required. Provides information that specifies how to process content."
-        },
-        "content": {
-          "description": "Required. The audio data bytes encoded as specified in `InputAudioConfig`. Note: as with all bytes fields, proto buffers use a pure binary representation, whereas JSON representations use base64. Audio samples should be between 5-25 seconds in length.",
-          "format": "byte",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "InputAudioConfig": {
-      "description": "Description of inputted audio data.",
-      "id": "InputAudioConfig",
-      "properties": {
-        "audioEncoding": {
-          "description": "Required. The format of the audio byte stream.",
-          "enum": [
-            "AUDIO_ENCODING_UNSPECIFIED",
-            "LINEAR16",
-            "MP3",
-            "MP3_64_KBPS",
-            "OGG_OPUS",
-            "MULAW",
-            "ALAW"
-          ],
-          "enumDescriptions": [
-            "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header.",
-            "MP3 audio at 32kbps.",
-            "MP3 at 64kbps.",
-            "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
-            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. Audio content returned as MULAW also contains a WAV header.",
-            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/A-law. Audio content returned as ALAW also contains a WAV header."
-          ],
-          "type": "string"
-        },
-        "sampleRateHertz": {
-          "description": "Required. The sample rate (in hertz) for this audio.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -551,6 +451,20 @@
           "description": "The list of voices.",
           "items": {
             "$ref": "Voice"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MultiSpeakerMarkup": {
+      "description": "A collection of turns for multi-speaker synthesis.",
+      "id": "MultiSpeakerMarkup",
+      "properties": {
+        "turns": {
+          "description": "Required. Speaker turns.",
+          "items": {
+            "$ref": "Turn"
           },
           "type": "array"
         }
@@ -625,7 +539,11 @@
       "properties": {
         "customPronunciations": {
           "$ref": "CustomPronunciations",
-          "description": "Optional. The pronunciation customizations to be applied to the input. If this is set, the input will be synthesized using the given pronunciation customizations. The initial support will be for EFIGS (English, French, Italian, German, Spanish) languages, as provided in VoiceSelectionParams. Journey and Instant Clone voices are not supported yet. In order to customize the pronunciation of a phrase, there must be an exact match of the phrase in the input types. If using SSML, the phrase must not be inside a phoneme tag (entirely or partially)."
+          "description": "Optional. The pronunciation customizations are applied to the input. If this is set, the input is synthesized using the given pronunciation customizations. The initial support is for English, French, Italian, German, and Spanish (EFIGS) languages, as provided in VoiceSelectionParams. Journey and Instant Clone voices aren't supported. In order to customize the pronunciation of a phrase, there must be an exact match of the phrase in the input types. If using SSML, the phrase must not be inside a phoneme tag."
+        },
+        "multiSpeakerMarkup": {
+          "$ref": "MultiSpeakerMarkup",
+          "description": "The multi-speaker input to be synthesized. Only applicable for multi-speaker synthesis."
         },
         "ssml": {
           "description": "The SSML document to be synthesized. The SSML document must be valid and well-formed. Otherwise the RPC will fail and return google.rpc.Code.INVALID_ARGUMENT. For more information, see [SSML](https://cloud.google.com/text-to-speech/docs/ssml).",
@@ -690,7 +608,7 @@
       "properties": {
         "advancedVoiceOptions": {
           "$ref": "AdvancedVoiceOptions",
-          "description": "Adnanced voice options."
+          "description": "Advanced voice options."
         },
         "audioConfig": {
           "$ref": "AudioConfig",
@@ -757,6 +675,21 @@
           "description": "Time offset in seconds from the start of the synthesized audio.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Turn": {
+      "description": "A multi-speaker turn.",
+      "id": "Turn",
+      "properties": {
+        "speaker": {
+          "description": "Required. The speaker of the turn, for example, 'O' or 'Q'. Please refer to documentation for available speakers.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Required. The text to speak.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -845,7 +778,7 @@
         },
         "voiceClone": {
           "$ref": "VoiceCloneParams",
-          "description": "Optional. The configuration for a voice clone. If [VoiceCloneParams.voice_clone_key] is set, the service will choose the voice clone matching the specified configuration."
+          "description": "Optional. The configuration for a voice clone. If [VoiceCloneParams.voice_clone_key] is set, the service chooses the voice clone matching the specified configuration."
         }
       },
       "type": "object"
