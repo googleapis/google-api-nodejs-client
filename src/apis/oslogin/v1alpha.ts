@@ -516,7 +516,7 @@ export namespace oslogin_v1alpha {
      */
     projectId?: string;
     /**
-     * Optional. The regions to which to assert that the key was written. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.
+     * Optional. The regions to wait for a POSIX account to be written to before returning a response. If unspecified, defaults to all regions. Regions are listed at https://cloud.google.com/about/locations#region.
      */
     regions?: string[];
     /**
