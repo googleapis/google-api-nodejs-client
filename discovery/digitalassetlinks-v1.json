@@ -5,6 +5,7 @@
   "description": "Discovers relationships between online assets such as websites or mobile apps.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/digital-asset-links/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -96,21 +97,6 @@
   "resources": {
     "assetlinks": {
       "methods": {
-        "bulkCheck": {
-          "description": "Send a bundle of statement checks in a single RPC to minimize latency and service load. Statements need not be all for the same source and/or target. We recommend using this method when you need to check more than one statement in a short period of time.",
-          "flatPath": "v1/assetlinks:bulkCheck",
-          "httpMethod": "POST",
-          "id": "digitalassetlinks.assetlinks.bulkCheck",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/assetlinks:bulkCheck",
-          "request": {
-            "$ref": "BulkCheckRequest"
-          },
-          "response": {
-            "$ref": "BulkCheckResponse"
-          }
-        },
         "check": {
           "description": "Determines whether the specified (directional) relationship exists between the specified source and target assets. The relation describes the intent of the link between the two assets as claimed by the source asset. An example for such relationships is the delegation of privileges or permissions. This command is most often used by infrastructure systems to check preconditions for an action. For example, a client may want to know if it is OK to send a web URL to a particular mobile app instead. The client can check for the relevant asset link from the website to the mobile app to decide if the operation should be allowed. A note about security: if you specify a secure asset as the source, such as an HTTPS website or an Android app, the API will ensure that any statements used to generate the response have been made in a secure way by the owner of that asset. Conversely, if the source asset is an insecure HTTP website (that is, the URL starts with `http://` instead of `https://`), the API cannot verify its statements securely, and it is not possible to ensure that the website's statements have not been altered by a third party. For more information, see the [Digital Asset Links technical design specification](https://github.com/google/digitalassetlinks/blob/master/well-known/details.md).",
           "flatPath": "v1/assetlinks:check",
@@ -199,7 +185,7 @@
       }
     }
   },
-  "revision": "20220129",
+  "revision": "20241207",
   "rootUrl": "https://digitalassetlinks.googleapis.com/",
   "schemas": {
     "AndroidAppAsset": {
@@ -228,84 +214,6 @@
         "web": {
           "$ref": "WebAsset",
           "description": "Set if this is a web asset."
-        }
-      },
-      "type": "object"
-    },
-    "BulkCheckRequest": {
-      "description": "Message used to check for the existence of multiple digital asset links within a single RPC.",
-      "id": "BulkCheckRequest",
-      "properties": {
-        "allowGoogleInternalDataSources": {
-          "description": "Same configuration as in Check request, all statements checks will use same configurations.",
-          "type": "boolean"
-        },
-        "defaultRelation": {
-          "description": "If specified, will be used in any given template statement that doesn’t specify a relation.",
-          "type": "string"
-        },
-        "defaultSource": {
-          "$ref": "Asset",
-          "description": "If specified, will be used in any given template statement that doesn’t specify a source."
-        },
-        "defaultTarget": {
-          "$ref": "Asset",
-          "description": "If specified, will be used in any given template statement that doesn’t specify a target."
-        },
-        "skipCacheLookup": {
-          "description": "Same configuration as in Check request, all statements checks will use same configurations.",
-          "type": "boolean"
-        },
-        "statements": {
-          "description": "List of statements to check. For each statement, you can omit a field if the corresponding default_* field below was supplied. Minimum 1 statement; maximum 1,000 statements. Any additional statements will be ignored.",
-          "items": {
-            "$ref": "StatementTemplate"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "BulkCheckResponse": {
-      "description": "Response for BulkCheck call. Results are sent in a list in the same order in which they were sent. Individual check errors are described in the appropriate check_results entry. If the entire call fails, the response will include a bulk_error_code field describing the error.",
-      "id": "BulkCheckResponse",
-      "properties": {
-        "bulkErrorCode": {
-          "description": "Error code for the entire request. Present only if the entire request failed. Individual check errors will not trigger the presence of this field.",
-          "enum": [
-            "ERROR_CODE_UNSPECIFIED",
-            "ERROR_CODE_INVALID_QUERY",
-            "ERROR_CODE_FETCH_ERROR",
-            "ERROR_CODE_FAILED_SSL_VALIDATION",
-            "ERROR_CODE_REDIRECT",
-            "ERROR_CODE_TOO_LARGE",
-            "ERROR_CODE_MALFORMED_HTTP_RESPONSE",
-            "ERROR_CODE_WRONG_CONTENT_TYPE",
-            "ERROR_CODE_MALFORMED_CONTENT",
-            "ERROR_CODE_SECURE_ASSET_INCLUDES_INSECURE",
-            "ERROR_CODE_FETCH_BUDGET_EXHAUSTED"
-          ],
-          "enumDescriptions": [
-            "",
-            "Unable to parse query.",
-            "Unable to fetch the asset links data.",
-            "Invalid HTTPS certificate .",
-            "HTTP redirects (e.g, 301) are not allowed.",
-            "Asset links data exceeds maximum size.",
-            "Can't parse HTTP response.",
-            "HTTP Content-type should be application/json.",
-            "JSON content is malformed.",
-            "A secure asset includes an insecure asset (security downgrade).",
-            "Too many includes (maybe a loop)."
-          ],
-          "type": "string"
-        },
-        "checkResults": {
-          "description": "List of results for each check request. Results are returned in the same order in which they were sent in the request.",
-          "items": {
-            "$ref": "CheckResponse"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -346,7 +254,7 @@
               "ERROR_CODE_FETCH_BUDGET_EXHAUSTED"
             ],
             "enumDescriptions": [
-              "",
+              "Default value, otherwise unused.",
               "Unable to parse query.",
               "Unable to fetch the asset links data.",
               "Invalid HTTPS certificate .",
@@ -399,7 +307,7 @@
               "ERROR_CODE_FETCH_BUDGET_EXHAUSTED"
             ],
             "enumDescriptions": [
-              "",
+              "Default value, otherwise unused.",
               "Unable to parse query.",
               "Unable to fetch the asset links data.",
               "Invalid HTTPS certificate .",
@@ -445,25 +353,6 @@
         "target": {
           "$ref": "Asset",
           "description": "Every statement has a target asset. REQUIRED"
-        }
-      },
-      "type": "object"
-    },
-    "StatementTemplate": {
-      "description": "A single statement to check in a bulk call using BulkCheck. See CheckRequest for details about each field.",
-      "id": "StatementTemplate",
-      "properties": {
-        "relation": {
-          "description": "The relationship being asserted between the source and target. If omitted, you must specify a BulkCheckRequest.default_relation value to use here.",
-          "type": "string"
-        },
-        "source": {
-          "$ref": "Asset",
-          "description": "The source asset that is asserting the statement. If omitted, you must specify a BulkCheckRequest.default_source value to use here."
-        },
-        "target": {
-          "$ref": "Asset",
-          "description": "The target that the source is declaring the relationship with. If omitted, you must specify a BulkCheckRequest.default_target to use here."
         }
       },
       "type": "object"
