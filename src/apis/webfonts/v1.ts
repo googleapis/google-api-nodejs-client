@@ -301,6 +301,10 @@ export namespace webfonts_v1 {
      */
     capability?: string[];
     /**
+     * Filters by Webfont.category, if category is found in Webfont.categories. If not set, returns all families.
+     */
+    category?: string;
+    /**
      * Filters by Webfont.family, using literal match. If not set, returns all families
      */
     family?: string[];
