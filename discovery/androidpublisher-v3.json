@@ -4732,7 +4732,7 @@
       }
     }
   },
-  "revision": "20241003",
+  "revision": "20250102",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5249,7 +5249,7 @@
       "id": "AutoRenewingBasePlanType",
       "properties": {
         "accountHoldDuration": {
-          "description": "Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in DAYS and in the range P0D (zero days) to P30D (30 days). If not specified, the default value is P30D (30 days).",
+          "description": "Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. If not specified, the default value is P30D. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.",
           "type": "string"
         },
         "billingPeriodDuration": {
@@ -5257,7 +5257,7 @@
           "type": "string"
         },
         "gracePeriodDuration": {
-          "description": "Grace period of the subscription, specified in ISO 8601 format. Acceptable values are P0D (zero days), P3D (3 days), P7D (7 days), P14D (14 days), and P30D (30 days). If not specified, a default value will be used based on the recurring period duration.",
+          "description": "Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.",
           "type": "string"
         },
         "legacyCompatible": {
@@ -5314,6 +5314,10 @@
         "priceChangeDetails": {
           "$ref": "SubscriptionItemPriceChangeDetails",
           "description": "The information of the last price change for the item since subscription signup."
+        },
+        "recurringPrice": {
+          "$ref": "Money",
+          "description": "The current recurring price of the auto renewing plan."
         }
       },
       "type": "object"
@@ -6084,6 +6088,13 @@
           "description": "A device needs to have all these system features to be included by the selector.",
           "items": {
             "$ref": "SystemFeature"
+          },
+          "type": "array"
+        },
+        "systemOnChips": {
+          "description": "Optional. The SoCs included by this selector. Only works for Android S+ devices.",
+          "items": {
+            "$ref": "SystemOnChip"
           },
           "type": "array"
         }
@@ -7066,7 +7077,7 @@
       "id": "InstallmentsBasePlanType",
       "properties": {
         "accountHoldDuration": {
-          "description": "Optional. Account hold period of the subscription, specified exclusively in days and in ISO 8601 format. Acceptable values are P0D (zero days) to P30D (30days). If not specified, the default value is P30D (30 days).",
+          "description": "Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. If not specified, the default value is P30D. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.",
           "type": "string"
         },
         "billingPeriodDuration": {
@@ -7079,7 +7090,7 @@
           "type": "integer"
         },
         "gracePeriodDuration": {
-          "description": "Grace period of the subscription, specified in ISO 8601 format. Acceptable values are P0D (zero days), P3D (3 days), P7D (7 days), P14D (14 days), and P30D (30 days). If not specified, a default value will be used based on the recurring period duration.",
+          "description": "Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.",
           "type": "string"
         },
         "prorationMode": {
@@ -7571,7 +7582,7 @@
       "type": "object"
     },
     "OfferTag": {
-      "description": "Represents a custom tag specified for base plans and subscription offers.",
+      "description": "Represents a custom tag specified for a product offer.",
       "id": "OfferTag",
       "properties": {
         "tag": {
@@ -7579,6 +7590,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "OneTimeCode": {
+      "description": "A single use promotion code.",
+      "id": "OneTimeCode",
+      "properties": {},
       "type": "object"
     },
     "OneTimeExternalTransaction": {
@@ -8399,6 +8416,21 @@
       },
       "type": "object"
     },
+    "SignupPromotion": {
+      "description": "The promotion applied on this item when purchased.",
+      "id": "SignupPromotion",
+      "properties": {
+        "oneTimeCode": {
+          "$ref": "OneTimeCode",
+          "description": "A one-time code was applied."
+        },
+        "vanityCode": {
+          "$ref": "VanityCode",
+          "description": "A vanity code was applied."
+        }
+      },
+      "type": "object"
+    },
     "SplitApkMetadata": {
       "description": "Holds data specific to Split APKs.",
       "id": "SplitApkMetadata",
@@ -8916,6 +8948,10 @@
         "productId": {
           "description": "The purchased product ID (for example, 'monthly001').",
           "type": "string"
+        },
+        "signupPromotion": {
+          "$ref": "SignupPromotion",
+          "description": "Promotion details about this item. Only set if a promotion was applied during signup."
         }
       },
       "type": "object"
@@ -9129,6 +9165,21 @@
       "description": "Information specific to cancellations initiated by Google system.",
       "id": "SystemInitiatedCancellation",
       "properties": {},
+      "type": "object"
+    },
+    "SystemOnChip": {
+      "description": "Representation of a System-on-Chip (SoC) of an Android device. Can be used to target S+ devices.",
+      "id": "SystemOnChip",
+      "properties": {
+        "manufacturer": {
+          "description": "Required. The designer of the SoC, eg. \"Google\" Value of build property \"ro.soc.manufacturer\" https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER Required.",
+          "type": "string"
+        },
+        "model": {
+          "description": "Required. The model of the SoC, eg. \"Tensor\" Value of build property \"ro.soc.model\" https://developer.android.com/reference/android/os/Build#SOC_MODEL Required.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Targeting": {
@@ -9878,6 +9929,17 @@
         },
         "name": {
           "description": "The name of the permission requested.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VanityCode": {
+      "description": "A multiple use, predefined promotion code.",
+      "id": "VanityCode",
+      "properties": {
+        "promotionCode": {
+          "description": "The promotion code.",
           "type": "string"
         }
       },
