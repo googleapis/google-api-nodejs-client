@@ -157,7 +157,7 @@ export namespace solar_v1 {
      */
     imageryQuality?: string | null;
     /**
-     * The resource name for the building, of the format `building/`.
+     * The resource name for the building, of the format `buildings/{place_id\}`.
      */
     name?: string | null;
     /**
