@@ -722,7 +722,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "networkconnectivity.projects.locations.operations.cancel",
@@ -1116,7 +1116,7 @@
       }
     }
   },
-  "revision": "20240911",
+  "revision": "20250110",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1370,7 +1370,7 @@
       "type": "object"
     },
     "InternalRange": {
-      "description": "The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.",
+      "description": "The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characteristics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.",
       "id": "InternalRange",
       "properties": {
         "createTime": {
@@ -1381,6 +1381,10 @@
         "description": {
           "description": "A description of this resource.",
           "type": "string"
+        },
+        "immutable": {
+          "description": "Optional. Immutable ranges cannot have their fields modified, except for labels and description.",
+          "type": "boolean"
         },
         "ipCidrRange": {
           "description": "IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.",
@@ -1395,7 +1399,7 @@
         },
         "migration": {
           "$ref": "Migration",
-          "description": "Optional. Should be present if usage is set to FOR_MIGRATION."
+          "description": "Optional. Must be present if usage is set to FOR_MIGRATION."
         },
         "name": {
           "description": "Immutable. The name of an internal range. Format: projects/{project}/locations/{location}/internalRanges/{internal_range} See: https://google.aip.dev/122#fields-representing-resource-names",
