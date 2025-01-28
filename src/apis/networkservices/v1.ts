@@ -151,6 +151,63 @@ export namespace networkservices_v1 {
     logType?: string | null;
   }
   /**
+   * `AuthzExtension` is a resource that allows traffic forwarding to a callout backend service to make an authorization decision.
+   */
+  export interface Schema$AuthzExtension {
+    /**
+     * Required. The `:authority` header in the gRPC request sent from Envoy to the extension service.
+     */
+    authority?: string | null;
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Determines how the proxy behaves if the call to the extension fails or times out. When set to `TRUE`, request or response processing continues without error. Any subsequent extensions in the extension chain are also executed. When set to `FALSE` or the default setting of `FALSE` is used, one of the following happens: * If response headers have not been delivered to the downstream client, a generic 500 error is returned to the client. The error response can be tailored by configuring a custom error response in the load balancer. * If response headers have been delivered, then the HTTP stream to the downstream client is reset.
+     */
+    failOpen?: boolean | null;
+    /**
+     * Optional. List of the HTTP headers to forward to the extension (from the client). If omitted, all headers are sent. Each element is a string indicating the header name.
+     */
+    forwardHeaders?: string[] | null;
+    /**
+     * Optional. Set of labels associated with the `AuthzExtension` resource. The format must comply with [the requirements for labels](/compute/docs/labeling-resources#requirements) for Google Cloud resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. All backend services and forwarding rules referenced by this extension must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     */
+    loadBalancingScheme?: string | null;
+    /**
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google.authz_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * Required. Identifier. Name of the `AuthzExtension` resource in the following format: `projects/{project\}/locations/{location\}/authzExtensions/{authz_extension\}`.
+     */
+    name?: string | null;
+    /**
+     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`.
+     */
+    service?: string | null;
+    /**
+     * Required. Specifies the timeout for each individual message on the stream. The timeout must be between 10-10000 milliseconds.
+     */
+    timeout?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. The format of communication supported by the callout extension. If not specified, the default is `EXT_PROC_GRPC`.
+     */
+    wireFormat?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -302,7 +359,7 @@ export namespace networkservices_v1 {
    */
   export interface Schema$ExtensionChainExtension {
     /**
-     * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. Required for Callout extensions.
+     * Optional. The `:authority` header in the gRPC request sent from Envoy to the extension service. Required for Callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     authority?: string | null;
     /**
@@ -314,19 +371,23 @@ export namespace networkservices_v1 {
      */
     forwardHeaders?: string[] | null;
     /**
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google....`. For example: `com.google.lb_traffic_extension.lbtrafficextension1.chain1.ext1`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Required. The name for this extension. The name is logged as part of the HTTP request logs. The name must conform with RFC-1034, is restricted to lower-cased letters, numbers and hyphens, and can have a maximum length of 63 characters. Additionally, the first character must be a letter and the last a letter or a number.
      */
     name?: string | null;
     /**
-     * Required. The reference to the service that runs the extension. Currently only callout extensions are supported here. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`.
+     * Required. The reference to the service that runs the extension. To configure a callout extension, `service` must be a fully-qualified reference to a [backend service](https://cloud.google.com/compute/docs/reference/rest/v1/backendServices) in the format: `https://www.googleapis.com/compute/v1/projects/{project\}/regions/{region\}/backendServices/{backendService\}` or `https://www.googleapis.com/compute/v1/projects/{project\}/global/backendServices/{backendService\}`. To configure a plugin extension, `service` must be a reference to a [`WasmPlugin` resource](https://cloud.google.com/service-extensions/docs/reference/rest/v1beta1/projects.locations.wasmPlugins) in the format: `projects/{project\}/locations/{location\}/wasmPlugins/{plugin\}` or `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/wasmPlugins/{wasmPlugin\}`. Plugin extensions are currently supported for the `LbTrafficExtension` and the `LbRouteExtension` resources.
      */
     service?: string | null;
     /**
-     * Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It must not be set for the `LbRouteExtension` resource.
+     * Optional. A set of events during request or response processing for which this extension is called. This field is required for the `LbTrafficExtension` resource. It must not be set for the `LbRouteExtension` resource, otherwise a validation error is returned.
      */
     supportedEvents?: string[] | null;
     /**
-     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between 10-1000 milliseconds. Required for Callout extensions.
+     * Optional. Specifies the timeout for each individual message on the stream. The timeout must be between `10`-`1000` milliseconds. Required for callout extensions. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     timeout?: string | null;
   }
@@ -340,7 +401,7 @@ export namespace networkservices_v1 {
     celExpression?: string | null;
   }
   /**
-   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway. Next id: 33
+   * Gateway represents the configuration for a proxy, typically a load balancer. It captures the ip:port over which the services are exposed by the proxy, along with any policy configurations. Routes have reference to to Gateways to dictate how requests should be routed by this Gateway.
    */
   export interface Schema$Gateway {
     /**
@@ -392,7 +453,7 @@ export namespace networkservices_v1 {
      */
     routingMode?: string | null;
     /**
-     * Optional. Scope determines how configuration across multiple Gateway instances are merged. The configuration for multiple Gateway instances with the same scope will be merged as presented as a single coniguration to the proxy/load balancer. Max length 64 characters. Scope should start with a letter and can only have letters, numbers, hyphens.
+     * Optional. Scope determines how configuration across multiple Gateway instances are merged. The configuration for multiple Gateway instances with the same scope will be merged as presented as a single configuration to the proxy/load balancer. Max length 64 characters. Scope should start with a letter and can only have letters, numbers, hyphens.
      */
     scope?: string | null;
     /**
@@ -417,6 +478,31 @@ export namespace networkservices_v1 {
     updateTime?: string | null;
   }
   /**
+   * GatewayRouteView defines view-only resource for Routes to a Gateway
+   */
+  export interface Schema$GatewayRouteView {
+    /**
+     * Output only. Identifier. Full path name of the GatewayRouteView resource. Format: projects/{project_number\}/locations/{location\}/gateways/{gateway_name\}/routeViews/{route_view_name\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource id for the route.
+     */
+    routeId?: string | null;
+    /**
+     * Output only. Location where the route exists.
+     */
+    routeLocation?: string | null;
+    /**
+     * Output only. Project number where the route exists.
+     */
+    routeProjectNumber?: string | null;
+    /**
+     * Output only. Type of the route: HttpRoute,GrpcRoute,TcpRoute, or TlsRoute
+     */
+    routeType?: string | null;
+  }
+  /**
    * GrpcRoute is the resource defining how gRPC traffic routed by a Mesh or Gateway resource is routed.
    */
   export interface Schema$GrpcRoute {
@@ -428,6 +514,10 @@ export namespace networkservices_v1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this GrpcRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -640,6 +730,10 @@ export namespace networkservices_v1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this HttpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -1076,7 +1170,7 @@ export namespace networkservices_v1 {
      */
     extensionChains?: Schema$ExtensionChain[];
     /**
-     * Required. A list of references to the forwarding rules to which this service extension is attached to. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.
+     * Required. A list of references to the forwarding rules to which this service extension is attached. At least one forwarding rule is required. There can be only one `LbRouteExtension` resource per forwarding rule.
      */
     forwardingRules?: string[] | null;
     /**
@@ -1088,7 +1182,7 @@ export namespace networkservices_v1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     * Optional. The metadata provided here is included as part of the `metadata_context` (of type `google.protobuf.Struct`) in the `ProcessingRequest` message sent to the extension server. The metadata is available under the namespace `com.google.lb_route_extension.`. The following variables are supported in the metadata Struct: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1117,7 +1211,7 @@ export namespace networkservices_v1 {
      */
     extensionChains?: Schema$ExtensionChain[];
     /**
-     * Required. A list of references to the forwarding rules to which this service extension is attached to. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.
+     * Optional. A list of references to the forwarding rules to which this service extension is attached. At least one forwarding rule is required. There can be only one `LBTrafficExtension` resource per forwarding rule.
      */
     forwardingRules?: string[] | null;
     /**
@@ -1129,7 +1223,7 @@ export namespace networkservices_v1 {
      */
     loadBalancingScheme?: string | null;
     /**
-     * Optional. The metadata provided here is included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata is available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name.
+     * Optional. The metadata provided here is included in the `ProcessingRequest.metadata_context.filter_metadata` map field. The metadata is available under the key `com.google.lb_traffic_extension.`. The following variables are supported in the metadata: `{forwarding_rule_id\}` - substituted with the forwarding rule's fully qualified resource name. This field is not supported for plugin extensions. Setting it results in a validation error.
      */
     metadata?: {[key: string]: any} | null;
     /**
@@ -1142,6 +1236,23 @@ export namespace networkservices_v1 {
     updateTime?: string | null;
   }
   /**
+   * Message for response to listing `AuthzExtension` resources.
+   */
+  export interface Schema$ListAuthzExtensionsResponse {
+    /**
+     * The list of `AuthzExtension` resources.
+     */
+    authzExtensions?: Schema$AuthzExtension[];
+    /**
+     * A token identifying a page of results that the server returns.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response returned by the ListEndpointPolicies method.
    */
   export interface Schema$ListEndpointPoliciesResponse {
@@ -1151,6 +1262,19 @@ export namespace networkservices_v1 {
     endpointPolicies?: Schema$EndpointPolicy[];
     /**
      * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response returned by the ListGatewayRouteViews method.
+   */
+  export interface Schema$ListGatewayRouteViewsResponse {
+    /**
+     * List of GatewayRouteView resources.
+     */
+    gatewayRouteViews?: Schema$GatewayRouteView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
   }
@@ -1258,6 +1382,19 @@ export namespace networkservices_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response returned by the ListMeshRouteViews method.
+   */
+  export interface Schema$ListMeshRouteViewsResponse {
+    /**
+     * List of MeshRouteView resources.
+     */
+    meshRouteViews?: Schema$MeshRouteView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1323,6 +1460,32 @@ export namespace networkservices_v1 {
     tlsRoutes?: Schema$TlsRoute[];
   }
   /**
+   * Response returned by the `ListWasmPlugins` method.
+   */
+  export interface Schema$ListWasmPluginsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of `WasmPlugin` resources.
+     */
+    wasmPlugins?: Schema$WasmPlugin[];
+  }
+  /**
+   * Response returned by the `ListWasmPluginVersions` method.
+   */
+  export interface Schema$ListWasmPluginVersionsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of `WasmPluginVersion` resources.
+     */
+    wasmPluginVersions?: Schema$WasmPluginVersion[];
+  }
+  /**
    * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
@@ -1348,7 +1511,7 @@ export namespace networkservices_v1 {
     name?: string | null;
   }
   /**
-   * The configuration for Platform Telemetry logging for Eventarc Avdvanced resources.
+   * The configuration for Platform Telemetry logging for Eventarc Advanced resources.
    */
   export interface Schema$LoggingConfig {
     /**
@@ -1392,6 +1555,31 @@ export namespace networkservices_v1 {
      * Output only. The timestamp when the resource was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * MeshRouteView defines view-only resource for Routes to a Mesh
+   */
+  export interface Schema$MeshRouteView {
+    /**
+     * Output only. Identifier. Full path name of the MeshRouteView resource. Format: projects/{project_number\}/locations/{location\}/meshes/{mesh_name\}/routeViews/{route_view_name\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource id for the route.
+     */
+    routeId?: string | null;
+    /**
+     * Output only. Location where the route exists.
+     */
+    routeLocation?: string | null;
+    /**
+     * Output only. Project number where the route exists.
+     */
+    routeProjectNumber?: string | null;
+    /**
+     * Output only. Type of the route: HttpRoute,GrpcRoute,TcpRoute, or TlsRoute
+     */
+    routeType?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1540,7 +1728,7 @@ export namespace networkservices_v1 {
      */
     loadBalancingAlgorithm?: string | null;
     /**
-     * Required. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
+     * Identifier. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
      */
     name?: string | null;
     /**
@@ -1608,6 +1796,10 @@ export namespace networkservices_v1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -1724,6 +1916,10 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
+    /**
      * Optional. Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
     gateways?: string[] | null;
@@ -1813,6 +2009,159 @@ export namespace networkservices_v1 {
      */
     ports?: string[] | null;
   }
+  /**
+   * `WasmPlugin` is a resource representing a service executing a customer-provided Wasm module.
+   */
+  export interface Schema$WasmPlugin {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Optional. Set of labels associated with the `WasmPlugin` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Specifies the logging options for the activity performed by this plugin. If logging is enabled, plugin logs are exported to Cloud Logging. Note that the settings relate to the logs generated by using logging statements in your Wasm code.
+     */
+    logConfig?: Schema$WasmPluginLogConfig;
+    /**
+     * Optional. The ID of the `WasmPluginVersion` resource that is the currently serving one. The version referred to must be a child of this `WasmPlugin` resource.
+     */
+    mainVersionId?: string | null;
+    /**
+     * Identifier. Name of the `WasmPlugin` resource in the following format: `projects/{project\}/locations/{location\}/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. List of all [extensions](https://cloud.google.com/service-extensions/docs/overview) that use this `WasmPlugin` resource.
+     */
+    usedBy?: Schema$WasmPluginUsedBy[];
+    /**
+     * Optional. All versions of this `WasmPlugin` resource in the key-value format. The key is the resource ID, and the value is the `VersionDetails` object. Lets you create or update a `WasmPlugin` resource and its versions in a single request. When the `main_version_id` field is not empty, it must point to one of the `VersionDetails` objects in the map. If provided in a `PATCH` request, the new versions replace the previous set. Any version omitted from the `versions` field is removed. Because the `WasmPluginVersion` resource is immutable, if a `WasmPluginVersion` resource with the same name already exists and differs, the request fails. Note: In a `GET` request, this field is populated only if the field `GetWasmPluginRequest.view` is set to `WASM_PLUGIN_VIEW_FULL`.
+     */
+    versions?: {[key: string]: Schema$WasmPluginVersionDetails} | null;
+  }
+  /**
+   * Specifies the logging options for the activity performed by this plugin. If logging is enabled, plugin logs are exported to Cloud Logging.
+   */
+  export interface Schema$WasmPluginLogConfig {
+    /**
+     * Optional. Specifies whether to enable logging for activity by this plugin. Defaults to `false`.
+     */
+    enable?: boolean | null;
+    /**
+     * Non-empty default. Specificies the lowest level of the plugin logs that are exported to Cloud Logging. This setting relates to the logs generated by using logging statements in your Wasm code. This field is can be set only if logging is enabled for the plugin. If the field is not provided when logging is enabled, it is set to `INFO` by default.
+     */
+    minLogLevel?: string | null;
+    /**
+     * Non-empty default. Configures the sampling rate of activity logs, where `1.0` means all logged activity is reported and `0.0` means no activity is reported. A floating point value between `0.0` and `1.0` indicates that a percentage of log messages is stored. The default value when logging is enabled is `1.0`. The value of the field must be between `0` and `1` (inclusive). This field can be specified only if logging is enabled for this plugin.
+     */
+    sampleRate?: number | null;
+  }
+  /**
+   * Defines a resource that uses the `WasmPlugin` resource.
+   */
+  export interface Schema$WasmPluginUsedBy {
+    /**
+     * Output only. Full name of the resource https://google.aip.dev/122#full-resource-names, for example `//networkservices.googleapis.com/projects/{project\}/locations/{location\}/lbRouteExtensions/{extension\}`
+     */
+    name?: string | null;
+  }
+  /**
+   * A single immutable version of a `WasmPlugin` resource. Defines the Wasm module used and optionally its runtime config.
+   */
+  export interface Schema$WasmPluginVersion {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The resolved digest for the image specified in the `image` field. The digest is resolved during the creation of `WasmPluginVersion` resource. This field holds the digest value, regardless of whether a tag or digest was originally specified in the `image` field.
+     */
+    imageDigest?: string | null;
+    /**
+     * Optional. URI of the container image containing the plugin, stored in the Artifact Registry. When a new `WasmPluginVersion` resource is created, the digest of the container image is saved in the `image_digest` field. When downloading an image, the digest value is used instead of an image tag.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. Set of labels associated with the `WasmPluginVersion` resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the `WasmPluginVersion` resource in the following format: `projects/{project\}/locations/{location\}/wasmPlugins/{wasm_plugin\}/ versions/{wasm_plugin_version\}`.
+     */
+    name?: string | null;
+    /**
+     * Configuration for the plugin. The configuration is provided to the plugin at runtime through the `ON_CONFIGURE` callback. When a new `WasmPluginVersion` resource is created, the digest of the contents is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigData?: string | null;
+    /**
+     * Output only. This field holds the digest (usually checksum) value for the plugin configuration. The value is calculated based on the contents of `plugin_config_data` or the container image defined by the `plugin_config_uri` field.
+     */
+    pluginConfigDigest?: string | null;
+    /**
+     * URI of the plugin configuration stored in the Artifact Registry. The configuration is provided to the plugin at runtime through the `ON_CONFIGURE` callback. The container image must contain only a single file with the name `plugin.config`. When a new `WasmPluginVersion` resource is created, the digest of the container image is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigUri?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Details of a `WasmPluginVersion` resource to be inlined in the `WasmPlugin` resource.
+   */
+  export interface Schema$WasmPluginVersionDetails {
+    /**
+     * Output only. The timestamp when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. A human-readable description of the resource.
+     */
+    description?: string | null;
+    /**
+     * Output only. The resolved digest for the image specified in `image`. The digest is resolved during the creation of a `WasmPluginVersion` resource. This field holds the digest value regardless of whether a tag or digest was originally specified in the `image` field.
+     */
+    imageDigest?: string | null;
+    /**
+     * Optional. URI of the container image containing the Wasm module, stored in the Artifact Registry. The container image must contain only a single file with the name `plugin.wasm`. When a new `WasmPluginVersion` resource is created, the URI gets resolved to an image digest and saved in the `image_digest` field.
+     */
+    imageUri?: string | null;
+    /**
+     * Optional. Set of labels associated with the `WasmPluginVersion` resource.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Configuration for the plugin. The configuration is provided to the plugin at runtime through the `ON_CONFIGURE` callback. When a new `WasmPluginVersion` version is created, the digest of the contents is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigData?: string | null;
+    /**
+     * Output only. This field holds the digest (usually checksum) value for the plugin configuration. The value is calculated based on the contents of the `plugin_config_data` field or the container image defined by the `plugin_config_uri` field.
+     */
+    pluginConfigDigest?: string | null;
+    /**
+     * URI of the plugin configuration stored in the Artifact Registry. The configuration is provided to the plugin at runtime through the `ON_CONFIGURE` callback. The container image must contain only a single file with the name `plugin.config`. When a new `WasmPluginVersion` resource is created, the digest of the container image is saved in the `plugin_config_digest` field.
+     */
+    pluginConfigUri?: string | null;
+    /**
+     * Output only. The timestamp when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1825,6 +2174,7 @@ export namespace networkservices_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    authzExtensions: Resource$Projects$Locations$Authzextensions;
     edgeCacheKeysets: Resource$Projects$Locations$Edgecachekeysets;
     edgeCacheOrigins: Resource$Projects$Locations$Edgecacheorigins;
     edgeCacheServices: Resource$Projects$Locations$Edgecacheservices;
@@ -1840,8 +2190,12 @@ export namespace networkservices_v1 {
     serviceLbPolicies: Resource$Projects$Locations$Servicelbpolicies;
     tcpRoutes: Resource$Projects$Locations$Tcproutes;
     tlsRoutes: Resource$Projects$Locations$Tlsroutes;
+    wasmPlugins: Resource$Projects$Locations$Wasmplugins;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.authzExtensions = new Resource$Projects$Locations$Authzextensions(
+        this.context
+      );
       this.edgeCacheKeysets = new Resource$Projects$Locations$Edgecachekeysets(
         this.context
       );
@@ -1875,6 +2229,9 @@ export namespace networkservices_v1 {
         new Resource$Projects$Locations$Servicelbpolicies(this.context);
       this.tcpRoutes = new Resource$Projects$Locations$Tcproutes(this.context);
       this.tlsRoutes = new Resource$Projects$Locations$Tlsroutes(this.context);
+      this.wasmPlugins = new Resource$Projects$Locations$Wasmplugins(
+        this.context
+      );
     }
 
     /**
@@ -2083,6 +2440,540 @@ export namespace networkservices_v1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Authzextensions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `AuthzExtension` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Authzextensions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Authzextensions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Authzextensions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authzextensions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Authzextensions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzextensions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzextensions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authzextensions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authzExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `AuthzExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Authzextensions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Authzextensions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Authzextensions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authzextensions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Authzextensions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzextensions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzextensions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Authzextensions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `AuthzExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Authzextensions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Authzextensions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AuthzExtension>;
+    get(
+      params: Params$Resource$Projects$Locations$Authzextensions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authzextensions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AuthzExtension>,
+      callback: BodyResponseCallback<Schema$AuthzExtension>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Authzextensions$Get,
+      callback: BodyResponseCallback<Schema$AuthzExtension>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AuthzExtension>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzextensions$Get
+        | BodyResponseCallback<Schema$AuthzExtension>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AuthzExtension>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AuthzExtension>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AuthzExtension> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzextensions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzextensions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AuthzExtension>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AuthzExtension>(parameters);
+      }
+    }
+
+    /**
+     * Lists `AuthzExtension` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Authzextensions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Authzextensions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAuthzExtensionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Authzextensions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authzextensions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAuthzExtensionsResponse>,
+      callback: BodyResponseCallback<Schema$ListAuthzExtensionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Authzextensions$List,
+      callback: BodyResponseCallback<Schema$ListAuthzExtensionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAuthzExtensionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzextensions$List
+        | BodyResponseCallback<Schema$ListAuthzExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAuthzExtensionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAuthzExtensionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAuthzExtensionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzextensions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzextensions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/authzExtensions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAuthzExtensionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAuthzExtensionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `AuthzExtension` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Authzextensions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Authzextensions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Authzextensions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authzextensions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Authzextensions$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Authzextensions$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Authzextensions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Authzextensions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Authzextensions$Create
+    extends StandardParameters {
+    /**
+     * Required. User-provided ID of the `AuthzExtension` resource to be created.
+     */
+    authzExtensionId?: string;
+    /**
+     * Required. The parent resource of the `AuthzExtension` resource. Must be in the format `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuthzExtension;
+  }
+  export interface Params$Resource$Projects$Locations$Authzextensions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the `AuthzExtension` resource to delete. Must be in the format `projects/{project\}/locations/{location\}/authzExtensions/{authz_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authzextensions$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `AuthzExtension` resource to get. Must be in the format `projects/{project\}/locations/{location\}/authzExtensions/{authz_extension\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authzextensions$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results that the server returns.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `AuthzExtension` resources are listed, specified in the following format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Authzextensions$Patch
+    extends StandardParameters {
+    /**
+     * Required. Identifier. Name of the `AuthzExtension` resource in the following format: `projects/{project\}/locations/{location\}/authzExtensions/{authz_extension\}`.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Used to specify the fields to be overwritten in the `AuthzExtension` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AuthzExtension;
   }
 
   export class Resource$Projects$Locations$Edgecachekeysets {
@@ -3564,8 +4455,12 @@ export namespace networkservices_v1 {
 
   export class Resource$Projects$Locations$Gateways {
     context: APIRequestContext;
+    routeViews: Resource$Projects$Locations$Gateways$Routeviews;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.routeViews = new Resource$Projects$Locations$Gateways$Routeviews(
+        this.context
+      );
     }
 
     /**
@@ -4072,6 +4967,222 @@ export namespace networkservices_v1 {
     requestBody?: Schema$Gateway;
   }
 
+  export class Resource$Projects$Locations$Gateways$Routeviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a single RouteView of a Gateway.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Gateways$Routeviews$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GatewayRouteView>;
+    get(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$GatewayRouteView>,
+      callback: BodyResponseCallback<Schema$GatewayRouteView>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$Get,
+      callback: BodyResponseCallback<Schema$GatewayRouteView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GatewayRouteView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gateways$Routeviews$Get
+        | BodyResponseCallback<Schema$GatewayRouteView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GatewayRouteView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GatewayRouteView>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$GatewayRouteView> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gateways$Routeviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Gateways$Routeviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GatewayRouteView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GatewayRouteView>(parameters);
+      }
+    }
+
+    /**
+     * Lists RouteViews
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Gateways$Routeviews$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGatewayRouteViewsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGatewayRouteViewsResponse>,
+      callback: BodyResponseCallback<Schema$ListGatewayRouteViewsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Gateways$Routeviews$List,
+      callback: BodyResponseCallback<Schema$ListGatewayRouteViewsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGatewayRouteViewsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Gateways$Routeviews$List
+        | BodyResponseCallback<Schema$ListGatewayRouteViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGatewayRouteViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGatewayRouteViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGatewayRouteViewsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Gateways$Routeviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Gateways$Routeviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/routeViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGatewayRouteViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGatewayRouteViewsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Gateways$Routeviews$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the GatewayRouteView resource. Formats: projects/{project_number\}/locations/{location\}/gateways/{gateway_name\}/routeViews/{route_view_name\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Gateways$Routeviews$List
+    extends StandardParameters {
+    /**
+     * Maximum number of GatewayRouteViews to return per call.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListGatewayRouteViewsResponse` Indicates that this is a continuation of a prior `ListGatewayRouteViews` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The Gateway to which a Route is associated. Formats: projects/{project_number\}/locations/{location\}/gateways/{gateway_name\}
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Grpcroutes {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4538,6 +5649,10 @@ export namespace networkservices_v1 {
   }
   export interface Params$Resource$Projects$Locations$Grpcroutes$Delete
     extends StandardParameters {
+    /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
     /**
      * Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
      */
@@ -5048,6 +6163,10 @@ export namespace networkservices_v1 {
   }
   export interface Params$Resource$Projects$Locations$Httproutes$Delete
     extends StandardParameters {
+    /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
     /**
      * Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/global/httpRoutes/x`.
      */
@@ -6174,8 +7293,12 @@ export namespace networkservices_v1 {
 
   export class Resource$Projects$Locations$Meshes {
     context: APIRequestContext;
+    routeViews: Resource$Projects$Locations$Meshes$Routeviews;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.routeViews = new Resource$Projects$Locations$Meshes$Routeviews(
+        this.context
+      );
     }
 
     /**
@@ -6680,6 +7803,219 @@ export namespace networkservices_v1 {
     requestBody?: Schema$Mesh;
   }
 
+  export class Resource$Projects$Locations$Meshes$Routeviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a single RouteView of a Mesh.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Meshes$Routeviews$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MeshRouteView>;
+    get(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MeshRouteView>,
+      callback: BodyResponseCallback<Schema$MeshRouteView>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$Get,
+      callback: BodyResponseCallback<Schema$MeshRouteView>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MeshRouteView>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Meshes$Routeviews$Get
+        | BodyResponseCallback<Schema$MeshRouteView>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MeshRouteView>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MeshRouteView>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MeshRouteView> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Meshes$Routeviews$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Meshes$Routeviews$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MeshRouteView>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MeshRouteView>(parameters);
+      }
+    }
+
+    /**
+     * Lists RouteViews
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Meshes$Routeviews$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMeshRouteViewsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMeshRouteViewsResponse>,
+      callback: BodyResponseCallback<Schema$ListMeshRouteViewsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Meshes$Routeviews$List,
+      callback: BodyResponseCallback<Schema$ListMeshRouteViewsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMeshRouteViewsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Meshes$Routeviews$List
+        | BodyResponseCallback<Schema$ListMeshRouteViewsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMeshRouteViewsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMeshRouteViewsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMeshRouteViewsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Meshes$Routeviews$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Meshes$Routeviews$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/routeViews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMeshRouteViewsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMeshRouteViewsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Meshes$Routeviews$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the MeshRouteView resource. Format: projects/{project_number\}/locations/{location\}/meshes/{mesh_name\}/routeViews/{route_view_name\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Meshes$Routeviews$List
+    extends StandardParameters {
+    /**
+     * Maximum number of MeshRouteViews to return per call.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListMeshRouteViewsResponse` Indicates that this is a continuation of a prior `ListMeshRouteViews` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The Mesh to which a Route is associated. Format: projects/{project_number\}/locations/{location\}/meshes/{mesh_name\}
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -6687,7 +8023,7 @@ export namespace networkservices_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8001,7 +9337,7 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Servicelbpolicies$Patch
     extends StandardParameters {
     /**
-     * Required. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
+     * Identifier. Name of the ServiceLbPolicy resource. It matches pattern `projects/{project\}/locations/{location\}/serviceLbPolicies/{service_lb_policy_name\}`.
      */
     name?: string;
     /**
@@ -8481,6 +9817,10 @@ export namespace networkservices_v1 {
   }
   export interface Params$Resource$Projects$Locations$Tcproutes$Delete
     extends StandardParameters {
+    /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
     /**
      * Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
      */
@@ -8992,6 +10332,10 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tlsroutes$Delete
     extends StandardParameters {
     /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
+    /**
      * Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
      */
     name?: string;
@@ -9033,5 +10377,942 @@ export namespace networkservices_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TlsRoute;
+  }
+
+  export class Resource$Projects$Locations$Wasmplugins {
+    context: APIRequestContext;
+    versions: Resource$Projects$Locations$Wasmplugins$Versions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.versions = new Resource$Projects$Locations$Wasmplugins$Versions(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a new `WasmPlugin` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/wasmPlugins').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `WasmPlugin` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `WasmPlugin` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WasmPlugin>;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WasmPlugin>,
+      callback: BodyResponseCallback<Schema$WasmPlugin>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Get,
+      callback: BodyResponseCallback<Schema$WasmPlugin>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WasmPlugin>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Get
+        | BodyResponseCallback<Schema$WasmPlugin>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WasmPlugin>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WasmPlugin>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WasmPlugin> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WasmPlugin>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WasmPlugin>(parameters);
+      }
+    }
+
+    /**
+     * Lists `WasmPlugin` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWasmPluginsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>,
+      callback: BodyResponseCallback<Schema$ListWasmPluginsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$List,
+      callback: BodyResponseCallback<Schema$ListWasmPluginsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWasmPluginsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$List
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWasmPluginsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWasmPluginsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/wasmPlugins').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWasmPluginsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWasmPluginsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of the specified `WasmPlugin` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Wasmplugins$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the `WasmPlugin` resource. Must be in the format `projects/{project\}/locations/global`.
+     */
+    parent?: string;
+    /**
+     * Required. User-provided ID of the `WasmPlugin` resource to be created.
+     */
+    wasmPluginId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WasmPlugin;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Delete
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPlugin` resource to delete. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPlugin` resource to get. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string;
+    /**
+     * Determines how much data must be returned in the response. See [AIP-157](https://google.aip.dev/157).
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$List
+    extends StandardParameters {
+    /**
+     * Maximum number of `WasmPlugin` resources to return per call. If not specified, at most 50 `WasmPlugin` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListWasmPluginsResponse` call. Indicates that this is a continuation of a prior `ListWasmPlugins` call, and that the next page of data is to be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location from which the `WasmPlugin` resources are listed, specified in the following format: `projects/{project\}/locations/global`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the `WasmPlugin` resource in the following format: `projects/{project\}/locations/{location\}/wasmPlugins/{wasm_plugin\}`.
+     */
+    name?: string;
+    /**
+     * Optional. Used to specify the fields to be overwritten in the `WasmPlugin` resource by the update. The fields specified in the `update_mask` field are relative to the resource, not the full request. An omitted `update_mask` field is treated as an implied `update_mask` field equivalent to all fields that are populated (that have a non-empty value). The `update_mask` field supports a special value `*`, which means that each field in the given `WasmPlugin` resource (including the empty ones) replaces the current value.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WasmPlugin;
+  }
+
+  export class Resource$Projects$Locations$Wasmplugins$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `WasmPluginVersion` resource in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified `WasmPluginVersion` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of the specified `WasmPluginVersion` resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WasmPluginVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WasmPluginVersion>,
+      callback: BodyResponseCallback<Schema$WasmPluginVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$Get,
+      callback: BodyResponseCallback<Schema$WasmPluginVersion>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WasmPluginVersion>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$Get
+        | BodyResponseCallback<Schema$WasmPluginVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WasmPluginVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WasmPluginVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$WasmPluginVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WasmPluginVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WasmPluginVersion>(parameters);
+      }
+    }
+
+    /**
+     * Lists `WasmPluginVersion` resources in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWasmPluginVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>,
+      callback: BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Wasmplugins$Versions$List,
+      callback: BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Wasmplugins$Versions$List
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWasmPluginVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWasmPluginVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Wasmplugins$Versions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Wasmplugins$Versions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkservices.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/versions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWasmPluginVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWasmPluginVersionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the `WasmPluginVersion` resource. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    parent?: string;
+    /**
+     * Required. User-provided ID of the `WasmPluginVersion` resource to be created.
+     */
+    wasmPluginVersionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WasmPluginVersion;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Delete
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPluginVersion` resource to delete. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}/versions/{wasm_plugin_version\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$Get
+    extends StandardParameters {
+    /**
+     * Required. A name of the `WasmPluginVersion` resource to get. Must be in the format `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}/versions/{wasm_plugin_version\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Wasmplugins$Versions$List
+    extends StandardParameters {
+    /**
+     * Maximum number of `WasmPluginVersion` resources to return per call. If not specified, at most 50 `WasmPluginVersion` resources are returned. The maximum value is 1000; values above 1000 are coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListWasmPluginVersionsResponse` call. Indicates that this is a continuation of a prior `ListWasmPluginVersions` call, and that the next page of data is to be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The `WasmPlugin` resource whose `WasmPluginVersion`s are listed, specified in the following format: `projects/{project\}/locations/global/wasmPlugins/{wasm_plugin\}`.
+     */
+    parent?: string;
   }
 }
