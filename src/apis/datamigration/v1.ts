@@ -476,6 +476,10 @@ export namespace datamigration_v1 {
      */
     comment?: string | null;
     /**
+     * Is the column a computed column.
+     */
+    computed?: boolean | null;
+    /**
      * Custom engine specific features.
      */
     customFeatures?: {[key: string]: any} | null;
@@ -602,6 +606,18 @@ export namespace datamigration_v1 {
      * The database provider.
      */
     provider?: string | null;
+    /**
+     * Optional. The connection profile role.
+     */
+    role?: string | null;
+    /**
+     * Output only. Zone Isolation compliance state of the resource.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Zone Separation compliance state of the resource.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Connection profile for a SQL Server data source.
      */
@@ -1193,7 +1209,7 @@ export namespace datamigration_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1359,6 +1375,19 @@ export namespace datamigration_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response containing the objects for a migration job.
+   */
+  export interface Schema$ListMigrationJobObjectsResponse {
+    /**
+     * List of migration job objects.
+     */
+    migrationJobObjects?: Schema$MigrationJobObject[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for 'ListMigrationJobs' request.
    */
   export interface Schema$ListMigrationJobsResponse {
@@ -1447,6 +1476,15 @@ export namespace datamigration_v1 {
    * Configuration to use LogMiner CDC method.
    */
   export interface Schema$LogMiner {}
+  /**
+   * Request for looking up a specific migration job object by its source object identifier.
+   */
+  export interface Schema$LookupMigrationJobObjectRequest {
+    /**
+     * Required. The source object identifier which maps to the migration job object.
+     */
+    sourceObjectIdentifier?: Schema$SourceObjectIdentifier;
+  }
   /**
    * MachineConfig describes the configuration of a machine.
    */
@@ -1571,6 +1609,10 @@ export namespace datamigration_v1 {
      */
     customFeatures?: {[key: string]: any} | null;
     /**
+     * View indices.
+     */
+    indices?: Schema$IndexEntity[];
+    /**
      * The SQL code which creates the view.
      */
     sqlCode?: string | null;
@@ -1640,6 +1682,10 @@ export namespace datamigration_v1 {
      */
     name?: string | null;
     /**
+     * Optional. The objects that need to be migrated.
+     */
+    objectsConfig?: Schema$MigrationJobObjectsConfig;
+    /**
      * Configuration for heterogeneous **Oracle to Cloud SQL for PostgreSQL** and **Oracle to AlloyDB for PostgreSQL** migrations.
      */
     oracleToPostgresConfig?: Schema$OracleToPostgresConfig;
@@ -1655,6 +1701,14 @@ export namespace datamigration_v1 {
      * The details needed to communicate to the source over Reverse SSH tunnel connectivity.
      */
     reverseSshConnectivity?: Schema$ReverseSshConnectivity;
+    /**
+     * Output only. Zone Isolation compliance state of the resource.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Zone Separation compliance state of the resource.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Required. The resource name (URI) of the source connection profile.
      */
@@ -1687,6 +1741,48 @@ export namespace datamigration_v1 {
      * The details of the VPC network that the source database is located in.
      */
     vpcPeeringConnectivity?: Schema$VpcPeeringConnectivity;
+  }
+  /**
+   * A specific Migration Job Object (e.g. a specifc DB Table)
+   */
+  export interface Schema$MigrationJobObject {
+    /**
+     * Output only. The creation time of the migration job object.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The error details in case of failure.
+     */
+    error?: Schema$Status;
+    /**
+     * The object's name.
+     */
+    name?: string | null;
+    /**
+     * Output only. The phase of the migration job object.
+     */
+    phase?: string | null;
+    /**
+     * The object identifier in the data source.
+     */
+    sourceObject?: Schema$SourceObjectIdentifier;
+    /**
+     * The state of the migration job object.
+     */
+    state?: string | null;
+    /**
+     * Output only. The last update time of the migration job object.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Configuration for the objects to be migrated.
+   */
+  export interface Schema$MigrationJobObjectsConfig {
+    /**
+     * The list of the migration job objects.
+     */
+    sourceObjectsConfig?: Schema$SourceObjectsConfig;
   }
   /**
    * Error message of a verification Migration job.
@@ -2039,6 +2135,10 @@ export namespace datamigration_v1 {
      */
     cloudSqlId?: string | null;
     /**
+     * Optional. The name of the specific database within the host.
+     */
+    database?: string | null;
+    /**
      * Required. The IP or hostname of the source PostgreSQL database.
      */
     host?: string | null;
@@ -2133,6 +2233,14 @@ export namespace datamigration_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Zone Isolation compliance state of the resource.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Zone Separation compliance state of the resource.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The state of the private connection.
      */
     state?: string | null;
@@ -2166,11 +2274,24 @@ export namespace datamigration_v1 {
   /**
    * Request message for 'PromoteMigrationJob' request.
    */
-  export interface Schema$PromoteMigrationJobRequest {}
+  export interface Schema$PromoteMigrationJobRequest {
+    /**
+     * Optional. The object filter to apply to the migration job.
+     */
+    objectsFilter?: Schema$MigrationJobObjectsConfig;
+  }
   /**
    * Request message for 'RestartMigrationJob' request.
    */
   export interface Schema$RestartMigrationJobRequest {
+    /**
+     * Optional. The object filter to apply to the migration job.
+     */
+    objectsFilter?: Schema$MigrationJobObjectsConfig;
+    /**
+     * Optional. If true, only failed objects will be restarted.
+     */
+    restartFailedObjects?: boolean | null;
     /**
      * Optional. Restart the migration job without running prior configuration verification. Defaults to `false`.
      */
@@ -2448,6 +2569,41 @@ export namespace datamigration_v1 {
     sourceMinScaleFilter?: number | null;
   }
   /**
+   * Config for a single migration job object.
+   */
+  export interface Schema$SourceObjectConfig {
+    /**
+     * Optional. The object identifier.
+     */
+    objectIdentifier?: Schema$SourceObjectIdentifier;
+  }
+  /**
+   * An identifier for the Migration Job Object.
+   */
+  export interface Schema$SourceObjectIdentifier {
+    /**
+     * Optional. The database name. This will be required only if the object uses a database name as part of its unique identifier.
+     */
+    database?: string | null;
+    /**
+     * Required. The type of the migration job object.
+     */
+    type?: string | null;
+  }
+  /**
+   * List of configurations for the source objects to be migrated.
+   */
+  export interface Schema$SourceObjectsConfig {
+    /**
+     * Optional. The list of the objects to be migrated.
+     */
+    objectConfigs?: Schema$SourceObjectConfig[];
+    /**
+     * Optional. The objects selection type of the migration job.
+     */
+    objectsSelectionType?: string | null;
+  }
+  /**
    * Options to configure rule type SourceSqlChange. The rule is used to alter the sql code for database entities. The rule filter field can refer to one entity. The rule scope can be: StoredProcedure, Function, Trigger, View
    */
   export interface Schema$SourceSqlChange {
@@ -2599,15 +2755,15 @@ export namespace datamigration_v1 {
    */
   export interface Schema$SqlServerEncryptionOptions {
     /**
-     * Required. Path to certificate.
+     * Required. Path to the Certificate (.cer) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file.
      */
     certPath?: string | null;
     /**
-     * Required. Input only. Private key password.
+     * Required. Input only. Password that encrypts the private key.
      */
     pvkPassword?: string | null;
     /**
-     * Required. Path to certificate private key.
+     * Required. Path to the Certificate Private Key (.pvk) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file.
      */
     pvkPath?: string | null;
   }
@@ -2658,7 +2814,7 @@ export namespace datamigration_v1 {
      */
     clientKey?: string | null;
     /**
-     * Output only. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.
+     * Optional. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.
      */
     type?: string | null;
   }
@@ -6729,6 +6885,96 @@ export namespace datamigration_v1 {
     }
 
     /**
+     * Retrieves objects from the source database that can be selected for data migration. This is applicable for the following migrations: 1. PostgreSQL to Cloud SQL for PostgreSQL 2. PostgreSQL to AlloyDB for PostgreSQL.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchSourceObjects(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchSourceObjects(
+      params?: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    fetchSourceObjects(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchSourceObjects(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    fetchSourceObjects(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    fetchSourceObjects(callback: BodyResponseCallback<Schema$Operation>): void;
+    fetchSourceObjects(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:fetchSourceObjects').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Generate a SSH configuration script to configure the reverse SSH connectivity.
      *
      * @param params - Parameters for request
@@ -8024,6 +8270,13 @@ export namespace datamigration_v1 {
      */
     requestBody?: Schema$DemoteDestinationRequest;
   }
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Fetchsourceobjects
+    extends StandardParameters {
+    /**
+     * Required. The resource name for the migration job for which source objects should be returned.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript
     extends StandardParameters {
     /**
@@ -8213,6 +8466,96 @@ export namespace datamigration_v1 {
     }
 
     /**
+     * Use this method to get details about a migration job object.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MigrationJobObject>;
+    get(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MigrationJobObject>,
+      callback: BodyResponseCallback<Schema$MigrationJobObject>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Get,
+      callback: BodyResponseCallback<Schema$MigrationJobObject>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MigrationJobObject>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Migrationjobs$Objects$Get
+        | BodyResponseCallback<Schema$MigrationJobObject>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MigrationJobObject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MigrationJobObject>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MigrationJobObject>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Migrationjobs$Objects$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Objects$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MigrationJobObject>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MigrationJobObject>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      *
      * @param params - Parameters for request
@@ -8299,6 +8642,198 @@ export namespace datamigration_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Use this method to list the objects of a specific migration job.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMigrationJobObjectsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMigrationJobObjectsResponse>,
+      callback: BodyResponseCallback<Schema$ListMigrationJobObjectsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$List,
+      callback: BodyResponseCallback<Schema$ListMigrationJobObjectsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListMigrationJobObjectsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Migrationjobs$Objects$List
+        | BodyResponseCallback<Schema$ListMigrationJobObjectsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMigrationJobObjectsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMigrationJobObjectsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMigrationJobObjectsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Migrationjobs$Objects$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Objects$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/objects').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMigrationJobObjectsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMigrationJobObjectsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Use this method to look up a migration job object by its source object identifier.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookup(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
+      params?: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MigrationJobObject>;
+    lookup(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
+      options: MethodOptions | BodyResponseCallback<Schema$MigrationJobObject>,
+      callback: BodyResponseCallback<Schema$MigrationJobObject>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup,
+      callback: BodyResponseCallback<Schema$MigrationJobObject>
+    ): void;
+    lookup(callback: BodyResponseCallback<Schema$MigrationJobObject>): void;
+    lookup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup
+        | BodyResponseCallback<Schema$MigrationJobObject>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MigrationJobObject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MigrationJobObject>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$MigrationJobObject>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datamigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/objects:lookup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MigrationJobObject>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MigrationJobObject>(parameters);
       }
     }
 
@@ -8490,6 +9025,13 @@ export namespace datamigration_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Objects$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the migration job object resource to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Objects$Getiampolicy
     extends StandardParameters {
     /**
@@ -8500,6 +9042,33 @@ export namespace datamigration_v1 {
      * REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Objects$List
+    extends StandardParameters {
+    /**
+     * Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent migration job that owns the collection of objects.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Migrationjobs$Objects$Lookup
+    extends StandardParameters {
+    /**
+     * Required. The parent migration job that owns the collection of objects.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LookupMigrationJobObjectRequest;
   }
   export interface Params$Resource$Projects$Locations$Migrationjobs$Objects$Setiampolicy
     extends StandardParameters {
@@ -8533,7 +9102,7 @@ export namespace datamigration_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
