@@ -6,6 +6,13 @@
   "description": "The Security Token Service exchanges Google or third-party credentials for a short-lived access token to Google Cloud resources.",
   "discoveryVersion": "v1",
   "documentationLink": "http://cloud.google.com/iam/docs/workload-identity-federation",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sts.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -116,7 +123,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20241106",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
@@ -226,7 +233,7 @@
           "type": "string"
         },
         "expires_in": {
-          "description": "The amount of time, in seconds, between the time when the access token was issued and the time when the access token will expire. This field is absent when the `subject_token` in the request is a Google-issued, short-lived access token. In this case, the access token has the same expiration time as the `subject_token`.",
+          "description": "The amount of time, in seconds, between the time when the access token was issued and the time when the access token will expire. This field is absent when the `subject_token` in the request is a a short-lived access token for a Cloud Identity or Google Workspace user account. In this case, the access token has the same expiration time as the `subject_token`.",
           "format": "int32",
           "type": "integer"
         },

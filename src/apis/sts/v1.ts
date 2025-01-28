@@ -252,7 +252,7 @@ export namespace sts_v1 {
      */
     access_token?: string | null;
     /**
-     * The amount of time, in seconds, between the time when the access token was issued and the time when the access token will expire. This field is absent when the `subject_token` in the request is a Google-issued, short-lived access token. In this case, the access token has the same expiration time as the `subject_token`.
+     * The amount of time, in seconds, between the time when the access token was issued and the time when the access token will expire. This field is absent when the `subject_token` in the request is a a short-lived access token for a Cloud Identity or Google Workspace user account. In this case, the access token has the same expiration time as the `subject_token`.
      */
     expires_in?: number | null;
     /**
