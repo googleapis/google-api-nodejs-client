@@ -517,6 +517,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "export": {
+                  "description": "Exports data from the cluster. Imperative only.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:export",
+                  "httpMethod": "POST",
+                  "id": "alloydb.projects.locations.clusters.export",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the cluster.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:export",
+                  "request": {
+                    "$ref": "ExportClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Cluster.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}",
@@ -700,6 +728,34 @@
                   "path": "v1alpha/{+parent}/clusters:restore",
                   "request": {
                     "$ref": "RestoreClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "restoreFromCloudSQL": {
+                  "description": "Restores an AlloyDB cluster from a CloudSQL resource.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/clusters:restoreFromCloudSQL",
+                  "httpMethod": "POST",
+                  "id": "alloydb.projects.locations.clusters.restoreFromCloudSQL",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location of the new cluster. For the required format, see the comment on Cluster.name field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/clusters:restoreFromCloudSQL",
+                  "request": {
+                    "$ref": "RestoreFromCloudSQLRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -1352,7 +1408,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "alloydb.projects.locations.operations.cancel",
@@ -1517,7 +1573,7 @@
       }
     }
   },
-  "revision": "20240923",
+  "revision": "20241228",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -1715,6 +1771,13 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` \"123/environment\": \"production\", \"123/costCenter\": \"marketing\" ```",
+          "type": "object"
         },
         "type": {
           "description": "The backup type, which suggests the trigger for the backup.",
@@ -2055,6 +2118,13 @@
           ],
           "type": "string"
         },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: ``` \"123/environment\": \"production\", \"123/costCenter\": \"marketing\" ```",
+          "type": "object"
+        },
         "trialMetadata": {
           "$ref": "TrialMetadata",
           "description": "Output only. Metadata for free trial clusters",
@@ -2290,6 +2360,29 @@
       },
       "type": "object"
     },
+    "CsvExportOptions": {
+      "description": "Options for exporting data in CSV format.",
+      "id": "CsvExportOptions",
+      "properties": {
+        "escapeCharacter": {
+          "description": "Optional. Specifies the character that should appear before a data character that needs to be escaped. The default is the same as quote character. The value of this argument has to be a character in Hex ASCII Code.",
+          "type": "string"
+        },
+        "fieldDelimiter": {
+          "description": "Optional. Specifies the character that separates columns within each row (line) of the file. The default is comma. The value of this argument has to be a character in Hex ASCII Code.",
+          "type": "string"
+        },
+        "quoteCharacter": {
+          "description": "Optional. Specifies the quoting character to be used when a data value is quoted. The default is double-quote. The value of this argument has to be a character in Hex ASCII Code.",
+          "type": "string"
+        },
+        "selectQuery": {
+          "description": "Required. The SELECT query used to extract the data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -2337,6 +2430,29 @@
       },
       "type": "object"
     },
+    "ExportClusterRequest": {
+      "description": "Export cluster request.",
+      "id": "ExportClusterRequest",
+      "properties": {
+        "csvExportOptions": {
+          "$ref": "CsvExportOptions",
+          "description": "Options for exporting data in CSV format. Required field to be set for CSV file type."
+        },
+        "database": {
+          "description": "Required. Name of the database where the export command will be executed. Note - Value provided should be the same as expected from `SELECT current_database();` and NOT as a resource reference.",
+          "type": "string"
+        },
+        "gcsDestination": {
+          "$ref": "GcsDestination",
+          "description": "Required. Option to export data to cloud storage."
+        },
+        "sqlExportOptions": {
+          "$ref": "SqlExportOptions",
+          "description": "Options for exporting data in SQL format. Required field to be set for SQL file type."
+        }
+      },
+      "type": "object"
+    },
     "FailoverInstanceRequest": {
       "description": "Message for triggering failover on an Instance",
       "id": "FailoverInstanceRequest",
@@ -2348,6 +2464,17 @@
         "validateOnly": {
           "description": "Optional. If set, performs request validation, for example, permission checks and any other type of validation, but does not actually execute the create request.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GcsDestination": {
+      "description": "Destination for Export. Export will be done to cloud storage.",
+      "id": "GcsDestination",
+      "properties": {
+        "uri": {
+          "description": "Required. The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form `gs://bucketName/fileName`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2433,22 +2560,22 @@
       "id": "GoogleTypeTimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -2521,7 +2648,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Database flags. Set at instance level. * They are copied from primary instance on read instance creation. * Read instances can set new or override existing flags that are relevant for reads, e.g. for enabling columnar cache on a read instance. Flags set on read instance may or may not be present on primary. This is a list of \"key\": \"value\" pairs. \"key\": The name of the flag. These flags are passed at instance setup time, so include both server options and system variables for Postgres. Flags are specified with underscores, not hyphens. \"value\": The value of the flag. Booleans are set to **on** for true and **off** for false. This field must be omitted if the flag doesn't take a value.",
+          "description": "Database flags. Set at the instance level. They are copied from the primary instance on secondary instance creation. Flags that have restrictions default to the value at primary instance on read instances during creation. Read instances can set new flags or override existing flags that are relevant for reads, for example, for enabling columnar cache on a read instance. Flags set on read instance might or might not be present on the primary instance. This is a list of \"key\": \"value\" pairs. \"key\": The name of the flag. These flags are passed at instance setup time, so include both server options and system variables for Postgres. Flags are specified with underscores, not hyphens. \"value\": The value of the flag. Booleans are set to **on** for true and **off** for false. This field must be omitted if the flag doesn't take a value.",
           "type": "object"
         },
         "deleteTime": {
@@ -3039,19 +3166,23 @@
       "id": "Node",
       "properties": {
         "id": {
-          "description": "The identifier of the VM e.g. \"test-read-0601-407e52be-ms3l\".",
+          "description": "Output only. The identifier of the VM e.g. \"test-read-0601-407e52be-ms3l\".",
+          "readOnly": true,
           "type": "string"
         },
         "ip": {
-          "description": "The private IP address of the VM e.g. \"10.57.0.34\".",
+          "description": "Output only. The private IP address of the VM e.g. \"10.57.0.34\".",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Determined by state of the compute VM and postgres-service health. Compute VM state can have values listed in https://cloud.google.com/compute/docs/instances/instance-life-cycle and postgres-service health can have values: HEALTHY and UNHEALTHY.",
+          "description": "Output only. Determined by state of the compute VM and postgres-service health. Compute VM state can have values listed in https://cloud.google.com/compute/docs/instances/instance-life-cycle and postgres-service health can have values: HEALTHY and UNHEALTHY.",
+          "readOnly": true,
           "type": "string"
         },
         "zoneId": {
-          "description": "The Compute Engine zone of the VM e.g. \"us-central1-b\".",
+          "description": "Output only. The Compute Engine zone of the VM e.g. \"us-central1-b\".",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3160,7 +3291,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3223,6 +3354,12 @@
         "pscEnabled": {
           "description": "Optional. Create an instance that allows connections from Private Service Connect endpoints to the instance.",
           "type": "boolean"
+        },
+        "serviceOwnedProjectNumber": {
+          "description": "Output only. The project number that needs to be allowlisted on the network attachment to enable outbound connectivity.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3243,9 +3380,27 @@
           "readOnly": true,
           "type": "string"
         },
+        "pscInterfaceConfigs": {
+          "description": "Optional. Configurations for setting up PSC interfaces attached to the instance which are used for outbound connectivity. Only primary instances can have PSC interface attached. Currently we only support 0 or 1 PSC interface.",
+          "items": {
+            "$ref": "PscInterfaceConfig"
+          },
+          "type": "array"
+        },
         "serviceAttachmentLink": {
           "description": "Output only. The service attachment created when Private Service Connect (PSC) is enabled for the instance. The name of the resource will be in the format of `projects//regions//serviceAttachments/`",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscInterfaceConfig": {
+      "description": "Configuration for setting up a PSC interface to enable outbound connectivity.",
+      "id": "PscInterfaceConfig",
+      "properties": {
+        "networkAttachmentResource": {
+          "description": "The network attachment resource created in the consumer network to which the PSC interface will be linked. This is of the format: \"projects/${CONSUMER_PROJECT}/regions/${REGION}/networkAttachments/${NETWORK_ATTACHMENT_NAME}\". The network attachment must be in the same region as the instance.",
           "type": "string"
         }
       },
@@ -3371,6 +3526,25 @@
       },
       "type": "object"
     },
+    "RestoreFromCloudSQLRequest": {
+      "description": "Message for registering Restoring from CloudSQL resource.",
+      "id": "RestoreFromCloudSQLRequest",
+      "properties": {
+        "cloudsqlBackupRunSource": {
+          "$ref": "CloudSQLBackupRunSource",
+          "description": "Cluster created from CloudSQL backup run."
+        },
+        "cluster": {
+          "$ref": "Cluster",
+          "description": "Required. The resource being created"
+        },
+        "clusterId": {
+          "description": "Required. ID of the requesting object.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SecondaryConfig": {
       "description": "Configuration information for the secondary cluster. This should be set if and only if the cluster is of type SECONDARY.",
       "id": "SecondaryConfig",
@@ -3378,6 +3552,32 @@
         "primaryClusterName": {
           "description": "The name of the primary cluster name with the format: * projects/{project}/locations/{region}/clusters/{cluster_id}",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlExportOptions": {
+      "description": "Options for exporting data in SQL format.",
+      "id": "SqlExportOptions",
+      "properties": {
+        "cleanTargetObjects": {
+          "description": "Optional. If true, output commands to DROP all the dumped database objects prior to outputting the commands for creating them.",
+          "type": "boolean"
+        },
+        "ifExistTargetObjects": {
+          "description": "Optional. If true, use DROP ... IF EXISTS commands to check for the object's existence before dropping it in clean_target_objects mode.",
+          "type": "boolean"
+        },
+        "schemaOnly": {
+          "description": "Optional. If true, only export the schema.",
+          "type": "boolean"
+        },
+        "tables": {
+          "description": "Optional. Tables to export from.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3873,7 +4073,9 @@
             "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
             "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
             "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
-            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY"
           ],
           "enumDeprecated": [
             false,
@@ -3881,6 +4083,8 @@
             false,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -4035,7 +4239,9 @@
             "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
             "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
             "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
-            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set."
           ],
           "type": "string"
         },
@@ -4099,7 +4305,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 22",
+      "description": "Common model for database resource instance metadata. Next ID: 23",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -4142,6 +4348,20 @@
         "customMetadata": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
           "description": "Any custom metadata associated with the resource"
+        },
+        "edition": {
+          "description": "Optional. Edition represents whether the instance is ENTERPRISE or ENTERPRISE_PLUS. This information is core to Cloud SQL only and is used to identify the edition of the instance.",
+          "enum": [
+            "EDITION_UNSPECIFIED",
+            "EDITION_ENTERPRISE",
+            "EDITION_ENTERPRISE_PLUS"
+          ],
+          "enumDescriptions": [
+            "Default, to make it consistent with instance edition enum.",
+            "Represents the enterprise edition.",
+            "Represents the enterprise plus edition."
+          ],
+          "type": "string"
         },
         "entitlements": {
           "description": "Entitlements associated with the resource",
@@ -4392,7 +4612,9 @@
             "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
             "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
             "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
-            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY"
           ],
           "enumDeprecated": [
             false,
@@ -4400,6 +4622,8 @@
             false,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -4554,7 +4778,9 @@
             "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
             "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
             "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
-            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set."
           ],
           "type": "string"
         }
@@ -4624,7 +4850,8 @@
       "id": "StorageDatabasecenterPartnerapiV1mainMachineConfiguration",
       "properties": {
         "cpuCount": {
-          "description": "The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "deprecated": true,
+          "description": "The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
           "format": "int32",
           "type": "integer"
         },
@@ -4637,6 +4864,11 @@
           "description": "Optional. Number of shards (if applicable).",
           "format": "int32",
           "type": "integer"
+        },
+        "vcpuCount": {
+          "description": "Optional. The number of vCPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -4747,6 +4979,7 @@
           "type": "integer"
         },
         "retentionUnit": {
+          "deprecated": true,
           "description": "The unit that 'retained_backups' represents.",
           "enum": [
             "RETENTION_UNIT_UNSPECIFIED",
@@ -4766,6 +4999,11 @@
         },
         "timeBasedRetention": {
           "format": "google-duration",
+          "type": "string"
+        },
+        "timestampBasedRetentionTime": {
+          "description": "Timestamp based retention period i.e. 2024-05-01T00:00:00Z",
+          "format": "google-datetime",
           "type": "string"
         }
       },
