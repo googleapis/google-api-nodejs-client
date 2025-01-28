@@ -134,7 +134,7 @@ export namespace pubsub_v1 {
     ackIds?: string[] | null;
   }
   /**
-   * Information about an associated Analytics Hub subscription (https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
+   * Information about an associated [Analytics Hub subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
    */
   export interface Schema$AnalyticsHubSubscriptionInfo {
     /**
@@ -187,6 +187,68 @@ export namespace pubsub_v1 {
      * Required. The Kinesis stream ARN to ingest data from.
      */
     streamArn?: string | null;
+  }
+  /**
+   * Ingestion settings for Amazon MSK.
+   */
+  export interface Schema$AwsMsk {
+    /**
+     * Required. AWS role ARN to be used for Federated Identity authentication with Amazon MSK. Check the Pub/Sub docs for how to set up this role and the required permissions that need to be attached to it.
+     */
+    awsRoleArn?: string | null;
+    /**
+     * Required. The Amazon Resource Name (ARN) that uniquely identifies the cluster.
+     */
+    clusterArn?: string | null;
+    /**
+     * Required. The GCP service account to be used for Federated Identity authentication with Amazon MSK (via a `AssumeRoleWithWebIdentity` call for the provided role). The `aws_role_arn` must be set up with `accounts.google.com:sub` equals to this service account number.
+     */
+    gcpServiceAccount?: string | null;
+    /**
+     * Output only. An output-only field that indicates the state of the Amazon MSK ingestion source.
+     */
+    state?: string | null;
+    /**
+     * Required. The name of the topic in the Amazon MSK cluster that Pub/Sub will import from.
+     */
+    topic?: string | null;
+  }
+  /**
+   * Ingestion settings for Azure Event Hubs.
+   */
+  export interface Schema$AzureEventHubs {
+    /**
+     * Optional. The client id of the Azure application that is being used to authenticate Pub/Sub.
+     */
+    clientId?: string | null;
+    /**
+     * Optional. The name of the Event Hub.
+     */
+    eventHub?: string | null;
+    /**
+     * Optional. The GCP service account to be used for Federated Identity authentication.
+     */
+    gcpServiceAccount?: string | null;
+    /**
+     * Optional. The name of the Event Hubs namespace.
+     */
+    namespace?: string | null;
+    /**
+     * Optional. Name of the resource group within the azure subscription.
+     */
+    resourceGroup?: string | null;
+    /**
+     * Output only. An output-only field that indicates the state of the Event Hubs ingestion source.
+     */
+    state?: string | null;
+    /**
+     * Optional. The Azure subscription id.
+     */
+    subscriptionId?: string | null;
+    /**
+     * Optional. The tenant id of the Azure application that is being used to authenticate Pub/Sub.
+     */
+    tenantId?: string | null;
   }
   /**
    * Configuration for a BigQuery subscription.
@@ -330,6 +392,35 @@ export namespace pubsub_v1 {
     schema?: Schema$Schema;
   }
   /**
+   * Ingestion settings for Confluent Cloud.
+   */
+  export interface Schema$ConfluentCloud {
+    /**
+     * Required. The address of the bootstrap server. The format is url:port.
+     */
+    bootstrapServer?: string | null;
+    /**
+     * Required. The id of the cluster.
+     */
+    clusterId?: string | null;
+    /**
+     * Required. The GCP service account to be used for Federated Identity authentication with `identity_pool_id`.
+     */
+    gcpServiceAccount?: string | null;
+    /**
+     * Required. The id of the identity pool to be used for Federated Identity authentication with Confluent Cloud. See https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/identity-providers/oauth/identity-pools.html#add-oauth-identity-pools.
+     */
+    identityPoolId?: string | null;
+    /**
+     * Output only. An output-only field that indicates the state of the Confluent Cloud ingestion source.
+     */
+    state?: string | null;
+    /**
+     * Required. The name of the topic in the Confluent Cloud cluster that Pub/Sub will import from.
+     */
+    topic?: string | null;
+  }
+  /**
    * Request for the `CreateSnapshot` method.
    */
   export interface Schema$CreateSnapshotRequest {
@@ -402,9 +493,21 @@ export namespace pubsub_v1 {
      */
     awsKinesis?: Schema$AwsKinesis;
     /**
+     * Optional. Amazon MSK.
+     */
+    awsMsk?: Schema$AwsMsk;
+    /**
+     * Optional. Azure Event Hubs.
+     */
+    azureEventHubs?: Schema$AzureEventHubs;
+    /**
      * Optional. Cloud Storage.
      */
     cloudStorage?: Schema$CloudStorage;
+    /**
+     * Optional. Confluent Cloud.
+     */
+    confluentCloud?: Schema$ConfluentCloud;
     /**
      * Optional. Platform Logs settings. If unset, no Platform Logs will be generated.
      */

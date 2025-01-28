@@ -1638,7 +1638,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241231",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1656,7 +1656,7 @@
       "type": "object"
     },
     "AnalyticsHubSubscriptionInfo": {
-      "description": "Information about an associated Analytics Hub subscription (https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).",
+      "description": "Information about an associated [Analytics Hub subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).",
       "id": "AnalyticsHubSubscriptionInfo",
       "properties": {
         "listing": {
@@ -1730,6 +1730,110 @@
         },
         "streamArn": {
           "description": "Required. The Kinesis stream ARN to ingest data from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsMsk": {
+      "description": "Ingestion settings for Amazon MSK.",
+      "id": "AwsMsk",
+      "properties": {
+        "awsRoleArn": {
+          "description": "Required. AWS role ARN to be used for Federated Identity authentication with Amazon MSK. Check the Pub/Sub docs for how to set up this role and the required permissions that need to be attached to it.",
+          "type": "string"
+        },
+        "clusterArn": {
+          "description": "Required. The Amazon Resource Name (ARN) that uniquely identifies the cluster.",
+          "type": "string"
+        },
+        "gcpServiceAccount": {
+          "description": "Required. The GCP service account to be used for Federated Identity authentication with Amazon MSK (via a `AssumeRoleWithWebIdentity` call for the provided role). The `aws_role_arn` must be set up with `accounts.google.com:sub` equals to this service account number.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. An output-only field that indicates the state of the Amazon MSK ingestion source.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "MSK_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "CLUSTER_NOT_FOUND",
+            "TOPIC_NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Ingestion is active.",
+            "Permission denied encountered while consuming data from Amazon MSK.",
+            "Permission denied encountered while publishing to the topic.",
+            "The provided MSK cluster wasn't found.",
+            "The provided topic wasn't found."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "topic": {
+          "description": "Required. The name of the topic in the Amazon MSK cluster that Pub/Sub will import from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AzureEventHubs": {
+      "description": "Ingestion settings for Azure Event Hubs.",
+      "id": "AzureEventHubs",
+      "properties": {
+        "clientId": {
+          "description": "Optional. The client id of the Azure application that is being used to authenticate Pub/Sub.",
+          "type": "string"
+        },
+        "eventHub": {
+          "description": "Optional. The name of the Event Hub.",
+          "type": "string"
+        },
+        "gcpServiceAccount": {
+          "description": "Optional. The GCP service account to be used for Federated Identity authentication.",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Optional. The name of the Event Hubs namespace.",
+          "type": "string"
+        },
+        "resourceGroup": {
+          "description": "Optional. Name of the resource group within the azure subscription.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. An output-only field that indicates the state of the Event Hubs ingestion source.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "EVENT_HUBS_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "NAMESPACE_NOT_FOUND",
+            "EVENT_HUB_NOT_FOUND",
+            "SUBSCRIPTION_NOT_FOUND",
+            "RESOURCE_GROUP_NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Ingestion is active.",
+            "Permission denied encountered while consuming data from Event Hubs. This can happen when `client_id`, or `tenant_id` are invalid. Or the right permissions haven't been granted.",
+            "Permission denied encountered while publishing to the topic.",
+            "The provided Event Hubs namespace couldn't be found.",
+            "The provided Event Hub couldn't be found.",
+            "The provided Event Hubs subscription couldn't be found.",
+            "The provided Event Hubs resource group couldn't be found."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subscriptionId": {
+          "description": "Optional. The Azure subscription id.",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "Optional. The tenant id of the Azure application that is being used to authenticate Pub/Sub.",
           "type": "string"
         }
       },
@@ -1944,6 +2048,56 @@
       },
       "type": "object"
     },
+    "ConfluentCloud": {
+      "description": "Ingestion settings for Confluent Cloud.",
+      "id": "ConfluentCloud",
+      "properties": {
+        "bootstrapServer": {
+          "description": "Required. The address of the bootstrap server. The format is url:port.",
+          "type": "string"
+        },
+        "clusterId": {
+          "description": "Required. The id of the cluster.",
+          "type": "string"
+        },
+        "gcpServiceAccount": {
+          "description": "Required. The GCP service account to be used for Federated Identity authentication with `identity_pool_id`.",
+          "type": "string"
+        },
+        "identityPoolId": {
+          "description": "Required. The id of the identity pool to be used for Federated Identity authentication with Confluent Cloud. See https://docs.confluent.io/cloud/current/security/authenticate/workload-identities/identity-providers/oauth/identity-pools.html#add-oauth-identity-pools.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. An output-only field that indicates the state of the Confluent Cloud ingestion source.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "CONFLUENT_CLOUD_PERMISSION_DENIED",
+            "PUBLISH_PERMISSION_DENIED",
+            "UNREACHABLE_BOOTSTRAP_SERVER",
+            "CLUSTER_NOT_FOUND",
+            "TOPIC_NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Ingestion is active.",
+            "Permission denied encountered while consuming data from Confluent Cloud.",
+            "Permission denied encountered while publishing to the topic.",
+            "The provided bootstrap server address is unreachable.",
+            "The provided cluster wasn't found.",
+            "The provided topic wasn't found."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "topic": {
+          "description": "Required. The name of the topic in the Confluent Cloud cluster that Pub/Sub will import from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CreateSnapshotRequest": {
       "description": "Request for the `CreateSnapshot` method.",
       "id": "CreateSnapshotRequest",
@@ -2033,9 +2187,21 @@
           "$ref": "AwsKinesis",
           "description": "Optional. Amazon Kinesis Data Streams."
         },
+        "awsMsk": {
+          "$ref": "AwsMsk",
+          "description": "Optional. Amazon MSK."
+        },
+        "azureEventHubs": {
+          "$ref": "AzureEventHubs",
+          "description": "Optional. Azure Event Hubs."
+        },
         "cloudStorage": {
           "$ref": "CloudStorage",
           "description": "Optional. Cloud Storage."
+        },
+        "confluentCloud": {
+          "$ref": "ConfluentCloud",
+          "description": "Optional. Confluent Cloud."
         },
         "platformLogsSettings": {
           "$ref": "PlatformLogsSettings",
