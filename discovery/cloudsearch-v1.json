@@ -2115,7 +2115,7 @@
       }
     }
   },
-  "revision": "20240529",
+  "revision": "20241113",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "Action": {
@@ -7042,68 +7042,6 @@
       },
       "type": "object"
     },
-    "RewrittenQueries": {
-      "description": "The rewritten queries returned by Apps Search Query Understanding service.",
-      "id": "RewrittenQueries",
-      "properties": {
-        "rewrittenQueries": {
-          "items": {
-            "$ref": "RewrittenQuery"
-          },
-          "type": "array"
-        },
-        "selectedQueryIndex": {
-          "description": "The index of the selected query in `rewritten_queries` that is used by QAPI to call CSSR to get search results. If none of the queries were used (i.e. they all give empty search results), `selected_query_index` would default to -1.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "RewrittenQuery": {
-      "id": "RewrittenQuery",
-      "properties": {
-        "rewrittenQuery": {
-          "type": "string"
-        },
-        "score": {
-          "format": "double",
-          "type": "number"
-        },
-        "sortBy": {
-          "enum": [
-            "SORTBY_UNSUPPORTED",
-            "SORTBY_RELEVANCY",
-            "SORTBY_LATEST",
-            "SORTBY_OLDEST",
-            "SORTBY_LARGEST",
-            "SORTBY_SMALLEST",
-            "SORTBY_MODIFY_LATEST",
-            "SORTBY_MODIFY_OLDEST",
-            "SORTBY_VIEW_LATEST",
-            "SORTBY_VIEW_OLDEST",
-            "SORTBY_CREATE_LATEST",
-            "SORTBY_CREATE_OLDEST"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "SafeHtmlProto": {
       "description": "IMPORTANT: It is unsafe to accept this message from an untrusted source, since it's trivial for an attacker to forge serialized messages that don't fulfill the type's safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it's generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests.",
       "id": "SafeHtmlProto",
@@ -7330,7 +7268,7 @@
       "type": "object"
     },
     "SearchRequest": {
-      "description": "The search API request.",
+      "description": "The search API request. NEXT ID: 17",
       "id": "SearchRequest",
       "properties": {
         "contextAttributes": {
@@ -7383,7 +7321,7 @@
       "type": "object"
     },
     "SearchResponse": {
-      "description": "The search API response.",
+      "description": "The search API response. NEXT ID: 17",
       "id": "SearchResponse",
       "properties": {
         "debugInfo": {
