@@ -672,6 +672,10 @@ export namespace cloudasset_v1p7beta1 {
      * Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply.
      */
     egressTo?: Schema$GoogleIdentityAccesscontextmanagerV1EgressTo;
+    /**
+     * Optional. Human-readable title for the egress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
+     */
+    title?: string | null;
   }
   /**
    * The source that EgressPolicy authorizes access from inside the ServicePerimeter to somewhere outside the ServicePerimeter boundaries.
@@ -681,6 +685,10 @@ export namespace cloudasset_v1p7beta1 {
      * An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.
      */
     accessLevel?: string | null;
+    /**
+     * A Google Cloud resource that you want to allow to egress the perimeter. These resources can access data outside the perimeter. This field only supports projects. The project format is `projects/{project_number\}`. The resource can be in any Google Cloud organization, not just the organization where the perimeter is defined. You can't use `*` in this field to allow all Google Cloud resources.
+     */
+    resource?: string | null;
   }
   /**
    * Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed. The request must match `operations` AND `resources` fields in order to be allowed egress out of the perimeter.
@@ -728,6 +736,10 @@ export namespace cloudasset_v1p7beta1 {
      * Defines the conditions on the ApiOperation and request destination that cause this IngressPolicy to apply.
      */
     ingressTo?: Schema$GoogleIdentityAccesscontextmanagerV1IngressTo;
+    /**
+     * Optional. Human-readable title for the ingress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.
+     */
+    title?: string | null;
   }
   /**
    * The source that IngressPolicy authorizes access from.
@@ -793,6 +805,10 @@ export namespace cloudasset_v1p7beta1 {
      * Description of the `ServicePerimeter` and its use. Does not affect behavior.
      */
     description?: string | null;
+    /**
+     * Optional. An opaque identifier for the current version of the `ServicePerimeter`. This identifier does not follow any specific format. If an etag is not provided, the operation will be performed as if a valid etag is provided.
+     */
+    etag?: string | null;
     /**
      * Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.
      */

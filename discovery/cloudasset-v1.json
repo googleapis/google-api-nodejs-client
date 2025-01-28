@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20240831",
+  "revision": "20250104",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1170,7 +1170,7 @@
           "description": "The main analysis that matches the original request."
         },
         "serviceAccountImpersonationAnalysis": {
-          "description": "The service account impersonation analysis if AnalyzeIamPolicyRequest.analyze_service_account_impersonation is enabled.",
+          "description": "The service account impersonation analysis if IamPolicyAnalysisQuery.Options.analyze_service_account_impersonation is enabled.",
           "items": {
             "$ref": "IamPolicyAnalysis"
           },
@@ -1620,7 +1620,7 @@
       "id": "EffectiveTagDetails",
       "properties": {
         "attachedResource": {
-          "description": "The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the ancestor from which an effective_tag is inherited, according to [tag inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).",
+          "description": "The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the ancestor from which effective_tags are inherited, according to [tag inheritance](https://cloud.google.com/resource-manager/docs/tags/tags-overview#inheritance).",
           "type": "string"
         },
         "effectiveTags": {
@@ -1884,7 +1884,7 @@
           "description": "A Google Cloud resource governed by the organization policies of the AnalyzeOrgPolicyGovernedAssetsRequest.constraint."
         },
         "policyBundle": {
-          "description": "The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
+          "description": "The ordered list of all organization policies from the consolidated_policy.attached_resource to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
           "items": {
             "$ref": "AnalyzerOrgPolicy"
           },
@@ -2174,7 +2174,7 @@
           "type": "string"
         },
         "policyBundle": {
-          "description": "The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
+          "description": "The ordered list of all organization policies from the consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
           "items": {
             "$ref": "AnalyzerOrgPolicy"
           },
@@ -2871,6 +2871,10 @@
         "egressTo": {
           "$ref": "GoogleIdentityAccesscontextmanagerV1EgressTo",
           "description": "Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply."
+        },
+        "title": {
+          "description": "Optional. Human-readable title for the egress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2881,6 +2885,10 @@
       "properties": {
         "accessLevel": {
           "description": "An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "A Google Cloud resource that you want to allow to egress the perimeter. These resources can access data outside the perimeter. This field only supports projects. The project format is `projects/{project_number}`. The resource can be in any Google Cloud organization, not just the organization where the perimeter is defined. You can't use `*` in this field to allow all Google Cloud resources.",
           "type": "string"
         }
       },
@@ -2962,6 +2970,10 @@
         "ingressTo": {
           "$ref": "GoogleIdentityAccesscontextmanagerV1IngressTo",
           "description": "Defines the conditions on the ApiOperation and request destination that cause this IngressPolicy to apply."
+        },
+        "title": {
+          "description": "Optional. Human-readable title for the ingress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3060,6 +3072,10 @@
       "properties": {
         "description": {
           "description": "Description of the `ServicePerimeter` and its use. Does not affect behavior.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. An opaque identifier for the current version of the `ServicePerimeter`. This identifier does not follow any specific format. If an etag is not provided, the operation will be performed as if a valid etag is provided.",
           "type": "string"
         },
         "name": {
@@ -3658,7 +3674,7 @@
       "properties": {
         "consolidatedPolicy": {
           "$ref": "AnalyzerOrgPolicy",
-          "description": "The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating AnalyzeOrgPoliciesResponse.policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy)."
+          "description": "The consolidated organization policy for the analyzed resource. The consolidated organization policy is computed by merging and evaluating policy_bundle. The evaluation will respect the organization policy [hierarchy rules](https://cloud.google.com/resource-manager/docs/organization-policy/understanding-hierarchy)."
         },
         "folders": {
           "description": "The folder(s) that this consolidated policy belongs to, in the format of folders/{FOLDER_NUMBER}. This field is available when the consolidated policy belongs (directly or cascadingly) to one or more folders.",
@@ -3672,7 +3688,7 @@
           "type": "string"
         },
         "policyBundle": {
-          "description": "The ordered list of all organization policies from the AnalyzeOrgPoliciesResponse.OrgPolicyResult.consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
+          "description": "The ordered list of all organization policies from the consolidated_policy.attached_resource. to the scope specified in the request. If the constraint is defined with default policy, it will also appear in the list.",
           "items": {
             "$ref": "AnalyzerOrgPolicy"
           },
