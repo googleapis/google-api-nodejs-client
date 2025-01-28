@@ -140,6 +140,19 @@ export namespace storage_v1 {
   }
 
   /**
+   * An AdvanceRelocateBucketOperation request.
+   */
+  export interface Schema$AdvanceRelocateBucketOperationRequest {
+    /**
+     * Specifies the time when the relocation will revert to the sync stage if the relocation hasn't succeeded.
+     */
+    expireTime?: string | null;
+    /**
+     * Specifies the duration after which the relocation will revert to the sync stage if the relocation hasn't succeeded. Optional, if not supplied, a default value of 12h will be used.
+     */
+    ttl?: string | null;
+  }
+  /**
    * An Anywhere Cache instance.
    */
   export interface Schema$AnywhereCache {
@@ -1098,6 +1111,10 @@ export namespace storage_v1 {
      * The time at which the object became noncurrent in RFC 3339 format. Will be returned if and only if this version of the object has been deleted.
      */
     timeDeleted?: string | null;
+    /**
+     * The time when the object was finalized.
+     */
+    timeFinalized?: string | null;
     /**
      * The time at which the object's storage class was last changed. When the object is initially created, it will be set to timeCreated.
      */
@@ -3514,7 +3531,7 @@ export namespace storage_v1 {
     restore(
       params?: Params$Resource$Buckets$Restore,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosPromise<Schema$Bucket>;
     restore(
       params: Params$Resource$Buckets$Restore,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3522,26 +3539,28 @@ export namespace storage_v1 {
     ): void;
     restore(
       params: Params$Resource$Buckets$Restore,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
+      options: MethodOptions | BodyResponseCallback<Schema$Bucket>,
+      callback: BodyResponseCallback<Schema$Bucket>
     ): void;
     restore(
       params: Params$Resource$Buckets$Restore,
-      callback: BodyResponseCallback<void>
+      callback: BodyResponseCallback<Schema$Bucket>
     ): void;
-    restore(callback: BodyResponseCallback<void>): void;
+    restore(callback: BodyResponseCallback<Schema$Bucket>): void;
     restore(
       paramsOrCallback?:
         | Params$Resource$Buckets$Restore
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<Schema$Bucket>
         | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      callback?:
+        | BodyResponseCallback<Schema$Bucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Bucket> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Buckets$Restore;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -3575,12 +3594,12 @@ export namespace storage_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(
+        createAPIRequest<Schema$Bucket>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<Schema$Bucket>(parameters);
       }
     }
 
@@ -4059,6 +4078,10 @@ export namespace storage_v1 {
      * Generation of a bucket.
      */
     generation?: string;
+    /**
+     * Set of properties to return. Defaults to full.
+     */
+    projection?: string;
     /**
      * The project to be billed for this request. Required for Requester Pays buckets.
      */
@@ -8020,6 +8043,93 @@ export namespace storage_v1 {
     }
 
     /**
+     * Moves the source object to the destination object in the same bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Objects$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
+      params?: Params$Resource$Objects$Move,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Object>;
+    move(
+      params: Params$Resource$Objects$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Objects$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$Object>,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    move(
+      params: Params$Resource$Objects$Move,
+      callback: BodyResponseCallback<Schema$Object>
+    ): void;
+    move(callback: BodyResponseCallback<Schema$Object>): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Objects$Move
+        | BodyResponseCallback<Schema$Object>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Object>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Object>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Object> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Objects$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Objects$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/o/{sourceObject}/moveTo/o/{destinationObject}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'sourceObject', 'destinationObject'],
+        pathParams: ['bucket', 'destinationObject', 'sourceObject'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Object>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Object>(parameters);
+      }
+    }
+
+    /**
      * Patches an object's metadata.
      *
      * @param params - Parameters for request
@@ -8991,6 +9101,56 @@ export namespace storage_v1 {
      */
     versions?: boolean;
   }
+  export interface Params$Resource$Objects$Move extends StandardParameters {
+    /**
+     * Name of the bucket in which the object resides.
+     */
+    bucket?: string;
+    /**
+     * Name of the destination object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     */
+    destinationObject?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object. `ifGenerationMatch` and `ifGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.`ifGenerationMatch` and `ifGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's current metageneration matches the given value. `ifMetagenerationMatch` and `ifMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the destination object's current metageneration does not match the given value. `ifMetagenerationMatch` and `ifMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifMetagenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current generation matches the given value. `ifSourceGenerationMatch` and `ifSourceGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifSourceGenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current generation does not match the given value. `ifSourceGenerationMatch` and `ifSourceGenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifSourceGenerationNotMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current metageneration matches the given value. `ifSourceMetagenerationMatch` and `ifSourceMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifSourceMetagenerationMatch?: string;
+    /**
+     * Makes the operation conditional on whether the source object's current metageneration does not match the given value. `ifSourceMetagenerationMatch` and `ifSourceMetagenerationNotMatch` conditions are mutually exclusive: it's an error for both of them to be set in the request.
+     */
+    ifSourceMetagenerationNotMatch?: string;
+    /**
+     * Name of the source object. For information about how to URL encode object names to be path safe, see [Encoding URI Path Parts](https://cloud.google.com/storage/docs/request-endpoints#encoding).
+     */
+    sourceObject?: string;
+    /**
+     * The project to be billed for this request. Required for Requester Pays buckets.
+     */
+    userProject?: string;
+  }
   export interface Params$Resource$Objects$Patch extends StandardParameters {
     /**
      * Name of the bucket in which the object resides.
@@ -9328,6 +9488,92 @@ export namespace storage_v1 {
     }
 
     /**
+     * Starts asynchronous advancement of the relocate bucket operation in the case of required write downtime, to allow it to lock the bucket at the source location, and proceed with the bucket location swap. The server makes a best effort to advance the relocate bucket operation, but success is not guaranteed.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    advanceRelocateBucket(
+      params?: Params$Resource$Operations$Advancerelocatebucket,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    advanceRelocateBucket(
+      params: Params$Resource$Operations$Advancerelocatebucket,
+      callback: BodyResponseCallback<void>
+    ): void;
+    advanceRelocateBucket(callback: BodyResponseCallback<void>): void;
+    advanceRelocateBucket(
+      paramsOrCallback?:
+        | Params$Resource$Operations$Advancerelocatebucket
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Operations$Advancerelocatebucket;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Operations$Advancerelocatebucket;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://storage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/storage/v1/b/{bucket}/operations/{operationId}/advanceRelocateBucket'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['bucket', 'operationId'],
+        pathParams: ['bucket', 'operationId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed.
      *
      * @param params - Parameters for request
@@ -9602,6 +9848,22 @@ export namespace storage_v1 {
     }
   }
 
+  export interface Params$Resource$Operations$Advancerelocatebucket
+    extends StandardParameters {
+    /**
+     * Name of the bucket to advance the relocate for.
+     */
+    bucket?: string;
+    /**
+     * ID of the operation resource.
+     */
+    operationId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AdvanceRelocateBucketOperationRequest;
+  }
   export interface Params$Resource$Operations$Cancel
     extends StandardParameters {
     /**
