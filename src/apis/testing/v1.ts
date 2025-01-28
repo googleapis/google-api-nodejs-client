@@ -495,10 +495,11 @@ export namespace testing_v1 {
      * Feature usage tags defined in the manifest.
      */
     usesFeature?: Schema$UsesFeature[];
+    usesPermission?: string[] | null;
     /**
      * Permissions declared to be used by the application
      */
-    usesPermission?: string[] | null;
+    usesPermissionTags?: Schema$UsesPermissionTag[];
     /**
      * Version number used internally by the app.
      */
@@ -904,7 +905,7 @@ export namespace testing_v1 {
      */
     appIpa?: Schema$FileReference;
     /**
-     * An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts.
+     * An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts. The maximum allowed file size of the roboscript is 10MiB.
      */
     roboScript?: Schema$FileReference;
   }
@@ -1697,6 +1698,19 @@ export namespace testing_v1 {
      * The android:required value
      */
     isRequired?: boolean | null;
+    /**
+     * The android:name value
+     */
+    name?: string | null;
+  }
+  /**
+   * The tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-permission-element.html
+   */
+  export interface Schema$UsesPermissionTag {
+    /**
+     * The android:name value
+     */
+    maxSdkVersion?: number | null;
     /**
      * The android:name value
      */
