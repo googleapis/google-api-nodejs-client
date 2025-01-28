@@ -1282,7 +1282,7 @@ export namespace androidmanagement_v1 {
     termsAndConditions?: Schema$TermsAndConditions[];
   }
   /**
-   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 13 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 13 and above.
+   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline. For Android versions 11 and above, extension apps are exempt from battery restrictions so will not be placed into the restricted App Standby Bucket (https://developer.android.com/topic/performance/appstandby#restricted-bucket). Extensions apps are also protected against users clearing their data or force-closing the application, although admins can continue to use the clear app data command on extension apps if needed for Android 11 and above.
    */
   export interface Schema$ExtensionConfig {
     /**
@@ -2210,6 +2210,10 @@ export namespace androidmanagement_v1 {
      */
     personalPlayStoreMode?: string | null;
     /**
+     * Optional. Controls whether a private space is allowed on the device.
+     */
+    privateSpacePolicy?: string | null;
+    /**
      * If true, screen capture is disabled for all users.
      */
     screenCaptureDisabled?: boolean | null;
@@ -2223,11 +2227,11 @@ export namespace androidmanagement_v1 {
      */
     accountTypesWithManagementDisabled?: string[] | null;
     /**
-     * Whether adding new users and profiles is disabled.
+     * Whether adding new users and profiles is disabled. For devices where managementMode is DEVICE_OWNER this field is ignored and the user is never allowed to add or remove users.
      */
     addUserDisabled?: boolean | null;
     /**
-     * Whether adjusting the master volume is disabled. Also mutes the device.
+     * Whether adjusting the master volume is disabled. Also mutes the device. The setting has effect only on fully managed devices.
      */
     adjustVolumeDisabled?: boolean | null;
     /**
@@ -2371,7 +2375,7 @@ export namespace androidmanagement_v1 {
      */
     installUnknownSourcesAllowed?: boolean | null;
     /**
-     * If true, this disables the Lock Screen (https://source.android.com/docs/core/display/multi_display/lock-screen) for primary and/or secondary displays.
+     * If true, this disables the Lock Screen (https://source.android.com/docs/core/display/multi_display/lock-screen) for primary and/or secondary displays. This policy is supported only in dedicated device management mode.
      */
     keyguardDisabled?: boolean | null;
     /**
@@ -2515,7 +2519,7 @@ export namespace androidmanagement_v1 {
      */
     setupActions?: Schema$SetupAction[];
     /**
-     * Whether changing the user icon is disabled.
+     * Whether changing the user icon is disabled. The setting has effect only on fully managed devices.
      */
     setUserIconDisabled?: boolean | null;
     /**
@@ -6767,9 +6771,13 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Signupurls$Create
     extends StandardParameters {
     /**
-     * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user.
+     * Optional. Email address used to prefill the admin field of the enterprise signup form. This value is a hint only and can be altered by the user. If allowedDomains is non-empty then this must belong to one of the allowedDomains.
      */
     adminEmail?: string;
+    /**
+     * Optional. A list of domains that are permitted for the admin email. The IT admin cannot enter an email address with a domain name that is not in this list. Subdomains of domains in this list are not allowed but can be allowed by adding a second entry which has *. prefixed to the domain name (e.g. *.example.com). If the field is not present or is an empty list then the IT admin is free to use any valid domain name. Personal email domains are always allowed, but will result in the creation of a managed Google Play Accounts enterprise.
+     */
+    allowedDomains?: string[];
     /**
      * The callback URL that the admin will be redirected to after successfully creating an enterprise. Before redirecting there the system will add a query parameter to this URL named enterpriseToken which will contain an opaque token to be used for the create enterprise request. The URL will be parsed then reformatted in order to add the enterpriseToken parameter, so there may be some minor formatting changes.
      */
