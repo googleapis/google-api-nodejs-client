@@ -289,6 +289,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "generateGroundedContent": {
+              "description": "Generates grounded content.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:generateGroundedContent",
+              "httpMethod": "POST",
+              "id": "discoveryengine.projects.locations.generateGroundedContent",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. Location resource. Format: `projects/{project}/locations/{location}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+location}:generateGroundedContent",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getAclConfig": {
               "description": "Gets the AclConfig.",
               "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/aclConfig",
@@ -18574,6 +18602,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContent": {
+      "description": "Base structured datatype containing multi-part content of a message.",
+      "id": "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContent",
+      "properties": {
+        "parts": {
+          "description": "Ordered `Parts` that constitute a single message.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart"
+          },
+          "type": "array"
+        },
+        "role": {
+          "description": "Producer of the content. Must be either `user` or `model`. Intended to be used for multi-turn conversations. Otherwise, it can be left unset.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart": {
+      "description": "Single part of content.",
+      "id": "GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart",
+      "properties": {
+        "text": {
+          "description": "Inline text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaGroundingFact": {
       "description": "Grounding Fact.",
       "id": "GoogleCloudDiscoveryengineV1alphaGroundingFact",
@@ -22265,9 +22322,24 @@
           "description": "Rewritten input query minus the extracted filters.",
           "type": "string"
         },
+        "sqlRequest": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest",
+          "description": "Optional. The SQL request that was generated from the natural language query understanding phase."
+        },
         "structuredExtractedFilter": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter",
           "description": "The filters that were extracted from the input query represented in a structured form."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest": {
+      "description": "The SQL request that was generated from the natural language query understanding phase.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest",
+      "properties": {
+        "sqlQuery": {
+          "description": "Optional. The SQL query in text format.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -22917,17 +22989,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore": {
-      "description": "Stores information regarding the serving configurations at DataStore level.",
-      "id": "GoogleCloudDiscoveryengineV1alphaServingConfigDataStore",
-      "properties": {
-        "disabledForServing": {
-          "description": "If set true, the DataStore will not be available for serving search requests.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig": {
       "description": "Specifies the configurations needed for Generic Discovery.Currently we support: * `content_search_spec`: configuration for generic content search.",
       "id": "GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig",
@@ -23227,6 +23288,118 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateMetadata": {
+      "description": "Metadata related to the progress of the CrawlRateManagementService.SetDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateRequest": {
+      "description": "Request message for CrawlRateManagementService.SetDedicatedCrawlRate method. The user can set the crawl rate for a crawl_rate_scope they own. They can set up an overall crawl rate, or set up a user-triggered crawl rate and a auto-refresh crawl rate separately. If an overall crawl rate is set, Vertex AI will automatically splits crawl_rate into user-triggered and auto-refresh.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateRequest",
+      "properties": {
+        "crawlRate": {
+          "description": "Optional. The crawl QPS set by the user. It is not guaranteed that Vertex crawl bot will crawl at this QPS. If the crawl rate is too high, the real QPS may be lower than the value set by the user to avoid overloading the user's website.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "crawlRateScope": {
+          "description": "Required. The scope of the crawl rate that the user wants to config. Currently, only domain and host name are supported. A domain name example: `example.com`. A host name example: `www.example.com`. Please do not include `/` in the domain or host name.",
+          "type": "string"
+        },
+        "crawlType": {
+          "description": "Optional. Whether it's the crawl rate of user-triggered or auto-refresh.",
+          "enum": [
+            "CRAWL_TYPE_UNSPECIFIED",
+            "USER_TRIGGERED",
+            "AUTO_REFRESH"
+          ],
+          "enumDescriptions": [
+            "The crawl type is unspecified.",
+            "The crawl type is user-triggered.",
+            "The crawl type is auto-refresh."
+          ],
+          "type": "string"
+        },
+        "mode": {
+          "description": "Optional. Whether the rate is explicitly set by users, or set by vertex AI.",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "AUTOMATIC",
+            "EXPLICIT"
+          ],
+          "enumDescriptions": [
+            "The mode is unspecified. If the user does not specify the mode, default to AUTOMATIC.",
+            "Vertex AI automatically splits crawl_rate into user-triggered and auto-refresh. Users don't need to specify SetDedicatedCrawlRateRequest.CrawlType if the mode is AUTOMATIC.",
+            "Users explicitly set user-triggered or auto-refresh crawl rate."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateResponse": {
+      "description": "Response message for CrawlRateManagementService.SetDedicatedCrawlRate method. It simply returns the state of the response, and an error message if the state is FAILED.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateResponse",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Errors from service when handling the request."
+        },
+        "state": {
+          "description": "Output only. The state of the response.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The state is successful.",
+            "The state is failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetUpDataConnectorMetadata": {
+      "description": "Metadata for DataConnectorService.SetUpDataConnector method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUpDataConnectorMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSetUpDataConnectorRequest": {
+      "description": "Request for DataConnectorService.SetUpDataConnector method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSetUpDataConnectorRequest",
+      "properties": {
+        "collectionDisplayName": {
+          "description": "Required. The display name of the Collection. Should be human readable, used to display collections in the Console Dashboard. UTF-8 encoded string with limit of 1024 characters.",
+          "type": "string"
+        },
+        "collectionId": {
+          "description": "Required. The ID to use for the Collection, which will become the final component of the Collection's resource name. A new Collection is created as part of the DataConnector setup. DataConnector is a singleton resource under Collection, managing all DataStores of the Collection. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "dataConnector": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataConnector",
+          "description": "Required. The DataConnector to initialize in the newly created Collection."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata",
@@ -23278,6 +23451,17 @@
       "description": "Response message for SiteSearchEngineService.SetUriPatternDocumentData method.",
       "id": "GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSingleRegionKey": {
+      "description": "Metadata for single-regional CMEKs.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSingleRegionKey",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. Single-regional kms key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaSiteSearchEngine": {
@@ -26226,6 +26410,31 @@
           "description": "The total number of IdentityMappingEntries that were processed.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse": {
+      "description": "Response message for SiteSearchEngineService.FetchSitemaps method.",
+      "id": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponse",
+      "properties": {
+        "sitemapsMetadata": {
+          "description": "List of Sitemaps fetched.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata": {
+      "description": "Contains a Sitemap and its metadata.",
+      "id": "GoogleCloudDiscoveryengineV1betaFetchSitemapsResponseSitemapMetadata",
+      "properties": {
+        "sitemap": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaSitemap",
+          "description": "The Sitemap."
         }
       },
       "type": "object"

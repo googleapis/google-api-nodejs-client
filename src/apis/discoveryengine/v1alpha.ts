@@ -4747,6 +4747,28 @@ export namespace discoveryengine_v1alpha {
     documentDataMap?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
+   * Base structured datatype containing multi-part content of a message.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundedGenerationContent {
+    /**
+     * Ordered `Parts` that constitute a single message.
+     */
+    parts?: Schema$GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart[];
+    /**
+     * Producer of the content. Must be either `user` or `model`. Intended to be used for multi-turn conversations. Otherwise, it can be left unset.
+     */
+    role?: string | null;
+  }
+  /**
+   * Single part of content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundedGenerationContentPart {
+    /**
+     * Inline text.
+     */
+    text?: string | null;
+  }
+  /**
    * Grounding Fact.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaGroundingFact {
@@ -5653,6 +5675,49 @@ export namespace discoveryengine_v1alpha {
      * Mode of Natural Language Query Understanding. If this field is unset, the behavior defaults to NaturalLanguageQueryUnderstandingConfig.Mode.DISABLED.
      */
     mode?: string | null;
+  }
+  /**
+   * Request message for CrawlRateManagementService.ObtainCrawlRate method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaObtainCrawlRateRequest {
+    /**
+     * Required. The scope of the crawl rate that the user wants to monitor. Currently, only domain and host name are supported. A domain name example: `example.com`. A host name example: `www.example.com`. Please do not include `/` in the domain or host name.
+     */
+    crawlRateScope?: string | null;
+  }
+  /**
+   * Response message for CrawlRateManagementService.ObtainCrawlRate method. The response contains organcic or dedicated crawl rate time series data for monitoring, depending on whether dedicated crawl rate is set.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaObtainCrawlRateResponse {
+    /**
+     * The historical dedicated crawl rate timeseries data, used for monitoring.
+     */
+    dedicatedCrawlRateTimeSeries?: Schema$GoogleCloudDiscoveryengineV1alphaDedicatedCrawlRateTimeSeries;
+    /**
+     * Errors from service when handling the request.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * The historical organic crawl rate timeseries data, used for monitoring.
+     */
+    organicCrawlRateTimeSeries?: Schema$GoogleCloudDiscoveryengineV1alphaOrganicCrawlRateTimeSeries;
+    /**
+     * Output only. The state of the response.
+     */
+    state?: string | null;
+  }
+  /**
+   * The historical organic crawl rate timeseries data, used for monitoring. Organic crawl is auto-determined by Google to crawl the user's website when dedicate crawl is not set. Crawl rate is the QPS of crawl request Google sends to the user's website.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOrganicCrawlRateTimeSeries {
+    /**
+     * Google's organic crawl rate time series, which is the sum of all googlebots' crawl rate. Please refer to https://developers.google.com/search/docs/crawling-indexing/overview-google-crawlers for more details about googlebots.
+     */
+    googleOrganicCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
+    /**
+     * Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot.
+     */
+    vertexAiOrganicCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
   }
   /**
    * Request message for CrawlRateManagementService.ObtainCrawlRate method.
@@ -7459,9 +7524,22 @@ export namespace discoveryengine_v1alpha {
      */
     rewrittenQuery?: string | null;
     /**
+     * Optional. The SQL request that was generated from the natural language query understanding phase.
+     */
+    sqlRequest?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest;
+    /**
      * The filters that were extracted from the input query represented in a structured form.
      */
     structuredExtractedFilter?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoStructuredExtractedFilter;
+  }
+  /**
+   * The SQL request that was generated from the natural language query understanding phase.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseNaturalLanguageQueryUnderstandingInfoSqlRequest {
+    /**
+     * Optional. The SQL query in text format.
+     */
+    sqlQuery?: string | null;
   }
   /**
    * The filters that were extracted from the input query represented in a structured form.
@@ -7896,15 +7974,6 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * Stores information regarding the serving configurations at DataStore level.
-   */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfigDataStore {
-    /**
-     * If set true, the DataStore will not be available for serving search requests.
-     */
-    disabledForServing?: boolean | null;
-  }
-  /**
    * Specifies the configurations needed for Generic Discovery.Currently we support: * `content_search_spec`: configuration for generic content search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaServingConfigGenericConfig {
@@ -8125,6 +8194,74 @@ export namespace discoveryengine_v1alpha {
     uri?: string | null;
   }
   /**
+   * Metadata related to the progress of the CrawlRateManagementService.SetDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for CrawlRateManagementService.SetDedicatedCrawlRate method. The user can set the crawl rate for a crawl_rate_scope they own. They can set up an overall crawl rate, or set up a user-triggered crawl rate and a auto-refresh crawl rate separately. If an overall crawl rate is set, Vertex AI will automatically splits crawl_rate into user-triggered and auto-refresh.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateRequest {
+    /**
+     * Optional. The crawl QPS set by the user. It is not guaranteed that Vertex crawl bot will crawl at this QPS. If the crawl rate is too high, the real QPS may be lower than the value set by the user to avoid overloading the user's website.
+     */
+    crawlRate?: number | null;
+    /**
+     * Required. The scope of the crawl rate that the user wants to config. Currently, only domain and host name are supported. A domain name example: `example.com`. A host name example: `www.example.com`. Please do not include `/` in the domain or host name.
+     */
+    crawlRateScope?: string | null;
+    /**
+     * Optional. Whether it's the crawl rate of user-triggered or auto-refresh.
+     */
+    crawlType?: string | null;
+    /**
+     * Optional. Whether the rate is explicitly set by users, or set by vertex AI.
+     */
+    mode?: string | null;
+  }
+  /**
+   * Response message for CrawlRateManagementService.SetDedicatedCrawlRate method. It simply returns the state of the response, and an error message if the state is FAILED.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetDedicatedCrawlRateResponse {
+    /**
+     * Errors from service when handling the request.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. The state of the response.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for DataConnectorService.SetUpDataConnector method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUpDataConnectorMetadata {}
+  /**
+   * Request for DataConnectorService.SetUpDataConnector method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUpDataConnectorRequest {
+    /**
+     * Required. The display name of the Collection. Should be human readable, used to display collections in the Console Dashboard. UTF-8 encoded string with limit of 1024 characters.
+     */
+    collectionDisplayName?: string | null;
+    /**
+     * Required. The ID to use for the Collection, which will become the final component of the Collection's resource name. A new Collection is created as part of the DataConnector setup. DataConnector is a singleton resource under Collection, managing all DataStores of the Collection. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    collectionId?: string | null;
+    /**
+     * Required. The DataConnector to initialize in the newly created Collection.
+     */
+    dataConnector?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnector;
+  }
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.SetUriPatternDocumentData operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataMetadata {
@@ -8158,6 +8295,32 @@ export namespace discoveryengine_v1alpha {
    * Response message for SiteSearchEngineService.SetUriPatternDocumentData method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSetUriPatternDocumentDataResponse {}
+  /**
+   * Metadata for single-regional CMEKs.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSingleRegionKey {
+    /**
+     * Required. Single-regional kms key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     */
+    kmsKey?: string | null;
+  }
+  /**
+   * A sitemap for the SiteSearchEngine.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSitemap {
+    /**
+     * Output only. The sitemap's creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The fully qualified resource name of the sitemap. `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine/sitemaps/x` The `sitemap_id` suffix is system-generated.
+     */
+    name?: string | null;
+    /**
+     * Public URI for the sitemap, e.g. `www.example.com/sitemap.xml`.
+     */
+    uri?: string | null;
+  }
   /**
    * SiteSearchEngine captures DataStore level site search persisting configurations. It is a singleton value per data store.
    */
@@ -14554,6 +14717,104 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Generates grounded content.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateGroundedContent(
+      params: Params$Resource$Projects$Locations$Generategroundedcontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateGroundedContent(
+      params?: Params$Resource$Projects$Locations$Generategroundedcontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>;
+    generateGroundedContent(
+      params: Params$Resource$Projects$Locations$Generategroundedcontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateGroundedContent(
+      params: Params$Resource$Projects$Locations$Generategroundedcontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
+    ): void;
+    generateGroundedContent(
+      params: Params$Resource$Projects$Locations$Generategroundedcontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
+    ): void;
+    generateGroundedContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
+    ): void;
+    generateGroundedContent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generategroundedcontent
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generategroundedcontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Generategroundedcontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+location}:generateGroundedContent'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the AclConfig.
      * @example
      * ```js
@@ -15805,6 +16066,18 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaEstimateDataSizeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Generategroundedcontent
+    extends StandardParameters {
+    /**
+     * Required. Location resource. Format: `projects/{project\}/locations/{location\}`.
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaGenerateGroundedContentRequest;
   }
   export interface Params$Resource$Projects$Locations$Getaclconfig
     extends StandardParameters {
