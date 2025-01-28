@@ -1339,6 +1339,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "fetchSourceObjects": {
+                  "description": "Retrieves objects from the source database that can be selected for data migration. This is applicable for the following migrations: 1. PostgreSQL to Cloud SQL for PostgreSQL 2. PostgreSQL to AlloyDB for PostgreSQL.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}:fetchSourceObjects",
+                  "httpMethod": "GET",
+                  "id": "datamigration.projects.locations.migrationJobs.fetchSourceObjects",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name for the migration job for which source objects should be returned.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:fetchSourceObjects",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "generateSshScript": {
                   "description": "Generate a SSH configuration script to configure the reverse SSH connectivity.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}:generateSshScript",
@@ -1764,6 +1789,31 @@
               "resources": {
                 "objects": {
                   "methods": {
+                    "get": {
+                      "description": "Use this method to get details about a migration job object.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}/objects/{objectsId}",
+                      "httpMethod": "GET",
+                      "id": "datamigration.projects.locations.migrationJobs.objects.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the migration job object resource to get.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+/objects/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "MigrationJobObject"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}/objects/{objectsId}:getIamPolicy",
@@ -1790,6 +1840,70 @@
                       "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Use this method to list the objects of a specific migration job.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}/objects",
+                      "httpMethod": "GET",
+                      "id": "datamigration.projects.locations.migrationJobs.objects.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Maximum number of objects to return. Default is 50. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token received from a previous `ListMigrationJObObjectsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMigrationJobObjectsRequest` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent migration job that owns the collection of objects.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/objects",
+                      "response": {
+                        "$ref": "ListMigrationJobObjectsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "lookup": {
+                      "description": "Use this method to look up a migration job object by its source object identifier.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/migrationJobs/{migrationJobsId}/objects:lookup",
+                      "httpMethod": "POST",
+                      "id": "datamigration.projects.locations.migrationJobs.objects.lookup",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent migration job that owns the collection of objects.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/objects:lookup",
+                      "request": {
+                        "$ref": "LookupMigrationJobObjectRequest"
+                      },
+                      "response": {
+                        "$ref": "MigrationJobObject"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1858,7 +1972,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "datamigration.projects.locations.operations.cancel",
@@ -2218,7 +2332,7 @@
       }
     }
   },
-  "revision": "20240930",
+  "revision": "20250115",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2783,6 +2897,10 @@
           "description": "Comment associated with the column.",
           "type": "string"
         },
+        "computed": {
+          "description": "Is the column a computed column.",
+          "type": "boolean"
+        },
         "customFeatures": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -2941,16 +3059,42 @@
             "CLOUDSQL",
             "RDS",
             "AURORA",
-            "ALLOYDB"
+            "ALLOYDB",
+            "AZURE_DATABASE"
           ],
           "enumDescriptions": [
             "Use this value for on-premise source database instances and ORACLE.",
             "Cloud SQL is the source instance provider.",
             "Amazon RDS is the source instance provider.",
             "Amazon Aurora is the source instance provider.",
-            "AlloyDB for PostgreSQL is the source instance provider."
+            "AlloyDB for PostgreSQL is the source instance provider.",
+            "Microsoft Azure Database for MySQL/PostgreSQL."
           ],
           "type": "string"
+        },
+        "role": {
+          "description": "Optional. The connection profile role.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "SOURCE",
+            "DESTINATION"
+          ],
+          "enumDescriptions": [
+            "The role is unspecified.",
+            "The role is source.",
+            "The role is destination."
+          ],
+          "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Zone Isolation compliance state of the resource.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Zone Separation compliance state of the resource.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "sqlserver": {
           "$ref": "SqlServerConnectionProfile",
@@ -3369,14 +3513,16 @@
             "CLOUDSQL",
             "RDS",
             "AURORA",
-            "ALLOYDB"
+            "ALLOYDB",
+            "AZURE_DATABASE"
           ],
           "enumDescriptions": [
             "Use this value for on-premise source database instances and ORACLE.",
             "Cloud SQL is the source instance provider.",
             "Amazon RDS is the source instance provider.",
             "Amazon Aurora is the source instance provider.",
-            "AlloyDB for PostgreSQL is the source instance provider."
+            "AlloyDB for PostgreSQL is the source instance provider.",
+            "Microsoft Azure Database for MySQL/PostgreSQL."
           ],
           "type": "string"
         }
@@ -3972,7 +4118,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -4235,6 +4381,24 @@
       },
       "type": "object"
     },
+    "ListMigrationJobObjectsResponse": {
+      "description": "Response containing the objects for a migration job.",
+      "id": "ListMigrationJobObjectsResponse",
+      "properties": {
+        "migrationJobObjects": {
+          "description": "List of migration job objects.",
+          "items": {
+            "$ref": "MigrationJobObject"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListMigrationJobsResponse": {
       "description": "Response message for 'ListMigrationJobs' request.",
       "id": "ListMigrationJobsResponse",
@@ -4356,6 +4520,17 @@
       "description": "Configuration to use LogMiner CDC method.",
       "id": "LogMiner",
       "properties": {},
+      "type": "object"
+    },
+    "LookupMigrationJobObjectRequest": {
+      "description": "Request for looking up a specific migration job object by its source object identifier.",
+      "id": "LookupMigrationJobObjectRequest",
+      "properties": {
+        "sourceObjectIdentifier": {
+          "$ref": "SourceObjectIdentifier",
+          "description": "Required. The source object identifier which maps to the migration job object."
+        }
+      },
       "type": "object"
     },
     "MachineConfig": {
@@ -4547,6 +4722,13 @@
           "description": "Custom engine specific features.",
           "type": "object"
         },
+        "indices": {
+          "description": "View indices.",
+          "items": {
+            "$ref": "IndexEntity"
+          },
+          "type": "array"
+        },
         "sqlCode": {
           "description": "The SQL code which creates the view.",
           "type": "string"
@@ -4638,6 +4820,10 @@
           "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.",
           "type": "string"
         },
+        "objectsConfig": {
+          "$ref": "MigrationJobObjectsConfig",
+          "description": "Optional. The objects that need to be migrated."
+        },
         "oracleToPostgresConfig": {
           "$ref": "OracleToPostgresConfig",
           "description": "Configuration for heterogeneous **Oracle to Cloud SQL for PostgreSQL** and **Oracle to AlloyDB for PostgreSQL** migrations."
@@ -4672,6 +4858,16 @@
         "reverseSshConnectivity": {
           "$ref": "ReverseSshConnectivity",
           "description": "The details needed to communicate to the source over Reverse SSH tunnel connectivity."
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Zone Isolation compliance state of the resource.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Zone Separation compliance state of the resource.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "source": {
           "description": "Required. The resource name (URI) of the source connection profile.",
@@ -4752,6 +4948,100 @@
         "vpcPeeringConnectivity": {
           "$ref": "VpcPeeringConnectivity",
           "description": "The details of the VPC network that the source database is located in."
+        }
+      },
+      "type": "object"
+    },
+    "MigrationJobObject": {
+      "description": "A specific Migration Job Object (e.g. a specifc DB Table)",
+      "id": "MigrationJobObject",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation time of the migration job object.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Output only. The error details in case of failure.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "The object's name.",
+          "type": "string"
+        },
+        "phase": {
+          "description": "Output only. The phase of the migration job object.",
+          "enum": [
+            "PHASE_UNSPECIFIED",
+            "FULL_DUMP",
+            "CDC",
+            "READY_FOR_PROMOTE",
+            "PROMOTE_IN_PROGRESS",
+            "PROMOTED",
+            "DIFF_BACKUP"
+          ],
+          "enumDescriptions": [
+            "The phase of the migration job is unknown.",
+            "The migration job object is in the full dump phase.",
+            "The migration job object is in CDC phase.",
+            "The migration job object is ready to be promoted.",
+            "The migration job object is in running the promote phase.",
+            "The migration job is promoted.",
+            "The migration job object is in the differential backup phase."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceObject": {
+          "$ref": "SourceObjectIdentifier",
+          "description": "The object identifier in the data source."
+        },
+        "state": {
+          "description": "The state of the migration job object.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NOT_STARTED",
+            "RUNNING",
+            "STOPPING",
+            "STOPPED",
+            "RESTARTING",
+            "FAILED",
+            "REMOVING",
+            "NOT_SELECTED",
+            "COMPLETED"
+          ],
+          "enumDescriptions": [
+            "The state of the migration job object is unknown.",
+            "The migration job object is not started.",
+            "The migration job object is running.",
+            "The migration job object is being stopped.",
+            "The migration job object is currently stopped.",
+            "The migration job object is restarting.",
+            "The migration job object failed.",
+            "The migration job object is deleting.",
+            "The migration job object is not selected for migration.",
+            "The migration job object is completed."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The last update time of the migration job object.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MigrationJobObjectsConfig": {
+      "description": "Configuration for the objects to be migrated.",
+      "id": "MigrationJobObjectsConfig",
+      "properties": {
+        "sourceObjectsConfig": {
+          "$ref": "SourceObjectsConfig",
+          "description": "The list of the migration job objects."
         }
       },
       "type": "object"
@@ -5255,6 +5545,10 @@
           "description": "If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.",
           "type": "string"
         },
+        "database": {
+          "description": "Optional. The name of the specific database within the host.",
+          "type": "string"
+        },
         "host": {
           "description": "Required. The IP or hostname of the source PostgreSQL database.",
           "type": "string"
@@ -5400,6 +5694,16 @@
           "description": "The name of the resource.",
           "type": "string"
         },
+        "satisfiesPzi": {
+          "description": "Output only. Zone Isolation compliance state of the resource.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Zone Separation compliance state of the resource.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "state": {
           "description": "Output only. The state of the private connection.",
           "enum": [
@@ -5461,13 +5765,26 @@
     "PromoteMigrationJobRequest": {
       "description": "Request message for 'PromoteMigrationJob' request.",
       "id": "PromoteMigrationJobRequest",
-      "properties": {},
+      "properties": {
+        "objectsFilter": {
+          "$ref": "MigrationJobObjectsConfig",
+          "description": "Optional. The object filter to apply to the migration job."
+        }
+      },
       "type": "object"
     },
     "RestartMigrationJobRequest": {
       "description": "Request message for 'RestartMigrationJob' request.",
       "id": "RestartMigrationJobRequest",
       "properties": {
+        "objectsFilter": {
+          "$ref": "MigrationJobObjectsConfig",
+          "description": "Optional. The object filter to apply to the migration job."
+        },
+        "restartFailedObjects": {
+          "description": "Optional. If true, only failed objects will be restarted.",
+          "type": "boolean"
+        },
         "skipValidation": {
           "description": "Optional. Restart the migration job without running prior configuration verification. Defaults to `false`.",
           "type": "boolean"
@@ -5829,6 +6146,68 @@
       },
       "type": "object"
     },
+    "SourceObjectConfig": {
+      "description": "Config for a single migration job object.",
+      "id": "SourceObjectConfig",
+      "properties": {
+        "objectIdentifier": {
+          "$ref": "SourceObjectIdentifier",
+          "description": "Optional. The object identifier."
+        }
+      },
+      "type": "object"
+    },
+    "SourceObjectIdentifier": {
+      "description": "An identifier for the Migration Job Object.",
+      "id": "SourceObjectIdentifier",
+      "properties": {
+        "database": {
+          "description": "Optional. The database name. This will be required only if the object uses a database name as part of its unique identifier.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of the migration job object.",
+          "enum": [
+            "MIGRATION_JOB_OBJECT_TYPE_UNSPECIFIED",
+            "DATABASE"
+          ],
+          "enumDescriptions": [
+            "The type of the migration job object is unknown.",
+            "The migration job object is a database."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SourceObjectsConfig": {
+      "description": "List of configurations for the source objects to be migrated.",
+      "id": "SourceObjectsConfig",
+      "properties": {
+        "objectConfigs": {
+          "description": "Optional. The list of the objects to be migrated.",
+          "items": {
+            "$ref": "SourceObjectConfig"
+          },
+          "type": "array"
+        },
+        "objectsSelectionType": {
+          "description": "Optional. The objects selection type of the migration job.",
+          "enum": [
+            "OBJECTS_SELECTION_TYPE_UNSPECIFIED",
+            "ALL_OBJECTS",
+            "SPECIFIED_OBJECTS"
+          ],
+          "enumDescriptions": [
+            "The type of the objects selection is unknown, indicating that the migration job is at instance level.",
+            "Migrate all of the objects.",
+            "Migrate specific objects."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SourceSqlChange": {
       "description": "Options to configure rule type SourceSqlChange. The rule is used to alter the sql code for database entities. The rule filter field can refer to one entity. The rule scope can be: StoredProcedure, Function, Trigger, View",
       "id": "SourceSqlChange",
@@ -6004,15 +6383,15 @@
       "id": "SqlServerEncryptionOptions",
       "properties": {
         "certPath": {
-          "description": "Required. Path to certificate.",
+          "description": "Required. Path to the Certificate (.cer) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file.",
           "type": "string"
         },
         "pvkPassword": {
-          "description": "Required. Input only. Private key password.",
+          "description": "Required. Input only. Password that encrypts the private key.",
           "type": "string"
         },
         "pvkPath": {
-          "description": "Required. Path to certificate private key.",
+          "description": "Required. Path to the Certificate Private Key (.pvk) in Cloud Storage, in the form `gs://bucketName/fileName`. The instance must have write permissions to the bucket and read access to the file.",
           "type": "string"
         }
       },
@@ -6072,18 +6451,21 @@
           "type": "string"
         },
         "type": {
-          "description": "Output only. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.",
+          "description": "Optional. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.",
           "enum": [
             "SSL_TYPE_UNSPECIFIED",
             "SERVER_ONLY",
-            "SERVER_CLIENT"
+            "SERVER_CLIENT",
+            "REQUIRED",
+            "NONE"
           ],
           "enumDescriptions": [
             "Unspecified.",
             "Only 'ca_certificate' specified.",
-            "Both server ('ca_certificate'), and client ('client_key', 'client_certificate') specified."
+            "Both server ('ca_certificate'), and client ('client_key', 'client_certificate') specified.",
+            "Mandates SSL encryption for all connections. This doesn’t require certificate verification.",
+            "Connection is not encrypted."
           ],
-          "readOnly": true,
           "type": "string"
         }
       },
