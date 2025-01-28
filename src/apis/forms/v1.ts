@@ -690,6 +690,10 @@ export namespace forms_v1 {
      */
     questionId?: string | null;
     /**
+     * A respondent can choose a rating from a pre-defined set of icons.
+     */
+    ratingQuestion?: Schema$RatingQuestion;
+    /**
      * Whether the question must be answered in order for a respondent to submit their response.
      */
     required?: boolean | null;
@@ -748,6 +752,19 @@ export namespace forms_v1 {
      * Whether this form is a quiz or not. When true, responses are graded based on question Grading. Upon setting to false, all question Grading is deleted.
      */
     isQuiz?: boolean | null;
+  }
+  /**
+   * A rating question. The user has a range of icons to choose from.
+   */
+  export interface Schema$RatingQuestion {
+    /**
+     * Required. The icon type to use for the rating.
+     */
+    iconType?: string | null;
+    /**
+     * Required. The rating scale level of the rating question.
+     */
+    ratingScaleLevel?: number | null;
   }
   /**
    * Renew an existing Watch for seven days.
