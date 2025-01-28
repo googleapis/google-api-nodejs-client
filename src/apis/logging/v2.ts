@@ -327,7 +327,7 @@ export namespace logging_v2 {
    */
   export interface Schema$CopyLogEntriesRequest {
     /**
-     * Required. Destination to which to copy log entries.
+     * Required. Destination to which to copy log entries. For example: "storage.googleapis.com/GCS_BUCKET"
      */
     destination?: string | null;
     /**
@@ -1214,11 +1214,11 @@ export namespace logging_v2 {
      */
     description?: string | null;
     /**
-     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     * Output only. The resource name of the log scope.Log scopes are only available in the global location. For example:projects/my-project/locations/global/logScopes/my-log-scope
      */
     name?: string | null;
     /**
-     * Required. Names of one or more parent resources: projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 50 projects and a maximum of 100 resources in total.
+     * Required. Names of one or more parent resources: projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 5 projects and a maximum of 100 resources in total.
      */
     resourceNames?: string[] | null;
     /**
@@ -11047,7 +11047,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$Logscopes$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     * Output only. The resource name of the log scope.Log scopes are only available in the global location. For example:projects/my-project/locations/global/logScopes/my-log-scope
      */
     name?: string;
     /**
@@ -19498,7 +19498,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$Logscopes$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     * Output only. The resource name of the log scope.Log scopes are only available in the global location. For example:projects/my-project/locations/global/logScopes/my-log-scope
      */
     name?: string;
     /**
@@ -24865,7 +24865,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$Logscopes$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the log scope.For example:projects/my-project/locations/global/logScopes/my-log-scope
+     * Output only. The resource name of the log scope.Log scopes are only available in the global location. For example:projects/my-project/locations/global/logScopes/my-log-scope
      */
     name?: string;
     /**
