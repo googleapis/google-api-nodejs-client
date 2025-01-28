@@ -1641,10 +1641,6 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1CustomConfig {
     /**
-     * The CEL policy spec attached to the custom module.
-     */
-    celPolicy?: Schema$CelPolicySpec;
-    /**
      * Custom output properties.
      */
     customOutput?: Schema$GoogleCloudSecuritycenterV1CustomOutputSpec;
