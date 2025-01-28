@@ -440,7 +440,7 @@
       }
     }
   },
-  "revision": "20240825",
+  "revision": "20241117",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -1007,6 +1007,12 @@
       },
       "type": "object"
     },
+    "EmptyFilter": {
+      "description": "Filter for empty values.",
+      "id": "EmptyFilter",
+      "properties": {},
+      "type": "object"
+    },
     "Filter": {
       "description": "An expression to filter dimension or metric values.",
       "id": "Filter",
@@ -1014,6 +1020,10 @@
         "betweenFilter": {
           "$ref": "BetweenFilter",
           "description": "A filter for two values."
+        },
+        "emptyFilter": {
+          "$ref": "EmptyFilter",
+          "description": "A filter for empty values such as \"(not set)\" and \"\" values."
         },
         "fieldName": {
           "description": "The dimension name or metric name. In most methods, dimensions & metrics can be used for the first time in this field. However in a RunPivotReportRequest, this field must be additionally specified by name in the RunPivotReportRequest's dimensions or metrics.",
