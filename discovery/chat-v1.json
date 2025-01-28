@@ -4932,10 +4932,10 @@
         },
         "permissionSettings": {
           "$ref": "PermissionSettings",
-          "description": "Optional. Exact permission settings which can be set to update the space. Input for updating a space. Otherwise, output only. For space creation, use `predefined_permission_settings` instead."
+          "description": "Optional. Space permission settings for existing spaces. Input for updating exact space permission settings, where existing permission settings are replaced. Output lists current permission settings. Reading and updating permission settings supports: - In [Developer Preview](https://developers.google.com/workspace/preview), [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with [administrator approval](https://support.google.com/a?p=chat-app-auth) with the `chat.app.spaces` scope. Only populated and settable when the Chat app created the space. - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)"
         },
         "predefinedPermissionSettings": {
-          "description": "Optional. Input only. Space permission settings. Input for creating a space, a collaboration space is created if this field is not set. After you create the space, settings are populated in the `PermissionSettings` field.",
+          "description": "Optional. Input only. Predefined space permission settings, input only when creating a space. If the field is not set, a collaboration space is created. After you create the space, settings are populated in the `PermissionSettings` field. Setting predefined permission settings supports: - In [Developer Preview](https://developers.google.com/workspace/preview), [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with [administrator approval](https://support.google.com/a?p=chat-app-auth) with the `chat.app.spaces` or `chat.app.spaces.create` scopes. - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user)",
           "enum": [
             "PREDEFINED_PERMISSION_SETTINGS_UNSPECIFIED",
             "COLLABORATION_SPACE",
