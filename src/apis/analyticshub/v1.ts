@@ -127,7 +127,7 @@ export namespace analyticshub_v1 {
   }
 
   /**
-   * Information about an associated Analytics Hub subscription (https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
+   * Information about an associated [Analytics Hub subscription](https://cloud.google.com/bigquery/docs/analytics-hub-manage-subscriptions).
    */
   export interface Schema$AnalyticsHubSubscriptionInfo {
     /**
@@ -478,6 +478,46 @@ export namespace analyticshub_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * Commercial info contains the information about the commercial data products associated with the listing.
+   */
+  export interface Schema$GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo {
+    /**
+     * Output only. Details of the Marketplace Data Product associated with the Listing.
+     */
+    cloudMarketplace?: Schema$GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo;
+  }
+  /**
+   * Specifies the details of the Marketplace Data Product associated with the Listing.
+   */
+  export interface Schema$GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfoGoogleCloudMarketplaceInfo {
+    /**
+     * Output only. Commercial state of the Marketplace Data Product.
+     */
+    commercialState?: string | null;
+    /**
+     * Output only. Resource name of the commercial service associated with the Marketplace Data Product. e.g. example.com
+     */
+    service?: string | null;
+  }
+  /**
+   * Commercial info metadata for this subscription.
+   */
+  export interface Schema$GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo {
+    /**
+     * Output only. This is set when the subscription is commercialised via Cloud Marketplace.
+     */
+    cloudMarketplace?: Schema$GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo;
+  }
+  /**
+   * Cloud Marketplace commercial metadata for this subscription.
+   */
+  export interface Schema$GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfoGoogleCloudMarketplaceInfo {
+    /**
+     * Resource name of the Marketplace Order.
+     */
+    order?: string | null;
+  }
+  /**
    * A subscription resource. If none of `push_config`, `bigquery_config`, or `cloud_storage_config` is set, then the subscriber will pull and ack messages using API methods. At most one of these fields may be set.
    */
   export interface Schema$GooglePubsubV1Subscription {
@@ -596,6 +636,10 @@ export namespace analyticshub_v1 {
      * Optional. Categories of the listing. Up to two categories are allowed.
      */
     categories?: string[] | null;
+    /**
+     * Output only. Commercial info contains the information about the commercial data products associated with the listing.
+     */
+    commercialInfo?: Schema$GoogleCloudBigqueryAnalyticshubV1ListingCommercialInfo;
     /**
      * Optional. Details of the data provider who owns the source data.
      */
@@ -934,6 +978,10 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$SelectedResource {
     /**
+     * Optional. Format: For routine: `projects/{projectId\}/datasets/{datasetId\}/routines/{routineId\}` Example:"projects/test_project/datasets/test_dataset/routines/test_routine"
+     */
+    routine?: string | null;
+    /**
      * Optional. Format: For table: `projects/{projectId\}/datasets/{datasetId\}/tables/{tableId\}` Example:"projects/test_project/datasets/test_dataset/tables/test_table"
      */
     table?: string | null;
@@ -990,6 +1038,10 @@ export namespace analyticshub_v1 {
      */
     destination?: string | null;
     /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     */
+    destinationDataset?: Schema$DestinationDataset;
+    /**
      * Email of the subscriber.
      */
     subscriberContact?: string | null;
@@ -1033,6 +1085,10 @@ export namespace analyticshub_v1 {
    * A subscription represents a subscribers' access to a particular set of published data. It contains references to associated listings, data exchanges, and linked datasets.
    */
   export interface Schema$Subscription {
+    /**
+     * Output only. This is set if this is a commercial subscription i.e. if this subscription was created from subscribing to a commercial listing.
+     */
+    commercialInfo?: Schema$GoogleCloudBigqueryAnalyticshubV1SubscriptionCommercialInfo;
     /**
      * Output only. Timestamp when the subscription was created.
      */
