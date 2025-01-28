@@ -464,7 +464,7 @@
                 "operations": {
                   "methods": {
                     "cancel": {
-                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/global/operations/{operationsId}:cancel",
                       "httpMethod": "POST",
                       "id": "networkmanagement.projects.locations.global.operations.cancel",
@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20250108",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -783,6 +783,7 @@
             "PERMISSION_DENIED",
             "PERMISSION_DENIED_NO_CLOUD_NAT_CONFIGS",
             "PERMISSION_DENIED_NO_NEG_ENDPOINT_CONFIGS",
+            "PERMISSION_DENIED_NO_CLOUD_ROUTER_CONFIGS",
             "NO_SOURCE_LOCATION",
             "INVALID_ARGUMENT",
             "TRACE_TOO_LONG",
@@ -839,6 +840,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -857,6 +859,7 @@
             "Aborted because user lacks permission to access all or part of the network configurations required to run the test.",
             "Aborted because user lacks permission to access Cloud NAT configs required to run the test.",
             "Aborted because user lacks permission to access Network endpoint group endpoint configs required to run the test.",
+            "Aborted because user lacks permission to access Cloud Router configs required to run the test.",
             "Aborted because no valid source or destination endpoint is derived from the input test request.",
             "Aborted because the source or destination endpoint specified in the request is invalid. Some examples: - The request might contain malformed resource URI, project ID, or IP address. - The request might contain inconsistent information (for example, the request might include both the instance and the network, but the instance might not have a NIC in that network).",
             "Aborted because the number of steps in the trace exceeds a certain limit. It might be caused by a routing loop.",
@@ -1066,11 +1069,6 @@
           "description": "Location in which this revision is deployed.",
           "type": "string"
         },
-        "serviceName": {
-          "deprecated": true,
-          "description": "ID of Cloud Run Service this revision belongs to. Was never set, is not exported to v1 proto and public protos. Do not export to v1beta1 public proto.",
-          "type": "string"
-        },
         "serviceUri": {
           "description": "URI of Cloud Run service this revision belongs to.",
           "type": "string"
@@ -1171,6 +1169,15 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "returnReachabilityDetails": {
+          "$ref": "ReachabilityDetails",
+          "description": "Output only. The reachability details of this test from the latest run for the return path. The details are updated when creating a new test, updating an existing test, or triggering a one-time rerun of an existing test.",
+          "readOnly": true
+        },
+        "roundTrip": {
+          "description": "Whether run analysis for the return path from destination to source. Default value is false.",
+          "type": "boolean"
         },
         "source": {
           "$ref": "Endpoint",
@@ -1341,7 +1348,8 @@
             "REDIS_CLUSTER_UNSUPPORTED_PROTOCOL",
             "NO_ADVERTISED_ROUTE_TO_GCP_DESTINATION",
             "NO_TRAFFIC_SELECTOR_TO_GCP_DESTINATION",
-            "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION"
+            "NO_KNOWN_ROUTE_FROM_PEERED_NETWORK_TO_DESTINATION",
+            "PRIVATE_NAT_TO_PSC_ENDPOINT_UNSUPPORTED"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1410,7 +1418,7 @@
             "Packet sent to a load balancer, which requires a proxy-only subnet and the subnet is not found.",
             "Packet sent to Cloud Nat without active NAT IPs.",
             "Packet is stuck in a routing loop.",
-            "Packet is dropped due to an unspecified reason inside a Google-managed service. Used only for return traces.",
+            "Packet is dropped inside a Google-managed service due to being delivered in return trace to an endpoint that doesn't match the endpoint the packet was sent from in forward trace. Used only for return traces.",
             "Packet is dropped due to a load balancer backend instance not having a network interface in the network expected by the load balancer.",
             "Packet is dropped due to a backend service named port not being defined on the instance group level.",
             "Packet is dropped due to a destination IP range being part of a Private NAT IP range.",
@@ -1426,7 +1434,8 @@
             "Packet is dropped due to an unsupported protocol being used to connect to a Redis Cluster. Only TCP connections are accepted by a Redis Cluster.",
             "Packet from the non-GCP (on-prem) or unknown GCP network is dropped due to the destination IP address not belonging to any IP prefix advertised via BGP by the Cloud Router.",
             "Packet from the non-GCP (on-prem) or unknown GCP network is dropped due to the destination IP address not belonging to any IP prefix included to the local traffic selector of the VPN tunnel.",
-            "Packet from the unknown peered network is dropped due to no known route from the source network to the destination IP address."
+            "Packet from the unknown peered network is dropped due to no known route from the source network to the destination IP address.",
+            "Sending packets processed by the Private NAT Gateways to the Private Service Connect endpoints is not supported."
           ],
           "type": "string"
         },
@@ -1470,6 +1479,10 @@
       "description": "Source or destination of the Connectivity Test.",
       "id": "Endpoint",
       "properties": {
+        "alloyDbInstance": {
+          "description": "An [AlloyDB Instance](https://cloud.google.com/alloydb) URI.",
+          "type": "string"
+        },
         "appEngineVersion": {
           "$ref": "AppEngineVersionEndpoint",
           "description": "An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions)."
@@ -1509,8 +1522,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "fqdn": {
+          "description": "DNS endpoint of [Google Kubernetes Engine cluster control plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture). Requires gke_master_cluster to be set, can't be used simultaneoulsly with ip_address or network. Applicable only to destination endpoint.",
+          "type": "string"
+        },
         "gkeMasterCluster": {
-          "description": "A cluster URI for [Google Kubernetes Engine master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).",
+          "description": "A cluster URI for [Google Kubernetes Engine cluster control plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).",
           "type": "string"
         },
         "instance": {
@@ -1686,7 +1703,8 @@
             "NETWORK_FIREWALL_POLICY_RULE",
             "NETWORK_REGIONAL_FIREWALL_POLICY_RULE",
             "UNSUPPORTED_FIREWALL_POLICY_RULE",
-            "TRACKING_STATE"
+            "TRACKING_STATE",
+            "ANALYSIS_SKIPPED"
           ],
           "enumDescriptions": [
             "Unspecified type.",
@@ -1697,7 +1715,8 @@
             "Global network firewall policy rule. For details, see [Network firewall policies](https://cloud.google.com/vpc/docs/network-firewall-policies).",
             "Regional network firewall policy rule. For details, see [Regional network firewall policies](https://cloud.google.com/firewall/docs/regional-firewall-policies).",
             "Firewall policy rule containing attributes not yet supported in Connectivity tests. Firewall analysis is skipped if such a rule can potentially be matched. Please see the [list of unsupported configurations](https://cloud.google.com/network-intelligence-center/docs/connectivity-tests/concepts/overview#unsupported-configs).",
-            "Tracking state for response traffic created when request traffic goes through allow firewall rule. For details, see [firewall rules specifications](https://cloud.google.com/firewall/docs/firewalls#specifications)"
+            "Tracking state for response traffic created when request traffic goes through allow firewall rule. For details, see [firewall rules specifications](https://cloud.google.com/firewall/docs/firewalls#specifications)",
+            "Firewall analysis was skipped due to executing Connectivity Test in the BypassFirewallChecks mode"
           ],
           "type": "string"
         },
@@ -1857,12 +1876,16 @@
           "description": "URI of a GKE cluster.",
           "type": "string"
         },
+        "dnsEndpoint": {
+          "description": "DNS endpoint of a GKE cluster control plane.",
+          "type": "string"
+        },
         "externalIp": {
-          "description": "External IP address of a GKE cluster master.",
+          "description": "External IP address of a GKE cluster control plane.",
           "type": "string"
         },
         "internalIp": {
-          "description": "Internal IP address of a GKE cluster master.",
+          "description": "Internal IP address of a GKE cluster control plane.",
           "type": "string"
         }
       },
@@ -2709,11 +2732,12 @@
       "id": "RouteInfo",
       "properties": {
         "advertisedRouteNextHopUri": {
-          "description": "For advertised routes, the URI of their next hop, i.e. the URI of the hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance) the advertised prefix is advertised through, or URI of the source peered network.",
+          "deprecated": true,
+          "description": "For ADVERTISED routes, the URI of their next hop, i.e. the URI of the hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance) the advertised prefix is advertised through, or URI of the source peered network. Deprecated in favor of the next_hop_uri field, not used in new tests.",
           "type": "string"
         },
         "advertisedRouteSourceRouterUri": {
-          "description": "For advertised dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix.",
+          "description": "For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix.",
           "type": "string"
         },
         "destIpRange": {
@@ -2721,7 +2745,7 @@
           "type": "string"
         },
         "destPortRanges": {
-          "description": "Destination port ranges of the route. Policy based routes only.",
+          "description": "Destination port ranges of the route. POLICY_BASED routes only.",
           "items": {
             "type": "string"
           },
@@ -2738,20 +2762,29 @@
           },
           "type": "array"
         },
+        "nccHubRouteUri": {
+          "description": "For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub, the URI of the corresponding route in NCC Hub's routing table.",
+          "type": "string"
+        },
         "nccHubUri": {
-          "description": "URI of a NCC Hub. NCC_HUB routes only.",
+          "description": "URI of the NCC Hub the route is advertised by. PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.",
           "type": "string"
         },
         "nccSpokeUri": {
-          "description": "URI of a NCC Spoke. NCC_HUB routes only.",
+          "description": "URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.",
           "type": "string"
         },
         "networkUri": {
-          "description": "URI of a Compute Engine network. NETWORK routes only.",
+          "description": "URI of a VPC network where route is located.",
           "type": "string"
         },
         "nextHop": {
-          "description": "Next hop of the route.",
+          "deprecated": true,
+          "description": "String type of the next hop of the route (for example, \"VPN tunnel\"). Deprecated in favor of the next_hop_type and next_hop_uri fields, not used in new tests.",
+          "type": "string"
+        },
+        "nextHopNetworkUri": {
+          "description": "URI of a VPC network where the next hop resource is located.",
           "type": "string"
         },
         "nextHopType": {
@@ -2776,16 +2809,28 @@
             "Next hop is an IP address.",
             "Next hop is a Compute Engine instance.",
             "Next hop is a VPC network gateway.",
-            "Next hop is a peering VPC.",
+            "Next hop is a peering VPC. This scenario only happens when the user doesn't have permissions to the project where the next hop resource is located.",
             "Next hop is an interconnect.",
             "Next hop is a VPN tunnel.",
             "Next hop is a VPN gateway. This scenario only happens when tracing connectivity from an on-premises network to Google Cloud through a VPN. The analysis simulates a packet departing from the on-premises network through a VPN tunnel and arriving at a Cloud VPN gateway.",
             "Next hop is an internet gateway.",
-            "Next hop is blackhole; that is, the next hop either does not exist or is not running.",
+            "Next hop is blackhole; that is, the next hop either does not exist or is unusable.",
             "Next hop is the forwarding rule of an Internal Load Balancer.",
             "Next hop is a [router appliance instance](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/ra-overview).",
-            "Next hop is an NCC hub."
+            "Next hop is an NCC hub. This scenario only happens when the user doesn't have permissions to the project where the next hop resource is located."
           ],
+          "type": "string"
+        },
+        "nextHopUri": {
+          "description": "URI of the next hop resource.",
+          "type": "string"
+        },
+        "originatingRouteDisplayName": {
+          "description": "For PEERING_SUBNET, PEERING_STATIC and PEERING_DYNAMIC routes, the name of the originating SUBNET/STATIC/DYNAMIC route.",
+          "type": "string"
+        },
+        "originatingRouteUri": {
+          "description": "For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating SUBNET/STATIC route.",
           "type": "string"
         },
         "priority": {
@@ -2794,18 +2839,19 @@
           "type": "integer"
         },
         "protocols": {
-          "description": "Protocols of the route. Policy based routes only.",
+          "description": "Protocols of the route. POLICY_BASED routes only.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "region": {
-          "description": "Region of the route (if applicable).",
+          "description": "Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED routes only. If set for POLICY_BASED route, this is a region of VLAN attachments for Cloud Interconnect the route applies to.",
           "type": "string"
         },
         "routeScope": {
-          "description": "Indicates where route is applicable.",
+          "deprecated": true,
+          "description": "Indicates where route is applicable. Deprecated, routes with NCC_HUB scope are not included in the trace in new tests.",
           "enum": [
             "ROUTE_SCOPE_UNSPECIFIED",
             "NETWORK",
@@ -2836,27 +2882,27 @@
             "Route is a subnet route automatically created by the system.",
             "Static route created by the user, including the default route to the internet.",
             "Dynamic route exchanged between BGP peers.",
-            "A subnet route received from peering network.",
+            "A subnet route received from peering network or NCC Hub.",
             "A static route received from peering network.",
-            "A dynamic route received from peering network.",
+            "A dynamic route received from peering network or NCC Hub.",
             "Policy based route.",
             "Advertised route. Synthetic route which is used to transition from the StartFromPrivateNetwork state in Connectivity tests."
           ],
           "type": "string"
         },
         "srcIpRange": {
-          "description": "Source IP address range of the route. Policy based routes only.",
+          "description": "Source IP address range of the route. POLICY_BASED routes only.",
           "type": "string"
         },
         "srcPortRanges": {
-          "description": "Source port ranges of the route. Policy based routes only.",
+          "description": "Source port ranges of the route. POLICY_BASED routes only.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "uri": {
-          "description": "URI of a route (if applicable).",
+          "description": "URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.",
           "type": "string"
         }
       },
@@ -3332,6 +3378,21 @@
             "When ENABLED, this configuration will generate logs.",
             "When DISABLED, this configuration will not generate logs."
           ],
+          "type": "string"
+        },
+        "targetResourceState": {
+          "description": "Output only. A diagnostic bit - describes the state of the configured target resource for diagnostic purposes.",
+          "enum": [
+            "TARGET_RESOURCE_STATE_UNSPECIFIED",
+            "TARGET_RESOURCE_EXISTS",
+            "TARGET_RESOURCE_DOES_NOT_EXIST"
+          ],
+          "enumDescriptions": [
+            "Unspecified target resource state.",
+            "Indicates that the target resource exists.",
+            "Indicates that the target resource does not exist."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
