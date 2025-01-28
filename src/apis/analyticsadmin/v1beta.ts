@@ -671,7 +671,7 @@ export namespace analyticsadmin_v1beta {
    */
   export interface Schema$GoogleAnalyticsAdminV1betaDataRetentionSettings {
     /**
-     * The length of time that event-level data is retained.
+     * Required. The length of time that event-level data is retained.
      */
     eventDataRetention?: string | null;
     /**
@@ -682,6 +682,10 @@ export namespace analyticsadmin_v1beta {
      * If true, reset the retention period for the user identifier with every event from that user.
      */
     resetUserDataOnNewActivity?: boolean | null;
+    /**
+     * Required. The length of time that user-level data is retained.
+     */
+    userDataRetention?: string | null;
   }
   /**
    * A resource message representing data sharing settings of a Google Analytics account.
@@ -1260,7 +1264,7 @@ export namespace analyticsadmin_v1beta {
      */
     latestChangeTime?: string | null;
     /**
-     * Optional. The maximum number of ChangeHistoryEvent items to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 items will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
+     * Optional. The maximum number of ChangeHistoryEvent items to return. If unspecified, at most 50 items will be returned. The maximum value is 200 (higher values will be coerced to the maximum). Note that the service may return a page with fewer items than this value specifies (potentially even zero), and that there still may be additional pages. If you want a particular number of items, you'll need to continue requesting additional pages using `page_token` until you get the needed number.
      */
     pageSize?: number | null;
     /**
@@ -1962,7 +1966,7 @@ export namespace analyticsadmin_v1beta {
     }
 
     /**
-     * Searches through all changes to an account or its children given the specified set of filters.
+     * Searches through all changes to an account or its children given the specified set of filters. Only returns the subset of changes supported by the API. The UI may return additional changes.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
