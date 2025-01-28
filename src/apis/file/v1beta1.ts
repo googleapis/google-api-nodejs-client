@@ -513,10 +513,6 @@ export namespace file_v1beta1 {
      */
     capacityStepSizeGb?: string | null;
     /**
-     * Output only. Indicates whether this instance's performance is configurable. If enabled, adjust it using the 'performance_config' field.
-     */
-    configurablePerformanceEnabled?: boolean | null;
-    /**
      * Output only. The time when the instance was created.
      */
     createTime?: string | null;
