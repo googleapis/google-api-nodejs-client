@@ -140,8 +140,6 @@ export namespace content_v2_1 {
     returnaddress: Resource$Returnaddress;
     returnpolicy: Resource$Returnpolicy;
     returnpolicyonline: Resource$Returnpolicyonline;
-    settlementreports: Resource$Settlementreports;
-    settlementtransactions: Resource$Settlementtransactions;
     shippingsettings: Resource$Shippingsettings;
     shoppingadsprogram: Resource$Shoppingadsprogram;
 
@@ -183,10 +181,6 @@ export namespace content_v2_1 {
       this.returnaddress = new Resource$Returnaddress(this.context);
       this.returnpolicy = new Resource$Returnpolicy(this.context);
       this.returnpolicyonline = new Resource$Returnpolicyonline(this.context);
-      this.settlementreports = new Resource$Settlementreports(this.context);
-      this.settlementtransactions = new Resource$Settlementtransactions(
-        this.context
-      );
       this.shippingsettings = new Resource$Shippingsettings(this.context);
       this.shoppingadsprogram = new Resource$Shoppingadsprogram(this.context);
     }
@@ -1276,9 +1270,6 @@ export namespace content_v2_1 {
      * Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 40.
      */
     attributionLookbackWindowInDays?: number | null;
-    /**
-     * Required. Attribution model.
-     */
     attributionModel?: string | null;
     /**
      * Immutable. Unordered list. List of different conversion types a conversion event can be classified as. A standard "purchase" type will be automatically created if this list is empty at creation time.
@@ -3342,6 +3333,10 @@ export namespace content_v2_1 {
      */
     programLabel?: string | null;
     /**
+     * Optional. The shipping label for the loyalty program. You can use this label to indicate whether this offer has the loyalty shipping benefit. If not specified, the item is not eligible for loyalty shipping for the given loyalty tier.
+     */
+    shippingLabel?: string | null;
+    /**
      * Required. The label of the tier within the loyalty program. Must match one of the labels within the program.
      */
     tierLabel?: string | null;
@@ -4594,6 +4589,10 @@ export namespace content_v2_1 {
      */
     subscriptionCost?: Schema$ProductSubscriptionCost;
     /**
+     * Optional. The list of sustainability incentive programs.
+     */
+    sustainabilityIncentives?: Schema$ProductSustainabilityIncentive[];
+    /**
      * Required. The CLDR territory code for the item's country of sale.
      */
     targetCountry?: string | null;
@@ -5174,6 +5173,23 @@ export namespace content_v2_1 {
      * The number of subscription periods the buyer has to pay.
      */
     periodLength?: string | null;
+  }
+  /**
+   * Information regarding sustainability related incentive programs such as rebates or tax relief.
+   */
+  export interface Schema$ProductSustainabilityIncentive {
+    /**
+     * Optional. The fixed amount of the incentive.
+     */
+    amount?: Schema$Price;
+    /**
+     * Optional. The percentage of the sale price that the incentive is applied to.
+     */
+    percentage?: number | null;
+    /**
+     * Required. Sustainability incentive program.
+     */
+    type?: string | null;
   }
   export interface Schema$ProductTax {
     /**
@@ -6686,147 +6702,6 @@ export namespace content_v2_1 {
     minute?: string | null;
   }
   /**
-   *  Settlement reports detail order-level and item-level credits and debits between you and Google.
-   */
-  export interface Schema$SettlementReport {
-    /**
-     * The end date on which all transactions are included in the report, in ISO 8601 format.
-     */
-    endDate?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementReport`"
-     */
-    kind?: string | null;
-    /**
-     * The residual amount from the previous invoice. This is set only if the previous invoices are not paid because of negative balance.
-     */
-    previousBalance?: Schema$Price;
-    /**
-     * The ID of the settlement report.
-     */
-    settlementId?: string | null;
-    /**
-     * The start date on which all transactions are included in the report, in ISO 8601 format.
-     */
-    startDate?: string | null;
-    /**
-     * The money due to the merchant.
-     */
-    transferAmount?: Schema$Price;
-    /**
-     * Date on which transfer for this payment was initiated by Google, in ISO 8601 format.
-     */
-    transferDate?: string | null;
-    /**
-     * The list of bank identifiers used for the transfer. For example, Trace ID for Federal Automated Clearing House (ACH). This may also be known as the Wire ID.
-     */
-    transferIds?: string[] | null;
-  }
-  export interface Schema$SettlementreportsListResponse {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementreportsListResponse`".
-     */
-    kind?: string | null;
-    /**
-     * The token for the retrieval of the next page of returns.
-     */
-    nextPageToken?: string | null;
-    resources?: Schema$SettlementReport[];
-  }
-  /**
-   * Settlement transactions give a detailed breakdown of the settlement report.
-   */
-  export interface Schema$SettlementTransaction {
-    /**
-     * The amount for the transaction.
-     */
-    amount?: Schema$SettlementTransactionAmount;
-    /**
-     * Identifiers of the transaction.
-     */
-    identifiers?: Schema$SettlementTransactionIdentifiers;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementTransaction`"
-     */
-    kind?: string | null;
-    /**
-     * Details of the transaction.
-     */
-    transaction?: Schema$SettlementTransactionTransaction;
-  }
-  export interface Schema$SettlementTransactionAmount {
-    commission?: Schema$SettlementTransactionAmountCommission;
-    /**
-     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`issueRelatedRefundAndReplacementAmountDescription`" - "`refundFromMerchant`" - "`returnLabelShippingFee`" - "`lumpSumCorrection`" - "`pspFee`" - "`principalRefundDoesNotFit`" - "`principalRefundOrderedWrongItem`" - "`principalRefundQualityNotExpected`" - "`principalRefundBetterPriceFound`" - "`principalRefundNoLongerNeeded`" - "`principalRefundChangedMind`" - "`principalRefundReceivedTooLate`" - "`principalRefundIncorrectItemReceived`" - "`principalRefundDamagedOrDefectiveItem`" - "`principalRefundDidNotMatchDescription`" - "`principalRefundExpiredItem`"
-     */
-    description?: string | null;
-    /**
-     * The amount that contributes to the line item price.
-     */
-    transactionAmount?: Schema$Price;
-    /**
-     * The type of the amount. Acceptable values are: - "`itemPrice`" - "`orderPrice`" - "`refund`" - "`earlyRefund`" - "`courtesyRefund`" - "`returnRefund`" - "`returnLabelShippingFeeAmount`" - "`lumpSumCorrectionAmount`"
-     */
-    type?: string | null;
-  }
-  export interface Schema$SettlementTransactionAmountCommission {
-    /**
-     * The category of the commission. Acceptable values are: - "`animalsAndPetSupplies`" - "`dogCatFoodAndCatLitter`" - "`apparelAndAccessories`" - "`shoesHandbagsAndSunglasses`" - "`costumesAndAccessories`" - "`jewelry`" - "`watches`" - "`hobbiesArtsAndCrafts`" - "`homeAndGarden`" - "`entertainmentCollectibles`" - "`collectibleCoins`" - "`sportsCollectibles`" - "`sportingGoods`" - "`toysAndGames`" - "`musicalInstruments`" - "`giftCards`" - "`babyAndToddler`" - "`babyFoodWipesAndDiapers`" - "`businessAndIndustrial`" - "`camerasOpticsAndPhotography`" - "`consumerElectronics`" - "`electronicsAccessories`" - "`personalComputers`" - "`videoGameConsoles`" - "`foodAndGrocery`" - "`beverages`" - "`tobaccoProducts`" - "`furniture`" - "`hardware`" - "`buildingMaterials`" - "`tools`" - "`healthAndPersonalCare`" - "`beauty`" - "`householdSupplies`" - "`kitchenAndDining`" - "`majorAppliances`" - "`luggageAndBags`" - "`media`" - "`officeSupplies`" - "`softwareAndVideoGames`" - "`vehiclePartsAndAccessories`" - "`vehicleTiresAndWheels`" - "`vehicles`" - "`everythingElse`"
-     */
-    category?: string | null;
-    /**
-     * Rate of the commission in percentage.
-     */
-    rate?: string | null;
-  }
-  export interface Schema$SettlementTransactionIdentifiers {
-    /**
-     * The identifier of the adjustments, if it's available.
-     */
-    adjustmentId?: string | null;
-    /**
-     * The merchant provided order ID.
-     */
-    merchantOrderId?: string | null;
-    /**
-     * The identifier of the item.
-     */
-    orderItemId?: string | null;
-    /**
-     * The unique ID of the settlement transaction entry.
-     */
-    settlementEntryId?: string | null;
-    /**
-     * The shipment ids for the item.
-     */
-    shipmentIds?: string[] | null;
-    /**
-     * The Google transaction ID.
-     */
-    transactionId?: string | null;
-  }
-  export interface Schema$SettlementtransactionsListResponse {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementtransactionsListResponse`".
-     */
-    kind?: string | null;
-    /**
-     * The token for the retrieval of the next page of returns.
-     */
-    nextPageToken?: string | null;
-    resources?: Schema$SettlementTransaction[];
-  }
-  export interface Schema$SettlementTransactionTransaction {
-    /**
-     * The time on which the event occurred in ISO 8601 format.
-     */
-    postDate?: string | null;
-    /**
-     * The type of the transaction that occurred. Acceptable values are: - "`order`" - "`reversal`" - "`orderRefund`" - "`reversalRefund`" - "`issueRelatedRefundAndReplacement`" - "`returnLabelShippingFeeTransaction`" - "`reversalIssueRelatedRefundAndReplacement`" - "`reversalReturnLabelShippingFeeTransaction`" - "`lumpSumCorrectionTransaction`"
-     */
-    type?: string | null;
-  }
-  /**
    * The merchant account's shipping settings. All methods except getsupportedcarriers and getsupportedholidays require the admin role.
    */
   export interface Schema$ShippingSettings {
@@ -7066,11 +6941,11 @@ export namespace content_v2_1 {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
   }
@@ -11667,7 +11542,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated.
      */
     updateMask?: string;
 
@@ -20752,363 +20627,6 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$ReturnPolicyOnline;
-  }
-
-  export class Resource$Settlementreports {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Retrieves a settlement report from your Merchant Center account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Settlementreports$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Settlementreports$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SettlementReport>;
-    get(
-      params: Params$Resource$Settlementreports$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Settlementreports$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$SettlementReport>,
-      callback: BodyResponseCallback<Schema$SettlementReport>
-    ): void;
-    get(
-      params: Params$Resource$Settlementreports$Get,
-      callback: BodyResponseCallback<Schema$SettlementReport>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$SettlementReport>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Settlementreports$Get
-        | BodyResponseCallback<Schema$SettlementReport>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SettlementReport>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SettlementReport>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SettlementReport> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Settlementreports$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Settlementreports$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2.1/{merchantId}/settlementreports/{settlementId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'settlementId'],
-        pathParams: ['merchantId', 'settlementId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SettlementReport>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SettlementReport>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves a list of settlement reports from your Merchant Center account.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Settlementreports$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Settlementreports$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SettlementreportsListResponse>;
-    list(
-      params: Params$Resource$Settlementreports$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Settlementreports$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SettlementreportsListResponse>,
-      callback: BodyResponseCallback<Schema$SettlementreportsListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Settlementreports$List,
-      callback: BodyResponseCallback<Schema$SettlementreportsListResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$SettlementreportsListResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Settlementreports$List
-        | BodyResponseCallback<Schema$SettlementreportsListResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SettlementreportsListResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SettlementreportsListResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SettlementreportsListResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Settlementreports$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Settlementreports$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/content/v2.1/{merchantId}/settlementreports'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId'],
-        pathParams: ['merchantId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SettlementreportsListResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SettlementreportsListResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Settlementreports$Get
-    extends StandardParameters {
-    /**
-     * The Merchant Center account of the settlement report.
-     */
-    merchantId?: string;
-    /**
-     * The Google-provided ID of the settlement.
-     */
-    settlementId?: string;
-  }
-  export interface Params$Resource$Settlementreports$List
-    extends StandardParameters {
-    /**
-     * The maximum number of settlements to return in the response, used for paging. The default value is 200 returns per page, and the maximum allowed value is 5000 returns per page.
-     */
-    maxResults?: number;
-    /**
-     * The Merchant Center account to list settlements for.
-     */
-    merchantId?: string;
-    /**
-     * The token returned by the previous request.
-     */
-    pageToken?: string;
-    /**
-     * Obtains settlements which have transactions before this date (inclusively), in ISO 8601 format.
-     */
-    transferEndDate?: string;
-    /**
-     * Obtains settlements which have transactions after this date (inclusively), in ISO 8601 format.
-     */
-    transferStartDate?: string;
-  }
-
-  export class Resource$Settlementtransactions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Retrieves a list of transactions for the settlement.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Settlementtransactions$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Settlementtransactions$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SettlementtransactionsListResponse>;
-    list(
-      params: Params$Resource$Settlementtransactions$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Settlementtransactions$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$SettlementtransactionsListResponse>,
-      callback: BodyResponseCallback<Schema$SettlementtransactionsListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Settlementtransactions$List,
-      callback: BodyResponseCallback<Schema$SettlementtransactionsListResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$SettlementtransactionsListResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Settlementtransactions$List
-        | BodyResponseCallback<Schema$SettlementtransactionsListResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SettlementtransactionsListResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SettlementtransactionsListResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SettlementtransactionsListResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Settlementtransactions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Settlementtransactions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/content/v2.1/{merchantId}/settlementreports/{settlementId}/transactions'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['merchantId', 'settlementId'],
-        pathParams: ['merchantId', 'settlementId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SettlementtransactionsListResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SettlementtransactionsListResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Settlementtransactions$List
-    extends StandardParameters {
-    /**
-     * The maximum number of transactions to return in the response, used for paging. The default value is 200 transactions per page, and the maximum allowed value is 5000 transactions per page.
-     */
-    maxResults?: number;
-    /**
-     * The Merchant Center account to list transactions for.
-     */
-    merchantId?: string;
-    /**
-     * The token returned by the previous request.
-     */
-    pageToken?: string;
-    /**
-     * The Google-provided ID of the settlement.
-     */
-    settlementId?: string;
-    /**
-     * The list of transactions to return. If not set, all transactions will be returned.
-     */
-    transactionIds?: string[];
   }
 
   export class Resource$Shippingsettings {
