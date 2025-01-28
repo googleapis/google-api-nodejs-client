@@ -189,7 +189,7 @@ export namespace developerconnect_v1 {
      */
     reconciling?: boolean | null;
     /**
-     * Output only. A system-assigned unique identifier for a the GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the Connection.
      */
     uid?: string | null;
     /**
@@ -440,7 +440,7 @@ export namespace developerconnect_v1 {
      */
     reconciling?: boolean | null;
     /**
-     * Output only. A system-assigned unique identifier for a the GitRepositoryLink.
+     * Output only. A system-assigned unique identifier for the GitRepositoryLink.
      */
     uid?: string | null;
     /**
@@ -451,6 +451,23 @@ export namespace developerconnect_v1 {
      * Output only. External ID of the webhook created for the repository.
      */
     webhookId?: string | null;
+  }
+  /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
   }
   /**
    * Represents an installation of the GitHub App.
@@ -635,7 +652,7 @@ export namespace developerconnect_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -650,6 +667,33 @@ export namespace developerconnect_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
+  }
+  /**
+   * RPC request object accepted by the ProcessGitHubEnterpriseWebhook RPC method.
+   */
+  export interface Schema$ProcessGitHubEnterpriseWebhookRequest {
+    /**
+     * Required. HTTP request body.
+     */
+    body?: Schema$HttpBody;
+  }
+  /**
+   * RPC request object accepted by the ProcessGitLabEnterpriseWebhook RPC method.
+   */
+  export interface Schema$ProcessGitLabEnterpriseWebhookRequest {
+    /**
+     * Required. HTTP request body.
+     */
+    body?: Schema$HttpBody;
+  }
+  /**
+   * RPC request object accepted by the ProcessGitLabWebhook RPC method.
+   */
+  export interface Schema$ProcessGitLabWebhookRequest {
+    /**
+     * Required. HTTP request body.
+     */
+    body?: Schema$HttpBody;
   }
   /**
    * ServiceDirectoryConfig represents Service Directory configuration for a connection.
@@ -1569,6 +1613,98 @@ export namespace developerconnect_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * ProcessGitHubEnterpriseWebhook is called by the external GitHub Enterprise instances for notifying events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    processGitHubEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    processGitHubEnterpriseWebhook(
+      params?: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    processGitHubEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    processGitHubEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitHubEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitHubEnterpriseWebhook(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitHubEnterpriseWebhook(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/connections:processGitHubEnterpriseWebhook'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Connections$Create
@@ -1681,7 +1817,7 @@ export namespace developerconnect_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Required. Field mask is used to specify the fields to be overwritten in the Connection resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
     /**
@@ -1693,6 +1829,18 @@ export namespace developerconnect_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Connection;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Processgithubenterprisewebhook
+    extends StandardParameters {
+    /**
+     * Required. Project and location where the webhook will be received. Format: `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProcessGitHubEnterpriseWebhookRequest;
   }
 
   export class Resource$Projects$Locations$Connections$Gitrepositorylinks {
@@ -2356,6 +2504,187 @@ export namespace developerconnect_v1 {
         );
       }
     }
+
+    /**
+     * ProcessGitLabEnterpriseWebhook is called by the external GitLab Enterprise instances for notifying events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    processGitLabEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    processGitLabEnterpriseWebhook(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    processGitLabEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    processGitLabEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitLabEnterpriseWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitLabEnterpriseWebhook(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitLabEnterpriseWebhook(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+name}:processGitLabEnterpriseWebhook'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * ProcessGitLabWebhook is called by the GitLab.com for notifying events.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    processGitLabWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    processGitLabWebhook(
+      params?: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    processGitLabWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    processGitLabWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitLabWebhook(
+      params: Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    processGitLabWebhook(callback: BodyResponseCallback<Schema$Empty>): void;
+    processGitLabWebhook(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://developerconnect.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:processGitLabWebhook').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Create
@@ -2474,6 +2803,30 @@ export namespace developerconnect_v1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabenterprisewebhook
+    extends StandardParameters {
+    /**
+     * Required. The GitRepositoryLink resource where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProcessGitLabEnterpriseWebhookRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Gitrepositorylinks$Processgitlabwebhook
+    extends StandardParameters {
+    /**
+     * Required. The GitRepositoryLink resource where the webhook will be received. Format: `projects/x/locations/x/connections/x/gitRepositoryLinks/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ProcessGitLabWebhookRequest;
+  }
 
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
@@ -2482,7 +2835,7 @@ export namespace developerconnect_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
