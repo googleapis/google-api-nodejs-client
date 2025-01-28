@@ -262,7 +262,7 @@
       }
     }
   },
-  "revision": "20240930",
+  "revision": "20241119",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -360,12 +360,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -398,7 +400,8 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         }
@@ -431,6 +434,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",
