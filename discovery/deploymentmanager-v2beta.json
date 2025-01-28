@@ -132,6 +132,10 @@
               "required": true,
               "type": "string"
             },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -166,6 +170,10 @@
               "required": true,
               "type": "string"
             },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -194,6 +202,10 @@
             "project"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -282,6 +294,10 @@
               "required": true,
               "type": "string"
             },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -318,6 +334,10 @@
               "pattern": "[a-z](?:[-a-z0-9_.]{0,61}[a-z0-9])?",
               "required": true,
               "type": "string"
+            },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
             },
             "project": {
               "description": "The project ID for this request.",
@@ -410,6 +430,10 @@
               "required": true,
               "type": "string"
             },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -444,6 +468,10 @@
               "required": true,
               "type": "string"
             },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -473,6 +501,10 @@
             "resource"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "optionsRequestedPolicyVersion": {
               "description": "Requested IAM Policy version.",
               "format": "int32",
@@ -527,6 +559,10 @@
               ],
               "location": "query",
               "type": "string"
+            },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
             },
             "preview": {
               "description": "If set to true, creates a deployment and creates \"shell\" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the `update()` method or you can use the `cancelPreview()` method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.",
@@ -651,6 +687,10 @@
               "required": true,
               "type": "string"
             },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "preview": {
               "default": "false",
               "description": "If set to true, updates the deployment and creates and updates the \"shell\" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a `target.config` with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the `update()` or you can `cancelPreview()` to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.",
@@ -761,6 +801,10 @@
             "resource"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "Project ID for this request.",
               "location": "path",
@@ -835,6 +879,10 @@
               "required": true,
               "type": "string"
             },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "preview": {
               "default": "false",
               "description": "If set to true, updates the deployment and creates and updates the \"shell\" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a `target.config` with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the `update()` or you can `cancelPreview()` to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.",
@@ -882,6 +930,10 @@
               "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
               "required": true,
               "type": "string"
+            },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
             },
             "manifest": {
               "description": "The name of the manifest for this request.",
@@ -982,6 +1034,10 @@
             "operation"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "operation": {
               "description": "The name of the operation for this request.",
               "location": "path",
@@ -1079,6 +1135,10 @@
               "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
               "required": true,
               "type": "string"
+            },
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
             },
             "project": {
               "description": "The project ID for this request.",
@@ -1178,6 +1238,10 @@
             "typeProvider"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -1212,6 +1276,10 @@
             "typeProvider"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -1249,6 +1317,10 @@
             "type"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -1290,6 +1362,10 @@
             "project"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -1430,6 +1506,10 @@
             "typeProvider"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -1467,6 +1547,10 @@
             "typeProvider"
           ],
           "parameters": {
+            "header.bypassBillingFilter": {
+              "location": "query",
+              "type": "boolean"
+            },
             "project": {
               "description": "The project ID for this request.",
               "location": "path",
@@ -1552,7 +1636,7 @@
       }
     }
   },
-  "revision": "20240215",
+  "revision": "20250102",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {
@@ -1855,6 +1939,24 @@
       },
       "type": "object"
     },
+    "DebugInfo": {
+      "description": "Describes additional debugging info.",
+      "id": "DebugInfo",
+      "properties": {
+        "detail": {
+          "description": "Additional debugging information provided by the server.",
+          "type": "string"
+        },
+        "stackEntries": {
+          "description": "The stack trace entries indicating where the error occurred.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Deployment": {
       "id": "Deployment",
       "properties": {
@@ -2030,6 +2132,28 @@
       },
       "type": "object"
     },
+    "ErrorInfo": {
+      "description": "Describes the cause of the error with structured details. Example of an error when contacting the \"pubsub.googleapis.com\" API when it is not enabled: { \"reason\": \"API_DISABLED\" \"domain\": \"googleapis.com\" \"metadata\": { \"resource\": \"projects/123\", \"service\": \"pubsub.googleapis.com\" } } This response indicates that the pubsub.googleapis.com API is not enabled. Example of an error that is returned when attempting to create a Spanner instance in a region that is out of stock: { \"reason\": \"STOCKOUT\" \"domain\": \"spanner.googleapis.com\", \"metadata\": { \"availableRegions\": \"us-central1,us-east2\" } }",
+      "id": "ErrorInfo",
+      "properties": {
+        "domain": {
+          "description": "The logical grouping to which the \"reason\" belongs. The error domain is typically the registered service name of the tool or product that generates the error. Example: \"pubsub.googleapis.com\". If the error is generated by some common infrastructure, the error domain must be a globally unique value that identifies the infrastructure. For Google API infrastructure, the error domain is \"googleapis.com\".",
+          "type": "string"
+        },
+        "metadatas": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Additional structured details about this error. Keys must match a regular expression of `a-z+` but should ideally be lowerCamelCase. Also, they must be limited to 64 characters in length. When identifying the current value of an exceeded limit, the units should be contained in the key, not the value. For example, rather than `{\"instanceLimit\": \"100/request\"}`, should be returned as, `{\"instanceLimitPerRequest\": \"100\"}`, if the client exceeds the number of instances that can be created in a single (batch) request.",
+          "type": "object"
+        },
+        "reason": {
+          "description": "The reason of the error. This is a constant value that identifies the proximate cause of the error. Error reasons are unique within a particular domain of errors. This should be at most 63 characters and match a regular expression of `A-Z+[A-Z0-9]`, which represents UPPER_SNAKE_CASE.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -2071,6 +2195,39 @@
         "policy": {
           "$ref": "Policy",
           "description": "REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them."
+        },
+        "updateMask": {
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Help": {
+      "description": "Provides links to documentation or for performing an out of band action. For example, if a quota check failed with an error indicating the calling project hasn't enabled the accessed service, this can contain a URL pointing directly to the right place in the developer console to flip the bit.",
+      "id": "Help",
+      "properties": {
+        "links": {
+          "description": "URL(s) pointing to additional information on handling the current error.",
+          "items": {
+            "$ref": "HelpLink"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "HelpLink": {
+      "description": "Describes a URL link.",
+      "id": "HelpLink",
+      "properties": {
+        "description": {
+          "description": "Describes what the link offers.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of the link.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2135,6 +2292,21 @@
           },
           "description": "Status information per location (location name is key). Example key: zones/us-central1-a",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "LocalizedMessage": {
+      "description": "Provides a localized error message that is safe to return to the user which can be attached to an RPC error.",
+      "id": "LocalizedMessage",
+      "properties": {
+        "locale": {
+          "description": "The locale used following the specification defined at https://www.rfc-editor.org/rfc/bcp/bcp47.txt. Examples are: \"en-US\", \"fr-CH\", \"es-MX\"",
+          "type": "string"
+        },
+        "message": {
+          "description": "The localized error message in the above locale.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2235,9 +2407,40 @@
               "description": "[Output Only] The array of errors encountered while processing this operation.",
               "items": {
                 "properties": {
+                  "arguments": {
+                    "description": "[Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
                   "code": {
                     "description": "[Output Only] The error type identifier for this error.",
                     "type": "string"
+                  },
+                  "debugInfo": {
+                    "$ref": "DebugInfo"
+                  },
+                  "errorDetails": {
+                    "description": "[Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.",
+                    "items": {
+                      "properties": {
+                        "errorInfo": {
+                          "$ref": "ErrorInfo"
+                        },
+                        "help": {
+                          "$ref": "Help"
+                        },
+                        "localizedMessage": {
+                          "$ref": "LocalizedMessage"
+                        },
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
                   },
                   "location": {
                     "description": "[Output Only] Indicates the field in the request that caused the error. This property is optional.",
@@ -2306,6 +2509,10 @@
           "description": "[Output Only] Server-defined URL for the resource.",
           "type": "string"
         },
+        "selfLinkWithId": {
+          "description": "[Output Only] Server-defined URL for this resource with the resource id.",
+          "type": "string"
+        },
         "setCommonInstanceMetadataOperationMetadata": {
           "$ref": "SetCommonInstanceMetadataOperationMetadata",
           "description": "[Output Only] If the operation is for projects.setCommonInstanceMetadata, this field will contain information on all underlying zonal actions and their state."
@@ -2338,7 +2545,7 @@
           "type": "string"
         },
         "targetLink": {
-          "description": "[Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the persistent disk that the snapshot was created from.",
+          "description": "[Output Only] The URL of the resource that the operation modifies. For operations related to creating a snapshot, this points to the disk that the snapshot was created from.",
           "type": "string"
         },
         "user": {
@@ -2369,6 +2576,10 @@
                   "CLEANUP_FAILED",
                   "FIELD_VALUE_OVERRIDEN",
                   "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                  "NETWORK_ENDPOINT_NOT_DETACHED",
+                  "PAGE_MISSING_RESULTS",
+                  "SSL_POLICY_ENABLED_FEATURES_NOT_FETCHED",
+                  "RESOURCE_NOT_FOUND_WARNING",
                   "MISSING_TYPE_DEPENDENCY",
                   "EXTERNAL_API_WARNING",
                   "SCHEMA_VALIDATION_IGNORED",
@@ -2379,7 +2590,15 @@
                   "LARGE_DEPLOYMENT_WARNING",
                   "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
                   "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
-                  "LIST_OVERHEAD_QUOTA_EXCEED"
+                  "LIST_OVERHEAD_QUOTA_EXCEED",
+                  "QUOTA_INFO_UNAVAILABLE",
+                  "RESOURCE_USES_GLOBAL_DNS",
+                  "RATE_LIMIT_EXCEEDED",
+                  "RESERVED_ENTRY_135",
+                  "RESERVED_ENTRY_136",
+                  "RESERVED_ENTRY_139",
+                  "RESERVED_ENTRY_141",
+                  "RESERVED_ENTRY_142"
                 ],
                 "enumDeprecated": [
                   false,
@@ -2398,6 +2617,18 @@
                   false,
                   false,
                   true,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
                   false,
                   false,
                   false,
@@ -2429,6 +2660,10 @@
                   "Warning about failed cleanup of transient changes made by a failed operation.",
                   "Warning that value of a field has been overridden. Deprecated unused field.",
                   "Warning that a resource is in use.",
+                  "Warning that network endpoint was not detached.",
+                  "Current page contains less results than requested but a next page token exists.",
+                  "Warning that SSL policy resource in the response does not contain information about the list of enabled features.",
+                  "Warning that a resource is not found.",
                   "A resource depends on a missing type",
                   "Warning that is present in an external api call",
                   "When a resource schema validation is ignored.",
@@ -2439,7 +2674,15 @@
                   "When deploying a deployment with a exceedingly large number of resources",
                   "The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.",
                   "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.",
-                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter."
+                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter.",
+                  "Quota information is not available to client requests (e.g: regions.list).",
+                  "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
+                  "Resource can't be retrieved due to api quota exceeded.",
+                  "Reserved entries for quickly adding new warnings without breaking dependent clients.",
+                  "",
+                  "",
+                  "",
+                  ""
                 ],
                 "type": "string"
               },
@@ -2583,6 +2826,50 @@
       },
       "type": "object"
     },
+    "QuotaExceededInfo": {
+      "description": "Additional details for quota exceeded error for resource quota.",
+      "id": "QuotaExceededInfo",
+      "properties": {
+        "dimensions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The map holding related quota dimensions.",
+          "type": "object"
+        },
+        "futureLimit": {
+          "description": "Future quota limit being rolled out. The limit's unit depends on the quota type or metric.",
+          "format": "double",
+          "type": "number"
+        },
+        "limit": {
+          "description": "Current effective quota limit. The limit's unit depends on the quota type or metric.",
+          "format": "double",
+          "type": "number"
+        },
+        "limitName": {
+          "description": "The name of the quota limit.",
+          "type": "string"
+        },
+        "metricName": {
+          "description": "The Compute Engine quota metric name.",
+          "type": "string"
+        },
+        "rolloutStatus": {
+          "description": "Rollout status of the future quota limit.",
+          "enum": [
+            "ROLLOUT_STATUS_UNSPECIFIED",
+            "IN_PROGRESS"
+          ],
+          "enumDescriptions": [
+            "ROLLOUT_STATUS_UNSPECIFIED - Rollout status is not specified. The default value.",
+            "IN_PROGRESS - A rollout is in process which will change the limit value to future limit."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Resource": {
       "id": "Resource",
       "properties": {
@@ -2654,6 +2941,10 @@
                   "CLEANUP_FAILED",
                   "FIELD_VALUE_OVERRIDEN",
                   "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                  "NETWORK_ENDPOINT_NOT_DETACHED",
+                  "PAGE_MISSING_RESULTS",
+                  "SSL_POLICY_ENABLED_FEATURES_NOT_FETCHED",
+                  "RESOURCE_NOT_FOUND_WARNING",
                   "MISSING_TYPE_DEPENDENCY",
                   "EXTERNAL_API_WARNING",
                   "SCHEMA_VALIDATION_IGNORED",
@@ -2664,7 +2955,15 @@
                   "LARGE_DEPLOYMENT_WARNING",
                   "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
                   "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
-                  "LIST_OVERHEAD_QUOTA_EXCEED"
+                  "LIST_OVERHEAD_QUOTA_EXCEED",
+                  "QUOTA_INFO_UNAVAILABLE",
+                  "RESOURCE_USES_GLOBAL_DNS",
+                  "RATE_LIMIT_EXCEEDED",
+                  "RESERVED_ENTRY_135",
+                  "RESERVED_ENTRY_136",
+                  "RESERVED_ENTRY_139",
+                  "RESERVED_ENTRY_141",
+                  "RESERVED_ENTRY_142"
                 ],
                 "enumDeprecated": [
                   false,
@@ -2683,6 +2982,18 @@
                   false,
                   false,
                   true,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
                   false,
                   false,
                   false,
@@ -2714,6 +3025,10 @@
                   "Warning about failed cleanup of transient changes made by a failed operation.",
                   "Warning that value of a field has been overridden. Deprecated unused field.",
                   "Warning that a resource is in use.",
+                  "Warning that network endpoint was not detached.",
+                  "Current page contains less results than requested but a next page token exists.",
+                  "Warning that SSL policy resource in the response does not contain information about the list of enabled features.",
+                  "Warning that a resource is not found.",
                   "A resource depends on a missing type",
                   "Warning that is present in an external api call",
                   "When a resource schema validation is ignored.",
@@ -2724,7 +3039,15 @@
                   "When deploying a deployment with a exceedingly large number of resources",
                   "The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.",
                   "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.",
-                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter."
+                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter.",
+                  "Quota information is not available to client requests (e.g: regions.list).",
+                  "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
+                  "Resource can't be retrieved due to api quota exceeded.",
+                  "Reserved entries for quickly adding new warnings without breaking dependent clients.",
+                  "",
+                  "",
+                  "",
+                  ""
                 ],
                 "type": "string"
               },
@@ -2782,9 +3105,40 @@
               "description": "[Output Only] The array of errors encountered while processing this operation.",
               "items": {
                 "properties": {
+                  "arguments": {
+                    "description": "[Output Only] Optional error details WARNING: DO NOT MAKE VISIBLE This is for internal use-only (like componentization) (thus the visibility \"none\") and in case of public exposure it is strongly recommended to follow pattern of: https://aip.dev/193 and expose as details field.",
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
                   "code": {
                     "description": "[Output Only] The error type identifier for this error.",
                     "type": "string"
+                  },
+                  "debugInfo": {
+                    "$ref": "DebugInfo"
+                  },
+                  "errorDetails": {
+                    "description": "[Output Only] An optional list of messages that contain the error details. There is a set of defined message types to use for providing details.The syntax depends on the error code. For example, QuotaExceededInfo will have details when the error code is QUOTA_EXCEEDED.",
+                    "items": {
+                      "properties": {
+                        "errorInfo": {
+                          "$ref": "ErrorInfo"
+                        },
+                        "help": {
+                          "$ref": "Help"
+                        },
+                        "localizedMessage": {
+                          "$ref": "LocalizedMessage"
+                        },
+                        "quotaInfo": {
+                          "$ref": "QuotaExceededInfo"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "type": "array"
                   },
                   "location": {
                     "description": "[Output Only] Indicates the field in the request that caused the error. This property is optional.",
@@ -2876,6 +3230,10 @@
                   "CLEANUP_FAILED",
                   "FIELD_VALUE_OVERRIDEN",
                   "RESOURCE_IN_USE_BY_OTHER_RESOURCE_WARNING",
+                  "NETWORK_ENDPOINT_NOT_DETACHED",
+                  "PAGE_MISSING_RESULTS",
+                  "SSL_POLICY_ENABLED_FEATURES_NOT_FETCHED",
+                  "RESOURCE_NOT_FOUND_WARNING",
                   "MISSING_TYPE_DEPENDENCY",
                   "EXTERNAL_API_WARNING",
                   "SCHEMA_VALIDATION_IGNORED",
@@ -2886,7 +3244,15 @@
                   "LARGE_DEPLOYMENT_WARNING",
                   "NEXT_HOP_INSTANCE_HAS_NO_IPV6_INTERFACE",
                   "INVALID_HEALTH_CHECK_FOR_DYNAMIC_WIEGHTED_LB",
-                  "LIST_OVERHEAD_QUOTA_EXCEED"
+                  "LIST_OVERHEAD_QUOTA_EXCEED",
+                  "QUOTA_INFO_UNAVAILABLE",
+                  "RESOURCE_USES_GLOBAL_DNS",
+                  "RATE_LIMIT_EXCEEDED",
+                  "RESERVED_ENTRY_135",
+                  "RESERVED_ENTRY_136",
+                  "RESERVED_ENTRY_139",
+                  "RESERVED_ENTRY_141",
+                  "RESERVED_ENTRY_142"
                 ],
                 "enumDeprecated": [
                   false,
@@ -2905,6 +3271,18 @@
                   false,
                   false,
                   true,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
+                  false,
                   false,
                   false,
                   false,
@@ -2936,6 +3314,10 @@
                   "Warning about failed cleanup of transient changes made by a failed operation.",
                   "Warning that value of a field has been overridden. Deprecated unused field.",
                   "Warning that a resource is in use.",
+                  "Warning that network endpoint was not detached.",
+                  "Current page contains less results than requested but a next page token exists.",
+                  "Warning that SSL policy resource in the response does not contain information about the list of enabled features.",
+                  "Warning that a resource is not found.",
                   "A resource depends on a missing type",
                   "Warning that is present in an external api call",
                   "When a resource schema validation is ignored.",
@@ -2946,7 +3328,15 @@
                   "When deploying a deployment with a exceedingly large number of resources",
                   "The route's nextHopInstance URL refers to an instance that does not have an ipv6 interface on the same network as the route.",
                   "A WEIGHTED_MAGLEV backend service is associated with a health check that is not of type HTTP/HTTPS/HTTP2.",
-                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter."
+                  "Resource can't be retrieved due to list overhead quota exceed which captures the amount of resources filtered out by user-defined list filter.",
+                  "Quota information is not available to client requests (e.g: regions.list).",
+                  "Indicates that a VM is using global DNS. Can also be used to indicate that a resource has attributes that could result in the creation of a VM that uses global DNS.",
+                  "Resource can't be retrieved due to api quota exceeded.",
+                  "Reserved entries for quickly adding new warnings without breaking dependent clients.",
+                  "",
+                  "",
+                  "",
+                  ""
                 ],
                 "type": "string"
               },
