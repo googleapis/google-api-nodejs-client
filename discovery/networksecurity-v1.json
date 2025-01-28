@@ -586,7 +586,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "networksecurity.organizations.locations.operations.cancel",
@@ -1731,6 +1731,99 @@
             },
             "authzPolicies": {
               "methods": {
+                "create": {
+                  "description": "Creates a new AuthzPolicy in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authzPolicies",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.authzPolicies.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "authzPolicyId": {
+                      "description": "Required. User-provided ID of the `AuthzPolicy` resource to be created.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the `AuthzPolicy` resource. Must be in the format `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/authzPolicies",
+                  "request": {
+                    "$ref": "AuthzPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single AuthzPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authzPolicies/{authzPoliciesId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.authzPolicies.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the `AuthzPolicy` resource to delete. Must be in the format `projects/{project}/locations/{location}/authzPolicies/{authz_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authzPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single AuthzPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authzPolicies/{authzPoliciesId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.authzPolicies.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. A name of the `AuthzPolicy` resource to get. Must be in the format `projects/{project}/locations/{location}/authzPolicies/{authz_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authzPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "AuthzPolicy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authzPolicies/{authzPoliciesId}:getIamPolicy",
@@ -1757,6 +1850,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists AuthzPolicies in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authzPolicies",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.authzPolicies.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. The server might return fewer items than requested. If unspecified, the server picks an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results that the server returns.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location from which the `AuthzPolicy` resources are listed, specified in the following format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/authzPolicies",
+                  "response": {
+                    "$ref": "ListAuthzPoliciesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single AuthzPolicy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authzPolicies/{authzPoliciesId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.authzPolicies.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Identifier. Name of the `AuthzPolicy` resource in the following format: `projects/{project}/locations/{location}/authzPolicies/{authz_policy}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/authzPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Used to specify the fields to be overwritten in the `AuthzPolicy` resource by the update. The fields specified in the `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If the user does not specify a mask, then all fields are overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "AuthzPolicy"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2565,7 +2743,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.operations.cancel",
@@ -3253,7 +3431,7 @@
       }
     }
   },
-  "revision": "20240919",
+  "revision": "20241202",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -3411,6 +3589,336 @@
       },
       "type": "object"
     },
+    "AuthzPolicy": {
+      "description": "`AuthzPolicy` is a resource that allows to forward traffic to a callout backend designed to scan the traffic for security purposes.",
+      "id": "AuthzPolicy",
+      "properties": {
+        "action": {
+          "description": "Required. Can be one of `ALLOW`, `DENY`, `CUSTOM`. When the action is `CUSTOM`, `customProvider` must be specified. When the action is `ALLOW`, only requests matching the policy will be allowed. When the action is `DENY`, only requests matching the policy will be denied. When a request arrives, the policies are evaluated in the following order: 1. If there is a `CUSTOM` policy that matches the request, the `CUSTOM` policy is evaluated using the custom authorization providers and the request is denied if the provider rejects the request. 2. If there are any `DENY` policies that match the request, the request is denied. 3. If there are no `ALLOW` policies for the resource or if any of the `ALLOW` policies match the request, the request is allowed. 4. Else the request is denied by default if none of the configured AuthzPolicies with `ALLOW` action match the request.",
+          "enum": [
+            "AUTHZ_ACTION_UNSPECIFIED",
+            "ALLOW",
+            "DENY",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified action.",
+            "Allow request to pass through to the backend.",
+            "Deny the request and return a HTTP 404 to the client.",
+            "Delegate the authorization decision to an external authorization engine."
+          ],
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp when the resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customProvider": {
+          "$ref": "AuthzPolicyCustomProvider",
+          "description": "Optional. Required if the action is `CUSTOM`. Allows delegating authorization decisions to Cloud IAP or to Service Extensions. One of `cloudIap` or `authzExtension` must be specified."
+        },
+        "description": {
+          "description": "Optional. A human-readable description of the resource.",
+          "type": "string"
+        },
+        "httpRules": {
+          "description": "Optional. A list of authorization HTTP rules to match against the incoming request. A policy match occurs when at least one HTTP rule matches the request or when no HTTP rules are specified in the policy. At least one HTTP Rule is required for Allow or Deny Action. Limited to 5 rules.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRule"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Set of labels associated with the `AuthzPolicy` resource. The format must comply with [the following requirements](/compute/docs/labeling-resources#requirements).",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. Identifier. Name of the `AuthzPolicy` resource in the following format: `projects/{project}/locations/{location}/authzPolicies/{authz_policy}`.",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "AuthzPolicyTarget",
+          "description": "Required. Specifies the set of resources to which this policy should be applied to."
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRule": {
+      "description": "Conditions to match against the incoming request.",
+      "id": "AuthzPolicyAuthzRule",
+      "properties": {
+        "from": {
+          "$ref": "AuthzPolicyAuthzRuleFrom",
+          "description": "Optional. Describes properties of a source of a request."
+        },
+        "to": {
+          "$ref": "AuthzPolicyAuthzRuleTo",
+          "description": "Optional. Describes properties of a target of a request."
+        },
+        "when": {
+          "description": "Optional. CEL expression that describes the conditions to be satisfied for the action. The result of the CEL expression is ANDed with the from and to. Refer to the CEL language reference for a list of available attributes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleFrom": {
+      "description": "Describes properties of one or more sources of a request.",
+      "id": "AuthzPolicyAuthzRuleFrom",
+      "properties": {
+        "notSources": {
+          "description": "Optional. Describes the negated properties of request sources. Matches requests from sources that do not match the criteria specified in this field. At least one of sources or notSources must be specified.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleFromRequestSource"
+          },
+          "type": "array"
+        },
+        "sources": {
+          "description": "Optional. Describes the properties of a request's sources. At least one of sources or notSources must be specified. Limited to 1 source. A match occurs when ANY source (in sources or notSources) matches the request. Within a single source, the match follows AND semantics across fields and OR semantics within a single field, i.e. a match occurs when ANY principal matches AND ANY ipBlocks match.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleFromRequestSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleFromRequestSource": {
+      "description": "Describes the properties of a single source.",
+      "id": "AuthzPolicyAuthzRuleFromRequestSource",
+      "properties": {
+        "principals": {
+          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless mutual TLS is enabled for the Forwarding rule or Gateway. Each identity is a string whose value is matched against the URI SAN, or DNS SAN or the subject field in the client's certificate. The match can be exact, prefix, suffix or a substring match. One of exact, prefix, suffix or contains must be specified. Limited to 5 principals.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleStringMatch"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "description": "Optional. A list of resources to match against the resource of the source VM of a request. Limited to 5 resources.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleRequestResource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleHeaderMatch": {
+      "description": "Determines how a HTTP header should be matched.",
+      "id": "AuthzPolicyAuthzRuleHeaderMatch",
+      "properties": {
+        "name": {
+          "description": "Optional. Specifies the name of the header in the request.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "AuthzPolicyAuthzRuleStringMatch",
+          "description": "Optional. Specifies how the header match will be performed."
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleRequestResource": {
+      "description": "Describes the properties of a client VM resource accessing the internal application load balancers.",
+      "id": "AuthzPolicyAuthzRuleRequestResource",
+      "properties": {
+        "iamServiceAccount": {
+          "$ref": "AuthzPolicyAuthzRuleStringMatch",
+          "description": "Optional. An IAM service account to match against the source service account of the VM sending the request."
+        },
+        "tagValueIdSet": {
+          "$ref": "AuthzPolicyAuthzRuleRequestResourceTagValueIdSet",
+          "description": "Optional. A list of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request."
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleRequestResourceTagValueIdSet": {
+      "description": "Describes a set of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request.",
+      "id": "AuthzPolicyAuthzRuleRequestResourceTagValueIdSet",
+      "properties": {
+        "ids": {
+          "description": "Required. A list of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request. The match follows AND semantics which means all the ids must match. Limited to 5 matches.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleStringMatch": {
+      "description": "Determines how a string value should be matched.",
+      "id": "AuthzPolicyAuthzRuleStringMatch",
+      "properties": {
+        "contains": {
+          "description": "The input string must have the substring specified here. Note: empty contains match is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc.def``",
+          "type": "string"
+        },
+        "exact": {
+          "description": "The input string must match exactly the string specified here. Examples: * ``abc`` only matches the value ``abc``.",
+          "type": "string"
+        },
+        "ignoreCase": {
+          "description": "If true, indicates the exact/prefix/suffix/contains matching should be case insensitive. For example, the matcher ``data`` will match both input string ``Data`` and ``data`` if set to true.",
+          "type": "boolean"
+        },
+        "prefix": {
+          "description": "The input string must have the prefix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``abc.xyz``",
+          "type": "string"
+        },
+        "suffix": {
+          "description": "The input string must have the suffix specified here. Note: empty prefix is not allowed, please use regex instead. Examples: * ``abc`` matches the value ``xyz.abc``",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleTo": {
+      "description": "Describes properties of one or more targets of a request.",
+      "id": "AuthzPolicyAuthzRuleTo",
+      "properties": {
+        "notOperations": {
+          "description": "Optional. Describes the negated properties of the targets of a request. Matches requests for operations that do not match the criteria specified in this field. At least one of operations or notOperations must be specified.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleToRequestOperation"
+          },
+          "type": "array"
+        },
+        "operations": {
+          "description": "Optional. Describes properties of one or more targets of a request. At least one of operations or notOperations must be specified. Limited to 1 operation. A match occurs when ANY operation (in operations or notOperations) matches. Within an operation, the match follows AND semantics across fields and OR semantics within a field, i.e. a match occurs when ANY path matches AND ANY header matches and ANY method matches.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleToRequestOperation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleToRequestOperation": {
+      "description": "Describes properties of one or more targets of a request.",
+      "id": "AuthzPolicyAuthzRuleToRequestOperation",
+      "properties": {
+        "headerSet": {
+          "$ref": "AuthzPolicyAuthzRuleToRequestOperationHeaderSet",
+          "description": "Optional. A list of headers to match against in http header."
+        },
+        "hosts": {
+          "description": "Optional. A list of HTTP Hosts to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleStringMatch"
+          },
+          "type": "array"
+        },
+        "methods": {
+          "description": "Optional. A list of HTTP methods to match against. Each entry must be a valid HTTP method name (GET, PUT, POST, HEAD, PATCH, DELETE, OPTIONS). It only allows exact match and is always case sensitive.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "paths": {
+          "description": "Optional. A list of paths to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleStringMatch"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRuleToRequestOperationHeaderSet": {
+      "description": "Describes a set of HTTP headers to match against.",
+      "id": "AuthzPolicyAuthzRuleToRequestOperationHeaderSet",
+      "properties": {
+        "headers": {
+          "description": "Required. A list of headers to match against in http header. The match can be one of exact, prefix, suffix, or contains (substring match). The match follows AND semantics which means all the headers must match. Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRuleHeaderMatch"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyCustomProvider": {
+      "description": "Allows delegating authorization decisions to Cloud IAP or to Service Extensions.",
+      "id": "AuthzPolicyCustomProvider",
+      "properties": {
+        "authzExtension": {
+          "$ref": "AuthzPolicyCustomProviderAuthzExtension",
+          "description": "Optional. Delegate authorization decision to user authored Service Extension. Only one of cloudIap or authzExtension can be specified."
+        },
+        "cloudIap": {
+          "$ref": "AuthzPolicyCustomProviderCloudIap",
+          "description": "Optional. Delegates authorization decisions to Cloud IAP. Applicable only for managed load balancers. Enabling Cloud IAP at the AuthzPolicy level is not compatible with Cloud IAP settings in the BackendService. Enabling IAP in both places will result in request failure. Ensure that IAP is enabled in either the AuthzPolicy or the BackendService but not in both places."
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyCustomProviderAuthzExtension": {
+      "description": "Optional. Delegate authorization decision to user authored extension. Only one of cloudIap or authzExtension can be specified.",
+      "id": "AuthzPolicyCustomProviderAuthzExtension",
+      "properties": {
+        "resources": {
+          "description": "Required. A list of references to authorization extensions that will be invoked for requests matching this policy. Limited to 1 custom provider.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyCustomProviderCloudIap": {
+      "description": "Optional. Delegates authorization decisions to Cloud IAP. Applicable only for managed load balancers. Enabling Cloud IAP at the AuthzPolicy level is not compatible with Cloud IAP settings in the BackendService. Enabling IAP in both places will result in request failure. Ensure that IAP is enabled in either the AuthzPolicy or the BackendService but not in both places.",
+      "id": "AuthzPolicyCustomProviderCloudIap",
+      "properties": {},
+      "type": "object"
+    },
+    "AuthzPolicyTarget": {
+      "description": "Specifies the set of targets to which this policy should be applied to.",
+      "id": "AuthzPolicyTarget",
+      "properties": {
+        "loadBalancingScheme": {
+          "description": "Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "enum": [
+            "LOAD_BALANCING_SCHEME_UNSPECIFIED",
+            "INTERNAL_MANAGED",
+            "EXTERNAL_MANAGED",
+            "INTERNAL_SELF_MANAGED"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not use.",
+            "Signifies that this is used for Regional internal or Cross-region internal Application Load Balancing.",
+            "Signifies that this is used for Global external or Regional external Application Load Balancing.",
+            "Signifies that this is used for Cloud Service Mesh. Meant for use by CSM GKE controller only."
+          ],
+          "type": "string"
+        },
+        "resources": {
+          "description": "Required. A list of references to the Forwarding Rules on which this policy will be applied.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -3487,6 +3995,17 @@
         },
         "sourceAddressGroup": {
           "description": "Required. Source address group to clone items from.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomInterceptProfile": {
+      "description": "CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.",
+      "id": "CustomInterceptProfile",
+      "properties": {
+        "interceptEndpointGroup": {
+          "description": "Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.",
           "type": "string"
         }
       },
@@ -3698,7 +4217,7 @@
             "Active and ready for traffic.",
             "Being deleted.",
             "Down or in an error state.",
-            "The GCP project that housed the association has been deleted."
+            "The project that housed the association has been deleted."
           ],
           "readOnly": true,
           "type": "string"
@@ -4082,6 +4601,31 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAuthzPoliciesResponse": {
+      "description": "Message for response to listing `AuthzPolicy` resources.",
+      "id": "ListAuthzPoliciesResponse",
+      "properties": {
+        "authzPolicies": {
+          "description": "The list of `AuthzPolicy` resources.",
+          "items": {
+            "$ref": "AuthzPolicy"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results that the server returns.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4529,7 +5073,7 @@
       "type": "object"
     },
     "SecurityProfile": {
-      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 12",
+      "description": "SecurityProfile is a resource that defines the behavior for one of many ProfileTypes.",
       "id": "SecurityProfile",
       "properties": {
         "createTime": {
@@ -4537,6 +5081,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "customInterceptProfile": {
+          "$ref": "CustomInterceptProfile",
+          "description": "The custom TPPI configuration for the SecurityProfile."
         },
         "customMirroringProfile": {
           "$ref": "CustomMirroringProfile",
@@ -4571,12 +5119,14 @@
           "enum": [
             "PROFILE_TYPE_UNSPECIFIED",
             "THREAT_PREVENTION",
-            "CUSTOM_MIRRORING"
+            "CUSTOM_MIRRORING",
+            "CUSTOM_INTERCEPT"
           ],
           "enumDescriptions": [
             "Profile type not specified.",
             "Profile type for threat prevention.",
-            "Profile type for packet mirroring v2"
+            "Profile type for packet mirroring v2",
+            "Profile type for TPPI."
           ],
           "type": "string"
         },
@@ -4590,13 +5140,17 @@
       "type": "object"
     },
     "SecurityProfileGroup": {
-      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 11",
+      "description": "SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.",
       "id": "SecurityProfileGroup",
       "properties": {
         "createTime": {
           "description": "Output only. Resource creation timestamp.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "customInterceptProfile": {
+          "description": "Optional. Reference to a SecurityProfile with the CustomIntercept configuration.",
           "type": "string"
         },
         "customMirroringProfile": {

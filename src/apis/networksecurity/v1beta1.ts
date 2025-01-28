@@ -263,11 +263,11 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$AuthzPolicyAuthzRule {
     /**
-     * Optional. Describes properties of one or more sources of a request.
+     * Optional. Describes properties of a source of a request.
      */
     from?: Schema$AuthzPolicyAuthzRuleFrom;
     /**
-     * Optional. Describes properties of one or more targets of a request.
+     * Optional. Describes properties of a target of a request.
      */
     to?: Schema$AuthzPolicyAuthzRuleTo;
     /**
@@ -284,7 +284,7 @@ export namespace networksecurity_v1beta1 {
      */
     notSources?: Schema$AuthzPolicyAuthzRuleFromRequestSource[];
     /**
-     * Optional. Describes the properties of a request's sources. At least one of sources or notSources must be specified. Limited to 5 sources. A match occurs when ANY source (in sources or notSources) matches the request. Within a single source, the match follows AND semantics across fields and OR semantics within a single field, i.e. a match occurs when ANY principal matches AND ANY ipBlocks match.
+     * Optional. Describes the properties of a request's sources. At least one of sources or notSources must be specified. Limited to 1 source. A match occurs when ANY source (in sources or notSources) matches the request. Within a single source, the match follows AND semantics across fields and OR semantics within a single field, i.e. a match occurs when ANY principal matches AND ANY ipBlocks match.
      */
     sources?: Schema$AuthzPolicyAuthzRuleFromRequestSource[];
   }
@@ -370,7 +370,7 @@ export namespace networksecurity_v1beta1 {
      */
     notOperations?: Schema$AuthzPolicyAuthzRuleToRequestOperation[];
     /**
-     * Optional. Describes properties of one or more targets of a request. At least one of operations or notOperations must be specified. Limited to 5 operations. A match occurs when ANY operation (in operations or notOperations) matches. Within an operation, the match follows AND semantics across fields and OR semantics within a field, i.e. a match occurs when ANY path matches AND ANY header matches and ANY method matches.
+     * Optional. Describes properties of one or more targets of a request. At least one of operations or notOperations must be specified. Limited to 1 operation. A match occurs when ANY operation (in operations or notOperations) matches. Within an operation, the match follows AND semantics across fields and OR semantics within a field, i.e. a match occurs when ANY path matches AND ANY header matches and ANY method matches.
      */
     operations?: Schema$AuthzPolicyAuthzRuleToRequestOperation[];
   }
@@ -505,6 +505,15 @@ export namespace networksecurity_v1beta1 {
      * Required. Source address group to clone items from.
      */
     sourceAddressGroup?: string | null;
+  }
+  /**
+   * CustomInterceptProfile defines the Packet Intercept Endpoint Group used to intercept traffic to a third-party firewall in a Firewall rule.
+   */
+  export interface Schema$CustomInterceptProfile {
+    /**
+     * Required. The InterceptEndpointGroup to which traffic associated with the SP should be mirrored.
+     */
+    interceptEndpointGroup?: string | null;
   }
   /**
    * CustomMirroringProfile defines an action for mirroring traffic to a collector's EndpointGroup
@@ -865,6 +874,209 @@ export namespace networksecurity_v1beta1 {
     regexMatch?: string | null;
   }
   /**
+   * Message describing InterceptDeployment object NEXT ID: 10
+   */
+  export interface Schema$InterceptDeployment {
+    /**
+     * Output only. [Output only] Create time stamp
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description of the deployment. Used as additional context for the deployment.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The regional load balancer which the intercepted traffic should be forwarded to. Format is: projects/{project\}/regions/{region\}/forwardingRules/{forwardingRule\}
+     */
+    forwardingRule?: string | null;
+    /**
+     * Required. Immutable. The Intercept Deployment Group that this resource is part of. Format is: `projects/{project\}/locations/global/interceptDeploymentGroups/{interceptDeploymentGroup\}`
+     */
+    interceptDeploymentGroup?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. The name of the InterceptDeployment.
+     */
+    name?: string | null;
+    /**
+     * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Current state of the deployment.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output only] Update time stamp
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Message describing InterceptDeploymentGroup object NEXT ID: 10
+   */
+  export interface Schema$InterceptDeploymentGroup {
+    /**
+     * Output only. The list of Intercept Endpoint Groups that are connected to this resource.
+     */
+    connectedEndpointGroups?: Schema$InterceptDeploymentGroupConnectedEndpointGroup[];
+    /**
+     * Output only. [Output only] Create time stamp
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description of the deployment group. Used as additional context for the deployment group.
+     */
+    description?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. Then name of the InterceptDeploymentGroup.
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. The network that is being used for the deployment. Format is: projects/{project\}/global/networks/{network\}.
+     */
+    network?: string | null;
+    /**
+     * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Current state of the deployment group.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output only] Update time stamp
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An endpoint group connected to this deployment group.
+   */
+  export interface Schema$InterceptDeploymentGroupConnectedEndpointGroup {
+    /**
+     * Output only. A connected intercept endpoint group.
+     */
+    name?: string | null;
+  }
+  /**
+   * Message describing InterceptEndpointGroup object.
+   */
+  export interface Schema$InterceptEndpointGroup {
+    /**
+     * Output only. List of Intercept Endpoint Group Associations that are associated to this endpoint group.
+     */
+    associations?: Schema$InterceptEndpointGroupAssociationDetails[];
+    /**
+     * Output only. [Output only] Create time stamp
+     */
+    createTime?: string | null;
+    /**
+     * Optional. User-provided description of the endpoint group. Used as additional context for the endpoint group.
+     */
+    description?: string | null;
+    /**
+     * Required. Immutable. The Intercept Deployment Group that this resource is connected to. Format is: `projects/{project\}/locations/global/interceptDeploymentGroups/{interceptDeploymentGroup\}`
+     */
+    interceptDeploymentGroup?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. Identifier. The name of the InterceptEndpointGroup.
+     */
+    name?: string | null;
+    /**
+     * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Current state of the endpoint group.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output only] Update time stamp
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Message describing InterceptEndpointGroupAssociation object
+   */
+  export interface Schema$InterceptEndpointGroupAssociation {
+    /**
+     * Output only. [Output only] Create time stamp
+     */
+    createTime?: string | null;
+    /**
+     * Required. Immutable. The Intercept Endpoint Group that this resource is connected to. Format is: `projects/{project\}/locations/global/interceptEndpointGroups/{interceptEndpointGroup\}`
+     */
+    interceptEndpointGroup?: string | null;
+    /**
+     * Optional. Labels as key value pairs
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The list of locations that this association is in and its details.
+     */
+    locationsDetails?: Schema$InterceptEndpointGroupAssociationLocationDetails[];
+    /**
+     * Immutable. Identifier. The name of the InterceptEndpointGroupAssociation.
+     */
+    name?: string | null;
+    /**
+     * Required. Immutable. The VPC network associated. Format: projects/{project\}/global/networks/{network\}.
+     */
+    network?: string | null;
+    /**
+     * Output only. Whether reconciling is in progress, recommended per https://google.aip.dev/128.
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. Current state of the endpoint group association.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output only] Update time stamp
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * This is a subset of the InterceptEndpointGroupAssociation message, containing fields to be used by the consumer.
+   */
+  export interface Schema$InterceptEndpointGroupAssociationDetails {
+    /**
+     * Output only. The resource name of the InterceptEndpointGroupAssociation. Format: projects/{project\}/locations/{location\}/interceptEndpointGroupAssociations/{interceptEndpointGroupAssociation\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The VPC network associated. Format: projects/{project\}/global/networks/{name\}.
+     */
+    network?: string | null;
+    /**
+     * Output only. Current state of the association.
+     */
+    state?: string | null;
+  }
+  /**
+   * Details about the association status in a specific cloud location.
+   */
+  export interface Schema$InterceptEndpointGroupAssociationLocationDetails {
+    /**
+     * Output only. The cloud location.
+     */
+    location?: string | null;
+    /**
+     * Output only. The association state in this location.
+     */
+    state?: string | null;
+  }
+  /**
    * Response of the ListAddressGroupReferences method.
    */
   export interface Schema$ListAddressGroupReferencesResponse {
@@ -1017,6 +1229,62 @@ export namespace networksecurity_v1beta1 {
      * Locations that could not be reached.
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing InterceptDeploymentGroups
+   */
+  export interface Schema$ListInterceptDeploymentGroupsResponse {
+    /**
+     * The list of InterceptDeploymentGroup
+     */
+    interceptDeploymentGroups?: Schema$InterceptDeploymentGroup[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing InterceptDeployments
+   */
+  export interface Schema$ListInterceptDeploymentsResponse {
+    /**
+     * The list of InterceptDeployment
+     */
+    interceptDeployments?: Schema$InterceptDeployment[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing InterceptEndpointGroupAssociations
+   */
+  export interface Schema$ListInterceptEndpointGroupAssociationsResponse {
+    /**
+     * The list of InterceptEndpointGroupAssociation
+     */
+    interceptEndpointGroupAssociations?: Schema$InterceptEndpointGroupAssociation[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing InterceptEndpointGroups
+   */
+  export interface Schema$ListInterceptEndpointGroupsResponse {
+    /**
+     * The list of InterceptEndpointGroup
+     */
+    interceptEndpointGroups?: Schema$InterceptEndpointGroup[];
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -1199,7 +1467,7 @@ export namespace networksecurity_v1beta1 {
     name?: string | null;
   }
   /**
-   * Message describing MirroringDeployment object
+   * Message describing MirroringDeployment object NEXT ID: 10
    */
   export interface Schema$MirroringDeployment {
     /**
@@ -1236,7 +1504,7 @@ export namespace networksecurity_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * Message describing MirroringDeploymentGroup object
+   * Message describing MirroringDeploymentGroup object NEXT ID: 10
    */
   export interface Schema$MirroringDeploymentGroup {
     /**
@@ -1282,9 +1550,13 @@ export namespace networksecurity_v1beta1 {
     name?: string | null;
   }
   /**
-   * Message describing MirroringEndpointGroup object. Next ID: 10
+   * Message describing MirroringEndpointGroup object.
    */
   export interface Schema$MirroringEndpointGroup {
+    /**
+     * Output only. List of Mirroring Endpoint Group Associations that are associated to this endpoint group.
+     */
+    associations?: Schema$MirroringEndpointGroupAssociationDetails[];
     /**
      * Output only. [Output only] Create time stamp
      */
@@ -1298,7 +1570,7 @@ export namespace networksecurity_v1beta1 {
      */
     mirroringDeploymentGroup?: string | null;
     /**
-     * Immutable. Identifier. The name of the MirroringEndpointGroup.
+     * Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.
      */
     name?: string | null;
     /**
@@ -1354,6 +1626,23 @@ export namespace networksecurity_v1beta1 {
      * Output only. [Output only] Update time stamp
      */
     updateTime?: string | null;
+  }
+  /**
+   * This is a subset of the MirroringEndpointGroupAssociation message, containing fields to be used by the consumer.
+   */
+  export interface Schema$MirroringEndpointGroupAssociationDetails {
+    /**
+     * Output only. The resource name of the MirroringEndpointGroupAssociation. Format: projects/{project\}/locations/{location\}/mirroringEndpointGroupAssociations/{mirroringEndpointGroupAssociation\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The VPC network associated. Format: projects/{project\}/global/networks/{name\}.
+     */
+    network?: string | null;
+    /**
+     * Output only. Current state of the association.
+     */
+    state?: string | null;
   }
   /**
    * Details about the association status in a specific cloud location.
@@ -1470,13 +1759,17 @@ export namespace networksecurity_v1beta1 {
     sources?: Schema$Source[];
   }
   /**
-   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes. Next ID: 12
+   * SecurityProfile is a resource that defines the behavior for one of many ProfileTypes.
    */
   export interface Schema$SecurityProfile {
     /**
      * Output only. Resource creation timestamp.
      */
     createTime?: string | null;
+    /**
+     * The custom TPPI configuration for the SecurityProfile.
+     */
+    customInterceptProfile?: Schema$CustomInterceptProfile;
     /**
      * The custom Packet Mirroring v2 configuration for the SecurityProfile.
      */
@@ -1511,13 +1804,17 @@ export namespace networksecurity_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes. Next ID: 11
+   * SecurityProfileGroup is a resource that defines the behavior for various ProfileTypes.
    */
   export interface Schema$SecurityProfileGroup {
     /**
      * Output only. Resource creation timestamp.
      */
     createTime?: string | null;
+    /**
+     * Optional. Reference to a SecurityProfile with the CustomIntercept configuration.
+     */
+    customInterceptProfile?: string | null;
     /**
      * Optional. Reference to a SecurityProfile with the CustomMirroring configuration.
      */
@@ -3271,7 +3568,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4742,6 +5039,10 @@ export namespace networksecurity_v1beta1 {
     clientTlsPolicies: Resource$Projects$Locations$Clienttlspolicies;
     firewallEndpointAssociations: Resource$Projects$Locations$Firewallendpointassociations;
     gatewaySecurityPolicies: Resource$Projects$Locations$Gatewaysecuritypolicies;
+    interceptDeploymentGroups: Resource$Projects$Locations$Interceptdeploymentgroups;
+    interceptDeployments: Resource$Projects$Locations$Interceptdeployments;
+    interceptEndpointGroupAssociations: Resource$Projects$Locations$Interceptendpointgroupassociations;
+    interceptEndpointGroups: Resource$Projects$Locations$Interceptendpointgroups;
     mirroringDeploymentGroups: Resource$Projects$Locations$Mirroringdeploymentgroups;
     mirroringDeployments: Resource$Projects$Locations$Mirroringdeployments;
     mirroringEndpointGroupAssociations: Resource$Projects$Locations$Mirroringendpointgroupassociations;
@@ -4768,6 +5069,16 @@ export namespace networksecurity_v1beta1 {
         );
       this.gatewaySecurityPolicies =
         new Resource$Projects$Locations$Gatewaysecuritypolicies(this.context);
+      this.interceptDeploymentGroups =
+        new Resource$Projects$Locations$Interceptdeploymentgroups(this.context);
+      this.interceptDeployments =
+        new Resource$Projects$Locations$Interceptdeployments(this.context);
+      this.interceptEndpointGroupAssociations =
+        new Resource$Projects$Locations$Interceptendpointgroupassociations(
+          this.context
+        );
+      this.interceptEndpointGroups =
+        new Resource$Projects$Locations$Interceptendpointgroups(this.context);
       this.mirroringDeploymentGroups =
         new Resource$Projects$Locations$Mirroringdeploymentgroups(this.context);
       this.mirroringDeployments =
@@ -10403,6 +10714,2178 @@ export namespace networksecurity_v1beta1 {
     requestBody?: Schema$GatewaySecurityPolicyRule;
   }
 
+  export class Resource$Projects$Locations$Interceptdeploymentgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new InterceptDeploymentGroup in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/interceptDeploymentGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single InterceptDeploymentGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single InterceptDeploymentGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InterceptDeploymentGroup>;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InterceptDeploymentGroup>,
+      callback: BodyResponseCallback<Schema$InterceptDeploymentGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get,
+      callback: BodyResponseCallback<Schema$InterceptDeploymentGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InterceptDeploymentGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get
+        | BodyResponseCallback<Schema$InterceptDeploymentGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InterceptDeploymentGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InterceptDeploymentGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InterceptDeploymentGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterceptDeploymentGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InterceptDeploymentGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists InterceptDeploymentGroups in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInterceptDeploymentGroupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInterceptDeploymentGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListInterceptDeploymentGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$List,
+      callback: BodyResponseCallback<Schema$ListInterceptDeploymentGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInterceptDeploymentGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeploymentgroups$List
+        | BodyResponseCallback<Schema$ListInterceptDeploymentGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInterceptDeploymentGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInterceptDeploymentGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInterceptDeploymentGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeploymentgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/interceptDeploymentGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInterceptDeploymentGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInterceptDeploymentGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a single InterceptDeploymentGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Create
+    extends StandardParameters {
+    /**
+     * Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_deployment_group_id from the method_signature of Create RPC
+     */
+    interceptDeploymentGroupId?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptDeploymentGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListInterceptDeploymentGroupsRequest
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeploymentgroups$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. Then name of the InterceptDeploymentGroup.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the InterceptDeploymentGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptDeploymentGroup;
+  }
+
+  export class Resource$Projects$Locations$Interceptdeployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new InterceptDeployment in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Interceptdeployments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeployments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeployments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeployments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/interceptDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single InterceptDeployment.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeployments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeployments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeployments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single InterceptDeployment.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Interceptdeployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InterceptDeployment>;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$InterceptDeployment>,
+      callback: BodyResponseCallback<Schema$InterceptDeployment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Get,
+      callback: BodyResponseCallback<Schema$InterceptDeployment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InterceptDeployment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeployments$Get
+        | BodyResponseCallback<Schema$InterceptDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InterceptDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InterceptDeployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InterceptDeployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterceptDeployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InterceptDeployment>(parameters);
+      }
+    }
+
+    /**
+     * Lists InterceptDeployments in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Interceptdeployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInterceptDeploymentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInterceptDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$ListInterceptDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$List,
+      callback: BodyResponseCallback<Schema$ListInterceptDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInterceptDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeployments$List
+        | BodyResponseCallback<Schema$ListInterceptDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInterceptDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInterceptDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInterceptDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/interceptDeployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInterceptDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInterceptDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a single InterceptDeployment.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptdeployments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptdeployments$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptdeployments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptdeployments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Create
+    extends StandardParameters {
+    /**
+     * Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_deployment_id from the method_signature of Create RPC
+     */
+    interceptDeploymentId?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptDeployment;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListInterceptDeploymentsRequest
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptdeployments$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The name of the InterceptDeployment.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the InterceptDeployment resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptDeployment;
+  }
+
+  export class Resource$Projects$Locations$Interceptendpointgroupassociations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new InterceptEndpointGroupAssociation in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/interceptEndpointGroupAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single InterceptEndpointGroupAssociation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single InterceptEndpointGroupAssociation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InterceptEndpointGroupAssociation>;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InterceptEndpointGroupAssociation>,
+      callback: BodyResponseCallback<Schema$InterceptEndpointGroupAssociation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get,
+      callback: BodyResponseCallback<Schema$InterceptEndpointGroupAssociation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$InterceptEndpointGroupAssociation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get
+        | BodyResponseCallback<Schema$InterceptEndpointGroupAssociation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InterceptEndpointGroupAssociation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InterceptEndpointGroupAssociation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InterceptEndpointGroupAssociation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterceptEndpointGroupAssociation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InterceptEndpointGroupAssociation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists InterceptEndpointGroupAssociations in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInterceptEndpointGroupAssociationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupAssociationsResponse>,
+      callback: BodyResponseCallback<Schema$ListInterceptEndpointGroupAssociationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List,
+      callback: BodyResponseCallback<Schema$ListInterceptEndpointGroupAssociationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInterceptEndpointGroupAssociationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupAssociationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupAssociationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInterceptEndpointGroupAssociationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/interceptEndpointGroupAssociations'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInterceptEndpointGroupAssociationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInterceptEndpointGroupAssociationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a single InterceptEndpointGroupAssociation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Create
+    extends StandardParameters {
+    /**
+     * Optional. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_endpoint_group_association_id from the method_signature of Create RPC
+     */
+    interceptEndpointGroupAssociationId?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptEndpointGroupAssociation;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListInterceptEndpointGroupAssociationsRequest
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroupassociations$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The name of the InterceptEndpointGroupAssociation.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the InterceptEndpointGroupAssociation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptEndpointGroupAssociation;
+  }
+
+  export class Resource$Projects$Locations$Interceptendpointgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new InterceptEndpointGroup in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/interceptEndpointGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single InterceptEndpointGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single InterceptEndpointGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InterceptEndpointGroup>;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InterceptEndpointGroup>,
+      callback: BodyResponseCallback<Schema$InterceptEndpointGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Get,
+      callback: BodyResponseCallback<Schema$InterceptEndpointGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InterceptEndpointGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroups$Get
+        | BodyResponseCallback<Schema$InterceptEndpointGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InterceptEndpointGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InterceptEndpointGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InterceptEndpointGroup>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InterceptEndpointGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InterceptEndpointGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists InterceptEndpointGroups in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInterceptEndpointGroupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListInterceptEndpointGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$List,
+      callback: BodyResponseCallback<Schema$ListInterceptEndpointGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInterceptEndpointGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroups$List
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInterceptEndpointGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInterceptEndpointGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/interceptEndpointGroups'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInterceptEndpointGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInterceptEndpointGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a single InterceptEndpointGroup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Interceptendpointgroups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Interceptendpointgroups$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Interceptendpointgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Interceptendpointgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networksecurity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Create
+    extends StandardParameters {
+    /**
+     * Required. Id of the requesting object If auto-generating Id server-side, remove this field and intercept_endpoint_group_id from the method_signature of Create RPC
+     */
+    interceptEndpointGroupId?: string;
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptEndpointGroup;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListInterceptEndpointGroupsRequest
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Interceptendpointgroups$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Identifier. The name of the InterceptEndpointGroup.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Field mask is used to specify the fields to be overwritten in the InterceptEndpointGroup resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InterceptEndpointGroup;
+  }
+
   export class Resource$Projects$Locations$Mirroringdeploymentgroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -12557,7 +15040,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Projects$Locations$Mirroringendpointgroups$Patch
     extends StandardParameters {
     /**
-     * Immutable. Identifier. The name of the MirroringEndpointGroup.
+     * Immutable. Identifier. Next ID: 11 The name of the MirroringEndpointGroup.
      */
     name?: string;
     /**
@@ -12582,7 +15065,7 @@ export namespace networksecurity_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
