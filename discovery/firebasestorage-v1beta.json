@@ -109,6 +109,60 @@
   "protocol": "rest",
   "resources": {
     "projects": {
+      "methods": {
+        "deleteDefaultBucket": {
+          "description": "Unlinks and deletes the default bucket.",
+          "flatPath": "v1beta/projects/{projectsId}/defaultBucket",
+          "httpMethod": "DELETE",
+          "id": "firebasestorage.projects.deleteDefaultBucket",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the default bucket to delete, `projects/{project_id_or_number}/defaultBucket`.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/defaultBucket$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+name}",
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        },
+        "getDefaultBucket": {
+          "description": "Gets the default bucket.",
+          "flatPath": "v1beta/projects/{projectsId}/defaultBucket",
+          "httpMethod": "GET",
+          "id": "firebasestorage.projects.getDefaultBucket",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the default bucket to retrieve, `projects/{project_id_or_number}/defaultBucket`.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/defaultBucket$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+name}",
+          "response": {
+            "$ref": "DefaultBucket"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/firebase"
+          ]
+        }
+      },
       "resources": {
         "buckets": {
           "methods": {
@@ -234,11 +288,44 @@
               ]
             }
           }
+        },
+        "defaultBucket": {
+          "methods": {
+            "create": {
+              "description": "Creates a Spark tier-eligible Cloud Storage bucket and links it to your Firebase project. If the default bucket already exists, this method will re-link it to your Firebase project. See https://firebase.google.com/pricing for pricing details.",
+              "flatPath": "v1beta/projects/{projectsId}/defaultBucket",
+              "httpMethod": "POST",
+              "id": "firebasestorage.projects.defaultBucket.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource where the default bucket will be created, `projects/{project_id_or_number}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+parent}/defaultBucket",
+              "request": {
+                "$ref": "DefaultBucket"
+              },
+              "response": {
+                "$ref": "DefaultBucket"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20230914",
+  "revision": "20241218",
   "rootUrl": "https://firebasestorage.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -259,108 +346,34 @@
       },
       "type": "object"
     },
+    "DefaultBucket": {
+      "description": "Spark tier-eligible Cloud Storage bucket. One per project. This resource exists if the underlying Cloud Storage bucket exists and it is linked to your Firebase project. See https://firebase.google.com/pricing for pricing details.",
+      "id": "DefaultBucket",
+      "properties": {
+        "bucket": {
+          "$ref": "Bucket",
+          "description": "Output only. Underlying bucket resource.",
+          "readOnly": true
+        },
+        "location": {
+          "description": "Immutable. Location of the default bucket.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of the default bucket.",
+          "type": "string"
+        },
+        "storageClass": {
+          "description": "Immutable. Storage class of the default bucket. Supported values are available at https://cloud.google.com/storage/docs/storage-classes#classes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
-      "type": "object"
-    },
-    "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadata": {
-      "description": "Metadata for MigrateLocationDestructively LRO.",
-      "id": "GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadata",
-      "properties": {
-        "createTime": {
-          "description": "The time the LRO was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "lastUpdateTime": {
-          "description": "The time the LRO was last updated.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "state": {
-          "description": "The current state of the migration.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "CREATING_TEMP_BUCKET",
-            "TRANSFERRING_TO_TEMP",
-            "DELETING_SOURCE_BUCKET",
-            "CREATING_DESTINATION_BUCKET",
-            "TRANSFERRING_TO_DESTINATION",
-            "DELETING_TEMP_BUCKET",
-            "SUCCEEDED",
-            "FAILED",
-            "ROLLING_BACK",
-            "ROLLED_BACK"
-          ],
-          "enumDescriptions": [
-            "Unspecified state. Should not be used.",
-            "The MigrateLocationDestructively request has passed precondition checks and the bucket migration will begin soon.",
-            "Generating a unique bucket name, storing the source -> temp mapping in Spanner, and actually creating the temporary bucket via Bigstore.",
-            "The first STS transfer to move all objects from the source bucket to the temp bucket is underway.",
-            "The source bucket is being emptied and deleted.",
-            "The source bucket is being recreated in the new location.",
-            "The second STS transfer to move all objects from the temp bucket to the final bucket is underway.",
-            "The temp bucket is being emptied and deleted.",
-            "All stages of the migration have completed and the operation has been marked done and updated with a response.",
-            "The migration failed at some stage and it is not possible to continue retrying that stage. Manual recovery may be needed. Rollback is either impossible at this stage, or has been attempted and failed.",
-            "The migration has encountered a permanent failure and is now being rolled back so that the source bucket is restored to its original state.",
-            "The migration has been successfully rolled back."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadata": {
-      "description": "Metadata for MigrateLocationDestructively LRO.",
-      "id": "GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadata",
-      "properties": {
-        "createTime": {
-          "description": "The time the LRO was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "lastUpdateTime": {
-          "description": "The time the LRO was last updated.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "state": {
-          "description": "The current state of the migration.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "CREATING_TEMP_BUCKET",
-            "TRANSFERRING_TO_TEMP",
-            "DELETING_SOURCE_BUCKET",
-            "CREATING_DESTINATION_BUCKET",
-            "TRANSFERRING_TO_DESTINATION",
-            "DELETING_TEMP_BUCKET",
-            "SUCCEEDED",
-            "FAILED",
-            "ROLLING_BACK",
-            "ROLLED_BACK"
-          ],
-          "enumDescriptions": [
-            "Unspecified state. Should not be used.",
-            "The MigrateLocationDestructively request has passed precondition checks and the bucket migration will begin soon.",
-            "Generating a unique bucket name, storing the source -> temp mapping in Spanner, and actually creating the temporary bucket via Bigstore.",
-            "The first STS transfer to move all objects from the source bucket to the temp bucket is underway.",
-            "The source bucket is being emptied and deleted.",
-            "The source bucket is being recreated in the new location.",
-            "The second STS transfer to move all objects from the temp bucket to the final bucket is underway.",
-            "The temp bucket is being emptied and deleted.",
-            "All stages of the migration have completed and the operation has been marked done and updated with a response.",
-            "The migration failed at some stage and it is not possible to continue retrying that stage. Manual recovery may be needed. Rollback is either impossible at this stage, or has been attempted and failed.",
-            "The migration has encountered a permanent failure and is now being rolled back so that the source bucket is restored to its original state.",
-            "The migration has been successfully rolled back."
-          ],
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "ListBucketsResponse": {

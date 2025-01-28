@@ -138,43 +138,30 @@ export namespace firebasestorage_v1beta {
     name?: string | null;
   }
   /**
+   * Spark tier-eligible Cloud Storage bucket. One per project. This resource exists if the underlying Cloud Storage bucket exists and it is linked to your Firebase project. See https://firebase.google.com/pricing for pricing details.
+   */
+  export interface Schema$DefaultBucket {
+    /**
+     * Output only. Underlying bucket resource.
+     */
+    bucket?: Schema$Bucket;
+    /**
+     * Immutable. Location of the default bucket.
+     */
+    location?: string | null;
+    /**
+     * Resource name of the default bucket.
+     */
+    name?: string | null;
+    /**
+     * Immutable. Storage class of the default bucket. Supported values are available at https://cloud.google.com/storage/docs/storage-classes#classes.
+     */
+    storageClass?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
-  /**
-   * Metadata for MigrateLocationDestructively LRO.
-   */
-  export interface Schema$GoogleFirebaseStorageControlplaneV1alphaMigrateLocationDestructivelyMetadata {
-    /**
-     * The time the LRO was created.
-     */
-    createTime?: string | null;
-    /**
-     * The time the LRO was last updated.
-     */
-    lastUpdateTime?: string | null;
-    /**
-     * The current state of the migration.
-     */
-    state?: string | null;
-  }
-  /**
-   * Metadata for MigrateLocationDestructively LRO.
-   */
-  export interface Schema$GoogleFirebaseStorageControlplaneV1betaMigrateLocationDestructivelyMetadata {
-    /**
-     * The time the LRO was created.
-     */
-    createTime?: string | null;
-    /**
-     * The time the LRO was last updated.
-     */
-    lastUpdateTime?: string | null;
-    /**
-     * The current state of the migration.
-     */
-    state?: string | null;
-  }
   /**
    * The response returned by `ListBuckets`.
    */
@@ -196,10 +183,201 @@ export namespace firebasestorage_v1beta {
   export class Resource$Projects {
     context: APIRequestContext;
     buckets: Resource$Projects$Buckets;
+    defaultBucket: Resource$Projects$Defaultbucket;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.buckets = new Resource$Projects$Buckets(this.context);
+      this.defaultBucket = new Resource$Projects$Defaultbucket(this.context);
     }
+
+    /**
+     * Unlinks and deletes the default bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteDefaultBucket(
+      params: Params$Resource$Projects$Deletedefaultbucket,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deleteDefaultBucket(
+      params?: Params$Resource$Projects$Deletedefaultbucket,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    deleteDefaultBucket(
+      params: Params$Resource$Projects$Deletedefaultbucket,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteDefaultBucket(
+      params: Params$Resource$Projects$Deletedefaultbucket,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteDefaultBucket(
+      params: Params$Resource$Projects$Deletedefaultbucket,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteDefaultBucket(callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteDefaultBucket(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Deletedefaultbucket
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Deletedefaultbucket;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Deletedefaultbucket;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasestorage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the default bucket.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDefaultBucket(
+      params: Params$Resource$Projects$Getdefaultbucket,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDefaultBucket(
+      params?: Params$Resource$Projects$Getdefaultbucket,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DefaultBucket>;
+    getDefaultBucket(
+      params: Params$Resource$Projects$Getdefaultbucket,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDefaultBucket(
+      params: Params$Resource$Projects$Getdefaultbucket,
+      options: MethodOptions | BodyResponseCallback<Schema$DefaultBucket>,
+      callback: BodyResponseCallback<Schema$DefaultBucket>
+    ): void;
+    getDefaultBucket(
+      params: Params$Resource$Projects$Getdefaultbucket,
+      callback: BodyResponseCallback<Schema$DefaultBucket>
+    ): void;
+    getDefaultBucket(
+      callback: BodyResponseCallback<Schema$DefaultBucket>
+    ): void;
+    getDefaultBucket(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getdefaultbucket
+        | BodyResponseCallback<Schema$DefaultBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DefaultBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DefaultBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DefaultBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getdefaultbucket;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getdefaultbucket;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasestorage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DefaultBucket>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DefaultBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Deletedefaultbucket
+    extends StandardParameters {
+    /**
+     * Required. The name of the default bucket to delete, `projects/{project_id_or_number\}/defaultBucket`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Getdefaultbucket
+    extends StandardParameters {
+    /**
+     * Required. The name of the default bucket to retrieve, `projects/{project_id_or_number\}/defaultBucket`.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Buckets {
@@ -610,5 +788,114 @@ export namespace firebasestorage_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$RemoveFirebaseRequest;
+  }
+
+  export class Resource$Projects$Defaultbucket {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Spark tier-eligible Cloud Storage bucket and links it to your Firebase project. If the default bucket already exists, this method will re-link it to your Firebase project. See https://firebase.google.com/pricing for pricing details.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Defaultbucket$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Defaultbucket$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DefaultBucket>;
+    create(
+      params: Params$Resource$Projects$Defaultbucket$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Defaultbucket$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DefaultBucket>,
+      callback: BodyResponseCallback<Schema$DefaultBucket>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Defaultbucket$Create,
+      callback: BodyResponseCallback<Schema$DefaultBucket>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$DefaultBucket>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Defaultbucket$Create
+        | BodyResponseCallback<Schema$DefaultBucket>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DefaultBucket>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DefaultBucket>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DefaultBucket> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Defaultbucket$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Defaultbucket$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasestorage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/defaultBucket').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DefaultBucket>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DefaultBucket>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Defaultbucket$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where the default bucket will be created, `projects/{project_id_or_number\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DefaultBucket;
   }
 }
