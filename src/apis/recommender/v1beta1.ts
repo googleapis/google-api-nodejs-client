@@ -206,6 +206,10 @@ export namespace recommender_v1beta1 {
      */
     costProjection?: Schema$GoogleCloudRecommenderV1beta1CostProjection;
     /**
+     * If populated, the impact contains multiple components. In this case, the top-level impact contains aggregated values and each component contains per-service details.
+     */
+    impactComponents?: Schema$GoogleCloudRecommenderV1beta1Impact[];
+    /**
      * Use with CategoryType.RELIABILITY
      */
     reliabilityProjection?: Schema$GoogleCloudRecommenderV1beta1ReliabilityProjection;
@@ -213,6 +217,10 @@ export namespace recommender_v1beta1 {
      * Use with CategoryType.SECURITY
      */
     securityProjection?: Schema$GoogleCloudRecommenderV1beta1SecurityProjection;
+    /**
+     * The service that this impact is associated with.
+     */
+    service?: string | null;
     /**
      * Use with CategoryType.SUSTAINABILITY
      */

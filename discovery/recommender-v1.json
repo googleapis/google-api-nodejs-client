@@ -1686,7 +1686,7 @@
       }
     }
   },
-  "revision": "20240428",
+  "revision": "20241013",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1CostProjection": {
@@ -1739,6 +1739,13 @@
           "$ref": "GoogleCloudRecommenderV1CostProjection",
           "description": "Use with CategoryType.COST"
         },
+        "impactComponents": {
+          "description": "If populated, the impact contains multiple components. In this case, the top-level impact contains aggregated values and each component contains per-service details.",
+          "items": {
+            "$ref": "GoogleCloudRecommenderV1Impact"
+          },
+          "type": "array"
+        },
         "reliabilityProjection": {
           "$ref": "GoogleCloudRecommenderV1ReliabilityProjection",
           "description": "Use with CategoryType.RELIABILITY"
@@ -1746,6 +1753,10 @@
         "securityProjection": {
           "$ref": "GoogleCloudRecommenderV1SecurityProjection",
           "description": "Use with CategoryType.SECURITY"
+        },
+        "service": {
+          "description": "The service that this impact is associated with.",
+          "type": "string"
         },
         "sustainabilityProjection": {
           "$ref": "GoogleCloudRecommenderV1SustainabilityProjection",
