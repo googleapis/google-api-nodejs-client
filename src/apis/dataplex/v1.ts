@@ -313,6 +313,10 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
+     * The version of the data format used to produce this data. This field is used to indicated when the underlying data format changes (e.g., schema modifications, changes to the source URL format definition, etc).
+     */
+    dataVersion?: string | null;
+    /**
      * The time the aspect was last updated in the source system.
      */
     updateTime?: string | null;
@@ -917,6 +921,109 @@ export namespace dataplex_v1 {
     name?: string | null;
   }
   /**
+   * The output of a data discovery scan.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoveryResult {
+    /**
+     * Output only. Configuration for metadata publishing.
+     */
+    bigqueryPublishing?: Schema$GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing;
+  }
+  /**
+   * Describes BigQuery publishing configurations.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoveryResultBigQueryPublishing {
+    /**
+     * Output only. The BigQuery dataset to publish to. It takes the form projects/{project_id\}/datasets/{dataset_id\}. If not set, the service creates a default publishing dataset.
+     */
+    dataset?: string | null;
+  }
+  /**
+   * Spec for a data discovery scan.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpec {
+    /**
+     * Optional. Configuration for metadata publishing.
+     */
+    bigqueryPublishingConfig?: Schema$GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig;
+    /**
+     * Cloud Storage related configurations.
+     */
+    storageConfig?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfig;
+  }
+  /**
+   * Describes BigQuery publishing configurations.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecBigQueryPublishingConfig {
+    /**
+     * Optional. The BigQuery connection used to create BigLake tables. Must be in the form projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}
+     */
+    connection?: string | null;
+    /**
+     * Optional. Determines whether to publish discovered tables as BigLake external tables or non-BigLake external tables.
+     */
+    tableType?: string | null;
+  }
+  /**
+   * Configurations related to Cloud Storage as the data source.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfig {
+    /**
+     * Optional. Configuration for CSV data.
+     */
+    csvOptions?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions;
+    /**
+     * Optional. Defines the data to exclude during discovery. Provide a list of patterns that identify the data to exclude. For Cloud Storage bucket assets, these patterns are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these patterns are interpreted as patterns to match table names.
+     */
+    excludePatterns?: string[] | null;
+    /**
+     * Optional. Defines the data to include during discovery when only a subset of the data should be considered. Provide a list of patterns that identify the data to include. For Cloud Storage bucket assets, these patterns are interpreted as glob patterns used to match object names. For BigQuery dataset assets, these patterns are interpreted as patterns to match table names.
+     */
+    includePatterns?: string[] | null;
+    /**
+     * Optional. Configuration for JSON data.
+     */
+    jsonOptions?: Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions;
+  }
+  /**
+   * Describes CSV and similar semi-structured data formats.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigCsvOptions {
+    /**
+     * Optional. The delimiter that is used to separate values. The default is , (comma).
+     */
+    delimiter?: string | null;
+    /**
+     * Optional. The character encoding of the data. The default is UTF-8.
+     */
+    encoding?: string | null;
+    /**
+     * Optional. The number of rows to interpret as header rows that should be skipped when reading data rows.
+     */
+    headerRows?: number | null;
+    /**
+     * Optional. The character used to quote column values. Accepts " (double quotation mark) or ' (single quotation mark). If unspecified, defaults to " (double quotation mark).
+     */
+    quote?: string | null;
+    /**
+     * Optional. Whether to disable the inference of data types for CSV data. If true, all columns are registered as strings.
+     */
+    typeInferenceDisabled?: boolean | null;
+  }
+  /**
+   * Describes JSON data format.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataDiscoverySpecStorageConfigJsonOptions {
+    /**
+     * Optional. The character encoding of the data. The default is UTF-8.
+     */
+    encoding?: string | null;
+    /**
+     * Optional. Whether to disable the inference of data types for JSON data. If true, all columns are registered as their primitive types (strings, number, or boolean).
+     */
+    typeInferenceDisabled?: boolean | null;
+  }
+  /**
    * DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResult {
@@ -1172,7 +1279,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
     /**
-     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
+     * The dimension name a rule belongs to. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
      */
     name?: string | null;
   }
@@ -1265,7 +1372,7 @@ export namespace dataplex_v1 {
      */
     description?: string | null;
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "INTEGRITY"
+     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
      */
     dimension?: string | null;
     /**
@@ -1364,7 +1471,7 @@ export namespace dataplex_v1 {
      */
     assertionRowCount?: string | null;
     /**
-     * The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.
+     * The number of rows a rule was evaluated against.This field is only valid for row-level type rules.Evaluated count can be configured to either include all rows (default) - with null rows automatically failing rule evaluation, or exclude null rows from the evaluated_count, by setting ignore_nulls = true.This field is not set for rule SqlAssertion.
      */
     evaluatedCount?: string | null;
     /**
@@ -1380,7 +1487,7 @@ export namespace dataplex_v1 {
      */
     passed?: boolean | null;
     /**
-     * The number of rows which passed a rule evaluation.This field is only valid for row-level type rules.
+     * This field is not set for rule SqlAssertion.
      */
     passedCount?: string | null;
     /**
@@ -1605,7 +1712,7 @@ export namespace dataplex_v1 {
     scoreThreshold?: number | null;
   }
   /**
-   * Represents a user-visible job which provides the insights for the related data source.For example: Data Quality: generates queries based on the rules and runs against the data to get data quality check results. Data Profile: analyzes the data in table(s) and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc).
+   * Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery).
    */
   export interface Schema$GoogleCloudDataplexV1DataScan {
     /**
@@ -1617,19 +1724,27 @@ export namespace dataplex_v1 {
      */
     data?: Schema$GoogleCloudDataplexV1DataSource;
     /**
-     * Output only. The result of the data profile scan.
+     * Output only. The result of a data discovery scan.
+     */
+    dataDiscoveryResult?: Schema$GoogleCloudDataplexV1DataDiscoveryResult;
+    /**
+     * Settings for a data discovery scan.
+     */
+    dataDiscoverySpec?: Schema$GoogleCloudDataplexV1DataDiscoverySpec;
+    /**
+     * Output only. The result of a data profile scan.
      */
     dataProfileResult?: Schema$GoogleCloudDataplexV1DataProfileResult;
     /**
-     * DataProfileScan related setting.
+     * Settings for a data profile scan.
      */
     dataProfileSpec?: Schema$GoogleCloudDataplexV1DataProfileSpec;
     /**
-     * Output only. The result of the data quality scan.
+     * Output only. The result of a data quality scan.
      */
     dataQualityResult?: Schema$GoogleCloudDataplexV1DataQualityResult;
     /**
-     * DataQualityScan related setting.
+     * Settings for a data quality scan.
      */
     dataQualitySpec?: Schema$GoogleCloudDataplexV1DataQualitySpec;
     /**
@@ -1653,7 +1768,7 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
+     * Output only. Identifier. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string | null;
     /**
@@ -1674,7 +1789,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * These messages contain information about the execution of a datascan. The monitored resource is 'DataScan' Next ID: 13
+   * These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEvent {
     /**
@@ -1854,11 +1969,11 @@ export namespace dataplex_v1 {
      */
     latestJobCreateTime?: string | null;
     /**
-     * The time when the latest DataScanJob ended.
+     * Optional. The time when the latest DataScanJob ended.
      */
     latestJobEndTime?: string | null;
     /**
-     * The time when the latest DataScanJob started.
+     * Optional. The time when the latest DataScanJob started.
      */
     latestJobStartTime?: string | null;
   }
@@ -1871,19 +1986,27 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The result of the data profile scan.
+     * Output only. The result of a data discovery scan.
+     */
+    dataDiscoveryResult?: Schema$GoogleCloudDataplexV1DataDiscoveryResult;
+    /**
+     * Output only. Settings for a data discovery scan.
+     */
+    dataDiscoverySpec?: Schema$GoogleCloudDataplexV1DataDiscoverySpec;
+    /**
+     * Output only. The result of a data profile scan.
      */
     dataProfileResult?: Schema$GoogleCloudDataplexV1DataProfileResult;
     /**
-     * Output only. DataProfileScan related setting.
+     * Output only. Settings for a data profile scan.
      */
     dataProfileSpec?: Schema$GoogleCloudDataplexV1DataProfileSpec;
     /**
-     * Output only. The result of the data quality scan.
+     * Output only. The result of a data quality scan.
      */
     dataQualityResult?: Schema$GoogleCloudDataplexV1DataQualityResult;
     /**
-     * Output only. DataQualityScan related setting.
+     * Output only. Settings for a data quality scan.
      */
     dataQualitySpec?: Schema$GoogleCloudDataplexV1DataQualitySpec;
     /**
@@ -1895,7 +2018,7 @@ export namespace dataplex_v1 {
      */
     message?: string | null;
     /**
-     * Output only. The relative resource name of the DataScanJob, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}/jobs/{job_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
+     * Output only. Identifier. The relative resource name of the DataScanJob, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}/jobs/{job_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string | null;
     /**
@@ -2030,6 +2153,10 @@ export namespace dataplex_v1 {
    * Details about the action.
    */
   export interface Schema$GoogleCloudDataplexV1DiscoveryEventActionDetails {
+    /**
+     * The human readable issue associated with the action.
+     */
+    issue?: string | null;
     /**
      * The type of action. Eg. IncompatibleDataSchema, InvalidDataFormat
      */
@@ -2223,7 +2350,7 @@ export namespace dataplex_v1 {
      */
     name?: string | null;
     /**
-     * Optional. Immutable. The resource name of the parent entry.
+     * Optional. Immutable. The resource name of the parent entry, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}.
      */
     parentEntry?: string | null;
     /**
@@ -2589,7 +2716,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ImportItem {
     /**
-     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference\}@*: matches aspects that belong to the specified aspect type for all paths.Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.
+     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. @* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path. Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.If you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry.In FULL entry sync mode, Dataplex implicitly adds the keys for all of the required aspects of an entry.
      */
     aspectKeys?: string[] | null;
     /**
@@ -5493,7 +5620,7 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Specifies the ordering of results.
+     * Optional. Specifies the ordering of results. Supported values are: relevance (default) last_modified_timestamp last_modified_timestamp asc
      */
     orderBy?: string;
     /**
@@ -5505,7 +5632,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The query against which entries in scope should be matched.
+     * Required. The query against which entries in scope should be matched. The query syntax is defined in Search syntax for Dataplex Catalog (https://cloud.google.com/dataplex/docs/search-syntax).
      */
     query?: string;
     /**
@@ -8259,6 +8386,10 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Delete
     extends StandardParameters {
     /**
+     * Optional. If set to true, any child resources of this data scan will also be deleted. (Otherwise, the request will only work if the data scan has no child resources.)
+     */
+    force?: boolean;
+    /**
      * Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string;
@@ -8323,11 +8454,11 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Datascans$Patch
     extends StandardParameters {
     /**
-     * Output only. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
+     * Output only. Identifier. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
      */
     name?: string;
     /**
-     * Required. Mask of fields to update.
+     * Optional. Mask of fields to update.
      */
     updateMask?: string;
     /**
@@ -11913,7 +12044,7 @@ export namespace dataplex_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. For example, to attach an aspect to a field that is specified by the schema aspect, the path should have the format Schema.. * - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     * Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. For example, to attach an aspect to a field that is specified by the schema aspect, the path should have the format Schema.. @* - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
      */
     aspectKeys?: string[];
     /**
@@ -22929,6 +23060,10 @@ export namespace dataplex_v1 {
      * Required. The resource name of the parent location, in the format projects/{project_id_or_number\}/locations/{location_id\}
      */
     parent?: string;
+    /**
+     * Optional. The service validates the request without performing any mutations. The default is false.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
