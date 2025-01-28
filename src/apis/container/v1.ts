@@ -245,6 +245,10 @@ export namespace container_v1 {
      */
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
     /**
+     * Configuration for the Cloud Storage Parallelstore CSI driver.
+     */
+    parallelstoreCsiDriverConfig?: Schema$ParallelstoreCsiDriverConfig;
+    /**
      * Optional. Configuration for Ray Operator addon.
      */
     rayOperatorConfig?: Schema$RayOperatorConfig;
@@ -305,7 +309,7 @@ export namespace container_v1 {
      */
     enabled?: boolean | null;
     /**
-     * Workload policy configuration for Autopilot.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      */
     workloadPolicyConfig?: Schema$WorkloadPolicyConfig;
   }
@@ -596,6 +600,10 @@ export namespace container_v1 {
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
+     * Configuration for all cluster's control plane endpoints.
+     */
+    controlPlaneEndpointsConfig?: Schema$ControlPlaneEndpointsConfig;
+    /**
      * Configuration for the fine-grained cost management feature.
      */
     costManagementConfig?: Schema$CostManagementConfig;
@@ -716,7 +724,7 @@ export namespace container_v1 {
      */
     masterAuth?: Schema$MasterAuth;
     /**
-     * The configuration options for master authorized networks feature.
+     * The configuration options for master authorized networks feature. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.authorized_networks_config instead.
      */
     masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
@@ -907,7 +915,7 @@ export namespace container_v1 {
      */
     desiredAuthenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
     /**
-     * The desired workload policy configuration for the autopilot cluster.
+     * WorkloadPolicyConfig is the configuration related to GCW workload policy
      */
     desiredAutopilotWorkloadPolicyConfig?: Schema$WorkloadPolicyConfig;
     /**
@@ -927,6 +935,10 @@ export namespace container_v1 {
      */
     desiredContainerdConfig?: Schema$ContainerdConfig;
     /**
+     * Control plane endpoints configuration.
+     */
+    desiredControlPlaneEndpointsConfig?: Schema$ControlPlaneEndpointsConfig;
+    /**
      * The desired configuration for the fine-grained cost management feature.
      */
     desiredCostManagementConfig?: Schema$CostManagementConfig;
@@ -939,9 +951,17 @@ export namespace container_v1 {
      */
     desiredDatapathProvider?: string | null;
     /**
+     * Override the default setting of whether future created nodes have private IP addresses only, namely NetworkConfig.default_enable_private_nodes
+     */
+    desiredDefaultEnablePrivateNodes?: boolean | null;
+    /**
      * The desired status of whether to disable default sNAT for this cluster.
      */
     desiredDefaultSnatStatus?: Schema$DefaultSnatStatus;
+    /**
+     * Enable/Disable L4 LB VPC firewall reconciliation for the cluster.
+     */
+    desiredDisableL4LbFirewallReconciliation?: boolean | null;
     /**
      * DNSConfig contains clusterDNS config for this cluster.
      */
@@ -959,9 +979,13 @@ export namespace container_v1 {
      */
     desiredEnableMultiNetworking?: boolean | null;
     /**
-     * Enable/Disable private endpoint for the cluster's master.
+     * Enable/Disable private endpoint for the cluster's master. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.enable_public_endpoint instead. Note that the value of enable_public_endpoint is reversed: if enable_private_endpoint is false, then enable_public_endpoint will be true.
      */
     desiredEnablePrivateEndpoint?: boolean | null;
+    /**
+     * The desired enterprise configuration for the cluster.
+     */
+    desiredEnterpriseConfig?: Schema$DesiredEnterpriseConfig;
     /**
      * The desired fleet configuration for the cluster.
      */
@@ -1011,7 +1035,7 @@ export namespace container_v1 {
      */
     desiredLoggingService?: string | null;
     /**
-     * The desired configuration options for master authorized networks feature.
+     * The desired configuration options for master authorized networks feature. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.authorized_networks_config instead.
      */
     desiredMasterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
@@ -1042,6 +1066,10 @@ export namespace container_v1 {
      * The desired node kubelet config for all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
      */
     desiredNodePoolAutoConfigKubeletConfig?: Schema$NodeKubeletConfig;
+    /**
+     * The desired Linux node config for all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters. Currently only `cgroup_mode` can be set here.
+     */
+    desiredNodePoolAutoConfigLinuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
      * The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
      */
@@ -1075,7 +1103,7 @@ export namespace container_v1 {
      */
     desiredParentProductConfig?: Schema$ParentProductConfig;
     /**
-     * The desired private cluster configuration. master_global_access_config is the only field that can be changed via this field. See also ClusterUpdate.desired_enable_private_endpoint for modifying other fields within PrivateClusterConfig.
+     * The desired private cluster configuration. master_global_access_config is the only field that can be changed via this field. See also ClusterUpdate.desired_enable_private_endpoint for modifying other fields within PrivateClusterConfig. Deprecated: Use desired_control_plane_endpoints_config.ip_endpoints_config.global_access instead.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
     /**
@@ -1223,6 +1251,19 @@ export namespace container_v1 {
     privateRegistryAccessConfig?: Schema$PrivateRegistryAccessConfig;
   }
   /**
+   * Configuration for all of the cluster's control plane endpoints.
+   */
+  export interface Schema$ControlPlaneEndpointsConfig {
+    /**
+     * DNS endpoint configuration.
+     */
+    dnsEndpointConfig?: Schema$DNSEndpointConfig;
+    /**
+     * IP endpoints configuration.
+     */
+    ipEndpointsConfig?: Schema$IPEndpointsConfig;
+  }
+  /**
    * Configuration for fine-grained cost management feature.
    */
   export interface Schema$CostManagementConfig {
@@ -1325,6 +1366,15 @@ export namespace container_v1 {
     disabled?: boolean | null;
   }
   /**
+   * DesiredEnterpriseConfig is a wrapper used for updating enterprise_config.
+   */
+  export interface Schema$DesiredEnterpriseConfig {
+    /**
+     * desired_tier specifies the desired tier of the cluster.
+     */
+    desiredTier?: string | null;
+  }
+  /**
    * Configuration for NodeLocal DNSCache
    */
   export interface Schema$DnsCacheConfig {
@@ -1355,6 +1405,19 @@ export namespace container_v1 {
     clusterDnsScope?: string | null;
   }
   /**
+   * Describes the configuration of a DNS endpoint.
+   */
+  export interface Schema$DNSEndpointConfig {
+    /**
+     * Controls whether user traffic is allowed over this endpoint. Note that GCP-managed services may still use the endpoint even if this is false.
+     */
+    allowExternalTraffic?: boolean | null;
+    /**
+     * Output only. The cluster's DNS endpoint configuration. A DNS format address. This is accessible from the public internet. Ex: uid.us-central1.gke.goog. Always present, but the behavior may change according to the value of DNSEndpointConfig.allow_external_traffic.
+     */
+    endpoint?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -1366,6 +1429,10 @@ export namespace container_v1 {
      * Output only. cluster_tier indicates the effective tier of the cluster.
      */
     clusterTier?: string | null;
+    /**
+     * desired_tier specifies the desired tier of the cluster.
+     */
+    desiredTier?: string | null;
   }
   /**
    * EphemeralStorageLocalSsdConfig contains configuration for the node ephemeral storage using Local SSDs.
@@ -1707,6 +1774,39 @@ export namespace container_v1 {
     useRoutes?: boolean | null;
   }
   /**
+   * IP endpoints configuration.
+   */
+  export interface Schema$IPEndpointsConfig {
+    /**
+     * Configuration of authorized networks. If enabled, restricts access to the control plane based on source IP. It is invalid to specify both Cluster.masterAuthorizedNetworksConfig and this field at the same time.
+     */
+    authorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
+    /**
+     * Controls whether to allow direct IP access.
+     */
+    enabled?: boolean | null;
+    /**
+     * Controls whether the control plane allows access through a public IP. It is invalid to specify both PrivateClusterConfig.enablePrivateEndpoint and this field at the same time.
+     */
+    enablePublicEndpoint?: boolean | null;
+    /**
+     * Controls whether the control plane's private endpoint is accessible from sources in other regions. It is invalid to specify both PrivateClusterMasterGlobalAccessConfig.enabled and this field at the same time.
+     */
+    globalAccess?: boolean | null;
+    /**
+     * Output only. The internal IP address of this cluster's control plane. Only populated if enabled.
+     */
+    privateEndpoint?: string | null;
+    /**
+     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format. It is invalid to specify both PrivateClusterConfig.privateEndpointSubnetwork and this field at the same time.
+     */
+    privateEndpointSubnetwork?: string | null;
+    /**
+     * Output only. The external IP address of this cluster's control plane. Only populated if enabled.
+     */
+    publicEndpoint?: string | null;
+  }
+  /**
    * Jwk is a JSON Web Key as specified in RFC 7517
    */
   export interface Schema$Jwk {
@@ -1787,7 +1887,7 @@ export namespace container_v1 {
      */
     hugepages?: Schema$HugepagesConfig;
     /**
-     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse
+     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse kernel.shmmni kernel.shmmax kernel.shmall
      */
     sysctls?: {[key: string]: string} | null;
   }
@@ -1968,6 +2068,10 @@ export namespace container_v1 {
      * Whether master is accessbile via Google Compute Engine Public IP addresses.
      */
     gcpPublicCidrsAccessEnabled?: boolean | null;
+    /**
+     * Whether master authorized networks is enforced on private endpoint or not.
+     */
+    privateEndpointEnforcementEnabled?: boolean | null;
   }
   /**
    * Constraints applied to pods.
@@ -2043,9 +2147,17 @@ export namespace container_v1 {
      */
     datapathProvider?: string | null;
     /**
+     * Controls whether by default nodes have private IP addresses only. It is invalid to specify both PrivateClusterConfig.enablePrivateNodes and this field at the same time. To update the default setting, use ClusterUpdate.desired_default_enable_private_nodes
+     */
+    defaultEnablePrivateNodes?: boolean | null;
+    /**
      * Whether the cluster disables default in-node sNAT rules. In-node sNAT rules will be disabled when default_snat_status is disabled. When disabled is set to false, default IP masquerade rules will be applied to the nodes to prevent sNAT on cluster internal traffic.
      */
     defaultSnatStatus?: Schema$DefaultSnatStatus;
+    /**
+     * Disable L4 load balancer VPC firewalls to enable firewall policies.
+     */
+    disableL4LbFirewallReconciliation?: boolean | null;
     /**
      * DNSConfig contains clusterDNS config for this cluster.
      */
@@ -2237,6 +2349,10 @@ export namespace container_v1 {
      */
     localSsdCount?: number | null;
     /**
+     * Specifies which method should be used for encrypting the Local SSDs attahced to the node.
+     */
+    localSsdEncryptionMode?: string | null;
+    /**
      * Logging configuration.
      */
     loggingConfig?: Schema$NodePoolLoggingConfig;
@@ -2244,6 +2360,10 @@ export namespace container_v1 {
      * The name of a Google Compute Engine [machine type](https://cloud.google.com/compute/docs/machine-types) If unspecified, the default machine type is `e2-medium`.
      */
     machineType?: string | null;
+    /**
+     * The maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely.
+     */
+    maxRunDuration?: string | null;
     /**
      * The metadata key/value pairs assigned to instances in the cluster. Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys: - "cluster-location" - "cluster-name" - "cluster-uid" - "configure-sh" - "containerd-configure-sh" - "enable-os-login" - "gci-ensure-gke-docker" - "gci-metrics-enabled" - "gci-update-strategy" - "instance-template" - "kube-env" - "startup-script" - "user-data" - "disable-address-manager" - "windows-startup-script-ps1" - "common-psm1" - "k8s-node-setup-psm1" - "install-ssh-psm1" - "user-profile-psm1" Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value's size must be less than or equal to 32 KB. The total size of all keys and values must be less than 512 KB.
      */
@@ -2414,7 +2534,7 @@ export namespace container_v1 {
      */
     createPodRange?: boolean | null;
     /**
-     * Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from cluster.privateClusterConfig.enablePrivateNodes
+     * Whether nodes have internal IP addresses only. If enable_private_nodes is not specified, then the value is derived from Cluster.NetworkConfig.default_enable_private_nodes
      */
     enablePrivateNodes?: boolean | null;
     /**
@@ -2532,6 +2652,10 @@ export namespace container_v1 {
    */
   export interface Schema$NodePoolAutoConfig {
     /**
+     * Output only. Configuration options for Linux nodes.
+     */
+    linuxNodeConfig?: Schema$LinuxNodeConfig;
+    /**
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035.
      */
     networkTags?: Schema$NetworkTags;
@@ -2561,19 +2685,19 @@ export namespace container_v1 {
      */
     locationPolicy?: string | null;
     /**
-     * Maximum number of nodes for one location in the NodePool. Must be \>= min_node_count. There has to be enough quota to scale up the cluster.
+     * Maximum number of nodes for one location in the node pool. Must be \>= min_node_count. There has to be enough quota to scale up the cluster.
      */
     maxNodeCount?: number | null;
     /**
-     * Minimum number of nodes for one location in the NodePool. Must be \>= 1 and <= max_node_count.
+     * Minimum number of nodes for one location in the node pool. Must be greater than or equal to 0 and less than or equal to max_node_count.
      */
     minNodeCount?: number | null;
     /**
-     * Maximum number of nodes in the node pool. Must be greater than total_min_node_count. There has to be enough quota to scale up the cluster. The total_*_node_count fields are mutually exclusive with the *_node_count fields.
+     * Maximum number of nodes in the node pool. Must be greater than or equal to total_min_node_count. There has to be enough quota to scale up the cluster. The total_*_node_count fields are mutually exclusive with the *_node_count fields.
      */
     totalMaxNodeCount?: number | null;
     /**
-     * Minimum number of nodes in the node pool. Must be greater than 1 less than total_max_node_count. The total_*_node_count fields are mutually exclusive with the *_node_count fields.
+     * Minimum number of nodes in the node pool. Must be greater than or equal to 0 and less than or equal to total_max_node_count. The total_*_node_count fields are mutually exclusive with the *_node_count fields.
      */
     totalMinNodeCount?: number | null;
   }
@@ -2734,6 +2858,15 @@ export namespace container_v1 {
     status?: string | null;
   }
   /**
+   * Configuration for the Cloud Storage Parallelstore CSI driver.
+   */
+  export interface Schema$ParallelstoreCsiDriverConfig {
+    /**
+     * Whether the Cloud Storage Parallelstore CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * ParentProductConfig is the configuration of the parent product of the cluster. This field is used by Google internal products that are built on top of a GKE cluster and take the ownership of the cluster.
    */
   export interface Schema$ParentProductConfig {
@@ -2777,15 +2910,15 @@ export namespace container_v1 {
    */
   export interface Schema$PrivateClusterConfig {
     /**
-     * Whether the master's internal IP address is used as the cluster endpoint.
+     * Whether the master's internal IP address is used as the cluster endpoint. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_public_endpoint instead. Note that the value of enable_public_endpoint is reversed: if enable_private_endpoint is false, then enable_public_endpoint will be true.
      */
     enablePrivateEndpoint?: boolean | null;
     /**
-     * Whether nodes have internal IP addresses only. If enabled, all nodes are given only RFC 1918 private addresses and communicate with the master via private networking.
+     * Whether nodes have internal IP addresses only. If enabled, all nodes are given only RFC 1918 private addresses and communicate with the master via private networking. Deprecated: Use NetworkConfig.default_enable_private_nodes instead.
      */
     enablePrivateNodes?: boolean | null;
     /**
-     * Controls master global access settings.
+     * Controls master global access settings. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.enable_global_access instead.
      */
     masterGlobalAccessConfig?: Schema$PrivateClusterMasterGlobalAccessConfig;
     /**
@@ -2797,15 +2930,15 @@ export namespace container_v1 {
      */
     peeringName?: string | null;
     /**
-     * Output only. The internal IP address of this cluster's master endpoint.
+     * Output only. The internal IP address of this cluster's master endpoint. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint instead.
      */
     privateEndpoint?: string | null;
     /**
-     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format.
+     * Subnet to provision the master's private endpoint during cluster creation. Specified in projects/x/regions/x/subnetworks/x format. Deprecated: Use ControlPlaneEndpointsConfig.IPEndpointsConfig.private_endpoint_subnetwork instead.
      */
     privateEndpointSubnetwork?: string | null;
     /**
-     * Output only. The external IP address of this cluster's master endpoint.
+     * Output only. The external IP address of this cluster's master endpoint. Deprecated:Use ControlPlaneEndpointsConfig.IPEndpointsConfig.public_endpoint instead.
      */
     publicEndpoint?: string | null;
   }
@@ -2952,6 +3085,10 @@ export namespace container_v1 {
      * The default version for newly created clusters on the channel.
      */
     defaultVersion?: string | null;
+    /**
+     * The auto upgrade target version for clusters on the channel.
+     */
+    upgradeTargetVersion?: string | null;
     /**
      * List of valid versions for the channel.
      */
@@ -3771,6 +3908,10 @@ export namespace container_v1 {
      */
     machineType?: string | null;
     /**
+     * The maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely.
+     */
+    maxRunDuration?: string | null;
+    /**
      * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
@@ -3876,6 +4017,59 @@ export namespace container_v1 {
      * The resource type that is upgrading.
      */
     resourceType?: string | null;
+    /**
+     * The target version for the upgrade.
+     */
+    targetVersion?: string | null;
+  }
+  /**
+   * UpgradeInfoEvent is a notification sent to customers about the upgrade information of a resource.
+   */
+  export interface Schema$UpgradeInfoEvent {
+    /**
+     * The current version before the upgrade.
+     */
+    currentVersion?: string | null;
+    /**
+     * A brief description of the event.
+     */
+    description?: string | null;
+    /**
+     * The time when the operation ended.
+     */
+    endTime?: string | null;
+    /**
+     * The type of the event.
+     */
+    eventType?: string | null;
+    /**
+     * The end of extended support timestamp.
+     */
+    extendedSupportEndTime?: string | null;
+    /**
+     * The operation associated with this upgrade.
+     */
+    operation?: string | null;
+    /**
+     * Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
+     */
+    resource?: string | null;
+    /**
+     * The resource type associated with the upgrade.
+     */
+    resourceType?: string | null;
+    /**
+     * The end of standard support timestamp.
+     */
+    standardSupportEndTime?: string | null;
+    /**
+     * The time when the operation was started.
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The state of the upgrade.
+     */
+    state?: string | null;
     /**
      * The target version for the upgrade.
      */
@@ -4027,7 +4221,7 @@ export namespace container_v1 {
     mode?: string | null;
   }
   /**
-   * WorkloadPolicyConfig is the configuration of workload policy for autopilot clusters.
+   * WorkloadPolicyConfig is the configuration related to GCW workload policy
    */
   export interface Schema$WorkloadPolicyConfig {
     /**
