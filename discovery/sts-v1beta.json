@@ -6,6 +6,13 @@
   "description": "The Security Token Service exchanges Google or third-party credentials for a short-lived access token to Google Cloud resources.",
   "discoveryVersion": "v1",
   "documentationLink": "http://cloud.google.com/iam/docs/workload-identity-federation",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://sts.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -116,7 +123,7 @@
       }
     }
   },
-  "revision": "20240425",
+  "revision": "20241106",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIamV1Binding": {
