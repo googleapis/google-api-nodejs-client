@@ -816,7 +816,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "config.projects.locations.operations.cancel",
@@ -1154,13 +1154,13 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. When requesting a page of resources, 'page_size' specifies number of resources to return. If unspecified, at most 500 will be returned. The maximum value is 1000.",
+                      "description": "Optional. When requesting a page of terraform versions, 'page_size' specifies number of terraform versions to return. If unspecified, at most 500 will be returned. The maximum value is 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. Token returned by previous call to 'ListTerraformVersions' which specifies the position in the list from where to continue listing the resources.",
+                      "description": "Optional. Token returned by previous call to 'ListTerraformVersions' which specifies the position in the list from where to continue listing the terraform versions.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1187,7 +1187,7 @@
       }
     }
   },
-  "revision": "20240710",
+  "revision": "20250108",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -1422,7 +1422,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "Optional. User-specified Service Account (SA) credentials to be used when actuating resources. Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`",
+          "description": "Required. User-specified Service Account (SA) credentials to be used when actuating resources. Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`",
           "type": "string"
         },
         "state": {
@@ -1708,7 +1708,7 @@
           "type": "string"
         },
         "previews": {
-          "description": "List of Previewss.",
+          "description": "List of Previews.",
           "items": {
             "$ref": "Preview"
           },
@@ -1733,7 +1733,7 @@
           "type": "string"
         },
         "resources": {
-          "description": "List of Resourcess.",
+          "description": "List of Resources.",
           "items": {
             "$ref": "Resource"
           },
@@ -1939,7 +1939,7 @@
           "readOnly": true
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2091,7 +2091,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "Optional. User-specified Service Account (SA) credentials to be used when previewing resources. Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`",
+          "description": "Required. User-specified Service Account (SA) credentials to be used when previewing resources. Format: `projects/{projectID}/serviceAccounts/{serviceAccount}`",
           "type": "string"
         },
         "state": {
@@ -2556,7 +2556,7 @@
           "additionalProperties": {
             "$ref": "TerraformVariable"
           },
-          "description": "Input variable values for the Terraform blueprint.",
+          "description": "Optional. Input variable values for the Terraform blueprint.",
           "type": "object"
         }
       },
@@ -2568,7 +2568,8 @@
       "properties": {
         "error": {
           "$ref": "Status",
-          "description": "Original error response from underlying Google API, if available."
+          "description": "Output only. Original error response from underlying Google API, if available.",
+          "readOnly": true
         },
         "errorDescription": {
           "description": "A human-readable error description.",
@@ -2606,7 +2607,7 @@
       "id": "TerraformVariable",
       "properties": {
         "inputValue": {
-          "description": "Input variable value.",
+          "description": "Optional. Input variable value.",
           "type": "any"
         }
       },
