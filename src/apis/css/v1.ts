@@ -291,11 +291,11 @@ export namespace css_v1 {
      */
     headlineOfferMobileLink?: string | null;
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      */
     headlineOfferPrice?: Schema$Price;
     /**
-     * Headline Price of the aggregate offer.
+     * Headline Price of the CSS Product.
      */
     headlineOfferShippingPrice?: Schema$Price;
     /**
@@ -303,7 +303,7 @@ export namespace css_v1 {
      */
     headlineOfferSubscriptionCost?: Schema$HeadlineOfferSubscriptionCost;
     /**
-     * High Price of the aggregate offer.
+     * High Price of the CSS Product.
      */
     highPrice?: Schema$Price;
     /**
@@ -323,7 +323,7 @@ export namespace css_v1 {
      */
     itemGroupId?: string | null;
     /**
-     * Low Price of the aggregate offer.
+     * Low Price of the CSS Product.
      */
     lowPrice?: Schema$Price;
     /**
@@ -339,7 +339,7 @@ export namespace css_v1 {
      */
     multipack?: string | null;
     /**
-     * The number of aggregate offers.
+     * The number of CSS Products.
      */
     numberOfOffers?: string | null;
     /**
@@ -413,7 +413,7 @@ export namespace css_v1 {
     name?: string | null;
   }
   /**
-   * The processed CSS Product(a.k.a Aggregate Offer internally).
+   * The processed CSS Product.
    */
   export interface Schema$CssProduct {
     /**
@@ -470,7 +470,7 @@ export namespace css_v1 {
      */
     finalName?: string | null;
     /**
-     * Represents the existing version (freshness) of the CSS Product, which can be used to preserve the right order when multiple updates are done at the same time. This field must not be set to the future time. If set, the update is prevented if a newer version of the item already exists in our system (that is the last update time of the existing CSS products is later than the freshness time set in the update). If the update happens, the last update time is then set to this freshness time. If not set, the update will not be prevented and the last update time will default to when this request was received by the CSS API. If the operation is prevented, the aborted exception will be thrown.
+     * DEPRECATED. Use expiration_date instead. Represents the existing version (freshness) of the CSS Product, which can be used to preserve the right order when multiple updates are done at the same time. This field must not be set to the future time. If set, the update is prevented if a newer version of the item already exists in our system (that is the last update time of the existing CSS products is later than the freshness time set in the update). If the update happens, the last update time is then set to this freshness time. If not set, the update will not be prevented and the last update time will default to when this request was received by the CSS API. If the operation is prevented, the aborted exception will be thrown.
      */
     freshnessTime?: string | null;
     /**
@@ -529,7 +529,7 @@ export namespace css_v1 {
    */
   export interface Schema$DestinationStatus {
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is approved.
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is approved.
      */
     approvedCountries?: string[] | null;
     /**
@@ -537,11 +537,11 @@ export namespace css_v1 {
      */
     destination?: string | null;
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is disapproved.
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is disapproved.
      */
     disapprovedCountries?: string[] | null;
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where the aggregate offer is pending approval.
+     * List of country codes (ISO 3166-1 alpha-2) where the CSS Product is pending approval.
      */
     pendingCountries?: string[] | null;
   }
@@ -588,7 +588,7 @@ export namespace css_v1 {
    */
   export interface Schema$ItemLevelIssue {
     /**
-     * List of country codes (ISO 3166-1 alpha-2) where issue applies to the aggregate offer.
+     * List of country codes (ISO 3166-1 alpha-2) where issue applies to the CSS Product.
      */
     applicableCountries?: string[] | null;
     /**
@@ -620,7 +620,7 @@ export namespace css_v1 {
      */
     resolution?: string | null;
     /**
-     * How this issue affects serving of the aggregate offer.
+     * How this issue affects serving of the CSS Product.
      */
     servability?: string | null;
   }
@@ -1036,7 +1036,7 @@ export namespace css_v1 {
      */
     labelId?: string;
     /**
-     * Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 100; values above 100 will be coerced to 100.
      */
     pageSize?: number;
     /**
@@ -1239,6 +1239,91 @@ export namespace css_v1 {
         return createAPIRequest<Schema$CssProductInput>(parameters);
       }
     }
+
+    /**
+     * Updates the existing Css Product input in your CSS Center account. After inserting, updating, or deleting a CSS Product input, it may take several minutes before the processed Css Product can be retrieved.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Cssproductinputs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Cssproductinputs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CssProductInput>;
+    patch(
+      params: Params$Resource$Accounts$Cssproductinputs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Cssproductinputs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CssProductInput>,
+      callback: BodyResponseCallback<Schema$CssProductInput>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Cssproductinputs$Patch,
+      callback: BodyResponseCallback<Schema$CssProductInput>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CssProductInput>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Cssproductinputs$Patch
+        | BodyResponseCallback<Schema$CssProductInput>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CssProductInput>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CssProductInput>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CssProductInput> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Cssproductinputs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Cssproductinputs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://css.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CssProductInput>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CssProductInput>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Cssproductinputs$Delete
@@ -1255,13 +1340,29 @@ export namespace css_v1 {
   export interface Params$Resource$Accounts$Cssproductinputs$Insert
     extends StandardParameters {
     /**
-     * Required. The primary or supplemental feed id. If CSS Product already exists and feed id provided is different, then the CSS Product will be moved to a new feed. Note: For now, CSSs do not need to provide feed ids as we create feeds on the fly. We do not have supplemental feed support for CSS Products yet.
+     * Optional. DEPRECATED. Feed id is not required for CSS Products. The primary or supplemental feed id. If CSS Product already exists and feed id provided is different, then the CSS Product will be moved to a new feed. Note: For now, CSSs do not need to provide feed ids as we create feeds on the fly. We do not have supplemental feed support for CSS Products yet.
      */
     feedId?: string;
     /**
      * Required. The account where this CSS Product will be inserted. Format: accounts/{account\}
      */
     parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CssProductInput;
+  }
+  export interface Params$Resource$Accounts$Cssproductinputs$Patch
+    extends StandardParameters {
+    /**
+     * The name of the CSS Product input. Format: `accounts/{account\}/cssProductInputs/{css_product_input\}`
+     */
+    name?: string;
+    /**
+     * The list of CSS product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the CSS product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full CSS product replacement is not supported.
+     */
+    updateMask?: string;
 
     /**
      * Request body metadata
@@ -1657,7 +1758,7 @@ export namespace css_v1 {
     }
 
     /**
-     * Lists the labels assigned to an account.
+     * Lists the labels owned by an account.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
