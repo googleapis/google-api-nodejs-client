@@ -129,7 +129,7 @@ export namespace orgpolicy_v2 {
   }
 
   /**
-   * Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run/darklaunch.
+   * Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run.
    */
   export interface Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec {
     /**
@@ -142,11 +142,11 @@ export namespace orgpolicy_v2 {
     spec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
   }
   /**
-   * A constraint describes a way to restrict resource's configuration. For example, you could enforce a constraint that controls which Google Cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. Constraints can be configured by the organization policy administrator to fit the needs of the organization by setting a policy that includes constraints at different locations in the organization's resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about `policies`. Constraints have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a policy being defined or inherited for the resource in question.
+   * A constraint describes a way to restrict resource's configuration. For example, you could enforce a constraint that controls which Google Cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. Constraints can be configured by the organization policy administrator to fit the needs of the organization by setting a policy that includes constraints at different locations in the organization's resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules, see `Policy`. Constraints have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a policy being defined or inherited for the resource in question.
    */
   export interface Schema$GoogleCloudOrgpolicyV2Constraint {
     /**
-     * Defines this constraint as being a BooleanConstraint.
+     * Defines this constraint as being a boolean constraint.
      */
     booleanConstraint?: Schema$GoogleCloudOrgpolicyV2ConstraintBooleanConstraint;
     /**
@@ -162,7 +162,7 @@ export namespace orgpolicy_v2 {
      */
     displayName?: string | null;
     /**
-     * Defines this constraint as being a ListConstraint.
+     * Defines this constraint as being a list constraint.
      */
     listConstraint?: Schema$GoogleCloudOrgpolicyV2ConstraintListConstraint;
     /**
@@ -173,13 +173,85 @@ export namespace orgpolicy_v2 {
      * Shows if dry run is supported for this constraint or not.
      */
     supportsDryRun?: boolean | null;
+    /**
+     * Shows if simulation is supported for this constraint or not.
+     */
+    supportsSimulation?: boolean | null;
   }
   /**
-   * A constraint that is either enforced or not. For example, a constraint `constraints/compute.disableSerialPortAccess`. If it is enforced on a VM instance, serial port connections will not be opened to that instance.
+   * A constraint type is enforced or not enforced, which is configured in the `PolicyRule`. If `customConstraintDefinition` is defined, this constraint is a managed constraint.
    */
-  export interface Schema$GoogleCloudOrgpolicyV2ConstraintBooleanConstraint {}
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintBooleanConstraint {
+    /**
+     * Custom constraint definition. Defines this as a managed constraint.
+     */
+    customConstraintDefinition?: Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition;
+  }
   /**
-   * A constraint that allows or disallows a list of string values, which are configured by an Organization Policy administrator with a policy.
+   * Custom constraint definition. Defines this as a managed constraint.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinition {
+    /**
+     * Allow or deny type.
+     */
+    actionType?: string | null;
+    /**
+     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     */
+    condition?: string | null;
+    /**
+     * All the operations being applied for this constraint.
+     */
+    methodTypes?: string[] | null;
+    /**
+     * Stores the structure of `Parameters` used by the constraint condition. The key of `map` represents the name of the parameter.
+     */
+    parameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter;
+    } | null;
+    /**
+     * The resource instance type on which this policy applies. Format will be of the form : `/` Example: * `compute.googleapis.com/Instance`.
+     */
+    resourceTypes?: string[] | null;
+  }
+  /**
+   * Defines a parameter structure.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameter {
+    /**
+     * Sets the value of the parameter in an assignment if no value is given.
+     */
+    defaultValue?: any | null;
+    /**
+     * Determines the parameter's value structure. For example, `LIST` can be specified by defining `type: LIST`, and `item: STRING`.
+     */
+    item?: string | null;
+    /**
+     * Defines subproperties primarily used by the UI to display user-friendly information.
+     */
+    metadata?: Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata;
+    /**
+     * Type of the parameter.
+     */
+    type?: string | null;
+    /**
+     * Provides a CEL expression to specify the acceptable parameter values during assignment. For example, parameterName in ("parameterValue1", "parameterValue2")
+     */
+    validValuesExpr?: string | null;
+  }
+  /**
+   * Defines Metadata structure.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2ConstraintCustomConstraintDefinitionParameterMetadata {
+    /**
+     * Detailed description of what this `parameter` is and use of it. Mutable.
+     */
+    description?: string | null;
+  }
+  /**
+   * A constraint type that allows or disallows a list of string values, which are configured in the `PolicyRule`.
    */
   export interface Schema$GoogleCloudOrgpolicyV2ConstraintListConstraint {
     /**
@@ -200,7 +272,7 @@ export namespace orgpolicy_v2 {
      */
     actionType?: string | null;
     /**
-     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     * A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
      */
     condition?: string | null;
     /**
@@ -224,7 +296,7 @@ export namespace orgpolicy_v2 {
      */
     resourceTypes?: string[] | null;
     /**
-     * Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` RPC was called
+     * Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` methods were called.
      */
     updateTime?: string | null;
   }
@@ -242,11 +314,11 @@ export namespace orgpolicy_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * The response returned from the ListCustomConstraints method. It will be empty if no custom constraints are set on the organization resource.
+   * The response returned from the ListCustomConstraints method. It will be empty if no custom or managed constraints are set on the organization resource.
    */
   export interface Schema$GoogleCloudOrgpolicyV2ListCustomConstraintsResponse {
     /**
-     * All custom constraints that exist on the organization resource. It will be empty if no custom constraints are set.
+     * All custom and managed constraints that exist on the organization resource. It will be empty if no custom constraints are set.
      */
     customConstraints?: Schema$GoogleCloudOrgpolicyV2CustomConstraint[];
     /**
@@ -288,7 +360,7 @@ export namespace orgpolicy_v2 {
      */
     name?: string | null;
     /**
-     * Basic information about the Organization Policy.
+     * Basic information about the organization policy.
      */
     spec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
   }
@@ -337,6 +409,10 @@ export namespace orgpolicy_v2 {
      * If `true`, then the policy is enforced. If `false`, then any configuration is acceptable. This field can be set only in policies for boolean constraints.
      */
     enforce?: boolean | null;
+    /**
+     * Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: { "allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true \}
+     */
+    parameters?: {[key: string]: any} | null;
     /**
      * List of values to be used for this policy rule. This field can be set only in policies for list constraints.
      */
@@ -1482,7 +1558,7 @@ export namespace orgpolicy_v2 {
     }
 
     /**
-     * Gets a custom constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the custom constraint does not exist.
+     * Gets a custom or managed constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the custom or managed constraint does not exist.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1789,7 +1865,7 @@ export namespace orgpolicy_v2 {
   export interface Params$Resource$Organizations$Customconstraints$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the custom constraint. See the custom constraint entry for naming requirements.
+     * Required. Resource name of the custom or managed constraint. See the custom constraint entry for naming requirements.
      */
     name?: string;
   }
