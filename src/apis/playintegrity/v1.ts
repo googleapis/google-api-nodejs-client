@@ -205,9 +205,22 @@ export namespace playintegrity_v1 {
     tokenPayloadExternal?: Schema$TokenPayloadExternal;
   }
   /**
+   * Contains information about the device for which the integrity token was generated, e.g. Android SDK version.
+   */
+  export interface Schema$DeviceAttributes {
+    /**
+     * Android SDK version of the device, as defined in the public Android documentation: https://developer.android.com/reference/android/os/Build.VERSION_CODES. It won't be set if a necessary requirement was missed. For example DeviceIntegrity did not meet the minimum bar.
+     */
+    sdkVersion?: number | null;
+  }
+  /**
    * Contains the device attestation information.
    */
   export interface Schema$DeviceIntegrity {
+    /**
+     * Attributes of the device where the integrity token was generated.
+     */
+    deviceAttributes?: Schema$DeviceAttributes;
     /**
      * Details about the device recall bits set by the developer.
      */
@@ -216,6 +229,10 @@ export namespace playintegrity_v1 {
      * Details about the integrity of the device the app is running on.
      */
     deviceRecognitionVerdict?: string[] | null;
+    /**
+     * Contains legacy details about the integrity of the device the app is running on. Only for devices with Android version T or higher and only for apps opted in to the new verdicts. Only available during the transition period to the new verdicts system and will be removed afterwards.
+     */
+    legacyDeviceRecognitionVerdict?: string[] | null;
     /**
      * Details about the device activity of the device the app is running on.
      */
