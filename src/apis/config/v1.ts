@@ -258,7 +258,7 @@ export namespace config_v1 {
      */
     quotaValidation?: string | null;
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when actuating resources. Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}`
+     * Required. User-specified Service Account (SA) credentials to be used when actuating resources. Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}`
      */
     serviceAccount?: string | null;
     /**
@@ -441,7 +441,7 @@ export namespace config_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * List of Previewss.
+     * List of Previews.
      */
     previews?: Schema$Preview[];
     /**
@@ -458,7 +458,7 @@ export namespace config_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * List of Resourcess.
+     * List of Resources.
      */
     resources?: Schema$Resource[];
     /**
@@ -608,7 +608,7 @@ export namespace config_v1 {
      */
     previewMetadata?: Schema$PreviewOperationMetadata;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -702,7 +702,7 @@ export namespace config_v1 {
      */
     previewMode?: string | null;
     /**
-     * Optional. User-specified Service Account (SA) credentials to be used when previewing resources. Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}`
+     * Required. User-specified Service Account (SA) credentials to be used when previewing resources. Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}`
      */
     serviceAccount?: string | null;
     /**
@@ -965,7 +965,7 @@ export namespace config_v1 {
      */
     gitSource?: Schema$GitSource;
     /**
-     * Input variable values for the Terraform blueprint.
+     * Optional. Input variable values for the Terraform blueprint.
      */
     inputValues?: {[key: string]: Schema$TerraformVariable} | null;
   }
@@ -974,7 +974,7 @@ export namespace config_v1 {
    */
   export interface Schema$TerraformError {
     /**
-     * Original error response from underlying Google API, if available.
+     * Output only. Original error response from underlying Google API, if available.
      */
     error?: Schema$Status;
     /**
@@ -1008,7 +1008,7 @@ export namespace config_v1 {
    */
   export interface Schema$TerraformVariable {
     /**
-     * Input variable value.
+     * Optional. Input variable value.
      */
     inputValue?: any | null;
   }
@@ -3287,7 +3287,7 @@ export namespace config_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4416,11 +4416,11 @@ export namespace config_v1 {
      */
     orderBy?: string;
     /**
-     * Optional. When requesting a page of resources, 'page_size' specifies number of resources to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
+     * Optional. When requesting a page of terraform versions, 'page_size' specifies number of terraform versions to return. If unspecified, at most 500 will be returned. The maximum value is 1000.
      */
     pageSize?: number;
     /**
-     * Optional. Token returned by previous call to 'ListTerraformVersions' which specifies the position in the list from where to continue listing the resources.
+     * Optional. Token returned by previous call to 'ListTerraformVersions' which specifies the position in the list from where to continue listing the terraform versions.
      */
     pageToken?: string;
     /**
