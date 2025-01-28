@@ -618,7 +618,7 @@ export namespace firestore_v1beta1 {
      */
     distanceResultField?: string | null;
     /**
-     * Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold For DOT_PRODUCT: WHERE distance \>= distance_threshold
+     * Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold * For DOT_PRODUCT: WHERE distance \>= distance_threshold
      */
     distanceThreshold?: number | null;
     /**
@@ -1304,7 +1304,7 @@ export namespace firestore_v1beta1 {
     structuredQuery?: Schema$StructuredQuery;
   }
   /**
-   * A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit
+   * A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit 7. find_nearest
    */
   export interface Schema$StructuredQuery {
     /**
