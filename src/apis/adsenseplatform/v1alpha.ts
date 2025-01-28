@@ -112,6 +112,7 @@ export namespace adsenseplatform_v1alpha {
    */
   export class Adsenseplatform {
     context: APIRequestContext;
+    accounts: Resource$Accounts;
     platforms: Resource$Platforms;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace adsenseplatform_v1alpha {
         google,
       };
 
+      this.accounts = new Resource$Accounts(this.context);
       this.platforms = new Resource$Platforms(this.context);
     }
   }
@@ -211,6 +213,15 @@ export namespace adsenseplatform_v1alpha {
    */
   export interface Schema$CloseAccountResponse {}
   /**
+   * A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).
+   */
+  export interface Schema$Decimal {
+    /**
+     * The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits ("the integer"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -\> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -\> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -\> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -\> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-\> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' \}; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.
+     */
+    value?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -258,6 +269,45 @@ export namespace adsenseplatform_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response definition for the list platform child sites rpc.
+   */
+  export interface Schema$ListPlatformChildSitesResponse {
+    /**
+     * Continuation token used to page through platforms. To retrieve the next page of the results, set the next request's "page_token" value to this.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The platform child sites returned in this list response.
+     */
+    platformChildSites?: Schema$PlatformChildSite[];
+  }
+  /**
+   * Response definition for the platform groups list rpc.
+   */
+  export interface Schema$ListPlatformGroupsResponse {
+    /**
+     * Continuation token used to page through platforms. To retrieve the next page of the results, set the next request's "page_token" value to this.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The platform groups returned in this list response.
+     */
+    platformGroups?: Schema$PlatformGroup[];
+  }
+  /**
+   * Response definition for the platform list rpc.
+   */
+  export interface Schema$ListPlatformsResponse {
+    /**
+     * Continuation token used to page through platforms. To retrieve the next page of the results, set the next request's "page_token" value to this.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The platforms returned in this list response.
+     */
+    platforms?: Schema$Platform[];
+  }
+  /**
    * Response definition for the site list rpc.
    */
   export interface Schema$ListSitesResponse {
@@ -278,6 +328,57 @@ export namespace adsenseplatform_v1alpha {
      * The name of the Account Format: platforms/{platform\}/accounts/{account_id\}
      */
     name?: string | null;
+  }
+  /**
+   * Representation of a Transparent Platform.
+   */
+  export interface Schema$Platform {
+    /**
+     * Default platform group for the platform.
+     */
+    defaultPlatformGroup?: string | null;
+    /**
+     * Output only. Description of the platform.
+     */
+    description?: string | null;
+    /**
+     * Identifier. Resource name of a platform. Format: accounts/{account\}/platforms/{platform\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Representation of a Transparent Platform Child Site.
+   */
+  export interface Schema$PlatformChildSite {
+    /**
+     * Output only. Domain URL of the Platform Child Site. Part of the PlatformChildSite name.
+     */
+    domain?: string | null;
+    /**
+     * Identifier. Format: accounts/{account\}/platforms/{platform\}/childAccounts/{child_account\}/sites/{platform_child_site\}
+     */
+    name?: string | null;
+    /**
+     * Resource name of the Platform Group of the Platform Child Site.
+     */
+    platformGroup?: string | null;
+  }
+  /**
+   * Representation of a Transparent Platform Group.
+   */
+  export interface Schema$PlatformGroup {
+    /**
+     * Output only. Description of the PlatformGroup.
+     */
+    description?: string | null;
+    /**
+     * Identifier. Format: accounts/{account\}/platforms/{platform\}/groups/{platform_group\}
+     */
+    name?: string | null;
+    /**
+     * The revenue share of the PlatformGroup, in millipercent (e.g. 15000 = 15%).
+     */
+    revshareMillipercent?: Schema$Decimal;
   }
   /**
    * Response definition for the site request review rpc.
@@ -305,13 +406,596 @@ export namespace adsenseplatform_v1alpha {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
+  }
+
+  export class Resource$Accounts {
+    context: APIRequestContext;
+    platforms: Resource$Accounts$Platforms;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.platforms = new Resource$Accounts$Platforms(this.context);
+    }
+  }
+
+  export class Resource$Accounts$Platforms {
+    context: APIRequestContext;
+    childAccounts: Resource$Accounts$Platforms$Childaccounts;
+    groups: Resource$Accounts$Platforms$Groups;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.childAccounts = new Resource$Accounts$Platforms$Childaccounts(
+        this.context
+      );
+      this.groups = new Resource$Accounts$Platforms$Groups(this.context);
+    }
+
+    /**
+     * Gets a platform.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Platforms$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Accounts$Platforms$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Platform>;
+    get(
+      params: Params$Resource$Accounts$Platforms$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Platforms$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Platform>,
+      callback: BodyResponseCallback<Schema$Platform>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Platforms$Get,
+      callback: BodyResponseCallback<Schema$Platform>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Platform>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$Get
+        | BodyResponseCallback<Schema$Platform>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Platform>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Platform>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Platform> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Platforms$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Platform>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Platform>(parameters);
+      }
+    }
+
+    /**
+     * Lists platforms for a specified account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Platforms$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Platforms$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPlatformsResponse>;
+    list(
+      params: Params$Resource$Accounts$Platforms$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Platforms$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPlatformsResponse>,
+      callback: BodyResponseCallback<Schema$ListPlatformsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Platforms$List,
+      callback: BodyResponseCallback<Schema$ListPlatformsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListPlatformsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$List
+        | BodyResponseCallback<Schema$ListPlatformsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPlatformsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPlatformsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPlatformsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Platforms$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/platforms').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPlatformsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPlatformsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Platforms$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the platform to retrieve. Format: accounts/{account\}/platforms/{platform\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Platforms$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of platforms to include in the response, used for paging. If unspecified, at most 10000 platforms will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListPlatforms` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatforms` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The account which owns the platforms. Format: accounts/{account\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Accounts$Platforms$Childaccounts {
+    context: APIRequestContext;
+    sites: Resource$Accounts$Platforms$Childaccounts$Sites;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.sites = new Resource$Accounts$Platforms$Childaccounts$Sites(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Accounts$Platforms$Childaccounts$Sites {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists Platform Child Sites for a specified Platform Child Account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPlatformChildSitesResponse>;
+    list(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPlatformChildSitesResponse>,
+      callback: BodyResponseCallback<Schema$ListPlatformChildSitesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$List,
+      callback: BodyResponseCallback<Schema$ListPlatformChildSitesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPlatformChildSitesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$Childaccounts$Sites$List
+        | BodyResponseCallback<Schema$ListPlatformChildSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPlatformChildSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPlatformChildSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPlatformChildSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$Childaccounts$Sites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Platforms$Childaccounts$Sites$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/sites').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPlatformChildSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPlatformChildSitesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update a Platform Child Site.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PlatformChildSite>;
+    patch(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PlatformChildSite>,
+      callback: BodyResponseCallback<Schema$PlatformChildSite>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch,
+      callback: BodyResponseCallback<Schema$PlatformChildSite>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$PlatformChildSite>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch
+        | BodyResponseCallback<Schema$PlatformChildSite>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlatformChildSite>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlatformChildSite>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PlatformChildSite>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PlatformChildSite>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PlatformChildSite>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Platforms$Childaccounts$Sites$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of children to include in the response, used for paging. If unspecified, at most 10000 platforms will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListPlatformChildren` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformChildren` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the child account under the given platform which owns the platform child sites. Format: accounts/{account\}/platforms/{platform\}/childAccounts/{child_account\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Platforms$Childaccounts$Sites$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Format: accounts/{account\}/platforms/{platform\}/childAccounts/{child_account\}/sites/{platform_child_site\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update - currently only supports updating the `platform_group` field.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PlatformChildSite;
+  }
+
+  export class Resource$Accounts$Platforms$Groups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists Platform Groups for a specified Platform.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Platforms$Groups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Platforms$Groups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPlatformGroupsResponse>;
+    list(
+      params: Params$Resource$Accounts$Platforms$Groups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Platforms$Groups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPlatformGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListPlatformGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Platforms$Groups$List,
+      callback: BodyResponseCallback<Schema$ListPlatformGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPlatformGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$Groups$List
+        | BodyResponseCallback<Schema$ListPlatformGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPlatformGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPlatformGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPlatformGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$Groups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Platforms$Groups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/groups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPlatformGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPlatformGroupsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Platforms$Groups$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of groups to include in the response, used for paging. If unspecified, at most 10000 groups will be returned. The maximum value is 10000; values above 10000 will be coerced to 10000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListPlatformGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformGroups` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the platform to retrieve. Format: accounts/{account\}/platforms/{platform\}
+     */
+    parent?: string;
   }
 
   export class Resource$Platforms {
