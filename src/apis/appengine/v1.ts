@@ -1370,6 +1370,23 @@ export namespace appengine_v1 {
     targetRequestCountPerSecond?: number | null;
   }
   /**
+   * The request that is passed to CLH during per-resource events. The request will be sent with update semantics in all cases except for data governance purge events. These events will be sent with delete semantics and the CLH is expected to delete the resource receiving this event.
+   */
+  export interface Schema$ResourceEvent {
+    /**
+     * The unique ID for this per-resource event. CLHs can use this value to dedup repeated calls. required
+     */
+    eventId?: string | null;
+    /**
+     * The name of the resource for which this event is. required
+     */
+    name?: string | null;
+    /**
+     * The state of the project that led to this event.
+     */
+    state?: Schema$ContainerState;
+  }
+  /**
    * A DNS resource record.
    */
   export interface Schema$ResourceRecord {
@@ -6101,12 +6118,16 @@ export namespace appengine_v1 {
   export class Resource$Projects$Locations$Applications {
     context: APIRequestContext;
     authorizedDomains: Resource$Projects$Locations$Applications$Authorizeddomains;
+    services: Resource$Projects$Locations$Applications$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.authorizedDomains =
         new Resource$Projects$Locations$Applications$Authorizeddomains(
           this.context
         );
+      this.services = new Resource$Projects$Locations$Applications$Services(
+        this.context
+      );
     }
   }
 
@@ -6237,5 +6258,268 @@ export namespace appengine_v1 {
      * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
      */
     projectsId?: string;
+  }
+
+  export class Resource$Projects$Locations$Applications$Services {
+    context: APIRequestContext;
+    versions: Resource$Projects$Locations$Applications$Services$Versions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.versions =
+        new Resource$Projects$Locations$Applications$Services$Versions(
+          this.context
+        );
+    }
+
+    /**
+     * Deletes the specified service and all enclosed versions.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectsId',
+          'locationsId',
+          'applicationsId',
+          'servicesId',
+        ],
+        pathParams: [
+          'applicationsId',
+          'locationsId',
+          'projectsId',
+          'servicesId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Services$Delete
+    extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     */
+    projectsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    servicesId?: string;
+  }
+
+  export class Resource$Projects$Locations$Applications$Services$Versions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes an existing Version resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Applications$Services$Versions$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Applications$Services$Versions$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Applications$Services$Versions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Applications$Services$Versions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://appengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'projectsId',
+          'locationsId',
+          'applicationsId',
+          'servicesId',
+          'versionsId',
+        ],
+        pathParams: [
+          'applicationsId',
+          'locationsId',
+          'projectsId',
+          'servicesId',
+          'versionsId',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Applications$Services$Versions$Delete
+    extends StandardParameters {
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    applicationsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    locationsId?: string;
+    /**
+     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     */
+    projectsId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    servicesId?: string;
+    /**
+     * Part of `name`. See documentation of `projectsId`.
+     */
+    versionsId?: string;
   }
 }
