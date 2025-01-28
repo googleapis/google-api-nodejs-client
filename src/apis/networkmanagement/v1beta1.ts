@@ -274,10 +274,6 @@ export namespace networkmanagement_v1beta1 {
      */
     location?: string | null;
     /**
-     * ID of Cloud Run Service this revision belongs to. Was never set, is not exported to v1 proto and public protos. Do not export to v1beta1 public proto.
-     */
-    serviceName?: string | null;
-    /**
      * URI of Cloud Run service this revision belongs to.
      */
     serviceUri?: string | null;
@@ -364,6 +360,14 @@ export namespace networkmanagement_v1beta1 {
      */
     relatedProjects?: string[] | null;
     /**
+     * Output only. The reachability details of this test from the latest run for the return path. The details are updated when creating a new test, updating an existing test, or triggering a one-time rerun of an existing test.
+     */
+    returnReachabilityDetails?: Schema$ReachabilityDetails;
+    /**
+     * Whether run analysis for the return path from destination to source. Default value is false.
+     */
+    roundTrip?: boolean | null;
+    /**
      * Required. Source specification of the Connectivity Test. You can use a combination of source IP address, virtual machine (VM) instance, or Compute Engine network to uniquely identify the source location. Examples: If the source IP address is an internal IP address within a Google Cloud Virtual Private Cloud (VPC) network, then you must also specify the VPC network. Otherwise, specify the VM instance, which already contains its internal IP address and VPC network information. If the source of the test is within an on-premises network, then you must provide the destination VPC network. If the source endpoint is a Compute Engine VM instance with multiple network interfaces, the instance itself is not sufficient to identify the endpoint. So, you must also specify the source IP address or VPC network. A reachability analysis proceeds even if the source location is ambiguous. However, the test result may include endpoints that you don't intend to test.
      */
     source?: Schema$Endpoint;
@@ -440,6 +444,10 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$Endpoint {
     /**
+     * An [AlloyDB Instance](https://cloud.google.com/alloydb) URI.
+     */
+    alloyDbInstance?: string | null;
+    /**
      * An [App Engine](https://cloud.google.com/appengine) [service version](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions).
      */
     appEngineVersion?: Schema$AppEngineVersionEndpoint;
@@ -464,7 +472,11 @@ export namespace networkmanagement_v1beta1 {
      */
     forwardingRuleTarget?: string | null;
     /**
-     * A cluster URI for [Google Kubernetes Engine master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
+     * DNS endpoint of [Google Kubernetes Engine cluster control plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture). Requires gke_master_cluster to be set, can't be used simultaneoulsly with ip_address or network. Applicable only to destination endpoint.
+     */
+    fqdn?: string | null;
+    /**
+     * A cluster URI for [Google Kubernetes Engine cluster control plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      */
     gkeMasterCluster?: string | null;
     /**
@@ -694,11 +706,15 @@ export namespace networkmanagement_v1beta1 {
      */
     clusterUri?: string | null;
     /**
-     * External IP address of a GKE cluster master.
+     * DNS endpoint of a GKE cluster control plane.
+     */
+    dnsEndpoint?: string | null;
+    /**
+     * External IP address of a GKE cluster control plane.
      */
     externalIp?: string | null;
     /**
-     * Internal IP address of a GKE cluster master.
+     * Internal IP address of a GKE cluster control plane.
      */
     internalIp?: string | null;
   }
@@ -1297,11 +1313,11 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$RouteInfo {
     /**
-     * For advertised routes, the URI of their next hop, i.e. the URI of the hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance) the advertised prefix is advertised through, or URI of the source peered network.
+     * For ADVERTISED routes, the URI of their next hop, i.e. the URI of the hybrid endpoint (VPN tunnel, Interconnect attachment, NCC router appliance) the advertised prefix is advertised through, or URI of the source peered network. Deprecated in favor of the next_hop_uri field, not used in new tests.
      */
     advertisedRouteNextHopUri?: string | null;
     /**
-     * For advertised dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix.
+     * For ADVERTISED dynamic routes, the URI of the Cloud Router that advertised the corresponding IP prefix.
      */
     advertisedRouteSourceRouterUri?: string | null;
     /**
@@ -1309,7 +1325,7 @@ export namespace networkmanagement_v1beta1 {
      */
     destIpRange?: string | null;
     /**
-     * Destination port ranges of the route. Policy based routes only.
+     * Destination port ranges of the route. POLICY_BASED routes only.
      */
     destPortRanges?: string[] | null;
     /**
@@ -1321,39 +1337,59 @@ export namespace networkmanagement_v1beta1 {
      */
     instanceTags?: string[] | null;
     /**
-     * URI of a NCC Hub. NCC_HUB routes only.
+     * For PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub, the URI of the corresponding route in NCC Hub's routing table.
+     */
+    nccHubRouteUri?: string | null;
+    /**
+     * URI of the NCC Hub the route is advertised by. PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      */
     nccHubUri?: string | null;
     /**
-     * URI of a NCC Spoke. NCC_HUB routes only.
+     * URI of the destination NCC Spoke. PEERING_SUBNET and PEERING_DYNAMIC routes that are advertised by NCC Hub only.
      */
     nccSpokeUri?: string | null;
     /**
-     * URI of a Compute Engine network. NETWORK routes only.
+     * URI of a VPC network where route is located.
      */
     networkUri?: string | null;
     /**
-     * Next hop of the route.
+     * String type of the next hop of the route (for example, "VPN tunnel"). Deprecated in favor of the next_hop_type and next_hop_uri fields, not used in new tests.
      */
     nextHop?: string | null;
+    /**
+     * URI of a VPC network where the next hop resource is located.
+     */
+    nextHopNetworkUri?: string | null;
     /**
      * Type of next hop.
      */
     nextHopType?: string | null;
     /**
+     * URI of the next hop resource.
+     */
+    nextHopUri?: string | null;
+    /**
+     * For PEERING_SUBNET, PEERING_STATIC and PEERING_DYNAMIC routes, the name of the originating SUBNET/STATIC/DYNAMIC route.
+     */
+    originatingRouteDisplayName?: string | null;
+    /**
+     * For PEERING_SUBNET and PEERING_STATIC routes, the URI of the originating SUBNET/STATIC route.
+     */
+    originatingRouteUri?: string | null;
+    /**
      * Priority of the route.
      */
     priority?: number | null;
     /**
-     * Protocols of the route. Policy based routes only.
+     * Protocols of the route. POLICY_BASED routes only.
      */
     protocols?: string[] | null;
     /**
-     * Region of the route (if applicable).
+     * Region of the route. DYNAMIC, PEERING_DYNAMIC, POLICY_BASED and ADVERTISED routes only. If set for POLICY_BASED route, this is a region of VLAN attachments for Cloud Interconnect the route applies to.
      */
     region?: string | null;
     /**
-     * Indicates where route is applicable.
+     * Indicates where route is applicable. Deprecated, routes with NCC_HUB scope are not included in the trace in new tests.
      */
     routeScope?: string | null;
     /**
@@ -1361,15 +1397,15 @@ export namespace networkmanagement_v1beta1 {
      */
     routeType?: string | null;
     /**
-     * Source IP address range of the route. Policy based routes only.
+     * Source IP address range of the route. POLICY_BASED routes only.
      */
     srcIpRange?: string | null;
     /**
-     * Source port ranges of the route. Policy based routes only.
+     * Source port ranges of the route. POLICY_BASED routes only.
      */
     srcPortRanges?: string[] | null;
     /**
-     * URI of a route (if applicable).
+     * URI of a route. SUBNET, STATIC, PEERING_SUBNET (only for peering network) and POLICY_BASED routes only.
      */
     uri?: string | null;
   }
@@ -1650,6 +1686,10 @@ export namespace networkmanagement_v1beta1 {
      * Optional. The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled.
      */
     state?: string | null;
+    /**
+     * Output only. A diagnostic bit - describes the state of the configured target resource for diagnostic purposes.
+     */
+    targetResourceState?: string | null;
     /**
      * Output only. The time the config was updated.
      */
@@ -2920,7 +2960,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
