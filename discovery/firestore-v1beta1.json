@@ -950,7 +950,7 @@
       }
     }
   },
-  "revision": "20240822",
+  "revision": "20241018",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1656,7 +1656,7 @@
           "type": "string"
         },
         "distanceThreshold": {
-          "description": "Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold For DOT_PRODUCT: WHERE distance >= distance_threshold",
+          "description": "Optional. Option to specify a threshold for which no less similar documents will be returned. The behavior of the specified `distance_measure` will affect the meaning of the distance threshold. Since DOT_PRODUCT distances increase when the vectors are more similar, the comparison is inverted. * For EUCLIDEAN, COSINE: WHERE distance <= distance_threshold * For DOT_PRODUCT: WHERE distance >= distance_threshold",
           "format": "double",
           "type": "number"
         },
@@ -2654,7 +2654,7 @@
       "type": "object"
     },
     "StructuredQuery": {
-      "description": "A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit",
+      "description": "A Firestore query. The query stages are executed in the following order: 1. from 2. where 3. select 4. order_by + start_at + end_at 5. offset 6. limit 7. find_nearest",
       "id": "StructuredQuery",
       "properties": {
         "endAt": {
