@@ -1566,7 +1566,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.operations.cancel",
@@ -2548,7 +2548,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20250123",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2821,6 +2821,11 @@
           "description": "Labels as key value pairs.",
           "type": "object"
         },
+        "machineDetails": {
+          "$ref": "MachineDetails",
+          "description": "Output only. Asset information specific for virtual machines.",
+          "readOnly": true
+        },
         "name": {
           "description": "Output only. The full name of the asset.",
           "readOnly": true,
@@ -2902,6 +2907,10 @@
           },
           "description": "Labels as key value pairs.",
           "type": "object"
+        },
+        "machineDetails": {
+          "$ref": "MachineDetails",
+          "description": "Asset information specific for virtual and physical machines."
         },
         "performanceSamples": {
           "description": "Asset performance data samples. Samples that are from more than 40 days ago or after tomorrow are ignored.",
@@ -3125,6 +3134,20 @@
       "description": "AWS EC2 specific details.",
       "id": "AwsEc2PlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Optional. Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "The location of the machine in the AWS format.",
           "type": "string"
@@ -3140,6 +3163,20 @@
       "description": "Azure VM specific details.",
       "id": "AzureVmPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "The location of the machine in the Azure format.",
           "type": "string"
@@ -3619,7 +3656,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -3701,7 +3738,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -4171,7 +4208,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -4930,6 +4967,20 @@
       "description": "Generic platform details.",
       "id": "GenericPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "Free text representation of the machine location. The format of this field should not be relied on. Different VMs in the same location may have different string values for this field.",
           "type": "string"
@@ -5943,6 +5994,186 @@
       },
       "type": "object"
     },
+    "MachineArchitectureDetails": {
+      "description": "Details of the machine architecture.",
+      "id": "MachineArchitectureDetails",
+      "properties": {
+        "bios": {
+          "$ref": "BiosDetails",
+          "description": "BIOS Details."
+        },
+        "cpuArchitecture": {
+          "description": "CPU architecture, e.g., \"x64-based PC\", \"x86_64\", \"i686\" etc.",
+          "type": "string"
+        },
+        "cpuName": {
+          "description": "CPU name, e.g., \"Intel Xeon E5-2690\", \"AMD EPYC 7571\" etc.",
+          "type": "string"
+        },
+        "cpuSocketCount": {
+          "description": "Number of processor sockets allocated to the machine.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "firmwareType": {
+          "description": "Firmware type.",
+          "enum": [
+            "FIRMWARE_TYPE_UNSPECIFIED",
+            "BIOS",
+            "EFI"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown.",
+            "BIOS firmware.",
+            "EFI firmware."
+          ],
+          "type": "string"
+        },
+        "hyperthreading": {
+          "description": "CPU hyper-threading support.",
+          "enum": [
+            "CPU_HYPER_THREADING_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown.",
+            "Hyper-threading is disabled.",
+            "Hyper-threading is enabled."
+          ],
+          "type": "string"
+        },
+        "vendor": {
+          "description": "Hardware vendor.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineDetails": {
+      "description": "Details of a machine.",
+      "id": "MachineDetails",
+      "properties": {
+        "architecture": {
+          "$ref": "MachineArchitectureDetails",
+          "description": "Architecture details (vendor, CPU architecture)."
+        },
+        "coreCount": {
+          "description": "Number of logical CPU cores in the machine. Must be non-negative.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "createTime": {
+          "description": "Machine creation time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "disks": {
+          "$ref": "MachineDiskDetails",
+          "description": "Disk details."
+        },
+        "guestOs": {
+          "$ref": "GuestOsDetails",
+          "description": "Guest OS information."
+        },
+        "machineName": {
+          "description": "Machine name.",
+          "type": "string"
+        },
+        "memoryMb": {
+          "description": "The amount of memory in the machine. Must be non-negative.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "network": {
+          "$ref": "MachineNetworkDetails",
+          "description": "Network details."
+        },
+        "platform": {
+          "$ref": "PlatformDetails",
+          "description": "Platform specific information."
+        },
+        "powerState": {
+          "description": "Power state of the machine.",
+          "enum": [
+            "POWER_STATE_UNSPECIFIED",
+            "PENDING",
+            "ACTIVE",
+            "SUSPENDING",
+            "SUSPENDED",
+            "DELETING",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "Power state is unknown.",
+            "The machine is preparing to enter the ACTIVE state. An instance may enter the PENDING state when it launches for the first time, or when it is started after being in the SUSPENDED state.",
+            "The machine is active.",
+            "The machine is being turned off.",
+            "The machine is off.",
+            "The machine is being deleted from the hosting platform.",
+            "The machine is deleted from the hosting platform."
+          ],
+          "type": "string"
+        },
+        "uuid": {
+          "description": "Machine unique identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineDiskDetails": {
+      "description": "Details of machine disks.",
+      "id": "MachineDiskDetails",
+      "properties": {
+        "disks": {
+          "$ref": "DiskEntryList",
+          "description": "List of disks."
+        },
+        "rawScanResult": {
+          "description": "Raw disk scan result. This field is intended for human inspection. The format of this field may be lsblk output or any another raw output. The exact format may change without notice and should not be relied upon.",
+          "type": "string"
+        },
+        "totalCapacityBytes": {
+          "description": "Disk total Capacity.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalFreeBytes": {
+          "description": "Total disk free space.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MachineNetworkDetails": {
+      "description": "Details of network adapters and settings.",
+      "id": "MachineNetworkDetails",
+      "properties": {
+        "defaultGateway": {
+          "description": "Default gateway address.",
+          "type": "string"
+        },
+        "networkAdapters": {
+          "$ref": "NetworkAdapterList",
+          "description": "List of network adapters."
+        },
+        "primaryIpAddress": {
+          "description": "The primary IP address of the machine.",
+          "type": "string"
+        },
+        "primaryMacAddress": {
+          "description": "MAC address of the machine. This property is used to uniqly identify the machine.",
+          "type": "string"
+        },
+        "publicIpAddress": {
+          "description": "The public IP address of the machine.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MachinePreferences": {
       "description": "The type of machines to consider when calculating virtual machine migration insights and recommendations for GCE. Not all machine types are available in all zones and regions.",
       "id": "MachinePreferences",
@@ -6578,6 +6809,11 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "xlsxOutputFile": {
+          "$ref": "XlsxOutputFile",
+          "description": "Output only. XLSX output file.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -6644,6 +6880,20 @@
       "description": "Platform specific details for Physical Machines.",
       "id": "PhysicalPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "Free text representation of the machine location. The format of this field should not be relied on. Different machines in the same location may have different string values for this field.",
           "type": "string"
@@ -7413,7 +7663,7 @@
               "PERSISTENT_DISK_TYPE_SSD"
             ],
             "enumDescriptions": [
-              "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+              "Unspecified. Fallback to default value based on context.",
               "Standard HDD Persistent Disk.",
               "Balanced Persistent Disk.",
               "SSD Persistent Disk."
@@ -7762,6 +8012,10 @@
       "description": "Describes the Migration Center settings related to the project.",
       "id": "Settings",
       "properties": {
+        "customerConsentForGoogleSalesToAccessMigrationCenter": {
+          "description": "Customer consent for Google sales to access their Cloud Migration Center project.",
+          "type": "boolean"
+        },
         "disableCloudLogging": {
           "description": "Disable Cloud Logging for the Migration Center API. Users are billed for the logs.",
           "type": "boolean"
@@ -7798,7 +8052,22 @@
     "SignedUriDestination": {
       "description": "Signed URI destination configuration.",
       "id": "SignedUriDestination",
-      "properties": {},
+      "properties": {
+        "fileFormat": {
+          "description": "Required. The file format to export.",
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "CSV",
+            "XLSX"
+          ],
+          "enumDescriptions": [
+            "Unspecified file format will be treated as CSV.",
+            "CSV file format.",
+            "XLSX file format which used in Excel."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SignedUris": {
@@ -8121,11 +8390,11 @@
       "id": "TimeZone",
       "properties": {
         "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
           "type": "string"
         },
         "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
           "type": "string"
         }
       },
@@ -8475,7 +8744,7 @@
         },
         "computeEnginePreferences": {
           "$ref": "ComputeEnginePreferences",
-          "description": "Compute Engine preferences concern insights and recommendations for Compute Engine target."
+          "description": "Optional. Compute Engine preferences concern insights and recommendations for Compute Engine target."
         },
         "networkCostParameters": {
           "$ref": "VirtualMachinePreferencesNetworkCostParameters",
@@ -8710,6 +8979,20 @@
       "description": "VMware specific details.",
       "id": "VmwarePlatformDetails",
       "properties": {
+        "esxHyperthreading": {
+          "description": "Whether the ESX is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "esxVersion": {
           "description": "ESX version.",
           "type": "string"
@@ -8721,6 +9004,18 @@
         "vcenterVersion": {
           "description": "vCenter version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "XlsxOutputFile": {
+      "description": "Contains a single output file of type XLSX.",
+      "id": "XlsxOutputFile",
+      "properties": {
+        "signedUri": {
+          "$ref": "SignedUri",
+          "description": "Output only. Signed URI destination.",
+          "readOnly": true
         }
       },
       "type": "object"
