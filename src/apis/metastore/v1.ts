@@ -206,7 +206,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$AuxiliaryVersionConfig {
     /**
-     * A mapping of Hive metastore configuration key-value pairs to apply to the auxiliary Hive metastore (configured in hive-site.xml) in addition to the primary version's overrides. If keys are present in both the auxiliary version's overrides and the primary version's overrides, the value from the auxiliary version's overrides takes precedence.
+     * Optional. A mapping of Hive metastore configuration key-value pairs to apply to the auxiliary Hive metastore (configured in hive-site.xml) in addition to the primary version's overrides. If keys are present in both the auxiliary version's overrides and the primary version's overrides, the value from the auxiliary version's overrides takes precedence.
      */
     configOverrides?: {[key: string]: string} | null;
     /**
@@ -214,7 +214,7 @@ export namespace metastore_v1 {
      */
     networkConfig?: Schema$NetworkConfig;
     /**
-     * The Hive metastore version of the auxiliary service. It must be less than the primary Hive metastore service's version.
+     * Optional. The Hive metastore version of the auxiliary service. It must be less than the primary Hive metastore service's version.
      */
     version?: string | null;
   }
@@ -240,7 +240,7 @@ export namespace metastore_v1 {
      */
     createTime?: string | null;
     /**
-     * The description of the backup.
+     * Optional. The description of the backup.
      */
     description?: string | null;
     /**
@@ -248,7 +248,7 @@ export namespace metastore_v1 {
      */
     endTime?: string | null;
     /**
-     * Immutable. The relative resource name of the backup, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}
+     * Immutable. Identifier. The relative resource name of the backup, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}
      */
     name?: string | null;
     /**
@@ -419,11 +419,11 @@ export namespace metastore_v1 {
      */
     databaseType?: string | null;
     /**
-     * A Cloud Storage object or folder URI that specifies the source from which to import metadata. It must begin with gs://.
+     * Optional. A Cloud Storage object or folder URI that specifies the source from which to import metadata. It must begin with gs://.
      */
     gcsUri?: string | null;
     /**
-     * The name of the source database.
+     * Optional. The name of the source database.
      */
     sourceDatabase?: string | null;
     /**
@@ -449,7 +449,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$EncryptionConfig {
     /**
-     * The fully qualified customer provided Cloud KMS key name to use for customer data encryption, in the following format:projects/{project_number\}/locations/{location_id\}/keyRings/{key_ring_id\}/cryptoKeys/{crypto_key_id\}.
+     * Optional. The fully qualified customer provided Cloud KMS key name to use for customer data encryption, in the following format:projects/{project_number\}/locations/{location_id\}/keyRings/{key_ring_id\}/cryptoKeys/{crypto_key_id\}.
      */
     kmsKey?: string | null;
   }
@@ -550,19 +550,19 @@ export namespace metastore_v1 {
    */
   export interface Schema$HiveMetastoreConfig {
     /**
-     * A mapping of Hive metastore version to the auxiliary version configuration. When specified, a secondary Hive metastore service is created along with the primary service. All auxiliary versions must be less than the service's primary version. The key is the auxiliary service name and it must match the regular expression a-z?. This means that the first character must be a lowercase letter, and all the following characters must be hyphens, lowercase letters, or digits, except the last character, which cannot be a hyphen.
+     * Optional. A mapping of Hive metastore version to the auxiliary version configuration. When specified, a secondary Hive metastore service is created along with the primary service. All auxiliary versions must be less than the service's primary version. The key is the auxiliary service name and it must match the regular expression a-z?. This means that the first character must be a lowercase letter, and all the following characters must be hyphens, lowercase letters, or digits, except the last character, which cannot be a hyphen.
      */
     auxiliaryVersions?: {[key: string]: Schema$AuxiliaryVersionConfig} | null;
     /**
-     * A mapping of Hive metastore configuration key-value pairs to apply to the Hive metastore (configured in hive-site.xml). The mappings override system defaults (some keys cannot be overridden). These overrides are also applied to auxiliary versions and can be further customized in the auxiliary version's AuxiliaryVersionConfig.
+     * Optional. A mapping of Hive metastore configuration key-value pairs to apply to the Hive metastore (configured in hive-site.xml). The mappings override system defaults (some keys cannot be overridden). These overrides are also applied to auxiliary versions and can be further customized in the auxiliary version's AuxiliaryVersionConfig.
      */
     configOverrides?: {[key: string]: string} | null;
     /**
-     * The protocol to use for the metastore service endpoint. If unspecified, defaults to THRIFT.
+     * Optional. The protocol to use for the metastore service endpoint. If unspecified, defaults to THRIFT.
      */
     endpointProtocol?: string | null;
     /**
-     * Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path (hive_metastore_config.kerberos_config) in the request's update_mask while omitting this field from the request's service.
+     * Optional. Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path (hive_metastore_config.kerberos_config) in the request's update_mask while omitting this field from the request's service.
      */
     kerberosConfig?: Schema$KerberosConfig;
     /**
@@ -588,15 +588,15 @@ export namespace metastore_v1 {
    */
   export interface Schema$KerberosConfig {
     /**
-     * A Kerberos keytab file that can be used to authenticate a service principal with a Kerberos Key Distribution Center (KDC).
+     * Optional. A Kerberos keytab file that can be used to authenticate a service principal with a Kerberos Key Distribution Center (KDC).
      */
     keytab?: Schema$Secret;
     /**
-     * A Cloud Storage URI that specifies the path to a krb5.conf file. It is of the form gs://{bucket_name\}/path/to/krb5.conf, although the file does not need to be named krb5.conf explicitly.
+     * Optional. A Cloud Storage URI that specifies the path to a krb5.conf file. It is of the form gs://{bucket_name\}/path/to/krb5.conf, although the file does not need to be named krb5.conf explicitly.
      */
     krb5ConfigGcsUri?: string | null;
     /**
-     * A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.
+     * Optional. A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.
      */
     principal?: string | null;
   }
@@ -792,11 +792,11 @@ export namespace metastore_v1 {
    */
   export interface Schema$MaintenanceWindow {
     /**
-     * The day of week, when the window starts.
+     * Optional. The day of week, when the window starts.
      */
     dayOfWeek?: string | null;
     /**
-     * The hour of day (0-23) when the window starts.
+     * Optional. The hour of day (0-23) when the window starts.
      */
     hourOfDay?: number | null;
   }
@@ -838,7 +838,7 @@ export namespace metastore_v1 {
      */
     databaseDump?: Schema$DatabaseDump;
     /**
-     * The description of the metadata import.
+     * Optional. The description of the metadata import.
      */
     description?: string | null;
     /**
@@ -846,7 +846,7 @@ export namespace metastore_v1 {
      */
     endTime?: string | null;
     /**
-     * Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
+     * Immutable. Identifier. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
     name?: string | null;
     /**
@@ -994,7 +994,7 @@ export namespace metastore_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the caller has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     * Output only. Identifies whether the caller has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1083,7 +1083,7 @@ export namespace metastore_v1 {
     type?: string | null;
   }
   /**
-   * Request message for DataprocMetastore.Restore.
+   * Request message for DataprocMetastore.RestoreService.
    */
   export interface Schema$RestoreServiceRequest {
     /**
@@ -1154,7 +1154,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$Secret {
     /**
-     * The relative resource name of a Secret Manager secret version, in the following form:projects/{project_number\}/secrets/{secret_id\}/versions/{version_id\}.
+     * Optional. The relative resource name of a Secret Manager secret version, in the following form:projects/{project_number\}/secrets/{secret_id\}/versions/{version_id\}.
      */
     cloudSecret?: string | null;
   }
@@ -1195,7 +1195,7 @@ export namespace metastore_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time. Maintenance window is not needed for services with the SPANNER database type.
+     * Optional. The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time. Maintenance window is not needed for services with the SPANNER database type.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
@@ -1207,7 +1207,7 @@ export namespace metastore_v1 {
      */
     metadataManagementActivity?: Schema$MetadataManagementActivity;
     /**
-     * Immutable. The relative resource name of the metastore service, in the following format:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
+     * Immutable. Identifier. The relative resource name of the metastore service, in the following format:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string | null;
     /**
@@ -1215,11 +1215,11 @@ export namespace metastore_v1 {
      */
     network?: string | null;
     /**
-     * The configuration specifying the network settings for the Dataproc Metastore service.
+     * Optional. The configuration specifying the network settings for the Dataproc Metastore service.
      */
     networkConfig?: Schema$NetworkConfig;
     /**
-     * The TCP port at which the metastore service is reached. Default: 9083.
+     * Optional. The TCP port at which the metastore service is reached. Default: 9083.
      */
     port?: number | null;
     /**
@@ -1227,7 +1227,7 @@ export namespace metastore_v1 {
      */
     releaseChannel?: string | null;
     /**
-     * Scaling configuration of the metastore service.
+     * Optional. Scaling configuration of the metastore service.
      */
     scalingConfig?: Schema$ScalingConfig;
     /**
@@ -1243,11 +1243,11 @@ export namespace metastore_v1 {
      */
     stateMessage?: string | null;
     /**
-     * The configuration specifying telemetry settings for the Dataproc Metastore service. If unspecified defaults to JSON.
+     * Optional. The configuration specifying telemetry settings for the Dataproc Metastore service. If unspecified defaults to JSON.
      */
     telemetryConfig?: Schema$TelemetryConfig;
     /**
-     * The tier of the service.
+     * Optional. The tier of the service.
      */
     tier?: string | null;
     /**
@@ -1307,7 +1307,7 @@ export namespace metastore_v1 {
    */
   export interface Schema$TelemetryConfig {
     /**
-     * The output format of the Dataproc Metastore service's logs.
+     * Optional. The output format of the Dataproc Metastore service's logs.
      */
     logFormat?: string | null;
   }
@@ -4476,7 +4476,7 @@ export namespace metastore_v1 {
   export interface Params$Resource$Projects$Locations$Services$Patch
     extends StandardParameters {
     /**
-     * Immutable. The relative resource name of the metastore service, in the following format:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
+     * Immutable. Identifier. The relative resource name of the metastore service, in the following format:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
     /**
@@ -6014,7 +6014,7 @@ export namespace metastore_v1 {
   export interface Params$Resource$Projects$Locations$Services$Metadataimports$Patch
     extends StandardParameters {
     /**
-     * Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
+     * Immutable. Identifier. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
     name?: string;
     /**
