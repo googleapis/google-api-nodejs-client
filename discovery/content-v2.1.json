@@ -1457,7 +1457,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. List of fields being updated.",
+              "description": "Optional. List of fields being updated.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -4313,141 +4313,6 @@
         }
       }
     },
-    "settlementreports": {
-      "methods": {
-        "get": {
-          "description": "Retrieves a settlement report from your Merchant Center account.",
-          "flatPath": "{merchantId}/settlementreports/{settlementId}",
-          "httpMethod": "GET",
-          "id": "content.settlementreports.get",
-          "parameterOrder": [
-            "merchantId",
-            "settlementId"
-          ],
-          "parameters": {
-            "merchantId": {
-              "description": "The Merchant Center account of the settlement report.",
-              "format": "uint64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "settlementId": {
-              "description": "The Google-provided ID of the settlement.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "{merchantId}/settlementreports/{settlementId}",
-          "response": {
-            "$ref": "SettlementReport"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
-        "list": {
-          "description": "Retrieves a list of settlement reports from your Merchant Center account.",
-          "flatPath": "{merchantId}/settlementreports",
-          "httpMethod": "GET",
-          "id": "content.settlementreports.list",
-          "parameterOrder": [
-            "merchantId"
-          ],
-          "parameters": {
-            "maxResults": {
-              "description": "The maximum number of settlements to return in the response, used for paging. The default value is 200 returns per page, and the maximum allowed value is 5000 returns per page.",
-              "format": "uint32",
-              "location": "query",
-              "type": "integer"
-            },
-            "merchantId": {
-              "description": "The Merchant Center account to list settlements for.",
-              "format": "uint64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageToken": {
-              "description": "The token returned by the previous request.",
-              "location": "query",
-              "type": "string"
-            },
-            "transferEndDate": {
-              "description": "Obtains settlements which have transactions before this date (inclusively), in ISO 8601 format.",
-              "location": "query",
-              "type": "string"
-            },
-            "transferStartDate": {
-              "description": "Obtains settlements which have transactions after this date (inclusively), in ISO 8601 format.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "{merchantId}/settlementreports",
-          "response": {
-            "$ref": "SettlementreportsListResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        }
-      }
-    },
-    "settlementtransactions": {
-      "methods": {
-        "list": {
-          "description": "Retrieves a list of transactions for the settlement.",
-          "flatPath": "{merchantId}/settlementreports/{settlementId}/transactions",
-          "httpMethod": "GET",
-          "id": "content.settlementtransactions.list",
-          "parameterOrder": [
-            "merchantId",
-            "settlementId"
-          ],
-          "parameters": {
-            "maxResults": {
-              "description": "The maximum number of transactions to return in the response, used for paging. The default value is 200 transactions per page, and the maximum allowed value is 5000 transactions per page.",
-              "format": "uint32",
-              "location": "query",
-              "type": "integer"
-            },
-            "merchantId": {
-              "description": "The Merchant Center account to list transactions for.",
-              "format": "uint64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "pageToken": {
-              "description": "The token returned by the previous request.",
-              "location": "query",
-              "type": "string"
-            },
-            "settlementId": {
-              "description": "The Google-provided ID of the settlement.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "transactionIds": {
-              "description": "The list of transactions to return. If not set, all transactions will be returned.",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            }
-          },
-          "path": "{merchantId}/settlementreports/{settlementId}/transactions",
-          "response": {
-            "$ref": "SettlementtransactionsListResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        }
-      }
-    },
     "shippingsettings": {
       "methods": {
         "custombatch": {
@@ -4705,7 +4570,7 @@
       }
     }
   },
-  "revision": "20240825",
+  "revision": "20250115",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6156,7 +6021,6 @@
           "type": "integer"
         },
         "attributionModel": {
-          "description": "Required. Attribution model.",
           "enum": [
             "ATTRIBUTION_MODEL_UNSPECIFIED",
             "CROSS_CHANNEL_LAST_CLICK",
@@ -7926,7 +7790,7 @@
             "No issues available to review.",
             "Account will be automatically reviewed at the end of the grace period.",
             "Account is retired. Should not appear in MC.",
-            "Account was already reviewd."
+            "Account has already been reviewed. You can't request further reviews."
           ],
           "type": "string"
         },
@@ -9112,6 +8976,10 @@
         },
         "programLabel": {
           "description": "Required. The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a merchant entity and a loyalty program entity. It must be provided so that system can associate the assets below (for example, price and points) with a merchant. The corresponding program must be linked to the merchant account.",
+          "type": "string"
+        },
+        "shippingLabel": {
+          "description": "Optional. The shipping label for the loyalty program. You can use this label to indicate whether this offer has the loyalty shipping benefit. If not specified, the item is not eligible for loyalty shipping for the given loyalty tier.",
           "type": "string"
         },
         "tierLabel": {
@@ -10643,6 +10511,13 @@
           "$ref": "ProductSubscriptionCost",
           "description": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
         },
+        "sustainabilityIncentives": {
+          "description": "Optional. The list of sustainability incentive programs.",
+          "items": {
+            "$ref": "ProductSustainabilityIncentive"
+          },
+          "type": "array"
+        },
         "targetCountry": {
           "description": "Required. The CLDR territory code for the item's country of sale.",
           "type": "string"
@@ -11201,6 +11076,36 @@
         "periodLength": {
           "description": "The number of subscription periods the buyer has to pay.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductSustainabilityIncentive": {
+      "description": "Information regarding sustainability related incentive programs such as rebates or tax relief.",
+      "id": "ProductSustainabilityIncentive",
+      "properties": {
+        "amount": {
+          "$ref": "Price",
+          "description": "Optional. The fixed amount of the incentive."
+        },
+        "percentage": {
+          "description": "Optional. The percentage of the sale price that the incentive is applied to.",
+          "format": "double",
+          "type": "number"
+        },
+        "type": {
+          "description": "Required. Sustainability incentive program.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EV_TAX_CREDIT",
+            "EV_PRICE_DISCOUNT"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown sustainability incentive type.",
+            "Program offering tax liability reductions for electric vehicles and, in some countries, plug-in hybrids. These reductions can be based on a specific amount or a percentage of the sale price.",
+            "A subsidy program, often called an environmental bonus, provides a purchase grant for electric vehicles and, in some countries, plug-in hybrids. The grant amount may be a fixed sum or a percentage of the sale price."
+          ],
           "type": "string"
         }
       },
@@ -13624,193 +13529,6 @@
       },
       "type": "object"
     },
-    "SettlementReport": {
-      "description": " Settlement reports detail order-level and item-level credits and debits between you and Google.",
-      "id": "SettlementReport",
-      "properties": {
-        "endDate": {
-          "description": "The end date on which all transactions are included in the report, in ISO 8601 format.",
-          "type": "string"
-        },
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#settlementReport`\"",
-          "type": "string"
-        },
-        "previousBalance": {
-          "$ref": "Price",
-          "description": "The residual amount from the previous invoice. This is set only if the previous invoices are not paid because of negative balance."
-        },
-        "settlementId": {
-          "description": "The ID of the settlement report.",
-          "type": "string"
-        },
-        "startDate": {
-          "description": "The start date on which all transactions are included in the report, in ISO 8601 format.",
-          "type": "string"
-        },
-        "transferAmount": {
-          "$ref": "Price",
-          "description": "The money due to the merchant."
-        },
-        "transferDate": {
-          "description": "Date on which transfer for this payment was initiated by Google, in ISO 8601 format.",
-          "type": "string"
-        },
-        "transferIds": {
-          "description": "The list of bank identifiers used for the transfer. For example, Trace ID for Federal Automated Clearing House (ACH). This may also be known as the Wire ID.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "SettlementTransaction": {
-      "description": "Settlement transactions give a detailed breakdown of the settlement report.",
-      "id": "SettlementTransaction",
-      "properties": {
-        "amount": {
-          "$ref": "SettlementTransactionAmount",
-          "description": "The amount for the transaction."
-        },
-        "identifiers": {
-          "$ref": "SettlementTransactionIdentifiers",
-          "description": "Identifiers of the transaction."
-        },
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#settlementTransaction`\"",
-          "type": "string"
-        },
-        "transaction": {
-          "$ref": "SettlementTransactionTransaction",
-          "description": "Details of the transaction."
-        }
-      },
-      "type": "object"
-    },
-    "SettlementTransactionAmount": {
-      "id": "SettlementTransactionAmount",
-      "properties": {
-        "commission": {
-          "$ref": "SettlementTransactionAmountCommission"
-        },
-        "description": {
-          "description": "The description of the event. Acceptable values are: - \"`taxWithhold`\" - \"`principal`\" - \"`principalAdjustment`\" - \"`shippingFee`\" - \"`merchantRemittedSalesTax`\" - \"`googleRemittedSalesTax`\" - \"`merchantCoupon`\" - \"`merchantCouponTax`\" - \"`merchantRemittedDisposalTax`\" - \"`googleRemittedDisposalTax`\" - \"`merchantRemittedRedemptionFee`\" - \"`googleRemittedRedemptionFee`\" - \"`eeeEcoFee`\" - \"`furnitureEcoFee`\" - \"`copyPrivateFee`\" - \"`eeeEcoFeeCommission`\" - \"`furnitureEcoFeeCommission`\" - \"`copyPrivateFeeCommission`\" - \"`principalRefund`\" - \"`principalRefundTax`\" - \"`itemCommission`\" - \"`adjustmentCommission`\" - \"`shippingFeeCommission`\" - \"`commissionRefund`\" - \"`damaged`\" - \"`damagedOrDefectiveItem`\" - \"`expiredItem`\" - \"`faultyItem`\" - \"`incorrectItemReceived`\" - \"`itemMissing`\" - \"`qualityNotExpected`\" - \"`receivedTooLate`\" - \"`storePackageMissing`\" - \"`transitPackageMissing`\" - \"`unsuccessfulDeliveryUndeliverable`\" - \"`wrongChargeInStore`\" - \"`wrongItem`\" - \"`returns`\" - \"`undeliverable`\" - \"`issueRelatedRefundAndReplacementAmountDescription`\" - \"`refundFromMerchant`\" - \"`returnLabelShippingFee`\" - \"`lumpSumCorrection`\" - \"`pspFee`\" - \"`principalRefundDoesNotFit`\" - \"`principalRefundOrderedWrongItem`\" - \"`principalRefundQualityNotExpected`\" - \"`principalRefundBetterPriceFound`\" - \"`principalRefundNoLongerNeeded`\" - \"`principalRefundChangedMind`\" - \"`principalRefundReceivedTooLate`\" - \"`principalRefundIncorrectItemReceived`\" - \"`principalRefundDamagedOrDefectiveItem`\" - \"`principalRefundDidNotMatchDescription`\" - \"`principalRefundExpiredItem`\" ",
-          "type": "string"
-        },
-        "transactionAmount": {
-          "$ref": "Price",
-          "description": "The amount that contributes to the line item price."
-        },
-        "type": {
-          "description": "The type of the amount. Acceptable values are: - \"`itemPrice`\" - \"`orderPrice`\" - \"`refund`\" - \"`earlyRefund`\" - \"`courtesyRefund`\" - \"`returnRefund`\" - \"`returnLabelShippingFeeAmount`\" - \"`lumpSumCorrectionAmount`\" ",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SettlementTransactionAmountCommission": {
-      "id": "SettlementTransactionAmountCommission",
-      "properties": {
-        "category": {
-          "description": "The category of the commission. Acceptable values are: - \"`animalsAndPetSupplies`\" - \"`dogCatFoodAndCatLitter`\" - \"`apparelAndAccessories`\" - \"`shoesHandbagsAndSunglasses`\" - \"`costumesAndAccessories`\" - \"`jewelry`\" - \"`watches`\" - \"`hobbiesArtsAndCrafts`\" - \"`homeAndGarden`\" - \"`entertainmentCollectibles`\" - \"`collectibleCoins`\" - \"`sportsCollectibles`\" - \"`sportingGoods`\" - \"`toysAndGames`\" - \"`musicalInstruments`\" - \"`giftCards`\" - \"`babyAndToddler`\" - \"`babyFoodWipesAndDiapers`\" - \"`businessAndIndustrial`\" - \"`camerasOpticsAndPhotography`\" - \"`consumerElectronics`\" - \"`electronicsAccessories`\" - \"`personalComputers`\" - \"`videoGameConsoles`\" - \"`foodAndGrocery`\" - \"`beverages`\" - \"`tobaccoProducts`\" - \"`furniture`\" - \"`hardware`\" - \"`buildingMaterials`\" - \"`tools`\" - \"`healthAndPersonalCare`\" - \"`beauty`\" - \"`householdSupplies`\" - \"`kitchenAndDining`\" - \"`majorAppliances`\" - \"`luggageAndBags`\" - \"`media`\" - \"`officeSupplies`\" - \"`softwareAndVideoGames`\" - \"`vehiclePartsAndAccessories`\" - \"`vehicleTiresAndWheels`\" - \"`vehicles`\" - \"`everythingElse`\" ",
-          "type": "string"
-        },
-        "rate": {
-          "description": "Rate of the commission in percentage.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SettlementTransactionIdentifiers": {
-      "id": "SettlementTransactionIdentifiers",
-      "properties": {
-        "adjustmentId": {
-          "description": "The identifier of the adjustments, if it's available.",
-          "type": "string"
-        },
-        "merchantOrderId": {
-          "description": "The merchant provided order ID.",
-          "type": "string"
-        },
-        "orderItemId": {
-          "description": "The identifier of the item.",
-          "type": "string"
-        },
-        "settlementEntryId": {
-          "description": "The unique ID of the settlement transaction entry.",
-          "type": "string"
-        },
-        "shipmentIds": {
-          "description": "The shipment ids for the item.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "transactionId": {
-          "description": "The Google transaction ID.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SettlementTransactionTransaction": {
-      "id": "SettlementTransactionTransaction",
-      "properties": {
-        "postDate": {
-          "description": "The time on which the event occurred in ISO 8601 format.",
-          "type": "string"
-        },
-        "type": {
-          "description": "The type of the transaction that occurred. Acceptable values are: - \"`order`\" - \"`reversal`\" - \"`orderRefund`\" - \"`reversalRefund`\" - \"`issueRelatedRefundAndReplacement`\" - \"`returnLabelShippingFeeTransaction`\" - \"`reversalIssueRelatedRefundAndReplacement`\" - \"`reversalReturnLabelShippingFeeTransaction`\" - \"`lumpSumCorrectionTransaction`\" ",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SettlementreportsListResponse": {
-      "id": "SettlementreportsListResponse",
-      "properties": {
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#settlementreportsListResponse`\".",
-          "type": "string"
-        },
-        "nextPageToken": {
-          "description": "The token for the retrieval of the next page of returns.",
-          "type": "string"
-        },
-        "resources": {
-          "items": {
-            "$ref": "SettlementReport"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "SettlementtransactionsListResponse": {
-      "id": "SettlementtransactionsListResponse",
-      "properties": {
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#settlementtransactionsListResponse`\".",
-          "type": "string"
-        },
-        "nextPageToken": {
-          "description": "The token for the retrieval of the next page of returns.",
-          "type": "string"
-        },
-        "resources": {
-          "items": {
-            "$ref": "SettlementTransaction"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ShippingSettings": {
       "description": "The merchant account's shipping settings. All methods except getsupportedcarriers and getsupportedholidays require the admin role.",
       "id": "ShippingSettings",
@@ -14109,7 +13827,7 @@
             "No issues available to review.",
             "Account will be automatically reviewed at the end of the grace period.",
             "Account is retired. Should not appear in MC.",
-            "Account was already reviewd."
+            "Account has already been reviewed. You can't request further reviews."
           ],
           "type": "string"
         },
@@ -14219,11 +13937,11 @@
       "id": "TimeZone",
       "properties": {
         "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
           "type": "string"
         },
         "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
           "type": "string"
         }
       },
