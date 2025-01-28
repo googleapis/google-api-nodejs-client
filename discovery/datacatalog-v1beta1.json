@@ -1813,7 +1813,7 @@
       }
     }
   },
-  "revision": "20240614",
+  "revision": "20241021",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3169,6 +3169,26 @@
       "properties": {
         "column": {
           "description": "Resources like entry can have schemas associated with them. This scope allows you to attach tags to an individual column based on that schema. To attach a tag to a nested column, separate column names with a dot (`.`). Example: `column.nested_column`.",
+          "type": "string"
+        },
+        "dataplexTransferStatus": {
+          "description": "Output only. Denotes the transfer status of the Tag Template.",
+          "enum": [
+            "DATAPLEX_TRANSFER_STATUS_UNSPECIFIED",
+            "MIGRATED",
+            "TRANSFERRED"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            false
+          ],
+          "enumDescriptions": [
+            "Default value. TagTemplate and its tags are only visible and editable in DataCatalog.",
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in DataCatalog, read-only in Dataplex. Deprecated: Individual TagTemplate migration is deprecated in favor of organization or project wide TagTemplate migration opt-in.",
+            "TagTemplate and its tags are auto-copied to Dataplex service. Visible in both services. Editable in Dataplex, read-only in DataCatalog."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "fields": {
