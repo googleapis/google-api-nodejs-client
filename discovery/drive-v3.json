@@ -133,7 +133,7 @@
     "about": {
       "methods": {
         "get": {
-          "description": "Gets information about the user, the user's Drive, and system capabilities.",
+          "description": "Gets information about the user, the user's Drive, and system capabilities. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
           "flatPath": "about",
           "httpMethod": "GET",
           "id": "drive.about.get",
@@ -155,10 +155,120 @@
         }
       }
     },
+    "accessproposals": {
+      "methods": {
+        "get": {
+          "description": "Retrieves an AccessProposal by ID.",
+          "flatPath": "files/{fileId}/accessproposals/{proposalId}",
+          "httpMethod": "GET",
+          "id": "drive.accessproposals.get",
+          "parameterOrder": [
+            "fileId",
+            "proposalId"
+          ],
+          "parameters": {
+            "fileId": {
+              "description": "Required. The id of the item the request is on.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "proposalId": {
+              "description": "Required. The id of the access proposal to resolve.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "files/{fileId}/accessproposals/{proposalId}",
+          "response": {
+            "$ref": "AccessProposal"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
+          ]
+        },
+        "list": {
+          "description": "List the AccessProposals on a file. Note: Only approvers are able to list AccessProposals on a file. If the user is not an approver, returns a 403.",
+          "flatPath": "files/{fileId}/accessproposals",
+          "httpMethod": "GET",
+          "id": "drive.accessproposals.list",
+          "parameterOrder": [
+            "fileId"
+          ],
+          "parameters": {
+            "fileId": {
+              "description": "Required. The id of the item the request is on.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The number of results per page",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. The continuation token on the list of access requests.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "files/{fileId}/accessproposals",
+          "response": {
+            "$ref": "ListAccessProposalsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
+          ]
+        },
+        "resolve": {
+          "description": "Used to approve or deny an Access Proposal.",
+          "flatPath": "files/{fileId}/accessproposals/{proposalId}:resolve",
+          "httpMethod": "POST",
+          "id": "drive.accessproposals.resolve",
+          "parameterOrder": [
+            "fileId",
+            "proposalId"
+          ],
+          "parameters": {
+            "fileId": {
+              "description": "Required. The id of the item the request is on.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "proposalId": {
+              "description": "Required. The id of the access proposal to resolve.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "files/{fileId}/accessproposals/{proposalId}:resolve",
+          "request": {
+            "$ref": "ResolveAccessProposalRequest"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file"
+          ]
+        }
+      }
+    },
     "apps": {
       "methods": {
         "get": {
-          "description": "Gets a specific app.",
+          "description": "Gets a specific app. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info).",
           "flatPath": "apps/{appId}",
           "httpMethod": "GET",
           "id": "drive.apps.get",
@@ -188,7 +298,7 @@
           ]
         },
         "list": {
-          "description": "Lists a user's installed apps.",
+          "description": "Lists a user's installed apps. For more information, see [Return user info](https://developers.google.com/drive/api/guides/user-info).",
           "flatPath": "apps",
           "httpMethod": "GET",
           "id": "drive.apps.list",
@@ -225,7 +335,7 @@
     "changes": {
       "methods": {
         "getStartPageToken": {
-          "description": "Gets the starting pageToken for listing future changes.",
+          "description": "Gets the starting pageToken for listing future changes. For more information, see [Retrieve changes](https://developers.google.com/drive/api/guides/manage-changes).",
           "flatPath": "changes/startPageToken",
           "httpMethod": "GET",
           "id": "drive.changes.getStartPageToken",
@@ -272,7 +382,7 @@
           ]
         },
         "list": {
-          "description": "Lists the changes for a user or shared drive.",
+          "description": "Lists the changes for a user or shared drive. For more information, see [Retrieve changes](https://developers.google.com/drive/api/guides/manage-changes).",
           "flatPath": "changes",
           "httpMethod": "GET",
           "id": "drive.changes.list",
@@ -384,7 +494,7 @@
           "supportsSubscription": true
         },
         "watch": {
-          "description": "Subscribes to changes for a user.",
+          "description": "Subscribes to changes for a user. For more information, see [Notifications for resource changes](https://developers.google.com/drive/api/guides/push).",
           "flatPath": "changes/watch",
           "httpMethod": "POST",
           "id": "drive.changes.watch",
@@ -504,7 +614,7 @@
     "channels": {
       "methods": {
         "stop": {
-          "description": "Stops watching resources through this channel.",
+          "description": "Stops watching resources through this channel. For more information, see [Notifications for resource changes](https://developers.google.com/drive/api/guides/push).",
           "flatPath": "channels/stop",
           "httpMethod": "POST",
           "id": "drive.channels.stop",
@@ -531,7 +641,7 @@
     "comments": {
       "methods": {
         "create": {
-          "description": "Creates a comment on a file.",
+          "description": "Creates a comment on a file. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments",
           "httpMethod": "POST",
           "id": "drive.comments.create",
@@ -559,7 +669,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes a comment.",
+          "description": "Deletes a comment. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments/{commentId}",
           "httpMethod": "DELETE",
           "id": "drive.comments.delete",
@@ -588,7 +698,7 @@
           ]
         },
         "get": {
-          "description": "Gets a comment by ID.",
+          "description": "Gets a comment by ID. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments/{commentId}",
           "httpMethod": "GET",
           "id": "drive.comments.get",
@@ -628,7 +738,7 @@
           ]
         },
         "list": {
-          "description": "Lists a file's comments.",
+          "description": "Lists a file's comments. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments",
           "httpMethod": "GET",
           "id": "drive.comments.list",
@@ -680,7 +790,7 @@
           ]
         },
         "update": {
-          "description": "Updates a comment with patch semantics.",
+          "description": "Updates a comment with patch semantics. For more information, see [Manage comments and replies](https://developers.google.com/drive/api/guides/manage-comments). Required: The `fields` parameter must be set. To return the exact fields you need, see [Return specific fields](https://developers.google.com/drive/api/guides/fields-parameter).",
           "flatPath": "files/{fileId}/comments/{commentId}",
           "httpMethod": "PATCH",
           "id": "drive.comments.update",
@@ -1707,7 +1817,7 @@
     "operation": {
       "methods": {
         "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "flatPath": "operation/{name}:cancel",
           "httpMethod": "POST",
           "id": "drive.operation.cancel",
@@ -1722,7 +1832,13 @@
               "type": "string"
             }
           },
-          "path": "operation/{name}:cancel"
+          "path": "operation/{name}:cancel",
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
+          ]
         },
         "delete": {
           "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
@@ -1740,7 +1856,13 @@
               "type": "string"
             }
           },
-          "path": "operation/{name}"
+          "path": "operation/{name}",
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
+          ]
         }
       }
     },
@@ -1805,7 +1927,13 @@
           "path": "operations",
           "response": {
             "$ref": "ListOperationsResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.meet.readonly",
+            "https://www.googleapis.com/auth/drive.readonly"
+          ]
         }
       }
     },
@@ -2664,7 +2792,7 @@
       }
     }
   },
-  "revision": "20240914",
+  "revision": "20250122",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2804,6 +2932,60 @@
         "user": {
           "$ref": "User",
           "description": "The authenticated user."
+        }
+      },
+      "type": "object"
+    },
+    "AccessProposal": {
+      "description": "The Access Proposal resource for outstanding access proposals on a file",
+      "id": "AccessProposal",
+      "properties": {
+        "createTime": {
+          "description": "The creation time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "fileId": {
+          "description": "The file id that the proposal for access is on",
+          "type": "string"
+        },
+        "proposalId": {
+          "description": "The id of the access proposal",
+          "type": "string"
+        },
+        "recipientEmailAddress": {
+          "description": "The email address of the user that will receive permissions if accepted",
+          "type": "string"
+        },
+        "requestMessage": {
+          "description": "The message that the requester added to the proposal",
+          "type": "string"
+        },
+        "requesterEmailAddress": {
+          "description": "The email address of the requesting user",
+          "type": "string"
+        },
+        "rolesAndViews": {
+          "description": "A wrapper for the role and view of an access proposal.",
+          "items": {
+            "$ref": "AccessProposalRoleAndView"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AccessProposalRoleAndView": {
+      "description": "A wrapper for the role and view of an access proposal.",
+      "id": "AccessProposalRoleAndView",
+      "properties": {
+        "role": {
+          "description": "The role that was proposed by the requester New values may be added in the future, but the following are currently possible: * `writer` * `commenter` * `reader`",
+          "type": "string"
+        },
+        "view": {
+          "description": "Indicates the view for this access proposal. Only populated for proposals that belong to a view. `published` is the only supported value.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4348,6 +4530,24 @@
       },
       "type": "object"
     },
+    "ListAccessProposalsResponse": {
+      "description": "The response to an Access Proposal list request.",
+      "id": "ListAccessProposalsResponse",
+      "properties": {
+        "accessProposals": {
+          "description": "The list of Access Proposals. This field is only populated in v3 and v3beta.",
+          "items": {
+            "$ref": "AccessProposal"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The continuation token for the next page of results. This will be absent if the end of the results list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -4438,7 +4638,7 @@
       "type": "object"
     },
     "Permission": {
-      "description": "A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.",
+      "description": "A permission for a file. A permission grants a user, group, domain, or the world access to a file or a folder hierarchy. By default, permissions requests only return a subset of fields. Permission kind, ID, type, and role are always returned. To retrieve specific fields, see https://developers.google.com/drive/api/guides/fields-parameter. Some resource methods (such as `permissions.update`) require a `permissionId`. Use the `permissions.list` method to retrieve the ID for a file, folder, or shared drive.",
       "id": "Permission",
       "properties": {
         "allowFileDiscovery": {
@@ -4662,6 +4862,42 @@
       },
       "type": "object"
     },
+    "ResolveAccessProposalRequest": {
+      "description": "Request message for resolving an AccessProposal on a file.",
+      "id": "ResolveAccessProposalRequest",
+      "properties": {
+        "action": {
+          "description": "Required. The action to take on the AccessProposal.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "ACCEPT",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified action",
+            "The user accepts the proposal. Note: If this action is used, the `role` field must have at least one value.",
+            "The user denies the proposal"
+          ],
+          "type": "string"
+        },
+        "role": {
+          "description": "Optional. The roles the approver has allowed, if any. Note: This field is required for the `ACCEPT` action.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sendNotification": {
+          "description": "Optional. Whether to send an email to the requester when the AccessProposal is denied or accepted.",
+          "type": "boolean"
+        },
+        "view": {
+          "description": "Optional. Indicates the view for this access proposal. This should only be set when the proposal belongs to a view. `published` is the only supported value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Revision": {
       "description": "The metadata for a revision to a file. Some resource methods (such as `revisions.update`) require a `revisionId`. Use the `revisions.list` method to retrieve the ID for a revision.",
       "id": "Revision",
@@ -4716,7 +4952,7 @@
           "type": "boolean"
         },
         "publishedLink": {
-          "description": "Output only. A link to the published revision. This is only populated for Google Sites files.",
+          "description": "Output only. A link to the published revision. This is only populated for Docs Editors files.",
           "type": "string"
         },
         "publishedOutsideDomain": {
