@@ -168,6 +168,19 @@ export namespace iamcredentials_v1 {
      */
     token?: string | null;
   }
+  /**
+   * Represents a list of allowed locations for given service account.
+   */
+  export interface Schema$ServiceAccountAllowedLocations {
+    /**
+     * Output only. The hex encoded bitmap of the trust boundary locations
+     */
+    encodedLocations?: string | null;
+    /**
+     * Output only. The human readable trust boundary locations. For example, ["us-central1", "europe-west1"]
+     */
+    locations?: string[] | null;
+  }
   export interface Schema$SignBlobRequest {
     /**
      * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
@@ -420,6 +433,105 @@ export namespace iamcredentials_v1 {
     }
 
     /**
+     * Returns the trust boundary info for a given service account.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAllowedLocations(
+      params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAllowedLocations(
+      params?: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ServiceAccountAllowedLocations>;
+    getAllowedLocations(
+      params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAllowedLocations(
+      params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountAllowedLocations>,
+      callback: BodyResponseCallback<Schema$ServiceAccountAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      params: Params$Resource$Projects$Serviceaccounts$Getallowedlocations,
+      callback: BodyResponseCallback<Schema$ServiceAccountAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      callback: BodyResponseCallback<Schema$ServiceAccountAllowedLocations>
+    ): void;
+    getAllowedLocations(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Getallowedlocations
+        | BodyResponseCallback<Schema$ServiceAccountAllowedLocations>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ServiceAccountAllowedLocations>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ServiceAccountAllowedLocations>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ServiceAccountAllowedLocations>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Getallowedlocations;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Serviceaccounts$Getallowedlocations;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://iamcredentials.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/allowedLocations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ServiceAccountAllowedLocations>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ServiceAccountAllowedLocations>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Signs a blob using a service account's system-managed private key.
      *
      * @param params - Parameters for request
@@ -621,6 +733,13 @@ export namespace iamcredentials_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GenerateIdTokenRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Getallowedlocations
+    extends StandardParameters {
+    /**
+     * Required. Resource name of service account.
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Signblob
     extends StandardParameters {
