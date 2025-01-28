@@ -139,7 +139,7 @@
           ]
         },
         "listSubscribers": {
-          "description": "Lists service accounts with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: A list of service email addresses.",
+          "description": "Lists service accounts with subscriber privileges on the Pub/Sub topic created for this Channel Services account or integrator. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: A list of service email addresses.",
           "flatPath": "v1/accounts/{accountsId}:listSubscribers",
           "httpMethod": "GET",
           "id": "cloudchannel.accounts.listSubscribers",
@@ -148,10 +148,15 @@
           ],
           "parameters": {
             "account": {
-              "description": "Optional. Resource name of the account.",
+              "description": "Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "integrator": {
+              "description": "Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.",
+              "location": "query",
               "type": "string"
             },
             "pageSize": {
@@ -231,7 +236,7 @@
           ]
         },
         "register": {
-          "description": "Registers a service account with subscriber privileges on the Cloud Pub/Sub topic for this Channel Services account. After you create a subscriber, you get the events through SubscriberEvent Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name with the registered service email address.",
+          "description": "Registers a service account with subscriber privileges on the Pub/Sub topic for this Channel Services account or integrator. After you create a subscriber, you get the events through SubscriberEvent Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name with the registered service email address.",
           "flatPath": "v1/accounts/{accountsId}:register",
           "httpMethod": "POST",
           "id": "cloudchannel.accounts.register",
@@ -240,7 +245,7 @@
           ],
           "parameters": {
             "account": {
-              "description": "Optional. Resource name of the account.",
+              "description": "Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -259,7 +264,7 @@
           ]
         },
         "unregister": {
-          "description": "Unregisters a service account with subscriber privileges on the Cloud Pub/Sub topic created for this Channel Services account. If there are no service accounts left with subscriber privileges, this deletes the topic. You can call ListSubscribers to check for these accounts. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name that unregistered the service email address. Returns a success response if the service email address wasn't registered with the topic.",
+          "description": "Unregisters a service account with subscriber privileges on the Pub/Sub topic created for this Channel Services account or integrator. If there are no service accounts left with subscriber privileges, this deletes the topic. You can call ListSubscribers to check for these accounts. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name that unregistered the service email address. Returns a success response if the service email address wasn't registered with the topic.",
           "flatPath": "v1/accounts/{accountsId}:unregister",
           "httpMethod": "POST",
           "id": "cloudchannel.accounts.unregister",
@@ -268,7 +273,7 @@
           ],
           "parameters": {
             "account": {
-              "description": "Optional. Resource name of the account.",
+              "description": "Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -1900,7 +1905,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroups.next_page_token of the previous CloudChannelService.ListSkuGroups call.",
+                  "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroupsResponse.next_page_token of the previous CloudChannelService.ListSkuGroups call.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1940,7 +1945,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroupBillableSkus.next_page_token of the previous CloudChannelService.ListSkuGroupBillableSkus call.",
+                      "description": "Optional. A token identifying a page of results beyond the first page. Obtained through ListSkuGroupBillableSkusResponse.next_page_token of the previous CloudChannelService.ListSkuGroupBillableSkus call.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1966,10 +1971,111 @@
         }
       }
     },
+    "integrators": {
+      "methods": {
+        "listSubscribers": {
+          "description": "Lists service accounts with subscriber privileges on the Pub/Sub topic created for this Channel Services account or integrator. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: A list of service email addresses.",
+          "flatPath": "v1/integrators/{integratorsId}:listSubscribers",
+          "httpMethod": "GET",
+          "id": "cloudchannel.integrators.listSubscribers",
+          "parameterOrder": [
+            "integrator"
+          ],
+          "parameters": {
+            "account": {
+              "description": "Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.",
+              "location": "query",
+              "type": "string"
+            },
+            "integrator": {
+              "description": "Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.",
+              "location": "path",
+              "pattern": "^integrators/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of service accounts to return. The service may return fewer than this value. If unspecified, returns at most 100 service accounts. The maximum value is 1000; the server will coerce values above 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListSubscribers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSubscribers` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+integrator}:listSubscribers",
+          "response": {
+            "$ref": "GoogleCloudChannelV1ListSubscribersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/apps.order"
+          ]
+        },
+        "registerSubscriber": {
+          "description": "Registers a service account with subscriber privileges on the Pub/Sub topic for this Channel Services account or integrator. After you create a subscriber, you get the events through SubscriberEvent Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name with the registered service email address.",
+          "flatPath": "v1/integrators/{integratorsId}:registerSubscriber",
+          "httpMethod": "POST",
+          "id": "cloudchannel.integrators.registerSubscriber",
+          "parameterOrder": [
+            "integrator"
+          ],
+          "parameters": {
+            "integrator": {
+              "description": "Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.",
+              "location": "path",
+              "pattern": "^integrators/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+integrator}:registerSubscriber",
+          "request": {
+            "$ref": "GoogleCloudChannelV1RegisterSubscriberRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudChannelV1RegisterSubscriberResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/apps.order"
+          ]
+        },
+        "unregisterSubscriber": {
+          "description": "Unregisters a service account with subscriber privileges on the Pub/Sub topic created for this Channel Services account or integrator. If there are no service accounts left with subscriber privileges, this deletes the topic. You can call ListSubscribers to check for these accounts. Possible error codes: * PERMISSION_DENIED: The reseller account making the request and the provided reseller account are different, or the impersonated user is not a super admin. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The topic resource doesn't exist. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The topic name that unregistered the service email address. Returns a success response if the service email address wasn't registered with the topic.",
+          "flatPath": "v1/integrators/{integratorsId}:unregisterSubscriber",
+          "httpMethod": "POST",
+          "id": "cloudchannel.integrators.unregisterSubscriber",
+          "parameterOrder": [
+            "integrator"
+          ],
+          "parameters": {
+            "integrator": {
+              "description": "Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.",
+              "location": "path",
+              "pattern": "^integrators/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+integrator}:unregisterSubscriber",
+          "request": {
+            "$ref": "GoogleCloudChannelV1UnregisterSubscriberRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudChannelV1UnregisterSubscriberResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/apps.order"
+          ]
+        }
+      }
+    },
     "operations": {
       "methods": {
         "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "flatPath": "v1/operations/{operationsId}:cancel",
           "httpMethod": "POST",
           "id": "cloudchannel.operations.cancel",
@@ -2183,7 +2289,7 @@
       }
     }
   },
-  "revision": "20240913",
+  "revision": "20241202",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2323,6 +2429,10 @@
           },
           "type": "array"
         },
+        "priceReferenceId": {
+          "description": "Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order. Not yet implemented: if populated in a request, this field isn't evaluated in the API.",
+          "type": "string"
+        },
         "purchaseOrderId": {
           "description": "Optional. Purchase order id provided by the reseller.",
           "type": "string"
@@ -2335,7 +2445,7 @@
       "type": "object"
     },
     "GoogleCloudChannelV1ChangeParametersRequest": {
-      "description": "Request message for CloudChannelService.ChangeParametersRequest.",
+      "description": "Request message for CloudChannelService.ChangeParameters.",
       "id": "GoogleCloudChannelV1ChangeParametersRequest",
       "properties": {
         "parameters": {
@@ -2518,7 +2628,7 @@
           "type": "boolean"
         },
         "owned": {
-          "description": "Returns true if the Cloud Identity account is associated with a customer of the Channel Services partner.",
+          "description": "Returns true if the Cloud Identity account is associated with a customer of the Channel Services partner (with active subscriptions or purchase consents).",
           "type": "boolean"
         }
       },
@@ -2849,7 +2959,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Type of event which happened on the customer.",
+          "description": "Type of event which happened for the customer.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "PRIMARY_DOMAIN_CHANGED",
@@ -2997,6 +3107,10 @@
             "$ref": "GoogleCloudChannelV1Parameter"
           },
           "type": "array"
+        },
+        "priceReferenceId": {
+          "description": "Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order. Not yet implemented: if this field is populated in a request, it isn't evaluated in the API.",
+          "type": "string"
         },
         "provisionedService": {
           "$ref": "GoogleCloudChannelV1ProvisionedService",
@@ -3218,7 +3332,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Type of event which happened on the entitlement.",
+          "description": "Type of event which happened for the entitlement.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "CREATED",
@@ -3547,7 +3661,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A token to retrieve the next page of results. Pass to ListSkuGroupBillableSkus.page_token to obtain that page.",
+          "description": "A token to retrieve the next page of results. Pass to ListSkuGroupBillableSkusRequest.page_token to obtain that page.",
           "type": "string"
         }
       },
@@ -3558,7 +3672,7 @@
       "id": "GoogleCloudChannelV1ListSkuGroupsResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A token to retrieve the next page of results. Pass to ListSkuGroups.page_token to obtain that page.",
+          "description": "A token to retrieve the next page of results. Pass to ListSkuGroupsRequest.page_token to obtain that page.",
           "type": "string"
         },
         "skuGroups": {
@@ -4210,6 +4324,10 @@
         "offer": {
           "$ref": "GoogleCloudChannelV1Offer",
           "description": "Offer."
+        },
+        "priceReferenceId": {
+          "description": "Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4243,6 +4361,14 @@
       "description": "Request Message for RegisterSubscriber.",
       "id": "GoogleCloudChannelV1RegisterSubscriberRequest",
       "properties": {
+        "account": {
+          "description": "Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.",
+          "type": "string"
+        },
+        "integrator": {
+          "description": "Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.",
+          "type": "string"
+        },
         "serviceAccount": {
           "description": "Required. Service account that provides subscriber access to the registered topic.",
           "type": "string"
@@ -4774,6 +4900,10 @@
         "offer": {
           "$ref": "GoogleCloudChannelV1Offer",
           "description": "Offer with parameter constraints updated to allow the Transfer."
+        },
+        "priceReferenceId": {
+          "description": "Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4817,6 +4947,14 @@
       "description": "Request Message for UnregisterSubscriber.",
       "id": "GoogleCloudChannelV1UnregisterSubscriberRequest",
       "properties": {
+        "account": {
+          "description": "Optional. Resource name of the account. Required if integrator is not provided. Otherwise, leave this field empty/unset.",
+          "type": "string"
+        },
+        "integrator": {
+          "description": "Optional. Resource name of the integrator. Required if account is not provided. Otherwise, leave this field empty/unset.",
+          "type": "string"
+        },
         "serviceAccount": {
           "description": "Required. Service account to unregister from subscriber access to the topic.",
           "type": "string"
@@ -4904,7 +5042,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Type of event performed on the Channel Partner.",
+          "description": "Type of event which happened for the channel partner.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "LINK_STATE_CHANGED",
@@ -4990,7 +5128,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Type of event which happened on the customer.",
+          "description": "Type of event which happened for the customer.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "PRIMARY_DOMAIN_CHANGED",
@@ -5091,6 +5229,10 @@
           },
           "type": "array"
         },
+        "priceReferenceId": {
+          "description": "Optional. Price reference ID for the offer. Optional field only for offers that require additional price information. Used to guarantee that the pricing is consistent between quoting the offer and placing the order. Not yet implemented: if this field is populated in a request, it isn't evaluated in the API.",
+          "type": "string"
+        },
         "provisionedService": {
           "$ref": "GoogleCloudChannelV1alpha1ProvisionedService",
           "description": "Output only. Service provisioning details for the entitlement.",
@@ -5176,7 +5318,7 @@
           "type": "string"
         },
         "eventType": {
-          "description": "Type of event which happened on the entitlement.",
+          "description": "Type of event which happened for the entitlement.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "CREATED",
@@ -5252,6 +5394,31 @@
             "Long Running Operation was triggered by ChangeParameters.",
             "Long Running Operation was triggered by ProvisionCloudIdentity."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1alpha1OpportunityEvent": {
+      "description": "Represents Pub/Sub message content describing opportunity updates.",
+      "id": "GoogleCloudChannelV1alpha1OpportunityEvent",
+      "properties": {
+        "eventType": {
+          "description": "Type of event which happened for the opportunity.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CREATED",
+            "UPDATED"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "New opportunity created.",
+            "Existing opportunity updated."
+          ],
+          "type": "string"
+        },
+        "opportunity": {
+          "description": "Resource name of the opportunity. Format: opportunities/{opportunity}",
           "type": "string"
         }
       },
@@ -5526,6 +5693,10 @@
         "entitlementEvent": {
           "$ref": "GoogleCloudChannelV1alpha1EntitlementEvent",
           "description": "Entitlement event sent as part of Pub/Sub event to partners."
+        },
+        "opportunityEvent": {
+          "$ref": "GoogleCloudChannelV1alpha1OpportunityEvent",
+          "description": "Opportunity event sent as part of Pub/Sub event to partners/integrators."
         }
       },
       "type": "object"
@@ -5759,7 +5930,7 @@
       "type": "object"
     },
     "GoogleTypeDecimal": {
-      "description": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's BigDecimal or Python's decimal.Decimal. [BigDecimal]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html [decimal.Decimal]: https://docs.python.org/3/library/decimal.html",
+      "description": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html).",
       "id": "GoogleTypeDecimal",
       "properties": {
         "value": {
@@ -5791,18 +5962,18 @@
       "type": "object"
     },
     "GoogleTypePostalAddress": {
-      "description": "Represents a postal address, e.g. for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created via user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, please see: https://support.google.com/business/answer/6397478",
+      "description": "Represents a postal address. For example for postal delivery or payments addresses. Given a postal address, a postal service can deliver items to a premise, P.O. Box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input / editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput) - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478",
       "id": "GoogleTypePostalAddress",
       "properties": {
         "addressLines": {
-          "description": "Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (e.g. \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country/region of the address. In places where this can vary (e.g. Japan), address_language is used to make it explicit (e.g. \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
+          "description": "Unstructured address lines describing the lower levels of an address. Because values in address_lines do not have type information and may sometimes contain multiple values in a single field (For example \"Austin, TX\"), it is important that the line order is clear. The order of address lines should be \"envelope order\" for the country/region of the address. In places where this can vary (For example Japan), address_language is used to make it explicit (For example \"ja\" for large-to-small ordering and \"ja-Latn\" or \"en\" for small-to-large). This way, the most specific line of an address can be selected based on the language. The minimum permitted structural representation of an address consists of a region_code with all remaining information placed in the address_lines. It would be possible to format such an address very approximately without geocoding, but no semantic reasoning could be made about any of the address components until it was at least partially resolved. Creating an address only containing a region_code and address_lines, and then geocoding is the recommended way to handle completely unstructured addresses (as opposed to guessing which parts of the address should be localities or administrative areas).",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "administrativeArea": {
-          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (e.g. \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. E.g. in Switzerland this should be left unpopulated.",
+          "description": "Optional. Highest administrative subdivision which is used for postal addresses of a country or region. For example, this can be a state, a province, an oblast, or a prefecture. Specifically, for Spain this is the province and not the autonomous community (For example \"Barcelona\" and not \"Catalonia\"). Many countries don't use an administrative area in postal addresses. For example in Switzerland this should be left unpopulated.",
           "type": "string"
         },
         "languageCode": {
@@ -5818,7 +5989,7 @@
           "type": "string"
         },
         "postalCode": {
-          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (e.g. state/zip validation in the U.S.A.).",
+          "description": "Optional. Postal code of the address. Not all countries use or require postal codes to be present, but where they are used, they may trigger additional validation with other parts of the address (For example state/zip validation in the U.S.A.).",
           "type": "string"
         },
         "recipients": {
@@ -5838,7 +6009,7 @@
           "type": "integer"
         },
         "sortingCode": {
-          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (e.g. \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (e.g. Côte d'Ivoire).",
+          "description": "Optional. Additional, country-specific, sorting code. This is not used in most regions. Where it is used, the value is either a string like \"CEDEX\", optionally followed by a number (For example \"CEDEX 7\"), or just a number alone, representing the \"sector code\" (Jamaica), \"delivery area indicator\" (Malawi) or \"post office indicator\" (For example Côte d'Ivoire).",
           "type": "string"
         },
         "sublocality": {
@@ -5853,11 +6024,11 @@
       "id": "GoogleTypeTimeZone",
       "properties": {
         "id": {
-          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "description": "IANA Time Zone Database time zone. For example \"America/New_York\".",
           "type": "string"
         },
         "version": {
-          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "description": "Optional. IANA Time Zone Database version number. For example \"2019a\".",
           "type": "string"
         }
       },
