@@ -387,10 +387,6 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#backupContext`.
      */
     kind?: string | null;
-    /**
-     * The name of the backup. Format: projects/{project\}/backups/{backup\}
-     */
-    name?: string | null;
   }
   /**
    * Backup Reencryption Config
@@ -1926,6 +1922,7 @@ export namespace sqladmin_v1beta4 {
     /**
      * Name of the resource on which this operation runs.
      */
+    subOperationType?: Schema$SqlSubOperationType;
     targetId?: string | null;
     targetLink?: string | null;
     /**
@@ -2016,10 +2013,6 @@ export namespace sqladmin_v1beta4 {
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
-    /**
-     * List of warnings that occurred while handling the request.
-     */
-    warnings?: Schema$ApiWarning[];
   }
   /**
    * Read-only password status.
@@ -11332,22 +11325,6 @@ export namespace sqladmin_v1beta4 {
   }
   export interface Params$Resource$Instances$Delete extends StandardParameters {
     /**
-     * Flag to opt-in for final backup. By default, it is turned off.
-     */
-    enableFinalBackup?: boolean;
-    /**
-     * Optional. The description of the final backup.
-     */
-    finalBackupDescription?: string;
-    /**
-     * Optional. Final Backup expiration time. Timestamp in UTC of when this resource is considered expired.
-     */
-    finalBackupExpiryTime?: string;
-    /**
-     * Optional. Retention period of the final backup.
-     */
-    finalBackupTtlDays?: string;
-    /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
     instance?: string;
@@ -12177,10 +12154,6 @@ export namespace sqladmin_v1beta4 {
     project?: string;
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * Optional. A filter string that follows the rules of EBNF grammar (https://google.aip.dev/assets/misc/ebnf-filtering.txt). Cloud SQL provides filters for status, operationType, and startTime.
-     */
-    filter?: string;
     /**
      * Cloud SQL instance ID. This does not include the project ID.
      */
