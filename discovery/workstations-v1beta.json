@@ -112,7 +112,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "workstations.projects.locations.operations.cancel",
@@ -805,7 +805,7 @@
                           ]
                         },
                         "generateAccessToken": {
-                          "description": "Returns a short-lived credential that can be used to send authenticated and authorized traffic to a workstation.",
+                          "description": "Returns a short-lived credential that can be used to send authenticated and authorized traffic to a workstation. Once generated this token cannot be revoked and is good for the lifetime of the token.",
                           "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workstationClusters/{workstationClustersId}/workstationConfigs/{workstationConfigsId}/workstations/{workstationsId}:generateAccessToken",
                           "httpMethod": "POST",
                           "id": "workstations.projects.locations.workstationClusters.workstationConfigs.workstations.generateAccessToken",
@@ -1127,7 +1127,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20250101",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1217,7 +1217,7 @@
       "type": "object"
     },
     "BoostConfig": {
-      "description": "A configuration that workstations can boost to.",
+      "description": "A boost configuration is a set of resources that a workstation can use to increase its performance. If you specify a boost configuration, upon startup, workstation users can choose to use a VM provisioned under the boost config by passing the boost config ID in the start request. If the workstation user does not provide a boost config ID in the start request, the system will choose a VM from the pool provisioned under the default config.",
       "id": "BoostConfig",
       "properties": {
         "accelerators": {
@@ -1237,7 +1237,7 @@
           "type": "boolean"
         },
         "id": {
-          "description": "Optional. Required. The id to be used for the boost configuration.",
+          "description": "Required. The ID to be used for the boost configuration.",
           "type": "string"
         },
         "machineType": {
@@ -1386,7 +1386,7 @@
           "type": "array"
         },
         "boostConfigs": {
-          "description": "Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use.",
+          "description": "Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use. If specified, users will have the option to choose from the list of boost configs when starting a workstation.",
           "items": {
             "$ref": "BoostConfig"
           },
@@ -1456,6 +1456,28 @@
           },
           "description": "Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as [resource manager tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview). Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GceInstanceHost": {
+      "description": "The Compute Engine instance host.",
+      "id": "GceInstanceHost",
+      "properties": {
+        "id": {
+          "description": "Optional. Output only. The ID of the Compute Engine instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Optional. Output only. The name of the Compute Engine instance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "zone": {
+          "description": "Optional. Output only. The zone of the Compute Engine instance.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1601,6 +1623,10 @@
       "properties": {
         "allowedUnauthenticatedCorsPreflightRequests": {
           "description": "Optional. By default, the workstations service makes sure that all requests to the workstation are authenticated. CORS preflight requests do not include cookies or custom headers, and so are considered unauthenticated and blocked by the workstations service. Enabling this option allows these unauthenticated CORS preflight requests through to the workstation, where it becomes the responsibility of the destination server in the workstation to validate the request.",
+          "type": "boolean"
+        },
+        "disableLocalhostReplacement": {
+          "description": "Optional. By default, the workstations service replaces references to localhost, 127.0.0.1, and 0.0.0.0 with the workstation's hostname in http responses from the workstation so that applications under development run properly on the workstation. This may intefere with some applications, and so this option allows that behavior to be disabled.",
           "type": "boolean"
         }
       },
@@ -1829,7 +1855,7 @@
       "type": "object"
     },
     "PersistentDirectory": {
-      "description": "A directory to persist across workstation sessions.",
+      "description": "A directory to persist across workstation sessions. Updates to this field will not update existing workstations and will only take effect on new workstations.",
       "id": "PersistentDirectory",
       "properties": {
         "gcePd": {
@@ -1931,6 +1957,17 @@
           "description": "Optional. Port to which the request should be sent.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RuntimeHost": {
+      "description": "Runtime host for the workstation.",
+      "id": "RuntimeHost",
+      "properties": {
+        "gceInstanceHost": {
+          "$ref": "GceInstanceHost",
+          "description": "Specifies a Compute Engine instance as the host."
         }
       },
       "type": "object"
@@ -2112,6 +2149,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "runtimeHost": {
+          "$ref": "RuntimeHost",
+          "description": "Optional. Output only. Runtime host for the workstation when in STATE_RUNNING.",
+          "readOnly": true
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -2267,6 +2309,13 @@
         "subnetwork": {
           "description": "Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.",
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
         },
         "uid": {
           "description": "Output only. A system-assigned unique identifier for this workstation cluster.",

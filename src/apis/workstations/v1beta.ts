@@ -181,7 +181,7 @@ export namespace workstations_v1beta {
     role?: string | null;
   }
   /**
-   * A configuration that workstations can boost to.
+   * A boost configuration is a set of resources that a workstation can use to increase its performance. If you specify a boost configuration, upon startup, workstation users can choose to use a VM provisioned under the boost config by passing the boost config ID in the start request. If the workstation user does not provide a boost config ID in the start request, the system will choose a VM from the pool provisioned under the default config.
    */
   export interface Schema$BoostConfig {
     /**
@@ -197,7 +197,7 @@ export namespace workstations_v1beta {
      */
     enableNestedVirtualization?: boolean | null;
     /**
-     * Optional. Required. The id to be used for the boost configuration.
+     * Required. The ID to be used for the boost configuration.
      */
     id?: string | null;
     /**
@@ -316,7 +316,7 @@ export namespace workstations_v1beta {
      */
     accelerators?: Schema$Accelerator[];
     /**
-     * Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use.
+     * Optional. A list of the boost configurations that workstations created using this workstation configuration are allowed to use. If specified, users will have the option to choose from the list of boost configs when starting a workstation.
      */
     boostConfigs?: Schema$BoostConfig[];
     /**
@@ -371,6 +371,23 @@ export namespace workstations_v1beta {
      * Optional. Resource manager tags to be bound to this instance. Tag keys and values have the same definition as [resource manager tags](https://cloud.google.com/resource-manager/docs/tags/tags-overview). Keys must be in the format `tagKeys/{tag_key_id\}`, and values are in the format `tagValues/456`.
      */
     vmTags?: {[key: string]: string} | null;
+  }
+  /**
+   * The Compute Engine instance host.
+   */
+  export interface Schema$GceInstanceHost {
+    /**
+     * Optional. Output only. The ID of the Compute Engine instance.
+     */
+    id?: string | null;
+    /**
+     * Optional. Output only. The name of the Compute Engine instance.
+     */
+    name?: string | null;
+    /**
+     * Optional. Output only. The zone of the Compute Engine instance.
+     */
+    zone?: string | null;
   }
   /**
    * An EphemeralDirectory is backed by a Compute Engine persistent disk.
@@ -486,6 +503,10 @@ export namespace workstations_v1beta {
      * Optional. By default, the workstations service makes sure that all requests to the workstation are authenticated. CORS preflight requests do not include cookies or custom headers, and so are considered unauthenticated and blocked by the workstations service. Enabling this option allows these unauthenticated CORS preflight requests through to the workstation, where it becomes the responsibility of the destination server in the workstation to validate the request.
      */
     allowedUnauthenticatedCorsPreflightRequests?: boolean | null;
+    /**
+     * Optional. By default, the workstations service replaces references to localhost, 127.0.0.1, and 0.0.0.0 with the workstation's hostname in http responses from the workstation so that applications under development run properly on the workstation. This may intefere with some applications, and so this option allows that behavior to be disabled.
+     */
+    disableLocalhostReplacement?: boolean | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -644,7 +665,7 @@ export namespace workstations_v1beta {
     verb?: string | null;
   }
   /**
-   * A directory to persist across workstation sessions.
+   * A directory to persist across workstation sessions. Updates to this field will not update existing workstations and will only take effect on new workstations.
    */
   export interface Schema$PersistentDirectory {
     /**
@@ -723,6 +744,15 @@ export namespace workstations_v1beta {
      * Optional. Port to which the request should be sent.
      */
     port?: number | null;
+  }
+  /**
+   * Runtime host for the workstation.
+   */
+  export interface Schema$RuntimeHost {
+    /**
+     * Specifies a Compute Engine instance as the host.
+     */
+    gceInstanceHost?: Schema$GceInstanceHost;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -855,6 +885,10 @@ export namespace workstations_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Optional. Output only. Runtime host for the workstation when in STATE_RUNNING.
+     */
+    runtimeHost?: Schema$RuntimeHost;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -964,6 +998,10 @@ export namespace workstations_v1beta {
      * Immutable. Name of the Compute Engine subnetwork in which instances associated with this workstation cluster will be created. Must be part of the subnetwork specified for this workstation cluster.
      */
     subnetwork?: string | null;
+    /**
+     * Optional. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing"
+     */
+    tags?: {[key: string]: string} | null;
     /**
      * Output only. A system-assigned unique identifier for this workstation cluster.
      */
@@ -1125,7 +1163,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3223,7 +3261,7 @@ export namespace workstations_v1beta {
     }
 
     /**
-     * Returns a short-lived credential that can be used to send authenticated and authorized traffic to a workstation.
+     * Returns a short-lived credential that can be used to send authenticated and authorized traffic to a workstation. Once generated this token cannot be revoked and is good for the lifetime of the token.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
