@@ -710,6 +710,10 @@ export namespace dns_v1beta2 {
      */
     description?: string | null;
     /**
+     * Configurations related to DNS64 for this Policy.
+     */
+    dns64Config?: Schema$PolicyDns64Config;
+    /**
      * Allows networks bound to this policy to receive DNS queries sent by VMs or applications over VPN connections. When enabled, a virtual IP address is allocated from each of the subnetworks that are bound to this policy.
      */
     enableInboundForwarding?: boolean | null;
@@ -751,6 +755,23 @@ export namespace dns_v1beta2 {
      * IPv6 address to forward to. Does not accept both fields (ipv4 & ipv6) being populated. Public preview as of November 2022.
      */
     ipv6Address?: string | null;
+    kind?: string | null;
+  }
+  /**
+   * DNS64 policies
+   */
+  export interface Schema$PolicyDns64Config {
+    kind?: string | null;
+    /**
+     * The scope to which DNS64 config will be applied to.
+     */
+    scope?: Schema$PolicyDns64ConfigScope;
+  }
+  export interface Schema$PolicyDns64ConfigScope {
+    /**
+     * Controls whether DNS64 is enabled globally at the network level.
+     */
+    allQueries?: boolean | null;
     kind?: string | null;
   }
   export interface Schema$PolicyNetwork {
