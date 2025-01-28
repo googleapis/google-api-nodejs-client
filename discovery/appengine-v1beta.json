@@ -1817,6 +1817,113 @@
                       ]
                     }
                   }
+                },
+                "services": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes the specified service and all enclosed versions.",
+                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
+                      "httpMethod": "DELETE",
+                      "id": "appengine.projects.locations.applications.services.delete",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "servicesId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "servicesId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "versions": {
+                      "methods": {
+                        "delete": {
+                          "description": "Deletes an existing Version resource.",
+                          "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}",
+                          "httpMethod": "DELETE",
+                          "id": "appengine.projects.locations.applications.services.versions.delete",
+                          "parameterOrder": [
+                            "projectsId",
+                            "locationsId",
+                            "applicationsId",
+                            "servicesId",
+                            "versionsId"
+                          ],
+                          "parameters": {
+                            "applicationsId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "locationsId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "projectsId": {
+                              "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "servicesId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "versionsId": {
+                              "description": "Part of `name`. See documentation of `projectsId`.",
+                              "location": "path",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1beta/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/services/{servicesId}/versions/{versionsId}",
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
                 }
               }
             },
@@ -1918,7 +2025,7 @@
       }
     }
   },
-  "revision": "20240906",
+  "revision": "20241205",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3804,6 +3911,25 @@
           "description": "Target requests per second.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceEvent": {
+      "description": "The request that is passed to CLH during per-resource events. The request will be sent with update semantics in all cases except for data governance purge events. These events will be sent with delete semantics and the CLH is expected to delete the resource receiving this event.",
+      "id": "ResourceEvent",
+      "properties": {
+        "eventId": {
+          "description": "The unique ID for this per-resource event. CLHs can use this value to dedup repeated calls. required",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the resource for which this event is. required",
+          "type": "string"
+        },
+        "state": {
+          "$ref": "ContainerState",
+          "description": "The state of the project that led to this event."
         }
       },
       "type": "object"

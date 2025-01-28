@@ -612,6 +612,23 @@ export namespace appengine_v1alpha {
     serviceManagement?: string | null;
   }
   /**
+   * The request that is passed to CLH during per-resource events. The request will be sent with update semantics in all cases except for data governance purge events. These events will be sent with delete semantics and the CLH is expected to delete the resource receiving this event.
+   */
+  export interface Schema$ResourceEvent {
+    /**
+     * The unique ID for this per-resource event. CLHs can use this value to dedup repeated calls. required
+     */
+    eventId?: string | null;
+    /**
+     * The name of the resource for which this event is. required
+     */
+    name?: string | null;
+    /**
+     * The state of the project that led to this event.
+     */
+    state?: Schema$ContainerState;
+  }
+  /**
    * A DNS resource record.
    */
   export interface Schema$ResourceRecord {
