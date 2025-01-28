@@ -1062,6 +1062,50 @@
         }
       }
     },
+    "media": {
+      "methods": {
+        "upload": {
+          "description": "Upload a file into a RagCorpus.",
+          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ragCorpora/{ragCorporaId}/ragFiles:upload",
+          "httpMethod": "POST",
+          "id": "aiplatform.media.upload",
+          "mediaUpload": {
+            "accept": [
+              "*/*"
+            ],
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/v1/{+parent}/ragFiles:upload"
+              }
+            }
+          },
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The name of the RagCorpus resource into which to upload the file. Format: `projects/{project}/locations/{location}/ragCorpora/{rag_corpus}`",
+              "location": "path",
+              "pattern": "^projects/[^/]+/locations/[^/]+/ragCorpora/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}/ragFiles:upload",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1UploadRagFileRequest"
+          },
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1UploadRagFileResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ],
+          "supportsMediaUpload": true
+        }
+      }
+    },
     "projects": {
       "methods": {
         "getCacheConfig": {
@@ -24069,6 +24113,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "requiredReplicaCount": {
+          "description": "Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial model deployment/mutation is desired. If set, the model deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count.",
+          "format": "int32",
+          "type": "integer"
+        },
         "spot": {
           "description": "Optional. If true, schedule the deployment workload on [spot VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).",
           "type": "boolean"
@@ -45461,6 +45510,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1ToolCall": {
+      "description": "Spec for tool call.",
+      "id": "GoogleCloudAiplatformV1ToolCall",
+      "properties": {
+        "toolInput": {
+          "description": "Optional. Spec for tool input",
+          "type": "string"
+        },
+        "toolName": {
+          "description": "Required. Spec for tool name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1ToolCallValidInput": {
       "description": "Input for tool call valid metric.",
       "id": "GoogleCloudAiplatformV1ToolCallValidInput",
@@ -47237,14 +47301,6 @@
       "description": "Retrieve from Vertex RAG Store for grounding.",
       "id": "GoogleCloudAiplatformV1VertexRagStore",
       "properties": {
-        "ragCorpora": {
-          "deprecated": true,
-          "description": "Optional. Deprecated. Please use rag_resources instead.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
         "ragResources": {
           "description": "Optional. The representation of the rag source. It can be used to specify corpus only or ragfiles. Currently only support one corpus or multiple files from one corpus. In the future we may open up multiple corpora support.",
           "items": {
@@ -47252,12 +47308,18 @@
           },
           "type": "array"
         },
+        "ragRetrievalConfig": {
+          "$ref": "GoogleCloudAiplatformV1RagRetrievalConfig",
+          "description": "Optional. The retrieval config for the Rag query."
+        },
         "similarityTopK": {
+          "deprecated": true,
           "description": "Optional. Number of top k results to return from the selected corpora.",
           "format": "int32",
           "type": "integer"
         },
         "vectorDistanceThreshold": {
+          "deprecated": true,
           "description": "Optional. Only return results with vector distance smaller than the threshold.",
           "format": "double",
           "type": "number"

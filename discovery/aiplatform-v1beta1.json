@@ -29496,6 +29496,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "requiredReplicaCount": {
+          "description": "Optional. Number of required available replicas for the deployment to succeed. This field is only needed when partial model deployment/mutation is desired. If set, the model deploy/mutate operation will succeed once available_replica_count reaches required_replica_count, and the rest of the replicas will be retried. If not set, the default required_replica_count will be min_replica_count.",
+          "format": "int32",
+          "type": "integer"
+        },
         "spot": {
           "description": "Optional. If true, schedule the deployment workload on [spot VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).",
           "type": "boolean"
@@ -30420,15 +30425,18 @@
           "description": "Optional. Hyperparameters for Distillation."
         },
         "pipelineRootDirectory": {
-          "description": "Required. A path in a Cloud Storage bucket, which will be treated as the root output directory of the distillation pipeline. It is used by the system to generate the paths of output artifacts.",
+          "deprecated": true,
+          "description": "Deprecated. A path in a Cloud Storage bucket, which will be treated as the root output directory of the distillation pipeline. It is used by the system to generate the paths of output artifacts.",
           "type": "string"
         },
         "studentModel": {
-          "description": "The student model that is being tuned, e.g., \"google/gemma-2b-1.1-it\".",
+          "deprecated": true,
+          "description": "The student model that is being tuned, e.g., \"google/gemma-2b-1.1-it\". Deprecated. Use base_model instead.",
           "type": "string"
         },
         "trainingDatasetUri": {
-          "description": "Required. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.",
+          "deprecated": true,
+          "description": "Deprecated. Cloud Storage path to file containing training dataset for tuning. The dataset must be formatted as a JSONL file.",
           "type": "string"
         },
         "tunedTeacherModelSource": {
@@ -41738,7 +41746,7 @@
         },
         "encryptionSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
-          "description": "Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookService.NotebookRuntimeTemplate has an encryption spec."
+          "description": "Customer-managed encryption key spec for the notebook execution job. This field is auto-populated if the NotebookRuntimeTemplate has an encryption spec."
         },
         "executionTimeout": {
           "description": "Max running time of the execution job in seconds (default 86400s / 24 hrs).",
@@ -54855,6 +54863,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ToolCall": {
+      "description": "Spec for tool call.",
+      "id": "GoogleCloudAiplatformV1beta1ToolCall",
+      "properties": {
+        "toolInput": {
+          "description": "Optional. Spec for tool input",
+          "type": "string"
+        },
+        "toolName": {
+          "description": "Required. Spec for tool name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ToolCallValidInput": {
       "description": "Input for tool call valid metric.",
       "id": "GoogleCloudAiplatformV1beta1ToolCallValidInput",
@@ -56732,6 +56755,17 @@
         },
         "filter": {
           "description": "Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1VertexAiSearchConfig": {
+      "description": "Config for the Vertex AI Search.",
+      "id": "GoogleCloudAiplatformV1beta1VertexAiSearchConfig",
+      "properties": {
+        "servingConfig": {
+          "description": "Vertex AI Search Serving Config resource full name. For example, `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/servingConfigs/{serving_config}` or `projects/{project}/locations/{location}/collections/{collection}/dataStores/{data_store}/servingConfigs/{serving_config}`.",
           "type": "string"
         }
       },
