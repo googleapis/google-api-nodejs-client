@@ -141,6 +141,7 @@ export namespace youtube_v3 {
     videoAbuseReportReasons: Resource$Videoabusereportreasons;
     videoCategories: Resource$Videocategories;
     videos: Resource$Videos;
+    videoTrainability: Resource$Videotrainability;
     watermarks: Resource$Watermarks;
     youtube: Resource$Youtube;
 
@@ -181,6 +182,7 @@ export namespace youtube_v3 {
       );
       this.videoCategories = new Resource$Videocategories(this.context);
       this.videos = new Resource$Videos(this.context);
+      this.videoTrainability = new Resource$Videotrainability(this.context);
       this.watermarks = new Resource$Watermarks(this.context);
       this.youtube = new Resource$Youtube(this.context);
     }
@@ -1147,6 +1149,10 @@ export namespace youtube_v3 {
      */
     billingDetails?: Schema$ChannelToStoreLinkDetailsBillingDetails;
     /**
+     * Information specific to merchant affiliate program (read-only).
+     */
+    merchantAffiliateProgramDetails?: Schema$ChannelToStoreLinkDetailsMerchantAffiliateProgramDetails;
+    /**
      * Google Merchant Center id of the store.
      */
     merchantId?: string | null;
@@ -1167,6 +1173,15 @@ export namespace youtube_v3 {
      * The current billing profile status.
      */
     billingStatus?: string | null;
+  }
+  /**
+   * Information specific to merchant affiliate program.
+   */
+  export interface Schema$ChannelToStoreLinkDetailsMerchantAffiliateProgramDetails {
+    /**
+     * The current merchant affiliate program status.
+     */
+    status?: string | null;
   }
   /**
    * A *comment* represents a single YouTube comment.
@@ -1965,7 +1980,7 @@ export namespace youtube_v3 {
     streamName?: string | null;
   }
   /**
-   * LINT.IfChange Describes an invideo branding.
+   * Describes an invideo branding.
    */
   export interface Schema$InvideoBranding {
     /**
@@ -3172,7 +3187,7 @@ export namespace youtube_v3 {
      */
     items?: Schema$PlaylistItem[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "youtube#playlistItemListResponse". Etag of this resource.
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#playlistItemListResponse".
      */
     kind?: string | null;
     /**
@@ -3721,6 +3736,10 @@ export namespace youtube_v3 {
     stickerId?: string | null;
   }
   export interface Schema$TestItem {
+    /**
+     * Etag for the resource. See https://en.wikipedia.org/wiki/HTTP_ETag.
+     */
+    etag?: string | null;
     featuredPart?: boolean | null;
     gaia?: string | null;
     id?: string | null;
@@ -4332,7 +4351,7 @@ export namespace youtube_v3 {
      */
     concurrentViewers?: string | null;
     /**
-     * The time that the broadcast is scheduled to end. If the value is empty or the property is not present, then the broadcast is scheduled to contiue indefinitely.
+     * The time that the broadcast is scheduled to end. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
      */
     scheduledEndTime?: string | null;
     /**
@@ -4556,6 +4575,10 @@ export namespace youtube_v3 {
    */
   export interface Schema$VideoStatus {
     /**
+     * Indicates if the video contains altered or synthetic media.
+     */
+    containsSyntheticMedia?: boolean | null;
+    /**
      * This value indicates if the video can be embedded on another website. @mutable youtube.videos.insert youtube.videos.update
      */
     embeddable?: boolean | null;
@@ -4616,7 +4639,7 @@ export namespace youtube_v3 {
     tagSuggestions?: Schema$VideoSuggestionsTagSuggestion[];
   }
   /**
-   * A single tag suggestion with it's relevance information.
+   * A single tag suggestion with its relevance information.
    */
   export interface Schema$VideoSuggestionsTagSuggestion {
     /**
@@ -4644,6 +4667,27 @@ export namespace youtube_v3 {
      * A list of Freebase topic IDs that are centrally associated with the video. These are topics that are centrally featured in the video, and it can be said that the video is mainly about each of these. You can retrieve information about each topic using the < a href="http://wiki.freebase.com/wiki/Topic_API"\>Freebase Topic API.
      */
     topicIds?: string[] | null;
+  }
+  /**
+   * Specifies who is allowed to train on the video.
+   */
+  export interface Schema$VideoTrainability {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#videoTrainability".
+     */
+    kind?: string | null;
+    /**
+     * Specifies who is allowed to train on the video. Valid values are: - a single string "all" - a single string "none" - a list of allowed parties
+     */
+    permitted?: string[] | null;
+    /**
+     * The ID of the video.
+     */
+    videoId?: string | null;
   }
   /**
    * Branding properties for the watch. All deprecated.
@@ -8788,7 +8832,7 @@ export namespace youtube_v3 {
      */
     liveChatId?: string;
     /**
-     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.
+     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
      */
     maxResults?: number;
     /**
@@ -13545,6 +13589,112 @@ export namespace youtube_v3 {
      * Request body metadata
      */
     requestBody?: Schema$Video;
+  }
+
+  export class Resource$Videotrainability {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns the trainability status of a video.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Videotrainability$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Videotrainability$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VideoTrainability>;
+    get(
+      params: Params$Resource$Videotrainability$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Videotrainability$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$VideoTrainability>,
+      callback: BodyResponseCallback<Schema$VideoTrainability>
+    ): void;
+    get(
+      params: Params$Resource$Videotrainability$Get,
+      callback: BodyResponseCallback<Schema$VideoTrainability>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$VideoTrainability>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Videotrainability$Get
+        | BodyResponseCallback<Schema$VideoTrainability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VideoTrainability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VideoTrainability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VideoTrainability>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Videotrainability$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Videotrainability$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/videoTrainability').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VideoTrainability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VideoTrainability>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Videotrainability$Get
+    extends StandardParameters {
+    /**
+     * The ID of the video to retrieve.
+     */
+    id?: string;
   }
 
   export class Resource$Watermarks {

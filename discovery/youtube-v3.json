@@ -1757,7 +1757,7 @@
             },
             "maxResults": {
               "default": "500",
-              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set.",
+              "description": "The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.",
               "format": "uint32",
               "location": "query",
               "maximum": "2000",
@@ -3610,6 +3610,34 @@
         }
       }
     },
+    "videoTrainability": {
+      "methods": {
+        "get": {
+          "description": "Returns the trainability status of a video.",
+          "flatPath": "youtube/v3/videoTrainability",
+          "httpMethod": "GET",
+          "id": "youtube.videoTrainability.get",
+          "parameterOrder": [],
+          "parameters": {
+            "id": {
+              "description": "The ID of the video to retrieve.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "youtube/v3/videoTrainability",
+          "response": {
+            "$ref": "VideoTrainability"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/youtube",
+            "https://www.googleapis.com/auth/youtube.force-ssl",
+            "https://www.googleapis.com/auth/youtube.readonly",
+            "https://www.googleapis.com/auth/youtubepartner"
+          ]
+        }
+      }
+    },
     "videos": {
       "methods": {
         "delete": {
@@ -4072,7 +4100,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20250122",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -5551,6 +5579,10 @@
           "$ref": "ChannelToStoreLinkDetailsBillingDetails",
           "description": "Information specific to billing (read-only)."
         },
+        "merchantAffiliateProgramDetails": {
+          "$ref": "ChannelToStoreLinkDetailsMerchantAffiliateProgramDetails",
+          "description": "Information specific to merchant affiliate program (read-only)."
+        },
         "merchantId": {
           "description": "Google Merchant Center id of the store.",
           "format": "uint64",
@@ -5584,6 +5616,29 @@
             "",
             "",
             ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ChannelToStoreLinkDetailsMerchantAffiliateProgramDetails": {
+      "description": "Information specific to merchant affiliate program.",
+      "id": "ChannelToStoreLinkDetailsMerchantAffiliateProgramDetails",
+      "properties": {
+        "status": {
+          "description": "The current merchant affiliate program status.",
+          "enum": [
+            "merchantAffiliateProgramStatusUnspecified",
+            "merchantAffiliateProgramStatusEligible",
+            "merchantAffiliateProgramStatusActive",
+            "merchantAffiliateProgramStatusPaused"
+          ],
+          "enumDescriptions": [
+            "Unspecified status.",
+            "Merchant is eligible for the merchant affiliate program.",
+            "Merchant affiliate program is active.",
+            "Merchant affiliate program is paused."
           ],
           "type": "string"
         }
@@ -8057,7 +8112,7 @@
       "type": "object"
     },
     "InvideoBranding": {
-      "description": "LINT.IfChange Describes an invideo branding.",
+      "description": "Describes an invideo branding.",
       "id": "InvideoBranding",
       "properties": {
         "imageBytes": {
@@ -8071,6 +8126,7 @@
         },
         "position": {
           "$ref": "InvideoPosition",
+          "deprecated": true,
           "description": "The spatial position within the video where the branding watermark will be displayed."
         },
         "targetChannelId": {
@@ -10014,7 +10070,7 @@
         },
         "kind": {
           "default": "youtube#playlistItemListResponse",
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#playlistItemListResponse\". Etag of this resource.",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#playlistItemListResponse\".",
           "type": "string"
         },
         "nextPageToken": {
@@ -10762,6 +10818,10 @@
     "TestItem": {
       "id": "TestItem",
       "properties": {
+        "etag": {
+          "description": "Etag for the resource. See https://en.wikipedia.org/wiki/HTTP_ETag.",
+          "type": "string"
+        },
         "featuredPart": {
           "type": "boolean"
         },
@@ -11639,7 +11699,7 @@
           "type": "string"
         },
         "scheduledEndTime": {
-          "description": "The time that the broadcast is scheduled to end. If the value is empty or the property is not present, then the broadcast is scheduled to contiue indefinitely.",
+          "description": "The time that the broadcast is scheduled to end. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.",
           "format": "date-time",
           "type": "string"
         },
@@ -11952,6 +12012,10 @@
       "description": "Basic details about a video category, such as its localized title. Next Id: 19",
       "id": "VideoStatus",
       "properties": {
+        "containsSyntheticMedia": {
+          "description": "Indicates if the video contains altered or synthetic media.",
+          "type": "boolean"
+        },
         "embeddable": {
           "description": "This value indicates if the video can be embedded on another website. @mutable youtube.videos.insert youtube.videos.update",
           "type": "boolean"
@@ -12183,7 +12247,7 @@
       "type": "object"
     },
     "VideoSuggestionsTagSuggestion": {
-      "description": "A single tag suggestion with it's relevance information.",
+      "description": "A single tag suggestion with its relevance information.",
       "id": "VideoSuggestionsTagSuggestion",
       "properties": {
         "categoryRestricts": {
@@ -12224,6 +12288,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VideoTrainability": {
+      "description": "Specifies who is allowed to train on the video.",
+      "id": "VideoTrainability",
+      "properties": {
+        "etag": {
+          "description": "Etag of this resource.",
+          "type": "string"
+        },
+        "kind": {
+          "default": "youtube#videoTrainability",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#videoTrainability\".",
+          "type": "string"
+        },
+        "permitted": {
+          "description": "Specifies who is allowed to train on the video. Valid values are: - a single string \"all\" - a single string \"none\" - a list of allowed parties",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "videoId": {
+          "description": "The ID of the video.",
+          "type": "string"
         }
       },
       "type": "object"
