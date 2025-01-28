@@ -4345,10 +4345,11 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult": {
-      "description": "Resource that represents attribute results. The list of suggestions for the attribute.",
+      "description": "Resource that represents attribute results.",
       "id": "GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult",
       "properties": {
         "suggestions": {
+          "description": "The list of suggestions for the attribute.",
           "items": {
             "type": "string"
           },

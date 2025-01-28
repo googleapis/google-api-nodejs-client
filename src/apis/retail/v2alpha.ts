@@ -766,9 +766,12 @@ export namespace retail_v2alpha {
     recentSearchResults?: Schema$GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult[];
   }
   /**
-   * Resource that represents attribute results. The list of suggestions for the attribute.
+   * Resource that represents attribute results.
    */
   export interface Schema$GoogleCloudRetailV2alphaCompleteQueryResponseAttributeResult {
+    /**
+     * The list of suggestions for the attribute.
+     */
     suggestions?: string[] | null;
   }
   /**
