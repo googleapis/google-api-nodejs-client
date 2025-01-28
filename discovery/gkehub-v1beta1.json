@@ -587,7 +587,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "gkehub.projects.locations.operations.cancel",
@@ -712,7 +712,7 @@
       }
     }
   },
-  "revision": "20240118",
+  "revision": "20241206",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "ApplianceCluster": {
@@ -790,6 +790,16 @@
         "oidcJwks": {
           "description": "Optional. OIDC verification keys for this Membership in JWKS format (RFC 7517). When this field is set, OIDC discovery will NOT be performed on `issuer`, and instead OIDC tokens will be validated using this field.",
           "format": "byte",
+          "type": "string"
+        },
+        "scopeTenancyIdentityProvider": {
+          "description": "Optional. Output only. The identity provider for the scope-tenancy workload identity pool.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scopeTenancyWorkloadIdentityPool": {
+          "description": "Optional. Output only. The name of the scope-tenancy workload identity pool. This pool is set in the fleet-level feature.",
+          "readOnly": true,
           "type": "string"
         },
         "workloadIdentityPool": {

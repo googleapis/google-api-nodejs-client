@@ -1493,7 +1493,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "gkehub.projects.locations.operations.cancel",
@@ -2255,39 +2255,9 @@
       }
     }
   },
-  "revision": "20240920",
+  "revision": "20250116",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
-    "AnthosObservabilityFeatureSpec": {
-      "description": "**Anthos Observability**: Spec",
-      "id": "AnthosObservabilityFeatureSpec",
-      "properties": {
-        "defaultMembershipSpec": {
-          "$ref": "AnthosObservabilityMembershipSpec",
-          "description": "Default membership spec for unconfigured memberships"
-        }
-      },
-      "type": "object"
-    },
-    "AnthosObservabilityMembershipSpec": {
-      "description": "**Anthosobservability**: Per-Membership Feature spec.",
-      "id": "AnthosObservabilityMembershipSpec",
-      "properties": {
-        "doNotOptimizeMetrics": {
-          "description": "Use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics",
-          "type": "boolean"
-        },
-        "enableStackdriverOnApplications": {
-          "description": "Enable collecting and reporting metrics and logs from user apps.",
-          "type": "boolean"
-        },
-        "version": {
-          "description": "the version of stackdriver operator used by this feature",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "AppDevExperienceFeatureSpec": {
       "description": "Spec for App Dev Experience Feature.",
       "id": "AppDevExperienceFeatureSpec",
@@ -2380,6 +2350,16 @@
         "oidcJwks": {
           "description": "Optional. OIDC verification keys for this Membership in JWKS format (RFC 7517). When this field is set, OIDC discovery will NOT be performed on `issuer`, and instead OIDC tokens will be validated using this field.",
           "format": "byte",
+          "type": "string"
+        },
+        "scopeTenancyIdentityProvider": {
+          "description": "Optional. Output only. The identity provider for the scope-tenancy workload identity pool.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "scopeTenancyWorkloadIdentityPool": {
+          "description": "Optional. Output only. The name of the scope-tenancy workload identity pool. This pool is set in the fleet-level feature.",
+          "readOnly": true,
           "type": "string"
         },
         "workloadIdentityPool": {
@@ -2793,10 +2773,6 @@
       "description": "CommonFeatureSpec contains Fleet-wide configuration information",
       "id": "CommonFeatureSpec",
       "properties": {
-        "anthosobservability": {
-          "$ref": "AnthosObservabilityFeatureSpec",
-          "description": "Anthos Observability spec"
-        },
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureSpec",
           "description": "Appdevexperience specific spec."
@@ -2980,34 +2956,34 @@
       "description": "Configuration for Config Sync",
       "id": "ConfigManagementConfigSync",
       "properties": {
-        "allowVerticalScale": {
-          "deprecated": true,
-          "description": "Set to true to allow the vertical scaling. Defaults to false which disallows vertical scaling. This field is deprecated.",
-          "type": "boolean"
-        },
         "enabled": {
-          "description": "Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.",
+          "description": "Optional. Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of the git or oci field.",
           "type": "boolean"
         },
         "git": {
           "$ref": "ConfigManagementGitConfig",
-          "description": "Git repo configuration for the cluster."
+          "description": "Optional. Git repo configuration for the cluster."
         },
         "metricsGcpServiceAccountEmail": {
-          "description": "The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA.",
+          "deprecated": true,
+          "description": "Optional. The Email of the Google Cloud Service Account (GSA) used for exporting Config Sync metrics to Cloud Monitoring and Cloud Monarch when Workload Identity is enabled. The GSA should have the Monitoring Metric Writer (roles/monitoring.metricWriter) IAM role. The Kubernetes ServiceAccount `default` in the namespace `config-management-monitoring` should be bound to the GSA. Deprecated: If Workload Identity Federation for GKE is enabled, Google Cloud Service Account is no longer needed for exporting Config Sync metrics: https://cloud.google.com/kubernetes-engine/enterprise/config-sync/docs/how-to/monitor-config-sync-cloud-monitoring#custom-monitoring.",
           "type": "string"
         },
         "oci": {
           "$ref": "ConfigManagementOciConfig",
-          "description": "OCI repo configuration for the cluster"
+          "description": "Optional. OCI repo configuration for the cluster"
         },
         "preventDrift": {
-          "description": "Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.",
+          "description": "Optional. Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.",
           "type": "boolean"
         },
         "sourceFormat": {
-          "description": "Specifies whether the Config Sync Repo is in \"hierarchical\" or \"unstructured\" mode.",
+          "description": "Optional. Specifies whether the Config Sync Repo is in \"hierarchical\" or \"unstructured\" mode.",
           "type": "string"
+        },
+        "stopSyncing": {
+          "description": "Optional. Set to true to stop syncing configs for a single cluster. Default to false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3196,19 +3172,44 @@
       "description": "State information for ConfigSync",
       "id": "ConfigManagementConfigSyncState",
       "properties": {
+        "clusterLevelStopSyncingState": {
+          "description": "Output only. Whether syncing resources to the cluster is stopped at the cluster level.",
+          "enum": [
+            "STOP_SYNCING_STATE_UNSPECIFIED",
+            "NOT_STOPPED",
+            "PENDING",
+            "STOPPED"
+          ],
+          "enumDescriptions": [
+            "State cannot be determined",
+            "Syncing resources to the cluster is not stopped at the cluster level.",
+            "Some reconcilers stop syncing resources to the cluster, while others are still syncing.",
+            "Syncing resources to the cluster is stopped at the cluster level."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "crCount": {
+          "description": "Output only. The number of RootSync and RepoSync CRs in the cluster.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "deploymentState": {
           "$ref": "ConfigManagementConfigSyncDeploymentState",
-          "description": "Information about the deployment of ConfigSync, including the version of the various Pods deployed"
+          "description": "Output only. Information about the deployment of ConfigSync, including the version of the various Pods deployed",
+          "readOnly": true
         },
         "errors": {
-          "description": "Errors pertaining to the installation of Config Sync.",
+          "description": "Output only. Errors pertaining to the installation of Config Sync.",
           "items": {
             "$ref": "ConfigManagementConfigSyncError"
           },
+          "readOnly": true,
           "type": "array"
         },
         "reposyncCrd": {
-          "description": "The state of the Reposync CRD",
+          "description": "Output only. The state of the Reposync CRD",
           "enum": [
             "CRD_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -3223,10 +3224,11 @@
             "CRD is terminating (i.e., it has been deleted and is cleaning up)",
             "CRD is installing"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "rootsyncCrd": {
-          "description": "The state of the RootSync CRD",
+          "description": "Output only. The state of the RootSync CRD",
           "enum": [
             "CRD_STATE_UNSPECIFIED",
             "NOT_INSTALLED",
@@ -3241,10 +3243,11 @@
             "CRD is terminating (i.e., it has been deleted and is cleaning up)",
             "CRD is installing"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "The state of CS This field summarizes the other fields in this message.",
+          "description": "Output only. The state of CS This field summarizes the other fields in this message.",
           "enum": [
             "STATE_UNSPECIFIED",
             "CONFIG_SYNC_NOT_INSTALLED",
@@ -3259,15 +3262,18 @@
             "CS encounters errors.",
             "CS is installing or terminating."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "syncState": {
           "$ref": "ConfigManagementSyncState",
-          "description": "The state of ConfigSync's process to sync configs to a cluster"
+          "description": "Output only. The state of ConfigSync's process to sync configs to a cluster",
+          "readOnly": true
         },
         "version": {
           "$ref": "ConfigManagementConfigSyncVersion",
-          "description": "The version of ConfigSync deployed"
+          "description": "Output only. The version of ConfigSync deployed",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3404,35 +3410,35 @@
       "id": "ConfigManagementGitConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
           "type": "string"
         },
         "httpsProxy": {
-          "description": "URL for the HTTPS proxy to be used when communicating with the Git repo.",
+          "description": "Optional. URL for the HTTPS proxy to be used when communicating with the Git repo.",
           "type": "string"
         },
         "policyDir": {
-          "description": "The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.",
+          "description": "Optional. The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.",
           "type": "string"
         },
         "secretType": {
-          "description": "Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount or none. The validation of this is case-sensitive. Required.",
+          "description": "Required. Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount, githubapp or none. The validation of this is case-sensitive.",
           "type": "string"
         },
         "syncBranch": {
-          "description": "The branch of the repository to sync from. Default: master.",
+          "description": "Optional. The branch of the repository to sync from. Default: master.",
           "type": "string"
         },
         "syncRepo": {
-          "description": "The URL of the Git repository to use as the source of truth.",
+          "description": "Required. The URL of the Git repository to use as the source of truth.",
           "type": "string"
         },
         "syncRev": {
-          "description": "Git revision (tag or hash) to check out. Default HEAD.",
+          "description": "Optional. Git revision (tag or hash) to check out. Default HEAD.",
           "type": "string"
         },
         "syncWaitSecs": {
-          "description": "Period in seconds between consecutive syncs. Default: 15.",
+          "description": "Optional. Period in seconds between consecutive syncs. Default: 15.",
           "format": "int64",
           "type": "string"
         }
@@ -3568,22 +3574,23 @@
         "binauthz": {
           "$ref": "ConfigManagementBinauthzConfig",
           "deprecated": true,
-          "description": "Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set."
+          "description": "Optional. Binauthz conifguration for the cluster. Deprecated: This field will be ignored and should not be set."
         },
         "cluster": {
-          "description": "The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.",
+          "description": "Optional. The user-specified cluster name used by Config Sync cluster-name-selector annotation or ClusterSelector, for applying configs to only a subset of clusters. Omit this field if the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector. Set this field if a name different from the cluster's fleet membership name is used by Config Sync cluster-name-selector annotation or ClusterSelector.",
           "type": "string"
         },
         "configSync": {
           "$ref": "ConfigManagementConfigSync",
-          "description": "Config Sync configuration for the cluster."
+          "description": "Optional. Config Sync configuration for the cluster."
         },
         "hierarchyController": {
           "$ref": "ConfigManagementHierarchyControllerConfig",
-          "description": "Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead."
+          "deprecated": true,
+          "description": "Optional. Hierarchy Controller configuration for the cluster. Deprecated: Configuring Hierarchy Controller through the configmanagement feature is no longer recommended. Use https://github.com/kubernetes-sigs/hierarchical-namespaces instead."
         },
         "management": {
-          "description": "Enables automatic Feature management.",
+          "description": "Optional. Enables automatic Feature management.",
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",
@@ -3598,10 +3605,11 @@
         },
         "policyController": {
           "$ref": "ConfigManagementPolicyController",
-          "description": "Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead."
+          "deprecated": true,
+          "description": "Optional. Policy Controller configuration for the cluster. Deprecated: Configuring Policy Controller through the configmanagement feature is no longer recommended. Use the policycontroller feature instead."
         },
         "version": {
-          "description": "Version of ACM installed.",
+          "description": "Optional. Version of ACM installed.",
           "type": "string"
         }
       },
@@ -3613,31 +3621,38 @@
       "properties": {
         "binauthzState": {
           "$ref": "ConfigManagementBinauthzState",
-          "description": "Binauthz status"
+          "description": "Output only. Binauthz status",
+          "readOnly": true
         },
         "clusterName": {
-          "description": "This field is set to the `cluster_name` field of the Membership Spec if it is not empty. Otherwise, it is set to the cluster's fleet membership name.",
+          "description": "Output only. This field is set to the `cluster_name` field of the Membership Spec if it is not empty. Otherwise, it is set to the cluster's fleet membership name.",
+          "readOnly": true,
           "type": "string"
         },
         "configSyncState": {
           "$ref": "ConfigManagementConfigSyncState",
-          "description": "Current sync status"
+          "description": "Output only. Current sync status",
+          "readOnly": true
         },
         "hierarchyControllerState": {
           "$ref": "ConfigManagementHierarchyControllerState",
-          "description": "Hierarchy Controller status"
+          "description": "Output only. Hierarchy Controller status",
+          "readOnly": true
         },
         "membershipSpec": {
           "$ref": "ConfigManagementMembershipSpec",
-          "description": "Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state"
+          "description": "Output only. Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state",
+          "readOnly": true
         },
         "operatorState": {
           "$ref": "ConfigManagementOperatorState",
-          "description": "Current install status of ACM's Operator"
+          "description": "Output only. Current install status of ACM's Operator",
+          "readOnly": true
         },
         "policyControllerState": {
           "$ref": "ConfigManagementPolicyControllerState",
-          "description": "PolicyController status"
+          "description": "Output only. PolicyController status",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3647,23 +3662,23 @@
       "id": "ConfigManagementOciConfig",
       "properties": {
         "gcpServiceAccountEmail": {
-          "description": "The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "description": "Optional. The Google Cloud Service Account Email used for auth when secret_type is gcpServiceAccount.",
           "type": "string"
         },
         "policyDir": {
-          "description": "The absolute path of the directory that contains the local resources. Default: the root directory of the image.",
+          "description": "Optional. The absolute path of the directory that contains the local resources. Default: the root directory of the image.",
           "type": "string"
         },
         "secretType": {
-          "description": "Type of secret configured for access to the Git repo.",
+          "description": "Required. Type of secret configured for access to the OCI repo. Must be one of gcenode, gcpserviceaccount, k8sserviceaccount or none. The validation of this is case-sensitive.",
           "type": "string"
         },
         "syncRepo": {
-          "description": "The OCI image repository URL for the package to sync from. e.g. `LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY_NAME/PACKAGE_NAME`.",
+          "description": "Required. The OCI image repository URL for the package to sync from. e.g. `LOCATION-docker.pkg.dev/PROJECT_ID/REPOSITORY_NAME/PACKAGE_NAME`.",
           "type": "string"
         },
         "syncWaitSecs": {
-          "description": "Period in seconds between consecutive syncs. Default: 15.",
+          "description": "Optional. Period in seconds between consecutive syncs. Default: 15.",
           "format": "int64",
           "type": "string"
         }
@@ -5266,6 +5281,21 @@
           "$ref": "Authority",
           "description": "Optional. How to identify workloads from this Membership. See the documentation on Workload Identity for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity"
         },
+        "clusterTier": {
+          "description": "Output only. The tier of the cluster.",
+          "enum": [
+            "CLUSTER_TIER_UNSPECIFIED",
+            "STANDARD",
+            "ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The ClusterTier is not set.",
+            "The ClusterTier is standard.",
+            "The ClusterTier is enterprise."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. When the Membership was created.",
           "format": "google-datetime",
@@ -5453,10 +5483,6 @@
       "description": "MembershipFeatureSpec contains configuration information for a single Membership.",
       "id": "MembershipFeatureSpec",
       "properties": {
-        "anthosobservability": {
-          "$ref": "AnthosObservabilityMembershipSpec",
-          "description": "Anthos Observability-specific spec"
-        },
         "cloudbuild": {
           "$ref": "CloudBuildMembershipSpec",
           "description": "Cloud Build-specific spec"
@@ -5883,7 +5909,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -6712,6 +6738,7 @@
             "CNI_INSTALLATION_FAILED",
             "CNI_POD_UNSCHEDULABLE",
             "CLUSTER_HAS_ZERO_NODES",
+            "CANONICAL_SERVICE_ERROR",
             "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
             "VPCSC_GA_SUPPORTED",
             "DEPRECATED_SPEC_CONTROL_PLANE_MANAGEMENT",
@@ -6749,6 +6776,7 @@
             "CNI installation failed error code",
             "CNI pod unschedulable error code",
             "Cluster has zero node code",
+            "Failure to reconcile CanonicalServices",
             "Multiple control planes unsupported error code",
             "VPC-SC GA is supported for this control plane.",
             "User is using deprecated ControlPlaneManagement and they have not yet set Management.",
@@ -7190,12 +7218,14 @@
           "enum": [
             "VALIDATOR_TYPE_UNSPECIFIED",
             "MEMBERSHIP_ID",
-            "CROSS_PROJECT_PERMISSION"
+            "CROSS_PROJECT_PERMISSION",
+            "FLEET_ALLOWED_FOR_PROJECT_GUARDRAIL"
           ],
           "enumDescriptions": [
             "UNSPECIFIED validator.",
             "MEMBERSHIP_ID validator validates that the membership_id is still available.",
-            "CROSS_PROJECT_PERMISSION validator validates that the cross-project role binding for the service agent is in place."
+            "CROSS_PROJECT_PERMISSION validator validates that the cross-project role binding for the service agent is in place.",
+            "FLEET_ALLOWED_FOR_PROJECT_GUARDRAIL validator validates that the fleet project is allowed for the project guardrail."
           ],
           "type": "string"
         }
