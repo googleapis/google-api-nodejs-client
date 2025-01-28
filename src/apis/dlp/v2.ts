@@ -439,7 +439,7 @@ export namespace dlp_v2 {
      */
     datasetId?: string | null;
     /**
-     * The Google Cloud Platform project ID of the project containing the table. If omitted, project ID is inferred from the API call.
+     * The Google Cloud project ID of the project containing the table. If omitted, project ID is inferred from the API call.
      */
     projectId?: string | null;
     /**
@@ -648,7 +648,7 @@ export namespace dlp_v2 {
      */
     databaseEngine?: string | null;
     /**
-     * Required. DLP will limit its connections to max_connections. Must be 2 or greater.
+     * Required. The DLP API will limit its connections to max_connections. Must be 2 or greater.
      */
     maxConnections?: number | null;
     /**
@@ -805,11 +805,11 @@ export namespace dlp_v2 {
      */
     dataRiskLevel?: Schema$GooglePrivacyDlpV2DataRiskLevel;
     /**
-     * The BigQuery dataset ID.
+     * The BigQuery dataset ID, if the resource profiled is a BigQuery table.
      */
     datasetId?: string | null;
     /**
-     * The BigQuery location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported locations.
+     * If supported, the location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported BigQuery locations.
      */
     datasetLocation?: string | null;
     /**
@@ -865,7 +865,7 @@ export namespace dlp_v2 {
      */
     tableFullResource?: string | null;
     /**
-     * The BigQuery table ID.
+     * The table ID.
      */
     tableId?: string | null;
   }
@@ -896,7 +896,7 @@ export namespace dlp_v2 {
     conditions?: Schema$GooglePrivacyDlpV2Condition[];
   }
   /**
-   * A data connection to allow DLP to profile data in locations that require additional configuration.
+   * A data connection to allow the DLP API to profile data in locations that require additional configuration.
    */
   export interface Schema$GooglePrivacyDlpV2Connection {
     /**
@@ -1154,7 +1154,7 @@ export namespace dlp_v2 {
     unwrapped?: Schema$GooglePrivacyDlpV2UnwrappedCryptoKey;
   }
   /**
-   * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more. Note: We recommend using CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity.
+   * Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more. Note: We recommend using CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity. FPE incurs significant latency costs.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig {
     /**
@@ -1296,7 +1296,7 @@ export namespace dlp_v2 {
      */
     publishToChronicle?: Schema$GooglePrivacyDlpV2PublishToChronicle;
     /**
-     * Publishes findings to SCC for each data profile.
+     * Publishes findings to Security Command Center for each data profile.
      */
     publishToScc?: Schema$GooglePrivacyDlpV2PublishToSecurityCommandCenter;
     /**
@@ -1371,7 +1371,7 @@ export namespace dlp_v2 {
      */
     otherCloudStartingLocation?: Schema$GooglePrivacyDlpV2OtherCloudDiscoveryStartingLocation;
     /**
-     * The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.
+     * The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the DLP API must be enabled.
      */
     projectId?: string | null;
   }
@@ -2204,7 +2204,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Export {
     /**
-     * Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in new rows in BigQuery. Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification.
+     * Store all profiles to BigQuery. * The system will create a new dataset and table for you if none are are provided. The dataset will be named `sensitive_data_protection_discovery` and table will be named `discovery_profiles`. This table will be placed in the same project as the container project running the scan. After the first profile is generated and the dataset and table are created, the discovery scan configuration will be updated with the dataset and table names. * See [Analyze data profiles stored in BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles). * See [Sample queries for your BigQuery table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries). * Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. * The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification. * The best practice is to use the same table for an entire organization so that you can take advantage of the [provided Looker reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report). If you use VPC Service Controls to define security perimeters, then you must use a separate table for each boundary.
      */
     profileTable?: Schema$GooglePrivacyDlpV2BigQueryTable;
   }
@@ -2280,7 +2280,7 @@ export namespace dlp_v2 {
      */
     fileStoreInfoTypeSummaries?: Schema$GooglePrivacyDlpV2FileStoreInfoTypeSummary[];
     /**
-     * True if no files exist in this cluster. If the bucket had more files than could be listed, this will be false even if no files for this cluster were seen and file_extensions_seen is empty.
+     * True if no files exist in this cluster. If the file store had more files than could be listed, this will be false even if no files for this cluster were seen and file_extensions_seen is empty.
      */
     noFilesExist?: boolean | null;
     /**
@@ -2381,7 +2381,7 @@ export namespace dlp_v2 {
      */
     lastModifiedTime?: string | null;
     /**
-     * The location type of the bucket (region, dual-region, multi-region, etc). If dual-region, expect data_storage_locations to be populated.
+     * The location type of the file store (region, dual-region, multi-region, etc). If dual-region, expect data_storage_locations to be populated.
      */
     locationType?: string | null;
     /**
@@ -2768,6 +2768,10 @@ export namespace dlp_v2 {
      * Human readable form of the infoType name.
      */
     displayName?: string | null;
+    /**
+     * A sample that is a true positive for this infoType.
+     */
+    example?: string | null;
     /**
      * Internal name of the infoType.
      */
@@ -3589,7 +3593,7 @@ export namespace dlp_v2 {
      */
     location?: Schema$GooglePrivacyDlpV2DiscoveryStartingLocation;
     /**
-     * The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.
+     * The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the DLP API must be enabled.
      */
     projectId?: string | null;
   }
@@ -3744,7 +3748,7 @@ export namespace dlp_v2 {
      */
     cryptoHashConfig?: Schema$GooglePrivacyDlpV2CryptoHashConfig;
     /**
-     * Ffx-Fpe
+     * Ffx-Fpe. Strongly discouraged, consider using CryptoDeterministicConfig instead. Fpe is computationally expensive incurring latency costs.
      */
     cryptoReplaceFfxFpeConfig?: Schema$GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig;
     /**
@@ -3890,7 +3894,7 @@ export namespace dlp_v2 {
     topic?: string | null;
   }
   /**
-   * If set, a summary finding will be created/updated in SCC for each profile.
+   * If set, a summary finding will be created or updated in Security Command Center for each profile.
    */
   export interface Schema$GooglePrivacyDlpV2PublishToSecurityCommandCenter {}
   /**
@@ -4606,7 +4610,7 @@ export namespace dlp_v2 {
      */
     failedColumnCount?: string | null;
     /**
-     * The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name
+     * The Cloud Asset Inventory resource that was profiled in order to generate this TableDataProfile. https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
     fullResource?: string | null;
     /**
@@ -4662,7 +4666,7 @@ export namespace dlp_v2 {
      */
     state?: string | null;
     /**
-     * If the resource is BigQuery, the BigQuery table ID.
+     * The table ID.
      */
     tableId?: string | null;
     /**
@@ -5193,19 +5197,19 @@ export namespace dlp_v2 {
    */
   export interface Schema$GoogleTypeTimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -5217,7 +5221,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Returns a list of the sensitive information types that DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5345,7 +5349,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Returns a list of the sensitive information types that DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
+     * Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

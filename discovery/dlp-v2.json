@@ -325,7 +325,7 @@
     "infoTypes": {
       "methods": {
         "list": {
-          "description": "Returns a list of the sensitive information types that DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
+          "description": "Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
           "flatPath": "v2/infoTypes",
           "httpMethod": "GET",
           "id": "dlp.infoTypes.list",
@@ -367,7 +367,7 @@
         "infoTypes": {
           "methods": {
             "list": {
-              "description": "Returns a list of the sensitive information types that DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
+              "description": "Returns a list of the sensitive information types that the DLP API supports. See https://cloud.google.com/sensitive-data-protection/docs/infotypes-reference to learn more.",
               "flatPath": "v2/locations/{locationsId}/infoTypes",
               "httpMethod": "GET",
               "id": "dlp.locations.infoTypes.list",
@@ -5015,7 +5015,7 @@
       }
     }
   },
-  "revision": "20240916",
+  "revision": "20250119",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5431,7 +5431,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "The Google Cloud Platform project ID of the project containing the table. If omitted, project ID is inferred from the API call.",
+          "description": "The Google Cloud project ID of the project containing the table. If omitted, project ID is inferred from the API call.",
           "type": "string"
         },
         "tableId": {
@@ -5462,12 +5462,14 @@
             "enum": [
               "BIG_QUERY_TABLE_TYPE_UNSPECIFIED",
               "BIG_QUERY_TABLE_TYPE_TABLE",
-              "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE"
+              "BIG_QUERY_TABLE_TYPE_EXTERNAL_BIG_LAKE",
+              "BIG_QUERY_TABLE_TYPE_SNAPSHOT"
             ],
             "enumDescriptions": [
               "Unused.",
               "A normal BigQuery table.",
-              "A table that references data stored in Cloud Storage."
+              "A table that references data stored in Cloud Storage.",
+              "A snapshot of a BigQuery table."
             ],
             "type": "string"
           },
@@ -5564,7 +5566,8 @@
             "TSV",
             "AUDIO",
             "VIDEO",
-            "EXECUTABLE"
+            "EXECUTABLE",
+            "AI_MODEL"
           ],
           "enumDescriptions": [
             "Unused",
@@ -5583,7 +5586,8 @@
             "tsv",
             "Audio file types. Only used for profiling.",
             "Video file types. Only used for profiling.",
-            "Executable file types. Only used for profiling."
+            "Executable file types. Only used for profiling.",
+            "AI model file types. Only used for profiling."
           ],
           "type": "string"
         }
@@ -5769,7 +5773,7 @@
           "type": "string"
         },
         "maxConnections": {
-          "description": "Required. DLP will limit its connections to max_connections. Must be 2 or greater.",
+          "description": "Required. The DLP API will limit its connections to max_connections. Must be 2 or greater.",
           "format": "int32",
           "type": "integer"
         },
@@ -6038,11 +6042,11 @@
           "description": "The data risk level for this column."
         },
         "datasetId": {
-          "description": "The BigQuery dataset ID.",
+          "description": "The BigQuery dataset ID, if the resource profiled is a BigQuery table.",
           "type": "string"
         },
         "datasetLocation": {
-          "description": "The BigQuery location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
+          "description": "If supported, the location where the dataset's data is stored. See https://cloud.google.com/bigquery/docs/locations for supported BigQuery locations.",
           "type": "string"
         },
         "datasetProjectId": {
@@ -6147,7 +6151,7 @@
           "type": "string"
         },
         "tableId": {
-          "description": "The BigQuery table ID.",
+          "description": "The table ID.",
           "type": "string"
         }
       },
@@ -6207,7 +6211,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2Connection": {
-      "description": "A data connection to allow DLP to profile data in locations that require additional configuration.",
+      "description": "A data connection to allow the DLP API to profile data in locations that require additional configuration.",
       "id": "GooglePrivacyDlpV2Connection",
       "properties": {
         "cloudSql": {
@@ -6237,7 +6241,7 @@
           ],
           "enumDescriptions": [
             "Unused",
-            "DLP automatically created this connection during an initial scan, and it is awaiting full configuration by a user.",
+            "The DLP API automatically created this connection during an initial scan, and it is awaiting full configuration by a user.",
             "A configured connection that has not encountered any errors.",
             "A configured connection that encountered errors during its last use. It will not be used again until it is set to AVAILABLE. If the resolution requires external action, then the client must send a request to set the status to AVAILABLE when the connection is ready for use. If the resolution doesn't require external action, then any changes to the connection properties will automatically mark it as AVAILABLE."
           ],
@@ -6512,7 +6516,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig": {
-      "description": "Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more. Note: We recommend using CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity.",
+      "description": "Replaces an identifier with a surrogate using Format Preserving Encryption (FPE) with the FFX mode of operation; however when used in the `ReidentifyContent` API method, it serves the opposite function by reversing the surrogate back into the original identifier. The identifier must be encoded as ASCII. For a given crypto key and context, the same identifier will be replaced with the same surrogate. Identifiers must be at least two characters long. In the case that the identifier is the empty string, it will be skipped. See https://cloud.google.com/sensitive-data-protection/docs/pseudonymization to learn more. Note: We recommend using CryptoDeterministicConfig for all use cases which do not require preserving the input alphabet space and size, plus warrant referential integrity. FPE incurs significant latency costs.",
       "id": "GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig",
       "properties": {
         "commonAlphabet": {
@@ -6645,7 +6649,7 @@
         },
         "publishToScc": {
           "$ref": "GooglePrivacyDlpV2PublishToSecurityCommandCenter",
-          "description": "Publishes findings to SCC for each data profile."
+          "description": "Publishes findings to Security Command Center for each data profile."
         },
         "tagResources": {
           "$ref": "GooglePrivacyDlpV2TagResources",
@@ -6729,7 +6733,7 @@
           "description": "Must be set only when scanning other clouds."
         },
         "projectId": {
-          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.",
+          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the DLP API must be enabled.",
           "type": "string"
         }
       },
@@ -7478,8 +7482,8 @@
             "enumDescriptions": [
               "Unused.",
               "Scan buckets regardless of the attribute.",
-              "Buckets with autoclass disabled (https://cloud.google.com/storage/docs/autoclass). Only one of AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set.",
-              "Buckets with autoclass enabled (https://cloud.google.com/storage/docs/autoclass). Only one of AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set. Scanning Autoclass-enabled buckets can affect object storage classes."
+              "Buckets with [Autoclass](https://cloud.google.com/storage/docs/autoclass) disabled. Only one of AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set.",
+              "Buckets with [Autoclass](https://cloud.google.com/storage/docs/autoclass) enabled. Only one of AUTOCLASS_DISABLED or AUTOCLASS_ENABLED should be set. Scanning Autoclass-enabled buckets can affect object storage classes."
             ],
             "type": "string"
           },
@@ -8133,7 +8137,7 @@
       "properties": {
         "profileTable": {
           "$ref": "GooglePrivacyDlpV2BigQueryTable",
-          "description": "Store all table and column profiles in an existing table or a new table in an existing dataset. Each re-generation will result in new rows in BigQuery. Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification."
+          "description": "Store all profiles to BigQuery. * The system will create a new dataset and table for you if none are are provided. The dataset will be named `sensitive_data_protection_discovery` and table will be named `discovery_profiles`. This table will be placed in the same project as the container project running the scan. After the first profile is generated and the dataset and table are created, the discovery scan configuration will be updated with the dataset and table names. * See [Analyze data profiles stored in BigQuery](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles). * See [Sample queries for your BigQuery table](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#sample_sql_queries). * Data is inserted using [streaming insert](https://cloud.google.com/blog/products/bigquery/life-of-a-bigquery-streaming-insert) and so data may be in the buffer for a period of time after the profile has finished. * The Pub/Sub notification is sent before the streaming buffer is guaranteed to be written, so data may not be instantly visible to queries by the time your topic receives the Pub/Sub notification. * The best practice is to use the same table for an entire organization so that you can take advantage of the [provided Looker reports](https://cloud.google.com/sensitive-data-protection/docs/analyze-data-profiles#use_a_premade_report). If you use VPC Service Controls to define security perimeters, then you must use a separate table for each boundary."
         }
       },
       "type": "object"
@@ -8239,7 +8243,7 @@
           "type": "array"
         },
         "noFilesExist": {
-          "description": "True if no files exist in this cluster. If the bucket had more files than could be listed, this will be false even if no files for this cluster were seen and file_extensions_seen is empty.",
+          "description": "True if no files exist in this cluster. If the file store had more files than could be listed, this will be false even if no files for this cluster were seen and file_extensions_seen is empty.",
           "type": "boolean"
         },
         "sensitivityScore": {
@@ -8265,7 +8269,8 @@
             "CLUSTER_IMAGE",
             "CLUSTER_ARCHIVE",
             "CLUSTER_MULTIMEDIA",
-            "CLUSTER_EXECUTABLE"
+            "CLUSTER_EXECUTABLE",
+            "CLUSTER_AI_MODEL"
           ],
           "enumDescriptions": [
             "Unused.",
@@ -8277,7 +8282,8 @@
             "Images like jpeg, bmp.",
             "Archives and containers like .zip, .tar etc.",
             "Multimedia like .mp4, .avi etc.",
-            "Executable files like .exe, .class, .apk etc."
+            "Executable files like .exe, .class, .apk etc.",
+            "AI models like .tflite etc."
           ],
           "type": "string"
         }
@@ -8385,7 +8391,7 @@
           "type": "string"
         },
         "locationType": {
-          "description": "The location type of the bucket (region, dual-region, multi-region, etc). If dual-region, expect data_storage_locations to be populated.",
+          "description": "The location type of the file store (region, dual-region, multi-region, etc). If dual-region, expect data_storage_locations to be populated.",
           "type": "string"
         },
         "name": {
@@ -9034,6 +9040,10 @@
         },
         "displayName": {
           "description": "Human readable form of the infoType name.",
+          "type": "string"
+        },
+        "example": {
+          "description": "A sample that is a true positive for this infoType.",
           "type": "string"
         },
         "name": {
@@ -10224,7 +10234,7 @@
           "description": "The data to scan: folder, org, or project"
         },
         "projectId": {
-          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the Cloud DLP API must be enabled.",
+          "description": "The project that will run the scan. The DLP service account that exists within this project must have access to all resources that are profiled, and the DLP API must be enabled.",
           "type": "string"
         }
       },
@@ -10423,7 +10433,7 @@
         },
         "cryptoReplaceFfxFpeConfig": {
           "$ref": "GooglePrivacyDlpV2CryptoReplaceFfxFpeConfig",
-          "description": "Ffx-Fpe"
+          "description": "Ffx-Fpe. Strongly discouraged, consider using CryptoDeterministicConfig instead. Fpe is computationally expensive incurring latency costs."
         },
         "dateShiftConfig": {
           "$ref": "GooglePrivacyDlpV2DateShiftConfig",
@@ -10704,7 +10714,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2PublishToSecurityCommandCenter": {
-      "description": "If set, a summary finding will be created/updated in SCC for each profile.",
+      "description": "If set, a summary finding will be created or updated in Security Command Center for each profile.",
       "id": "GooglePrivacyDlpV2PublishToSecurityCommandCenter",
       "properties": {},
       "type": "object"
@@ -11600,7 +11610,7 @@
           "type": "string"
         },
         "fullResource": {
-          "description": "The resource name of the resource profiled. https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "description": "The Cloud Asset Inventory resource that was profiled in order to generate this TableDataProfile. https://cloud.google.com/apis/design/resource_names#full_resource_name",
           "type": "string"
         },
         "lastModifiedTime": {
@@ -11691,7 +11701,7 @@
           "type": "string"
         },
         "tableId": {
-          "description": "If the resource is BigQuery, the BigQuery table ID.",
+          "description": "The table ID.",
           "type": "string"
         },
         "tableSizeBytes": {
@@ -12458,22 +12468,22 @@
       "id": "GoogleTypeTimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
