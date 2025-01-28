@@ -1457,6 +1457,34 @@
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
+                        },
+                        "testIamPermissions": {
+                          "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+                          "flatPath": "v1/projects/{projectsId}/locations/global/securityGateways/{securityGatewaysId}/applications/{applicationsId}:testIamPermissions",
+                          "httpMethod": "POST",
+                          "id": "beyondcorp.projects.locations.global.securityGateways.applications.testIamPermissions",
+                          "parameterOrder": [
+                            "resource"
+                          ],
+                          "parameters": {
+                            "resource": {
+                              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/securityGateways/[^/]+/applications/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+resource}:testIamPermissions",
+                          "request": {
+                            "$ref": "GoogleIamV1TestIamPermissionsRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleIamV1TestIamPermissionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
                         }
                       }
                     }

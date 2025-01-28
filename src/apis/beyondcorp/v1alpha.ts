@@ -16977,102 +16977,6 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * This is a custom method to allow customers to create a peering connections between Google network and customer networks. This is enabled only for the allowlisted customers.
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setPeering(
-      params?: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setPeering(
-      params: Params$Resource$Projects$Locations$Securitygateways$Setpeering,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setPeering(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setPeering(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Securitygateways$Setpeering
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Securitygateways$Setpeering;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Securitygateways$Setpeering;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://beyondcorp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+securityGateway}:setPeering').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['securityGateway'],
-        pathParams: ['securityGateway'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
      * ```js
@@ -17338,18 +17242,6 @@ export namespace beyondcorp_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleIamV1SetIamPolicyRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Securitygateways$Setpeering
-    extends StandardParameters {
-    /**
-     * Required. BeyondCorp SecurityGateway name using the form: `projects/{project\}/locations/{location\}/securityGateways/{security_gateway\}`
-     */
-    securityGateway?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSetPeeringRequest;
   }
   export interface Params$Resource$Projects$Locations$Securitygateways$Testiampermissions
     extends StandardParameters {
