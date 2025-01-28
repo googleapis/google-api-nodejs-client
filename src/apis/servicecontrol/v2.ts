@@ -264,10 +264,6 @@ export namespace servicecontrol_v2 {
      */
     claims?: {[key: string]: any} | null;
     /**
-     * Identifies the client credential id used for authentication. credential_id is in the format of AUTH_METHOD:IDENTIFIER, e.g. "serviceaccount:XXXXX, apikey:XXXXX" where the format of the IDENTIFIER can vary for different AUTH_METHODs.
-     */
-    credentialId?: string | null;
-    /**
      * The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: "123456789012.apps.googleusercontent.com".
      */
     presenter?: string | null;
@@ -359,6 +355,10 @@ export namespace servicecontrol_v2 {
    * Response message for the Check method.
    */
   export interface Schema$CheckResponse {
+    /**
+     * Optional response metadata that will be emitted as dynamic metadata to be consumed by the caller of ServiceController. For compatibility with the ext_authz interface.
+     */
+    dynamicMetadata?: {[key: string]: any} | null;
     /**
      * Returns a set of request contexts generated from the `CheckRequest`.
      */
@@ -763,7 +763,7 @@ export namespace servicecontrol_v2 {
      */
     protocol?: string | null;
     /**
-     * The referer URL of the request, as defined in [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     * The referer URL of the request, as defined in [HTTP/1.1 Header Field Definitions](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
      */
     referer?: string | null;
     /**
