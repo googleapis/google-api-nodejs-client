@@ -795,6 +795,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. A name of the GrpcRoute to delete. Must be in the format `projects/*/locations/global/grpcRoutes/*`.",
                       "location": "path",
@@ -957,6 +962,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. A name of the HttpRoute to delete. Must be in the format `projects/*/locations/global/httpRoutes/*`.",
                       "location": "path",
@@ -2331,6 +2341,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. A name of the TcpRoute to delete. Must be in the format `projects/*/locations/global/tcpRoutes/*`.",
                       "location": "path",
@@ -2493,6 +2508,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "etag": {
+                      "description": "Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. A name of the TlsRoute to delete. Must be in the format `projects/*/locations/global/tlsRoutes/*`.",
                       "location": "path",
@@ -3418,6 +3438,11 @@
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
           "type": "string"
         },
+        "etag": {
+          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "readOnly": true,
+          "type": "string"
+        },
         "gateways": {
           "description": "Optional. Gateways defines a list of gateways this GrpcRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/*/locations/global/gateways/`",
           "items": {
@@ -3713,6 +3738,11 @@
         },
         "description": {
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "readOnly": true,
           "type": "string"
         },
         "gateways": {
@@ -4538,6 +4568,24 @@
       },
       "type": "object"
     },
+    "ListGatewayRouteViewsResponse": {
+      "description": "Response returned by the ListGatewayRouteViews method.",
+      "id": "ListGatewayRouteViewsResponse",
+      "properties": {
+        "gatewayRouteViews": {
+          "description": "List of GatewayRouteView resources.",
+          "items": {
+            "$ref": "GatewayRouteView"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListGatewaysResponse": {
       "description": "Response returned by the ListGateways method.",
       "id": "ListGatewaysResponse",
@@ -4913,6 +4961,42 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "wasmPlugins": {
+          "description": "List of `WasmPlugin` resources.",
+          "items": {
+            "$ref": "WasmPlugin"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListWasmPluginVersionsResponse": {
+      "description": "Response returned by the `ListWasmPluginVersions` method.",
+      "id": "ListWasmPluginVersionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "wasmPluginVersions": {
+          "description": "List of `WasmPluginVersion` resources.",
+          "items": {
+            "$ref": "WasmPluginVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListWasmPluginsResponse": {
+      "description": "Response returned by the `ListWasmPlugins` method.",
+      "id": "ListWasmPluginsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
         },
         "wasmPlugins": {
           "description": "List of `WasmPlugin` resources.",
@@ -5422,6 +5506,11 @@
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
           "type": "string"
         },
+        "etag": {
+          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "readOnly": true,
+          "type": "string"
+        },
         "gateways": {
           "description": "Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/*/locations/global/gateways/`",
           "items": {
@@ -5552,6 +5641,11 @@
         },
         "description": {
           "description": "Optional. A free-text description of the resource. Max length 1024 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.",
+          "readOnly": true,
           "type": "string"
         },
         "gateways": {

@@ -515,6 +515,10 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
+    /**
      * Optional. Gateways defines a list of gateways this GrpcRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
     gateways?: string[] | null;
@@ -726,6 +730,10 @@ export namespace networkservices_v1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this HttpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -1279,6 +1287,19 @@ export namespace networkservices_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response returned by the ListGatewayRouteViews method.
+   */
+  export interface Schema$ListGatewayRouteViewsResponse {
+    /**
+     * List of GatewayRouteView resources.
+     */
+    gatewayRouteViews?: Schema$GatewayRouteView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response returned by the ListGateways method.
    */
   export interface Schema$ListGatewaysResponse {
@@ -1411,6 +1432,19 @@ export namespace networkservices_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response returned by the ListMeshRouteViews method.
+   */
+  export interface Schema$ListMeshRouteViewsResponse {
+    /**
+     * List of MeshRouteView resources.
+     */
+    meshRouteViews?: Schema$MeshRouteView[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1520,6 +1554,32 @@ export namespace networkservices_v1 {
      * Unreachable resources. Populated when the request attempts to list all resources across all supported locations, while some locations are temporarily unavailable.
      */
     unreachable?: string[] | null;
+    /**
+     * List of `WasmPluginVersion` resources.
+     */
+    wasmPluginVersions?: Schema$WasmPluginVersion[];
+  }
+  /**
+   * Response returned by the `ListWasmPlugins` method.
+   */
+  export interface Schema$ListWasmPluginsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of `WasmPlugin` resources.
+     */
+    wasmPlugins?: Schema$WasmPlugin[];
+  }
+  /**
+   * Response returned by the `ListWasmPluginVersions` method.
+   */
+  export interface Schema$ListWasmPluginVersionsResponse {
+    /**
+     * If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.
+     */
+    nextPageToken?: string | null;
     /**
      * List of `WasmPluginVersion` resources.
      */
@@ -1854,6 +1914,10 @@ export namespace networkservices_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
+    /**
      * Optional. Gateways defines a list of gateways this TcpRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
     gateways?: string[] | null;
@@ -1968,6 +2032,10 @@ export namespace networkservices_v1 {
      * Optional. A free-text description of the resource. Max length 1024 characters.
      */
     description?: string | null;
+    /**
+     * Optional. Output only. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string | null;
     /**
      * Optional. Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway. Each gateway reference should match the pattern: `projects/x/locations/global/gateways/`
      */
@@ -7731,6 +7799,10 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Grpcroutes$Delete
     extends StandardParameters {
     /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
+    /**
      * Required. A name of the GrpcRoute to delete. Must be in the format `projects/x/locations/global/grpcRoutes/x`.
      */
     name?: string;
@@ -8553,6 +8625,10 @@ export namespace networkservices_v1 {
   }
   export interface Params$Resource$Projects$Locations$Httproutes$Delete
     extends StandardParameters {
+    /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
     /**
      * Required. A name of the HttpRoute to delete. Must be in the format `projects/x/locations/global/httpRoutes/x`.
      */
@@ -14474,6 +14550,10 @@ export namespace networkservices_v1 {
   export interface Params$Resource$Projects$Locations$Tcproutes$Delete
     extends StandardParameters {
     /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
+    /**
      * Required. A name of the TcpRoute to delete. Must be in the format `projects/x/locations/global/tcpRoutes/x`.
      */
     name?: string;
@@ -15293,6 +15373,10 @@ export namespace networkservices_v1 {
   }
   export interface Params$Resource$Projects$Locations$Tlsroutes$Delete
     extends StandardParameters {
+    /**
+     * Optional. Etag of the resource. If this is provided, it must match the server's etag. If the provided etag does not match the server's etag, the request will fail with a 409 ABORTED error.
+     */
+    etag?: string;
     /**
      * Required. A name of the TlsRoute to delete. Must be in the format `projects/x/locations/global/tlsRoutes/x`.
      */
