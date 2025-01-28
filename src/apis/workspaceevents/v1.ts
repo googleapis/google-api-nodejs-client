@@ -232,7 +232,7 @@ export namespace workspaceevents_v1 {
      */
     expireTime?: string | null;
     /**
-     * Optional. Immutable. Identifier. Resource name of the subscription. Format: `subscriptions/{subscription\}`
+     * Identifier. Resource name of the subscription. Format: `subscriptions/{subscription\}`
      */
     name?: string | null;
     /**
@@ -816,7 +816,7 @@ export namespace workspaceevents_v1 {
     }
 
     /**
-     * [Developer Preview](https://developers.google.com/workspace/preview): Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription).
+     * [Developer Preview](https://developers.google.com/workspace/preview): Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. This method will ignore or reject any subscription that isn't currently in a suspended state. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription).
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -961,7 +961,7 @@ export namespace workspaceevents_v1 {
   export interface Params$Resource$Subscriptions$Patch
     extends StandardParameters {
     /**
-     * Optional. Immutable. Identifier. Resource name of the subscription. Format: `subscriptions/{subscription\}`
+     * Identifier. Resource name of the subscription. Format: `subscriptions/{subscription\}`
      */
     name?: string;
     /**

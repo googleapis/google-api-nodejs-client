@@ -12,22 +12,37 @@
           "description": "View members in Google Chat conversations."
         },
         "https://www.googleapis.com/auth/chat.messages": {
-          "description": "See, compose, send, update, and delete messages and their associated attachments, and add, see, and delete reactions to messages."
+          "description": "See, compose, send, update, and delete messages as well as their message content; add, see, and delete reactions to messages."
         },
         "https://www.googleapis.com/auth/chat.messages.reactions": {
-          "description": "See, add, and delete reactions to messages in Google Chat"
+          "description": "See, add, and delete reactions as well as their reaction content to messages in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.messages.reactions.readonly": {
-          "description": "View reactions to messages in Google Chat"
+          "description": "View reactions as well as their reaction content to messages in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.messages.readonly": {
-          "description": "See messages and their associated reactions and attachments in Google Chat"
+          "description": "See messages as well as their reactions and message content in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.spaces": {
           "description": "Create conversations and spaces and see or update metadata (including history settings and access settings) in Google Chat"
         },
         "https://www.googleapis.com/auth/chat.spaces.readonly": {
           "description": "View chat and spaces in Google Chat"
+        },
+        "https://www.googleapis.com/auth/drive": {
+          "description": "See, edit, create, and delete all of your Google Drive files"
+        },
+        "https://www.googleapis.com/auth/drive.file": {
+          "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
+        },
+        "https://www.googleapis.com/auth/drive.metadata": {
+          "description": "View and manage metadata of files in your Google Drive"
+        },
+        "https://www.googleapis.com/auth/drive.metadata.readonly": {
+          "description": "See information about your Google Drive files"
+        },
+        "https://www.googleapis.com/auth/drive.readonly": {
+          "description": "See and download all your Google Drive files"
         },
         "https://www.googleapis.com/auth/meetings.space.created": {
           "description": "Create, edit, and see information about your Google Meet conferences created by the app."
@@ -168,6 +183,11 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/meetings.space.created",
             "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
@@ -205,6 +225,11 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/meetings.space.created",
             "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
@@ -255,6 +280,11 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/meetings.space.created",
             "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
@@ -290,6 +320,11 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/meetings.space.created",
             "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
@@ -332,6 +367,11 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/meetings.space.created",
             "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
@@ -346,7 +386,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Optional. Immutable. Identifier. Resource name of the subscription. Format: `subscriptions/{subscription}`",
+              "description": "Identifier. Resource name of the subscription. Format: `subscriptions/{subscription}`",
               "location": "path",
               "pattern": "^subscriptions/[^/]+$",
               "required": true,
@@ -380,12 +420,17 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/meetings.space.created",
             "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
         },
         "reactivate": {
-          "description": "[Developer Preview](https://developers.google.com/workspace/preview): Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription).",
+          "description": "[Developer Preview](https://developers.google.com/workspace/preview): Reactivates a suspended Google Workspace subscription. This method resets your subscription's `State` field to `ACTIVE`. Before you use this method, you must fix the error that suspended the subscription. This method will ignore or reject any subscription that isn't currently in a suspended state. To learn how to use this method, see [Reactivate a Google Workspace subscription](https://developers.google.com/workspace/events/guides/reactivate-subscription).",
           "flatPath": "v1/subscriptions/{subscriptionsId}:reactivate",
           "httpMethod": "POST",
           "id": "workspaceevents.subscriptions.reactivate",
@@ -417,6 +462,11 @@
             "https://www.googleapis.com/auth/chat.messages.readonly",
             "https://www.googleapis.com/auth/chat.spaces",
             "https://www.googleapis.com/auth/chat.spaces.readonly",
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/drive.metadata",
+            "https://www.googleapis.com/auth/drive.metadata.readonly",
+            "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/meetings.space.created",
             "https://www.googleapis.com/auth/meetings.space.readonly"
           ]
@@ -424,7 +474,7 @@
       }
     }
   },
-  "revision": "20240827",
+  "revision": "20250114",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "ListSubscriptionsResponse": {
@@ -572,7 +622,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. Immutable. Identifier. Resource name of the subscription. Format: `subscriptions/{subscription}`",
+          "description": "Identifier. Resource name of the subscription. Format: `subscriptions/{subscription}`",
           "type": "string"
         },
         "notificationEndpoint": {
