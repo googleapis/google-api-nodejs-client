@@ -1731,6 +1731,27 @@ export namespace merchantapi_accounts_v1beta {
     startDate?: Schema$Date;
   }
   /**
+   * Next: 5
+   */
+  export interface Schema$SeasonalOverride {
+    /**
+     * Required. Defines the date range when this seasonal override applies. Both begin and end are inclusive and should be in date decimal format, example 20250115. The dates of the seasonal overrides should not overlap.
+     */
+    begin?: Schema$Date;
+    /**
+     * Required. seasonal override end date (inclusive).
+     */
+    end?: Schema$Date;
+    /**
+     * Required. Display name of this seasonal override in Merchant Center.
+     */
+    label?: string | null;
+    /**
+     * Required. The return policy for the given date range.
+     */
+    policy?: Schema$Policy;
+  }
+  /**
    * Shipping service.
    */
   export interface Schema$Service {
@@ -5276,7 +5297,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `black_owned` - `latino_owned` - `promotions_consent` - `small_business` - `veteran_owned` - `women_owned`
      */
     updateMask?: string;
 
@@ -5485,7 +5506,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `address` - `customer_service` - `korean_business_registration_number`
      */
     updateMask?: string;
 
@@ -5502,7 +5523,7 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Returns the email preferences for a Merchant Center account user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
+     * Returns the email preferences for a Merchant Center account user. This service only permits retrieving and updating email preferences for the authenticated user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5698,7 +5719,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `news_and_tips`
      */
     updateMask?: string;
 

@@ -1199,6 +1199,10 @@
           "description": "The label of the shipping benefit. If the field has value, this offer has loyalty shipping benefit. If the field value isn't provided, the item is not eligible for loyalty shipping for the given loyalty tier.",
           "type": "string"
         },
+        "shippingLabel": {
+          "description": "The label of the shipping benefit. If the field has value, this offer has loyalty shipping benefit. If the field value isn't provided, the item is not eligible for loyalty shipping for the given loyalty tier.",
+          "type": "string"
+        },
         "tierLabel": {
           "description": "The label of the tier within the loyalty program. Must match one of the labels within the program.",
           "type": "string"
