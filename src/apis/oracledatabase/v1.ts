@@ -750,7 +750,7 @@ export namespace oracledatabase_v1 {
      */
     computeCount?: number | null;
     /**
-     * Optional. The number of enabled CPU cores.
+     * Output only. The number of enabled CPU cores.
      */
     cpuCount?: number | null;
     /**
@@ -762,7 +762,7 @@ export namespace oracledatabase_v1 {
      */
     dataStorageSizeTb?: number | null;
     /**
-     * Optional. The local node storage allocated in GBs.
+     * Output only. The local node storage allocated in GBs.
      */
     dbNodeStorageSizeGb?: number | null;
     /**
@@ -790,7 +790,7 @@ export namespace oracledatabase_v1 {
      */
     maxMemoryGb?: number | null;
     /**
-     * Optional. The memory allocated in GBs.
+     * Output only. The memory allocated in GBs.
      */
     memorySizeGb?: number | null;
     /**
@@ -1012,7 +1012,7 @@ export namespace oracledatabase_v1 {
      */
     storageSizeGb?: number | null;
     /**
-     * Output only. Operating system version of the image.
+     * Optional. Operating system version of the image.
      */
     systemVersion?: string | null;
     /**
@@ -1670,19 +1670,19 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -1691,11 +1691,11 @@ export namespace oracledatabase_v1 {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. "America/New_York".
+     * IANA Time Zone Database time zone. For example "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. "2019a".
+     * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
   }
@@ -4447,7 +4447,7 @@ export namespace oracledatabase_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
