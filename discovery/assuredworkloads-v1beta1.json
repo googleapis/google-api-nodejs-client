@@ -2199,6 +2199,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions": {
+      "description": "Options to be set for the given created workload.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadWorkloadOptions",
+      "properties": {
+        "kajEnrollmentType": {
+          "description": "Optional. Specifies type of KAJ Enrollment if provided.",
+          "enum": [
+            "KAJ_ENROLLMENT_TYPE_UNSPECIFIED",
+            "KEY_ACCESS_TRANSPARENCY_OFF"
+          ],
+          "enumDescriptions": [
+            "KAJ Enrollment type is unspecified",
+            "KAT sets External, Hardware, and Software key feature logging only to TRUE. (no enforcement)"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleLongrunningListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "GoogleLongrunningListOperationsResponse",
