@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20240917",
+  "revision": "20250106",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -3941,7 +3941,7 @@
       "type": "object"
     },
     "DeleteDimensionRequest": {
-      "description": "Deletes the dimensions from the sheet.",
+      "description": " Deletes the dimensions from the sheet.",
       "id": "DeleteDimensionRequest",
       "properties": {
         "range": {
@@ -4195,7 +4195,7 @@
           "type": "string"
         },
         "visibility": {
-          "description": "Limits the selected developer metadata to that which has a matching DeveloperMetadata.visibility. If left unspecified, all developer metadata visibile to the requesting project is considered.",
+          "description": "Limits the selected developer metadata to that which has a matching DeveloperMetadata.visibility. If left unspecified, all developer metadata visible to the requesting project is considered.",
           "enum": [
             "DEVELOPER_METADATA_VISIBILITY_UNSPECIFIED",
             "DOCUMENT",
@@ -6538,6 +6538,10 @@
       "description": "Sets a data validation rule to every cell in the range. To clear validation in a range, call this with no rule specified.",
       "id": "SetDataValidationRequest",
       "properties": {
+        "filteredRowsIncluded": {
+          "description": "Optional. If true, the data validation rule will be applied to the filtered rows as well.",
+          "type": "boolean"
+        },
         "range": {
           "$ref": "GridRange",
           "description": "The range the data validation rule should apply to."
@@ -7182,22 +7186,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
