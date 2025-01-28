@@ -409,7 +409,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Optional. Name of the `CustomTargetType`. Format is `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+                      "description": "Identifier. Name of the `CustomTargetType`. Format is `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/customTargetTypes/[^/]+$",
                       "required": true,
@@ -685,7 +685,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Optional. Name of the `DeliveryPipeline`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+                      "description": "Identifier. Name of the `DeliveryPipeline`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deliveryPipelines/[^/]+$",
                       "required": true,
@@ -1765,6 +1765,37 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getIamPolicy": {
+                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployPolicies/{deployPoliciesId}:getIamPolicy",
+                  "httpMethod": "GET",
+                  "id": "clouddeploy.projects.locations.deployPolicies.getIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "options.requestedPolicyVersion": {
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deployPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:getIamPolicy",
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists DeployPolicies in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployPolicies",
@@ -1859,13 +1890,41 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "setIamPolicy": {
+                  "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/deployPolicies/{deployPoliciesId}:setIamPolicy",
+                  "httpMethod": "POST",
+                  "id": "clouddeploy.projects.locations.deployPolicies.setIamPolicy",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/deployPolicies/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setIamPolicy",
+                  "request": {
+                    "$ref": "SetIamPolicyRequest"
+                  },
+                  "response": {
+                    "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "clouddeploy.projects.locations.operations.cancel",
@@ -2192,7 +2251,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Optional. Name of the `Target`. Format is `projects/{project}/locations/{location}/targets/{target}`. The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+                      "description": "Identifier. Name of the `Target`. Format is `projects/{project}/locations/{location}/targets/{target}`. The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/targets/[^/]+$",
                       "required": true,
@@ -2289,7 +2348,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20250101",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "AbandonReleaseRequest": {
@@ -2440,6 +2499,27 @@
       "description": "The response object from `ApproveRollout`.",
       "id": "ApproveRolloutResponse",
       "properties": {},
+      "type": "object"
+    },
+    "AssociatedEntities": {
+      "description": "Information about entities associated with a `Target`.",
+      "id": "AssociatedEntities",
+      "properties": {
+        "anthosClusters": {
+          "description": "Optional. Information specifying Anthos clusters as associated entities.",
+          "items": {
+            "$ref": "AnthosCluster"
+          },
+          "type": "array"
+        },
+        "gkeClusters": {
+          "description": "Optional. Information specifying GKE clusters as associated entities.",
+          "items": {
+            "$ref": "GkeCluster"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "AuditConfig": {
@@ -2621,7 +2701,7 @@
       "id": "AutomationResourceSelector",
       "properties": {
         "targets": {
-          "description": "Contains attributes about a target.",
+          "description": "Optional. Contains attributes about a target.",
           "items": {
             "$ref": "TargetAttribute"
           },
@@ -2673,6 +2753,10 @@
         "repairRolloutRule": {
           "$ref": "RepairRolloutRule",
           "description": "Optional. The `RepairRolloutRule` will automatically repair a failed rollout."
+        },
+        "timedPromoteReleaseRule": {
+          "$ref": "TimedPromoteReleaseRule",
+          "description": "Optional. The `TimedPromoteReleaseRule` will automatically promote a release from the current target(s) to the specified target(s) on a configured schedule."
         }
       },
       "type": "object"
@@ -2684,6 +2768,10 @@
         "targetsPresentCondition": {
           "$ref": "TargetsPresentCondition",
           "description": "Optional. Details around targets enumerated in the rule."
+        },
+        "timedPromoteReleaseCondition": {
+          "$ref": "TimedPromoteReleaseCondition",
+          "description": "Optional. TimedPromoteReleaseCondition contains rule conditions specific to a an Automation with a timed promote release rule defined."
         }
       },
       "type": "object"
@@ -2783,9 +2871,14 @@
           "type": "string"
         },
         "targetId": {
-          "description": "Output only. The ID of the target that represents the promotion stage that initiates the `AutomationRun`. The value of this field is the last segment of a target name.",
+          "description": "Output only. The ID of the source target that initiates the `AutomationRun`. The value of this field is the last segment of a target name.",
           "readOnly": true,
           "type": "string"
+        },
+        "timedPromoteReleaseOperation": {
+          "$ref": "TimedPromoteReleaseOperation",
+          "description": "Output only. Promotes a release to a specified 'Target' as defined in a Timed Promote Release rule.",
+          "readOnly": true
         },
         "updateTime": {
           "description": "Output only. Time at which the automationRun was updated.",
@@ -2897,11 +2990,11 @@
       "id": "BuildArtifact",
       "properties": {
         "image": {
-          "description": "Image name in Skaffold configuration.",
+          "description": "Optional. Image name in Skaffold configuration.",
           "type": "string"
         },
         "tag": {
-          "description": "Image tag to use. This will generally be the full path to an image, such as \"gcr.io/my-project/busybox:1.2.3\" or \"gcr.io/my-project/busybox@sha256:abc123\".",
+          "description": "Optional. Image tag to use. This will generally be the full path to an image, such as \"gcr.io/my-project/busybox:1.2.3\" or \"gcr.io/my-project/busybox@sha256:abc123\".",
           "type": "string"
         }
       },
@@ -2913,11 +3006,11 @@
       "properties": {
         "canaryDeployment": {
           "$ref": "CanaryDeployment",
-          "description": "Configures the progressive based deployment for a Target."
+          "description": "Optional. Configures the progressive based deployment for a Target."
         },
         "customCanaryDeployment": {
           "$ref": "CustomCanaryDeployment",
-          "description": "Configures the progressive based deployment for a Target, but allows customizing at the phase level where a phase represents each of the percentage deployments."
+          "description": "Optional. Configures the progressive based deployment for a Target, but allows customizing at the phase level where a phase represents each of the percentage deployments."
         },
         "runtimeConfig": {
           "$ref": "RuntimeConfig",
@@ -2947,7 +3040,7 @@
           "description": "Optional. Configuration for the predeploy job of the first phase. If this is not configured, there will be no predeploy job for this phase."
         },
         "verify": {
-          "description": "Whether to run verify tests after each percentage deployment.",
+          "description": "Optional. Whether to run verify tests after each percentage deployment.",
           "type": "boolean"
         }
       },
@@ -3019,7 +3112,7 @@
       "id": "CloudRunConfig",
       "properties": {
         "automaticTrafficControl": {
-          "description": "Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.",
+          "description": "Optional. Whether Cloud Deploy should update the traffic stanza in a Cloud Run Service on the user's behalf to facilitate traffic splitting. This is required to be true for CanaryDeployments, but optional for CustomCanaryDeployments.",
           "type": "boolean"
         },
         "canaryRevisionTags": {
@@ -3237,7 +3330,7 @@
         },
         "customActions": {
           "$ref": "CustomTargetSkaffoldActions",
-          "description": "Configures render and deploy for the `CustomTargetType` using Skaffold custom actions."
+          "description": "Optional. Configures render and deploy for the `CustomTargetType` using Skaffold custom actions."
         },
         "customTargetTypeId": {
           "description": "Output only. Resource id of the `CustomTargetType`.",
@@ -3260,7 +3353,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Optional. Name of the `CustomTargetType`. Format is `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+          "description": "Identifier. Name of the `CustomTargetType`. Format is `projects/{project}/locations/{location}/customTargetTypes/{customTargetType}`. The `customTargetType` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
           "type": "string"
         },
         "uid": {
@@ -3378,7 +3471,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy.",
+          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy.",
           "type": "object"
         },
         "condition": {
@@ -3393,7 +3486,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Description of the `DeliveryPipeline`. Max length is 255 characters.",
+          "description": "Optional. Description of the `DeliveryPipeline`. Max length is 255 characters.",
           "type": "string"
         },
         "etag": {
@@ -3408,15 +3501,15 @@
           "type": "object"
         },
         "name": {
-          "description": "Optional. Name of the `DeliveryPipeline`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+          "description": "Identifier. Name of the `DeliveryPipeline`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}`. The `deliveryPipeline` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
           "type": "string"
         },
         "serialPipeline": {
           "$ref": "SerialPipeline",
-          "description": "SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`."
+          "description": "Optional. SerialPipeline defines a sequential set of stages for a `DeliveryPipeline`."
         },
         "suspended": {
-          "description": "When suspended, no new releases or rollouts can be created, but in-progress ones will complete.",
+          "description": "Optional. When suspended, no new releases or rollouts can be created, but in-progress ones will complete.",
           "type": "boolean"
         },
         "uid": {
@@ -3438,7 +3531,7 @@
       "id": "DeliveryPipelineAttribute",
       "properties": {
         "id": {
-          "description": "ID of the `DeliveryPipeline`. The value of this field could be one of the following: * The last segment of a pipeline name * \"*\", all delivery pipelines in a location",
+          "description": "Optional. ID of the `DeliveryPipeline`. The value of this field could be one of the following: * The last segment of a pipeline name * \"*\", all delivery pipelines in a location",
           "type": "string"
         },
         "labels": {
@@ -3634,7 +3727,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. Annotations must meet the following constraints: * Annotations are key/value pairs. * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (`/`). * The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. * The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots(`.`), not longer than 253 characters in total, followed by a slash (`/`). See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set for more details.",
+          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. Annotations must meet the following constraints: * Annotations are key/value pairs. * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (`/`). * The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. * The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots(`.`), not longer than 253 characters in total, followed by a slash (`/`). See https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/#syntax-and-character-set for more details.",
           "type": "object"
         },
         "createTime": {
@@ -3644,7 +3737,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Description of the `DeployPolicy`. Max length is 255 characters.",
+          "description": "Optional. Description of the `DeployPolicy`. Max length is 255 characters.",
           "type": "string"
         },
         "etag": {
@@ -3678,7 +3771,7 @@
           "type": "array"
         },
         "suspended": {
-          "description": "When suspended, the policy will not prevent actions from occurring, even if the action violates the policy.",
+          "description": "Optional. When suspended, the policy will not prevent actions from occurring, even if the action violates the policy.",
           "type": "boolean"
         },
         "uid": {
@@ -3989,6 +4082,10 @@
           "description": "Optional. The label to use when selecting Pods for the Deployment and Service resources. This label must already be present in both resources.",
           "type": "string"
         },
+        "routeDestinations": {
+          "$ref": "RouteDestinations",
+          "description": "Optional. Route destinations allow configuring the Gateway API HTTPRoute to be deployed to additional clusters. This option is available for multi-cluster service mesh set ups that require the route to exist in the clusters that call the service. If unspecified, the HTTPRoute will only be deployed to the Target cluster."
+        },
         "routeUpdateWaitTime": {
           "description": "Optional. The time to wait for route updates to propagate. The maximum configurable time is 3 hours, in seconds format. If unspecified, there is no wait time.",
           "format": "google-duration",
@@ -4014,8 +4111,12 @@
           "description": "Optional. Information specifying a GKE Cluster. Format is `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`.",
           "type": "string"
         },
+        "dnsEndpoint": {
+          "description": "Optional. If set, the cluster will be accessed using the DNS endpoint. Note that both `dns_endpoint` and `internal_ip` cannot be set to true.",
+          "type": "boolean"
+        },
         "internalIp": {
-          "description": "Optional. If true, `cluster` is accessed using the private IP address of the control plane endpoint. Otherwise, the default IP address of the control plane endpoint is used. The default IP address is the private IP address for clusters with private control-plane endpoints and the public IP address otherwise. Only specify this option when `cluster` is a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept).",
+          "description": "Optional. If true, `cluster` is accessed using the private IP address of the control plane endpoint. Otherwise, the default IP address of the control plane endpoint is used. The default IP address is the private IP address for clusters with private control-plane endpoints and the public IP address otherwise. Only specify this option when `cluster` is a [private GKE cluster](https://cloud.google.com/kubernetes-engine/docs/concepts/private-cluster-concept). Note that `internal_ip` and `dns_endpoint` cannot both be set to true.",
           "type": "boolean"
         },
         "proxyUrl": {
@@ -4174,7 +4275,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. Name of the `JobRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.",
+          "description": "Identifier. Name of the `JobRun`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{releases}/rollouts/{rollouts}/jobRuns/{uuid}`.",
           "type": "string"
         },
         "phaseId": {
@@ -4314,11 +4415,11 @@
       "properties": {
         "gatewayServiceMesh": {
           "$ref": "GatewayServiceMesh",
-          "description": "Kubernetes Gateway API service mesh configuration."
+          "description": "Optional. Kubernetes Gateway API service mesh configuration."
         },
         "serviceNetworking": {
           "$ref": "ServiceNetworking",
-          "description": "Kubernetes Service networking configuration."
+          "description": "Optional. Kubernetes Service networking configuration."
         }
       },
       "type": "object"
@@ -4734,7 +4835,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -4850,14 +4951,14 @@
           "description": "Optional. Configuration for the predeploy job of this phase. If this is not configured, there will be no predeploy job for this phase."
         },
         "profiles": {
-          "description": "Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.",
+          "description": "Optional. Skaffold profiles to use when rendering the manifest for this phase. These are in addition to the profiles list specified in the `DeliveryPipeline` stage.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "verify": {
-          "description": "Whether to run verify tests after the deployment.",
+          "description": "Optional. Whether to run verify tests after the deployment.",
           "type": "boolean"
         }
       },
@@ -4935,7 +5036,7 @@
       "properties": {
         "rolloutRestriction": {
           "$ref": "RolloutRestriction",
-          "description": "Rollout restrictions."
+          "description": "Optional. Rollout restrictions."
         }
       },
       "type": "object"
@@ -5192,11 +5293,11 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
           "type": "object"
         },
         "buildArtifacts": {
-          "description": "List of artifacts to pass through to Skaffold command.",
+          "description": "Optional. List of artifacts to pass through to Skaffold command.",
           "items": {
             "$ref": "BuildArtifact"
           },
@@ -5234,7 +5335,7 @@
           "type": "object"
         },
         "description": {
-          "description": "Description of the `Release`. Max length is 255 characters.",
+          "description": "Optional. Description of the `Release`. Max length is 255 characters.",
           "type": "string"
         },
         "etag": {
@@ -5249,7 +5350,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Optional. Name of the `Release`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`. The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+          "description": "Identifier. Name of the `Release`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}`. The `release` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
           "type": "string"
         },
         "renderEndTime": {
@@ -5282,15 +5383,15 @@
           "type": "string"
         },
         "skaffoldConfigPath": {
-          "description": "Filepath of the Skaffold config inside of the config URI.",
+          "description": "Optional. Filepath of the Skaffold config inside of the config URI.",
           "type": "string"
         },
         "skaffoldConfigUri": {
-          "description": "Cloud Storage URI of tar.gz archive containing Skaffold configuration.",
+          "description": "Optional. Cloud Storage URI of tar.gz archive containing Skaffold configuration.",
           "type": "string"
         },
         "skaffoldVersion": {
-          "description": "The Skaffold version to use when operating on this release, such as \"1.20.0\". Not all versions are valid; Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.",
+          "description": "Optional. The Skaffold version to use when operating on this release, such as \"1.20.0\". Not all versions are valid; Cloud Deploy supports a specific set of versions. If unset, the most recent supported Skaffold version will be used.",
           "type": "string"
         },
         "targetArtifacts": {
@@ -5889,7 +5990,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "description": "Optional. User annotations. These attributes can only be set and used by the user, and not by Cloud Deploy. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
           "type": "object"
         },
         "approvalState": {
@@ -5973,7 +6074,7 @@
           "type": "string"
         },
         "description": {
-          "description": "Description of the `Rollout` for user purposes. Max length is 255 characters.",
+          "description": "Optional. Description of the `Rollout` for user purposes. Max length is 255 characters.",
           "type": "string"
         },
         "enqueueTime": {
@@ -6004,7 +6105,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "Optional. Name of the `Rollout`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+          "description": "Identifier. Name of the `Rollout`. Format is `projects/{project}/locations/{location}/deliveryPipelines/{deliveryPipeline}/releases/{release}/rollouts/{rollout}`. The `rollout` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
           "type": "string"
         },
         "phases": {
@@ -6308,17 +6409,35 @@
       },
       "type": "object"
     },
+    "RouteDestinations": {
+      "description": "Information about route destinations for the Gateway API service mesh.",
+      "id": "RouteDestinations",
+      "properties": {
+        "destinationIds": {
+          "description": "Required. The clusters where the Gateway API HTTPRoute resource will be deployed to. Valid entries include the associated entities IDs configured in the Target resource and \"@self\" to include the Target cluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "propagateService": {
+          "description": "Optional. Whether to propagate the Kubernetes Service to the route destination clusters. The Service will always be deployed to the Target cluster even if the HTTPRoute is not. This option may be used to facilitiate successful DNS lookup in the route destination clusters. Can only be set to true if destinations are specified.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "RuntimeConfig": {
       "description": "RuntimeConfig contains the runtime specific configurations for a deployment strategy.",
       "id": "RuntimeConfig",
       "properties": {
         "cloudRun": {
           "$ref": "CloudRunConfig",
-          "description": "Cloud Run runtime configuration."
+          "description": "Optional. Cloud Run runtime configuration."
         },
         "kubernetes": {
           "$ref": "KubernetesConfig",
-          "description": "Kubernetes runtime configuration."
+          "description": "Optional. Kubernetes runtime configuration."
         }
       },
       "type": "object"
@@ -6328,7 +6447,7 @@
       "id": "SerialPipeline",
       "properties": {
         "stages": {
-          "description": "Each stage specifies configuration for a `Target`. The ordering of this list defines the promotion flow.",
+          "description": "Optional. Each stage specifies configuration for a `Target`. The ordering of this list defines the promotion flow.",
           "items": {
             "$ref": "Stage"
           },
@@ -6442,15 +6561,15 @@
         },
         "git": {
           "$ref": "SkaffoldGitSource",
-          "description": "Remote git repository containing the Skaffold Config modules."
+          "description": "Optional. Remote git repository containing the Skaffold Config modules."
         },
         "googleCloudBuildRepo": {
           "$ref": "SkaffoldGCBRepoSource",
-          "description": "Cloud Build V2 repository containing the Skaffold Config modules."
+          "description": "Optional. Cloud Build V2 repository containing the Skaffold Config modules."
         },
         "googleCloudStorage": {
           "$ref": "SkaffoldGCSSource",
-          "description": "Cloud Storage bucket containing the Skaffold Config modules."
+          "description": "Optional. Cloud Storage bucket containing the Skaffold Config modules."
         }
       },
       "type": "object"
@@ -6529,7 +6648,7 @@
           "type": "array"
         },
         "profiles": {
-          "description": "Skaffold profiles to use when rendering the manifest for this stage's `Target`.",
+          "description": "Optional. Skaffold profiles to use when rendering the manifest for this stage's `Target`.",
           "items": {
             "type": "string"
           },
@@ -6540,7 +6659,7 @@
           "description": "Optional. The strategy to use for a `Rollout` to this stage."
         },
         "targetId": {
-          "description": "The target_id to which this stage points. This field refers exclusively to the last segment of a target name. For example, this field would just be `my-target` (rather than `projects/project/locations/location/targets/my-target`). The location of the `Target` is inferred to be the same as the location of the `DeliveryPipeline` that contains this `Stage`.",
+          "description": "Optional. The target_id to which this stage points. This field refers exclusively to the last segment of a target name. For example, this field would just be `my-target` (rather than `projects/project/locations/location/targets/my-target`). The location of the `Target` is inferred to be the same as the location of the `DeliveryPipeline` that contains this `Stage`.",
           "type": "string"
         }
       },
@@ -6559,7 +6678,7 @@
           "description": "Optional. Configuration for the predeploy job. If this is not configured, predeploy job will not be present."
         },
         "verify": {
-          "description": "Whether to verify a deployment.",
+          "description": "Optional. Whether to verify a deployment.",
           "type": "boolean"
         }
       },
@@ -6598,11 +6717,11 @@
       "properties": {
         "canary": {
           "$ref": "Canary",
-          "description": "Canary deployment strategy provides progressive percentage based deployments to a Target."
+          "description": "Optional. Canary deployment strategy provides progressive percentage based deployments to a Target."
         },
         "standard": {
           "$ref": "Standard",
-          "description": "Standard deployment strategy executes a single deploy and allows verifying the deployment."
+          "description": "Optional. Standard deployment strategy executes a single deploy and allows verifying the deployment."
         }
       },
       "type": "object"
@@ -6621,6 +6740,13 @@
         "anthosCluster": {
           "$ref": "AnthosCluster",
           "description": "Optional. Information specifying an Anthos Cluster."
+        },
+        "associatedEntities": {
+          "additionalProperties": {
+            "$ref": "AssociatedEntities"
+          },
+          "description": "Optional. Map of entity IDs to their associated entities. Associated entities allows specifying places other than the deployment target for specific features. For example, the Gateway API canary can be configured to deploy the HTTPRoute to a different cluster(s) than the deployment cluster using associated entities. An entity ID must consist of lower-case letters, numbers, and hyphens, start with a letter and end with a letter or a number, and have a max length of 63 characters. In other words, it must match the following regex: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
+          "type": "object"
         },
         "createTime": {
           "description": "Output only. Time at which the `Target` was created.",
@@ -6648,7 +6774,7 @@
           "type": "string"
         },
         "executionConfigs": {
-          "description": "Configurations for all execution that relates to this `Target`. Each `ExecutionEnvironmentUsage` value may only be used in a single configuration; using the same value multiple times is an error. When one or more configurations are specified, they must include the `RENDER` and `DEPLOY` `ExecutionEnvironmentUsage` values. When no configurations are specified, execution will use the default specified in `DefaultPool`.",
+          "description": "Optional. Configurations for all execution that relates to this `Target`. Each `ExecutionEnvironmentUsage` value may only be used in a single configuration; using the same value multiple times is an error. When one or more configurations are specified, they must include the `RENDER` and `DEPLOY` `ExecutionEnvironmentUsage` values. When no configurations are specified, execution will use the default specified in `DefaultPool`.",
           "items": {
             "$ref": "ExecutionConfig"
           },
@@ -6670,7 +6796,7 @@
           "description": "Optional. Information specifying a multiTarget."
         },
         "name": {
-          "description": "Optional. Name of the `Target`. Format is `projects/{project}/locations/{location}/targets/{target}`. The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
+          "description": "Identifier. Name of the `Target`. Format is `projects/{project}/locations/{location}/targets/{target}`. The `target` component must match `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`",
           "type": "string"
         },
         "requireApproval": {
@@ -6735,7 +6861,7 @@
       "id": "TargetAttribute",
       "properties": {
         "id": {
-          "description": "ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name * \"*\", all targets in a location",
+          "description": "Optional. ID of the `Target`. The value of this field could be one of the following: * The last segment of a target name * \"*\", all targets in a location",
           "type": "string"
         },
         "labels": {
@@ -6864,6 +6990,21 @@
       },
       "type": "object"
     },
+    "Targets": {
+      "description": "The targets involved in a single timed promotion.",
+      "id": "Targets",
+      "properties": {
+        "destinationTargetId": {
+          "description": "Optional. The destination target ID.",
+          "type": "string"
+        },
+        "sourceTargetId": {
+          "description": "Optional. The source target ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TargetsPresentCondition": {
       "description": "`TargetsPresentCondition` contains information on any Targets referenced in the Delivery Pipeline that do not actually exist.",
       "id": "TargetsPresentCondition",
@@ -6955,22 +7096,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -6998,6 +7139,81 @@
             "$ref": "WeeklyWindow"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TimedPromoteReleaseCondition": {
+      "description": "`TimedPromoteReleaseCondition` contains conditions specific to an Automation with a Timed Promote Release rule defined.",
+      "id": "TimedPromoteReleaseCondition",
+      "properties": {
+        "nextPromotionTime": {
+          "description": "Output only. When the next scheduled promotion(s) will occur.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetsList": {
+          "description": "Output only. A list of targets involved in the upcoming timed promotion(s).",
+          "items": {
+            "$ref": "Targets"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TimedPromoteReleaseOperation": {
+      "description": "Contains the information of an automated timed promote-release operation.",
+      "id": "TimedPromoteReleaseOperation",
+      "properties": {
+        "phase": {
+          "description": "Output only. The starting phase of the rollout created by this operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "release": {
+          "description": "Output only. The name of the release to be promoted.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetId": {
+          "description": "Output only. The ID of the target that represents the promotion stage to which the release will be promoted. The value of this field is the last segment of a target name.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimedPromoteReleaseRule": {
+      "description": "The `TimedPromoteReleaseRule` will automatically promote a release from the current target(s) to the specified target(s) on a configured schedule.",
+      "id": "TimedPromoteReleaseRule",
+      "properties": {
+        "condition": {
+          "$ref": "AutomationRuleCondition",
+          "description": "Output only. Information around the state of the Automation rule.",
+          "readOnly": true
+        },
+        "destinationPhase": {
+          "description": "Optional. The starting phase of the rollout created by this rule. Default to the first phase.",
+          "type": "string"
+        },
+        "destinationTargetId": {
+          "description": "Optional. The ID of the stage in the pipeline to which this `Release` is deploying. If unspecified, default it to the next stage in the promotion flow. The value of this field could be one of the following: * The last segment of a target name * \"@next\", the next target in the promotion sequence",
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. ID of the rule. This ID must be unique in the `Automation` resource to which this rule belongs. The format is `[a-z]([a-z0-9-]{0,61}[a-z0-9])?`.",
+          "type": "string"
+        },
+        "schedule": {
+          "description": "Required. Schedule in crontab format. e.g. \"0 9 * * 1\" for every Monday at 9am.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Required. The time zone in IANA format [IANA Time Zone Database](https://www.iana.org/time-zones) (e.g. America/New_York).",
+          "type": "string"
         }
       },
       "type": "object"
