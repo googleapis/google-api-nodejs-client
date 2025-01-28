@@ -222,7 +222,7 @@ export namespace dialogflow_v2beta1 {
     config?: Schema$GoogleCloudDialogflowCxV3InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3BargeInConfig {
     /**
@@ -350,7 +350,7 @@ export namespace dialogflow_v2beta1 {
     config?: Schema$GoogleCloudDialogflowCxV3beta1InputAudioConfig;
   }
   /**
-   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
+   * Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1BargeInConfig {
     /**
@@ -498,6 +498,10 @@ export namespace dialogflow_v2beta1 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
+    /**
+     * The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.
+     */
+    documentProcessingMode?: string | null;
   }
   /**
    * Metadata returned for the Environments.DeployFlow long running operation.
@@ -2133,6 +2137,10 @@ export namespace dialogflow_v2beta1 {
      * The type of the connected data store.
      */
     dataStoreType?: string | null;
+    /**
+     * The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.
+     */
+    documentProcessingMode?: string | null;
   }
   /**
    * Metadata returned for the Environments.DeployFlow long running operation.
@@ -3847,7 +3855,7 @@ export namespace dialogflow_v2beta1 {
      */
     intentInput?: Schema$GoogleCloudDialogflowV2beta1IntentInput;
     /**
-     * Optional. The send time of the message from end user or human agent's perspective. It is used for identifying the same message under one participant. Given two messages under the same participant: * If send time are different regardless of whether the content of the messages are exactly the same, the conversation will regard them as two distinct messages sent by the participant. * If send time is the same regardless of whether the content of the messages are exactly the same, the conversation will regard them as same message, and ignore the message received later. If the value is not provided, a new request will always be regarded as a new message without any de-duplication.
+     * Optional. The send time of the message from end user or human agent's perspective. It is used for identifying the same message under one participant. For BatchCreateMessages API only: Given two messages under the same participant: * If send time are different regardless of whether the content of the messages are exactly the same, the conversation will regard them as two distinct messages sent by the participant. * If send time is the same regardless of whether the content of the messages are exactly the same, the conversation will regard them as same message, and ignore the message received later. If the value is not provided, a new request will always be regarded as a new message without any de-duplication.
      */
     messageSendTime?: string | null;
     /**
@@ -4301,6 +4309,40 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1CompleteConversationRequest {}
   /**
+   * Represents a connection for SIP Trunk.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1Connection {
+    /**
+     * Output only. The unique identifier of the SIP Trunk connection.
+     */
+    connectionId?: string | null;
+    /**
+     * Output only. The error details for the connection. Only populated when authentication errors occur.
+     */
+    errorDetails?: Schema$GoogleCloudDialogflowV2beta1ConnectionErrorDetails;
+    /**
+     * Output only. State of the connection.
+     */
+    state?: string | null;
+    /**
+     * Output only. When the connection status changed.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The error details of Sip Trunk connection authentication.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConnectionErrorDetails {
+    /**
+     * Output only. The status of the certificate authentication.
+     */
+    certificateState?: string | null;
+    /**
+     * The error message provided from SIP trunking auth service
+     */
+    errorMessage?: string | null;
+  }
+  /**
    * Dialogflow contexts are similar to natural language context. If a person says to you "they are orange", you need context in order to understand what "they" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Context {
@@ -4349,6 +4391,10 @@ export namespace dialogflow_v2beta1 {
      * Output only. The time the conversation was started.
      */
     startTime?: string | null;
+    /**
+     * Output only. The telephony connection information.
+     */
+    telephonyConnectionInfo?: Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfo;
   }
   /**
    * Context of the conversation, including transcripts.
@@ -4376,6 +4422,10 @@ export namespace dialogflow_v2beta1 {
      */
     newMessagePayload?: Schema$GoogleCloudDialogflowV2beta1Message;
     /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     */
+    newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult;
+    /**
      * Required. The type of the event that this notification refers to.
      */
     type?: string | null;
@@ -4384,6 +4434,10 @@ export namespace dialogflow_v2beta1 {
    * Represents a phone number for telephony integration. It allows for connecting a particular conversation over telephony.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ConversationPhoneNumber {
+    /**
+     * Output only. Desired country code for the phone number.
+     */
+    countryCode?: number | null;
     /**
      * Output only. The phone number to connect to this conversation.
      */
@@ -4430,6 +4484,10 @@ export namespace dialogflow_v2beta1 {
      */
     newMessageEventNotificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
     /**
+     * Optional. Configuration for publishing transcription intermediate results. Event will be sent in format of ConversationEvent. If configured, the following information will be populated as ConversationEvent Pub/Sub message attributes: - "participant_id" - "participant_role" - "message_id"
+     */
+    newRecognitionResultNotificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
+    /**
      * Configuration for publishing conversation lifecycle events.
      */
     notificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
@@ -4453,6 +4511,53 @@ export namespace dialogflow_v2beta1 {
      * Output only. Update time of the conversation profile.
      */
     updateTime?: string | null;
+  }
+  /**
+   * The information about phone calls connected via phone gateway to the conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfo {
+    /**
+     * Output only. The number dialed to connect this call in E.164 format.
+     */
+    dialedNumber?: string | null;
+    /**
+     * Output only. The mime content from the initial SIP INVITE.
+     */
+    extraMimeContents?: Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfoMimeContent[];
+    /**
+     * Optional. SDP of the call. It's initially the SDP answer to the endpoint, but maybe later updated for the purpose of making the link active, etc.
+     */
+    sdp?: string | null;
+    /**
+     * Output only. The SIP headers from the initial SIP INVITE.
+     */
+    sipHeaders?: Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfoSipHeader[];
+  }
+  /**
+   * The mime content from the initial SIP INVITE.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfoMimeContent {
+    /**
+     * Optional. The content payload.
+     */
+    content?: string | null;
+    /**
+     * Optional. The mime type of the content.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * The SIP headers from the initial SIP INVITE.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfoSipHeader {
+    /**
+     * Optional. The name of the header.
+     */
+    name?: string | null;
+    /**
+     * Optional. The value of the header.
+     */
+    value?: string | null;
   }
   /**
    * The request message to create one Message. Currently it is only used in BatchCreateMessagesRequest.
@@ -4818,7 +4923,7 @@ export namespace dialogflow_v2beta1 {
     source?: string | null;
   }
   /**
-   * Providing examples in the generator (i.e. building a few-shot generator) helps convey the desired format of the LLM response. NEXT_ID: 10
+   * Providing examples in the generator (i.e. building a few-shot generator) helps convey the desired format of the LLM response.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1FewShotExample {
     /**
@@ -5039,7 +5144,7 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string | null;
     /**
-     * Input of prebuilt Summarization feature.
+     * Input of Summarization feature.
      */
     summarizationContext?: Schema$GoogleCloudDialogflowV2beta1SummarizationContext;
     /**
@@ -5194,6 +5299,10 @@ export namespace dialogflow_v2beta1 {
      * Determines how recent conversation context is filtered when generating suggestions. If unspecified, no messages will be dropped.
      */
     contextFilterSettings?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigContextFilterSettings;
+    /**
+     * Optional. The number of recent messages to include in the context. Supported features: KNOWLEDGE_ASSIST.
+     */
+    contextSize?: number | null;
     /**
      * Query from Dialogflow agent. It is used by DIALOGFLOW_ASSIST, ENTITY_EXTRACTION.
      */
@@ -5497,6 +5606,10 @@ export namespace dialogflow_v2beta1 {
      * A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details. This field is deprecated. Please use [`speech_contexts`]() instead. If you specify both [`phrase_hints`]() and [`speech_contexts`](), Dialogflow will treat the [`phrase_hints`]() as a single additional [`SpeechContext`]().
      */
     phraseHints?: string[] | null;
+    /**
+     * A collection of phrase set resources to use for speech adaptation.
+     */
+    phraseSets?: string[] | null;
     /**
      * Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
@@ -6502,6 +6615,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -6725,6 +6842,19 @@ export namespace dialogflow_v2beta1 {
      * The list of session entity types. There will be a maximum number of items returned based on the page_size field in the request.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
+  }
+  /**
+   * The response message for SipTrunks.ListSipTrunks.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of SIP trunks.
+     */
+    sipTrunks?: Schema$GoogleCloudDialogflowV2beta1SipTrunk[];
   }
   /**
    * The response message for Participants.ListSuggestions.
@@ -7219,6 +7349,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeAnswerAnswerSource {
     /**
+     * Metadata associated with the article.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * The relevant snippet of the article.
      */
     snippet?: string | null;
@@ -7244,6 +7378,14 @@ export namespace dialogflow_v2beta1 {
      */
     conversationProfile?: string | null;
     /**
+     * Optional. Information about the end-user to improve the relevance and accuracy of generative answers. This will be interpreted and used by a language model, so, for good results, the data should be self-descriptive, and in a simple structure. Example: ```json { "subscription plan": "Business Premium Plus", "devices owned": [ {"model": "Google Pixel 7"\}, {"model": "Google Pixel Tablet"\} ] \} ```
+     */
+    endUserMetadata?: {[key: string]: any} | null;
+    /**
+     * Optional. Whether to search the query exactly without query rewrite.
+     */
+    exactSearch?: boolean | null;
+    /**
      * Optional. The name of the latest conversation message when the request is triggered. Format: `projects//locations//conversations//messages/`.
      */
     latestMessage?: string | null;
@@ -7256,9 +7398,116 @@ export namespace dialogflow_v2beta1 {
      */
     query?: Schema$GoogleCloudDialogflowV2beta1TextInput;
     /**
+     * Optional. The source of the query in the request.
+     */
+    querySource?: string | null;
+    /**
+     * Optional. Configuration specific to search queries with data stores.
+     */
+    searchConfig?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfig;
+    /**
      * Required. The ID of the search session. The session_id can be combined with Dialogflow V3 Agent ID retrieved from conversation profile or on its own to identify a search session. The search history of the same session will impact the search result. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length must not exceed 36 characters.
      */
     sessionId?: string | null;
+  }
+  /**
+   * Configuration specific to search queries with data stores.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfig {
+    /**
+     * Optional. Boost specifications for data stores.
+     */
+    boostSpecs?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecs[];
+    /**
+     * Optional. Filter specification for data store queries.
+     */
+    filterSpecs?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigFilterSpecs[];
+  }
+  /**
+   * Boost specifications for data stores.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecs {
+    /**
+     * Optional. Data Stores where the boosting configuration is applied. The full names of the referenced data stores. Formats: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}` `projects/{project\}/locations/{location\}/dataStores/{data_store\}`
+     */
+    dataStores?: string[] | null;
+    /**
+     * Optional. A list of boosting specifications.
+     */
+    spec?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec[];
+  }
+  /**
+   * Boost specification to boost certain documents. A copy of google.cloud.discoveryengine.v1main.BoostSpec, field documentation is available at https://cloud.google.com/generative-ai-app-builder/docs/reference/rest/v1alpha/BoostSpec
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpec {
+    /**
+     * Optional. Condition boost specifications. If a document matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20.
+     */
+    conditionBoostSpecs?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec[];
+  }
+  /**
+   * Boost applies to documents which match a condition.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpec {
+    /**
+     * Optional. Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the document a big promotion. However, it does not necessarily mean that the boosted document will be the top result at all times, nor that other documents will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant documents. Setting to -1.0 gives the document a big demotion. However, results that are deeply relevant might still be shown. The document will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.
+     */
+    boost?: number | null;
+    /**
+     * Optional. Complex specification for custom ranking based on customer defined attribute value.
+     */
+    boostControlSpec?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec;
+    /**
+     * Optional. An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. Examples: * To boost documents with document ID "doc_1" or "doc_2", and color "Red" or "Blue": * (id: ANY("doc_1", "doc_2")) AND (color: ANY("Red","Blue"))
+     */
+    condition?: string | null;
+  }
+  /**
+   * Specification for custom ranking based on customer specified attribute value. It provides more controls for customized ranking than the simple (condition, boost) combination above.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpec {
+    /**
+     * Optional. The attribute type to be used to determine the boost amount. The attribute value can be derived from the field value of the specified field_name. In the case of numerical it is straightforward i.e. attribute_value = numerical_field_value. In the case of freshness however, attribute_value = (time.now() - datetime_field_value).
+     */
+    attributeType?: string | null;
+    /**
+     * Optional. The control points used to define the curve. The monotonic function (defined through the interpolation_type above) passes through the control points listed here.
+     */
+    controlPoints?: Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint[];
+    /**
+     * Optional. The name of the field whose value will be used to determine the boost amount.
+     */
+    fieldName?: string | null;
+    /**
+     * Optional. The interpolation type to be applied to connect the control points listed below.
+     */
+    interpolationType?: string | null;
+  }
+  /**
+   * The control points used to define the curve. The curve defined through these control points can only be monotonically increasing or decreasing(constant values are acceptable).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigBoostSpecsBoostSpecConditionBoostSpecBoostControlSpecControlPoint {
+    /**
+     * Optional. Can be one of: 1. The numerical field value. 2. The duration spec for freshness: The value must be formatted as an XSD `dayTimeDuration` value (a restricted subset of an ISO 8601 duration value). The pattern for this is: `nDnM]`.
+     */
+    attributeValue?: string | null;
+    /**
+     * Optional. The value between -1 to 1 by which to boost the score if the attribute_value evaluates to the value specified above.
+     */
+    boostAmount?: number | null;
+  }
+  /**
+   * Filter specification for data store queries.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SearchKnowledgeRequestSearchConfigFilterSpecs {
+    /**
+     * Optional. The data store where the filter configuration is applied. Full resource name of data store, such as projects/{project\}/locations/{location\}/collections/{collectionId\}/ dataStores/{dataStoreId\}.
+     */
+    dataStores?: string[] | null;
+    /**
+     * Optional. The filter expression to be applied. Expression syntax is documented at https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax
+     */
+    filter?: string | null;
   }
   /**
    * The response message for Conversations.SearchKnowledge.
@@ -7356,6 +7605,27 @@ export namespace dialogflow_v2beta1 {
     suggestionFeatureConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig;
   }
   /**
+   * SipTrunk is the resource that represents a SIP trunk to connect to Google Telephony platform SIP trunking service.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SipTrunk {
+    /**
+     * Output only. Connections of the SIP trunk.
+     */
+    connections?: Schema$GoogleCloudDialogflowV2beta1Connection[];
+    /**
+     * Optional. Human readable alias for this trunk.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The expected hostnames in the peer certificate from partner that is used for TLS authentication.
+     */
+    expectedHostname?: string[] | null;
+    /**
+     * Identifier. The unique identifier of the SIP trunk. Format: `projects//locations//sipTrunks/`.
+     */
+    name?: string | null;
+  }
+  /**
    * Represents a smart reply answer.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer {
@@ -7406,6 +7676,10 @@ export namespace dialogflow_v2beta1 {
      */
     model?: string | null;
     /**
+     * List of names of Cloud Speech phrase sets that are used for transcription.
+     */
+    phraseSets?: string[] | null;
+    /**
      * Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
      */
     sampleRateHertz?: number | null;
@@ -7417,6 +7691,68 @@ export namespace dialogflow_v2beta1 {
      * Use timeout based endpointing, interpreting endpointer sensitivy as seconds of timeout value.
      */
     useTimeoutBasedEndpointing?: boolean | null;
+  }
+  /**
+   * Information for a word recognized by the speech recognizer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SpeechWordInfo {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.
+     */
+    confidence?: number | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    endOffset?: string | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    startOffset?: string | null;
+    /**
+     * The word this info is for.
+     */
+    word?: string | null;
+  }
+  /**
+   * Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | "tube" | TRANSCRIPT | false 2 | "to be a" | TRANSCRIPT | false 3 | "to be" | TRANSCRIPT | false 4 | "to be or not to be" | TRANSCRIPT | true 5 | "that's" | TRANSCRIPT | false 6 | "that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | " that is the question" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes "to be or not to be that is the question".
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1StreamingRecognitionResult {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.
+     */
+    confidence?: number | null;
+    /**
+     * DTMF digits. Populated if and only if `message_type` = `DTMF_DIGITS`.
+     */
+    dtmfDigits?: Schema$GoogleCloudDialogflowV2beta1TelephonyDtmfEvents;
+    /**
+     * If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.
+     */
+    isFinal?: boolean | null;
+    /**
+     * Detected language code for the transcript.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the result message.
+     */
+    messageType?: string | null;
+    /**
+     * Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     */
+    speechEndOffset?: string | null;
+    /**
+     * Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.
+     */
+    speechWordInfo?: Schema$GoogleCloudDialogflowV2beta1SpeechWordInfo[];
+    /**
+     * An estimate of the likelihood that the speech recognizer will not change its guess about this interim recognition result: * If the value is unspecified or 0.0, Dialogflow didn't compute the stability. In particular, Dialogflow will only provide stability for `TRANSCRIPT` results with `is_final = false`. * Otherwise, the value is in (0.0, 1.0] where 0.0 means completely unstable and 1.0 means completely stable.
+     */
+    stability?: number | null;
+    /**
+     * Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.
+     */
+    transcript?: string | null;
   }
   /**
    * Contains basic configuration for a sub-agent.
@@ -8055,7 +8391,7 @@ export namespace dialogflow_v2beta1 {
     source?: string | null;
   }
   /**
-   * Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.
+   * Metadata for a ConversationProfiles.ClearSuggestionFeatureConfig operation.
    */
   export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata {
     /**
@@ -8109,6 +8445,10 @@ export namespace dialogflow_v2beta1 {
      */
     newMessagePayload?: Schema$GoogleCloudDialogflowV2Message;
     /**
+     * Payload of NEW_RECOGNITION_RESULT event.
+     */
+    newRecognitionResultPayload?: Schema$GoogleCloudDialogflowV2StreamingRecognitionResult;
+    /**
      * The type of the event that this notification refers to.
      */
     type?: string | null;
@@ -8159,7 +8499,7 @@ export namespace dialogflow_v2beta1 {
     state?: string | null;
   }
   /**
-   * Metadata for ConversationDatasets.
+   * Metadata for CreateConversationDataset.
    */
   export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {
     /**
@@ -8206,7 +8546,7 @@ export namespace dialogflow_v2beta1 {
     state?: string | null;
   }
   /**
-   * Metadata for ConversationDatasets.
+   * Metadata for DeleteConversationDataset.
    */
   export interface Schema$GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata {}
   /**
@@ -9156,6 +9496,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet {
     /**
+     * Metadata of the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text taken from that URI.
      */
     text?: string | null;
@@ -9348,7 +9692,7 @@ export namespace dialogflow_v2beta1 {
     score?: number | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     /**
@@ -9374,7 +9718,7 @@ export namespace dialogflow_v2beta1 {
     name?: string | null;
   }
   /**
-   * Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.
+   * Metadata for a ConversationProfiles.SetSuggestionFeatureConfig operation.
    */
   export interface Schema$GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata {
     /**
@@ -9419,6 +9763,60 @@ export namespace dialogflow_v2beta1 {
      * Optional. Type of the smart reply model. If not provided, model_type is used.
      */
     trainingModelType?: string | null;
+  }
+  /**
+   * Information for a word recognized by the speech recognizer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SpeechWordInfo {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.
+     */
+    confidence?: number | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    endOffset?: string | null;
+    /**
+     * Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.
+     */
+    startOffset?: string | null;
+    /**
+     * The word this info is for.
+     */
+    word?: string | null;
+  }
+  /**
+   * Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | "tube" | TRANSCRIPT | false 2 | "to be a" | TRANSCRIPT | false 3 | "to be" | TRANSCRIPT | false 4 | "to be or not to be" | TRANSCRIPT | true 5 | "that's" | TRANSCRIPT | false 6 | "that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | " that is the question" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes "to be or not to be that is the question".
+   */
+  export interface Schema$GoogleCloudDialogflowV2StreamingRecognitionResult {
+    /**
+     * The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.
+     */
+    confidence?: number | null;
+    /**
+     * If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.
+     */
+    isFinal?: boolean | null;
+    /**
+     * Detected language code for the transcript.
+     */
+    languageCode?: string | null;
+    /**
+     * Type of the result message.
+     */
+    messageType?: string | null;
+    /**
+     * Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.
+     */
+    speechEndOffset?: string | null;
+    /**
+     * Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.
+     */
+    speechWordInfo?: Schema$GoogleCloudDialogflowV2SpeechWordInfo[];
+    /**
+     * Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.
+     */
+    transcript?: string | null;
   }
   /**
    * The response message for Participants.SuggestArticles.
@@ -19506,7 +19904,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Conversations$Create
     extends StandardParameters {
     /**
-     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     conversationId?: string;
     /**
@@ -21439,7 +21837,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Generators$Create
     extends StandardParameters {
     /**
-     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     generatorId?: string;
     /**
@@ -22782,6 +23180,7 @@ export namespace dialogflow_v2beta1 {
     generators: Resource$Projects$Locations$Generators;
     knowledgeBases: Resource$Projects$Locations$Knowledgebases;
     operations: Resource$Projects$Locations$Operations;
+    sipTrunks: Resource$Projects$Locations$Siptrunks;
     statelessSuggestion: Resource$Projects$Locations$Statelesssuggestion;
     suggestions: Resource$Projects$Locations$Suggestions;
     constructor(context: APIRequestContext) {
@@ -22807,6 +23206,7 @@ export namespace dialogflow_v2beta1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.sipTrunks = new Resource$Projects$Locations$Siptrunks(this.context);
       this.statelessSuggestion =
         new Resource$Projects$Locations$Statelesssuggestion(this.context);
       this.suggestions = new Resource$Projects$Locations$Suggestions(
@@ -31699,7 +32099,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Locations$Conversations$Create
     extends StandardParameters {
     /**
-     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     conversationId?: string;
     /**
@@ -33800,7 +34200,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Locations$Generators$Create
     extends StandardParameters {
     /**
-     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression fomula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     * Optional. The ID to use for the generator, which will become the final component of the generator's resource name. The generator ID must be compliant with the regression formula `a-zA-Z*` with the characters length in range of [3,64]. If the field is not provided, an Id will be auto-generated. If the field is provided, the caller is responsible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
      */
     generatorId?: string;
     /**
@@ -35177,7 +35577,7 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35489,6 +35889,541 @@ export namespace dialogflow_v2beta1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Siptrunks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a SipTrunk for a specified location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Siptrunks$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Siptrunks$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SipTrunk>;
+    create(
+      params: Params$Resource$Projects$Locations$Siptrunks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Siptrunks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Siptrunks$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Siptrunks$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Siptrunks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Siptrunks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/sipTrunks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SipTrunk>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SipTrunk>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a specified SipTrunk.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Siptrunks$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Siptrunks$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Siptrunks$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Siptrunks$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Siptrunks$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Siptrunks$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Siptrunks$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Siptrunks$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified SipTrunk.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Siptrunks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Siptrunks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SipTrunk>;
+    get(
+      params: Params$Resource$Projects$Locations$Siptrunks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Siptrunks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Siptrunks$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Siptrunks$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Siptrunks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Siptrunks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SipTrunk>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SipTrunk>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns a list of SipTrunks in the specified location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Siptrunks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Siptrunks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Siptrunks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Siptrunks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Siptrunks$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Siptrunks$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Siptrunks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Siptrunks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/sipTrunks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListSipTrunksResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified SipTrunk.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Siptrunks$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Siptrunks$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SipTrunk>;
+    patch(
+      params: Params$Resource$Projects$Locations$Siptrunks$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Siptrunks$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Siptrunks$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Siptrunks$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SipTrunk>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Siptrunks$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Siptrunks$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SipTrunk>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SipTrunk>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Siptrunks$Create
+    extends StandardParameters {
+    /**
+     * Required. The location to create a SIP trunk for. Format: `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SipTrunk;
+  }
+  export interface Params$Resource$Projects$Locations$Siptrunks$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the SIP trunk to delete. Format: `projects//locations//sipTrunks/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Siptrunks$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the SIP trunk to delete. Format: `projects//locations//sipTrunks/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Siptrunks$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The location to list SIP trunks from. Format: `projects//locations/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Siptrunks$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The unique identifier of the SIP trunk. Format: `projects//locations//sipTrunks/`.
+     */
+    name?: string;
+    /**
+     * Optional. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SipTrunk;
   }
 
   export class Resource$Projects$Locations$Statelesssuggestion {
@@ -35842,7 +36777,7 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

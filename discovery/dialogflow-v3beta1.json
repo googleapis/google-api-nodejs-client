@@ -4830,7 +4830,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.locations.operations.cancel",
@@ -5087,7 +5087,7 @@
         "operations": {
           "methods": {
             "cancel": {
-              "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+              "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
               "flatPath": "v3beta1/projects/{projectsId}/operations/{operationsId}:cancel",
               "httpMethod": "POST",
               "id": "dialogflow.projects.operations.cancel",
@@ -5185,7 +5185,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20250121",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -5305,7 +5305,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3BargeInConfig": {
-      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
       "id": "GoogleCloudDialogflowCxV3BargeInConfig",
       "properties": {
         "noBargeInDuration": {
@@ -5521,6 +5521,20 @@
             "A data store that contains public web content.",
             "A data store that contains unstructured private data.",
             "A data store that contains structured data (for example FAQ)."
+          ],
+          "type": "string"
+        },
+        "documentProcessingMode": {
+          "description": "The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.",
+          "enum": [
+            "DOCUMENT_PROCESSING_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should be set for STRUCTURED type data stores. Due to legacy reasons this is considered as DOCUMENTS for STRUCTURED and PUBLIC_WEB data stores.",
+            "Documents are processed as documents.",
+            "Documents are converted to chunks."
           ],
           "type": "string"
         }
@@ -6305,6 +6319,7 @@
       "properties": {
         "id": {
           "description": "Output only. The unique identifier of the training phrase.",
+          "readOnly": true,
           "type": "string"
         },
         "parts": {
@@ -7691,6 +7706,16 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1AgentPersonalizationSettings",
           "description": "Optional. Settings for end user personalization."
         },
+        "satisfiesPzi": {
+          "description": "Optional. Output only. A read only boolean field reflecting Zone Isolation status of the agent.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Optional. Output only. A read only boolean field reflecting Zone Separation status of the agent.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "securitySettings": {
           "description": "Name of the SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.",
           "type": "string"
@@ -7915,7 +7940,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1BargeInConfig": {
-      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
+      "description": "Configuration of the barge-in behavior. Barge-in instructs the API to return a detected utterance at a proper time while the client is playing back the response audio from a previous request. When the client sees the utterance, it should stop the playback and immediately get ready for receiving the responses for the current request. The barge-in handling requires the client to start streaming audio input as soon as it starts playing back the audio from the previous response. The playback is modeled into two phases: * No barge-in phase: which goes first and during which speech detection should not be carried out. * Barge-in phase: which follows the no barge-in phase and during which the API starts speech detection and may inform the client that an utterance has been detected. Note that no-speech event is not expected in this phase. The client provides this configuration in terms of the durations of those two phases. The durations are measured in terms of the audio length from the start of the input audio. No-speech event is a response with END_OF_UTTERANCE without any transcript following up.",
       "id": "GoogleCloudDialogflowCxV3beta1BargeInConfig",
       "properties": {
         "noBargeInDuration": {
@@ -8345,6 +8370,10 @@
       "description": "Represents an interaction between an end user and a Dialogflow CX agent using V3 (Streaming)DetectIntent API, or an interaction between an end user and a Dialogflow CX agent using V2 (Streaming)AnalyzeContent API.",
       "id": "GoogleCloudDialogflowCxV3beta1ConversationInteraction",
       "properties": {
+        "answerFeedback": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AnswerFeedback",
+          "description": "Answer feedback for the final response."
+        },
         "createTime": {
           "description": "The time that the interaction was created.",
           "format": "google-datetime",
@@ -8376,6 +8405,13 @@
         "responseUtterances": {
           "description": "The output text or the transcript of the output audio in the responses. If multiple output messages are returned, they will be concatenated into one.",
           "type": "string"
+        },
+        "stepMetrics": {
+          "description": "Metrics associated with different processing steps. Names and number of steps depend on the request and can change without a notice.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ConversationInteractionStepMetrics"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8392,6 +8428,22 @@
           "description": "Score of the above intent. The higher it is the more likely a transition was missed on a given page.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ConversationInteractionStepMetrics": {
+      "description": "Metrics of each processing step.",
+      "id": "GoogleCloudDialogflowCxV3beta1ConversationInteractionStepMetrics",
+      "properties": {
+        "latency": {
+          "description": "Processing latency of the step.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the request processing step.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8653,6 +8705,20 @@
             "A data store that contains public web content.",
             "A data store that contains unstructured private data.",
             "A data store that contains structured data (for example FAQ)."
+          ],
+          "type": "string"
+        },
+        "documentProcessingMode": {
+          "description": "The document processing mode for the data store connection. Should only be set for PUBLIC_WEB and UNSTRUCTURED data stores. If not set it is considered as DOCUMENTS, as this is the legacy mode.",
+          "enum": [
+            "DOCUMENT_PROCESSING_MODE_UNSPECIFIED",
+            "DOCUMENTS",
+            "CHUNKS"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should be set for STRUCTURED type data stores. Due to legacy reasons this is considered as DOCUMENTS for STRUCTURED and PUBLIC_WEB data stores.",
+            "Documents are processed as documents.",
+            "Documents are converted to chunks."
           ],
           "type": "string"
         }
@@ -10014,9 +10080,14 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1FlowInvocation": {
-      "description": "Stores metadata of the invocation of a CX flow. Next Id: 7",
+      "description": "Stores metadata of the invocation of a CX flow.",
       "id": "GoogleCloudDialogflowCxV3beta1FlowInvocation",
       "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the flow.",
+          "readOnly": true,
+          "type": "string"
+        },
         "flow": {
           "description": "Required. The unique identifier of the flow. Format: `projects//locations//agents//flows/`.",
           "type": "string"
@@ -10465,6 +10536,10 @@
           "$ref": "GoogleCloudDialogflowCxV3beta1LlmModelSettings",
           "description": "The LLM model settings."
         },
+        "modelParameter": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1GeneratorModelParameter",
+          "description": "Parameters passed to the LLM to configure its behavior."
+        },
         "name": {
           "description": "The unique identifier of the generator. Must be set for the Generators.UpdateGenerator method. Generators.CreateGenerate populates the name automatically. Format: `projects//locations//agents//generators/`.",
           "type": "string"
@@ -10479,6 +10554,33 @@
         "promptText": {
           "$ref": "GoogleCloudDialogflowCxV3beta1Phrase",
           "description": "Required. Prompt for the LLM model."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1GeneratorModelParameter": {
+      "description": "Parameters to be passed to the LLM. If not set, default values will be used.",
+      "id": "GoogleCloudDialogflowCxV3beta1GeneratorModelParameter",
+      "properties": {
+        "maxDecodeSteps": {
+          "description": "The maximum number of tokens to generate.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "temperature": {
+          "description": "The temperature used for sampling. Temperature sampling occurs after both topP and topK have been applied. Valid range: [0.0, 1.0] Low temperature = less random. High temperature = more random.",
+          "format": "float",
+          "type": "number"
+        },
+        "topK": {
+          "description": "If set, the sampling process in each step is limited to the top_k tokens with highest probabilities. Valid range: [1, 40] or 1000+. Small topK = less random. Large topK = more random.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "topP": {
+          "description": "If set, only the tokens comprising the top top_p probability mass are considered. If both top_p and top_k are set, top_p will be used for further refining candidates selected with top_k. Valid range: (0.0, 1.0]. Small topP = less random. Large topP = more random.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -11020,6 +11122,7 @@
       "properties": {
         "id": {
           "description": "Output only. The unique identifier of the training phrase.",
+          "readOnly": true,
           "type": "string"
         },
         "parts": {
@@ -11945,7 +12048,7 @@
           "type": "string"
         },
         "goal": {
-          "description": "Required. High level description of the goal the playbook intend to accomplish.",
+          "description": "Required. High level description of the goal the playbook intend to accomplish. A goal should be concise since it's visible to other playbooks that may reference this playbook.",
           "type": "string"
         },
         "inputParameterDefinitions": {
@@ -11997,6 +12100,10 @@
           },
           "type": "array"
         },
+        "speechSettings": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1AdvancedSettingsSpeechSettings",
+          "description": "Optional. Playbook level Settings for speech to text detection."
+        },
         "tokenCount": {
           "description": "Output only. Estimated number of tokes current playbook takes when sent to the LLM.",
           "format": "int64",
@@ -12035,6 +12142,10 @@
       "description": "Message of the Instruction of the playbook.",
       "id": "GoogleCloudDialogflowCxV3beta1PlaybookInstruction",
       "properties": {
+        "guidelines": {
+          "description": "General guidelines for the playbook. These are unstructured instructions that are not directly part of the goal, e.g. \"Always be polite\". It's valid for this text to be long and used instead of steps altogether.",
+          "type": "string"
+        },
         "steps": {
           "description": "Ordered list of step by step execution instructions to accomplish target goal.",
           "items": {
@@ -12046,9 +12157,14 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1PlaybookInvocation": {
-      "description": "Stores metadata of the invocation of a child playbook. Next Id: 5",
+      "description": "Stores metadata of the invocation of a child playbook.",
       "id": "GoogleCloudDialogflowCxV3beta1PlaybookInvocation",
       "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the playbook.",
+          "readOnly": true,
+          "type": "string"
+        },
         "playbook": {
           "description": "Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.",
           "type": "string"
@@ -12207,7 +12323,7 @@
           "type": "string"
         },
         "currentPlaybook": {
-          "description": "Optional. Start the session with the specified playbook. You can only specify the playbook at the beginning of the session. Otherwise, an error will be thrown. Format: `projects//locations//agents//playbooks/`.",
+          "description": "Optional. The unique identifier of the playbook to start or continue the session with. If `current_playbook` is specified, the previous state of the session will be ignored by Dialogflow. Format: `projects//locations//agents//playbooks/`.",
           "type": "string"
         },
         "disableWebhook": {
@@ -12254,6 +12370,7 @@
           "type": "object"
         },
         "populateDataStoreConnectionSignals": {
+          "deprecated": true,
           "description": "Optional. If set to true and data stores are involved in serving the request then DetectIntentResponse.query_result.data_store_connection_signals will be filled with data that can help evaluations.",
           "type": "boolean"
         },
@@ -12309,7 +12426,7 @@
         },
         "dataStoreConnectionSignals": {
           "$ref": "GoogleCloudDialogflowCxV3beta1DataStoreConnectionSignals",
-          "description": "Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query and DetectIntentRequest.populate_data_store_connection_signals is set to true in the request."
+          "description": "Optional. Data store connection feature output signals. Filled only when data stores are involved in serving the query."
         },
         "diagnosticInfo": {
           "additionalProperties": {
@@ -13441,7 +13558,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationApiKeyConfig",
       "properties": {
         "apiKey": {
-          "description": "Required. The API key.",
+          "description": "Optional. The API key. If the `secret_version_for_api_key` field is set, this field will be ignored.",
           "type": "string"
         },
         "keyName": {
@@ -13470,7 +13587,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1ToolAuthenticationBearerTokenConfig",
       "properties": {
         "token": {
-          "description": "Required. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.",
+          "description": "Optional. The text token appended to the text `Bearer` to the request Authorization header. [Session parameters reference](https://cloud.google.com/dialogflow/cx/docs/concept/parameter#session-ref) can be used to pass the token dynamically, e.g. `$session.params.parameter-id`.",
           "type": "string"
         }
       },
@@ -13485,7 +13602,7 @@
           "type": "string"
         },
         "clientSecret": {
-          "description": "Required. The client secret from the OAuth provider.",
+          "description": "Optional. The client secret from the OAuth provider. If the `secret_version_for_client_secret` field is set, this field will be ignored.",
           "type": "string"
         },
         "oauthGrantType": {
@@ -13724,6 +13841,11 @@
       "properties": {
         "action": {
           "description": "Optional. Name of the action to be called during the tool use.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The display name of the tool.",
+          "readOnly": true,
           "type": "string"
         },
         "inputActionParameters": {
@@ -14760,7 +14882,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata": {
-      "description": "Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.",
+      "description": "Metadata for a ConversationProfiles.ClearSuggestionFeatureConfig operation.",
       "id": "GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata",
       "properties": {
         "conversationProfile": {
@@ -14795,6 +14917,7 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION",
             "KNOWLEDGE_SEARCH",
             "KNOWLEDGE_ASSIST"
           ],
@@ -14803,6 +14926,7 @@
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
             "Run smart reply model for chat.",
+            "Run conversation summarization model for chat.",
             "Run knowledge search with text input from agent or text generated query.",
             "Run knowledge assist with automatic query generation."
           ],
@@ -14851,6 +14975,10 @@
           "$ref": "GoogleCloudDialogflowV2Message",
           "description": "Payload of NEW_MESSAGE event."
         },
+        "newRecognitionResultPayload": {
+          "$ref": "GoogleCloudDialogflowV2StreamingRecognitionResult",
+          "description": "Payload of NEW_RECOGNITION_RESULT event."
+        },
         "type": {
           "description": "The type of the event that this notification refers to.",
           "enum": [
@@ -14859,6 +14987,7 @@
             "CONVERSATION_FINISHED",
             "HUMAN_INTERVENTION_NEEDED",
             "NEW_MESSAGE",
+            "NEW_RECOGNITION_RESULT",
             "UNRECOVERABLE_ERROR"
           ],
           "enumDescriptions": [
@@ -14867,6 +14996,7 @@
             "An existing conversation has closed. This is fired when a telephone call is terminated, or a conversation is closed via the API.",
             "An existing conversation has received notification from Dialogflow that human intervention is required.",
             "An existing conversation has received a new message, either from API or telephony. It is configured in ConversationProfile.new_message_event_notification_config",
+            "An existing conversation has received a new speech recognition result. This is mainly for delivering intermediate transcripts. The notification is configured in ConversationProfile.new_recognition_event_notification_config.",
             "Unrecoverable error during a telephone call. In general non-recoverable errors only occur if something was misconfigured in the ConversationProfile corresponding to the call. After a non-recoverable error, Dialogflow may stop responding. We don't fire this event: * in an API call because we can directly return the error, or, * when we can recover from an error."
           ],
           "type": "string"
@@ -14952,7 +15082,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata": {
-      "description": "Metadata for ConversationDatasets.",
+      "description": "Metadata for CreateConversationDataset.",
       "id": "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata",
       "properties": {
         "conversationDataset": {
@@ -15041,7 +15171,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata": {
-      "description": "Metadata for ConversationDatasets.",
+      "description": "Metadata for DeleteConversationDataset.",
       "id": "GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata",
       "properties": {},
       "type": "object"
@@ -16226,6 +16356,7 @@
       "properties": {
         "name": {
           "description": "Output only. The unique identifier of this training phrase.",
+          "readOnly": true,
           "type": "string"
         },
         "parts": {
@@ -16352,6 +16483,14 @@
       "description": "Snippet Source for a Generative Prediction.",
       "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Metadata of the document.",
+          "type": "object"
+        },
         "text": {
           "description": "Text taken from that URI.",
           "type": "string"
@@ -16622,7 +16761,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2SentimentAnalysisResult": {
-      "description": "The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config",
+      "description": "The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config",
       "id": "GoogleCloudDialogflowV2SentimentAnalysisResult",
       "properties": {
         "queryTextSentiment": {
@@ -16665,7 +16804,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata": {
-      "description": "Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.",
+      "description": "Metadata for a ConversationProfiles.SetSuggestionFeatureConfig operation.",
       "id": "GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata",
       "properties": {
         "conversationProfile": {
@@ -16700,6 +16839,7 @@
             "ARTICLE_SUGGESTION",
             "FAQ",
             "SMART_REPLY",
+            "CONVERSATION_SUMMARIZATION",
             "KNOWLEDGE_SEARCH",
             "KNOWLEDGE_ASSIST"
           ],
@@ -16708,6 +16848,7 @@
             "Run article suggestion model for chat.",
             "Run FAQ model for chat.",
             "Run smart reply model for chat.",
+            "Run conversation summarization model for chat.",
             "Run knowledge search with text input from agent or text generated query.",
             "Run knowledge assist with automatic query generation."
           ],
@@ -16752,6 +16893,82 @@
             "ModelType smart reply dual encoder model.",
             "ModelType smart reply bert model."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SpeechWordInfo": {
+      "description": "Information for a word recognized by the speech recognizer.",
+      "id": "GoogleCloudDialogflowV2SpeechWordInfo",
+      "properties": {
+        "confidence": {
+          "description": "The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.",
+          "format": "float",
+          "type": "number"
+        },
+        "endOffset": {
+          "description": "Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "word": {
+          "description": "The word this info is for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2StreamingRecognitionResult": {
+      "description": "Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | \"tube\" | TRANSCRIPT | false 2 | \"to be a\" | TRANSCRIPT | false 3 | \"to be\" | TRANSCRIPT | false 4 | \"to be or not to be\" | TRANSCRIPT | true 5 | \"that's\" | TRANSCRIPT | false 6 | \"that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | \" that is the question\" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes \"to be or not to be that is the question\".",
+      "id": "GoogleCloudDialogflowV2StreamingRecognitionResult",
+      "properties": {
+        "confidence": {
+          "description": "The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.",
+          "format": "float",
+          "type": "number"
+        },
+        "isFinal": {
+          "description": "If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.",
+          "type": "boolean"
+        },
+        "languageCode": {
+          "description": "Detected language code for the transcript.",
+          "type": "string"
+        },
+        "messageType": {
+          "description": "Type of the result message.",
+          "enum": [
+            "MESSAGE_TYPE_UNSPECIFIED",
+            "TRANSCRIPT",
+            "END_OF_SINGLE_UTTERANCE"
+          ],
+          "enumDescriptions": [
+            "Not specified. Should never be used.",
+            "Message contains a (possibly partial) transcript.",
+            "This event indicates that the server has detected the end of the user's speech utterance and expects no additional inputs. Therefore, the server will not process additional audio (although it may subsequently return additional results). The client should stop sending additional audio data, half-close the gRPC connection, and wait for any additional results until the server closes the gRPC connection. This message is only sent if `single_utterance` was set to `true`, and is not used otherwise."
+          ],
+          "type": "string"
+        },
+        "speechEndOffset": {
+          "description": "Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "speechWordInfo": {
+          "description": "Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SpeechWordInfo"
+          },
+          "type": "array"
+        },
+        "transcript": {
+          "description": "Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.",
           "type": "string"
         }
       },
@@ -17138,6 +17355,10 @@
           "$ref": "GoogleCloudDialogflowV2beta1Message",
           "description": "Payload of NEW_MESSAGE event."
         },
+        "newRecognitionResultPayload": {
+          "$ref": "GoogleCloudDialogflowV2beta1StreamingRecognitionResult",
+          "description": "Payload of NEW_RECOGNITION_RESULT event."
+        },
         "type": {
           "description": "Required. The type of the event that this notification refers to.",
           "enum": [
@@ -17146,6 +17367,7 @@
             "CONVERSATION_FINISHED",
             "HUMAN_INTERVENTION_NEEDED",
             "NEW_MESSAGE",
+            "NEW_RECOGNITION_RESULT",
             "UNRECOVERABLE_ERROR"
           ],
           "enumDescriptions": [
@@ -17154,6 +17376,7 @@
             "An existing conversation has closed. This is fired when a telephone call is terminated, or a conversation is closed via the API.",
             "An existing conversation has received notification from Dialogflow that human intervention is required.",
             "An existing conversation has received a new message, either from API or telephony. It is configured in ConversationProfile.new_message_event_notification_config",
+            "An existing conversation has received a new speech recognition result. This is mainly for delivering intermediate transcripts. The notification is configured in ConversationProfile.new_recognition_event_notification_config.",
             "Unrecoverable error during a telephone call. In general non-recoverable errors only occur if something was misconfigured in the ConversationProfile corresponding to the call. After a non-recoverable error, Dialogflow may stop responding. We don't fire this event: * in an API call because we can directly return the error, or, * when we can recover from an error."
           ],
           "type": "string"
@@ -18594,6 +18817,7 @@
       "properties": {
         "name": {
           "description": "Output only. The unique identifier of this training phrase.",
+          "readOnly": true,
           "type": "string"
         },
         "parts": {
@@ -18774,6 +18998,14 @@
       "description": "Snippet Source for a Generative Prediction.",
       "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerKnowledgeAnswerGenerativeSourceSnippet",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Metadata of the document.",
+          "type": "object"
+        },
         "text": {
           "description": "Text taken from that URI.",
           "type": "string"
@@ -19292,6 +19524,95 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1SpeechWordInfo": {
+      "description": "Information for a word recognized by the speech recognizer.",
+      "id": "GoogleCloudDialogflowV2beta1SpeechWordInfo",
+      "properties": {
+        "confidence": {
+          "description": "The Speech confidence between 0.0 and 1.0 for this word. A higher number indicates an estimated greater likelihood that the recognized word is correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be fully stable over time for the same audio input. Users should also not rely on it to always be provided.",
+          "format": "float",
+          "type": "number"
+        },
+        "endOffset": {
+          "description": "Time offset relative to the beginning of the audio that corresponds to the end of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startOffset": {
+          "description": "Time offset relative to the beginning of the audio that corresponds to the start of the spoken word. This is an experimental feature and the accuracy of the time offset can vary.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "word": {
+          "description": "The word this info is for.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1StreamingRecognitionResult": {
+      "description": "Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance. While end-user audio is being processed, Dialogflow sends a series of results. Each result may contain a `transcript` value. A transcript represents a portion of the utterance. While the recognizer is processing audio, transcript values may be interim values or finalized values. Once a transcript is finalized, the `is_final` value is set to true and processing continues for the next transcript. If `StreamingDetectIntentRequest.query_input.audio_config.single_utterance` was true, and the recognizer has completed processing audio, the `message_type` value is set to `END_OF_SINGLE_UTTERANCE and the following (last) result contains the last finalized transcript. The complete end-user utterance is determined by concatenating the finalized transcript values received for the series of results. In the following example, single utterance is enabled. In the case where single utterance is not enabled, result 7 would not occur. ``` Num | transcript | message_type | is_final --- | ----------------------- | ----------------------- | -------- 1 | \"tube\" | TRANSCRIPT | false 2 | \"to be a\" | TRANSCRIPT | false 3 | \"to be\" | TRANSCRIPT | false 4 | \"to be or not to be\" | TRANSCRIPT | true 5 | \"that's\" | TRANSCRIPT | false 6 | \"that is | TRANSCRIPT | false 7 | unset | END_OF_SINGLE_UTTERANCE | unset 8 | \" that is the question\" | TRANSCRIPT | true ``` Concatenating the finalized transcripts with `is_final` set to true, the complete utterance becomes \"to be or not to be that is the question\".",
+      "id": "GoogleCloudDialogflowV2beta1StreamingRecognitionResult",
+      "properties": {
+        "confidence": {
+          "description": "The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set.",
+          "format": "float",
+          "type": "number"
+        },
+        "dtmfDigits": {
+          "$ref": "GoogleCloudDialogflowV2beta1TelephonyDtmfEvents",
+          "description": "DTMF digits. Populated if and only if `message_type` = `DTMF_DIGITS`."
+        },
+        "isFinal": {
+          "description": "If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `message_type` = `TRANSCRIPT`.",
+          "type": "boolean"
+        },
+        "languageCode": {
+          "description": "Detected language code for the transcript.",
+          "type": "string"
+        },
+        "messageType": {
+          "description": "Type of the result message.",
+          "enum": [
+            "MESSAGE_TYPE_UNSPECIFIED",
+            "TRANSCRIPT",
+            "DTMF_DIGITS",
+            "END_OF_SINGLE_UTTERANCE",
+            "PARTIAL_DTMF_DIGITS"
+          ],
+          "enumDescriptions": [
+            "Not specified. Should never be used.",
+            "Message contains a (possibly partial) transcript.",
+            "Message contains DTMF digits.",
+            "This event indicates that the server has detected the end of the user's speech utterance and expects no additional speech. Therefore, the server will not process additional audio (although it may subsequently return additional results). The client should stop sending additional audio data, half-close the gRPC connection, and wait for any additional results until the server closes the gRPC connection. This message is only sent if `single_utterance` was set to `true`, and is not used otherwise.",
+            "Message contains DTMF digits. Before a message with DTMF_DIGITS is sent, a message with PARTIAL_DTMF_DIGITS may be sent with DTMF digits collected up to the time of sending, which represents an intermediate result."
+          ],
+          "type": "string"
+        },
+        "speechEndOffset": {
+          "description": "Time offset of the end of this Speech recognition result relative to the beginning of the audio. Only populated for `message_type` = `TRANSCRIPT`.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "speechWordInfo": {
+          "description": "Word-specific information for the words recognized by Speech in transcript. Populated if and only if `message_type` = `TRANSCRIPT` and [InputAudioConfig.enable_word_info] is set.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2beta1SpeechWordInfo"
+          },
+          "type": "array"
+        },
+        "stability": {
+          "description": "An estimate of the likelihood that the speech recognizer will not change its guess about this interim recognition result: * If the value is unspecified or 0.0, Dialogflow didn't compute the stability. In particular, Dialogflow will only provide stability for `TRANSCRIPT` results with `is_final = false`. * Otherwise, the value is in (0.0, 1.0] where 0.0 means completely unstable and 1.0 means completely stable.",
+          "format": "float",
+          "type": "number"
+        },
+        "transcript": {
+          "description": "Transcript text representing the words that the user spoke. Populated if and only if `message_type` = `TRANSCRIPT`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1SuggestArticlesResponse": {
       "description": "The response message for Participants.SuggestArticles.",
       "id": "GoogleCloudDialogflowV2beta1SuggestArticlesResponse",
@@ -19436,6 +19757,58 @@
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse",
           "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1TelephonyDtmfEvents": {
+      "description": "A wrapper of repeated TelephonyDtmf digits.",
+      "id": "GoogleCloudDialogflowV2beta1TelephonyDtmfEvents",
+      "properties": {
+        "dtmfEvents": {
+          "description": "A sequence of TelephonyDtmf digits.",
+          "items": {
+            "enum": [
+              "TELEPHONY_DTMF_UNSPECIFIED",
+              "DTMF_ONE",
+              "DTMF_TWO",
+              "DTMF_THREE",
+              "DTMF_FOUR",
+              "DTMF_FIVE",
+              "DTMF_SIX",
+              "DTMF_SEVEN",
+              "DTMF_EIGHT",
+              "DTMF_NINE",
+              "DTMF_ZERO",
+              "DTMF_A",
+              "DTMF_B",
+              "DTMF_C",
+              "DTMF_D",
+              "DTMF_STAR",
+              "DTMF_POUND"
+            ],
+            "enumDescriptions": [
+              "Not specified. This value may be used to indicate an absent digit.",
+              "Number: '1'.",
+              "Number: '2'.",
+              "Number: '3'.",
+              "Number: '4'.",
+              "Number: '5'.",
+              "Number: '6'.",
+              "Number: '7'.",
+              "Number: '8'.",
+              "Number: '9'.",
+              "Number: '0'.",
+              "Letter: 'A'.",
+              "Letter: 'B'.",
+              "Letter: 'C'.",
+              "Letter: 'D'.",
+              "Asterisk/star: '*'.",
+              "Pound/diamond/hash/square/gate/octothorpe: '#'."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
