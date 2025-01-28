@@ -4300,13 +4300,13 @@
       "properties": {
         "encoding": {
           "$ref": "GoogleBigtableAdminV2TypeStringEncoding",
-          "description": "The encoding to use when converting to/from lower level types."
+          "description": "The encoding to use when converting to or from lower level types."
         }
       },
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStringEncoding": {
-      "description": "Rules used to convert to/from lower level types.",
+      "description": "Rules used to convert to or from lower level types.",
       "id": "GoogleBigtableAdminV2TypeStringEncoding",
       "properties": {
         "utf8Bytes": {
@@ -4317,7 +4317,7 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes": {
-      "description": "UTF-8 encoding * Order-preserving? Yes (code point order) * Self-delimiting? No * Compatibility? - BigQuery Federation `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
+      "description": "UTF-8 encoding. Sorted mode: - All values are supported. - Code point order is preserved. Distinct mode: all values are supported. Compatible with: - BigQuery `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
       "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
       "properties": {},
       "type": "object"
