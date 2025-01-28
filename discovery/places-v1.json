@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20240920",
+  "revision": "20250115",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -294,6 +294,120 @@
         "low": {
           "$ref": "GoogleTypeLatLng",
           "description": "Required. The low point of the viewport."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1AddressDescriptor": {
+      "description": "A relational description of a location. Includes a ranked set of nearby landmarks and precise containing areas and their relationship to the target location.",
+      "id": "GoogleMapsPlacesV1AddressDescriptor",
+      "properties": {
+        "areas": {
+          "description": "A ranked list of containing or adjacent areas. The most recognizable and precise areas are ranked first.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1AddressDescriptorArea"
+          },
+          "type": "array"
+        },
+        "landmarks": {
+          "description": "A ranked list of nearby landmarks. The most recognizable and nearby landmarks are ranked first.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1AddressDescriptorLandmark"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1AddressDescriptorArea": {
+      "description": "Area information and the area's relationship with the target location. Areas includes precise sublocality, neighborhoods, and large compounds that are useful for describing a location.",
+      "id": "GoogleMapsPlacesV1AddressDescriptorArea",
+      "properties": {
+        "containment": {
+          "description": "Defines the spatial relationship between the target location and the area.",
+          "enum": [
+            "CONTAINMENT_UNSPECIFIED",
+            "WITHIN",
+            "OUTSKIRTS",
+            "NEAR"
+          ],
+          "enumDescriptions": [
+            "The containment is unspecified.",
+            "The target location is within the area region, close to the center.",
+            "The target location is within the area region, close to the edge.",
+            "The target location is outside the area region, but close by."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The area's display name."
+        },
+        "name": {
+          "description": "The area's resource name.",
+          "type": "string"
+        },
+        "placeId": {
+          "description": "The area's place id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleMapsPlacesV1AddressDescriptorLandmark": {
+      "description": "Basic landmark information and the landmark's relationship with the target location. Landmarks are prominent places that can be used to describe a location.",
+      "id": "GoogleMapsPlacesV1AddressDescriptorLandmark",
+      "properties": {
+        "displayName": {
+          "$ref": "GoogleTypeLocalizedText",
+          "description": "The landmark's display name."
+        },
+        "name": {
+          "description": "The landmark's resource name.",
+          "type": "string"
+        },
+        "placeId": {
+          "description": "The landmark's place id.",
+          "type": "string"
+        },
+        "spatialRelationship": {
+          "description": "Defines the spatial relationship between the target location and the landmark.",
+          "enum": [
+            "NEAR",
+            "WITHIN",
+            "BESIDE",
+            "ACROSS_THE_ROAD",
+            "DOWN_THE_ROAD",
+            "AROUND_THE_CORNER",
+            "BEHIND"
+          ],
+          "enumDescriptions": [
+            "This is the default relationship when nothing more specific below applies.",
+            "The landmark has a spatial geometry and the target is within its bounds.",
+            "The target is directly adjacent to the landmark.",
+            "The target is directly opposite the landmark on the other side of the road.",
+            "On the same route as the landmark but not besides or across.",
+            "Not on the same route as the landmark but a single turn away.",
+            "Close to the landmark's structure but further away from its street entrances."
+          ],
+          "type": "string"
+        },
+        "straightLineDistanceMeters": {
+          "description": "The straight line distance, in meters, between the center point of the target and the center point of the landmark. In some situations, this value can be longer than `travel_distance_meters`.",
+          "format": "float",
+          "type": "number"
+        },
+        "travelDistanceMeters": {
+          "description": "The travel distance, in meters, along the road network from the target to the landmark, if known. This value does not take into account the mode of transportation, such as walking, driving, or biking.",
+          "format": "float",
+          "type": "number"
+        },
+        "types": {
+          "description": "A set of type tags for this landmark. For a complete list of possible values, see https://developers.google.com/maps/documentation/places/web-service/place-types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -321,6 +435,10 @@
       "description": "Request proto for AutocompletePlaces.",
       "id": "GoogleMapsPlacesV1AutocompletePlacesRequest",
       "properties": {
+        "includePureServiceAreaBusinesses": {
+          "description": "Optional. Include pure service area businesses if the field is set to true. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses do not have a physical address or location on Google Maps. Places will not return fields including `location`, `plus_code`, and other location related fields for these businesses.",
+          "type": "boolean"
+        },
         "includeQueryPredictions": {
           "description": "Optional. If true, the response will include both Place and query predictions. Otherwise the response will only return Place predictions.",
           "type": "boolean"
@@ -783,6 +901,7 @@
           "enum": [
             "FUEL_TYPE_UNSPECIFIED",
             "DIESEL",
+            "DIESEL_PLUS",
             "REGULAR_UNLEADED",
             "MIDGRADE",
             "PREMIUM",
@@ -797,6 +916,7 @@
             "LPG",
             "E80",
             "E85",
+            "E100",
             "METHANE",
             "BIO_DIESEL",
             "TRUCK_DIESEL"
@@ -804,6 +924,7 @@
           "enumDescriptions": [
             "Unspecified fuel type.",
             "Diesel fuel.",
+            "Diesel plus fuel.",
             "Regular unleaded.",
             "Midgrade.",
             "Premium.",
@@ -815,9 +936,10 @@
             "SP 98.",
             "SP 99.",
             "SP 100.",
-            "LPG.",
+            "Liquefied Petroleum Gas.",
             "E 80.",
             "E 85.",
+            "E 100.",
             "Methane.",
             "Bio-diesel.",
             "Truck diesel."
@@ -842,6 +964,14 @@
             "$ref": "GoogleMapsPlacesV1AuthorAttribution"
           },
           "type": "array"
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the photo.",
+          "type": "string"
+        },
+        "googleMapsUri": {
+          "description": "A link to show the photo on Google Maps.",
+          "type": "string"
         },
         "heightPx": {
           "description": "The maximum available height, in pixels.",
@@ -890,6 +1020,10 @@
           },
           "type": "array"
         },
+        "addressDescriptor": {
+          "$ref": "GoogleMapsPlacesV1AddressDescriptor",
+          "description": "The address descriptor of the place. Address descriptors include additional information that help describe a location using landmarks and areas. See address descriptor regional coverage in https://developers.google.com/maps/documentation/geocoding/address-descriptors/coverage."
+        },
         "adrFormatAddress": {
           "description": "The place's address in adr microformat: http://microformats.org/wiki/adr.",
           "type": "string"
@@ -924,6 +1058,13 @@
             "The establishment is permanently closed."
           ],
           "type": "string"
+        },
+        "containingPlaces": {
+          "description": "List of places in which the current place is located.",
+          "items": {
+            "$ref": "GoogleMapsPlacesV1PlaceContainingPlace"
+          },
+          "type": "array"
         },
         "curbsidePickup": {
           "description": "Specifies if the business supports curbside pickup.",
@@ -983,6 +1124,10 @@
         "goodForWatchingSports": {
           "description": "Place is suitable for watching sports.",
           "type": "boolean"
+        },
+        "googleMapsLinks": {
+          "$ref": "GoogleMapsPlacesV1PlaceGoogleMapsLinks",
+          "description": "Links to trigger different Google Maps actions."
         },
         "googleMapsUri": {
           "description": "A URL providing more information about this place.",
@@ -1067,6 +1212,10 @@
           ],
           "type": "string"
         },
+        "priceRange": {
+          "$ref": "GoogleMapsPlacesV1PriceRange",
+          "description": "The price range associated with a Place."
+        },
         "primaryType": {
           "description": "The primary type of the given result. This type must one of the Places API supported types. For example, \"restaurant\", \"cafe\", \"airport\", etc. A place can only have a single primary type. For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types",
           "type": "string"
@@ -1075,6 +1224,10 @@
           "$ref": "GoogleTypeLocalizedText",
           "description": "The display name of the primary type, localized to the request language if applicable. For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types"
         },
+        "pureServiceAreaBusiness": {
+          "description": "Indicates whether the place is a pure service area business. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses may not have a physical address or location on Google Maps.",
+          "type": "boolean"
+        },
         "rating": {
           "description": "A rating between 1.0 and 5.0, based on user reviews of this place.",
           "format": "double",
@@ -1082,7 +1235,7 @@
         },
         "regularOpeningHours": {
           "$ref": "GoogleMapsPlacesV1PlaceOpeningHours",
-          "description": "The regular hours of operation."
+          "description": "The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an `open` period containing `day` with value `0`, `hour` with value `0`, and `minute` with value `0`."
         },
         "regularSecondaryOpeningHours": {
           "description": "Contains an array of entries for information about regular secondary hours of a business. Secondary hours are different from a business's main hours. For example, a restaurant can specify drive through hours or delivery hours as its secondary hours. This field populates the type subfield, which draws from a predefined list of opening hours types (such as DRIVE_THROUGH, PICKUP, or TAKEOUT) based on the types of the place.",
@@ -1180,7 +1333,7 @@
         },
         "viewport": {
           "$ref": "GoogleGeoTypeViewport",
-          "description": "A viewport suitable for displaying the place on an average-sized map."
+          "description": "A viewport suitable for displaying the place on an average-sized map. This viewport should not be used as the physical boundary or the service area of the business."
         },
         "websiteUri": {
           "description": "The authoritative website for this place, e.g. a business' homepage. Note that for places that are part of a chain (e.g. an IKEA store), this will usually be the website for the individual store, not the overall chain.",
@@ -1248,6 +1401,10 @@
             "$ref": "GoogleMapsPlacesV1ContentBlock"
           },
           "type": "array"
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the summary.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1267,6 +1424,21 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1PlaceContainingPlace": {
+      "description": "Info about the place in which this place is located.",
+      "id": "GoogleMapsPlacesV1PlaceContainingPlace",
+      "properties": {
+        "id": {
+          "description": "The place id of the place in which this place is located.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the place in which this place is located.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1PlaceGenerativeSummary": {
       "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.",
       "id": "GoogleMapsPlacesV1PlaceGenerativeSummary",
@@ -1275,9 +1447,17 @@
           "$ref": "GoogleTypeLocalizedText",
           "description": "The detailed description of the place."
         },
+        "descriptionFlagContentUri": {
+          "description": "A link where users can flag a problem with the description summary.",
+          "type": "string"
+        },
         "overview": {
           "$ref": "GoogleTypeLocalizedText",
           "description": "The overview of the place."
+        },
+        "overviewFlagContentUri": {
+          "description": "A link where users can flag a problem with the overview summary.",
+          "type": "string"
         },
         "references": {
           "$ref": "GoogleMapsPlacesV1References",
@@ -1286,10 +1466,47 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1PlaceGoogleMapsLinks": {
+      "description": "Links to trigger different Google Maps actions.",
+      "id": "GoogleMapsPlacesV1PlaceGoogleMapsLinks",
+      "properties": {
+        "directionsUri": {
+          "description": "A link to show the directions to the place. The link only populates the destination location and uses the default travel mode `DRIVE`.",
+          "type": "string"
+        },
+        "photosUri": {
+          "description": "A link to show photos of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.",
+          "type": "string"
+        },
+        "placeUri": {
+          "description": "A link to show this place.",
+          "type": "string"
+        },
+        "reviewsUri": {
+          "description": "A link to show reviews of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.",
+          "type": "string"
+        },
+        "writeAReviewUri": {
+          "description": "A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1PlaceOpeningHours": {
       "description": "Information about business hour of the place.",
       "id": "GoogleMapsPlacesV1PlaceOpeningHours",
       "properties": {
+        "nextCloseTime": {
+          "description": "The next time the current opening hours period ends up to 7 days in the future. This field is only populated if the opening hours period is active at the time of serving the request.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "nextOpenTime": {
+          "description": "The next time the current opening hours period starts up to 7 days in the future. This field is only populated if the opening hours period is not active at the time of serving the request.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "openNow": {
           "description": "Whether the opening hours period is currently active. For regular opening hours and current opening hours, this field means whether the place is open. For secondary opening hours and current secondary opening hours, this field means whether the secondary hours of this place is active.",
           "type": "boolean"
@@ -1383,12 +1600,12 @@
           "type": "integer"
         },
         "hour": {
-          "description": "The hour in 2 digits. Ranges from 00 to 23.",
+          "description": "The hour in 24 hour format. Ranges from 0 to 23.",
           "format": "int32",
           "type": "integer"
         },
         "minute": {
-          "description": "The minute in 2 digits. Ranges from 00 to 59.",
+          "description": "The minute. Ranges from 0 to 59.",
           "format": "int32",
           "type": "integer"
         },
@@ -1509,6 +1726,21 @@
       },
       "type": "object"
     },
+    "GoogleMapsPlacesV1PriceRange": {
+      "description": "The price range associated with a Place. `end_price` could be unset, which indicates a range without upper bound (e.g. \"More than $100\").",
+      "id": "GoogleMapsPlacesV1PriceRange",
+      "properties": {
+        "endPrice": {
+          "$ref": "GoogleTypeMoney",
+          "description": "The high end of the price range (exclusive). Price should be lower than this amount."
+        },
+        "startPrice": {
+          "$ref": "GoogleTypeMoney",
+          "description": "The low end of the price range (inclusive). Price should be at or above this amount."
+        }
+      },
+      "type": "object"
+    },
     "GoogleMapsPlacesV1References": {
       "description": "Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Reference that the generative content is related to.",
       "id": "GoogleMapsPlacesV1References",
@@ -1537,6 +1769,14 @@
         "authorAttribution": {
           "$ref": "GoogleMapsPlacesV1AuthorAttribution",
           "description": "This review's author."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the review.",
+          "type": "string"
+        },
+        "googleMapsUri": {
+          "description": "A link to show the review on Google Maps.",
+          "type": "string"
         },
         "name": {
           "description": "A reference representing this place review which may be used to look up this place review again (also called the API \"resource\" name: `places/{place_id}/reviews/{review}`).",
@@ -1643,6 +1883,10 @@
       "description": "The duration and distance from the routing origin to a place in the response, and a second leg from that place to the destination, if requested. **Note:** Adding `routingSummaries` in the field mask without also including either the `routingParameters.origin` parameter or the `searchAlongRouteParameters.polyline.encodedPolyline` parameter in the request causes an error.",
       "id": "GoogleMapsPlacesV1RoutingSummary",
       "properties": {
+        "directionsUri": {
+          "description": "A link to show directions on Google Maps using the waypoints from the given routing summary. The route generated by this link is not guaranteed to be the same as the route used to generate the routing summary. The link uses information provided in the request, from fields including `routingParameters` and `searchAlongRouteParameters` when applicable, to generate the directions link.",
+          "type": "string"
+        },
         "legs": {
           "description": "The legs of the trip. When you calculate travel duration and distance from a set origin, `legs` contains a single leg containing the duration and distance from the origin to the destination. When you do a search along route, `legs` contains two legs: one from the origin to place, and one from the place to the destination.",
           "items": {
@@ -1779,6 +2023,10 @@
         "evOptions": {
           "$ref": "GoogleMapsPlacesV1SearchTextRequestEVOptions",
           "description": "Optional. Set the searchable EV options of a place search request."
+        },
+        "includePureServiceAreaBusinesses": {
+          "description": "Optional. Include pure service area businesses if the field is set to true. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses do not have a physical address or location on Google Maps. Places will not return fields including `location`, `plus_code`, and other location related fields for these businesses.",
+          "type": "boolean"
         },
         "includedType": {
           "description": "The requested place type. Full list of types supported: https://developers.google.com/maps/documentation/places/web-service/place-types. Only support one included type.",
@@ -1988,6 +2236,10 @@
             "$ref": "GoogleMapsPlacesV1RoutingSummary"
           },
           "type": "array"
+        },
+        "searchUri": {
+          "description": "A link allows the user to search with the same text query as specified in the request on Google Maps.",
+          "type": "string"
         }
       },
       "type": "object"

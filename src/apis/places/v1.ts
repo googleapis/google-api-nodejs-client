@@ -138,6 +138,73 @@ export namespace places_v1 {
     low?: Schema$GoogleTypeLatLng;
   }
   /**
+   * A relational description of a location. Includes a ranked set of nearby landmarks and precise containing areas and their relationship to the target location.
+   */
+  export interface Schema$GoogleMapsPlacesV1AddressDescriptor {
+    /**
+     * A ranked list of containing or adjacent areas. The most recognizable and precise areas are ranked first.
+     */
+    areas?: Schema$GoogleMapsPlacesV1AddressDescriptorArea[];
+    /**
+     * A ranked list of nearby landmarks. The most recognizable and nearby landmarks are ranked first.
+     */
+    landmarks?: Schema$GoogleMapsPlacesV1AddressDescriptorLandmark[];
+  }
+  /**
+   * Area information and the area's relationship with the target location. Areas includes precise sublocality, neighborhoods, and large compounds that are useful for describing a location.
+   */
+  export interface Schema$GoogleMapsPlacesV1AddressDescriptorArea {
+    /**
+     * Defines the spatial relationship between the target location and the area.
+     */
+    containment?: string | null;
+    /**
+     * The area's display name.
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The area's resource name.
+     */
+    name?: string | null;
+    /**
+     * The area's place id.
+     */
+    placeId?: string | null;
+  }
+  /**
+   * Basic landmark information and the landmark's relationship with the target location. Landmarks are prominent places that can be used to describe a location.
+   */
+  export interface Schema$GoogleMapsPlacesV1AddressDescriptorLandmark {
+    /**
+     * The landmark's display name.
+     */
+    displayName?: Schema$GoogleTypeLocalizedText;
+    /**
+     * The landmark's resource name.
+     */
+    name?: string | null;
+    /**
+     * The landmark's place id.
+     */
+    placeId?: string | null;
+    /**
+     * Defines the spatial relationship between the target location and the landmark.
+     */
+    spatialRelationship?: string | null;
+    /**
+     * The straight line distance, in meters, between the center point of the target and the center point of the landmark. In some situations, this value can be longer than `travel_distance_meters`.
+     */
+    straightLineDistanceMeters?: number | null;
+    /**
+     * The travel distance, in meters, along the road network from the target to the landmark, if known. This value does not take into account the mode of transportation, such as walking, driving, or biking.
+     */
+    travelDistanceMeters?: number | null;
+    /**
+     * A set of type tags for this landmark. For a complete list of possible values, see https://developers.google.com/maps/documentation/places/web-service/place-types.
+     */
+    types?: string[] | null;
+  }
+  /**
    * Information about the author of the UGC data. Used in Photo, and Review.
    */
   export interface Schema$GoogleMapsPlacesV1AuthorAttribution {
@@ -166,6 +233,10 @@ export namespace places_v1 {
      * Optional. Only include results in the specified regions, specified as up to 15 CLDR two-character region codes. An empty set will not restrict the results. If both `location_restriction` and `included_region_codes` are set, the results will be located in the area of intersection.
      */
     includedRegionCodes?: string[] | null;
+    /**
+     * Optional. Include pure service area businesses if the field is set to true. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses do not have a physical address or location on Google Maps. Places will not return fields including `location`, `plus_code`, and other location related fields for these businesses.
+     */
+    includePureServiceAreaBusinesses?: boolean | null;
     /**
      * Optional. If true, the response will include both Place and query predictions. Otherwise the response will only return Place predictions.
      */
@@ -513,6 +584,14 @@ export namespace places_v1 {
      */
     authorAttributions?: Schema$GoogleMapsPlacesV1AuthorAttribution[];
     /**
+     * A link where users can flag a problem with the photo.
+     */
+    flagContentUri?: string | null;
+    /**
+     * A link to show the photo on Google Maps.
+     */
+    googleMapsUri?: string | null;
+    /**
      * The maximum available height, in pixels.
      */
     heightPx?: number | null;
@@ -551,6 +630,10 @@ export namespace places_v1 {
      */
     addressComponents?: Schema$GoogleMapsPlacesV1PlaceAddressComponent[];
     /**
+     * The address descriptor of the place. Address descriptors include additional information that help describe a location using landmarks and areas. See address descriptor regional coverage in https://developers.google.com/maps/documentation/geocoding/address-descriptors/coverage.
+     */
+    addressDescriptor?: Schema$GoogleMapsPlacesV1AddressDescriptor;
+    /**
      * The place's address in adr microformat: http://microformats.org/wiki/adr.
      */
     adrFormatAddress?: string | null;
@@ -570,6 +653,10 @@ export namespace places_v1 {
      * The business status for the place.
      */
     businessStatus?: string | null;
+    /**
+     * List of places in which the current place is located.
+     */
+    containingPlaces?: Schema$GoogleMapsPlacesV1PlaceContainingPlace[];
     /**
      * Specifies if the business supports curbside pickup.
      */
@@ -626,6 +713,10 @@ export namespace places_v1 {
      * Place is suitable for watching sports.
      */
     goodForWatchingSports?: boolean | null;
+    /**
+     * Links to trigger different Google Maps actions.
+     */
+    googleMapsLinks?: Schema$GoogleMapsPlacesV1PlaceGoogleMapsLinks;
     /**
      * A URL providing more information about this place.
      */
@@ -691,6 +782,10 @@ export namespace places_v1 {
      */
     priceLevel?: string | null;
     /**
+     * The price range associated with a Place.
+     */
+    priceRange?: Schema$GoogleMapsPlacesV1PriceRange;
+    /**
      * The primary type of the given result. This type must one of the Places API supported types. For example, "restaurant", "cafe", "airport", etc. A place can only have a single primary type. For the complete list of possible values, see Table A and Table B at https://developers.google.com/maps/documentation/places/web-service/place-types
      */
     primaryType?: string | null;
@@ -699,11 +794,15 @@ export namespace places_v1 {
      */
     primaryTypeDisplayName?: Schema$GoogleTypeLocalizedText;
     /**
+     * Indicates whether the place is a pure service area business. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses may not have a physical address or location on Google Maps.
+     */
+    pureServiceAreaBusiness?: boolean | null;
+    /**
      * A rating between 1.0 and 5.0, based on user reviews of this place.
      */
     rating?: number | null;
     /**
-     * The regular hours of operation.
+     * The regular hours of operation. Note that if a place is always open (24 hours), the `close` field will not be set. Clients can rely on always open (24 hours) being represented as an `open` period containing `day` with value `0`, `hour` with value `0`, and `minute` with value `0`.
      */
     regularOpeningHours?: Schema$GoogleMapsPlacesV1PlaceOpeningHours;
     /**
@@ -787,7 +886,7 @@ export namespace places_v1 {
      */
     utcOffsetMinutes?: number | null;
     /**
-     * A viewport suitable for displaying the place on an average-sized map.
+     * A viewport suitable for displaying the place on an average-sized map. This viewport should not be used as the physical boundary or the service area of the business.
      */
     viewport?: Schema$GoogleGeoTypeViewport;
     /**
@@ -845,6 +944,10 @@ export namespace places_v1 {
      * Content blocks that compose the area summary. Each block has a separate topic about the area.
      */
     contentBlocks?: Schema$GoogleMapsPlacesV1ContentBlock[];
+    /**
+     * A link where users can flag a problem with the summary.
+     */
+    flagContentUri?: string | null;
   }
   /**
    * Information about data providers of this place.
@@ -860,6 +963,19 @@ export namespace places_v1 {
     providerUri?: string | null;
   }
   /**
+   * Info about the place in which this place is located.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceContainingPlace {
+    /**
+     * The place id of the place in which this place is located.
+     */
+    id?: string | null;
+    /**
+     * The resource name of the place in which this place is located.
+     */
+    name?: string | null;
+  }
+  /**
    * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. AI-generated summary of the place.
    */
   export interface Schema$GoogleMapsPlacesV1PlaceGenerativeSummary {
@@ -868,18 +984,59 @@ export namespace places_v1 {
      */
     description?: Schema$GoogleTypeLocalizedText;
     /**
+     * A link where users can flag a problem with the description summary.
+     */
+    descriptionFlagContentUri?: string | null;
+    /**
      * The overview of the place.
      */
     overview?: Schema$GoogleTypeLocalizedText;
+    /**
+     * A link where users can flag a problem with the overview summary.
+     */
+    overviewFlagContentUri?: string | null;
     /**
      * References that are used to generate the summary description.
      */
     references?: Schema$GoogleMapsPlacesV1References;
   }
   /**
+   * Links to trigger different Google Maps actions.
+   */
+  export interface Schema$GoogleMapsPlacesV1PlaceGoogleMapsLinks {
+    /**
+     * A link to show the directions to the place. The link only populates the destination location and uses the default travel mode `DRIVE`.
+     */
+    directionsUri?: string | null;
+    /**
+     * A link to show photos of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     */
+    photosUri?: string | null;
+    /**
+     * A link to show this place.
+     */
+    placeUri?: string | null;
+    /**
+     * A link to show reviews of this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     */
+    reviewsUri?: string | null;
+    /**
+     * A link to write a review for this place. This link is currently not supported on Google Maps Mobile and only works on the web version of Google Maps.
+     */
+    writeAReviewUri?: string | null;
+  }
+  /**
    * Information about business hour of the place.
    */
   export interface Schema$GoogleMapsPlacesV1PlaceOpeningHours {
+    /**
+     * The next time the current opening hours period ends up to 7 days in the future. This field is only populated if the opening hours period is active at the time of serving the request.
+     */
+    nextCloseTime?: string | null;
+    /**
+     * The next time the current opening hours period starts up to 7 days in the future. This field is only populated if the opening hours period is not active at the time of serving the request.
+     */
+    nextOpenTime?: string | null;
     /**
      * Whether the opening hours period is currently active. For regular opening hours and current opening hours, this field means whether the place is open. For secondary opening hours and current secondary opening hours, this field means whether the secondary hours of this place is active.
      */
@@ -927,11 +1084,11 @@ export namespace places_v1 {
      */
     day?: number | null;
     /**
-     * The hour in 2 digits. Ranges from 00 to 23.
+     * The hour in 24 hour format. Ranges from 0 to 23.
      */
     hour?: number | null;
     /**
-     * The minute in 2 digits. Ranges from 00 to 59.
+     * The minute. Ranges from 0 to 59.
      */
     minute?: number | null;
     /**
@@ -1038,6 +1195,19 @@ export namespace places_v1 {
     encodedPolyline?: string | null;
   }
   /**
+   * The price range associated with a Place. `end_price` could be unset, which indicates a range without upper bound (e.g. "More than $100").
+   */
+  export interface Schema$GoogleMapsPlacesV1PriceRange {
+    /**
+     * The high end of the price range (exclusive). Price should be lower than this amount.
+     */
+    endPrice?: Schema$GoogleTypeMoney;
+    /**
+     * The low end of the price range (inclusive). Price should be at or above this amount.
+     */
+    startPrice?: Schema$GoogleTypeMoney;
+  }
+  /**
    * Experimental: See https://developers.google.com/maps/documentation/places/web-service/experimental/places-generative for more details. Reference that the generative content is related to.
    */
   export interface Schema$GoogleMapsPlacesV1References {
@@ -1058,6 +1228,14 @@ export namespace places_v1 {
      * This review's author.
      */
     authorAttribution?: Schema$GoogleMapsPlacesV1AuthorAttribution;
+    /**
+     * A link where users can flag a problem with the review.
+     */
+    flagContentUri?: string | null;
+    /**
+     * A link to show the review on Google Maps.
+     */
+    googleMapsUri?: string | null;
     /**
      * A reference representing this place review which may be used to look up this place review again (also called the API "resource" name: `places/{place_id\}/reviews/{review\}`).
      */
@@ -1129,6 +1307,10 @@ export namespace places_v1 {
    * The duration and distance from the routing origin to a place in the response, and a second leg from that place to the destination, if requested. **Note:** Adding `routingSummaries` in the field mask without also including either the `routingParameters.origin` parameter or the `searchAlongRouteParameters.polyline.encodedPolyline` parameter in the request causes an error.
    */
   export interface Schema$GoogleMapsPlacesV1RoutingSummary {
+    /**
+     * A link to show directions on Google Maps using the waypoints from the given routing summary. The route generated by this link is not guaranteed to be the same as the route used to generate the routing summary. The link uses information provided in the request, from fields including `routingParameters` and `searchAlongRouteParameters` when applicable, to generate the directions link.
+     */
+    directionsUri?: string | null;
     /**
      * The legs of the trip. When you calculate travel duration and distance from a set origin, `legs` contains a single leg containing the duration and distance from the origin to the destination. When you do a search along route, `legs` contains two legs: one from the origin to place, and one from the place to the destination.
      */
@@ -1226,6 +1408,10 @@ export namespace places_v1 {
      * The requested place type. Full list of types supported: https://developers.google.com/maps/documentation/places/web-service/place-types. Only support one included type.
      */
     includedType?: string | null;
+    /**
+     * Optional. Include pure service area businesses if the field is set to true. Pure service area business is a business that visits or delivers to customers directly but does not serve customers at their business address. For example, businesses like cleaning services or plumbers. Those businesses do not have a physical address or location on Google Maps. Places will not return fields including `location`, `plus_code`, and other location related fields for these businesses.
+     */
+    includePureServiceAreaBusinesses?: boolean | null;
     /**
      * Place details will be displayed with the preferred language if available. If the language code is unspecified or unrecognized, place details of any language may be returned, with a preference for English if such details exist. Current list of supported languages: https://developers.google.com/maps/faq#languagesupport.
      */
@@ -1351,6 +1537,10 @@ export namespace places_v1 {
      * A list of routing summaries where each entry associates to the corresponding place in the same index in the `places` field. If the routing summary is not available for one of the places, it will contain an empty entry. This list will have as many entries as the list of places if requested.
      */
     routingSummaries?: Schema$GoogleMapsPlacesV1RoutingSummary[];
+    /**
+     * A link allows the user to search with the same text query as specified in the request on Google Maps.
+     */
+    searchUri?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
