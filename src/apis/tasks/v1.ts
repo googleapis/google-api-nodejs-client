@@ -1679,11 +1679,11 @@ export namespace tasks_v1 {
      */
     destinationTasklist?: string;
     /**
-     * New parent task identifier. If the task is moved to the top level, this parameter is omitted. Assigned tasks can not be set as parent task (have subtasks) or be moved under a parent task (become subtasks). Optional.
+     * New parent task identifier. If the task is moved to the top level, this parameter is omitted. The task set as parent must exist in the task list and can not be hidden. Assigned tasks can not be set as parent task (have subtasks) or be moved under a parent task (become subtasks). Optional.
      */
     parent?: string;
     /**
-     * New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
+     * New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. The task set as previous must exist in the task list and can not be hidden. Optional.
      */
     previous?: string;
     /**
