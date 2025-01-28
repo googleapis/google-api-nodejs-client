@@ -213,6 +213,10 @@ export namespace walletobjects_v1 {
      */
     androidAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
     /**
+     * Optional display text for the app link button. Character limit is 30.
+     */
+    displayText?: Schema$LocalizedString;
+    /**
      * Deprecated. Links to open iOS apps are not supported.
      */
     iosAppLinkInfo?: Schema$AppLinkDataAppLinkInfo;
@@ -639,7 +643,7 @@ export namespace walletobjects_v1 {
     objectVersion?: string | null;
   }
   /**
-   * Information about how a class may be discovered and instantiated from within the Android Pay app. This is done by searching for a loyalty or gift card program and scanning or manually entering.
+   * Information about how a class may be discovered and instantiated from within the Google Wallet app. This is done by searching for a loyalty or gift card program and scanning or manually entering.
    */
   export interface Schema$DiscoverableProgram {
     /**
@@ -866,6 +870,10 @@ export namespace walletobjects_v1 {
      */
     logo?: Schema$Image;
     /**
+     * Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
@@ -873,6 +881,10 @@ export namespace walletobjects_v1 {
      * Identifies whether multiple users and devices will save the same object referencing this class.
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
+    /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap.
      */
@@ -1024,9 +1036,17 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -1296,6 +1316,10 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected by the validator. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
@@ -1303,6 +1327,10 @@ export namespace walletobjects_v1 {
      * Identifies whether multiple users and devices will save the same object referencing this class.
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
+    /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Required. Origin airport.
      */
@@ -1460,9 +1488,17 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -1574,6 +1610,10 @@ export namespace walletobjects_v1 {
      * Links module data. If `linksModuleData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object.
      */
     linksModuleData?: Schema$LinksModuleData;
+    /**
+     * Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
     /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
@@ -1689,6 +1729,10 @@ export namespace walletobjects_v1 {
      * The logo image of the pass. This image is displayed in the card detail view in upper left, and also on the list/thumbnail view. If the logo is not present, the first letter of `cardTitle` would be shown as logo.
      */
     logo?: Schema$Image;
+    /**
+     * Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
     /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
@@ -1858,6 +1902,10 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * Merchant name, such as "Adam's Apparel". The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens.
      */
     merchantName?: string | null;
@@ -1869,6 +1917,10 @@ export namespace walletobjects_v1 {
      * Identifies whether multiple users and devices will save the same object referencing this class.
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
+    /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * The label to display for the PIN, such as "4-digit PIN".
      */
@@ -2016,9 +2068,17 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -2397,6 +2457,10 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
@@ -2404,6 +2468,10 @@ export namespace walletobjects_v1 {
      * Identifies whether multiple users and devices will save the same object referencing this class.
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
+    /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Required. The logo of the loyalty program or company. This logo is displayed in both the details and list views of the app.
      */
@@ -2567,9 +2635,17 @@ export namespace walletobjects_v1 {
      */
     loyaltyPoints?: Schema$LoyaltyPoints;
     /**
+     * Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -2826,6 +2902,19 @@ export namespace walletobjects_v1 {
     totalBytesIsEstimated?: boolean | null;
   }
   /**
+   * Locations of interest for this class or object. Currently, this location is used for geofenced notifications. When a user is within a set radius of this lat/long, and dwells there, Google will trigger a notification. When a user exits this radius, the notification will be hidden.
+   */
+  export interface Schema$MerchantLocation {
+    /**
+     * The latitude specified as any value in the range of -90.0 through +90.0, both inclusive. Values outside these bounds will be rejected.
+     */
+    latitude?: number | null;
+    /**
+     * The longitude specified in the range -180.0 through +180.0, both inclusive. Values outside these bounds will be rejected.
+     */
+    longitude?: number | null;
+  }
+  /**
    * A message that will be displayed with a Valuable
    */
   export interface Schema$Message {
@@ -3033,6 +3122,10 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
@@ -3040,6 +3133,10 @@ export namespace walletobjects_v1 {
      * Identifies whether multiple users and devices will save the same object referencing this class.
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
+    /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Required. The offer provider (either the aggregator name or merchant name). Recommended maximum length is 12 characters to ensure full string is displayed on smaller screens.
      */
@@ -3183,9 +3280,17 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
@@ -3836,6 +3941,10 @@ export namespace walletobjects_v1 {
      */
     logo?: Schema$Image;
     /**
+     * Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
@@ -3843,6 +3952,10 @@ export namespace walletobjects_v1 {
      * Identifies whether multiple users and devices will save the same object referencing this class.
      */
     multipleDevicesAndHoldersAllowedStatus?: string | null;
+    /**
+     * Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Identifies which redemption issuers can redeem the pass over Smart Tap. Redemption issuers are identified by their issuer ID. Redemption issuers must have at least one Smart Tap key configured. The `enableSmartTap` and object level `smartTapRedemptionLevel` fields must also be set up correctly in order for a pass to support Smart Tap.
      */
@@ -3998,9 +4111,17 @@ export namespace walletobjects_v1 {
      */
     locations?: Schema$LatLongPoint[];
     /**
+     * Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.
+     */
+    merchantLocations?: Schema$MerchantLocation[];
+    /**
      * An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.
      */
     messages?: Schema$Message[];
+    /**
+     * Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.
+     */
+    notifyPreference?: string | null;
     /**
      * Pass constraints for the object. Includes limiting NFC and screenshot behaviors.
      */
