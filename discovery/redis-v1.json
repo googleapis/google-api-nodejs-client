@@ -177,8 +177,226 @@
             }
           },
           "resources": {
+            "backupCollections": {
+              "methods": {
+                "get": {
+                  "description": "Get a backup collection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupCollections/{backupCollectionsId}",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.backupCollections.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis backupCollection resource name using the form: `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backupCollections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "BackupCollection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all backup collections owned by a consumer project in either the specified location (region) or all locations. If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupCollections",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.backupCollections.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The `next_page_token` value returned from a previous [ListBackupCollections] request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the backupCollection location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backupCollections",
+                  "response": {
+                    "$ref": "ListBackupCollectionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "backups": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes a specific backup.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupCollections/{backupCollectionsId}/backups/{backupsId}",
+                      "httpMethod": "DELETE",
+                      "id": "redis.projects.locations.backupCollections.backups.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Redis backup resource name using the form: `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}/backups/{backup_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupCollections/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. Idempotent request UUID.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "export": {
+                      "description": "Exports a specific backup to a customer target Cloud Storage URI.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupCollections/{backupCollectionsId}/backups/{backupsId}:export",
+                      "httpMethod": "POST",
+                      "id": "redis.projects.locations.backupCollections.backups.export",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Redis backup resource name using the form: `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}/backups/{backup_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupCollections/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:export",
+                      "request": {
+                        "$ref": "ExportBackupRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the details of a specific backup.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupCollections/{backupCollectionsId}/backups/{backupsId}",
+                      "httpMethod": "GET",
+                      "id": "redis.projects.locations.backupCollections.backups.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Redis backup resource name using the form: `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}/backups/{backup_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupCollections/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Backup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all backups owned by a backup collection.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupCollections/{backupCollectionsId}/backups",
+                      "httpMethod": "GET",
+                      "id": "redis.projects.locations.backupCollections.backups.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The `next_page_token` value returned from a previous [ListBackupCollections] request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the backupCollection using the form: `projects/{project_id}/locations/{location_id}/backupCollections/{backup_collection_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupCollections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/backups",
+                      "response": {
+                        "$ref": "ListBackupsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "clusters": {
               "methods": {
+                "backup": {
+                  "description": "Backup Redis Cluster. If this is the first time a backup is being created, a backup collection will be created at the backend, and this backup belongs to this collection. Both collection and backup will have a resource name. Backup will be executed for each shard. A replica (primary if nonHA) will be selected to perform the execution. Backup call will be rejected if there is an ongoing backup or update operation. Be aware that during preview, if the cluster's internal software version is too old, critical update will be performed before actual backup. Once the internal software version is updated to the minimum version required by the backup feature, subsequent backups will not require critical update. After preview, there will be no critical update needed for backup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}:backup",
+                  "httpMethod": "POST",
+                  "id": "redis.projects.locations.clusters.backup",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis cluster resource name using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:backup",
+                  "request": {
+                    "$ref": "BackupClusterRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a Redis cluster based on the specified properties. The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis cluster will be fully functional. The completed longrunning.Operation will contain the new cluster object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters",
@@ -355,7 +573,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Cluster: * `size_gb` * `replica_count`",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Cluster: * `size_gb` * `replica_count` * `cluster_endpoints`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -727,7 +945,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "redis.projects.locations.operations.cancel",
@@ -849,7 +1067,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20250121",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -875,38 +1093,32 @@
       },
       "type": "object"
     },
-    "AssetLocation": {
-      "description": "Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.",
-      "id": "AssetLocation",
+    "AutomatedBackupConfig": {
+      "description": "The automated backup config for a cluster.",
+      "id": "AutomatedBackupConfig",
       "properties": {
-        "ccfeRmsPath": {
-          "description": "Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.",
+        "automatedBackupMode": {
+          "description": "Optional. The automated backup mode. If the mode is disabled, the other fields will be ignored.",
+          "enum": [
+            "AUTOMATED_BACKUP_MODE_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. Automated backup config is not specified.",
+            "Automated backup config disabled.",
+            "Automated backup config enabled."
+          ],
           "type": "string"
         },
-        "expected": {
-          "$ref": "IsolationExpectations",
-          "description": "Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation."
+        "fixedFrequencySchedule": {
+          "$ref": "FixedFrequencySchedule",
+          "description": "Optional. Trigger automated backups at a fixed frequency."
         },
-        "extraParameters": {
-          "description": "Defines extra parameters required for specific asset types.",
-          "items": {
-            "$ref": "ExtraParameter"
-          },
-          "type": "array"
-        },
-        "locationData": {
-          "description": "Contains all kinds of physical location definitions for this asset.",
-          "items": {
-            "$ref": "LocationData"
-          },
-          "type": "array"
-        },
-        "parentAsset": {
-          "description": "Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.",
-          "items": {
-            "$ref": "CloudAsset"
-          },
-          "type": "array"
+        "retention": {
+          "description": "Optional. How long to keep automated backups before the backups are deleted. The value should be between 1 day and 365 days. If not specified, the default value is 35 days.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -950,6 +1162,186 @@
       },
       "type": "object"
     },
+    "Backup": {
+      "description": "Backup of a cluster.",
+      "id": "Backup",
+      "properties": {
+        "backupFiles": {
+          "description": "Output only. List of backup files of the backup.",
+          "items": {
+            "$ref": "BackupFile"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "backupType": {
+          "description": "Output only. Type of the backup.",
+          "enum": [
+            "BACKUP_TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "AUTOMATED"
+          ],
+          "enumDescriptions": [
+            "The default value, not set.",
+            "On-demand backup.",
+            "Automated backup."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "cluster": {
+          "description": "Output only. Cluster resource path of this backup.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clusterUid": {
+          "description": "Output only. Cluster uid of this backup.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time when the backup was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo",
+          "description": "Output only. Encryption information of the backup.",
+          "readOnly": true
+        },
+        "engineVersion": {
+          "description": "Output only. redis-7.2, valkey-7.5",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The time when the backup will expire.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Full resource path of the backup. the last part of the name is the backup id with the following format: [YYYYMMDDHHMMSS]_[Shorted Cluster UID] OR customer specified while backup cluster. Example: 20240515123000_1234",
+          "type": "string"
+        },
+        "nodeType": {
+          "description": "Output only. Node type of the cluster.",
+          "enum": [
+            "NODE_TYPE_UNSPECIFIED",
+            "REDIS_SHARED_CORE_NANO",
+            "REDIS_HIGHMEM_MEDIUM",
+            "REDIS_HIGHMEM_XLARGE",
+            "REDIS_STANDARD_SMALL"
+          ],
+          "enumDescriptions": [
+            "Node type unspecified",
+            "Redis shared core nano node_type.",
+            "Redis highmem medium node_type.",
+            "Redis highmem xlarge node_type.",
+            "Redis standard small node_type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "replicaCount": {
+          "description": "Output only. Number of replicas for the cluster.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "shardCount": {
+          "description": "Output only. Number of shards for the cluster.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "state": {
+          "description": "Output only. State of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "The default value, not set.",
+            "The backup is being created.",
+            "The backup is active to be used.",
+            "The backup is being deleted.",
+            "The backup is currently suspended due to reasons like project deletion, billing account closure, etc."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalSizeBytes": {
+          "description": "Output only. Total size of the backup in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System assigned unique identifier of the backup.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupClusterRequest": {
+      "description": "Request for [BackupCluster].",
+      "id": "BackupClusterRequest",
+      "properties": {
+        "backupId": {
+          "description": "Optional. The id of the backup to be created. If not specified, the default value ([YYYYMMDDHHMMSS]_[Shortened Cluster UID] is used.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "Optional. TTL for the backup to expire. Value range is 1 day to 100 years. If not specified, the default value is 100 years.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackupCollection": {
+      "description": "BackupCollection of a cluster.",
+      "id": "BackupCollection",
+      "properties": {
+        "cluster": {
+          "description": "Output only. The full resource path of the cluster the backup collection belongs to. Example: projects/{project}/locations/{location}/clusters/{cluster}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clusterUid": {
+          "description": "Output only. The cluster uid of the backup collection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time when the backup collection was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Output only. The KMS key used to encrypt the backups under this backup collection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Full resource path of the backup collection.",
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. System assigned unique identifier of the backup collection.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackupConfiguration": {
       "description": "Configuration for automatic backups",
       "id": "BackupConfiguration",
@@ -965,6 +1357,30 @@
         "pointInTimeRecoveryEnabled": {
           "description": "Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BackupFile": {
+      "description": "Backup is consisted of multiple backup files.",
+      "id": "BackupFile",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the backup file was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileName": {
+          "description": "Output only. e.g: .rdb",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. Size of the backup file in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1004,19 +1420,6 @@
       },
       "type": "object"
     },
-    "BlobstoreLocation": {
-      "description": "Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains",
-      "id": "BlobstoreLocation",
-      "properties": {
-        "policyId": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "CertChain": {
       "id": "CertChain",
       "properties": {
@@ -1044,34 +1447,14 @@
       },
       "type": "object"
     },
-    "CloudAsset": {
-      "id": "CloudAsset",
-      "properties": {
-        "assetName": {
-          "type": "string"
-        },
-        "assetType": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CloudAssetComposition": {
-      "id": "CloudAssetComposition",
-      "properties": {
-        "childAsset": {
-          "items": {
-            "$ref": "CloudAsset"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Cluster": {
       "description": "A cluster instance.",
       "id": "Cluster",
       "properties": {
+        "asyncClusterEndpointsDeletionEnabled": {
+          "description": "Optional. If true, cluster endpoints that are created and registered by customers can be deleted asynchronously. That is, such a cluster endpoint can be de-registered before the forwarding rules in the cluster endpoint are deleted.",
+          "type": "boolean"
+        },
         "authorizationMode": {
           "description": "Optional. The authorization mode of the Redis cluster. If not provided, auth feature is disabled for the cluster.",
           "enum": [
@@ -1085,6 +1468,22 @@
             "Authorization disabled mode"
           ],
           "type": "string"
+        },
+        "automatedBackupConfig": {
+          "$ref": "AutomatedBackupConfig",
+          "description": "Optional. The automated backup config for the cluster."
+        },
+        "backupCollection": {
+          "description": "Optional. Output only. The backup collection full resource name. Example: projects/{project}/locations/{location}/backupCollections/{collection}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "clusterEndpoints": {
+          "description": "Optional. A list of cluster enpoints.",
+          "items": {
+            "$ref": "ClusterEndpoint"
+          },
+          "type": "array"
         },
         "createTime": {
           "description": "Output only. The timestamp associated with the cluster creation request.",
@@ -1108,6 +1507,19 @@
           "readOnly": true,
           "type": "array"
         },
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo",
+          "description": "Output only. Encryption information of the data at rest of the cluster.",
+          "readOnly": true
+        },
+        "gcsSource": {
+          "$ref": "GcsBackupSource",
+          "description": "Optional. Backups stored in Cloud Storage buckets. The Cloud Storage buckets need to be the same region as the clusters. Read permission is required to import from the provided Cloud Storage objects."
+        },
+        "kmsKey": {
+          "description": "Optional. The KMS key used to encrypt the at-rest data of the cluster.",
+          "type": "string"
+        },
         "maintenancePolicy": {
           "$ref": "ClusterMaintenancePolicy",
           "description": "Optional. ClusterMaintenancePolicy determines when to allow or deny updates."
@@ -1116,6 +1528,10 @@
           "$ref": "ClusterMaintenanceSchedule",
           "description": "Output only. ClusterMaintenanceSchedule Output only Published maintenance schedule.",
           "readOnly": true
+        },
+        "managedBackupSource": {
+          "$ref": "ManagedBackupSource",
+          "description": "Optional. Backups generated and managed by memorystore service."
         },
         "name": {
           "description": "Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
@@ -1150,7 +1566,7 @@
           "type": "number"
         },
         "pscConfigs": {
-          "description": "Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.",
+          "description": "Optional. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.",
           "items": {
             "$ref": "PscConfig"
           },
@@ -1160,6 +1576,14 @@
           "description": "Output only. The list of PSC connections that are auto-created through service connectivity automation.",
           "items": {
             "$ref": "PscConnection"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "pscServiceAttachments": {
+          "description": "Output only. Service attachment details to configure Psc connections",
+          "items": {
+            "$ref": "PscServiceAttachment"
           },
           "readOnly": true,
           "type": "array"
@@ -1233,6 +1657,20 @@
         "zoneDistributionConfig": {
           "$ref": "ZoneDistributionConfig",
           "description": "Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region."
+        }
+      },
+      "type": "object"
+    },
+    "ClusterEndpoint": {
+      "description": "ClusterEndpoint consists of PSC connections that are created as a group in each VPC network for accessing the cluster. In each group, there shall be one connection for each service attachment in the cluster.",
+      "id": "ClusterEndpoint",
+      "properties": {
+        "connections": {
+          "description": "A group of PSC connections. They are created in the same VPC network, one for each service attachment in the cluster.",
+          "items": {
+            "$ref": "ConnectionDetail"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1359,6 +1797,21 @@
         "version": {
           "description": "Version of the standard or benchmark, for example, 1.1",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConnectionDetail": {
+      "description": "Detailed information of each PSC connection.",
+      "id": "ConnectionDetail",
+      "properties": {
+        "pscAutoConnection": {
+          "$ref": "PscAutoConnection",
+          "description": "Detailed information of a PSC connection that is created through service connectivity automation."
+        },
+        "pscConnection": {
+          "$ref": "PscConnection",
+          "description": "Detailed information of a PSC connection that is created by the customer who owns the cluster."
         }
       },
       "type": "object"
@@ -1658,7 +2111,9 @@
             "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
             "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
             "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
-            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY"
           ],
           "enumDeprecated": [
             false,
@@ -1666,6 +2121,8 @@
             false,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -1820,7 +2277,9 @@
             "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
             "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
             "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
-            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set."
           ],
           "type": "string"
         },
@@ -2191,7 +2650,9 @@
             "SIGNAL_TYPE_SUPERUSER_WRITING_TO_USER_TABLES",
             "SIGNAL_TYPE_USER_GRANTED_ALL_PERMISSIONS",
             "SIGNAL_TYPE_DATA_EXPORT_TO_EXTERNAL_CLOUD_STORAGE_BUCKET",
-            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET"
+            "SIGNAL_TYPE_DATA_EXPORT_TO_PUBLIC_CLOUD_STORAGE_BUCKET",
+            "SIGNAL_TYPE_WEAK_PASSWORD_HASH_ALGORITHM",
+            "SIGNAL_TYPE_NO_USER_PASSWORD_POLICY"
           ],
           "enumDeprecated": [
             false,
@@ -2199,6 +2660,8 @@
             false,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -2353,21 +2816,11 @@
             "Detects events where a Cloud SQL superuser (postgres for PostgreSQL servers or root for MySQL users) writes to non-system tables.",
             "Detects events where a database user or role has been granted all privileges to a database, or to all tables, procedures, or functions in a schema.",
             "Detects if database instance data exported to a Cloud Storage bucket outside of the organization.",
-            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible."
+            "Detects if database instance data exported to a Cloud Storage bucket that is owned by the organization and is publicly accessible.",
+            "Detects if a database instance is using a weak password hash algorithm.",
+            "Detects if a database instance has no user password policy set."
           ],
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DirectLocationAssignment": {
-      "id": "DirectLocationAssignment",
-      "properties": {
-        "location": {
-          "items": {
-            "$ref": "LocationAssignment"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -2399,6 +2852,69 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionInfo": {
+      "description": "EncryptionInfo describes the encryption information of a cluster or a backup.",
+      "id": "EncryptionInfo",
+      "properties": {
+        "encryptionType": {
+          "description": "Output only. Type of encryption.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GOOGLE_DEFAULT_ENCRYPTION",
+            "CUSTOMER_MANAGED_ENCRYPTION"
+          ],
+          "enumDescriptions": [
+            "Encryption type not specified. Defaults to GOOGLE_DEFAULT_ENCRYPTION.",
+            "The data is encrypted at rest with a key that is fully managed by Google. No key version will be populated. This is the default state.",
+            "The data is encrypted at rest with a key that is managed by the customer. KMS key versions will be populated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyPrimaryState": {
+          "description": "Output only. The state of the primary version of the KMS key perceived by the system. This field is not populated in backups.",
+          "enum": [
+            "KMS_KEY_STATE_UNSPECIFIED",
+            "ENABLED",
+            "PERMISSION_DENIED",
+            "DISABLED",
+            "DESTROYED",
+            "DESTROY_SCHEDULED",
+            "EKM_KEY_UNREACHABLE_DETECTED",
+            "BILLING_DISABLED",
+            "UNKNOWN_FAILURE"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "The KMS key is enabled and correctly configured.",
+            "Permission denied on the KMS key.",
+            "The KMS key is disabled.",
+            "The KMS key is destroyed.",
+            "The KMS key is scheduled to be destroyed.",
+            "The EKM key is unreachable.",
+            "Billing is disabled for the project.",
+            "All other unknown failures."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyVersions": {
+          "description": "Output only. KMS key versions that are being used to protect the data at-rest.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "lastUpdateTime": {
+          "description": "Output only. The most recent time when the encryption info was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Entitlement": {
@@ -2434,6 +2950,17 @@
       },
       "type": "object"
     },
+    "ExportBackupRequest": {
+      "description": "Request for [ExportBackup].",
+      "id": "ExportBackupRequest",
+      "properties": {
+        "gcsBucket": {
+          "description": "Google Cloud Storage bucket, like \"my-bucket\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExportInstanceRequest": {
       "description": "Request for Export.",
       "id": "ExportInstanceRequest",
@@ -2441,17 +2968,6 @@
         "outputConfig": {
           "$ref": "OutputConfig",
           "description": "Required. Specify data to be exported."
-        }
-      },
-      "type": "object"
-    },
-    "ExtraParameter": {
-      "description": "Defines parameters that should only be used for specific asset types.",
-      "id": "ExtraParameter",
-      "properties": {
-        "regionalMigDistributionPolicy": {
-          "$ref": "RegionalMigDistributionPolicy",
-          "description": "Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances."
         }
       },
       "type": "object"
@@ -2473,6 +2989,31 @@
             "Instance failover will be performed without data loss control."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FixedFrequencySchedule": {
+      "description": "This schedule allows the backup to be triggered at a fixed frequency (currently only daily is supported).",
+      "id": "FixedFrequencySchedule",
+      "properties": {
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Required. The start time of every automated backup in UTC. It must be set to the start of an hour. This field is required."
+        }
+      },
+      "type": "object"
+    },
+    "GcsBackupSource": {
+      "description": "Backups stored in Cloud Storage buckets. The Cloud Storage buckets need to be the same region as the clusters.",
+      "id": "GcsBackupSource",
+      "properties": {
+        "uris": {
+          "description": "Optional. URIs of the GCS objects to import. Example: gs://bucket1/object1, gs://bucket2/folder2/object2",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2877,127 +3418,52 @@
       },
       "type": "object"
     },
-    "IsolationExpectations": {
-      "id": "IsolationExpectations",
+    "ListBackupCollectionsResponse": {
+      "description": "Response for [ListBackupCollections].",
+      "id": "ListBackupCollectionsResponse",
       "properties": {
-        "requirementOverride": {
-          "$ref": "RequirementOverride",
-          "description": "Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic."
+        "backupCollections": {
+          "description": "A list of backupCollections in the project. If the `location_id` in the parent field of the request is \"-\", all regions available to the project are queried, and the results aggregated. If in such an aggregated query a location is unavailable, a placeholder backupCollection entry is included in the response with the `name` field set to a value of the form `projects/{project_id}/locations/{location_id}/backupCollections/`- and the `status` field set to ERROR and `status_message` field set to \"location not available for ListBackupCollections\".",
+          "items": {
+            "$ref": "BackupCollection"
+          },
+          "type": "array"
         },
-        "ziOrgPolicy": {
-          "enum": [
-            "ZI_UNSPECIFIED",
-            "ZI_UNKNOWN",
-            "ZI_NOT_REQUIRED",
-            "ZI_PREFERRED",
-            "ZI_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            "",
-            ""
-          ],
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
-        "ziRegionPolicy": {
-          "enum": [
-            "ZI_REGION_POLICY_UNSPECIFIED",
-            "ZI_REGION_POLICY_UNKNOWN",
-            "ZI_REGION_POLICY_NOT_SET",
-            "ZI_REGION_POLICY_FAIL_OPEN",
-            "ZI_REGION_POLICY_FAIL_CLOSED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            "",
-            ""
-          ],
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListBackupsResponse": {
+      "description": "Response for [ListBackups].",
+      "id": "ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "A list of backups in the project.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         },
-        "ziRegionState": {
-          "enum": [
-            "ZI_REGION_UNSPECIFIED",
-            "ZI_REGION_UNKNOWN",
-            "ZI_REGION_NOT_ENABLED",
-            "ZI_REGION_ENABLED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zoneIsolation": {
-          "deprecated": true,
-          "description": "Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.",
-          "enum": [
-            "ZI_UNSPECIFIED",
-            "ZI_UNKNOWN",
-            "ZI_NOT_REQUIRED",
-            "ZI_PREFERRED",
-            "ZI_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zoneSeparation": {
-          "deprecated": true,
-          "description": "Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.",
-          "enum": [
-            "ZS_UNSPECIFIED",
-            "ZS_UNKNOWN",
-            "ZS_NOT_REQUIRED",
-            "ZS_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zsOrgPolicy": {
-          "enum": [
-            "ZS_UNSPECIFIED",
-            "ZS_UNKNOWN",
-            "ZS_NOT_REQUIRED",
-            "ZS_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zsRegionState": {
-          "enum": [
-            "ZS_REGION_UNSPECIFIED",
-            "ZS_REGION_UNKNOWN",
-            "ZS_REGION_NOT_ENABLED",
-            "ZS_REGION_ENABLED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking of the asset ZS-bit is not available",
-            "",
-            ""
-          ],
-          "type": "string"
+        "unreachable": {
+          "description": "Backups that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3122,70 +3588,13 @@
       },
       "type": "object"
     },
-    "LocationAssignment": {
-      "id": "LocationAssignment",
-      "properties": {
-        "location": {
-          "type": "string"
-        },
-        "locationType": {
-          "enum": [
-            "UNSPECIFIED",
-            "CLUSTER",
-            "POP",
-            "CLOUD_ZONE",
-            "CLOUD_REGION",
-            "MULTI_REGION_GEO",
-            "MULTI_REGION_JURISDICTION",
-            "GLOBAL",
-            "OTHER"
-          ],
-          "enumDescriptions": [
-            "",
-            "1-10: Physical failure domains.",
-            "",
-            "11-20: Logical failure domains.",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LocationData": {
-      "id": "LocationData",
-      "properties": {
-        "blobstoreLocation": {
-          "$ref": "BlobstoreLocation"
-        },
-        "childAssetLocation": {
-          "$ref": "CloudAssetComposition"
-        },
-        "directLocation": {
-          "$ref": "DirectLocationAssignment"
-        },
-        "gcpProjectProxy": {
-          "$ref": "TenantProjectProxy"
-        },
-        "placerLocation": {
-          "$ref": "PlacerLocation"
-        },
-        "spannerLocation": {
-          "$ref": "SpannerLocation"
-        }
-      },
-      "type": "object"
-    },
     "MachineConfiguration": {
       "description": "MachineConfiguration describes the configuration of a machine specific to Database Resource.",
       "id": "MachineConfiguration",
       "properties": {
         "cpuCount": {
-          "description": "The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "deprecated": true,
+          "description": "The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
           "format": "int32",
           "type": "integer"
         },
@@ -3198,6 +3607,11 @@
           "description": "Optional. Number of shards (if applicable).",
           "format": "int32",
           "type": "integer"
+        },
+        "vcpuCount": {
+          "description": "Optional. The number of vCPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -3257,6 +3671,17 @@
           "description": "Output only. The start time of any upcoming scheduled maintenance for this instance.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ManagedBackupSource": {
+      "description": "Backups that generated and managed by memorystore.",
+      "id": "ManagedBackupSource",
+      "properties": {
+        "backup": {
+          "description": "Optional. Example: //redis.googleapis.com/projects/{project}/locations/{location}/backupCollections/{collection}/backups/{backup} A shorter version (without the prefix) of the backup name is also supported, like projects/{project}/locations/{location}/backupCollections/{collection}/backups/{backup_id} In this case, it assumes the backup is under redis.googleapis.com.",
           "type": "string"
         }
       },
@@ -3341,7 +3766,9 @@
             "MEMORY_UTILIZATION",
             "NETWORK_CONNECTIONS",
             "STORAGE_UTILIZATION",
-            "STORAGE_USED_BYTES"
+            "STORAGE_USED_BYTES",
+            "NODE_COUNT",
+            "MEMORY_USED_BYTES"
           ],
           "enumDescriptions": [
             "Unspecified metric type.",
@@ -3349,7 +3776,9 @@
             "Memory utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
             "Number of network connections for a resource.",
             "Storage utilization for a resource. The value is a fraction between 0.0 and 1.0 (may momentarily exceed 1.0 in some cases).",
-            "Sotrage used by a resource."
+            "Sotrage used by a resource.",
+            "Node count for a resource. It represents the number of nodes units in a bigtable/spanner instance.",
+            "Memory used by a resource (in bytes)."
           ],
           "type": "string"
         },
@@ -3545,17 +3974,6 @@
       },
       "type": "object"
     },
-    "PlacerLocation": {
-      "description": "Message describing that the location of the customer resource is tied to placer allocations",
-      "id": "PlacerLocation",
-      "properties": {
-        "placerConfig": {
-          "description": "Directory with a config related to it in placer (e.g. \"/placer/prod/home/my-root/my-dir\")",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Product": {
       "description": "Product specification for Condor resources.",
       "id": "Product",
@@ -3671,6 +4089,73 @@
       },
       "type": "object"
     },
+    "PscAutoConnection": {
+      "description": "Details of consumer resources in a PSC connection that is created through Service Connectivity Automation.",
+      "id": "PscAutoConnection",
+      "properties": {
+        "address": {
+          "description": "Output only. The IP allocated on the consumer network for the PSC forwarding rule.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "connectionType": {
+          "description": "Output only. Type of the PSC connection.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CONNECTION_TYPE_DISCOVERY",
+            "CONNECTION_TYPE_PRIMARY",
+            "CONNECTION_TYPE_READER"
+          ],
+          "enumDescriptions": [
+            "Cluster endpoint Type is not set",
+            "Cluster endpoint that will be used as for cluster topology discovery.",
+            "Cluster endpoint that will be used as primary endpoint to access primary.",
+            "Cluster endpoint that will be used as reader endpoint to access replicas."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "Output only. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. The consumer network where the IP address resides, in the form of projects/{project_id}/global/networks/{network_id}.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. The consumer project_id where the forwarding rule is created from.",
+          "type": "string"
+        },
+        "pscConnectionId": {
+          "description": "Output only. The PSC connection id of the forwarding rule connected to the service attachment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pscConnectionStatus": {
+          "description": "Output only. The status of the PSC connection. Please note that this value is updated periodically. Please use Private Service Connect APIs for the latest status.",
+          "enum": [
+            "PSC_CONNECTION_STATUS_UNSPECIFIED",
+            "PSC_CONNECTION_STATUS_ACTIVE",
+            "PSC_CONNECTION_STATUS_NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "PSC connection status is not specified.",
+            "The connection is active",
+            "Connection not found"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Output only. The service attachment which is the target of the PSC connection, in the form of projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PscConfig": {
       "id": "PscConfig",
       "properties": {
@@ -3689,6 +4174,23 @@
           "description": "Required. The IP allocated on the consumer network for the PSC forwarding rule.",
           "type": "string"
         },
+        "connectionType": {
+          "description": "Output only. Type of the PSC connection.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CONNECTION_TYPE_DISCOVERY",
+            "CONNECTION_TYPE_PRIMARY",
+            "CONNECTION_TYPE_READER"
+          ],
+          "enumDescriptions": [
+            "Cluster endpoint Type is not set",
+            "Cluster endpoint that will be used as for cluster topology discovery.",
+            "Cluster endpoint that will be used as primary endpoint to access primary.",
+            "Cluster endpoint that will be used as reader endpoint to access replicas."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "forwardingRule": {
           "description": "Required. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId}/regions/us-east1/forwardingRules/{resourceId}.",
           "type": "string"
@@ -3705,8 +4207,52 @@
           "description": "Required. The PSC connection id of the forwarding rule connected to the service attachment.",
           "type": "string"
         },
+        "pscConnectionStatus": {
+          "description": "Output only. The status of the PSC connection. Please note that this value is updated periodically. To get the latest status of a PSC connection, follow https://cloud.google.com/vpc/docs/configure-private-service-connect-services#endpoint-details.",
+          "enum": [
+            "PSC_CONNECTION_STATUS_UNSPECIFIED",
+            "PSC_CONNECTION_STATUS_ACTIVE",
+            "PSC_CONNECTION_STATUS_NOT_FOUND"
+          ],
+          "enumDescriptions": [
+            "PSC connection status is not specified.",
+            "The connection is active",
+            "Connection not found"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "serviceAttachment": {
           "description": "Required. The service attachment which is the target of the PSC connection, in the form of projects/{project-id}/regions/{region}/serviceAttachments/{service-attachment-id}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PscServiceAttachment": {
+      "description": "Configuration of a service attachment of the cluster, for creating PSC connections.",
+      "id": "PscServiceAttachment",
+      "properties": {
+        "connectionType": {
+          "description": "Output only. Type of a PSC connection targeting this service attachment.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CONNECTION_TYPE_DISCOVERY",
+            "CONNECTION_TYPE_PRIMARY",
+            "CONNECTION_TYPE_READER"
+          ],
+          "enumDescriptions": [
+            "Cluster endpoint Type is not set",
+            "Cluster endpoint that will be used as for cluster topology discovery.",
+            "Cluster endpoint that will be used as primary endpoint to access primary.",
+            "Cluster endpoint that will be used as reader endpoint to access replicas."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Output only. Service attachment URI which your self-created PscConnection should use as target",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3773,25 +4319,6 @@
       },
       "type": "object"
     },
-    "RegionalMigDistributionPolicy": {
-      "description": "To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances",
-      "id": "RegionalMigDistributionPolicy",
-      "properties": {
-        "targetShape": {
-          "description": "The shape in which the group converges around distribution of resources. Instance of proto2 enum",
-          "format": "int32",
-          "type": "integer"
-        },
-        "zones": {
-          "description": "Cloud zones used by regional MIG to create instances.",
-          "items": {
-            "$ref": "ZoneConfiguration"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "RemoteCluster": {
       "description": "Details of the remote cluster associated with this cluster in a cross cluster replication setup.",
       "id": "RemoteCluster",
@@ -3803,44 +4330,6 @@
         "uid": {
           "description": "Output only. The unique identifier of the remote cluster.",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RequirementOverride": {
-      "id": "RequirementOverride",
-      "properties": {
-        "ziOverride": {
-          "enum": [
-            "ZI_UNSPECIFIED",
-            "ZI_UNKNOWN",
-            "ZI_NOT_REQUIRED",
-            "ZI_PREFERRED",
-            "ZI_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "zsOverride": {
-          "enum": [
-            "ZS_UNSPECIFIED",
-            "ZS_UNKNOWN",
-            "ZS_NOT_REQUIRED",
-            "ZS_REQUIRED"
-          ],
-          "enumDescriptions": [
-            "",
-            "To be used if tracking is not available",
-            "",
-            ""
-          ],
           "type": "string"
         }
       },
@@ -3913,6 +4402,7 @@
           "type": "integer"
         },
         "retentionUnit": {
+          "deprecated": true,
           "description": "The unit that 'retained_backups' represents.",
           "enum": [
             "RETENTION_UNIT_UNSPECIFIED",
@@ -3933,26 +4423,11 @@
         "timeBasedRetention": {
           "format": "google-duration",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SpannerLocation": {
-      "id": "SpannerLocation",
-      "properties": {
-        "backupName": {
-          "description": "Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
-        "dbName": {
-          "description": "Set of databases used by the resource in format /span//",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+        "timestampBasedRetentionTime": {
+          "description": "Timestamp based retention period i.e. 2024-05-01T00:00:00Z",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4009,39 +4484,27 @@
       },
       "type": "object"
     },
-    "TenantProjectProxy": {
-      "id": "TenantProjectProxy",
-      "properties": {
-        "projectNumbers": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "TimeOfDay": {
       "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
@@ -4182,15 +4645,6 @@
         "startTime": {
           "$ref": "TimeOfDay",
           "description": "Required. Start time of the window in UTC time."
-        }
-      },
-      "type": "object"
-    },
-    "ZoneConfiguration": {
-      "id": "ZoneConfiguration",
-      "properties": {
-        "zone": {
-          "type": "string"
         }
       },
       "type": "object"

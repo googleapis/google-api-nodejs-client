@@ -134,29 +134,21 @@ export namespace redis_v1beta1 {
     appendFsync?: string | null;
   }
   /**
-   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
+   * The automated backup config for a cluster.
    */
-  export interface Schema$AssetLocation {
+  export interface Schema$AutomatedBackupConfig {
     /**
-     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
+     * Optional. The automated backup mode. If the mode is disabled, the other fields will be ignored.
      */
-    ccfeRmsPath?: string | null;
+    automatedBackupMode?: string | null;
     /**
-     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
+     * Optional. Trigger automated backups at a fixed frequency.
      */
-    expected?: Schema$IsolationExpectations;
+    fixedFrequencySchedule?: Schema$FixedFrequencySchedule;
     /**
-     * Defines extra parameters required for specific asset types.
+     * Optional. How long to keep automated backups before the backups are deleted. The value should be between 1 day and 365 days. If not specified, the default value is 35 days.
      */
-    extraParameters?: Schema$ExtraParameter[];
-    /**
-     * Contains all kinds of physical location definitions for this asset.
-     */
-    locationData?: Schema$LocationData[];
-    /**
-     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
-     */
-    parentAsset?: Schema$CloudAsset[];
+    retention?: string | null;
   }
   /**
    * Configuration for availability of database instance
@@ -178,6 +170,113 @@ export namespace redis_v1beta1 {
     promotableReplicaConfigured?: boolean | null;
   }
   /**
+   * Backup of a cluster.
+   */
+  export interface Schema$Backup {
+    /**
+     * Output only. List of backup files of the backup.
+     */
+    backupFiles?: Schema$BackupFile[];
+    /**
+     * Output only. Type of the backup.
+     */
+    backupType?: string | null;
+    /**
+     * Output only. Cluster resource path of this backup.
+     */
+    cluster?: string | null;
+    /**
+     * Output only. Cluster uid of this backup.
+     */
+    clusterUid?: string | null;
+    /**
+     * Output only. The time when the backup was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Encryption information of the backup.
+     */
+    encryptionInfo?: Schema$EncryptionInfo;
+    /**
+     * Output only. redis-7.2, valkey-7.5
+     */
+    engineVersion?: string | null;
+    /**
+     * Output only. The time when the backup will expire.
+     */
+    expireTime?: string | null;
+    /**
+     * Identifier. Full resource path of the backup. the last part of the name is the backup id with the following format: [YYYYMMDDHHMMSS]_[Shorted Cluster UID] OR customer specified while backup cluster. Example: 20240515123000_1234
+     */
+    name?: string | null;
+    /**
+     * Output only. Node type of the cluster.
+     */
+    nodeType?: string | null;
+    /**
+     * Output only. Number of replicas for the cluster.
+     */
+    replicaCount?: number | null;
+    /**
+     * Output only. Number of shards for the cluster.
+     */
+    shardCount?: number | null;
+    /**
+     * Output only. State of the backup.
+     */
+    state?: string | null;
+    /**
+     * Output only. Total size of the backup in bytes.
+     */
+    totalSizeBytes?: string | null;
+    /**
+     * Output only. System assigned unique identifier of the backup.
+     */
+    uid?: string | null;
+  }
+  /**
+   * Request for [BackupCluster].
+   */
+  export interface Schema$BackupClusterRequest {
+    /**
+     * Optional. The id of the backup to be created. If not specified, the default value ([YYYYMMDDHHMMSS]_[Shortened Cluster UID] is used.
+     */
+    backupId?: string | null;
+    /**
+     * Optional. TTL for the backup to expire. Value range is 1 day to 100 years. If not specified, the default value is 100 years.
+     */
+    ttl?: string | null;
+  }
+  /**
+   * BackupCollection of a cluster.
+   */
+  export interface Schema$BackupCollection {
+    /**
+     * Output only. The full resource path of the cluster the backup collection belongs to. Example: projects/{project\}/locations/{location\}/clusters/{cluster\}
+     */
+    cluster?: string | null;
+    /**
+     * Output only. The cluster uid of the backup collection.
+     */
+    clusterUid?: string | null;
+    /**
+     * Output only. The time when the backup collection was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The KMS key used to encrypt the backups under this backup collection.
+     */
+    kmsKey?: string | null;
+    /**
+     * Identifier. Full resource path of the backup collection.
+     */
+    name?: string | null;
+    /**
+     * Output only. System assigned unique identifier of the backup collection.
+     */
+    uid?: string | null;
+  }
+  /**
    * Configuration for automatic backups
    */
   export interface Schema$BackupConfiguration {
@@ -193,6 +292,23 @@ export namespace redis_v1beta1 {
      * Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.
      */
     pointInTimeRecoveryEnabled?: boolean | null;
+  }
+  /**
+   * Backup is consisted of multiple backup files.
+   */
+  export interface Schema$BackupFile {
+    /**
+     * Output only. The time when the backup file was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. e.g: .rdb
+     */
+    fileName?: string | null;
+    /**
+     * Output only. Size of the backup file in bytes.
+     */
+    sizeBytes?: string | null;
   }
   /**
    * A backup run.
@@ -215,12 +331,6 @@ export namespace redis_v1beta1 {
      */
     status?: string | null;
   }
-  /**
-   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
-   */
-  export interface Schema$BlobstoreLocation {
-    policyId?: string[] | null;
-  }
   export interface Schema$CertChain {
     /**
      * The certificates that form the CA chain, from leaf to root order.
@@ -237,21 +347,30 @@ export namespace redis_v1beta1 {
      */
     name?: string | null;
   }
-  export interface Schema$CloudAsset {
-    assetName?: string | null;
-    assetType?: string | null;
-  }
-  export interface Schema$CloudAssetComposition {
-    childAsset?: Schema$CloudAsset[];
-  }
   /**
    * A cluster instance.
    */
   export interface Schema$Cluster {
     /**
+     * Optional. If true, cluster endpoints that are created and registered by customers can be deleted asynchronously. That is, such a cluster endpoint can be de-registered before the forwarding rules in the cluster endpoint are deleted.
+     */
+    asyncClusterEndpointsDeletionEnabled?: boolean | null;
+    /**
      * Optional. The authorization mode of the Redis cluster. If not provided, auth feature is disabled for the cluster.
      */
     authorizationMode?: string | null;
+    /**
+     * Optional. The automated backup config for the cluster.
+     */
+    automatedBackupConfig?: Schema$AutomatedBackupConfig;
+    /**
+     * Optional. Output only. The backup collection full resource name. Example: projects/{project\}/locations/{location\}/backupCollections/{collection\}
+     */
+    backupCollection?: string | null;
+    /**
+     * Optional. A list of cluster enpoints.
+     */
+    clusterEndpoints?: Schema$ClusterEndpoint[];
     /**
      * Output only. The timestamp associated with the cluster creation request.
      */
@@ -269,6 +388,18 @@ export namespace redis_v1beta1 {
      */
     discoveryEndpoints?: Schema$DiscoveryEndpoint[];
     /**
+     * Output only. Encryption information of the data at rest of the cluster.
+     */
+    encryptionInfo?: Schema$EncryptionInfo;
+    /**
+     * Optional. Backups stored in Cloud Storage buckets. The Cloud Storage buckets need to be the same region as the clusters. Read permission is required to import from the provided Cloud Storage objects.
+     */
+    gcsSource?: Schema$GcsBackupSource;
+    /**
+     * Optional. The KMS key used to encrypt the at-rest data of the cluster.
+     */
+    kmsKey?: string | null;
+    /**
      * Optional. ClusterMaintenancePolicy determines when to allow or deny updates.
      */
     maintenancePolicy?: Schema$ClusterMaintenancePolicy;
@@ -276,6 +407,10 @@ export namespace redis_v1beta1 {
      * Output only. ClusterMaintenanceSchedule Output only Published maintenance schedule.
      */
     maintenanceSchedule?: Schema$ClusterMaintenanceSchedule;
+    /**
+     * Optional. Backups generated and managed by memorystore service.
+     */
+    managedBackupSource?: Schema$ManagedBackupSource;
     /**
      * Required. Identifier. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
      */
@@ -293,13 +428,17 @@ export namespace redis_v1beta1 {
      */
     preciseSizeGb?: number | null;
     /**
-     * Required. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.
+     * Optional. Each PscConfig configures the consumer network where IPs will be designated to the cluster for client access through Private Service Connect Automation. Currently, only one PscConfig is supported.
      */
     pscConfigs?: Schema$PscConfig[];
     /**
      * Output only. The list of PSC connections that are auto-created through service connectivity automation.
      */
     pscConnections?: Schema$PscConnection[];
+    /**
+     * Output only. Service attachment details to configure Psc connections
+     */
+    pscServiceAttachments?: Schema$PscServiceAttachment[];
     /**
      * Optional. Key/Value pairs of customer overrides for mutable Redis Configs
      */
@@ -336,6 +475,15 @@ export namespace redis_v1beta1 {
      * Optional. This config will be used to determine how the customer wants us to distribute cluster resources within the region.
      */
     zoneDistributionConfig?: Schema$ZoneDistributionConfig;
+  }
+  /**
+   * ClusterEndpoint consists of PSC connections that are created as a group in each VPC network for accessing the cluster. In each group, there shall be one connection for each service attachment in the cluster.
+   */
+  export interface Schema$ClusterEndpoint {
+    /**
+     * A group of PSC connections. They are created in the same VPC network, one for each service attachment in the cluster.
+     */
+    connections?: Schema$ConnectionDetail[];
   }
   /**
    * Maintenance policy per cluster.
@@ -409,6 +557,19 @@ export namespace redis_v1beta1 {
      * Version of the standard or benchmark, for example, 1.1
      */
     version?: string | null;
+  }
+  /**
+   * Detailed information of each PSC connection.
+   */
+  export interface Schema$ConnectionDetail {
+    /**
+     * Detailed information of a PSC connection that is created through service connectivity automation.
+     */
+    pscAutoConnection?: Schema$PscAutoConnection;
+    /**
+     * Detailed information of a PSC connection that is created by the customer who owns the cluster.
+     */
+    pscConnection?: Schema$PscConnection;
   }
   /**
    * Cross cluster replication config.
@@ -670,9 +831,6 @@ export namespace redis_v1beta1 {
      */
     signalType?: string | null;
   }
-  export interface Schema$DirectLocationAssignment {
-    location?: Schema$LocationAssignment[];
-  }
   /**
    * Endpoints on each network, for Redis clients to connect to the cluster.
    */
@@ -695,6 +853,27 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
+   * EncryptionInfo describes the encryption information of a cluster or a backup.
+   */
+  export interface Schema$EncryptionInfo {
+    /**
+     * Output only. Type of encryption.
+     */
+    encryptionType?: string | null;
+    /**
+     * Output only. The state of the primary version of the KMS key perceived by the system. This field is not populated in backups.
+     */
+    kmsKeyPrimaryState?: string | null;
+    /**
+     * Output only. KMS key versions that are being used to protect the data at-rest.
+     */
+    kmsKeyVersions?: string[] | null;
+    /**
+     * Output only. The most recent time when the encryption info was updated.
+     */
+    lastUpdateTime?: string | null;
+  }
+  /**
    * Proto representing the access that a user has to a specific feature/service. NextId: 3.
    */
   export interface Schema$Entitlement {
@@ -708,6 +887,15 @@ export namespace redis_v1beta1 {
     type?: string | null;
   }
   /**
+   * Request for [ExportBackup].
+   */
+  export interface Schema$ExportBackupRequest {
+    /**
+     * Google Cloud Storage bucket, like "my-bucket".
+     */
+    gcsBucket?: string | null;
+  }
+  /**
    * Request for Export.
    */
   export interface Schema$ExportInstanceRequest {
@@ -717,15 +905,6 @@ export namespace redis_v1beta1 {
     outputConfig?: Schema$OutputConfig;
   }
   /**
-   * Defines parameters that should only be used for specific asset types.
-   */
-  export interface Schema$ExtraParameter {
-    /**
-     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
-     */
-    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
-  }
-  /**
    * Request for Failover.
    */
   export interface Schema$FailoverInstanceRequest {
@@ -733,6 +912,24 @@ export namespace redis_v1beta1 {
      * Optional. Available data protection modes that the user can choose. If it's unspecified, data protection mode will be LIMITED_DATA_LOSS by default.
      */
     dataProtectionMode?: string | null;
+  }
+  /**
+   * This schedule allows the backup to be triggered at a fixed frequency (currently only daily is supported).
+   */
+  export interface Schema$FixedFrequencySchedule {
+    /**
+     * Required. The start time of every automated backup in UTC. It must be set to the start of an hour. This field is required.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Backups stored in Cloud Storage buckets. The Cloud Storage buckets need to be the same region as the clusters.
+   */
+  export interface Schema$GcsBackupSource {
+    /**
+     * Optional. URIs of the GCS objects to import. Example: gs://bucket1/object1, gs://bucket2/folder2/object2
+     */
+    uris?: string[] | null;
   }
   /**
    * The Cloud Storage location for the output content
@@ -761,7 +958,7 @@ export namespace redis_v1beta1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -999,24 +1196,39 @@ export namespace redis_v1beta1 {
      */
     resourceName?: string | null;
   }
-  export interface Schema$IsolationExpectations {
+  /**
+   * Response for [ListBackupCollections].
+   */
+  export interface Schema$ListBackupCollectionsResponse {
     /**
-     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
+     * A list of backupCollections in the project. If the `location_id` in the parent field of the request is "-", all regions available to the project are queried, and the results aggregated. If in such an aggregated query a location is unavailable, a placeholder backupCollection entry is included in the response with the `name` field set to a value of the form `projects/{project_id\}/locations/{location_id\}/backupCollections/`- and the `status` field set to ERROR and `status_message` field set to "location not available for ListBackupCollections".
      */
-    requirementOverride?: Schema$RequirementOverride;
-    ziOrgPolicy?: string | null;
-    ziRegionPolicy?: string | null;
-    ziRegionState?: string | null;
+    backupCollections?: Schema$BackupCollection[];
     /**
-     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    zoneIsolation?: string | null;
+    nextPageToken?: string | null;
     /**
-     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
+     * Locations that could not be reached.
      */
-    zoneSeparation?: string | null;
-    zsOrgPolicy?: string | null;
-    zsRegionState?: string | null;
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for [ListBackups].
+   */
+  export interface Schema$ListBackupsResponse {
+    /**
+     * A list of backups in the project.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Backups that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for ListClusters.
@@ -1103,24 +1315,12 @@ export namespace redis_v1beta1 {
      */
     name?: string | null;
   }
-  export interface Schema$LocationAssignment {
-    location?: string | null;
-    locationType?: string | null;
-  }
-  export interface Schema$LocationData {
-    blobstoreLocation?: Schema$BlobstoreLocation;
-    childAssetLocation?: Schema$CloudAssetComposition;
-    directLocation?: Schema$DirectLocationAssignment;
-    gcpProjectProxy?: Schema$TenantProjectProxy;
-    placerLocation?: Schema$PlacerLocation;
-    spannerLocation?: Schema$SpannerLocation;
-  }
   /**
    * MachineConfiguration describes the configuration of a machine specific to Database Resource.
    */
   export interface Schema$MachineConfiguration {
     /**
-     * The number of CPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     * The number of CPUs. Deprecated. Use vcpu_count instead. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
      */
     cpuCount?: number | null;
     /**
@@ -1131,6 +1331,10 @@ export namespace redis_v1beta1 {
      * Optional. Number of shards (if applicable).
      */
     shardCount?: number | null;
+    /**
+     * Optional. The number of vCPUs. TODO(b/342344482, b/342346271) add proto validations again after bug fix.
+     */
+    vcpuCount?: number | null;
   }
   /**
    * Maintenance policy for an instance.
@@ -1173,6 +1377,15 @@ export namespace redis_v1beta1 {
      * Output only. The start time of any upcoming scheduled maintenance for this instance.
      */
     startTime?: string | null;
+  }
+  /**
+   * Backups that generated and managed by memorystore.
+   */
+  export interface Schema$ManagedBackupSource {
+    /**
+     * Optional. Example: //redis.googleapis.com/projects/{project\}/locations/{location\}/backupCollections/{collection\}/backups/{backup\} A shorter version (without the prefix) of the backup name is also supported, like projects/{project\}/locations/{location\}/backupCollections/{collection\}/backups/{backup_id\} In this case, it assumes the backup is under redis.googleapis.com.
+     */
+    backup?: string | null;
   }
   export interface Schema$ManagedCertificateAuthority {
     /**
@@ -1331,15 +1544,6 @@ export namespace redis_v1beta1 {
     rdbSnapshotStartTime?: string | null;
   }
   /**
-   * Message describing that the location of the customer resource is tied to placer allocations
-   */
-  export interface Schema$PlacerLocation {
-    /**
-     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
-     */
-    placerConfig?: string | null;
-  }
-  /**
    * Product specification for Condor resources.
    */
   export interface Schema$Product {
@@ -1356,6 +1560,43 @@ export namespace redis_v1beta1 {
      */
     version?: string | null;
   }
+  /**
+   * Details of consumer resources in a PSC connection that is created through Service Connectivity Automation.
+   */
+  export interface Schema$PscAutoConnection {
+    /**
+     * Output only. The IP allocated on the consumer network for the PSC forwarding rule.
+     */
+    address?: string | null;
+    /**
+     * Output only. Type of the PSC connection.
+     */
+    connectionType?: string | null;
+    /**
+     * Output only. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId\}/regions/us-east1/forwardingRules/{resourceId\}.
+     */
+    forwardingRule?: string | null;
+    /**
+     * Required. The consumer network where the IP address resides, in the form of projects/{project_id\}/global/networks/{network_id\}.
+     */
+    network?: string | null;
+    /**
+     * Required. The consumer project_id where the forwarding rule is created from.
+     */
+    projectId?: string | null;
+    /**
+     * Output only. The PSC connection id of the forwarding rule connected to the service attachment.
+     */
+    pscConnectionId?: string | null;
+    /**
+     * Output only. The status of the PSC connection. Please note that this value is updated periodically. Please use Private Service Connect APIs for the latest status.
+     */
+    pscConnectionStatus?: string | null;
+    /**
+     * Output only. The service attachment which is the target of the PSC connection, in the form of projects/{project-id\}/regions/{region\}/serviceAttachments/{service-attachment-id\}.
+     */
+    serviceAttachment?: string | null;
+  }
   export interface Schema$PscConfig {
     /**
      * Required. The network where the IP address of the discovery endpoint will be reserved, in the form of projects/{network_project\}/global/networks/{network_id\}.
@@ -1370,6 +1611,10 @@ export namespace redis_v1beta1 {
      * Required. The IP allocated on the consumer network for the PSC forwarding rule.
      */
     address?: string | null;
+    /**
+     * Output only. Type of the PSC connection.
+     */
+    connectionType?: string | null;
     /**
      * Required. The URI of the consumer side forwarding rule. Example: projects/{projectNumOrId\}/regions/us-east1/forwardingRules/{resourceId\}.
      */
@@ -1387,7 +1632,24 @@ export namespace redis_v1beta1 {
      */
     pscConnectionId?: string | null;
     /**
+     * Output only. The status of the PSC connection. Please note that this value is updated periodically. To get the latest status of a PSC connection, follow https://cloud.google.com/vpc/docs/configure-private-service-connect-services#endpoint-details.
+     */
+    pscConnectionStatus?: string | null;
+    /**
      * Required. The service attachment which is the target of the PSC connection, in the form of projects/{project-id\}/regions/{region\}/serviceAttachments/{service-attachment-id\}.
+     */
+    serviceAttachment?: string | null;
+  }
+  /**
+   * Configuration of a service attachment of the cluster, for creating PSC connections.
+   */
+  export interface Schema$PscServiceAttachment {
+    /**
+     * Output only. Type of a PSC connection targeting this service attachment.
+     */
+    connectionType?: string | null;
+    /**
+     * Output only. Service attachment URI which your self-created PscConnection should use as target
      */
     serviceAttachment?: string | null;
   }
@@ -1418,19 +1680,6 @@ export namespace redis_v1beta1 {
     exclusiveAction?: string | null;
   }
   /**
-   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
-   */
-  export interface Schema$RegionalMigDistributionPolicy {
-    /**
-     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
-     */
-    targetShape?: number | null;
-    /**
-     * Cloud zones used by regional MIG to create instances.
-     */
-    zones?: Schema$ZoneConfiguration[];
-  }
-  /**
    * Details of the remote cluster associated with this cluster in a cross cluster replication setup.
    */
   export interface Schema$RemoteCluster {
@@ -1442,10 +1691,6 @@ export namespace redis_v1beta1 {
      * Output only. The unique identifier of the remote cluster.
      */
     uid?: string | null;
-  }
-  export interface Schema$RequirementOverride {
-    ziOverride?: string | null;
-    zsOverride?: string | null;
   }
   /**
    * Request for rescheduling a cluster maintenance.
@@ -1484,16 +1729,10 @@ export namespace redis_v1beta1 {
      */
     retentionUnit?: string | null;
     timeBasedRetention?: string | null;
-  }
-  export interface Schema$SpannerLocation {
     /**
-     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
+     * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
      */
-    backupName?: string[] | null;
-    /**
-     * Set of databases used by the resource in format /span//
-     */
-    dbName?: string[] | null;
+    timestampBasedRetentionTime?: string | null;
   }
   /**
    * Represents additional information about the state of the cluster.
@@ -1530,27 +1769,24 @@ export namespace redis_v1beta1 {
      */
     tags?: {[key: string]: string} | null;
   }
-  export interface Schema$TenantProjectProxy {
-    projectNumbers?: string[] | null;
-  }
   /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -1645,9 +1881,6 @@ export namespace redis_v1beta1 {
      */
     startTime?: Schema$TimeOfDay;
   }
-  export interface Schema$ZoneConfiguration {
-    zone?: string | null;
-  }
   /**
    * Zone distribution config for allocation of cluster resources.
    */
@@ -1673,11 +1906,14 @@ export namespace redis_v1beta1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    backupCollections: Resource$Projects$Locations$Backupcollections;
     clusters: Resource$Projects$Locations$Clusters;
     instances: Resource$Projects$Locations$Instances;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backupCollections =
+        new Resource$Projects$Locations$Backupcollections(this.context);
       this.clusters = new Resource$Projects$Locations$Clusters(this.context);
       this.instances = new Resource$Projects$Locations$Instances(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
@@ -1891,10 +2127,721 @@ export namespace redis_v1beta1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Backupcollections {
+    context: APIRequestContext;
+    backups: Resource$Projects$Locations$Backupcollections$Backups;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.backups = new Resource$Projects$Locations$Backupcollections$Backups(
+        this.context
+      );
+    }
+
+    /**
+     * Get a backup collection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Backupcollections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BackupCollection>;
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$BackupCollection>,
+      callback: BodyResponseCallback<Schema$BackupCollection>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Get,
+      callback: BodyResponseCallback<Schema$BackupCollection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BackupCollection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupcollections$Get
+        | BodyResponseCallback<Schema$BackupCollection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BackupCollection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BackupCollection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BackupCollection> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupcollections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backupcollections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BackupCollection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BackupCollection>(parameters);
+      }
+    }
+
+    /**
+     * Lists all backup collections owned by a consumer project in either the specified location (region) or all locations. If `location_id` is specified as `-` (wildcard), then all regions available to the project are queried, and the results are aggregated.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Backupcollections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupCollectionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBackupCollectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupCollectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$List,
+      callback: BodyResponseCallback<Schema$ListBackupCollectionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBackupCollectionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupcollections$List
+        | BodyResponseCallback<Schema$ListBackupCollectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupCollectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupCollectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupCollectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupcollections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupcollections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/backupCollections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupCollectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupCollectionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Backupcollections$Get
+    extends StandardParameters {
+    /**
+     * Required. Redis backupCollection resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupcollections$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The `next_page_token` value returned from a previous [ListBackupCollections] request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the backupCollection location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Backupcollections$Backups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deletes a specific backup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupcollections$Backups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupcollections$Backups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupcollections$Backups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Exports a specific backup to a customer target Cloud Storage URI.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    export(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Export,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    export(callback: BodyResponseCallback<Schema$Operation>): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupcollections$Backups$Export
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupcollections$Backups$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupcollections$Backups$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:export').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a specific backup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$Get,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Backup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupcollections$Backups$Get
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupcollections$Backups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupcollections$Backups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
+     * Lists all backups owned by a backup collection.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBackupsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backupcollections$Backups$List,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBackupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupcollections$Backups$List
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupcollections$Backups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupcollections$Backups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Delete
+    extends StandardParameters {
+    /**
+     * Required. Redis backup resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}/backups/{backup_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. Idempotent request UUID.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Export
+    extends StandardParameters {
+    /**
+     * Required. Redis backup resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}/backups/{backup_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExportBackupRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$Get
+    extends StandardParameters {
+    /**
+     * Required. Redis backup resource name using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}/backups/{backup_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backupcollections$Backups$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more clusters left to be queried.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The `next_page_token` value returned from a previous [ListBackupCollections] request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the backupCollection using the form: `projects/{project_id\}/locations/{location_id\}/backupCollections/{backup_collection_id\}`
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Clusters {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Backup Redis Cluster. If this is the first time a backup is being created, a backup collection will be created at the backend, and this backup belongs to this collection. Both collection and backup will have a resource name. Backup will be executed for each shard. A replica (primary if nonHA) will be selected to perform the execution. Backup call will be rejected if there is an ongoing backup or update operation. Be aware that during preview, if the cluster's internal software version is too old, critical update will be performed before actual backup. Once the internal software version is updated to the minimum version required by the backup feature, subsequent backups will not require critical update. After preview, there will be no critical update needed for backup.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    backup(
+      params: Params$Resource$Projects$Locations$Clusters$Backup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    backup(
+      params?: Params$Resource$Projects$Locations$Clusters$Backup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    backup(
+      params: Params$Resource$Projects$Locations$Clusters$Backup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    backup(
+      params: Params$Resource$Projects$Locations$Clusters$Backup,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    backup(
+      params: Params$Resource$Projects$Locations$Clusters$Backup,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    backup(callback: BodyResponseCallback<Schema$Operation>): void;
+    backup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Clusters$Backup
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Clusters$Backup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Clusters$Backup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:backup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -2517,6 +3464,18 @@ export namespace redis_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Clusters$Backup
+    extends StandardParameters {
+    /**
+     * Required. Redis cluster resource name using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BackupClusterRequest;
+  }
   export interface Params$Resource$Projects$Locations$Clusters$Create
     extends StandardParameters {
     /**
@@ -2588,7 +3547,7 @@ export namespace redis_v1beta1 {
      */
     requestId?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Cluster: * `size_gb` * `replica_count`
+     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Cluster: * `size_gb` * `replica_count` * `cluster_endpoints`
      */
     updateMask?: string;
 
@@ -3726,7 +4685,7 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
