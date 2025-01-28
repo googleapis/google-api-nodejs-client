@@ -331,12 +331,6 @@ export namespace redis_v1beta1 {
      */
     status?: string | null;
   }
-  /**
-   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
-   */
-  export interface Schema$BlobstoreLocation {
-    policyId?: string[] | null;
-  }
   export interface Schema$CertChain {
     /**
      * The certificates that form the CA chain, from leaf to root order.
@@ -352,13 +346,6 @@ export namespace redis_v1beta1 {
      * Identifier. Unique name of the resource in this scope including project, location and cluster using the form: `projects/{project\}/locations/{location\}/clusters/{cluster\}/certificateAuthority`
      */
     name?: string | null;
-  }
-  export interface Schema$CloudAsset {
-    assetName?: string | null;
-    assetType?: string | null;
-  }
-  export interface Schema$CloudAssetComposition {
-    childAsset?: Schema$CloudAsset[];
   }
   /**
    * A cluster instance.
@@ -864,9 +851,6 @@ export namespace redis_v1beta1 {
      */
     signalType?: string | null;
   }
-  export interface Schema$DirectLocationAssignment {
-    location?: Schema$LocationAssignment[];
-  }
   /**
    * Endpoints on each network, for Redis clients to connect to the cluster.
    */
@@ -939,15 +923,6 @@ export namespace redis_v1beta1 {
      * Required. Specify data to be exported.
      */
     outputConfig?: Schema$OutputConfig;
-  }
-  /**
-   * Defines parameters that should only be used for specific asset types.
-   */
-  export interface Schema$ExtraParameter {
-    /**
-     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
-     */
-    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
   }
   /**
    * Request for Failover.
@@ -1258,24 +1233,39 @@ export namespace redis_v1beta1 {
      */
     resourceName?: string | null;
   }
-  export interface Schema$IsolationExpectations {
+  /**
+   * Response for [ListBackupCollections].
+   */
+  export interface Schema$ListBackupCollectionsResponse {
     /**
-     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
+     * A list of backupCollections in the project. If the `location_id` in the parent field of the request is "-", all regions available to the project are queried, and the results aggregated. If in such an aggregated query a location is unavailable, a placeholder backupCollection entry is included in the response with the `name` field set to a value of the form `projects/{project_id\}/locations/{location_id\}/backupCollections/`- and the `status` field set to ERROR and `status_message` field set to "location not available for ListBackupCollections".
      */
-    requirementOverride?: Schema$RequirementOverride;
-    ziOrgPolicy?: string | null;
-    ziRegionPolicy?: string | null;
-    ziRegionState?: string | null;
+    backupCollections?: Schema$BackupCollection[];
     /**
-     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
-    zoneIsolation?: string | null;
+    nextPageToken?: string | null;
     /**
-     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
+     * Locations that could not be reached.
      */
-    zoneSeparation?: string | null;
-    zsOrgPolicy?: string | null;
-    zsRegionState?: string | null;
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response for [ListBackups].
+   */
+  export interface Schema$ListBackupsResponse {
+    /**
+     * A list of backups in the project.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Backups that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * Response for [ListBackupCollections].
@@ -1395,18 +1385,6 @@ export namespace redis_v1beta1 {
      * Full resource name for the region. For example: "projects/example-project/locations/us-east1".
      */
     name?: string | null;
-  }
-  export interface Schema$LocationAssignment {
-    location?: string | null;
-    locationType?: string | null;
-  }
-  export interface Schema$LocationData {
-    blobstoreLocation?: Schema$BlobstoreLocation;
-    childAssetLocation?: Schema$CloudAssetComposition;
-    directLocation?: Schema$DirectLocationAssignment;
-    gcpProjectProxy?: Schema$TenantProjectProxy;
-    placerLocation?: Schema$PlacerLocation;
-    spannerLocation?: Schema$SpannerLocation;
   }
   /**
    * MachineConfiguration describes the configuration of a machine specific to Database Resource.
@@ -1637,15 +1615,6 @@ export namespace redis_v1beta1 {
     rdbSnapshotStartTime?: string | null;
   }
   /**
-   * Message describing that the location of the customer resource is tied to placer allocations
-   */
-  export interface Schema$PlacerLocation {
-    /**
-     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
-     */
-    placerConfig?: string | null;
-  }
-  /**
    * Product specification for Condor resources.
    */
   export interface Schema$Product {
@@ -1786,19 +1755,6 @@ export namespace redis_v1beta1 {
     exclusiveAction?: string | null;
   }
   /**
-   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
-   */
-  export interface Schema$RegionalMigDistributionPolicy {
-    /**
-     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
-     */
-    targetShape?: number | null;
-    /**
-     * Cloud zones used by regional MIG to create instances.
-     */
-    zones?: Schema$ZoneConfiguration[];
-  }
-  /**
    * Details of the remote cluster associated with this cluster in a cross cluster replication setup.
    */
   export interface Schema$RemoteCluster {
@@ -1810,10 +1766,6 @@ export namespace redis_v1beta1 {
      * Output only. The unique identifier of the remote cluster.
      */
     uid?: string | null;
-  }
-  export interface Schema$RequirementOverride {
-    ziOverride?: string | null;
-    zsOverride?: string | null;
   }
   /**
    * Request for rescheduling a cluster maintenance.
@@ -1859,13 +1811,9 @@ export namespace redis_v1beta1 {
   }
   export interface Schema$SpannerLocation {
     /**
-     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
+     * Timestamp based retention period i.e. 2024-05-01T00:00:00Z
      */
-    backupName?: string[] | null;
-    /**
-     * Set of databases used by the resource in format /span//
-     */
-    dbName?: string[] | null;
+    timestampBasedRetentionTime?: string | null;
   }
   /**
    * Represents additional information about the state of the cluster.
@@ -2017,9 +1965,6 @@ export namespace redis_v1beta1 {
      * Required. Start time of the window in UTC time.
      */
     startTime?: Schema$TimeOfDay;
-  }
-  export interface Schema$ZoneConfiguration {
-    zone?: string | null;
   }
   /**
    * Zone distribution config for allocation of cluster resources.
