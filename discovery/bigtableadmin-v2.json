@@ -2194,7 +2194,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20241203",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -2325,12 +2325,12 @@
       "id": "AutomatedBackupPolicy",
       "properties": {
         "frequency": {
-          "description": "Required. How frequently automated backups should occur. The only supported value at this time is 24 hours.",
+          "description": "How frequently automated backups should occur. The only supported value at this time is 24 hours. An undefined frequency is treated as 24 hours.",
           "format": "google-duration",
           "type": "string"
         },
         "retentionPeriod": {
-          "description": "Required. How long the automated backups should be retained. The only supported value at this time is 3 days.",
+          "description": "Required. How long the automated backups should be retained. Values must be at least 3 days and at most 90 days.",
           "format": "google-duration",
           "type": "string"
         }
@@ -3174,7 +3174,7 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeAggregate": {
-      "description": "A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes will provide either the `input_type` or `state_type`, and reads will always return the `state_type` .",
+      "description": "A value that combines incremental updates into a summarized value. Data is never directly written or read using type `Aggregate`. Writes provide either the `input_type` or `state_type`, and reads always return the `state_type` .",
       "id": "GoogleBigtableAdminV2TypeAggregate",
       "properties": {
         "hllppUniqueCount": {
@@ -3183,7 +3183,7 @@
         },
         "inputType": {
           "$ref": "Type",
-          "description": "Type of the inputs that are accumulated by this `Aggregate`, which must specify a full encoding. Use `AddInput` mutations to accumulate new inputs."
+          "description": "Type of the inputs that are accumulated by this `Aggregate`. Use `AddInput` mutations to accumulate new inputs."
         },
         "max": {
           "$ref": "GoogleBigtableAdminV2TypeAggregateMax",
@@ -3195,7 +3195,7 @@
         },
         "stateType": {
           "$ref": "Type",
-          "description": "Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen, and will always specify a full encoding.",
+          "description": "Output only. Type that holds the internal accumulator state for the `Aggregate`. This is a function of the `input_type` and `aggregator` chosen.",
           "readOnly": true
         },
         "sum": {
@@ -3252,13 +3252,13 @@
       "properties": {
         "encoding": {
           "$ref": "GoogleBigtableAdminV2TypeBytesEncoding",
-          "description": "The encoding to use when converting to/from lower level types."
+          "description": "The encoding to use when converting to or from lower level types."
         }
       },
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeBytesEncoding": {
-      "description": "Rules used to convert to/from lower level types.",
+      "description": "Rules used to convert to or from lower level types.",
       "id": "GoogleBigtableAdminV2TypeBytesEncoding",
       "properties": {
         "raw": {
@@ -3269,7 +3269,7 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeBytesEncodingRaw": {
-      "description": "Leaves the value \"as-is\" * Order-preserving? Yes * Self-delimiting? No * Compatibility? N/A",
+      "description": "Leaves the value as-is. Sorted mode: all values are supported. Distinct mode: all values are supported.",
       "id": "GoogleBigtableAdminV2TypeBytesEncodingRaw",
       "properties": {},
       "type": "object"
@@ -3298,13 +3298,13 @@
       "properties": {
         "encoding": {
           "$ref": "GoogleBigtableAdminV2TypeInt64Encoding",
-          "description": "The encoding to use when converting to/from lower level types."
+          "description": "The encoding to use when converting to or from lower level types."
         }
       },
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeInt64Encoding": {
-      "description": "Rules used to convert to/from lower level types.",
+      "description": "Rules used to convert to or from lower level types.",
       "id": "GoogleBigtableAdminV2TypeInt64Encoding",
       "properties": {
         "bigEndianBytes": {
@@ -3315,7 +3315,7 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes": {
-      "description": "Encodes the value as an 8-byte big endian twos complement `Bytes` value. * Order-preserving? No (positive values only) * Self-delimiting? Yes * Compatibility? - BigQuery Federation `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`",
+      "description": "Encodes the value as an 8-byte big-endian two's complement value. Sorted mode: non-negative values are supported. Distinct mode: all values are supported. Compatible with: - BigQuery `BINARY` encoding - HBase `Bytes.toBytes` - Java `ByteBuffer.putLong()` with `ByteOrder.BIG_ENDIAN`",
       "id": "GoogleBigtableAdminV2TypeInt64EncodingBigEndianBytes",
       "properties": {
         "bytesType": {
@@ -3347,13 +3347,13 @@
       "properties": {
         "encoding": {
           "$ref": "GoogleBigtableAdminV2TypeStringEncoding",
-          "description": "The encoding to use when converting to/from lower level types."
+          "description": "The encoding to use when converting to or from lower level types."
         }
       },
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStringEncoding": {
-      "description": "Rules used to convert to/from lower level types.",
+      "description": "Rules used to convert to or from lower level types.",
       "id": "GoogleBigtableAdminV2TypeStringEncoding",
       "properties": {
         "utf8Bytes": {
@@ -3369,7 +3369,7 @@
       "type": "object"
     },
     "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes": {
-      "description": "UTF-8 encoding * Order-preserving? Yes (code point order) * Self-delimiting? No * Compatibility? - BigQuery Federation `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
+      "description": "UTF-8 encoding. Sorted mode: - All values are supported. - Code point order is preserved. Distinct mode: all values are supported. Compatible with: - BigQuery `TEXT` encoding - HBase `Bytes.toBytes` - Java `String#getBytes(StandardCharsets.UTF_8)`",
       "id": "GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes",
       "properties": {},
       "type": "object"
@@ -4010,7 +4010,7 @@
           "type": "string"
         },
         "optimizeTableOperationName": {
-          "description": "If exists, the name of the long-running operation that will be used to track the post-restore optimization process to optimize the performance of the restored table. The metadata type of the long-running operation is OptimizeRestoreTableMetadata. The response type is Empty. This long-running operation may be automatically created by the system if applicable after the RestoreTable long-running operation completes successfully. This operation may not be created if the table is already optimized or the restore was not successful.",
+          "description": "If exists, the name of the long-running operation that will be used to track the post-restore optimization process to optimize the performance of the restored table. The metadata type of the long-running operation is OptimizeRestoredTableMetadata. The response type is Empty. This long-running operation may be automatically created by the system if applicable after the RestoreTable long-running operation completes successfully. This operation may not be created if the table is already optimized or the restore was not successful.",
           "type": "string"
         },
         "progress": {
@@ -4302,7 +4302,7 @@
       "type": "object"
     },
     "Type": {
-      "description": "`Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to/from the underlying data. Each encoding also defines the following properties: * Order-preserving: Does the encoded value sort consistently with the original typed value? Note that Bigtable will always sort data based on the raw encoded value, *not* the decoded type. - Example: BYTES values sort in the same order as their raw encodings. - Counterexample: Encoding INT64 as a fixed-width decimal string does *not* preserve sort order when dealing with negative numbers. `INT64(1) > INT64(-1)`, but `STRING(\"-00001\") > STRING(\"00001)`. * Self-delimiting: If we concatenate two encoded values, can we always tell where the first one ends and the second one begins? - Example: If we encode INT64s to fixed-width STRINGs, the first value will always contain exactly N digits, possibly preceded by a sign. - Counterexample: If we concatenate two UTF-8 encoded STRINGs, we have no way to tell where the first one ends. * Compatibility: Which other systems have matching encoding schemes? For example, does this encoding have a GoogleSQL equivalent? HBase? Java?",
+      "description": "`Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to or from the underlying data. Each encoding can operate in one of two modes: - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)` if and only if `X <= Y`. This is useful anywhere sort order is important, for example when encoding keys. - Distinct: In this mode, Bigtable guarantees that if `X != Y` then `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For example, both \"{'foo': '1', 'bar': '2'}\" and \"{'bar': '2', 'foo': '1'}\" are valid encodings of the same JSON value. The API clearly documents which mode is used wherever an encoding can be configured. Each encoding also documents which values are supported in which modes. For example, when encoding INT64 as a numeric STRING, negative numbers cannot be encoded in sorted mode. This is because `INT64(1) > INT64(-1)`, but `STRING(\"-00001\") > STRING(\"00001\")`.",
       "id": "Type",
       "properties": {
         "aggregateType": {
