@@ -877,6 +877,10 @@ export namespace tagmanager_v2 {
      */
     signature?: string | null;
     /**
+     * The developer id of the community gallery template. This value is set whenever the template is created from the gallery.
+     */
+    templateDeveloperId?: string | null;
+    /**
      * The version of the community gallery template.
      */
     version?: string | null;
