@@ -517,7 +517,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$AutoRenewingBasePlanType {
     /**
-     * Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in DAYS and in the range P0D (zero days) to P30D (30 days). If not specified, the default value is P30D (30 days).
+     * Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. If not specified, the default value is P30D. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
      */
     accountHoldDuration?: string | null;
     /**
@@ -525,7 +525,7 @@ export namespace androidpublisher_v3 {
      */
     billingPeriodDuration?: string | null;
     /**
-     * Grace period of the subscription, specified in ISO 8601 format. Acceptable values are P0D (zero days), P3D (3 days), P7D (7 days), P14D (14 days), and P30D (30 days). If not specified, a default value will be used based on the recurring period duration.
+     * Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
      */
     gracePeriodDuration?: string | null;
     /**
@@ -561,6 +561,10 @@ export namespace androidpublisher_v3 {
      * The information of the last price change for the item since subscription signup.
      */
     priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
+    /**
+     * The current recurring price of the auto renewing plan.
+     */
+    recurringPrice?: Schema$Money;
   }
   /**
    * A single base plan for a subscription.
@@ -1108,6 +1112,10 @@ export namespace androidpublisher_v3 {
      * A device needs to have all these system features to be included by the selector.
      */
     requiredSystemFeatures?: Schema$SystemFeature[];
+    /**
+     * Optional. The SoCs included by this selector. Only works for Android S+ devices.
+     */
+    systemOnChips?: Schema$SystemOnChip[];
   }
   /**
    * The device spec used to generate a system APK.
@@ -1780,7 +1788,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$InstallmentsBasePlanType {
     /**
-     * Optional. Account hold period of the subscription, specified exclusively in days and in ISO 8601 format. Acceptable values are P0D (zero days) to P30D (30days). If not specified, the default value is P30D (30 days).
+     * Optional. Account hold period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and P60D. If not specified, the default value is P30D. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
      */
     accountHoldDuration?: string | null;
     /**
@@ -1792,7 +1800,7 @@ export namespace androidpublisher_v3 {
      */
     committedPaymentsCount?: number | null;
     /**
-     * Grace period of the subscription, specified in ISO 8601 format. Acceptable values are P0D (zero days), P3D (3 days), P7D (7 days), P14D (14 days), and P30D (30 days). If not specified, a default value will be used based on the recurring period duration.
+     * Grace period of the subscription, specified in ISO 8601 format. Acceptable values must be in days and between P0D and the lesser of 30D and base plan billing period. If not specified, a default value will be used based on the billing period. The sum of gracePeriodDuration and accountHoldDuration must be between P30D and P60D days, inclusive.
      */
     gracePeriodDuration?: string | null;
     /**
@@ -2122,7 +2130,7 @@ export namespace androidpublisher_v3 {
     offerTags?: string[] | null;
   }
   /**
-   * Represents a custom tag specified for base plans and subscription offers.
+   * Represents a custom tag specified for a product offer.
    */
   export interface Schema$OfferTag {
     /**
@@ -2130,6 +2138,10 @@ export namespace androidpublisher_v3 {
      */
     tag?: string | null;
   }
+  /**
+   * A single use promotion code.
+   */
+  export interface Schema$OneTimeCode {}
   /**
    * Represents a one-time transaction.
    */
@@ -2721,6 +2733,19 @@ export namespace androidpublisher_v3 {
     value?: Schema$SdkVersion[];
   }
   /**
+   * The promotion applied on this item when purchased.
+   */
+  export interface Schema$SignupPromotion {
+    /**
+     * A one-time code was applied.
+     */
+    oneTimeCode?: Schema$OneTimeCode;
+    /**
+     * A vanity code was applied.
+     */
+    vanityCode?: Schema$VanityCode;
+  }
+  /**
    * Holds data specific to Split APKs.
    */
   export interface Schema$SplitApkMetadata {
@@ -3126,6 +3151,10 @@ export namespace androidpublisher_v3 {
      * The purchased product ID (for example, 'monthly001').
      */
     productId?: string | null;
+    /**
+     * Promotion details about this item. Only set if a promotion was applied during signup.
+     */
+    signupPromotion?: Schema$SignupPromotion;
   }
   /**
    * Request for the purchases.subscriptions.acknowledge API.
@@ -3269,6 +3298,19 @@ export namespace androidpublisher_v3 {
    * Information specific to cancellations initiated by Google system.
    */
   export interface Schema$SystemInitiatedCancellation {}
+  /**
+   * Representation of a System-on-Chip (SoC) of an Android device. Can be used to target S+ devices.
+   */
+  export interface Schema$SystemOnChip {
+    /**
+     * Required. The designer of the SoC, eg. "Google" Value of build property "ro.soc.manufacturer" https://developer.android.com/reference/android/os/Build#SOC_MANUFACTURER Required.
+     */
+    manufacturer?: string | null;
+    /**
+     * Required. The model of the SoC, eg. "Tensor" Value of build property "ro.soc.model" https://developer.android.com/reference/android/os/Build#SOC_MODEL Required.
+     */
+    model?: string | null;
+  }
   /**
    * Targeting details for a recovery action such as regions, android sdk levels, app versions etc.
    */
@@ -3743,6 +3785,15 @@ export namespace androidpublisher_v3 {
      * The name of the permission requested.
      */
     name?: string | null;
+  }
+  /**
+   * A multiple use, predefined promotion code.
+   */
+  export interface Schema$VanityCode {
+    /**
+     * The promotion code.
+     */
+    promotionCode?: string | null;
   }
   /**
    * APK that is suitable for inclusion in a system image. The resource of SystemApksService.
