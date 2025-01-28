@@ -715,7 +715,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20241205",
   "rootUrl": "https://serviceconsumermanagement.googleapis.com/",
   "schemas": {
     "Api": {
@@ -1218,6 +1218,10 @@
       "description": "`Documentation` provides the information for describing a service. Example: documentation: summary: > The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages: - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: > ... - selector: google.calendar.Calendar.Put description: > ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.",
       "id": "Documentation",
       "properties": {
+        "additionalIamInfo": {
+          "description": "Optional information about the IAM configuration. This is typically used to link to documentation about a product's IAM roles and permissions.",
+          "type": "string"
+        },
         "documentationRootUrl": {
           "description": "The URL to the root of documentation.",
           "type": "string"
@@ -1433,6 +1437,10 @@
       "description": "Experimental features to be included during client library generation. These fields will be deprecated once the feature graduates and is enabled by default.",
       "id": "ExperimentalFeatures",
       "properties": {
+        "protobufPythonicTypesEnabled": {
+          "description": "Enables generation of protobuf code using new types that are more Pythonic which are included in `protobuf>=5.29.x`. This feature will be enabled by default 1 month after launching the feature in preview packages.",
+          "type": "boolean"
+        },
         "restAsyncIoEnabled": {
           "description": "Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.",
           "type": "boolean"
@@ -1572,6 +1580,13 @@
         "common": {
           "$ref": "CommonLanguageSettings",
           "description": "Some settings."
+        },
+        "renamedServices": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2458,7 +2473,7 @@
           "type": "string"
         },
         "unit": {
-          "description": "Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * \"1/min/{project}\" for quota per minute per project. Note: the order of unit components is insignificant. The \"1\" at the beginning is required to follow the metric unit syntax.",
+          "description": "Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * \"1/min/{project}\" for quota per minute per project. Note: the order of unit components is insignificant. The \"1\" at the beginning is required to follow the metric unit syntax.",
           "type": "string"
         },
         "values": {
@@ -3012,12 +3027,16 @@
       "id": "V1Beta1ImportProducerQuotaPoliciesRequest",
       "properties": {
         "force": {
-          "description": "Whether to force the import of the quota policies. If the policy import would decrease the default limit of any consumer tier by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
+          "description": "Whether quota policy can result in a decrease of effective limit. Don't allow any decreases if force is not specified. If force is specified, then don't allow any decreases below 120% of the 7d quota usage, or for cases where usage cannot be examined (custom dimensions/ per user/per resource), only allow a 10% decrease.",
           "type": "boolean"
         },
         "forceJustification": {
-          "description": "If force option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
+          "description": "If force or force_skip_quota_usage_check option is set to true, force_justification is suggested to be set to log the reason in audit logs.",
           "type": "string"
+        },
+        "forceSkipQuotaUsageCheck": {
+          "description": "If set to true, skip the quota usage check. This field is only used when the effective limit can be decreased. If the force field is not set, this field will be ignored.",
+          "type": "boolean"
         },
         "inlineSource": {
           "$ref": "V1Beta1PolicyInlineSource",
