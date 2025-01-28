@@ -12,7 +12,7 @@
   "baseUrl": "https://firebasedataconnect.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Firebase Data Connect",
-  "description": "",
+  "description": "Firebase Data Connect is a relational database service for mobile and web apps that lets you build and scale using a fully-managed PostgreSQL database powered by Cloud SQL. The REST API lets developers manage the connections to their database, change the schema of their database, and query the database.",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/data-connect",
   "fullyEncodeReservedExpansion": true,
@@ -180,7 +180,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "firebasedataconnect.projects.locations.operations.cancel",
@@ -1070,7 +1070,7 @@
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20250105",
   "rootUrl": "https://firebasedataconnect.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1384,7 +1384,7 @@
       "type": "object"
     },
     "ListConnectorsResponse": {
-      "description": "Message for response to listing Connectors.",
+      "description": "Message for response to listing Connectors. By default, `connectors.source` will not be included in the response. To specify the fields included in the response, the response field mask can be provided by using the query parameter `$fields` or the header `X-Goog-FieldMask`.",
       "id": "ListConnectorsResponse",
       "properties": {
         "connectors": {
@@ -1445,7 +1445,7 @@
       "type": "object"
     },
     "ListSchemasResponse": {
-      "description": "Message for response to listing Schemas.",
+      "description": "Message for response to listing Schemas. By default, `schemas.source` will not be included in the response. To specify the fields included in the response, the response field mask can be provided by using the query parameter `$fields` or the header `X-Goog-FieldMask`.",
       "id": "ListSchemasResponse",
       "properties": {
         "nextPageToken": {
@@ -1619,8 +1619,20 @@
           "description": "Required. Name of the PostgreSQL database.",
           "type": "string"
         },
+        "schemaMigration": {
+          "description": "Optional. Configure how to perform Postgresql schema migration.",
+          "enum": [
+            "SQL_SCHEMA_MIGRATION_UNSPECIFIED",
+            "MIGRATE_COMPATIBLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified SQL schema migration.",
+            "Connect to the SQL database and identify any missing SQL resources used in the given Firebase Data Connect Schema. Automatically create necessary SQL resources (SQL table, column, etc) before deploying the schema. During migration steps, the SQL Schema must comply with the previous before_deploy setting in case the migration is interrupted. Therefore, the previous before_deploy setting must not be `schema_validation=STRICT`."
+          ],
+          "type": "string"
+        },
         "schemaValidation": {
-          "description": "Optional. Configure how much Postgresql schema validation to perform. Default to `STRICT` if not specified.",
+          "description": "Optional. Configure how much Postgresql schema validation to perform.",
           "enum": [
             "SQL_SCHEMA_VALIDATION_UNSPECIFIED",
             "NONE",
