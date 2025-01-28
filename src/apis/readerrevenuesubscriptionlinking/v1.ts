@@ -137,7 +137,7 @@ export namespace readerrevenuesubscriptionlinking_v1 {
      */
     detail?: string | null;
     /**
-     * Required. Expiration time of the entitlement. Entitlements that have expired over 30 days will be purged. Required. LINT.IfChange(expire_time) The max expire_time is 398 days from now(). LINT.ThenChange(//depot/google3/java/com/google/subscribewithgoogle/accountlinking/subscriptionlink/service/config/protoconf.pi:max_expiry_age)
+     * Required. Expiration time of the entitlement. Entitlements that have expired over 30 days will be purged. The max expire_time is 398 days from now().
      */
     expireTime?: string | null;
     /**
