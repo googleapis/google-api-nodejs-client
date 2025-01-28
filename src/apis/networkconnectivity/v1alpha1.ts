@@ -289,7 +289,7 @@ export namespace networkconnectivity_v1alpha1 {
     updateTime?: string | null;
   }
   /**
-   * The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characterstics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.
+   * The internal range resource for IPAM operations within a VPC network. Used to represent a private address range along with behavioral characteristics of that range (its usage and peering behavior). Networking resources can link to this range if they are created as belonging to it.
    */
   export interface Schema$InternalRange {
     /**
@@ -301,6 +301,10 @@ export namespace networkconnectivity_v1alpha1 {
      */
     description?: string | null;
     /**
+     * Optional. Immutable ranges cannot have their fields modified, except for labels and description.
+     */
+    immutable?: boolean | null;
+    /**
      * IP range that this internal range defines. NOTE: IPv6 ranges are limited to usage=EXTERNAL_TO_VPC and peering=FOR_SELF. NOTE: For IPv6 Ranges this field is compulsory, i.e. the address range must be specified explicitly.
      */
     ipCidrRange?: string | null;
@@ -309,7 +313,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Should be present if usage is set to FOR_MIGRATION.
+     * Optional. Must be present if usage is set to FOR_MIGRATION.
      */
     migration?: Schema$Migration;
     /**
@@ -2574,7 +2578,7 @@ export namespace networkconnectivity_v1alpha1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
