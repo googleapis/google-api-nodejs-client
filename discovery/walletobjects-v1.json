@@ -2681,7 +2681,7 @@
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20241203",
   "rootUrl": "https://walletobjects.googleapis.com/",
   "schemas": {
     "ActivationOptions": {
@@ -2773,6 +2773,10 @@
         "androidAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
           "description": "Optional information about the partner app link."
+        },
+        "displayText": {
+          "$ref": "LocalizedString",
+          "description": "Optional display text for the app link button. Character limit is 30."
         },
         "iosAppLinkInfo": {
           "$ref": "AppLinkDataAppLinkInfo",
@@ -3515,7 +3519,7 @@
       "type": "object"
     },
     "DiscoverableProgram": {
-      "description": "Information about how a class may be discovered and instantiated from within the Android Pay app. This is done by searching for a loyalty or gift card program and scanning or manually entering.",
+      "description": "Information about how a class may be discovered and instantiated from within the Google Wallet app. This is done by searching for a loyalty or gift card program and scanning or manually entering.",
       "id": "DiscoverableProgram",
       "properties": {
         "merchantSigninInfo": {
@@ -3917,6 +3921,13 @@
           "$ref": "Image",
           "description": "The logo image of the ticket. This image is displayed in the card detail view of the app."
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
@@ -3952,6 +3963,18 @@
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
             "Legacy alias for `ONE_USER_ALL_DEVICES`. Deprecated.",
             "Legacy alias for `ONE_USER_ONE_DEVICE`. Deprecated."
+          ],
+          "type": "string"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
           ],
           "type": "string"
         },
@@ -4241,12 +4264,31 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -4724,6 +4766,13 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected by the validator. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
@@ -4759,6 +4808,18 @@
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
             "Legacy alias for `ONE_USER_ALL_DEVICES`. Deprecated.",
             "Legacy alias for `ONE_USER_ONE_DEVICE`. Deprecated."
+          ],
+          "type": "string"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
           ],
           "type": "string"
         },
@@ -5005,12 +5066,31 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -5185,6 +5265,13 @@
           "$ref": "LinksModuleData",
           "description": "Links module data. If `linksModuleData` is also defined on the object, both will be displayed. The maximum number of these fields displayed is 10 from class and 10 from object."
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
@@ -5330,6 +5417,7 @@
             "GENERIC_HOME_INSURANCE",
             "GENERIC_ENTRY_TICKET",
             "GENERIC_RECEIPT",
+            "GENERIC_LOYALTY_CARD",
             "GENERIC_OTHER"
           ],
           "enumDescriptions": [
@@ -5345,6 +5433,7 @@
             "Home-insurance cards",
             "Entry tickets",
             "Receipts",
+            "Loyalty cards. Please note that it is advisable to use a dedicated Loyalty card pass type instead of this generic type. A dedicated loyalty card pass type offers more features and functionality than a generic pass type.",
             "Other type"
           ],
           "type": "string"
@@ -5394,6 +5483,13 @@
         "logo": {
           "$ref": "Image",
           "description": "The logo image of the pass. This image is displayed in the card detail view in upper left, and also on the list/thumbnail view. If the logo is not present, the first letter of `cardTitle` would be shown as logo."
+        },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
         },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
@@ -5626,6 +5722,13 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "merchantName": {
           "description": "Merchant name, such as \"Adam's Apparel\". The app may display an ellipsis after the first 20 characters to ensure full string is displayed on smaller screens.",
           "type": "string"
@@ -5665,6 +5768,18 @@
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
             "Legacy alias for `ONE_USER_ALL_DEVICES`. Deprecated.",
             "Legacy alias for `ONE_USER_ONE_DEVICE`. Deprecated."
+          ],
+          "type": "string"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
           ],
           "type": "string"
         },
@@ -5896,12 +6011,31 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -6466,6 +6600,13 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
@@ -6501,6 +6642,18 @@
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
             "Legacy alias for `ONE_USER_ALL_DEVICES`. Deprecated.",
             "Legacy alias for `ONE_USER_ONE_DEVICE`. Deprecated."
+          ],
+          "type": "string"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
           ],
           "type": "string"
         },
@@ -6751,12 +6904,31 @@
           "$ref": "LoyaltyPoints",
           "description": "The loyalty reward points label, balance, and type."
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -7147,6 +7319,23 @@
       },
       "type": "object"
     },
+    "MerchantLocation": {
+      "description": "Locations of interest for this class or object. Currently, this location is used for geofenced notifications. When a user is within a set radius of this lat/long, and dwells there, Google will trigger a notification. When a user exits this radius, the notification will be hidden.",
+      "id": "MerchantLocation",
+      "properties": {
+        "latitude": {
+          "description": "The latitude specified as any value in the range of -90.0 through +90.0, both inclusive. Values outside these bounds will be rejected.",
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "description": "The longitude specified in the range -180.0 through +180.0, both inclusive. Values outside these bounds will be rejected.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Message": {
       "description": "A message that will be displayed with a Valuable",
       "id": "Message",
@@ -7420,6 +7609,13 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
@@ -7455,6 +7651,18 @@
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
             "Legacy alias for `ONE_USER_ALL_DEVICES`. Deprecated.",
             "Legacy alias for `ONE_USER_ONE_DEVICE`. Deprecated."
+          ],
+          "type": "string"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If not specified, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
           ],
           "type": "string"
         },
@@ -7714,12 +7922,31 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
@@ -8811,6 +9038,13 @@
           "$ref": "Image",
           "description": "Required. The logo image of the ticket. This image is displayed in the card detail view of the app."
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the class. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
@@ -8846,6 +9080,18 @@
             "Legacy alias for `MULTIPLE_HOLDERS`. Deprecated.",
             "Legacy alias for `ONE_USER_ALL_DEVICES`. Deprecated.",
             "Legacy alias for `ONE_USER_ONE_DEVICE`. Deprecated."
+          ],
+          "type": "string"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this class should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
           ],
           "type": "string"
         },
@@ -9150,12 +9396,31 @@
           },
           "type": "array"
         },
+        "merchantLocations": {
+          "description": "Merchant locations. There is a maximum of ten on the object. Any additional MerchantLocations added beyond the 10 will be rejected. These locations will trigger a notification when a user enters within a Google-set radius of the point. This field replaces the deprecated LatLongPoints.",
+          "items": {
+            "$ref": "MerchantLocation"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "An array of messages displayed in the app. All users of this object will receive its associated messages. The maximum number of these fields is 10.",
           "items": {
             "$ref": "Message"
           },
           "type": "array"
+        },
+        "notifyPreference": {
+          "description": "Whether or not field updates to this object should trigger notifications. When set to NOTIFY, we will attempt to trigger a field update notification to users. These notifications will only be sent to users if the field is part of an allowlist. If set to DO_NOT_NOTIFY or NOTIFICATION_SETTINGS_UNSPECIFIED, no notification will be triggered. This setting is ephemeral and needs to be set with each PATCH or UPDATE request, otherwise a notification will not be triggered.",
+          "enum": [
+            "NOTIFICATION_SETTINGS_FOR_UPDATES_UNSPECIFIED",
+            "NOTIFY_ON_UPDATE"
+          ],
+          "enumDescriptions": [
+            "Default behavior is no notifications sent.",
+            "This value will result in a notification being sent, if the updated fields are part of an allowlist."
+          ],
+          "type": "string"
         },
         "passConstraints": {
           "$ref": "PassConstraints",
