@@ -17,6 +17,18 @@
         "https://www.googleapis.com/auth/cloud-identity.groups.readonly": {
           "description": "See any Cloud Identity Groups that you can access, including group members and their emails"
         },
+        "https://www.googleapis.com/auth/cloud-identity.inboundsso": {
+          "description": "See and edit all of the Inbound SSO profiles and their assignments to any Org Units or Google Groups in your Cloud Identity Organization."
+        },
+        "https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly": {
+          "description": "See all of the Inbound SSO profiles and their assignments to any Org Units or Google Groups in your Cloud Identity Organization."
+        },
+        "https://www.googleapis.com/auth/cloud-identity.policies": {
+          "description": "See and edit policies in your Cloud Identity Organization."
+        },
+        "https://www.googleapis.com/auth/cloud-identity.policies.readonly": {
+          "description": "See policies in your Cloud Identity Organization."
+        },
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
@@ -1481,7 +1493,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The next_page_token value returned from a previous list request, if any",
+                  "description": "The `next_page_token` value returned from a previous list request, if any",
                   "location": "query",
                   "type": "string"
                 },
@@ -1524,7 +1536,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The next_page_token value returned from a previous list request, if any.",
+                  "description": "The `next_page_token` value returned from a previous list request, if any.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1536,7 +1548,7 @@
                   "type": "string"
                 },
                 "query": {
-                  "description": "Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels` Query may optionally contain equality operators on the parent of the group restricting the search within a particular customer, e.g. `parent == 'customers/{customer_id}'`. The `customer_id` must begin with \"C\" (for example, 'C046psxkn'). This filtering is only supported for Admins with groups read permissons on the input customer. Example query: `member_key_id == 'member_key_id_value' && in labels && parent == 'customers/C046psxkn'`",
+                  "description": "Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels` Query may optionally contain equality operators on the parent of the group restricting the search within a particular customer, e.g. `parent == 'customers/{customer_id}'`. The `customer_id` must begin with \"C\" (for example, 'C046psxkn'). This filtering is only supported for Admins with groups read permissions on the input customer. Example query: `member_key_id == 'member_key_id_value' && in labels && parent == 'customers/C046psxkn'`",
                   "location": "query",
                   "type": "string"
                 }
@@ -1567,7 +1579,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The next_page_token value returned from a previous list request, if any.",
+                  "description": "The `next_page_token` value returned from a previous list request, if any.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1610,6 +1622,7 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1635,6 +1648,7 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1660,6 +1674,8 @@
             "$ref": "InboundSamlSsoProfile"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1692,6 +1708,8 @@
             "$ref": "ListInboundSamlSsoProfilesResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1726,6 +1744,7 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
@@ -1758,6 +1777,7 @@
                 "$ref": "Operation"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.inboundsso",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -1783,6 +1803,7 @@
                 "$ref": "Operation"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.inboundsso",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -1808,6 +1829,8 @@
                 "$ref": "IdpCredential"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.inboundsso",
+                "https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
@@ -1844,6 +1867,8 @@
                 "$ref": "ListIdpCredentialsResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.inboundsso",
+                "https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly",
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
@@ -1868,6 +1893,7 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1893,6 +1919,7 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1918,6 +1945,8 @@
             "$ref": "InboundSsoAssignment"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1950,6 +1979,8 @@
             "$ref": "ListInboundSsoAssignmentsResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly",
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
@@ -1984,13 +2015,77 @@
             "$ref": "Operation"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.inboundsso",
             "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
+    "policies": {
+      "methods": {
+        "get": {
+          "description": "Get a Policy",
+          "flatPath": "v1/policies/{policiesId}",
+          "httpMethod": "GET",
+          "id": "cloudidentity.policies.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the policy to retrieve. Format: \"policies/{policy}\".",
+              "location": "path",
+              "pattern": "^policies/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies",
+            "https://www.googleapis.com/auth/cloud-identity.policies.readonly"
+          ]
+        },
+        "list": {
+          "description": "List Policies",
+          "flatPath": "v1/policies",
+          "httpMethod": "GET",
+          "id": "cloudidentity.policies.list",
+          "parameterOrder": [],
+          "parameters": {
+            "filter": {
+              "description": "Optional. A CEL expression for filtering the results. Policies can be filtered by application with this expression: setting.type.matches('^settings/gmail\\\\..*$') Policies can be filtered by setting type with this expression: setting.type.matches('^.*\\\\.service_status$') A maximum of one of the above setting.type clauses can be used. Policies can be filtered by customer with this expression: customer == \"customers/{customer}\" Where `customer` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may use `customers/my_customer` to specify your own organization. When no customer is mentioned it will be default to customers/my_customer. A maximum of one customer clause can be used. The above clauses can only be combined together in a single filter expression with the `&&` operator.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of results to return. The service can return fewer than this number. If omitted or set to 0, the default is 50 results per page. The maximum allowed value is 100. `page_size` values greater than 100 default to 100.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. The pagination token received from a prior call to PoliciesService.ListPolicies to retrieve the next page of results. When paginating, all other parameters provided to `ListPoliciesRequest` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/policies",
+          "response": {
+            "$ref": "ListPoliciesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.policies",
+            "https://www.googleapis.com/auth/cloud-identity.policies.readonly"
           ]
         }
       }
     }
   },
-  "revision": "20240924",
+  "revision": "20250121",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
@@ -2913,7 +3008,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device}`, where device is the unique id assigned to the Device.",
+          "description": "Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device}`, where device is the unique id assigned to the Device. Important: Device API scopes require that you use domain-wide delegation to access the API. For more information, see [Set up the Devices API](https://cloud.google.com/identity/docs/how-to/setup-devices).",
           "readOnly": true,
           "type": "string"
         },
@@ -3581,6 +3676,24 @@
       },
       "type": "object"
     },
+    "ListPoliciesResponse": {
+      "description": "The response message for PoliciesService.ListPolicies.",
+      "id": "ListPoliciesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of results. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "policies": {
+          "description": "The results",
+          "items": {
+            "$ref": "Policy"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListUserInvitationsResponse": {
       "description": "Response message for UserInvitation listing request.",
       "id": "ListUserInvitationsResponse",
@@ -3761,7 +3874,7 @@
       "id": "MembershipAdjacencyList",
       "properties": {
         "edges": {
-          "description": "Each edge contains information about the member that belongs to this group. Note: Fields returned here will help identify the specific Membership resource (e.g name, preferred_member_key and role), but may not be a comprehensive list of all fields.",
+          "description": "Each edge contains information about the member that belongs to this group. Note: Fields returned here will help identify the specific Membership resource (e.g `name`, `preferred_member_key` and `role`), but may not be a comprehensive list of all fields.",
           "items": {
             "$ref": "Membership"
           },
@@ -3930,6 +4043,70 @@
           },
           "description": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Policy": {
+      "description": "A Policy resource binds an instance of a single Setting with the scope of a PolicyQuery. The Setting instance will be applied to all entities that satisfy the query.",
+      "id": "Policy",
+      "properties": {
+        "customer": {
+          "description": "Immutable. Customer that the Policy belongs to. The value is in the format 'customers/{customerId}'. The `customerId` must begin with \"C\" To find your customer ID in Admin Console see https://support.google.com/a/answer/10070793.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The [resource name](https://cloud.google.com/apis/design/resource_names) of the Policy. Format: policies/{policy}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "policyQuery": {
+          "$ref": "PolicyQuery",
+          "description": "Required. The PolicyQuery the Setting applies to."
+        },
+        "setting": {
+          "$ref": "Setting",
+          "description": "Required. The Setting configured by this Policy."
+        },
+        "type": {
+          "description": "Output only. The type of the policy.",
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "SYSTEM",
+            "ADMIN"
+          ],
+          "enumDescriptions": [
+            "Unspecified policy type.",
+            "Policy type denoting the system-configured policies.",
+            "Policy type denoting the admin-configurable policies."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyQuery": {
+      "description": "PolicyQuery",
+      "id": "PolicyQuery",
+      "properties": {
+        "group": {
+          "description": "Immutable. The group that the query applies to. This field is only set if there is a single value for group that satisfies all clauses of the query. If no group applies, this will be the empty string.",
+          "type": "string"
+        },
+        "orgUnit": {
+          "description": "Required. Immutable. Non-empty default. The OrgUnit the query applies to. This field is only set if there is a single value for org_unit that satisfies all clauses of the query.",
+          "type": "string"
+        },
+        "query": {
+          "description": "Immutable. The CEL query that defines which entities the Policy applies to (ex. a User entity). For details about CEL see https://opensource.google.com/projects/cel. The OrgUnits the Policy applies to are represented by a clause like so: entity.org_units.exists(org_unit, org_unit.org_unit_id == orgUnitId('{orgUnitId}')) The Group the Policy applies to are represented by a clause like so: entity.groups.exists(group, group.group_id == groupId('{groupId}')) The Licenses the Policy applies to are represented by a clause like so: entity.licenses.exists(license, license in ['/product/{productId}/sku/{skuId}']) The above clauses can be present in any combination, and used in conjunction with the &&, || and ! operators. The org_unit and group fields below are helper fields that contain the corresponding value(s) as the query to make the query easier to use.",
+          "type": "string"
+        },
+        "sortOrder": {
+          "description": "Output only. The decimal sort order of this PolicyQuery. The value is relative to all other policies with the same setting type for the customer. (There are no duplicates within this set).",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -4126,6 +4303,25 @@
       "description": "A request to send email for inviting target user corresponding to the UserInvitation.",
       "id": "SendUserInvitationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "Setting": {
+      "description": "Setting",
+      "id": "Setting",
+      "properties": {
+        "type": {
+          "description": "Required. Immutable. The type of the Setting. .",
+          "type": "string"
+        },
+        "value": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. The value of the Setting.",
+          "type": "object"
+        }
+      },
       "type": "object"
     },
     "SignInBehavior": {
