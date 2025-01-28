@@ -1401,7 +1401,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "migrationcenter.projects.locations.operations.cancel",
@@ -1691,6 +1691,81 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "relations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the details of an relation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/relations/{relationsId}",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.relations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/relations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Relation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the relations in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/relations",
+                  "httpMethod": "GET",
+                  "id": "migrationcenter.projects.locations.relations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for `ListRelationsRequest`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/relations",
+                  "response": {
+                    "$ref": "ListRelationsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2309,7 +2384,7 @@
       }
     }
   },
-  "revision": "20240926",
+  "revision": "20250115",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2542,6 +2617,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "databaseDeploymentDetails": {
+          "$ref": "DatabaseDeploymentDetails",
+          "description": "Output only. Asset information specific for database deployments.",
+          "readOnly": true
+        },
+        "databaseDetails": {
+          "$ref": "DatabaseDetails",
+          "description": "Output only. Asset information specific for logical databases.",
+          "readOnly": true
+        },
         "insightList": {
           "$ref": "InsightList",
           "description": "Output only. The list of insights associated with the asset.",
@@ -2576,6 +2661,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "title": {
+          "description": "Output only. Server generated human readable name of the asset.",
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The timestamp when the asset was last updated.",
@@ -2616,6 +2706,14 @@
             "Discovery clients"
           ],
           "type": "string"
+        },
+        "databaseDeploymentDetails": {
+          "$ref": "DatabaseDeploymentDetails",
+          "description": "Asset information specific for database deployments."
+        },
+        "databaseDetails": {
+          "$ref": "DatabaseDetails",
+          "description": "Asset information specific for logical databases."
         },
         "labels": {
           "additionalProperties": {
@@ -2679,6 +2777,20 @@
       "description": "AWS EC2 specific details.",
       "id": "AwsEc2PlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Optional. Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "The location of the machine in the AWS format.",
           "type": "string"
@@ -2694,6 +2806,20 @@
       "description": "Azure VM specific details.",
       "id": "AzureVmPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "The location of the machine in the Azure format.",
           "type": "string"
@@ -2835,7 +2961,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -2905,7 +3031,7 @@
             "PERSISTENT_DISK_TYPE_SSD"
           ],
           "enumDescriptions": [
-            "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+            "Unspecified. Fallback to default value based on context.",
             "Standard HDD Persistent Disk.",
             "Balanced Persistent Disk.",
             "SSD Persistent Disk."
@@ -2972,7 +3098,15 @@
       "properties": {
         "iops": {
           "$ref": "DailyResourceUsageAggregationStats",
-          "description": "Disk I/O operations per second."
+          "description": "Optional. Disk I/O operations per second."
+        },
+        "readIops": {
+          "$ref": "DailyResourceUsageAggregationStats",
+          "description": "Optional. Disk read I/O operations per second."
+        },
+        "writeIops": {
+          "$ref": "DailyResourceUsageAggregationStats",
+          "description": "Optional. Disk write I/O operations per second."
         }
       },
       "type": "object"
@@ -3026,6 +3160,284 @@
           "description": "Peak usage value.",
           "format": "float",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDeploymentDetails": {
+      "description": "The details of a database deployment asset.",
+      "id": "DatabaseDeploymentDetails",
+      "properties": {
+        "aggregatedStats": {
+          "$ref": "DatabaseDeploymentDetailsAggregatedStats",
+          "description": "Output only. Aggregated stats for the database deployment.",
+          "readOnly": true
+        },
+        "edition": {
+          "description": "Optional. The database deployment edition.",
+          "type": "string"
+        },
+        "generatedId": {
+          "description": "Optional. The database deployment generated ID.",
+          "type": "string"
+        },
+        "manualUniqueId": {
+          "description": "Optional. A manual unique ID set by the user.",
+          "type": "string"
+        },
+        "mysql": {
+          "$ref": "MysqlDatabaseDeployment",
+          "description": "Optional. Details of a MYSQL database deployment."
+        },
+        "postgresql": {
+          "$ref": "PostgreSqlDatabaseDeployment",
+          "description": "Optional. Details of a PostgreSQL database deployment."
+        },
+        "sqlServer": {
+          "$ref": "SqlServerDatabaseDeployment",
+          "description": "Optional. Details of a Microsoft SQL Server database deployment."
+        },
+        "topology": {
+          "$ref": "DatabaseDeploymentTopology",
+          "description": "Optional. Details of the database deployment topology."
+        },
+        "version": {
+          "description": "Optional. The database deployment version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDeploymentDetailsAggregatedStats": {
+      "description": "Aggregated stats for the database deployment.",
+      "id": "DatabaseDeploymentDetailsAggregatedStats",
+      "properties": {
+        "databaseCount": {
+          "description": "Output only. The number of databases in the deployment.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDeploymentTopology": {
+      "description": "Details of database deployment's topology.",
+      "id": "DatabaseDeploymentTopology",
+      "properties": {
+        "coreCount": {
+          "description": "Optional. Number of total logical cores.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "coreLimit": {
+          "description": "Optional. Number of total logical cores limited by db deployment.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "diskAllocatedBytes": {
+          "description": "Optional. Disk allocated in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "diskUsedBytes": {
+          "description": "Optional. Disk used in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "instances": {
+          "description": "Optional. List of database instances.",
+          "items": {
+            "$ref": "DatabaseInstance"
+          },
+          "type": "array"
+        },
+        "memoryBytes": {
+          "description": "Optional. Total memory in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "memoryLimitBytes": {
+          "description": "Optional. Total memory in bytes limited by db deployment.",
+          "format": "int64",
+          "type": "string"
+        },
+        "physicalCoreCount": {
+          "description": "Optional. Number of total physical cores.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "physicalCoreLimit": {
+          "description": "Optional. Number of total physical cores limited by db deployment.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDetails": {
+      "description": "Details of a logical database.",
+      "id": "DatabaseDetails",
+      "properties": {
+        "allocatedStorageBytes": {
+          "description": "Optional. The allocated storage for the database in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "databaseName": {
+          "description": "Required. The name of the database.",
+          "type": "string"
+        },
+        "parentDatabaseDeployment": {
+          "$ref": "DatabaseDetailsParentDatabaseDeployment",
+          "description": "Required. The parent database deployment that contains the logical database."
+        },
+        "schemas": {
+          "description": "Optional. The database schemas.",
+          "items": {
+            "$ref": "DatabaseSchema"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseDetailsParentDatabaseDeployment": {
+      "description": "The identifiers of the parent database deployment.",
+      "id": "DatabaseDetailsParentDatabaseDeployment",
+      "properties": {
+        "generatedId": {
+          "description": "Optional. The parent database deployment generated ID.",
+          "type": "string"
+        },
+        "manualUniqueId": {
+          "description": "Optional. The parent database deployment optional manual unique ID set by the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseInstance": {
+      "description": "Details of a database instance.",
+      "id": "DatabaseInstance",
+      "properties": {
+        "instanceName": {
+          "description": "Optional. The instance's name.",
+          "type": "string"
+        },
+        "network": {
+          "$ref": "DatabaseInstanceNetwork",
+          "description": "Optional. Networking details."
+        },
+        "role": {
+          "description": "Optional. The instance role in the database engine.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "PRIMARY",
+            "SECONDARY",
+            "ARBITER"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Primary.",
+            "Secondary.",
+            "Arbiter."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseInstanceNetwork": {
+      "description": "Network details of a database instance.",
+      "id": "DatabaseInstanceNetwork",
+      "properties": {
+        "hostNames": {
+          "description": "Optional. The instance's host names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "ipAddresses": {
+          "description": "Optional. The instance's IP addresses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "primaryMacAddress": {
+          "description": "Optional. The instance's primary MAC address.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseObjects": {
+      "description": "Details of a group of database objects.",
+      "id": "DatabaseObjects",
+      "properties": {
+        "category": {
+          "description": "Optional. The category of the objects.",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "TABLE",
+            "INDEX",
+            "CONSTRAINTS",
+            "VIEWS",
+            "SOURCE_CODE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Table.",
+            "Index.",
+            "Constraints.",
+            "Views.",
+            "Source code, e.g. procedures.",
+            "Uncategorized objects."
+          ],
+          "type": "string"
+        },
+        "count": {
+          "description": "Optional. The number of objects.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseSchema": {
+      "description": "Details of a database schema.",
+      "id": "DatabaseSchema",
+      "properties": {
+        "mysql": {
+          "$ref": "MySqlSchemaDetails",
+          "description": "Optional. Details of a Mysql schema."
+        },
+        "objects": {
+          "description": "Optional. List of details of objects by category.",
+          "items": {
+            "$ref": "DatabaseObjects"
+          },
+          "type": "array"
+        },
+        "postgresql": {
+          "$ref": "PostgreSqlSchemaDetails",
+          "description": "Optional. Details of a PostgreSql schema."
+        },
+        "schemaName": {
+          "description": "Required. The name of the schema.",
+          "type": "string"
+        },
+        "sqlServer": {
+          "$ref": "SqlServerSchemaDetails",
+          "description": "Optional. Details of a SqlServer schema."
+        },
+        "tablesSizeBytes": {
+          "description": "Optional. The total size of tables in bytes.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3283,7 +3695,17 @@
       "id": "DiskUsageSample",
       "properties": {
         "averageIops": {
-          "description": "Average IOPS sampled over a short window. Must be non-negative.",
+          "description": "Optional. Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.",
+          "format": "float",
+          "type": "number"
+        },
+        "averageReadIops": {
+          "description": "Optional. Average read IOPS sampled over a short window. Must be non-negative.",
+          "format": "float",
+          "type": "number"
+        },
+        "averageWriteIops": {
+          "description": "Optional. Average write IOPS sampled over a short window. Must be non-negative.",
           "format": "float",
           "type": "number"
         }
@@ -3508,6 +3930,20 @@
       "description": "Generic platform details.",
       "id": "GenericPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "Free text representation of the machine location. The format of this field should not be relied on. Different VMs in the same location may have different string values for this field.",
           "type": "string"
@@ -3775,7 +4211,8 @@
             "IMPORT_JOB_FORMAT_RVTOOLS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV",
             "IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV",
-            "IMPORT_JOB_FORMAT_STRATOZONE_CSV"
+            "IMPORT_JOB_FORMAT_STRATOZONE_CSV",
+            "IMPORT_JOB_FORMAT_DATABASE_ZIP"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -3783,7 +4220,8 @@
             "RVTools format (CSV).",
             "CSV format exported from AWS using the AWS collection script.",
             "CSV format exported from Azure using the Azure collection script.",
-            "CSV format created manually and following the StratoZone format. For more information, see Manually create and upload data tables."
+            "CSV format created manually and following the StratoZone format. For more information, see Manually create and upload data tables.",
+            "ZIP file with nested CSV files generated by a database collector."
           ],
           "type": "string"
         },
@@ -3925,6 +4363,15 @@
       "description": "A resource that reports the import job errors at row level.",
       "id": "ImportRowError",
       "properties": {
+        "archiveError": {
+          "$ref": "ImportRowErrorArchiveErrorDetails",
+          "description": "Error details for an archive file."
+        },
+        "assetTitle": {
+          "description": "Output only. The asset title.",
+          "readOnly": true,
+          "type": "string"
+        },
         "csvError": {
           "$ref": "ImportRowErrorCsvErrorDetails",
           "description": "Error details for a CSV file."
@@ -3953,6 +4400,22 @@
         "xlsxError": {
           "$ref": "ImportRowErrorXlsxErrorDetails",
           "description": "Error details for an XLSX file."
+        }
+      },
+      "type": "object"
+    },
+    "ImportRowErrorArchiveErrorDetails": {
+      "description": "Error details for an archive file.",
+      "id": "ImportRowErrorArchiveErrorDetails",
+      "properties": {
+        "csvError": {
+          "$ref": "ImportRowErrorCsvErrorDetails",
+          "description": "Error details for a CSV file."
+        },
+        "filePath": {
+          "description": "Output only. The file path inside the archive where the error was detected.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3991,7 +4454,7 @@
       "properties": {
         "genericInsight": {
           "$ref": "GenericInsight",
-          "description": "Output only. A generic insight about an asset",
+          "description": "Output only. A generic insight about an asset.",
           "readOnly": true
         },
         "migrationInsight": {
@@ -4234,6 +4697,24 @@
       },
       "type": "object"
     },
+    "ListRelationsResponse": {
+      "description": "Response message for listing relations.",
+      "id": "ListRelationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "relations": {
+          "description": "A list of relations.",
+          "items": {
+            "$ref": "Relation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListReportConfigsResponse": {
       "description": "Response message for listing report configs.",
       "id": "ListReportConfigsResponse",
@@ -4353,6 +4834,10 @@
         },
         "cpuArchitecture": {
           "description": "CPU architecture, e.g., \"x64-based PC\", \"x86_64\", \"i686\" etc.",
+          "type": "string"
+        },
+        "cpuManufacturer": {
+          "description": "Optional. CPU manufacturer, e.g., \"Intel\", \"AMD\".",
           "type": "string"
         },
         "cpuName": {
@@ -4592,6 +5077,160 @@
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlPlugin": {
+      "description": "MySql plugin.",
+      "id": "MySqlPlugin",
+      "properties": {
+        "enabled": {
+          "description": "Required. The plugin is active.",
+          "type": "boolean"
+        },
+        "plugin": {
+          "description": "Required. The plugin name.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. The plugin version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlProperty": {
+      "description": "MySql property.",
+      "id": "MySqlProperty",
+      "properties": {
+        "enabled": {
+          "description": "Required. The property is enabled.",
+          "type": "boolean"
+        },
+        "numericValue": {
+          "description": "Required. The property numeric value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "property": {
+          "description": "Required. The property name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlSchemaDetails": {
+      "description": "Specific details for a Mysql database.",
+      "id": "MySqlSchemaDetails",
+      "properties": {
+        "storageEngines": {
+          "description": "Optional. Mysql storage engine tables.",
+          "items": {
+            "$ref": "MySqlStorageEngineDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlStorageEngineDetails": {
+      "description": "Mysql storage engine tables.",
+      "id": "MySqlStorageEngineDetails",
+      "properties": {
+        "encryptedTableCount": {
+          "description": "Optional. The number of encrypted tables.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "engine": {
+          "description": "Required. The storage engine.",
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "INNODB",
+            "MYISAM",
+            "MEMORY",
+            "CSV",
+            "ARCHIVE",
+            "BLACKHOLE",
+            "NDB",
+            "MERGE",
+            "FEDERATED",
+            "EXAMPLE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage engine.",
+            "InnoDB.",
+            "MyISAM.",
+            "Memory.",
+            "CSV.",
+            "Archive.",
+            "Blackhole.",
+            "NDB.",
+            "Merge.",
+            "Federated.",
+            "Example.",
+            "Other."
+          ],
+          "type": "string"
+        },
+        "tableCount": {
+          "description": "Optional. The number of tables.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "MySqlVariable": {
+      "description": "MySql variable.",
+      "id": "MySqlVariable",
+      "properties": {
+        "category": {
+          "description": "Required. The variable category.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The variable value.",
+          "type": "string"
+        },
+        "variable": {
+          "description": "Required. The variable name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MysqlDatabaseDeployment": {
+      "description": "Specific details for a Mysql database deployment.",
+      "id": "MysqlDatabaseDeployment",
+      "properties": {
+        "plugins": {
+          "description": "Optional. List of MySql plugins.",
+          "items": {
+            "$ref": "MySqlPlugin"
+          },
+          "type": "array"
+        },
+        "properties": {
+          "description": "Optional. List of MySql properties.",
+          "items": {
+            "$ref": "MySqlProperty"
+          },
+          "type": "array"
+        },
+        "resourceGroupsCount": {
+          "description": "Optional. Number of resource groups.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "variables": {
+          "description": "Optional. List of MySql variables.",
+          "items": {
+            "$ref": "MySqlVariable"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4948,6 +5587,20 @@
       "description": "Platform specific details for Physical Machines.",
       "id": "PhysicalPlatformDetails",
       "properties": {
+        "hyperthreading": {
+          "description": "Whether the machine is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "location": {
           "description": "Free text representation of the machine location. The format of this field should not be relied on. Different machines in the same location may have different string values for this field.",
           "type": "string"
@@ -4978,6 +5631,118 @@
         "vmwareDetails": {
           "$ref": "VmwarePlatformDetails",
           "description": "VMware specific details."
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlDatabaseDeployment": {
+      "description": "Specific details for a PostgreSQL database deployment.",
+      "id": "PostgreSqlDatabaseDeployment",
+      "properties": {
+        "properties": {
+          "description": "Optional. List of PostgreSql properties.",
+          "items": {
+            "$ref": "PostgreSqlProperty"
+          },
+          "type": "array"
+        },
+        "settings": {
+          "description": "Optional. List of PostgreSql settings.",
+          "items": {
+            "$ref": "PostgreSqlSetting"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlExtension": {
+      "description": "PostgreSql extension.",
+      "id": "PostgreSqlExtension",
+      "properties": {
+        "extension": {
+          "description": "Required. The extension name.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. The extension version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlProperty": {
+      "description": "PostgreSql property.",
+      "id": "PostgreSqlProperty",
+      "properties": {
+        "enabled": {
+          "description": "Required. The property is enabled.",
+          "type": "boolean"
+        },
+        "numericValue": {
+          "description": "Required. The property numeric value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "property": {
+          "description": "Required. The property name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlSchemaDetails": {
+      "description": "Specific details for a PostgreSql schema.",
+      "id": "PostgreSqlSchemaDetails",
+      "properties": {
+        "foreignTablesCount": {
+          "description": "Optional. PostgreSql foreign tables.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "postgresqlExtensions": {
+          "description": "Optional. PostgreSql extensions.",
+          "items": {
+            "$ref": "PostgreSqlExtension"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PostgreSqlSetting": {
+      "description": "PostgreSql setting.",
+      "id": "PostgreSqlSetting",
+      "properties": {
+        "boolValue": {
+          "description": "Required. The setting boolean value.",
+          "type": "boolean"
+        },
+        "intValue": {
+          "description": "Required. The setting int value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "realValue": {
+          "description": "Required. The setting real value.",
+          "format": "float",
+          "type": "number"
+        },
+        "setting": {
+          "description": "Required. The setting name.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Required. The setting source.",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "Required. The setting string value. Notice that enum values are stored as strings.",
+          "type": "string"
+        },
+        "unit": {
+          "description": "Optional. The setting unit.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5028,6 +5793,48 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Relation": {
+      "description": "Message representing a relation between 2 resource.",
+      "id": "Relation",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the relation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dstAsset": {
+          "description": "Output only. The destination asset name in the relation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The identifier of the relation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "srcAsset": {
+          "description": "Output only. The source asset name in the relation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. The type of the relation.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "LOGICAL_DATABASE",
+            "DATABASE_DEPLOYMENT_HOSTING_SERVER"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "DBDeployment -> Database",
+            "A relation between a machine/VM and the database deployment it hosts."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5294,7 +6101,7 @@
               "PERSISTENT_DISK_TYPE_SSD"
             ],
             "enumDescriptions": [
-              "Unspecified (default value). Selecting this value allows the system to use any disk type according to reported usage. This a good value to start with.",
+              "Unspecified. Fallback to default value based on context.",
               "Standard HDD Persistent Disk.",
               "Balanced Persistent Disk.",
               "SSD Persistent Disk."
@@ -5917,6 +6724,107 @@
       },
       "type": "object"
     },
+    "SqlServerDatabaseDeployment": {
+      "description": "Specific details for a Microsoft SQL Server database deployment.",
+      "id": "SqlServerDatabaseDeployment",
+      "properties": {
+        "features": {
+          "description": "Optional. List of SQL Server features.",
+          "items": {
+            "$ref": "SqlServerFeature"
+          },
+          "type": "array"
+        },
+        "serverFlags": {
+          "description": "Optional. List of SQL Server server flags.",
+          "items": {
+            "$ref": "SqlServerServerFlag"
+          },
+          "type": "array"
+        },
+        "traceFlags": {
+          "description": "Optional. List of SQL Server trace flags.",
+          "items": {
+            "$ref": "SqlServerTraceFlag"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerFeature": {
+      "description": "SQL Server feature details.",
+      "id": "SqlServerFeature",
+      "properties": {
+        "enabled": {
+          "description": "Required. Field enabled is set when a feature is used on the source deployment.",
+          "type": "boolean"
+        },
+        "featureName": {
+          "description": "Required. The feature name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerSchemaDetails": {
+      "description": "Specific details for a SqlServer database.",
+      "id": "SqlServerSchemaDetails",
+      "properties": {
+        "clrObjectCount": {
+          "description": "Optional. SqlServer number of CLR objects.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerServerFlag": {
+      "description": "SQL Server server flag details.",
+      "id": "SqlServerServerFlag",
+      "properties": {
+        "serverFlagName": {
+          "description": "Required. The server flag name.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The server flag value set by the user.",
+          "type": "string"
+        },
+        "valueInUse": {
+          "description": "Required. The server flag actual value. If `value_in_use` is different from `value` it means that either the configuration change was not applied or it is an expected behavior. See SQL Server documentation for more details.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerTraceFlag": {
+      "description": "SQL Server trace flag details.",
+      "id": "SqlServerTraceFlag",
+      "properties": {
+        "scope": {
+          "description": "Required. The trace flag scope.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "OFF",
+            "GLOBAL",
+            "SESSION"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Off.",
+            "Global.",
+            "Session."
+          ],
+          "type": "string"
+        },
+        "traceFlagName": {
+          "description": "Required. The trace flag name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -6081,7 +6989,7 @@
           "enumDescriptions": [
             "Unspecified (default value).",
             "Prefer to migrate to Google Cloud Compute Engine.",
-            "Prefer to migrate to Google Cloud VMware Engine.",
+            "Prefer to migrate to Google Cloud VMware Engine.6278",
             "Prefer to migrate to Google Cloud Sole Tenant Nodes."
           ],
           "type": "string"
@@ -6206,6 +7114,20 @@
       "description": "VMware specific details.",
       "id": "VmwarePlatformDetails",
       "properties": {
+        "esxHyperthreading": {
+          "description": "Whether the ESX is hyperthreaded.",
+          "enum": [
+            "HYPERTHREADING_STATUS_UNSPECIFIED",
+            "HYPERTHREADING_STATUS_DISABLED",
+            "HYPERTHREADING_STATUS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Simultaneous Multithreading status unknown.",
+            "Simultaneous Multithreading is disabled or unavailable.",
+            "Simultaneous Multithreading is enabled."
+          ],
+          "type": "string"
+        },
         "esxVersion": {
           "description": "ESX version.",
           "type": "string"

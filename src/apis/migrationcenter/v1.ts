@@ -280,6 +280,14 @@ export namespace migrationcenter_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Asset information specific for database deployments.
+     */
+    databaseDeploymentDetails?: Schema$DatabaseDeploymentDetails;
+    /**
+     * Output only. Asset information specific for logical databases.
+     */
+    databaseDetails?: Schema$DatabaseDetails;
+    /**
      * Output only. The list of insights associated with the asset.
      */
     insightList?: Schema$InsightList;
@@ -304,6 +312,10 @@ export namespace migrationcenter_v1 {
      */
     sources?: string[] | null;
     /**
+     * Output only. Server generated human readable name of the asset.
+     */
+    title?: string | null;
+    /**
      * Output only. The timestamp when the asset was last updated.
      */
     updateTime?: string | null;
@@ -320,6 +332,14 @@ export namespace migrationcenter_v1 {
      * Optional. Frame collection type, if not specified the collection type will be based on the source type of the source the frame was reported on.
      */
     collectionType?: string | null;
+    /**
+     * Asset information specific for database deployments.
+     */
+    databaseDeploymentDetails?: Schema$DatabaseDeploymentDetails;
+    /**
+     * Asset information specific for logical databases.
+     */
+    databaseDetails?: Schema$DatabaseDetails;
     /**
      * Labels as key value pairs.
      */
@@ -364,6 +384,10 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$AwsEc2PlatformDetails {
     /**
+     * Optional. Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
+    /**
      * The location of the machine in the AWS format.
      */
     location?: string | null;
@@ -376,6 +400,10 @@ export namespace migrationcenter_v1 {
    * Azure VM specific details.
    */
   export interface Schema$AzureVmPlatformDetails {
+    /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
     /**
      * The location of the machine in the Azure format.
      */
@@ -569,9 +597,17 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$DailyResourceUsageAggregationDisk {
     /**
-     * Disk I/O operations per second.
+     * Optional. Disk I/O operations per second.
      */
     iops?: Schema$DailyResourceUsageAggregationStats;
+    /**
+     * Optional. Disk read I/O operations per second.
+     */
+    readIops?: Schema$DailyResourceUsageAggregationStats;
+    /**
+     * Optional. Disk write I/O operations per second.
+     */
+    writeIops?: Schema$DailyResourceUsageAggregationStats;
   }
   /**
    * Statistical aggregation of memory usage.
@@ -615,6 +651,207 @@ export namespace migrationcenter_v1 {
      * Peak usage value.
      */
     peak?: number | null;
+  }
+  /**
+   * The details of a database deployment asset.
+   */
+  export interface Schema$DatabaseDeploymentDetails {
+    /**
+     * Output only. Aggregated stats for the database deployment.
+     */
+    aggregatedStats?: Schema$DatabaseDeploymentDetailsAggregatedStats;
+    /**
+     * Optional. The database deployment edition.
+     */
+    edition?: string | null;
+    /**
+     * Optional. The database deployment generated ID.
+     */
+    generatedId?: string | null;
+    /**
+     * Optional. A manual unique ID set by the user.
+     */
+    manualUniqueId?: string | null;
+    /**
+     * Optional. Details of a MYSQL database deployment.
+     */
+    mysql?: Schema$MysqlDatabaseDeployment;
+    /**
+     * Optional. Details of a PostgreSQL database deployment.
+     */
+    postgresql?: Schema$PostgreSqlDatabaseDeployment;
+    /**
+     * Optional. Details of a Microsoft SQL Server database deployment.
+     */
+    sqlServer?: Schema$SqlServerDatabaseDeployment;
+    /**
+     * Optional. Details of the database deployment topology.
+     */
+    topology?: Schema$DatabaseDeploymentTopology;
+    /**
+     * Optional. The database deployment version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Aggregated stats for the database deployment.
+   */
+  export interface Schema$DatabaseDeploymentDetailsAggregatedStats {
+    /**
+     * Output only. The number of databases in the deployment.
+     */
+    databaseCount?: number | null;
+  }
+  /**
+   * Details of database deployment's topology.
+   */
+  export interface Schema$DatabaseDeploymentTopology {
+    /**
+     * Optional. Number of total logical cores.
+     */
+    coreCount?: number | null;
+    /**
+     * Optional. Number of total logical cores limited by db deployment.
+     */
+    coreLimit?: number | null;
+    /**
+     * Optional. Disk allocated in bytes.
+     */
+    diskAllocatedBytes?: string | null;
+    /**
+     * Optional. Disk used in bytes.
+     */
+    diskUsedBytes?: string | null;
+    /**
+     * Optional. List of database instances.
+     */
+    instances?: Schema$DatabaseInstance[];
+    /**
+     * Optional. Total memory in bytes.
+     */
+    memoryBytes?: string | null;
+    /**
+     * Optional. Total memory in bytes limited by db deployment.
+     */
+    memoryLimitBytes?: string | null;
+    /**
+     * Optional. Number of total physical cores.
+     */
+    physicalCoreCount?: number | null;
+    /**
+     * Optional. Number of total physical cores limited by db deployment.
+     */
+    physicalCoreLimit?: number | null;
+  }
+  /**
+   * Details of a logical database.
+   */
+  export interface Schema$DatabaseDetails {
+    /**
+     * Optional. The allocated storage for the database in bytes.
+     */
+    allocatedStorageBytes?: string | null;
+    /**
+     * Required. The name of the database.
+     */
+    databaseName?: string | null;
+    /**
+     * Required. The parent database deployment that contains the logical database.
+     */
+    parentDatabaseDeployment?: Schema$DatabaseDetailsParentDatabaseDeployment;
+    /**
+     * Optional. The database schemas.
+     */
+    schemas?: Schema$DatabaseSchema[];
+  }
+  /**
+   * The identifiers of the parent database deployment.
+   */
+  export interface Schema$DatabaseDetailsParentDatabaseDeployment {
+    /**
+     * Optional. The parent database deployment generated ID.
+     */
+    generatedId?: string | null;
+    /**
+     * Optional. The parent database deployment optional manual unique ID set by the user.
+     */
+    manualUniqueId?: string | null;
+  }
+  /**
+   * Details of a database instance.
+   */
+  export interface Schema$DatabaseInstance {
+    /**
+     * Optional. The instance's name.
+     */
+    instanceName?: string | null;
+    /**
+     * Optional. Networking details.
+     */
+    network?: Schema$DatabaseInstanceNetwork;
+    /**
+     * Optional. The instance role in the database engine.
+     */
+    role?: string | null;
+  }
+  /**
+   * Network details of a database instance.
+   */
+  export interface Schema$DatabaseInstanceNetwork {
+    /**
+     * Optional. The instance's host names.
+     */
+    hostNames?: string[] | null;
+    /**
+     * Optional. The instance's IP addresses.
+     */
+    ipAddresses?: string[] | null;
+    /**
+     * Optional. The instance's primary MAC address.
+     */
+    primaryMacAddress?: string | null;
+  }
+  /**
+   * Details of a group of database objects.
+   */
+  export interface Schema$DatabaseObjects {
+    /**
+     * Optional. The category of the objects.
+     */
+    category?: string | null;
+    /**
+     * Optional. The number of objects.
+     */
+    count?: string | null;
+  }
+  /**
+   * Details of a database schema.
+   */
+  export interface Schema$DatabaseSchema {
+    /**
+     * Optional. Details of a Mysql schema.
+     */
+    mysql?: Schema$MySqlSchemaDetails;
+    /**
+     * Optional. List of details of objects by category.
+     */
+    objects?: Schema$DatabaseObjects[];
+    /**
+     * Optional. Details of a PostgreSql schema.
+     */
+    postgresql?: Schema$PostgreSqlSchemaDetails;
+    /**
+     * Required. The name of the schema.
+     */
+    schemaName?: string | null;
+    /**
+     * Optional. Details of a SqlServer schema.
+     */
+    sqlServer?: Schema$SqlServerSchemaDetails;
+    /**
+     * Optional. The total size of tables in bytes.
+     */
+    tablesSizeBytes?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
@@ -791,9 +1028,17 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$DiskUsageSample {
     /**
-     * Average IOPS sampled over a short window. Must be non-negative.
+     * Optional. Average IOPS sampled over a short window. Must be non-negative. Must be equal to the sum of read and write if one of them is positive. if both read and write are zero they are ignored.
      */
     averageIops?: number | null;
+    /**
+     * Optional. Average read IOPS sampled over a short window. Must be non-negative.
+     */
+    averageReadIops?: number | null;
+    /**
+     * Optional. Average write IOPS sampled over a short window. Must be non-negative.
+     */
+    averageWriteIops?: number | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
@@ -948,6 +1193,10 @@ export namespace migrationcenter_v1 {
    * Generic platform details.
    */
   export interface Schema$GenericPlatformDetails {
+    /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
     /**
      * Free text representation of the machine location. The format of this field should not be relied on. Different VMs in the same location may have different string values for this field.
      */
@@ -1221,6 +1470,14 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$ImportRowError {
     /**
+     * Error details for an archive file.
+     */
+    archiveError?: Schema$ImportRowErrorArchiveErrorDetails;
+    /**
+     * Output only. The asset title.
+     */
+    assetTitle?: string | null;
+    /**
      * Error details for a CSV file.
      */
     csvError?: Schema$ImportRowErrorCsvErrorDetails;
@@ -1244,6 +1501,19 @@ export namespace migrationcenter_v1 {
      * Error details for an XLSX file.
      */
     xlsxError?: Schema$ImportRowErrorXlsxErrorDetails;
+  }
+  /**
+   * Error details for an archive file.
+   */
+  export interface Schema$ImportRowErrorArchiveErrorDetails {
+    /**
+     * Error details for a CSV file.
+     */
+    csvError?: Schema$ImportRowErrorCsvErrorDetails;
+    /**
+     * Output only. The file path inside the archive where the error was detected.
+     */
+    filePath?: string | null;
   }
   /**
    * Error details for a CSV file.
@@ -1272,7 +1542,7 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$Insight {
     /**
-     * Output only. A generic insight about an asset
+     * Output only. A generic insight about an asset.
      */
     genericInsight?: Schema$GenericInsight;
     /**
@@ -1439,6 +1709,19 @@ export namespace migrationcenter_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Response message for listing relations.
+   */
+  export interface Schema$ListRelationsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of relations.
+     */
+    relations?: Schema$Relation[];
+  }
+  /**
    * Response message for listing report configs.
    */
   export interface Schema$ListReportConfigsResponse {
@@ -1526,6 +1809,10 @@ export namespace migrationcenter_v1 {
      * CPU architecture, e.g., "x64-based PC", "x86_64", "i686" etc.
      */
     cpuArchitecture?: string | null;
+    /**
+     * Optional. CPU manufacturer, e.g., "Intel", "AMD".
+     */
+    cpuManufacturer?: string | null;
     /**
      * CPU name, e.g., "Intel Xeon E5-2690", "AMD EPYC 7571" etc.
      */
@@ -1694,6 +1981,104 @@ export namespace migrationcenter_v1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Specific details for a Mysql database deployment.
+   */
+  export interface Schema$MysqlDatabaseDeployment {
+    /**
+     * Optional. List of MySql plugins.
+     */
+    plugins?: Schema$MySqlPlugin[];
+    /**
+     * Optional. List of MySql properties.
+     */
+    properties?: Schema$MySqlProperty[];
+    /**
+     * Optional. Number of resource groups.
+     */
+    resourceGroupsCount?: number | null;
+    /**
+     * Optional. List of MySql variables.
+     */
+    variables?: Schema$MySqlVariable[];
+  }
+  /**
+   * MySql plugin.
+   */
+  export interface Schema$MySqlPlugin {
+    /**
+     * Required. The plugin is active.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The plugin name.
+     */
+    plugin?: string | null;
+    /**
+     * Required. The plugin version.
+     */
+    version?: string | null;
+  }
+  /**
+   * MySql property.
+   */
+  export interface Schema$MySqlProperty {
+    /**
+     * Required. The property is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The property numeric value.
+     */
+    numericValue?: string | null;
+    /**
+     * Required. The property name.
+     */
+    property?: string | null;
+  }
+  /**
+   * Specific details for a Mysql database.
+   */
+  export interface Schema$MySqlSchemaDetails {
+    /**
+     * Optional. Mysql storage engine tables.
+     */
+    storageEngines?: Schema$MySqlStorageEngineDetails[];
+  }
+  /**
+   * Mysql storage engine tables.
+   */
+  export interface Schema$MySqlStorageEngineDetails {
+    /**
+     * Optional. The number of encrypted tables.
+     */
+    encryptedTableCount?: number | null;
+    /**
+     * Required. The storage engine.
+     */
+    engine?: string | null;
+    /**
+     * Optional. The number of tables.
+     */
+    tableCount?: number | null;
+  }
+  /**
+   * MySql variable.
+   */
+  export interface Schema$MySqlVariable {
+    /**
+     * Required. The variable category.
+     */
+    category?: string | null;
+    /**
+     * Required. The variable value.
+     */
+    value?: string | null;
+    /**
+     * Required. The variable name.
+     */
+    variable?: string | null;
   }
   /**
    * Details of network adapter.
@@ -1951,6 +2336,10 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$PhysicalPlatformDetails {
     /**
+     * Whether the machine is hyperthreaded.
+     */
+    hyperthreading?: string | null;
+    /**
      * Free text representation of the machine location. The format of this field should not be relied on. Different machines in the same location may have different string values for this field.
      */
     location?: string | null;
@@ -1979,6 +2368,95 @@ export namespace migrationcenter_v1 {
      * VMware specific details.
      */
     vmwareDetails?: Schema$VmwarePlatformDetails;
+  }
+  /**
+   * Specific details for a PostgreSQL database deployment.
+   */
+  export interface Schema$PostgreSqlDatabaseDeployment {
+    /**
+     * Optional. List of PostgreSql properties.
+     */
+    properties?: Schema$PostgreSqlProperty[];
+    /**
+     * Optional. List of PostgreSql settings.
+     */
+    settings?: Schema$PostgreSqlSetting[];
+  }
+  /**
+   * PostgreSql extension.
+   */
+  export interface Schema$PostgreSqlExtension {
+    /**
+     * Required. The extension name.
+     */
+    extension?: string | null;
+    /**
+     * Required. The extension version.
+     */
+    version?: string | null;
+  }
+  /**
+   * PostgreSql property.
+   */
+  export interface Schema$PostgreSqlProperty {
+    /**
+     * Required. The property is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The property numeric value.
+     */
+    numericValue?: string | null;
+    /**
+     * Required. The property name.
+     */
+    property?: string | null;
+  }
+  /**
+   * Specific details for a PostgreSql schema.
+   */
+  export interface Schema$PostgreSqlSchemaDetails {
+    /**
+     * Optional. PostgreSql foreign tables.
+     */
+    foreignTablesCount?: number | null;
+    /**
+     * Optional. PostgreSql extensions.
+     */
+    postgresqlExtensions?: Schema$PostgreSqlExtension[];
+  }
+  /**
+   * PostgreSql setting.
+   */
+  export interface Schema$PostgreSqlSetting {
+    /**
+     * Required. The setting boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Required. The setting int value.
+     */
+    intValue?: string | null;
+    /**
+     * Required. The setting real value.
+     */
+    realValue?: number | null;
+    /**
+     * Required. The setting name.
+     */
+    setting?: string | null;
+    /**
+     * Required. The setting source.
+     */
+    source?: string | null;
+    /**
+     * Required. The setting string value. Notice that enum values are stored as strings.
+     */
+    stringValue?: string | null;
+    /**
+     * Optional. The setting unit.
+     */
+    unit?: string | null;
   }
   /**
    * The preferences that apply to all assets in a given context.
@@ -2017,6 +2495,31 @@ export namespace migrationcenter_v1 {
      * A list of preferred regions, ordered by the most preferred region first. Set only valid Google Cloud region names. See https://cloud.google.com/compute/docs/regions-zones for available regions.
      */
     preferredRegions?: string[] | null;
+  }
+  /**
+   * Message representing a relation between 2 resource.
+   */
+  export interface Schema$Relation {
+    /**
+     * Output only. The timestamp when the relation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The destination asset name in the relation.
+     */
+    dstAsset?: string | null;
+    /**
+     * Output only. Identifier. The identifier of the relation.
+     */
+    name?: string | null;
+    /**
+     * Output only. The source asset name in the relation.
+     */
+    srcAsset?: string | null;
+    /**
+     * Optional. The type of the relation.
+     */
+    type?: string | null;
   }
   /**
    * A request to remove assets from a group.
@@ -2630,6 +3133,75 @@ export namespace migrationcenter_v1 {
     updateTime?: string | null;
   }
   /**
+   * Specific details for a Microsoft SQL Server database deployment.
+   */
+  export interface Schema$SqlServerDatabaseDeployment {
+    /**
+     * Optional. List of SQL Server features.
+     */
+    features?: Schema$SqlServerFeature[];
+    /**
+     * Optional. List of SQL Server server flags.
+     */
+    serverFlags?: Schema$SqlServerServerFlag[];
+    /**
+     * Optional. List of SQL Server trace flags.
+     */
+    traceFlags?: Schema$SqlServerTraceFlag[];
+  }
+  /**
+   * SQL Server feature details.
+   */
+  export interface Schema$SqlServerFeature {
+    /**
+     * Required. Field enabled is set when a feature is used on the source deployment.
+     */
+    enabled?: boolean | null;
+    /**
+     * Required. The feature name.
+     */
+    featureName?: string | null;
+  }
+  /**
+   * Specific details for a SqlServer database.
+   */
+  export interface Schema$SqlServerSchemaDetails {
+    /**
+     * Optional. SqlServer number of CLR objects.
+     */
+    clrObjectCount?: number | null;
+  }
+  /**
+   * SQL Server server flag details.
+   */
+  export interface Schema$SqlServerServerFlag {
+    /**
+     * Required. The server flag name.
+     */
+    serverFlagName?: string | null;
+    /**
+     * Required. The server flag value set by the user.
+     */
+    value?: string | null;
+    /**
+     * Required. The server flag actual value. If `value_in_use` is different from `value` it means that either the configuration change was not applied or it is an expected behavior. See SQL Server documentation for more details.
+     */
+    valueInUse?: string | null;
+  }
+  /**
+   * SQL Server trace flag details.
+   */
+  export interface Schema$SqlServerTraceFlag {
+    /**
+     * Required. The trace flag scope.
+     */
+    scope?: string | null;
+    /**
+     * Required. The trace flag name.
+     */
+    traceFlagName?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -2782,6 +3354,10 @@ export namespace migrationcenter_v1 {
    */
   export interface Schema$VmwarePlatformDetails {
     /**
+     * Whether the ESX is hyperthreaded.
+     */
+    esxHyperthreading?: string | null;
+    /**
      * ESX version.
      */
     esxVersion?: string | null;
@@ -2824,6 +3400,7 @@ export namespace migrationcenter_v1 {
     importJobs: Resource$Projects$Locations$Importjobs;
     operations: Resource$Projects$Locations$Operations;
     preferenceSets: Resource$Projects$Locations$Preferencesets;
+    relations: Resource$Projects$Locations$Relations;
     reportConfigs: Resource$Projects$Locations$Reportconfigs;
     sources: Resource$Projects$Locations$Sources;
     constructor(context: APIRequestContext) {
@@ -2842,6 +3419,7 @@ export namespace migrationcenter_v1 {
       this.preferenceSets = new Resource$Projects$Locations$Preferencesets(
         this.context
       );
+      this.relations = new Resource$Projects$Locations$Relations(this.context);
       this.reportConfigs = new Resource$Projects$Locations$Reportconfigs(
         this.context
       );
@@ -6667,7 +7245,7 @@ export namespace migrationcenter_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7591,6 +8169,224 @@ export namespace migrationcenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$PreferenceSet;
+  }
+
+  export class Resource$Projects$Locations$Relations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the details of an relation.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Relations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Relation>;
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Relation>,
+      callback: BodyResponseCallback<Schema$Relation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Relations$Get,
+      callback: BodyResponseCallback<Schema$Relation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Relation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Relations$Get
+        | BodyResponseCallback<Schema$Relation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Relation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Relation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Relation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Relations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Relations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Relation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Relation>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the relations in a given project and location.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Relations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRelationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRelationsResponse>,
+      callback: BodyResponseCallback<Schema$ListRelationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Relations$List,
+      callback: BodyResponseCallback<Schema$ListRelationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRelationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Relations$List
+        | BodyResponseCallback<Schema$ListRelationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRelationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRelationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRelationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Relations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Relations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://migrationcenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/relations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRelationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRelationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Relations$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Relations$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for `ListRelationsRequest`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Reportconfigs {
