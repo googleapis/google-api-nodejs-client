@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20240423",
+  "revision": "20241112",
   "rootUrl": "https://verifiedaccess.googleapis.com/",
   "schemas": {
     "Challenge": {
@@ -285,7 +285,7 @@
           "type": "string"
         },
         "osFirewall": {
-          "description": "The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode.",
+          "description": "The state of the OS level firewall. On ChromeOS, the value will always be ENABLED on regular devices and UNKNOWN on devices in developer mode. Support for MacOS 15 (Sequoia) and later has been introduced in Chrome M131.",
           "enum": [
             "OS_FIREWALL_UNSPECIFIED",
             "OS_FIREWALL_UNKNOWN",
