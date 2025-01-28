@@ -428,7 +428,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The project and location to build in. Location must be a region, e.g., 'us-central1' or 'global' if the global builder is to be used. Format: `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1520,13 +1520,122 @@
                   }
                 }
               }
+            },
+            "workerPools": {
+              "resources": {
+                "revisions": {
+                  "methods": {
+                    "delete": {
+                      "description": "Deletes a Revision.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}/revisions/{revisionsId}",
+                      "httpMethod": "DELETE",
+                      "id": "run.projects.locations.workerPools.revisions.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "etag": {
+                          "description": "A system-generated fingerprint for this version of the resource. This may be used to detect modification conflict during updates.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The name of the Revision to delete. Format: projects/{project}/locations/{location}/services/{service}/revisions/{revision}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "validateOnly": {
+                          "description": "Indicates that the request should be validated without actually deleting any resources.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets information about a Revision.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}/revisions/{revisionsId}",
+                      "httpMethod": "GET",
+                      "id": "run.projects.locations.workerPools.revisions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The full name of the Revision. Format: projects/{project}/locations/{location}/services/{service}/revisions/{revision}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudRunV2Revision"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Revisions from a given Service, or from a given location. Results are sorted by creation time, descending.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}/revisions",
+                      "httpMethod": "GET",
+                      "id": "run.projects.locations.workerPools.revisions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Maximum number of revisions to return in this call.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token received from a previous call to ListRevisions. All other parameters must match.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The Service from which the Revisions should be listed. To list all Revisions across Services, use \"-\" instead of Service name. Format: projects/{project}/locations/{location}/services/{service}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "showDeleted": {
+                          "description": "If true, returns deleted (but unexpired) resources along with active ones.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v2/{+parent}/revisions",
+                      "response": {
+                        "$ref": "GoogleCloudRunV2ListRevisionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20250117",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -1538,7 +1647,7 @@
           "type": "string"
         },
         "policy": {
-          "description": "Optional. The path to a binary authorization policy. Format: projects/{project}/platforms/cloudRun/{policy-name}",
+          "description": "Optional. The path to a binary authorization policy. Format: `projects/{project}/platforms/cloudRun/{policy-name}`",
           "type": "string"
         },
         "useDefault": {
@@ -1548,12 +1657,76 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2BuildConfig": {
+      "description": "Describes the Build step of the function that builds a container from the given source.",
+      "id": "GoogleCloudRunV2BuildConfig",
+      "properties": {
+        "baseImage": {
+          "description": "Optional. The base image used to build the function.",
+          "type": "string"
+        },
+        "enableAutomaticUpdates": {
+          "description": "Optional. Sets whether the function will receive automatic base image updates.",
+          "type": "boolean"
+        },
+        "environmentVariables": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-provided build-time environment variables for the function",
+          "type": "object"
+        },
+        "functionTarget": {
+          "description": "Optional. The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix, if not specified. For backward compatibility, if function with given name is not found, then the system will try to use function named \"function\".",
+          "type": "string"
+        },
+        "imageUri": {
+          "description": "Optional. Artifact Registry URI to store the built image.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The Cloud Build name of the latest successful deployment of the function.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. Service account to be used for building the container. The format of this field is `projects/{projectId}/serviceAccounts/{serviceAccountEmail}`.",
+          "type": "string"
+        },
+        "sourceLocation": {
+          "description": "The Cloud Storage bucket URI where the function source code is located.",
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the Cloud Run function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where {project} and {region} are the project id and region respectively where the worker pool is defined and {workerPool} is the short name of the worker pool.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRunV2BuildInfo": {
+      "description": "Build information of the image.",
+      "id": "GoogleCloudRunV2BuildInfo",
+      "properties": {
+        "functionTarget": {
+          "description": "Output only. Entry point of the function when the image is a Cloud Run function.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceLocation": {
+          "description": "Output only. Source code location of the image.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2BuildpacksBuild": {
       "description": "Build the source using Buildpacks.",
       "id": "GoogleCloudRunV2BuildpacksBuild",
       "properties": {
         "baseImage": {
-          "description": "Optional. The base image used to opt into automatic base image updates.",
+          "description": "Optional. The base image to use for the build.",
           "type": "string"
         },
         "cacheImageUri": {
@@ -1573,6 +1746,10 @@
         },
         "functionTarget": {
           "description": "Optional. Name of the function target if the source is a function source. Required for function builds.",
+          "type": "string"
+        },
+        "projectDescriptor": {
+          "description": "Optional. project_descriptor stores the path to the project descriptor file. When empty, it means that there is no project descriptor file in the source.",
           "type": "string"
         },
         "runtime": {
@@ -1771,6 +1948,15 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "baseImageUri": {
+          "description": "Base image for this container. Only supported for services. If set. it indicates that the service is enrolled into automatic base image update.",
+          "type": "string"
+        },
+        "buildInfo": {
+          "$ref": "GoogleCloudRunV2BuildInfo",
+          "description": "Output only. The build info of the container image.",
+          "readOnly": true
         },
         "command": {
           "description": "Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided.",
@@ -1973,6 +2159,11 @@
         "createTime": {
           "description": "Output only. Represents time when the execution was acknowledged by the execution controller. It is not guaranteed to be set in happens-before order across separate operations.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "Output only. Email address of the authenticated creator.",
           "readOnly": true,
           "type": "string"
         },
@@ -2266,6 +2457,13 @@
         "bucket": {
           "description": "Cloud Storage Bucket name.",
           "type": "string"
+        },
+        "mountOptions": {
+          "description": "A list of additional flags to pass to the gcsfuse CLI. Options should be specified without the leading \"--\".",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "readOnly": {
           "description": "If true, the volume will be mounted as read only for all mounts.",
@@ -3030,6 +3228,25 @@
           "description": "A reference to a customer managed encryption key (CMEK) to use to encrypt this container image. For more information, go to https://cloud.google.com/run/docs/securing/using-cmek",
           "type": "string"
         },
+        "encryptionKeyRevocationAction": {
+          "description": "Optional. The action to take if the encryption key is revoked.",
+          "enum": [
+            "ENCRYPTION_KEY_REVOCATION_ACTION_UNSPECIFIED",
+            "PREVENT_NEW",
+            "SHUTDOWN"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Prevents the creation of new instances.",
+            "Shuts down existing instances, and prevents creation of new ones."
+          ],
+          "type": "string"
+        },
+        "encryptionKeyShutdownDuration": {
+          "description": "Optional. If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "executionEnvironment": {
           "description": "Optional. The sandbox environment to host this Revision.",
           "enum": [
@@ -3056,7 +3273,7 @@
           "type": "object"
         },
         "maxInstanceRequestConcurrency": {
-          "description": "Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, defaults to 80 when requested CPU >= 1 and defaults to 1 when requested CPU < 1.",
+          "description": "Optional. Sets the maximum number of requests that each serving instance can receive. If not specified or 0, concurrency defaults to 80 when requested `CPU >= 1` and defaults to 1 when requested `CPU < 1`.",
           "format": "int32",
           "type": "integer"
         },
@@ -3142,7 +3359,7 @@
       "id": "GoogleCloudRunV2SecretVolumeSource",
       "properties": {
         "defaultMode": {
-          "description": "Integer representation of mode bits to use on created files by default. Must be a value between 0000 and 0777 (octal), defaulting to 0444. Directories within the path are not affected by this setting. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. This might be in conflict with other options that affect the file mode, like fsGroup, and as a result, other mode bits could be set.",
+          "description": "Integer representation of mode bits to use on created files by default. Must be a value between 0000 and 0777 (octal), defaulting to 0444. Directories within the path are not affected by this setting. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. This might be in conflict with other options that affect the file mode, like fsGroup, and as a result, other mode bits could be set.",
           "format": "int32",
           "type": "integer"
         },
@@ -3174,6 +3391,10 @@
         "binaryAuthorization": {
           "$ref": "GoogleCloudRunV2BinaryAuthorization",
           "description": "Optional. Settings for the Binary Authorization feature."
+        },
+        "buildConfig": {
+          "$ref": "GoogleCloudRunV2BuildConfig",
+          "description": "Optional. Configuration for building a Cloud Run function."
         },
         "client": {
           "description": "Arbitrary identifier for the API client.",
@@ -3259,7 +3480,7 @@
           "type": "string"
         },
         "invokerIamDisabled": {
-          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This setting should not be used with external ingress.",
+          "description": "Optional. Disables IAM permission check for run.routes.invoke for callers of this service. This feature is available by invitation only. For more information, visit https://cloud.google.com/run/docs/securing/managing-access#invoker_check.",
           "type": "boolean"
         },
         "labels": {
@@ -3388,7 +3609,7 @@
       "id": "GoogleCloudRunV2ServiceMesh",
       "properties": {
         "mesh": {
-          "description": "The Mesh resource name. Format: projects/{project}/locations/global/meshes/{mesh}, where {project} can be project id or number.",
+          "description": "The Mesh resource name. Format: `projects/{project}/locations/global/meshes/{mesh}`, where `{project}` can be project id or number.",
           "type": "string"
         }
       },
@@ -3398,6 +3619,16 @@
       "description": "Scaling settings applied at the service level rather than at the revision level.",
       "id": "GoogleCloudRunV2ServiceScaling",
       "properties": {
+        "manualInstanceCount": {
+          "description": "Optional. total instance count for the service in manual scaling mode. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxInstanceCount": {
+          "description": "Optional. total max instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.",
+          "format": "int32",
+          "type": "integer"
+        },
         "minInstanceCount": {
           "description": "Optional. total min instances for the service. This number of instances is divided among all revisions with specified traffic based on the percent of traffic they are receiving.",
           "format": "int32",
@@ -3472,7 +3703,7 @@
           "type": "array"
         },
         "workerPool": {
-          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where {project} and {region} are the project id and region respectively where the worker pool is defined and {workerPool} is the short name of the worker pool.",
+          "description": "Optional. Name of the Cloud Build Custom Worker Pool that should be used to build the function. The format of this field is `projects/{project}/locations/{region}/workerPools/{workerPool}` where `{project}` and `{region}` are the project id and region respectively where the worker pool is defined and `{workerPool}` is the short name of the worker pool.",
           "type": "string"
         }
       },
@@ -3855,7 +4086,7 @@
       "id": "GoogleCloudRunV2VersionToPath",
       "properties": {
         "mode": {
-          "description": "Integer octal mode bits to use on this file, must be a value between 01 and 0777 (octal). If 0 or not set, the Volume's default mode will be used. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
+          "description": "Integer octal mode bits to use on this file, must be a value between 01 and 0777 (octal). If 0 or not set, the Volume's default mode will be used. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.",
           "format": "int32",
           "type": "integer"
         },
@@ -3921,7 +4152,7 @@
       "id": "GoogleCloudRunV2VpcAccess",
       "properties": {
         "connector": {
-          "description": "VPC Access connector name. Format: projects/{project}/locations/{location}/connectors/{connector}, where {project} can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.",
+          "description": "VPC Access connector name. Format: `projects/{project}/locations/{location}/connectors/{connector}`, where `{project}` can be project id or number. For more information on sending traffic to a VPC network via a connector, visit https://cloud.google.com/run/docs/configuring/vpc-connectors.",
           "type": "string"
         },
         "egress": {
@@ -4026,6 +4257,13 @@
       "description": "Artifacts produced by a build that should be uploaded upon successful completion of all build steps.",
       "id": "GoogleDevtoolsCloudbuildV1Artifacts",
       "properties": {
+        "goModules": {
+          "description": "Optional. A list of Go modules to be uploaded to Artifact Registry upon successful completion of all build steps. If any objects fail to be pushed, the build is marked FAILURE.",
+          "items": {
+            "$ref": "GoogleDevtoolsCloudbuildV1GoModule"
+          },
+          "type": "array"
+        },
         "images": {
           "description": "A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.",
           "items": {
@@ -4332,6 +4570,10 @@
           "description": "Option to specify whether or not to apply bash style string operations to the substitutions. NOTE: this is always enabled for triggered builds and cannot be overridden in the build configuration file.",
           "type": "boolean"
         },
+        "enableStructuredLogging": {
+          "description": "Optional. Option to specify whether structured logging is enabled. If true, JSON-formatted logs are parsed as structured logs.",
+          "type": "boolean"
+        },
         "env": {
           "description": "A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form \"KEY=VALUE\" for the environment variable \"KEY\" being given the value \"VALUE\".",
           "items": {
@@ -4439,12 +4681,14 @@
               "NONE",
               "SHA256",
               "MD5",
+              "GO_MODULE_H1",
               "SHA512"
             ],
             "enumDescriptions": [
               "No hash requested.",
               "Use a sha256 hash.",
               "Use a md5 hash.",
+              "Dirhash of a Go module's source code which is then hex-encoded.",
               "Use a sha512 hash."
             ],
             "type": "string"
@@ -4741,6 +4985,37 @@
       },
       "type": "object"
     },
+    "GoogleDevtoolsCloudbuildV1GoModule": {
+      "description": "Go module to upload to Artifact Registry upon successful completion of all build steps. A module refers to all dependencies in a go.mod file.",
+      "id": "GoogleDevtoolsCloudbuildV1GoModule",
+      "properties": {
+        "modulePath": {
+          "description": "Optional. The Go module's \"module path\". e.g. example.com/foo/v2",
+          "type": "string"
+        },
+        "moduleVersion": {
+          "description": "Optional. The Go module's semantic version in the form vX.Y.Z. e.g. v0.1.1 Pre-release identifiers can also be added by appending a dash and dot separated ASCII alphanumeric characters and hyphens. e.g. v0.2.3-alpha.x.12m.5",
+          "type": "string"
+        },
+        "repositoryLocation": {
+          "description": "Optional. Location of the Artifact Registry repository. i.e. us-east1 Defaults to the build’s location.",
+          "type": "string"
+        },
+        "repositoryName": {
+          "description": "Optional. Artifact Registry repository name. Specified Go modules will be zipped and uploaded to Artifact Registry with this location as a prefix. e.g. my-go-repo",
+          "type": "string"
+        },
+        "repositoryProjectId": {
+          "description": "Optional. Project ID of the Artifact Registry repository. Defaults to the build project.",
+          "type": "string"
+        },
+        "sourcePath": {
+          "description": "Optional. Source path of the go.mod file in the build's workspace. If not specified, this will default to the current directory. e.g. ~/code/go/mypackage",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleDevtoolsCloudbuildV1Hash": {
       "description": "Container message for hash values.",
       "id": "GoogleDevtoolsCloudbuildV1Hash",
@@ -4751,12 +5026,14 @@
             "NONE",
             "SHA256",
             "MD5",
+            "GO_MODULE_H1",
             "SHA512"
           ],
           "enumDescriptions": [
             "No hash requested.",
             "Use a sha256 hash.",
             "Use a md5 hash.",
+            "Dirhash of a Go module's source code which is then hex-encoded.",
             "Use a sha512 hash."
           ],
           "type": "string"
@@ -4936,6 +5213,13 @@
           "items": {
             "format": "byte",
             "type": "string"
+          },
+          "type": "array"
+        },
+        "goModules": {
+          "description": "Optional. Go module artifacts uploaded to Artifact Registry at the end of the build.",
+          "items": {
+            "$ref": "GoogleDevtoolsCloudbuildV1UploadedGoModule"
           },
           "type": "array"
         },
@@ -5164,6 +5448,26 @@
         "startTime": {
           "description": "Start of time span.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsCloudbuildV1UploadedGoModule": {
+      "description": "A Go module artifact uploaded to Artifact Registry using the GoModule directive.",
+      "id": "GoogleDevtoolsCloudbuildV1UploadedGoModule",
+      "properties": {
+        "fileHashes": {
+          "$ref": "GoogleDevtoolsCloudbuildV1FileHashes",
+          "description": "Hash types and values of the Go Module Artifact."
+        },
+        "pushTiming": {
+          "$ref": "GoogleDevtoolsCloudbuildV1TimeSpan",
+          "description": "Output only. Stores timing information for pushing the specified artifact.",
+          "readOnly": true
+        },
+        "uri": {
+          "description": "URI of the uploaded artifact.",
           "type": "string"
         }
       },
@@ -5548,25 +5852,25 @@
       "id": "UtilStatusProto",
       "properties": {
         "canonicalCode": {
-          "description": "The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be.",
+          "description": "The canonical error code (see codes.proto) that most closely corresponds to this status. This may be missing, and in the common case of the generic space, it definitely will be. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;",
           "format": "int32",
           "type": "integer"
         },
         "code": {
-          "description": "Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto",
+          "description": "Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;",
           "format": "int32",
           "type": "integer"
         },
         "message": {
-          "description": "Detail message",
+          "description": "Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;",
           "type": "string"
         },
         "messageSet": {
           "$ref": "Proto2BridgeMessageSet",
-          "description": "message_set associates an arbitrary proto message with the status."
+          "description": "message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;"
         },
         "space": {
-          "description": "The following are usually only present when code != 0 Space to which this status belongs",
+          "description": "The following are usually only present when code != 0 Space to which this status belongs copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string space = 2;",
           "type": "string"
         }
       },
