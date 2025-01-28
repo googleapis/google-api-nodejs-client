@@ -1779,7 +1779,7 @@ export namespace drive_v2 {
      */
     published?: boolean | null;
     /**
-     * Output only. A link to the published revision. This is only populated for Google Sites files.
+     * Output only. A link to the published revision. This is only populated for Docs Editors files.
      */
     publishedLink?: string | null;
     /**
