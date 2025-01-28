@@ -686,6 +686,10 @@ export namespace servicenetworking_v1beta {
    */
   export interface Schema$Documentation {
     /**
+     * Optional information about the IAM configuration. This is typically used to link to documentation about a product's IAM roles and permissions.
+     */
+    additionalIamInfo?: string | null;
+    /**
      * The URL to the root of documentation.
      */
     documentationRootUrl?: string | null;
@@ -836,6 +840,10 @@ export namespace servicenetworking_v1beta {
    */
   export interface Schema$ExperimentalFeatures {
     /**
+     * Enables generation of protobuf code using new types that are more Pythonic which are included in `protobuf\>=5.29.x`. This feature will be enabled by default 1 month after launching the feature in preview packages.
+     */
+    protobufPythonicTypesEnabled?: boolean | null;
+    /**
      * Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.
      */
     restAsyncIoEnabled?: boolean | null;
@@ -969,6 +977,10 @@ export namespace servicenetworking_v1beta {
      * Some settings.
      */
     common?: Schema$CommonLanguageSettings;
+    /**
+     * Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin
+     */
+    renamedServices?: {[key: string]: string} | null;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
@@ -1602,7 +1614,7 @@ export namespace servicenetworking_v1beta {
      */
     name?: string | null;
     /**
-     * Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project\}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax.
+     * Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project\}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax.
      */
     unit?: string | null;
     /**
