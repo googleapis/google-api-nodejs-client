@@ -2,7 +2,7 @@
 
 # resourcesettings
 
-> The Resource Settings API allows users to control and modify the behavior of their GCP resources (e.g., VM, firewall, Project, etc.) across the Cloud Resource Hierarchy.
+> 
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
