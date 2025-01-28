@@ -442,11 +442,11 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$TestRulesetRequest {
     /**
-     * Optional `Source` to be checked for correctness. This field must not be set when the resource name refers to a `Ruleset`.
+     * Optional. Optional `Source` to be checked for correctness. This field must not be set when the resource name refers to a `Ruleset`.
      */
     source?: Schema$Source;
     /**
-     * The tests to execute against the `Source`. When `Source` is provided inline, the test cases will only be run if the `Source` is syntactically and semantically valid. Inline `TestSuite` to run.
+     * Required. The tests to execute against the `Source`. When `Source` is provided inline, the test cases will only be run if the `Source` is syntactically and semantically valid. Inline `TestSuite` to run.
      */
     testSuite?: Schema$TestSuite;
   }
@@ -481,7 +481,7 @@ export namespace firebaserules_v1 {
      */
     release?: Schema$Release;
     /**
-     * Specifies which fields to update.
+     * Optional. Specifies which fields to update.
      */
     updateMask?: string | null;
   }
@@ -1198,7 +1198,7 @@ export namespace firebaserules_v1 {
   export interface Params$Resource$Projects$Releases$Getexecutable
     extends StandardParameters {
     /**
-     * The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
+     * Optional. The requested runtime executable version. Defaults to FIREBASE_RULES_EXECUTABLE_V1.
      */
     executableVersion?: string;
     /**
@@ -1209,7 +1209,7 @@ export namespace firebaserules_v1 {
   export interface Params$Resource$Projects$Releases$List
     extends StandardParameters {
     /**
-     * `Release` filter. The list method supports filters with restrictions on the `Release.name`, and `Release.ruleset_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v2 -\> projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used.
+     * Optional. `Release` filter. The list method supports filters with restrictions on the `Release.name`, and `Release.ruleset_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v2 -\> projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name -\> Ruleset Name: * projects/foo/releases/prod -\> projects/foo/rulesets/1234 * projects/foo/releases/prod/v1 -\> projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used.
      */
     filter?: string;
     /**
@@ -1217,11 +1217,11 @@ export namespace firebaserules_v1 {
      */
     name?: string;
     /**
-     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.
+     * Optional. Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load fewer than `page_size` results due to the size of the output. To traverse all of the releases, the caller should iterate until the `page_token` on the response is empty.
      */
     pageSize?: number;
     /**
-     * Next page token for the next batch of `Release` instances.
+     * Optional. Next page token for the next batch of `Release` instances.
      */
     pageToken?: string;
   }
@@ -1629,7 +1629,7 @@ export namespace firebaserules_v1 {
   export interface Params$Resource$Projects$Rulesets$List
     extends StandardParameters {
     /**
-     * `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`. Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications. Example: `create_time \> date("2017-01-01T00:00:00Z") AND name=UUID-*`
+     * Optional. `Ruleset` filter. The list method supports filters with restrictions on `Ruleset.name`. Filters on `Ruleset.create_time` should use the `date` function which parses strings that conform to the RFC 3339 date/time specifications. Example: `create_time \> date("2017-01-01T00:00:00Z") AND name=UUID-*`
      */
     filter?: string;
     /**
@@ -1637,11 +1637,11 @@ export namespace firebaserules_v1 {
      */
     name?: string;
     /**
-     * Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
+     * Optional. Page size to load. Maximum of 100. Defaults to 10. Note: `page_size` is just a hint and the service may choose to load less than `page_size` due to the size of the output. To traverse all of the releases, caller should iterate until the `page_token` is empty.
      */
     pageSize?: number;
     /**
-     * Next page token for loading the next batch of `Ruleset` instances.
+     * Optional. Next page token for loading the next batch of `Ruleset` instances.
      */
     pageToken?: string;
   }
