@@ -162,8 +162,8 @@ export namespace calendar_v3 {
      * - "none" - Provides no access.
      * - "freeBusyReader" - Provides read access to free/busy information.
      * - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
-     * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
-     * - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+     * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible. Provides read access to the calendar's ACLs.
+     * - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to manipulate ACLs.
      */
     role?: string | null;
     /**
@@ -615,6 +615,10 @@ export namespace calendar_v3 {
      */
     attendeesOmitted?: boolean | null;
     /**
+     * Birthday or special event data. Used if eventType is "birthday". Immutable.
+     */
+    birthdayProperties?: Schema$EventBirthdayProperties;
+    /**
      * The color of the event. This is an ID referring to an entry in the event section of the colors definition (see the  colors endpoint). Optional.
      */
     colorId?: string | null;
@@ -890,6 +894,25 @@ export namespace calendar_v3 {
      * Whether this entry represents the calendar on which this copy of the event appears. Read-only. The default is False.
      */
     self?: boolean | null;
+  }
+  export interface Schema$EventBirthdayProperties {
+    /**
+     * Resource name of the contact this birthday event is linked to. This can be used to fetch contact details from People API. Format: "people/c12345". Read-only.
+     */
+    contact?: string | null;
+    /**
+     * Custom type label specified for this event. This is populated if birthdayProperties.type is set to "custom". Read-only.
+     */
+    customTypeName?: string | null;
+    /**
+     * Type of birthday or special event. Possible values are:
+     * - "anniversary" - An anniversary other than birthday. Always has a contact.
+     * - "birthday" - A birthday event. This is the default value.
+     * - "custom" - A special date whose label is further specified in the customTypeName field. Always has a contact.
+     * - "other" - A special date which does not fall into the other categories, and does not have a custom label. Always has a contact.
+     * - "self" - Calendar owner's own birthday. Cannot have a contact.  The Calendar API only supports creating events with the type "birthday". The type cannot be changed after the event is created.
+     */
+    type?: string | null;
   }
   export interface Schema$EventDateTime {
     /**
