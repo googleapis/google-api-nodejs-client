@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20240906",
+  "revision": "20241208",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1175,9 +1175,9 @@
             "DISABLED"
           ],
           "enumDescriptions": [
-            "Default, unspecified setting. If opted in for automatic detection, `fraud_prevention_assessment` is returned based on the request. Otherwise, `fraud_prevention_assessment` is returned if `transaction_data` is present in the `Event` and Fraud Prevention is enabled in the Google Cloud console.",
+            "Default, unspecified setting. `fraud_prevention_assessment` is returned if `transaction_data` is present in `Event` and Fraud Prevention is enabled in the Google Cloud console.",
             "Enable Fraud Prevention for this assessment, if Fraud Prevention is enabled in the Google Cloud console.",
-            "Disable Fraud Prevention for this assessment, regardless of opt-in status or Google Cloud console settings."
+            "Disable Fraud Prevention for this assessment, regardless of Google Cloud console settings."
           ],
           "type": "string"
         },
@@ -1803,7 +1803,7 @@
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest": {
-      "description": "The removeIpOverride request message.",
+      "description": "The RemoveIpOverride request message.",
       "id": "GoogleCloudRecaptchaenterpriseV1RemoveIpOverrideRequest",
       "properties": {
         "ipOverrideData": {
@@ -1854,6 +1854,23 @@
       "description": "Risk analysis result for an event.",
       "id": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
       "properties": {
+        "challenge": {
+          "description": "Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE keys",
+          "enum": [
+            "CHALLENGE_UNSPECIFIED",
+            "NOCAPTCHA",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "No challenge was presented for solving.",
+            "A solution was submitted that was correct.",
+            "A solution was submitted that was incorrect or otherwise deemed suspicious."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "extendedVerdictReasons": {
           "description": "Output only. Extended verdict reasons to be used for experimentation only. The set of possible reasons is subject to change.",
           "items": {
