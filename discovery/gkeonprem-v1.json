@@ -1597,7 +1597,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "gkeonprem.projects.locations.operations.cancel",
@@ -1719,6 +1719,49 @@
             },
             "vmwareAdminClusters": {
               "methods": {
+                "create": {
+                  "description": "Creates a new VMware admin cluster in a given project and location. The API needs to be combined with creating a bootstrap cluster to work.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/vmwareAdminClusters",
+                  "httpMethod": "POST",
+                  "id": "gkeonprem.projects.locations.vmwareAdminClusters.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "allowPreflightFailure": {
+                      "description": "Optional. If set to true, CLM will force CCFE to persist the cluster resource in RMS when the creation fails during standalone preflight checks. In that case the subsequent create call will fail with \"cluster already exists\" error and hence a update cluster is required to fix the cluster.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the project and location where the cluster is created in. Format: \"projects/{project}/locations/{location}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Validate the request without actually doing any updates.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "vmwareAdminClusterId": {
+                      "description": "Required. User provided identifier that is used as part of the resource name; must conform to RFC-1034 and additionally restrict to lower-cased letters. This comes out roughly to: /^a-z+[a-z0-9]$/",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/vmwareAdminClusters",
+                  "request": {
+                    "$ref": "VmwareAdminCluster"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "enroll": {
                   "description": "Enrolls an existing VMware admin cluster to the Anthos On-Prem API within a given project and location. Through enrollment, an existing admin cluster will become Anthos On-Prem API managed. The corresponding GCP resources will be created and all future modifications to the cluster will be expected to be performed through the API.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/vmwareAdminClusters:enroll",
@@ -3051,7 +3094,7 @@
       }
     }
   },
-  "revision": "20240814",
+  "revision": "20241204",
   "rootUrl": "https://gkeonprem.googleapis.com/",
   "schemas": {
     "Authorization": {
@@ -5794,7 +5837,12 @@
     "VmwareAdminMetalLbConfig": {
       "description": "VmwareAdminMetalLbConfig represents configuration parameters for a MetalLB load balancer. For admin clusters, currently no configurations is needed.",
       "id": "VmwareAdminMetalLbConfig",
-      "properties": {},
+      "properties": {
+        "enabled": {
+          "description": "Whether MetalLB is enabled.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "VmwareAdminNetworkConfig": {
