@@ -131,7 +131,7 @@ export namespace policysimulator_v1 {
   }
 
   /**
-   * Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run/darklaunch.
+   * Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run.
    */
   export interface Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec {
     /**
@@ -152,7 +152,7 @@ export namespace policysimulator_v1 {
      */
     actionType?: string | null;
     /**
-     * Org policy condition/expression. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
+     * A Common Expression Language (CEL) condition which is used in the evaluation of the constraint. For example: `resource.instanceName.matches("[production|test]_.*_(\d)+")` or, `resource.management.auto_upgrade == true` The max length of the condition is 1000 characters.
      */
     condition?: string | null;
     /**
@@ -176,7 +176,7 @@ export namespace policysimulator_v1 {
      */
     resourceTypes?: string[] | null;
     /**
-     * Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` RPC was called
+     * Output only. The last time this custom constraint was updated. This represents the last time that the `CreateCustomConstraint` or `UpdateCustomConstraint` methods were called.
      */
     updateTime?: string | null;
   }
@@ -201,7 +201,7 @@ export namespace policysimulator_v1 {
      */
     name?: string | null;
     /**
-     * Basic information about the Organization Policy.
+     * Basic information about the organization policy.
      */
     spec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
   }
@@ -250,6 +250,10 @@ export namespace policysimulator_v1 {
      * If `true`, then the policy is enforced. If `false`, then any configuration is acceptable. This field can be set only in policies for boolean constraints.
      */
     enforce?: boolean | null;
+    /**
+     * Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: { "allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true \}
+     */
+    parameters?: {[key: string]: any} | null;
     /**
      * List of values to be used for this policy rule. This field can be set only in policies for list constraints.
      */
