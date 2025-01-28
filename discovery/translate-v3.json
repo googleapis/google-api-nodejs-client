@@ -291,7 +291,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-translation"
               ]
             },
             "batchTranslateText": {
@@ -319,7 +320,8 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-translation"
               ]
             },
             "detectLanguage": {
@@ -1550,7 +1552,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "translate.projects.locations.operations.cancel",
@@ -1708,7 +1710,7 @@
       }
     }
   },
-  "revision": "20240912",
+  "revision": "20241218",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "AdaptiveMtDataset": {
@@ -2372,6 +2374,10 @@
       "description": "Configures which glossary is used for a specific target language and defines options for applying that glossary.",
       "id": "GlossaryConfig",
       "properties": {
+        "contextualTranslationEnabled": {
+          "description": "Optional. If set to true, the glossary will be used for contextual translation.",
+          "type": "boolean"
+        },
         "glossary": {
           "description": "Required. The `glossary` to be applied for this translation. The format depends on the glossary: - User-provided custom glossary: `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`",
           "type": "string"
@@ -3123,6 +3129,10 @@
       "description": "Configures which glossary is used for a specific target language and defines options for applying that glossary.",
       "id": "TranslateTextGlossaryConfig",
       "properties": {
+        "contextualTranslationEnabled": {
+          "description": "Optional. If set to true, the glossary will be used for contextual translation.",
+          "type": "boolean"
+        },
         "glossary": {
           "description": "Required. The `glossary` to be applied for this translation. The format depends on the glossary: - User-provided custom glossary: `projects/{project-number-or-id}/locations/{location-id}/glossaries/{glossary-id}`",
           "type": "string"
