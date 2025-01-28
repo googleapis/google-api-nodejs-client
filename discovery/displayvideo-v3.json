@@ -6271,7 +6271,7 @@
               "type": "string"
             },
             "pageSize": {
-              "description": "Requested page size. Must be between `1` and `200`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+              "description": "Requested page size. Must be between `1` and `5000`. If unspecified, this value defaults to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -9222,7 +9222,7 @@
       }
     }
   },
-  "revision": "20241003",
+  "revision": "20250124",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9563,11 +9563,121 @@
       "type": "object"
     },
     "Adloox": {
-      "description": "Details of Adloox settings.",
+      "description": "Details of Adloox brand safety settings.",
       "id": "Adloox",
       "properties": {
+        "adultExplicitSexualContent": {
+          "description": "Optional. Adult and Explicit Sexual Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "armsAmmunitionContent": {
+          "description": "Optional. Arms and Ammunition Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "crimeHarmfulActsIndividualsSocietyHumanRightsViolationsContent": {
+          "description": "Optional. Crime and Harmful Acts Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "deathInjuryMilitaryConflictContent": {
+          "description": "Optional. Death, Injury, or Military Conflict Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "debatedSensitiveSocialIssueContent": {
+          "description": "Optional. Debated Sensitive Social Issue Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "displayIabViewability": {
+          "description": "Optional. IAB viewability threshold for display ads.",
+          "enum": [
+            "DISPLAY_IAB_VIEWABILITY_UNSPECIFIED",
+            "DISPLAY_IAB_VIEWABILITY_10",
+            "DISPLAY_IAB_VIEWABILITY_20",
+            "DISPLAY_IAB_VIEWABILITY_35",
+            "DISPLAY_IAB_VIEWABILITY_50",
+            "DISPLAY_IAB_VIEWABILITY_75"
+          ],
+          "enumDescriptions": [
+            "Default value when not specified or is unknown in this version.",
+            "10%+ in view (IAB display viewability standard).",
+            "20%+ in view (IAB display viewability standard).",
+            "35%+ in view (IAB display viewability standard).",
+            "50%+ in view (IAB display viewability standard).",
+            "75%+ in view (IAB display viewability standard)."
+          ],
+          "type": "string"
+        },
         "excludedAdlooxCategories": {
-          "description": "Adloox's brand safety settings.",
+          "description": "Adloox categories to exclude.",
           "items": {
             "enum": [
               "ADLOOX_UNSPECIFIED",
@@ -9581,7 +9691,7 @@
               "FRAUD"
             ],
             "enumDescriptions": [
-              "This enum is only a placeholder and it doesn't specify any Adloox option.",
+              "Default value when a Adloox category is not specified or is unknown in this version.",
               "Adult content (hard).",
               "Adult content (soft).",
               "Illegal content.",
@@ -9594,6 +9704,167 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "excludedFraudIvtMfaCategories": {
+          "description": "Optional. Adloox's fraud IVT MFA categories to exclude.",
+          "items": {
+            "enum": [
+              "FRAUD_IVT_MFA_CATEGORY_UNSPECIFIED",
+              "FRAUD_IVT_MFA"
+            ],
+            "enumDescriptions": [
+              "Default value when a Adloox Fraud, IVT, MFA category is not specified or is unknown in this version.",
+              "FRAUD, IVT, MFA."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hateSpeechActsAggressionContent": {
+          "description": "Optional. Hate Speech and Acts of Aggression Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "illegalDrugsTobaccoEcigarettesVapingAlcoholContent": {
+          "description": "Optional. Illegal Drugs/Alcohol Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "misinformationContent": {
+          "description": "Optional. Misinformation Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "obscenityProfanityContent": {
+          "description": "Optional. Obscenity and Profanity Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "onlinePiracyContent": {
+          "description": "Optional. Online Piracy Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "spamHarmfulContent": {
+          "description": "Optional. Spam or Harmful Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "terrorismContent": {
+          "description": "Optional. Terrorism Content [GARM](https://wfanet.org/leadership/garm/about-garm) risk ranges to exclude.",
+          "enum": [
+            "GARM_RISK_EXCLUSION_UNSPECIFIED",
+            "GARM_RISK_EXCLUSION_FLOOR",
+            "GARM_RISK_EXCLUSION_HIGH",
+            "GARM_RISK_EXCLUSION_MEDIUM",
+            "GARM_RISK_EXCLUSION_LOW"
+          ],
+          "enumDescriptions": [
+            "This enum is only a placeholder and it doesn't specify any GARM risk exclusion option.",
+            "Exclude floor risk.",
+            "Exclude high and floor risk.",
+            "Exclude medium, high, and floor risk.",
+            "Exclude all levels of risk (low, medium, high and floor)."
+          ],
+          "type": "string"
+        },
+        "videoIabViewability": {
+          "description": "Optional. IAB viewability threshold for video ads.",
+          "enum": [
+            "VIDEO_IAB_VIEWABILITY_UNSPECIFIED",
+            "VIDEO_IAB_VIEWABILITY_10",
+            "VIDEO_IAB_VIEWABILITY_20",
+            "VIDEO_IAB_VIEWABILITY_35",
+            "VIDEO_IAB_VIEWABILITY_50",
+            "VIDEO_IAB_VIEWABILITY_75"
+          ],
+          "enumDescriptions": [
+            "Default value when not specified or is unknown in this version.",
+            "10%+ in view (IAB video viewability standard).",
+            "20%+ in view (IAB video viewability standard).",
+            "35%+ in view (IAB video viewability standard).",
+            "50%+ in view (IAB video viewability standard).",
+            "75%+ in view (IAB video viewability standard)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9614,7 +9885,7 @@
         },
         "billingConfig": {
           "$ref": "AdvertiserBillingConfig",
-          "description": "Optional. Required. Billing related settings of the advertiser."
+          "description": "Required. Billing related settings of the advertiser."
         },
         "creativeConfig": {
           "$ref": "AdvertiserCreativeConfig",
@@ -9703,7 +9974,7 @@
       "id": "AdvertiserBillingConfig",
       "properties": {
         "billingProfileId": {
-          "description": "Optional. The ID of a billing profile assigned to the advertiser.",
+          "description": "Required. The ID of a billing profile assigned to the advertiser.",
           "format": "int64",
           "type": "string"
         }
@@ -10049,7 +10320,9 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_CORE",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -10134,7 +10407,9 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Core.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -10293,10 +10568,10 @@
           "enumDescriptions": [
             "Unknown operator.",
             "Values are equal.",
-            "First value is greater than the comparison value.",
-            "First value is less than the second.",
-            "First value is greater than or equal to the second.",
-            "First value is less or equals to the comparison value."
+            "Signal value is greater than the comparison value.",
+            "Signal value is less than the second.",
+            "Signal value is greater than or equal to the second.",
+            "Signal value is less or equals to the comparison value."
           ],
           "type": "string"
         },
@@ -10452,7 +10727,12 @@
             "ASSET_ROLE_IOS_APP_ID",
             "ASSET_ROLE_RATING",
             "ASSET_ROLE_ICON",
-            "ASSET_ROLE_COVER_IMAGE"
+            "ASSET_ROLE_COVER_IMAGE",
+            "ASSET_ROLE_BACKGROUND_COLOR",
+            "ASSET_ROLE_ACCENT_COLOR",
+            "ASSET_ROLE_REQUIRE_LOGO",
+            "ASSET_ROLE_REQUIRE_IMAGE",
+            "ASSET_ROLE_ENABLE_ASSET_ENHANCEMENTS"
           ],
           "enumDescriptions": [
             "Asset role is not specified or is unknown in this version.",
@@ -10471,7 +10751,12 @@
             "The ID of an iOS app in the Apple app store. This ID number can be found in the Apple App Store URL as the string of numbers directly after \"id\". For example, in https://apps.apple.com/us/app/gmail-email-by-google/id422689480 the ID is 422689480. Assets of this role are read-only.",
             "The rating of an app in the Google play store or iOS app store. Note that this value is not automatically synced with the actual rating in the store. It will always be the one provided when save the creative. Assets of this role are read-only.",
             "The icon of a creative. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE`",
-            "The cover image of a native video creative. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_VIDEO`"
+            "The cover image of a native video creative. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_VIDEO`",
+            "The main color to use in a creative. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_ASSET_BASED_CREATIVE`",
+            "The accent color to use in a creative. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_ASSET_BASED_CREATIVE`",
+            "Whether the creative must use a logo asset. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_ASSET_BASED_CREATIVE`",
+            "Whether the creative must use an image asset. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_ASSET_BASED_CREATIVE`",
+            "Whether asset enhancements can be applied to the creative. This role is only supported and required in following creative_type: * `CREATIVE_TYPE_ASSET_BASED_CREATIVE`"
           ],
           "type": "string"
         }
@@ -10915,7 +11200,7 @@
       "type": "object"
     },
     "AudienceGroupAssignedTargetingOptionDetails": {
-      "description": "Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups.",
+      "description": "Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups. NEXT_ID: 9",
       "id": "AudienceGroupAssignedTargetingOptionDetails",
       "properties": {
         "excludedFirstAndThirdPartyAudienceGroup": {
@@ -11795,7 +12080,16 @@
             "GEO_REGION_TYPE_ARRONDISSEMENT",
             "GEO_REGION_TYPE_NEIGHBORHOOD",
             "GEO_REGION_TYPE_UNIVERSITY",
-            "GEO_REGION_TYPE_DISTRICT"
+            "GEO_REGION_TYPE_DISTRICT",
+            "GEO_REGION_TYPE_NATIONAL_PARK",
+            "GEO_REGION_TYPE_BARRIO",
+            "GEO_REGION_TYPE_SUB_WARD",
+            "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+            "GEO_REGION_TYPE_SUB_DISTRICT",
+            "GEO_REGION_TYPE_QUARTER",
+            "GEO_REGION_TYPE_DIVISION",
+            "GEO_REGION_TYPE_COMMUNE",
+            "GEO_REGION_TYPE_COLLOQUIAL_AREA"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -11826,7 +12120,16 @@
             "The geographic region is an arrondissement.",
             "The geographic region is a neighborhood.",
             "The geographic region is a university.",
-            "The geographic region is a district."
+            "The geographic region is a district.",
+            "The geographic region is a national park.",
+            "The geographic region is a barrio.",
+            "The geographic region is a sub ward.",
+            "The geographic region is a municipality district.",
+            "The geographic region is a sub district.",
+            "The geographic region is a quarter.",
+            "The geographic region is a division.",
+            "The geographic region is a commune.",
+            "The geographic region is a colloquial area."
           ],
           "readOnly": true,
           "type": "string"
@@ -12907,7 +13210,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -12921,6 +13225,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -12939,7 +13244,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -13048,7 +13354,8 @@
             "CREATIVE_TYPE_AUDIO",
             "CREATIVE_TYPE_PUBLISHER_HOSTED",
             "CREATIVE_TYPE_NATIVE_VIDEO",
-            "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO"
+            "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO",
+            "CREATIVE_TYPE_ASSET_BASED_CREATIVE"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
@@ -13065,7 +13372,8 @@
             "Audio creative. Create and update methods are supported for this creative type if the hosting_source is `HOSTING_SOURCE_HOSTED`",
             "Publisher hosted creative. Create and update methods are **not** supported for this creative type.",
             "Native video creative. Create and update methods are supported for this creative type if the hosting_source is `HOSTING_SOURCE_HOSTED`",
-            "Templated app install mobile video creative. Create and update methods are **not** supported for this creative type."
+            "Templated app install mobile video creative. Create and update methods are **not** supported for this creative type.",
+            "Asset based creative. Create and update methods are supported for this creative type if the hosting_source is `HOSTING_SOURCE_HOSTED`."
           ],
           "type": "string"
         },
@@ -13325,7 +13633,8 @@
             "CREATIVE_TYPE_AUDIO",
             "CREATIVE_TYPE_PUBLISHER_HOSTED",
             "CREATIVE_TYPE_NATIVE_VIDEO",
-            "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO"
+            "CREATIVE_TYPE_TEMPLATED_APP_INSTALL_VIDEO",
+            "CREATIVE_TYPE_ASSET_BASED_CREATIVE"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
@@ -13342,7 +13651,8 @@
             "Audio creative. Create and update methods are supported for this creative type if the hosting_source is `HOSTING_SOURCE_HOSTED`",
             "Publisher hosted creative. Create and update methods are **not** supported for this creative type.",
             "Native video creative. Create and update methods are supported for this creative type if the hosting_source is `HOSTING_SOURCE_HOSTED`",
-            "Templated app install mobile video creative. Create and update methods are **not** supported for this creative type."
+            "Templated app install mobile video creative. Create and update methods are **not** supported for this creative type.",
+            "Asset based creative. Create and update methods are supported for this creative type if the hosting_source is `HOSTING_SOURCE_HOSTED`."
           ],
           "type": "string"
         },
@@ -14826,7 +15136,9 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_CORE",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -14911,7 +15223,9 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Core.",
+            "Tubi."
           ],
           "type": "string"
         }
@@ -15021,7 +15335,9 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_CORE",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15106,7 +15422,9 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Core.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -15217,7 +15535,9 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_CORE",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15302,7 +15622,9 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Core.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -15414,7 +15736,9 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_CORE",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -15499,7 +15823,9 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Core.",
+            "Tubi."
           ],
           "readOnly": true,
           "type": "string"
@@ -16129,7 +16455,16 @@
             "GEO_REGION_TYPE_ARRONDISSEMENT",
             "GEO_REGION_TYPE_NEIGHBORHOOD",
             "GEO_REGION_TYPE_UNIVERSITY",
-            "GEO_REGION_TYPE_DISTRICT"
+            "GEO_REGION_TYPE_DISTRICT",
+            "GEO_REGION_TYPE_NATIONAL_PARK",
+            "GEO_REGION_TYPE_BARRIO",
+            "GEO_REGION_TYPE_SUB_WARD",
+            "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+            "GEO_REGION_TYPE_SUB_DISTRICT",
+            "GEO_REGION_TYPE_QUARTER",
+            "GEO_REGION_TYPE_DIVISION",
+            "GEO_REGION_TYPE_COMMUNE",
+            "GEO_REGION_TYPE_COLLOQUIAL_AREA"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -16160,7 +16495,16 @@
             "The geographic region is an arrondissement.",
             "The geographic region is a neighborhood.",
             "The geographic region is a university.",
-            "The geographic region is a district."
+            "The geographic region is a district.",
+            "The geographic region is a national park.",
+            "The geographic region is a barrio.",
+            "The geographic region is a sub ward.",
+            "The geographic region is a municipality district.",
+            "The geographic region is a sub district.",
+            "The geographic region is a quarter.",
+            "The geographic region is a division.",
+            "The geographic region is a commune.",
+            "The geographic region is a colloquial area."
           ],
           "readOnly": true,
           "type": "string"
@@ -16227,7 +16571,16 @@
             "GEO_REGION_TYPE_ARRONDISSEMENT",
             "GEO_REGION_TYPE_NEIGHBORHOOD",
             "GEO_REGION_TYPE_UNIVERSITY",
-            "GEO_REGION_TYPE_DISTRICT"
+            "GEO_REGION_TYPE_DISTRICT",
+            "GEO_REGION_TYPE_NATIONAL_PARK",
+            "GEO_REGION_TYPE_BARRIO",
+            "GEO_REGION_TYPE_SUB_WARD",
+            "GEO_REGION_TYPE_MUNICIPALITY_DISTRICT",
+            "GEO_REGION_TYPE_SUB_DISTRICT",
+            "GEO_REGION_TYPE_QUARTER",
+            "GEO_REGION_TYPE_DIVISION",
+            "GEO_REGION_TYPE_COMMUNE",
+            "GEO_REGION_TYPE_COLLOQUIAL_AREA"
           ],
           "enumDescriptions": [
             "The geographic region type is unknown.",
@@ -16258,7 +16611,16 @@
             "The geographic region is an arrondissement.",
             "The geographic region is a neighborhood.",
             "The geographic region is a university.",
-            "The geographic region is a district."
+            "The geographic region is a district.",
+            "The geographic region is a national park.",
+            "The geographic region is a barrio.",
+            "The geographic region is a sub ward.",
+            "The geographic region is a municipality district.",
+            "The geographic region is a sub district.",
+            "The geographic region is a quarter.",
+            "The geographic region is a division.",
+            "The geographic region is a commune.",
+            "The geographic region is a colloquial area."
           ],
           "readOnly": true,
           "type": "string"
@@ -16462,7 +16824,9 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_CORE",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -16547,7 +16911,9 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Core.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -16929,7 +17295,7 @@
         },
         "pacing": {
           "$ref": "Pacing",
-          "description": "Required. The budget spending speed setting of the insertion order. *Warning*: Starting on **November 5, 2024**, pacing_type `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT`. [Read more about this announced change](/display-video/api/deprecations#features.io_asap)."
+          "description": "Required. The budget spending speed setting of the insertion order. pacing_type `PACING_TYPE_ASAP` is not compatible with pacing_period `PACING_PERIOD_FLIGHT`."
         },
         "partnerCosts": {
           "description": "The partner costs associated with the insertion order. If absent or empty in CreateInsertionOrder method, the newly created insertion order will inherit partner costs from the partner settings.",
@@ -17042,7 +17408,7 @@
       "id": "IntegralAdScience",
       "properties": {
         "customSegmentId": {
-          "description": "The custom segment ID provided by Integral Ad Science. The ID must be between `1000001` and `1999999`, inclusive.",
+          "description": "The custom segment ID provided by Integral Ad Science. The ID must be between `1000001` and `1999999` or `3000001` and `3999999`, inclusive.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -17389,7 +17755,9 @@
             "EXCHANGE_CHARTBOOST_GBID",
             "EXCHANGE_ADMOST_GBID",
             "EXCHANGE_TOPON_GBID",
-            "EXCHANGE_NETFLIX"
+            "EXCHANGE_NETFLIX",
+            "EXCHANGE_CORE",
+            "EXCHANGE_TUBI"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -17474,7 +17842,9 @@
             "Chartboost Mediation.",
             "AdMost.",
             "TopOn.",
-            "Netflix."
+            "Netflix.",
+            "Core.",
+            "Tubi."
           ],
           "type": "string"
         },
@@ -19598,7 +19968,7 @@
           "type": "string"
         },
         "pacingType": {
-          "description": "Required. The type of pacing that defines how the budget amount will be spent across the pacing_period. *Warning*: Starting on **November 5, 2024**, `PACING_TYPE_ASAP` will no longer be compatible with pacing_period `PACING_PERIOD_FLIGHT` for insertion orders. [Read more about this announced change](/display-video/api/deprecations#features.io_asap).",
+          "description": "Required. The type of pacing that defines how the budget amount will be spent across the pacing_period. `PACING_TYPE_ASAP` is not compatible with pacing_period `PACING_PERIOD_FLIGHT` for insertion orders.",
           "enum": [
             "PACING_TYPE_UNSPECIFIED",
             "PACING_TYPE_AHEAD",
@@ -20620,7 +20990,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -20634,6 +21005,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20652,7 +21024,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -20700,7 +21073,8 @@
             "SDF_VERSION_5_5",
             "SDF_VERSION_6",
             "SDF_VERSION_7",
-            "SDF_VERSION_7_1"
+            "SDF_VERSION_7_1",
+            "SDF_VERSION_8"
           ],
           "enumDeprecated": [
             false,
@@ -20714,6 +21088,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false
@@ -20732,7 +21107,8 @@
             "SDF version 5.5",
             "SDF version 6",
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
-            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version."
+            "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
+            "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
