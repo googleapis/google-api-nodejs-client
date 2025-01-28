@@ -235,31 +235,6 @@ export namespace backupdr_v1 {
     values?: string[] | null;
   }
   /**
-   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
-   */
-  export interface Schema$AssetLocation {
-    /**
-     * Spanner path of the CCFE RMS database. It is only applicable for CCFE tenants that use CCFE RMS for storing resource metadata.
-     */
-    ccfeRmsPath?: string | null;
-    /**
-     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
-     */
-    expected?: Schema$IsolationExpectations;
-    /**
-     * Defines extra parameters required for specific asset types.
-     */
-    extraParameters?: Schema$ExtraParameter[];
-    /**
-     * Contains all kinds of physical location definitions for this asset.
-     */
-    locationData?: Schema$LocationData[];
-    /**
-     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
-     */
-    parentAsset?: Schema$CloudAsset[];
-  }
-  /**
    * An instance-attached disk resource.
    */
   export interface Schema$AttachedDisk {
@@ -418,6 +393,14 @@ export namespace backupdr_v1 {
      * Output only. source resource size in bytes at the time of the backup.
      */
     resourceSizeBytes?: string | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The list of BackupLocks taken by the service to prevent the deletion of the backup.
      */
@@ -593,7 +576,7 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
     /**
-     * Required. The resource type to which the `BackupPlan` will be applied. Examples include, "compute.googleapis.com/Instance" and "storage.googleapis.com/Bucket".
+     * Required. The resource type to which the `BackupPlan` will be applied. Examples include, "compute.googleapis.com/Instance", "sqladmin.googleapis.com/Instance", or "alloydb.googleapis.com/Cluster".
      */
     resourceType?: string | null;
     /**
@@ -618,7 +601,7 @@ export namespace backupdr_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. Output Only. Resource name of data source which will be used as storage location for backups taken. Format : projects/{project\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}
+     * Output only. Resource name of data source which will be used as storage location for backups taken. Format : projects/{project\}/locations/{location\}/backupVaults/{backupvault\}/dataSources/{datasource\}
      */
     dataSource?: string | null;
     /**
@@ -630,7 +613,7 @@ export namespace backupdr_v1 {
      */
     resource?: string | null;
     /**
-     * Output only. Output Only. Resource type of workload on which backupplan is applied
+     * Required. Immutable. Resource type of workload on which backupplan is applied
      */
     resourceType?: string | null;
     /**
@@ -651,7 +634,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupRule {
     /**
-     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault.
+     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 90 for daily backups. Minimum value is 7 and maximum value is 186 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.
      */
     backupRetentionDays?: number | null;
     /**
@@ -668,7 +651,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupVault {
     /**
-     * Optional. Note: This field is added for future use case and will not be supported in the current release. Optional. Access restriction for the backup vault. Default value is WITHIN_ORGANIZATION if not provided during creation.
+     * Optional. Note: This field is added for future use case and will not be supported in the current release. Access restriction for the backup vault. Default value is WITHIN_ORGANIZATION if not provided during creation.
      */
     accessRestriction?: string | null;
     /**
@@ -724,7 +707,7 @@ export namespace backupdr_v1 {
      */
     totalStoredBytes?: string | null;
     /**
-     * Output only. Output only Immutable after resource creation until resource deletion.
+     * Output only. Immutable after resource creation until resource deletion.
      */
     uid?: string | null;
     /**
@@ -763,22 +746,9 @@ export namespace backupdr_v1 {
     role?: string | null;
   }
   /**
-   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
-   */
-  export interface Schema$BlobstoreLocation {
-    policyId?: string[] | null;
-  }
-  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
-  export interface Schema$CloudAsset {
-    assetName?: string | null;
-    assetType?: string | null;
-  }
-  export interface Schema$CloudAssetComposition {
-    childAsset?: Schema$CloudAsset[];
-  }
   /**
    * ComputeInstanceBackupProperties represents Compute Engine instance backup properties.
    */
@@ -1120,9 +1090,6 @@ export namespace backupdr_v1 {
      */
     type?: string | null;
   }
-  export interface Schema$DirectLocationAssignment {
-    location?: Schema$LocationAssignment[];
-  }
   /**
    * A set of Display Device options
    */
@@ -1169,15 +1136,6 @@ export namespace backupdr_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
-  }
-  /**
-   * Defines parameters that should only be used for specific asset types.
-   */
-  export interface Schema$ExtraParameter {
-    /**
-     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
-     */
-    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
   }
   /**
    * Request message for FetchAccessToken.
@@ -1333,6 +1291,19 @@ export namespace backupdr_v1 {
     replicaZones?: string[] | null;
   }
   /**
+   * Request message for initializing the service.
+   */
+  export interface Schema$InitializeServiceRequest {
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+    /**
+     * Required. The resource type to which the default service config will be applied. Examples include, "compute.googleapis.com/Instance" and "storage.googleapis.com/Bucket".
+     */
+    resourceType?: string | null;
+  }
+  /**
    * request message for InitiateBackup.
    */
   export interface Schema$InitiateBackupRequest {
@@ -1370,25 +1341,6 @@ export namespace backupdr_v1 {
      * Optional. Resource manager tags to be bound to the instance.
      */
     resourceManagerTags?: {[key: string]: string} | null;
-  }
-  export interface Schema$IsolationExpectations {
-    /**
-     * Explicit overrides for ZI and ZS requirements to be used for resources that should be excluded from ZI/ZS verification logic.
-     */
-    requirementOverride?: Schema$RequirementOverride;
-    ziOrgPolicy?: string | null;
-    ziRegionPolicy?: string | null;
-    ziRegionState?: string | null;
-    /**
-     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
-     */
-    zoneIsolation?: string | null;
-    /**
-     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
-     */
-    zoneSeparation?: string | null;
-    zsOrgPolicy?: string | null;
-    zsRegionState?: string | null;
   }
   /**
    * Response message for List BackupPlanAssociation
@@ -1543,18 +1495,6 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
   }
-  export interface Schema$LocationAssignment {
-    location?: string | null;
-    locationType?: string | null;
-  }
-  export interface Schema$LocationData {
-    blobstoreLocation?: Schema$BlobstoreLocation;
-    childAssetLocation?: Schema$CloudAssetComposition;
-    directLocation?: Schema$DirectLocationAssignment;
-    gcpProjectProxy?: Schema$TenantProjectProxy;
-    placerLocation?: Schema$PlacerLocation;
-    spannerLocation?: Schema$SpannerLocation;
-  }
   /**
    * ManagementServer describes a single BackupDR ManagementServer instance.
    */
@@ -1588,7 +1528,7 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
     /**
-     * Required. VPC networks to which the ManagementServer instance is connected. For this version, only a single network is supported.
+     * Optional. VPC networks to which the ManagementServer instance is connected. For this version, only a single network is supported. This field is optional if MS is created without PSA
      */
     networks?: Schema$NetworkConfig[];
     /**
@@ -1792,7 +1732,7 @@ export namespace backupdr_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to 'Code.CANCELLED'.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -1807,15 +1747,6 @@ export namespace backupdr_v1 {
      * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
-  }
-  /**
-   * Message describing that the location of the customer resource is tied to placer allocations
-   */
-  export interface Schema$PlacerLocation {
-    /**
-     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
-     */
-    placerConfig?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -1839,19 +1770,6 @@ export namespace backupdr_v1 {
     version?: number | null;
   }
   /**
-   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
-   */
-  export interface Schema$RegionalMigDistributionPolicy {
-    /**
-     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
-     */
-    targetShape?: number | null;
-    /**
-     * Cloud zones used by regional MIG to create instances.
-     */
-    zones?: Schema$ZoneConfiguration[];
-  }
-  /**
    * Message for deleting a DataSource.
    */
   export interface Schema$RemoveDataSourceRequest {
@@ -1859,10 +1777,6 @@ export namespace backupdr_v1 {
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
-  }
-  export interface Schema$RequirementOverride {
-    ziOverride?: string | null;
-    zsOverride?: string | null;
   }
   /**
    * Request message for restoring from a Backup.
@@ -1895,7 +1809,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$RuleConfigInfo {
     /**
-     * Output only. Output Only. google.rpc.Status object to store the last backup error.
+     * Output only. google.rpc.Status object to store the last backup error.
      */
     lastBackupError?: Schema$Status;
     /**
@@ -1907,7 +1821,7 @@ export namespace backupdr_v1 {
      */
     lastSuccessfulBackupConsistencyTime?: string | null;
     /**
-     * Output only. Output Only. Backup Rule id fetched from backup plan.
+     * Output only. Backup Rule id fetched from backup plan.
      */
     ruleId?: string | null;
   }
@@ -2017,16 +1931,6 @@ export namespace backupdr_v1 {
    * Response message from SetStatusInternal method.
    */
   export interface Schema$SetInternalStatusResponse {}
-  export interface Schema$SpannerLocation {
-    /**
-     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
-     */
-    backupName?: string[] | null;
-    /**
-     * Set of databases used by the resource in format /span//
-     */
-    dbName?: string[] | null;
-  }
   /**
    * `StandardSchedule` defines a schedule that run within the confines of a defined window of days. We can define recurrence type for schedule as HOURLY, DAILY, WEEKLY, MONTHLY or YEARLY.
    */
@@ -2099,9 +2003,6 @@ export namespace backupdr_v1 {
      */
     gcpResource?: Schema$GcpResource;
   }
-  export interface Schema$TenantProjectProxy {
-    projectNumbers?: string[] | null;
-  }
   /**
    * Request message for `TestIamPermissions` method.
    */
@@ -2172,9 +2073,6 @@ export namespace backupdr_v1 {
      */
     thirdPartyOauth2ClientId?: string | null;
   }
-  export interface Schema$ZoneConfiguration {
-    zone?: string | null;
-  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -2192,6 +2090,7 @@ export namespace backupdr_v1 {
     backupVaults: Resource$Projects$Locations$Backupvaults;
     managementServers: Resource$Projects$Locations$Managementservers;
     operations: Resource$Projects$Locations$Operations;
+    serviceConfig: Resource$Projects$Locations$Serviceconfig;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.backupPlanAssociations =
@@ -2205,6 +2104,9 @@ export namespace backupdr_v1 {
       this.managementServers =
         new Resource$Projects$Locations$Managementservers(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.serviceConfig = new Resource$Projects$Locations$Serviceconfig(
         this.context
       );
     }
@@ -4043,6 +3945,10 @@ export namespace backupdr_v1 {
      * Optional. If set to true, any data source from this backup vault will also be deleted.
      */
     force?: boolean;
+    /**
+     * Optional. If set to true, backupvault deletion will proceed even if there are backup plans referencing the backupvault. The default is 'false'.
+     */
+    ignoreBackupPlanReferences?: boolean;
     /**
      * Required. Name of the resource.
      */
@@ -6379,7 +6285,7 @@ export namespace backupdr_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6771,5 +6677,114 @@ export namespace backupdr_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Serviceconfig {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Initializes the service related config for a project.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initialize(
+      params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    initialize(
+      params?: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    initialize(
+      params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initialize(
+      params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initialize(
+      params: Params$Resource$Projects$Locations$Serviceconfig$Initialize,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initialize(callback: BodyResponseCallback<Schema$Operation>): void;
+    initialize(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Serviceconfig$Initialize
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Serviceconfig$Initialize;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Serviceconfig$Initialize;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:initialize').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Serviceconfig$Initialize
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the serviceConfig used to initialize the service. Format: `projects/{project_id\}/locations/{location\}/serviceConfig`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InitializeServiceRequest;
   }
 }
