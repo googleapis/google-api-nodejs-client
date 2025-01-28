@@ -2147,7 +2147,8 @@
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_SUCCESSFUL",
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
             "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
-            "COMMIT_FUNCTION_UPGRADE_ERROR"
+            "COMMIT_FUNCTION_UPGRADE_ERROR",
+            "DETACH_IN_PROGRESS"
           ],
           "enumDescriptions": [
             "Unspecified state. Most functions are in this upgrade state.",
@@ -2159,7 +2160,8 @@
             "RedirectFunctionUpgradeTraffic API was successful and traffic is served by 2nd Gen function stack.",
             "RedirectFunctionUpgradeTraffic API was un-successful.",
             "RollbackFunctionUpgradeTraffic API was un-successful.",
-            "CommitFunctionUpgrade API was un-successful."
+            "CommitFunctionUpgrade API was un-successful.",
+            "Function is requested to be detached from 2nd Gen to CRf."
           ],
           "type": "string"
         }
