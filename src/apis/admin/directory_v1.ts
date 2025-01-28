@@ -474,6 +474,19 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Represents a data capacity with some amount of current usage in bytes.
+   */
+  export interface Schema$ByteUsage {
+    /**
+     * Output only. The total capacity value, in bytes.
+     */
+    capacityBytes?: string | null;
+    /**
+     * Output only. The current usage value, in bytes.
+     */
+    usedBytes?: string | null;
+  }
+  /**
    * Public API: Resources.calendars
    */
   export interface Schema$CalendarResource {
@@ -708,6 +721,10 @@ export namespace admin_directory_v1 {
      * Output only. Device license type.
      */
     deviceLicenseType?: string | null;
+    /**
+     * Output only. How much disk space the device has available and is currently using.
+     */
+    diskSpaceUsage?: Schema$ByteUsage;
     /**
      * Reports of disk space and other info about mounted/connected volumes.
      */
@@ -1651,7 +1668,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$OrgUnit {
     /**
-     * Determines if a sub-organizational unit can inherit the settings of the parent organization. The default value is `false`, meaning a sub-organizational unit inherits the settings of the nearest parent organizational unit. This field is deprecated. Setting it to `true` is no longer supported and can have _unintended consequences_. For more information about inheritance and users in an organization structure, see the [administration help center](https://support.google.com/a/answer/4352075).
+     * This field is deprecated and setting its value has no effect.
      */
     blockInheritance?: boolean | null;
     /**
@@ -1936,6 +1953,10 @@ export namespace admin_directory_v1 {
      * Output only. The type of the assignee (`USER` or `GROUP`).
      */
     assigneeType?: string | null;
+    /**
+     * Optional. The condition associated with this role assignment. Note: Feature is available to Enterprise Standard, Enterprise Plus, Google Workspace for Education Plus and Cloud Identity Premium customers. A `RoleAssignment` with the `condition` field set will only take effect when the resource being accessed meets the condition. If `condition` is empty, the role (`role_id`) is applied to the actor (`assigned_to`) at the scope (`scope_type`) unconditionally. Currently, the following conditions are supported: - To make the `RoleAssignment` only applicable to [Security Groups](https://cloud.google.com/identity/docs/groups#group_types): `api.getAttribute('cloudidentity.googleapis.com/groups.labels', []).hasAny(['groups.security']) && resource.type == 'cloudidentity.googleapis.com/Group'` - To make the `RoleAssignment` not applicable to [Security Groups](https://cloud.google.com/identity/docs/groups#group_types): `!api.getAttribute('cloudidentity.googleapis.com/groups.labels', []).hasAny(['groups.security']) && resource.type == 'cloudidentity.googleapis.com/Group'` Currently, the condition strings have to be verbatim and they only work with the following [pre-built administrator roles](https://support.google.com/a/answer/2405986): - Groups Editor - Groups Reader The condition follows [Cloud IAM condition syntax](https://cloud.google.com/iam/docs/conditions-overview). Additional conditions related to Locked Groups are available under Open Beta. - To make the `RoleAssignment` not applicable to [Locked Groups](https://cloud.google.com/identity/docs/groups#group_types): `!api.getAttribute('cloudidentity.googleapis.com/groups.labels', []).hasAny(['groups.locked']) && resource.type == 'cloudidentity.googleapis.com/Group'` This condition can also be used in conjunction with a Security-related condition.
+     */
+    condition?: string | null;
     /**
      * ETag of the resource.
      */
