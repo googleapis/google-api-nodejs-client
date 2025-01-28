@@ -1017,7 +1017,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "certificatemanager.projects.locations.operations.cancel",
@@ -1314,7 +1314,7 @@
       }
     }
   },
-  "revision": "20240729",
+  "revision": "20241204",
   "rootUrl": "https://certificatemanager.googleapis.com/",
   "schemas": {
     "AllowlistedCertificate": {
@@ -1441,9 +1441,9 @@
             "ALL_REGIONS"
           ],
           "enumDescriptions": [
-            "Certificates with default scope are served from core Google data centers. If unsure, choose this option.",
-            "Certificates with scope EDGE_CACHE are special-purposed certificates, served from Edge Points of Presence. See https://cloud.google.com/vpc/docs/edge-locations.",
-            "Certificates with ALL_REGIONS scope are served from all Google Cloud regions. See https://cloud.google.com/compute/docs/regions-zones."
+            "Use the DEFAULT scope if you plan to use the certificate with global external Application Load Balancer, global external proxy Network Load Balancer, or any of the regional Google Cloud services.",
+            "Use the EDGE_CACHE scope if you plan to use the certificate with Media CDN. The certificates are served from Edge Points of Presence. See https://cloud.google.com/vpc/docs/edge-locations.",
+            "Use the ALL_REGIONS scope if you plan to use the certificate with cross-region internal Application Load Balancer. The certificates are served from all Google Cloud regions. See https://cloud.google.com/compute/docs/regions-zones."
           ],
           "type": "string"
         },
@@ -2129,7 +2129,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "statusMessage": {
