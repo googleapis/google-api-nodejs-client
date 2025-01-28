@@ -1017,7 +1017,7 @@ export namespace androiddeviceprovisioning_v1 {
 
   export interface Params$Resource$Customers$List extends StandardParameters {
     /**
-     * The maximum number of customers to show in a page of results. A number between 1 and 100 (inclusive).
+     * Required. The maximum number of customers to show in a page of results. A number between 1 and 100 (inclusive).
      */
     pageSize?: number;
     /**
@@ -2005,7 +2005,7 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Devices$List
     extends StandardParameters {
     /**
-     * The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
+     * Required. The maximum number of devices to show in a page of results. Must be between 1 and 100 inclusive.
      */
     pageSize?: string;
     /**
