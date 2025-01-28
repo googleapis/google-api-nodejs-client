@@ -175,7 +175,7 @@ export namespace artifactregistry_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * The namespace this attachment belongs to. E.g. If an Attachment is created by artifact analysis, namespace is set to `artifactanalysis.googleapis.com`.
+     * The namespace this attachment belongs to. E.g. If an attachment is created by artifact analysis, namespace is set to `artifactanalysis.googleapis.com`.
      */
     attachmentNamespace?: string | null;
     /**
@@ -187,7 +187,7 @@ export namespace artifactregistry_v1 {
      */
     files?: string[] | null;
     /**
-     * The name of the attachment. E.g. "projects/p1/locations/us/repositories/repo/attachments/sbom".
+     * The name of the attachment. E.g. `projects/p1/locations/us/repositories/repo/attachments/sbom`.
      */
     name?: string | null;
     /**
@@ -195,11 +195,11 @@ export namespace artifactregistry_v1 {
      */
     ociVersionName?: string | null;
     /**
-     * Required. The target the attachment is for, can be a Version, Package or Repository. E.g. "projects/p1/locations/us-central1/repositories/repo1/packages/p1/versions/v1".
+     * Required. The target the attachment is for, can be a Version, Package or Repository. E.g. `projects/p1/locations/us-central1/repositories/repo1/packages/p1/versions/v1`.
      */
     target?: string | null;
     /**
-     * Type of Attachment. E.g. `application/vnd.spdx+json`
+     * Type of attachment. E.g. `application/vnd.spdx+json`
      */
     type?: string | null;
     /**
@@ -583,24 +583,24 @@ export namespace artifactregistry_v1 {
     repositoryPath?: string | null;
   }
   /**
-   * A Rule applies to repository or package level. It defines the deny or allow action of the operation when the conditions in the rule are met.
+   * A rule defines the deny or allow action of the operation it applies to and the conditions required for the rule to apply. You can set one rule for an entire repository and one rule for each package within.
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1Rule {
     /**
-     * The action this rule makes.
+     * The action this rule takes.
      */
     action?: string | null;
     /**
-     * Optional. The condition of the rule in CEL expression. If not provided, the rule matches all the objects.
+     * Optional. A CEL expression for conditions that must be met in order for the rule to apply. If not provided, the rule matches all objects.
      */
     condition?: Schema$Expr;
     /**
-     * The name of the rule, for example: "projects/p1/locations/us-central1/repositories/repo1/rules/rule1".
+     * The name of the rule, for example: `projects/p1/locations/us-central1/repositories/repo1/rules/rule1`.
      */
     name?: string | null;
     operation?: string | null;
     /**
-     * The package ID the rule applies to. If empty, this rule applies to all the packages inside the repository.
+     * The package ID the rule applies to. If empty, this rule applies to all packages inside the repository.
      */
     packageId?: string | null;
   }
@@ -791,7 +791,7 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$ListAttachmentsResponse {
     /**
-     * The Attachments returned.
+     * The attachments returned.
      */
     attachments?: Schema$Attachment[];
     /**
@@ -1207,7 +1207,7 @@ export namespace artifactregistry_v1 {
      */
     aptRepository?: Schema$AptRepository;
     /**
-     * Common remote repository settings. Used as the RemoteRepository upstream URL instead of Predefined and Custom remote repositories. Google Cloud Console and Google Cloud CLI will map all the new remote repositories to this field.
+     * Common remote repository settings. Used as the remote repository upstream URL.
      */
     commonRepository?: Schema$CommonRemoteRepository;
     /**
@@ -1296,6 +1296,10 @@ export namespace artifactregistry_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The repository endpoint, for example: `us-docker.pkg.dev/my-proj/my-repo`.
+     */
+    registryUri?: string | null;
+    /**
      * Configuration specific for a Remote Repository.
      */
     remoteRepositoryConfig?: Schema$RemoteRepositoryConfig;
@@ -1319,6 +1323,10 @@ export namespace artifactregistry_v1 {
      * Configuration specific for a Virtual Repository.
      */
     virtualRepositoryConfig?: Schema$VirtualRepositoryConfig;
+    /**
+     * Optional. Config and state for vulnerability scanning of resources within this Repository.
+     */
+    vulnerabilityScanningConfig?: Schema$VulnerabilityScanningConfig;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1355,7 +1363,7 @@ export namespace artifactregistry_v1 {
      */
     name?: string | null;
     /**
-     * The name of the version the tag refers to, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811" If the package or version ID parts contain slashes, the slashes are escaped.
+     * The name of the version the tag refers to, for example: `projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811` If the package or version ID parts contain slashes, the slashes are escaped.
      */
     version?: string | null;
   }
@@ -1639,6 +1647,27 @@ export namespace artifactregistry_v1 {
      * The project per location VPC SC policy that defines the VPC SC behavior for the Remote Repository (Allow/Deny).
      */
     vpcscPolicy?: string | null;
+  }
+  /**
+   * Config on whether to perform vulnerability scanning for resources in this repository, as well as output fields describing current state.
+   */
+  export interface Schema$VulnerabilityScanningConfig {
+    /**
+     * Optional. Config for whether this repository has vulnerability scanning disabled.
+     */
+    enablementConfig?: string | null;
+    /**
+     * Output only. State of feature enablement, combining repository enablement config and API enablement state.
+     */
+    enablementState?: string | null;
+    /**
+     * Output only. Reason for the repository state.
+     */
+    enablementStateReason?: string | null;
+    /**
+     * Output only. The last time this repository config was enabled.
+     */
+    lastEnableTime?: string | null;
   }
   /**
    * A detailed representation of a Yum artifact.
@@ -8100,7 +8129,7 @@ export namespace artifactregistry_v1 {
   export interface Params$Resource$Projects$Locations$Repositories$Rules$Patch
     extends StandardParameters {
     /**
-     * The name of the rule, for example: "projects/p1/locations/us-central1/repositories/repo1/rules/rule1".
+     * The name of the rule, for example: `projects/p1/locations/us-central1/repositories/repo1/rules/rule1`.
      */
     name?: string;
     /**
