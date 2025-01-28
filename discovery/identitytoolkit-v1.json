@@ -1239,7 +1239,7 @@
       }
     }
   },
-  "revision": "20240424",
+  "revision": "20241205",
   "rootUrl": "https://identitytoolkit.googleapis.com/",
   "schemas": {
     "GoogleCloudIdentitytoolkitV1Argon2Parameters": {
@@ -2361,7 +2361,7 @@
       "id": "GoogleCloudIdentitytoolkitV1ResetPasswordRequest",
       "properties": {
         "email": {
-          "description": "The email of the account to be modified. Specify this and the old password in order to change an account's password without using an out-of-band code.",
+          "description": "Optional. The email of the account to be modified. Specify this and the old password in order to change an account's password without using an out-of-band code.",
           "type": "string"
         },
         "newPassword": {
@@ -2377,7 +2377,7 @@
           "type": "string"
         },
         "tenantId": {
-          "description": "The tenant ID of the Identity Platform tenant the account belongs to.",
+          "description": "Optional. The tenant ID of the Identity Platform tenant the account belongs to.",
           "type": "string"
         }
       },
@@ -2441,15 +2441,35 @@
       "type": "object"
     },
     "GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest": {
-      "description": "Request message for SendVerificationCode. At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator.",
+      "description": "Request message for SendVerificationCode. 'captcha_response' is required when reCAPTCHA enterprise is enabled, or otherwise at least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator.",
       "id": "GoogleCloudIdentitytoolkitV1SendVerificationCodeRequest",
       "properties": {
         "autoRetrievalInfo": {
           "$ref": "GoogleCloudIdentitytoolkitV1AutoRetrievalInfo",
           "description": "Android only. Used by Google Play Services to identify the app for auto-retrieval."
         },
+        "captchaResponse": {
+          "description": "Optional. The reCAPTCHA Enterprise token provided by the reCAPTCHA client-side integration. Required when reCAPTCHA enterprise is enabled.",
+          "type": "string"
+        },
+        "clientType": {
+          "description": "Optional. The client type, web, android or ios. Required when reCAPTCHA Enterprise is enabled.",
+          "enum": [
+            "CLIENT_TYPE_UNSPECIFIED",
+            "CLIENT_TYPE_WEB",
+            "CLIENT_TYPE_ANDROID",
+            "CLIENT_TYPE_IOS"
+          ],
+          "enumDescriptions": [
+            "Client type is not specified.",
+            "Client type is web.",
+            "Client type is android.",
+            "Client type is ios."
+          ],
+          "type": "string"
+        },
         "iosReceipt": {
-          "description": "Receipt of successful iOS app token validation. At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator. This should come from the response of verifyIosClient. If present, the caller should also provide the `ios_secret`, as well as a bundle ID in the `x-ios-bundle-identifier` header, which must match the bundle ID from the verifyIosClient request.",
+          "description": "Receipt of successful iOS app token validation. At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator, if 'captcha_response' is not used (reCAPTCHA enterprise is not enabled). This should come from the response of verifyIosClient. If present, the caller should also provide the `ios_secret`, as well as a bundle ID in the `x-ios-bundle-identifier` header, which must match the bundle ID from the verifyIosClient request.",
           "type": "string"
         },
         "iosSecret": {
@@ -2461,15 +2481,27 @@
           "type": "string"
         },
         "playIntegrityToken": {
-          "description": "Android only. Used to assert application identity in place of a recaptcha token (and safety_net_token). At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, , or `play_integrity_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator. A Play Integrity Token can be generated via the [PlayIntegrity API](https://developer.android.com/google/play/integrity) with applying SHA256 to the `phone_number` field as the nonce.",
+          "description": "Android only. Used to assert application identity in place of a recaptcha token (and safety_net_token). At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, , or `play_integrity_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator, if 'captcha_response' is not used (reCAPTCHA enterprise is not enabled). A Play Integrity Token can be generated via the [PlayIntegrity API](https://developer.android.com/google/play/integrity) with applying SHA256 to the `phone_number` field as the nonce.",
           "type": "string"
         },
         "recaptchaToken": {
-          "description": "Recaptcha token for app verification. At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator. The recaptcha should be generated by calling getRecaptchaParams and the recaptcha token will be generated on user completion of the recaptcha challenge.",
+          "description": "Recaptcha token for app verification. At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator, if 'captcha_response' is not used (reCAPTCHA enterprise is not enabled). The recaptcha should be generated by calling getRecaptchaParams and the recaptcha token will be generated on user completion of the recaptcha challenge.",
+          "type": "string"
+        },
+        "recaptchaVersion": {
+          "description": "Optional. The reCAPTCHA version of the reCAPTCHA token in the captcha_response. Required when reCAPTCHA Enterprise is enabled.",
+          "enum": [
+            "RECAPTCHA_VERSION_UNSPECIFIED",
+            "RECAPTCHA_ENTERPRISE"
+          ],
+          "enumDescriptions": [
+            "The reCAPTCHA version is not specified.",
+            "The reCAPTCHA enterprise."
+          ],
           "type": "string"
         },
         "safetyNetToken": {
-          "description": "Android only. Used to assert application identity in place of a recaptcha token. At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator. A SafetyNet Token can be generated via the [SafetyNet Android Attestation API](https://developer.android.com/training/safetynet/attestation.html), with the Base64 encoding of the `phone_number` field as the nonce.",
+          "description": "Android only. Used to assert application identity in place of a recaptcha token. At least one of (`ios_receipt` and `ios_secret`), `recaptcha_token`, or `safety_net_token` must be specified to verify the verification code is being sent on behalf of a real app and not an emulator, if 'captcha_response' is not used (reCAPTCHA enterprise is not enabled). A SafetyNet Token can be generated via the [SafetyNet Android Attestation API](https://developer.android.com/training/safetynet/attestation.html), with the Base64 encoding of the `phone_number` field as the nonce.",
           "type": "string"
         },
         "tenantId": {
