@@ -779,7 +779,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "notebooks.projects.locations.operations.cancel",
@@ -904,7 +904,7 @@
       }
     }
   },
-  "revision": "20240918",
+  "revision": "20250101",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -927,6 +927,8 @@
             "NVIDIA_TESLA_A100",
             "NVIDIA_A100_80GB",
             "NVIDIA_L4",
+            "NVIDIA_H100_80GB",
+            "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_TESLA_T4_VWS",
             "NVIDIA_TESLA_P100_VWS",
             "NVIDIA_TESLA_P4_VWS"
@@ -940,6 +942,8 @@
             "Accelerator type is Nvidia Tesla A100 - 40GB.",
             "Accelerator type is Nvidia Tesla A100 - 80GB.",
             "Accelerator type is Nvidia Tesla L4.",
+            "Accelerator type is Nvidia Tesla H100 - 80GB.",
+            "Accelerator type is Nvidia Tesla H100 - MEGA 80GB.",
             "Accelerator type is NVIDIA Tesla T4 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P100 Virtual Workstations.",
             "Accelerator type is NVIDIA Tesla P4 Virtual Workstations."
@@ -1168,7 +1172,7 @@
           "description": "Required. Defines flags that are used to run the diagnostic tool"
         },
         "timeoutMinutes": {
-          "description": "Optional. Maxmium amount of time in minutes before the operation times out.",
+          "description": "Optional. Maximum amount of time in minutes before the operation times out.",
           "format": "int32",
           "type": "integer"
         }
@@ -1404,6 +1408,10 @@
         },
         "disableProxyAccess": {
           "description": "Optional. If true, the notebook instance will not register with the proxy.",
+          "type": "boolean"
+        },
+        "enableThirdPartyIdentity": {
+          "description": "Optional. Flag that specifies that a notebook can be accessed with third party identity provider.",
           "type": "boolean"
         },
         "gceSetup": {
@@ -1718,7 +1726,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "type": "boolean"
         },
         "statusMessage": {
