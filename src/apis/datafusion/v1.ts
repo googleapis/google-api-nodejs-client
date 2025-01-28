@@ -138,27 +138,6 @@ export namespace datafusion_v1 {
     state?: string | null;
   }
   /**
-   * Provides the mapping of a cloud asset to a direct physical location or to a proxy that defines the location on its behalf.
-   */
-  export interface Schema$AssetLocation {
-    /**
-     * Defines the customer expectation around ZI/ZS for this asset and ZI/ZS state of the region at the time of asset creation.
-     */
-    expected?: Schema$IsolationExpectations;
-    /**
-     * Defines extra parameters required for specific asset types.
-     */
-    extraParameters?: Schema$ExtraParameter[];
-    /**
-     * Contains all kinds of physical location definitions for this asset.
-     */
-    locationData?: Schema$LocationData[];
-    /**
-     * Defines parents assets if any in order to allow later generation of child_asset_location data via child assets.
-     */
-    parentAsset?: Schema$CloudAsset[];
-  }
-  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -202,33 +181,17 @@ export namespace datafusion_v1 {
     role?: string | null;
   }
   /**
-   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
-   */
-  export interface Schema$BlobstoreLocation {
-    policyId?: string[] | null;
-  }
-  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
-  export interface Schema$CloudAsset {
-    assetName?: string | null;
-    assetType?: string | null;
-  }
-  export interface Schema$CloudAssetComposition {
-    childAsset?: Schema$CloudAsset[];
-  }
   /**
    * The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature.
    */
   export interface Schema$CryptoKeyConfig {
     /**
-     * The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * Optional. The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     keyReference?: string | null;
-  }
-  export interface Schema$DirectLocationAssignment {
-    location?: Schema$LocationAssignment[];
   }
   /**
    * DNS peering configuration. These configurations are used to create DNS peering with the customer Cloud DNS.
@@ -243,7 +206,7 @@ export namespace datafusion_v1 {
      */
     domain?: string | null;
     /**
-     * Required. The resource name of the dns peering zone. Format: projects/{project\}/locations/{location\}/instances/{instance\}/dnsPeerings/{dns_peering\}
+     * Identifier. The resource name of the dns peering zone. Format: projects/{project\}/locations/{location\}/instances/{instance\}/dnsPeerings/{dns_peering\}
      */
     name?: string | null;
     /**
@@ -294,15 +257,6 @@ export namespace datafusion_v1 {
     title?: string | null;
   }
   /**
-   * Defines parameters that should only be used for specific asset types.
-   */
-  export interface Schema$ExtraParameter {
-    /**
-     * Details about zones used by regional compute.googleapis.com/InstanceGroupManager to create instances.
-     */
-    regionalMigDistributionPolicy?: Schema$RegionalMigDistributionPolicy;
-  }
-  /**
    * Represents a Data Fusion instance.
    */
   export interface Schema$Instance {
@@ -323,7 +277,7 @@ export namespace datafusion_v1 {
      */
     createTime?: string | null;
     /**
-     * The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature.
+     * Optional. The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature.
      */
     cryptoKeyConfig?: Schema$CryptoKeyConfig;
     /**
@@ -331,11 +285,11 @@ export namespace datafusion_v1 {
      */
     dataplexDataLineageIntegrationEnabled?: boolean | null;
     /**
-     * User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources.
+     * Optional. User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources.
      */
     dataprocServiceAccount?: string | null;
     /**
-     * A description of this instance.
+     * Optional. A description of this instance.
      */
     description?: string | null;
     /**
@@ -343,27 +297,27 @@ export namespace datafusion_v1 {
      */
     disabledReason?: string[] | null;
     /**
-     * Display name for an instance.
+     * Optional. Display name for an instance.
      */
     displayName?: string | null;
     /**
-     * Option to enable granular role-based access control.
+     * Optional. Option to enable granular role-based access control.
      */
     enableRbac?: boolean | null;
     /**
-     * Option to enable Stackdriver Logging.
+     * Optional. Option to enable Stackdriver Logging.
      */
     enableStackdriverLogging?: boolean | null;
     /**
-     * Option to enable Stackdriver Monitoring.
+     * Optional. Option to enable Stackdriver Monitoring.
      */
     enableStackdriverMonitoring?: boolean | null;
     /**
-     * Option to enable granular zone separation.
+     * Output only. Option to enable granular zone separation.
      */
     enableZoneSeparation?: boolean | null;
     /**
-     * Option to enable and pass metadata for event publishing.
+     * Optional. Option to enable and pass metadata for event publishing.
      */
     eventPublishConfig?: Schema$EventPublishConfig;
     /**
@@ -375,6 +329,10 @@ export namespace datafusion_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. The maintenance events for this instance.
+     */
+    maintenanceEvents?: Schema$MaintenanceEvent[];
+    /**
      * Optional. Configure the maintenance policy for this instance.
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
@@ -383,11 +341,11 @@ export namespace datafusion_v1 {
      */
     name?: string | null;
     /**
-     * Network configuration options. These are required when a private Data Fusion instance is to be created.
+     * Optional. Network configuration options. These are required when a private Data Fusion instance is to be created.
      */
     networkConfig?: Schema$NetworkConfig;
     /**
-     * Map of additional options used to configure the behavior of Data Fusion instance.
+     * Optional. Map of additional options used to configure the behavior of Data Fusion instance.
      */
     options?: {[key: string]: string} | null;
     /**
@@ -399,7 +357,7 @@ export namespace datafusion_v1 {
      */
     patchRevision?: string | null;
     /**
-     * Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have private IP addresses and will not be able to access the public internet.
+     * Optional. Specifies whether the Data Fusion instance should be private. If set to true, all Data Fusion nodes will have private IP addresses and will not be able to access the public internet.
      */
     privateInstance?: boolean | null;
     /**
@@ -435,7 +393,7 @@ export namespace datafusion_v1 {
      */
     updateTime?: string | null;
     /**
-     * Current version of the Data Fusion. Only specifiable in Update.
+     * Optional. Current version of the Data Fusion. Only specifiable in Update.
      */
     version?: string | null;
     /**
@@ -443,37 +401,26 @@ export namespace datafusion_v1 {
      */
     workforceIdentityServiceEndpoint?: string | null;
     /**
-     * Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field.
+     * Optional. Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field.
      */
     zone?: string | null;
-  }
-  export interface Schema$IsolationExpectations {
-    ziOrgPolicy?: string | null;
-    ziRegionPolicy?: string | null;
-    ziRegionState?: string | null;
-    /**
-     * Deprecated: use zi_org_policy, zi_region_policy and zi_region_state instead for setting ZI expectations as per go/zicy-publish-physical-location.
-     */
-    zoneIsolation?: string | null;
-    /**
-     * Deprecated: use zs_org_policy, and zs_region_stateinstead for setting Zs expectations as per go/zicy-publish-physical-location.
-     */
-    zoneSeparation?: string | null;
-    zsOrgPolicy?: string | null;
-    zsRegionState?: string | null;
   }
   /**
    * Response message for the list available versions request.
    */
   export interface Schema$ListAvailableVersionsResponse {
     /**
-     * Represents a list of versions that are supported.
+     * Represents a list of versions that are supported. Deprecated: Use versions field instead.
      */
     availableVersions?: Schema$Version[];
     /**
      * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
+    /**
+     * Represents a list of all versions.
+     */
+    versions?: Schema$Version[];
   }
   /**
    * Response message for list DNS peerings.
@@ -556,17 +503,22 @@ export namespace datafusion_v1 {
      */
     name?: string | null;
   }
-  export interface Schema$LocationAssignment {
-    location?: string | null;
-    locationType?: string | null;
-  }
-  export interface Schema$LocationData {
-    blobstoreLocation?: Schema$BlobstoreLocation;
-    childAssetLocation?: Schema$CloudAssetComposition;
-    directLocation?: Schema$DirectLocationAssignment;
-    gcpProjectProxy?: Schema$TenantProjectProxy;
-    placerLocation?: Schema$PlacerLocation;
-    spannerLocation?: Schema$SpannerLocation;
+  /**
+   * Represents a maintenance event.
+   */
+  export interface Schema$MaintenanceEvent {
+    /**
+     * Output only. The end time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: "2024-01-02T12:04:06-06:00" This field will be empty if the maintenance event is not yet complete.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The start time of the maintenance event provided in [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. Example: "2024-01-01T12:04:06-04:00"
+     */
+    startTime?: string | null;
+    /**
+     * Output only. The state of the maintenance event.
+     */
+    state?: string | null;
   }
   /**
    * Maintenance policy of the instance.
@@ -657,7 +609,7 @@ export namespace datafusion_v1 {
      */
     endTime?: string | null;
     /**
-     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -672,15 +624,6 @@ export namespace datafusion_v1 {
      * Name of the verb executed by the operation.
      */
     verb?: string | null;
-  }
-  /**
-   * Message describing that the location of the customer resource is tied to placer allocations
-   */
-  export interface Schema$PlacerLocation {
-    /**
-     * Directory with a config related to it in placer (e.g. "/placer/prod/home/my-root/my-dir")
-     */
-    placerConfig?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -734,19 +677,6 @@ export namespace datafusion_v1 {
     window?: Schema$TimeWindow;
   }
   /**
-   * To be used for specifying the intended distribution of regional compute.googleapis.com/InstanceGroupManager instances
-   */
-  export interface Schema$RegionalMigDistributionPolicy {
-    /**
-     * The shape in which the group converges around distribution of resources. Instance of proto2 enum
-     */
-    targetShape?: number | null;
-    /**
-     * Cloud zones used by regional MIG to create instances.
-     */
-    zones?: Schema$ZoneConfiguration[];
-  }
-  /**
    * Request message for restarting a Data Fusion instance.
    */
   export interface Schema$RestartInstanceRequest {}
@@ -762,16 +692,6 @@ export namespace datafusion_v1 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
-  }
-  export interface Schema$SpannerLocation {
-    /**
-     * Set of backups used by the resource with name in the same format as what is available at http://table/spanner_automon.backup_metadata
-     */
-    backupName?: string[] | null;
-    /**
-     * Set of databases used by the resource in format /span//
-     */
-    dbName?: string[] | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -789,9 +709,6 @@ export namespace datafusion_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
-  }
-  export interface Schema$TenantProjectProxy {
-    projectNumbers?: string[] | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -844,9 +761,6 @@ export namespace datafusion_v1 {
      * The version number of the Data Fusion instance, such as '6.0.1.0'.
      */
     versionNumber?: string | null;
-  }
-  export interface Schema$ZoneConfiguration {
-    zone?: string | null;
   }
 
   export class Resource$Projects {
@@ -2326,7 +2240,7 @@ export namespace datafusion_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
