@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20241002",
+  "revision": "20241108",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -4225,6 +4225,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "effectiveLabels": {
+          "description": "Output only. The resource names of effective labels attached to this ad. An effective label is a label inherited or directly assigned to this ad.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "engineId": {
           "description": "Output only. ID of the ad in the external engine account. This field is for Search Ads 360 account only, for example, Yahoo Japan, Microsoft, Baidu etc. For non-Search Ads 360 entity, use \"ad_group_ad.ad.id\" instead.",
           "readOnly": true,
@@ -4331,6 +4339,31 @@
             "The ad group ad is paused.",
             "The ad group ad is removed."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel": {
+      "description": "A relationship between an ad group ad and an effective label. An effective label is a label inherited or directly assigned to this ad group ad.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel",
+      "properties": {
+        "adGroupAd": {
+          "description": "Immutable. The ad group ad to which the effective label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The effective label assigned to the ad group ad.",
+          "type": "string"
+        },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the effective label.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group ad effective label. Ad group ad effective label resource names have the form: `customers/{customer_id}/adGroupAdEffectiveLabels/{ad_group_id}~{ad_id}~{label_id}`",
           "type": "string"
         }
       },
@@ -4504,6 +4537,14 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        },
+        "effectiveLabels": {
+          "description": "Output only. The resource names of effective labels attached to this ad group criterion. An effective label is a label inherited or directly assigned to this ad group criterion.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "engineId": {
           "description": "Output only. ID of the ad group criterion in the external engine account. This field is for non-Google Ads account only, for example, Yahoo Japan, Microsoft, Baidu etc. For Google Ads entity, use \"ad_group_criterion.criterion_id\" instead.",
@@ -4760,6 +4801,31 @@
         "webpage": {
           "$ref": "GoogleAdsSearchads360V0Common__WebpageInfo",
           "description": "Immutable. Webpage"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel": {
+      "description": "A relationship between an ad group criterion and an effective label. An effective label is a label inherited or directly assigned to this ad group criterion.",
+      "id": "GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel",
+      "properties": {
+        "adGroupCriterion": {
+          "description": "Immutable. The ad group criterion to which the effective label is attached.",
+          "type": "string"
+        },
+        "label": {
+          "description": "Immutable. The effective label assigned to the ad group criterion.",
+          "type": "string"
+        },
+        "ownerCustomerId": {
+          "description": "Output only. The ID of the Customer which owns the effective label.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Immutable. The resource name of the ad group criterion effective label. Ad group criterion effective label resource names have the form: `customers/{customer_id}/adGroupCriterionEffectiveLabels/{ad_group_id}~{criterion_id}~{label_id}`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8099,6 +8165,29 @@
       },
       "type": "object"
     },
+    "GoogleAdsSearchads360V0Resources__UserLocationView": {
+      "description": "A user location view. User Location View includes all metrics aggregated at the country level, one row per country. It reports metrics at the actual physical location of the user by targeted or not targeted location. If other segment fields are used, you may get more than one row per country.",
+      "id": "GoogleAdsSearchads360V0Resources__UserLocationView",
+      "properties": {
+        "countryCriterionId": {
+          "description": "Output only. Criterion Id for the country.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. The resource name of the user location view. UserLocation view resource names have the form: `customers/{customer_id}/userLocationViews/{country_criterion_id}~{targeting_location}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetingLocation": {
+          "description": "Output only. Indicates whether location was targeted or not.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAdsSearchads360V0Resources__Visit": {
       "description": "A visit.",
       "id": "GoogleAdsSearchads360V0Resources__Visit",
@@ -8397,6 +8486,10 @@
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAd",
           "description": "The ad referenced in the query."
         },
+        "adGroupAdEffectiveLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAdEffectiveLabel",
+          "description": "The ad group ad effective label referenced in the query."
+        },
         "adGroupAdLabel": {
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupAdLabel",
           "description": "The ad group ad label referenced in the query."
@@ -8420,6 +8513,10 @@
         "adGroupCriterion": {
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupCriterion",
           "description": "The criterion referenced in the query."
+        },
+        "adGroupCriterionEffectiveLabel": {
+          "$ref": "GoogleAdsSearchads360V0Resources__AdGroupCriterionEffectiveLabel",
+          "description": "The ad group criterion effective label referenced in the query."
         },
         "adGroupCriterionLabel": {
           "$ref": "GoogleAdsSearchads360V0Resources__AdGroupCriterionLabel",
@@ -8603,6 +8700,10 @@
         "userList": {
           "$ref": "GoogleAdsSearchads360V0Resources__UserList",
           "description": "The user list referenced in the query."
+        },
+        "userLocationView": {
+          "$ref": "GoogleAdsSearchads360V0Resources__UserLocationView",
+          "description": "The user location view referenced in the query."
         },
         "visit": {
           "$ref": "GoogleAdsSearchads360V0Resources__Visit",
