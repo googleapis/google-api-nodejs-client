@@ -425,7 +425,7 @@ export namespace tpu_v2 {
    */
   export interface Schema$MultisliceParams {
     /**
-     * Required. Number of nodes with this spec. The system will attempt to provison "node_count" nodes as part of the request. This needs to be \> 1.
+     * Required. Number of nodes with this spec. The system will attempt to provision "node_count" nodes as part of the request. This needs to be \> 1.
      */
     nodeCount?: number | null;
     /**
@@ -536,9 +536,13 @@ export namespace tpu_v2 {
      */
     name?: string | null;
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned.
      */
     networkConfig?: Schema$NetworkConfig;
+    /**
+     * Optional. Repeated network configurations for the TPU node. This field is used to specify multiple networks configs for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned.
+     */
+    networkConfigs?: Schema$NetworkConfig[];
     /**
      * Output only. The network endpoints where TPU workers can be accessed and sent work. It is recommended that runtime clients of the node reach out to the 0th entry in this map first.
      */
@@ -2280,7 +2284,7 @@ export namespace tpu_v2 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

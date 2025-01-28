@@ -475,6 +475,10 @@ export namespace tpu_v2alpha1 {
      * Prefix of node_ids in case of multi-node request Should follow the `^[A-Za-z0-9_.~+%-]+$` regex format. If node_count = 3 and node_id_prefix = "np", node ids of nodes created will be "np-0", "np-1", "np-2". If this field is not provided we use queued_resource_id as the node_id_prefix.
      */
     nodeIdPrefix?: string | null;
+    /**
+     * Optional. The workload type for the multi-node request.
+     */
+    workloadType?: string | null;
   }
   /**
    * Network related configurations.
@@ -587,11 +591,11 @@ export namespace tpu_v2alpha1 {
      */
     name?: string | null;
     /**
-     * Network configurations for the TPU node.
+     * Network configurations for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned.
      */
     networkConfig?: Schema$NetworkConfig;
     /**
-     * Optional. Repeated network configurations for the TPU node.
+     * Optional. Repeated network configurations for the TPU node. This field is used to specify multiple networks configs for the TPU node. network_config and network_configs are mutually exclusive, you can only specify one of them. If both are specified, an error will be returned.
      */
     networkConfigs?: Schema$NetworkConfig[];
     /**
@@ -630,6 +634,10 @@ export namespace tpu_v2alpha1 {
      * Tags to apply to the TPU Node. Tags are used to identify valid sources or targets for network firewalls.
      */
     tags?: string[] | null;
+    /**
+     * Output only. Upcoming maintenance on this TPU node.
+     */
+    upcomingMaintenance?: Schema$UpcomingMaintenance;
   }
   /**
    * Details of the TPU node(s) being requested. Users can request either a single node or multiple nodes. NodeSpec provides the specification for node(s) to be created.
@@ -710,6 +718,19 @@ export namespace tpu_v2alpha1 {
      */
     verb?: string | null;
   }
+  /**
+   * Request for PerformMaintenanceQueuedResource.
+   */
+  export interface Schema$PerformMaintenanceQueuedResourceRequest {
+    /**
+     * The names of the nodes to perform maintenance on.
+     */
+    nodeNames?: string[] | null;
+  }
+  /**
+   * Request for PerformMaintenance.
+   */
+  export interface Schema$PerformMaintenanceRequest {}
   /**
    * Further data for the provisioning state.
    */
@@ -833,6 +854,9 @@ export namespace tpu_v2alpha1 {
      * The reservation name with the format: projects/{projectID\}/locations/{location\}/reservations/{reservationID\}
      */
     name?: string | null;
+    /**
+     * A standard reservation.
+     */
     standard?: Schema$Standard;
     /**
      * Output only. The state of the Reservation.
@@ -917,7 +941,13 @@ export namespace tpu_v2alpha1 {
    * Spot tier definition.
    */
   export interface Schema$Spot {}
+  /**
+   * Details of a standard reservation.
+   */
   export interface Schema$Standard {
+    /**
+     * Capacity units this reservation is measured in.
+     */
     capacityUnits?: string | null;
     /**
      * The start and end time of the reservation.
@@ -931,6 +961,9 @@ export namespace tpu_v2alpha1 {
      * The size of the reservation, in the units specified in the 'capacity_units' field.
      */
     size?: number | null;
+    /**
+     * The current usage of the reservation.
+     */
     usage?: Schema$Usage;
   }
   /**
@@ -996,6 +1029,38 @@ export namespace tpu_v2alpha1 {
      */
     nodeSpec?: Schema$NodeSpec[];
   }
+  /**
+   * Upcoming Maintenance notification information.
+   */
+  export interface Schema$UpcomingMaintenance {
+    /**
+     * Indicates if the maintenance can be customer triggered.
+     */
+    canReschedule?: boolean | null;
+    /**
+     * The latest time for the planned maintenance window to start. This timestamp value is in RFC3339 text format.
+     */
+    latestWindowStartTime?: string | null;
+    /**
+     * The status of the maintenance.
+     */
+    maintenanceStatus?: string | null;
+    /**
+     * Defines the type of maintenance.
+     */
+    type?: string | null;
+    /**
+     * The time by which the maintenance disruption will be completed. This timestamp value is in RFC3339 text format.
+     */
+    windowEndTime?: string | null;
+    /**
+     * The current start time of the maintenance window. This timestamp value is in RFC3339 text format.
+     */
+    windowStartTime?: string | null;
+  }
+  /**
+   * Usage details of a reservation.
+   */
   export interface Schema$Usage {
     /**
      * The real-time value of usage within the reservation, with the unit specified in field capacity_units.
@@ -2112,6 +2177,95 @@ export namespace tpu_v2alpha1 {
     }
 
     /**
+     * Perform manual maintenance on a node.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    performMaintenance(
+      params: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    performMaintenance(
+      params?: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    performMaintenance(
+      params: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    performMaintenance(
+      params: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    performMaintenance(
+      params: Params$Resource$Projects$Locations$Nodes$Performmaintenance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    performMaintenance(callback: BodyResponseCallback<Schema$Operation>): void;
+    performMaintenance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Nodes$Performmaintenance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Nodes$Performmaintenance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Nodes$Performmaintenance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha1/{+name}:performMaintenance').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Simulates a maintenance event.
      *
      * @param params - Parameters for request
@@ -2459,6 +2613,18 @@ export namespace tpu_v2alpha1 {
      */
     requestBody?: Schema$Node;
   }
+  export interface Params$Resource$Projects$Locations$Nodes$Performmaintenance
+    extends StandardParameters {
+    /**
+     * Required. The resource name.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PerformMaintenanceRequest;
+  }
   export interface Params$Resource$Projects$Locations$Nodes$Simulatemaintenanceevent
     extends StandardParameters {
     /**
@@ -2503,7 +2669,7 @@ export namespace tpu_v2alpha1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3257,6 +3423,96 @@ export namespace tpu_v2alpha1 {
     }
 
     /**
+     * Perform manual maintenance on specific nodes of a QueuedResource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    performMaintenanceQueuedResource(
+      params: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    performMaintenanceQueuedResource(
+      params?: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    performMaintenanceQueuedResource(
+      params: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    performMaintenanceQueuedResource(
+      params: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    performMaintenanceQueuedResource(
+      params: Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    performMaintenanceQueuedResource(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    performMaintenanceQueuedResource(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://tpu.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha1/{+name}:performMaintenanceQueuedResource'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Resets a QueuedResource TPU instance
      *
      * @param params - Parameters for request
@@ -3402,6 +3658,18 @@ export namespace tpu_v2alpha1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Queuedresources$Performmaintenancequeuedresource
+    extends StandardParameters {
+    /**
+     * Required. The name of the QueuedResource which holds the nodes to perform maintenance on.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PerformMaintenanceQueuedResourceRequest;
+  }
   export interface Params$Resource$Projects$Locations$Queuedresources$Reset
     extends StandardParameters {
     /**
@@ -3518,7 +3786,7 @@ export namespace tpu_v2alpha1 {
   export interface Params$Resource$Projects$Locations$Reservations$List
     extends StandardParameters {
     /**
-     * The maximum number of items to return.
+     * The maximum number of items to return. Defaults to 0 if not specified, which means no limit.
      */
     pageSize?: number;
     /**
