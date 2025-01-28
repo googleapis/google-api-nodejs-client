@@ -268,6 +268,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "detachFunction": {
+                  "description": "Detaches 2nd Gen function to Cloud Run function.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/functions/{functionsId}:detachFunction",
+                  "httpMethod": "POST",
+                  "id": "cloudfunctions.projects.locations.functions.detachFunction",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the function for which should be detached.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/functions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:detachFunction",
+                  "request": {
+                    "$ref": "DetachFunctionRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "generateDownloadUrl": {
                   "description": "Returns a signed URL for downloading deployed function source code. The URL is only valid for a limited period and should be used within 30 minutes of generation. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/functions/{functionsId}:generateDownloadUrl",
@@ -716,7 +744,7 @@
       }
     }
   },
-  "revision": "20240905",
+  "revision": "20250116",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AbortFunctionUpgradeRequest": {
@@ -814,7 +842,8 @@
           "type": "string"
         },
         "dockerRegistry": {
-          "description": "Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. If unspecified, it defaults to `ARTIFACT_REGISTRY`. If `docker_repository` field is specified, this field should either be left unspecified or set to `ARTIFACT_REGISTRY`.",
+          "deprecated": true,
+          "description": "Docker Registry to use for this deployment. This configuration is only applicable to 1st Gen functions, 2nd Gen functions can only use Artifact Registry. Deprecated: Container Registry option will no longer be available after March 2025: https://cloud.google.com/artifact-registry/docs/transition/transition-from-gcr Please use Artifact Registry instead, which is the default choice. If unspecified, it defaults to `ARTIFACT_REGISTRY`. If `docker_repository` field is specified, this field should either be left unspecified or set to `ARTIFACT_REGISTRY`.",
           "enum": [
             "DOCKER_REGISTRY_UNSPECIFIED",
             "CONTAINER_REGISTRY",
@@ -828,7 +857,7 @@
           "type": "string"
         },
         "dockerRepository": {
-          "description": "Repository in Artifact Registry to which the function docker image will be pushed after it is built by Cloud Build. If specified by user, it is created and managed by user with a customer managed encryption key. Otherwise, GCF will create and use a repository named 'gcf-artifacts' for every deployed region. It must match the pattern `projects/{project}/locations/{location}/repositories/{repository}`. Cross-project repositories are not supported. Cross-location repositories are not supported. Repository format must be 'DOCKER'.",
+          "description": "Repository in Artifact Registry to which the function docker image will be pushed after it is built by Cloud Build. If specified by user, it is created and managed by user with a customer managed encryption key. Otherwise, GCF will create and use a repository named 'gcf-artifacts' for every deployed region. It must match the pattern `projects/{project}/locations/{location}/repositories/{repository}`. Repository format must be 'DOCKER'.",
           "type": "string"
         },
         "entryPoint": {
@@ -899,6 +928,12 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "DetachFunctionRequest": {
+      "description": "Request for the `DetachFunction` method.",
+      "id": "DetachFunctionRequest",
+      "properties": {},
       "type": "object"
     },
     "EventFilter": {
@@ -1226,7 +1261,8 @@
             "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC",
             "SETUP_FUNCTION_UPGRADE_CONFIG",
             "ABORT_FUNCTION_UPGRADE",
-            "COMMIT_FUNCTION_UPGRADE"
+            "COMMIT_FUNCTION_UPGRADE",
+            "DETACH_FUNCTION"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -1237,7 +1273,8 @@
             "RollbackFunctionUpgradeTraffic",
             "SetupFunctionUpgradeConfig",
             "AbortFunctionUpgrade",
-            "CommitFunctionUpgrade"
+            "CommitFunctionUpgrade",
+            "DetachFunction"
           ],
           "type": "string"
         },
@@ -2058,7 +2095,7 @@
       "type": "object"
     },
     "UpgradeInfo": {
-      "description": "Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration * Current state of migration for function undergoing migration.",
+      "description": "Information related to: * A function's eligibility for 1st Gen to 2nd Gen migration and 2nd Gen to CRf detach. * Current state of migration for function undergoing migration/detach.",
       "id": "UpgradeInfo",
       "properties": {
         "buildConfig": {
@@ -2085,7 +2122,8 @@
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_SUCCESSFUL",
             "REDIRECT_FUNCTION_UPGRADE_TRAFFIC_ERROR",
             "ROLLBACK_FUNCTION_UPGRADE_TRAFFIC_ERROR",
-            "COMMIT_FUNCTION_UPGRADE_ERROR"
+            "COMMIT_FUNCTION_UPGRADE_ERROR",
+            "DETACH_IN_PROGRESS"
           ],
           "enumDescriptions": [
             "Unspecified state. Most functions are in this upgrade state.",
@@ -2097,7 +2135,8 @@
             "RedirectFunctionUpgradeTraffic API was successful and traffic is served by 2nd Gen function stack.",
             "RedirectFunctionUpgradeTraffic API was un-successful.",
             "RollbackFunctionUpgradeTraffic API was un-successful.",
-            "CommitFunctionUpgrade API was un-successful."
+            "CommitFunctionUpgrade API was un-successful.",
+            "Function is requested to be detached from 2nd Gen to CRf."
           ],
           "type": "string"
         }
