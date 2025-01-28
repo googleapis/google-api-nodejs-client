@@ -275,7 +275,7 @@ export namespace connectors_v1 {
    */
   export interface Schema$AuthorizationCodeLink {
     /**
-     * The client ID assigned to the Google Cloud Connectors OAuth app for the connector data source.
+     * Optional. The client ID assigned to the Google Cloud Connectors OAuth app for the connector data source.
      */
     clientId?: string | null;
     /**
@@ -283,7 +283,7 @@ export namespace connectors_v1 {
      */
     clientSecret?: Schema$Secret;
     /**
-     * Whether to enable PKCE for the auth code flow.
+     * Optional. Whether to enable PKCE for the auth code flow.
      */
     enablePkce?: boolean | null;
     /**
@@ -291,11 +291,11 @@ export namespace connectors_v1 {
      */
     omitQueryParams?: boolean | null;
     /**
-     * The scopes for which the user will authorize Google Cloud Connectors on the connector data source.
+     * Optional. The scopes for which the user will authorize Google Cloud Connectors on the connector data source.
      */
     scopes?: string[] | null;
     /**
-     * The base URI the user must click to trigger the authorization code login flow.
+     * Optional. The base URI the user must click to trigger the authorization code login flow.
      */
     uri?: string | null;
   }
@@ -405,19 +405,19 @@ export namespace connectors_v1 {
    */
   export interface Schema$ConfigVariableTemplate {
     /**
-     * Authorization code link options. To be populated if `ValueType` is `AUTHORIZATION_CODE`
+     * Optional. Authorization code link options. To be populated if `ValueType` is `AUTHORIZATION_CODE`
      */
     authorizationCodeLink?: Schema$AuthorizationCodeLink;
     /**
-     * Description.
+     * Optional. Description.
      */
     description?: string | null;
     /**
-     * Display name of the parameter.
+     * Optional. Display name of the parameter.
      */
     displayName?: string | null;
     /**
-     * Enum options. To be populated if `ValueType` is `ENUM`
+     * Optional. Enum options. To be populated if `ValueType` is `ENUM`
      */
     enumOptions?: Schema$EnumOption[];
     /**
@@ -425,11 +425,11 @@ export namespace connectors_v1 {
      */
     enumSource?: string | null;
     /**
-     * Indicates if current template is part of advanced settings
+     * Optional. Indicates if current template is part of advanced settings
      */
     isAdvanced?: boolean | null;
     /**
-     * Key of the config variable.
+     * Optional. Key of the config variable.
      */
     key?: string | null;
     /**
@@ -441,27 +441,27 @@ export namespace connectors_v1 {
      */
     multipleSelectConfig?: Schema$MultipleSelectConfig;
     /**
-     * Flag represents that this `ConfigVariable` must be provided for a connection.
+     * Optional. Flag represents that this `ConfigVariable` must be provided for a connection.
      */
     required?: boolean | null;
     /**
-     * Condition under which a field would be required. The condition can be represented in the form of a logical expression.
+     * Optional. Condition under which a field would be required. The condition can be represented in the form of a logical expression.
      */
     requiredCondition?: Schema$LogicalExpression;
     /**
-     * Role grant configuration for the config variable.
+     * Optional. Role grant configuration for the config variable.
      */
     roleGrant?: Schema$RoleGrant;
     /**
-     * State of the config variable.
+     * Output only. State of the config variable.
      */
     state?: string | null;
     /**
-     * Regular expression in RE2 syntax used for validating the `value` of a `ConfigVariable`.
+     * Optional. Regular expression in RE2 syntax used for validating the `value` of a `ConfigVariable`.
      */
     validationRegex?: string | null;
     /**
-     * Type of the parameter: string, int, bool etc. consider custom type for the benefit for the validation.
+     * Optional. Type of the parameter: string, int, bool etc. consider custom type for the benefit for the validation.
      */
     valueType?: string | null;
   }
@@ -693,6 +693,10 @@ export namespace connectors_v1 {
      */
     launchStage?: string | null;
     /**
+     * Output only. Marketplace connector details. Will be null if the connector is not marketplace connector.
+     */
+    marketplaceConnectorDetails?: Schema$MarketplaceConnectorDetails;
+    /**
      * Output only. Resource name of the Connector. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\} Only global location is supported for Connector resource.
      */
     name?: string | null;
@@ -721,6 +725,10 @@ export namespace connectors_v1 {
      * The window used for ratelimiting runtime requests to connections.
      */
     connectionRatelimitWindowSeconds?: string | null;
+    /**
+     * Indicate whether connector versioning is enabled.
+     */
+    connectorVersioningEnabled?: boolean | null;
     /**
      * Indicate whether connector is deployed on GKE/CloudRun
      */
@@ -893,7 +901,7 @@ export namespace connectors_v1 {
      */
     connectionRatelimitWindowSeconds?: string | null;
     /**
-     * Optional. Indicates whether connector is deployed on GKE/CloudRun
+     * Output only. Indicates whether connector is deployed on GKE/CloudRun
      */
     deploymentModel?: string | null;
     /**
@@ -946,6 +954,10 @@ export namespace connectors_v1 {
      */
     allConnectorVersions?: string[] | null;
     /**
+     * Output only. All marketplace versions.
+     */
+    allMarketplaceVersions?: string[] | null;
+    /**
      * Output only. Created time.
      */
     createTime?: string | null;
@@ -973,6 +985,10 @@ export namespace connectors_v1 {
      * Identifier. Resource name of the CustomConnector. Format: projects/{project\}/locations/{location\}/customConnectors/{connector\}
      */
     name?: string | null;
+    /**
+     * Output only. Published marketplace versions.
+     */
+    publishedMarketplaceVersions?: string[] | null;
     /**
      * Output only. Updated time.
      */
@@ -1010,6 +1026,14 @@ export namespace connectors_v1 {
      * Output only. Identifier. Resource name of the Version. Format: projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}
      */
     name?: string | null;
+    /**
+     * Optional. Partner metadata details. This should be populated only when publishing the custom connector to partner connector.
+     */
+    partnerMetadata?: Schema$PartnerMetadata;
+    /**
+     * Output only. Publish status of a custom connector.
+     */
+    publishStatus?: Schema$PublishStatus;
     /**
      * Optional. Service account used by runtime plane to access auth config secrets.
      */
@@ -1269,11 +1293,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$EnumOption {
     /**
-     * Display name of the option.
+     * Optional. Display name of the option.
      */
     displayName?: string | null;
     /**
-     * Id of the option.
+     * Optional. Id of the option.
      */
     id?: string | null;
   }
@@ -1282,11 +1306,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$EventingConfig {
     /**
-     * Additional eventing related field values
+     * Optional. Additional eventing related field values
      */
     additionalVariables?: Schema$ConfigVariable[];
     /**
-     * Auth details for the webhook adapter.
+     * Optional. Auth details for the webhook adapter.
      */
     authConfig?: Schema$AuthConfig;
     /**
@@ -1294,7 +1318,7 @@ export namespace connectors_v1 {
      */
     deadLetterConfig?: Schema$DeadLetterConfig;
     /**
-     * Enrichment Enabled.
+     * Optional. Enrichment Enabled.
      */
     enrichmentEnabled?: boolean | null;
     /**
@@ -1314,7 +1338,7 @@ export namespace connectors_v1 {
      */
     proxyDestinationConfig?: Schema$DestinationConfig;
     /**
-     * Registration endpoint for auto registration.
+     * Optional. Registration endpoint for auto registration.
      */
     registrationDestinationConfig?: Schema$DestinationConfig;
   }
@@ -1428,6 +1452,10 @@ export namespace connectors_v1 {
      * Output only. Webhook data.
      */
     webhookData?: Schema$WebhookData;
+    /**
+     * Output only. Webhook subscriptions.
+     */
+    webhookSubscriptions?: Schema$WebhookSubscriptions;
   }
   /**
    * EventingStatus indicates the state of eventing.
@@ -1660,7 +1688,7 @@ export namespace connectors_v1 {
      */
     boolValue?: boolean | null;
     /**
-     * Comparator to use for comparing the field value.
+     * Optional. Comparator to use for comparing the field value.
      */
     comparator?: string | null;
     /**
@@ -1668,7 +1696,7 @@ export namespace connectors_v1 {
      */
     intValue?: string | null;
     /**
-     * Key of the field.
+     * Optional. Key of the field.
      */
     key?: string | null;
     /**
@@ -2186,15 +2214,15 @@ export namespace connectors_v1 {
    */
   export interface Schema$LogicalExpression {
     /**
-     * A list of fields to be compared.
+     * Optional. A list of fields to be compared.
      */
     fieldComparisons?: Schema$FieldComparison[];
     /**
-     * A list of nested conditions to be compared.
+     * Optional. A list of nested conditions to be compared.
      */
     logicalExpressions?: Schema$LogicalExpression[];
     /**
-     * The logical operator to use between the fields and conditions.
+     * Optional. The logical operator to use between the fields and conditions.
      */
     logicalOperator?: string | null;
   }
@@ -2322,6 +2350,27 @@ export namespace connectors_v1 {
      * Output only. Updated time.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Marketplace connector details.
+   */
+  export interface Schema$MarketplaceConnectorDetails {
+    /**
+     * Marketplace product name.
+     */
+    marketplaceProduct?: string | null;
+    /**
+     * Marketplace product ID.
+     */
+    marketplaceProductId?: string | null;
+    /**
+     * Marketplace product URL.
+     */
+    marketplaceProductUri?: string | null;
+    /**
+     * The name of the partner.
+     */
+    partner?: string | null;
   }
   /**
    * MultipleSelectConfig represents the multiple options for a config variable.
@@ -2552,6 +2601,71 @@ export namespace connectors_v1 {
     verb?: string | null;
   }
   /**
+   * Partner metadata details. This will be populated when publishing the custom connector as a partner connector version. On publishing, parntner connector version will be created using the fields in PartnerMetadata.
+   */
+  export interface Schema$PartnerMetadata {
+    /**
+     * Required. Whether the user has accepted the Google Cloud Platform Terms of Service (https://cloud.google.com/terms/) and the Google Cloud Marketplace Terms of Service (https://cloud.google.com/terms/marketplace/launcher?hl=en).
+     */
+    acceptGcpTos?: boolean | null;
+    /**
+     * Optional. Additional comments for the submission.
+     */
+    additionalComments?: string | null;
+    /**
+     * Required. Confirmation that connector meets all applicable requirements mentioned in the Partner Connector Publishing requirements list and Partner onboardiong requirements list (https://cloud.google.com/marketplace/docs/partners/get-started#requirements).
+     */
+    confirmPartnerRequirements?: boolean | null;
+    /**
+     * Required. Public URL for the demo video.
+     */
+    demoUri?: string | null;
+    /**
+     * Required. Integration example templates for the custom connector.
+     */
+    integrationTemplates?: string | null;
+    /**
+     * Optional. Marketplace product name.
+     */
+    marketplaceProduct?: string | null;
+    /**
+     * Required. Marketplace product ID.
+     */
+    marketplaceProductId?: string | null;
+    /**
+     * Optional. Marketplace product project ID.
+     */
+    marketplaceProductProjectId?: string | null;
+    /**
+     * Optional. Marketplace product URL.
+     */
+    marketplaceProductUri?: string | null;
+    /**
+     * Required. Partner name.
+     */
+    partner?: string | null;
+    /**
+     * Required. Partner connector display name.
+     */
+    partnerConnectorDisplayName?: string | null;
+    /**
+     * Output only. Publish request time.
+     */
+    publishRequestTime?: string | null;
+    /**
+     * Required. Target application for which partner connector is built.
+     */
+    targetApplication?: string | null;
+    /**
+     * Required. Target customer segment for the partner connector.
+     */
+    targetCustomerSegment?: string | null;
+    /**
+     * Required. Details about partner connector use cases.
+     */
+    useCases?: string | null;
+  }
+  /**
    * PerSliSloEligibility is a mapping from an SLI name to eligibility.
    */
   export interface Schema$PerSliSloEligibility {
@@ -2640,6 +2754,36 @@ export namespace connectors_v1 {
     resourceUrl?: string | null;
   }
   /**
+   * Request message for ConnectorsService.PublishCustomConnectorVersion
+   */
+  export interface Schema$PublishCustomConnectorVersionRequest {
+    /**
+     * Required. Partner metadata details for validating and publishing the custom connector as a partner connector version.
+     */
+    partnerMetadata?: Schema$PartnerMetadata;
+  }
+  /**
+   * Publish status of a custom connector.
+   */
+  export interface Schema$PublishStatus {
+    /**
+     * Output only. Partner connector name. Will be set on the custom connector. Format: providers/partner/connectors//versions/
+     */
+    publishedAs?: string | null;
+    /**
+     * Output only. Custom connector name. Will be set on the partner connector. Format: providers/customconnectors/connectors//versions/
+     */
+    publishedSource?: string | null;
+    /**
+     * Output only. Publish state of the custom connector.
+     */
+    publishState?: string | null;
+    /**
+     * Output only. Publish time.
+     */
+    publishTime?: string | null;
+  }
+  /**
    * Request message for ConnectorsService.RefreshConnectionSchemaMetadata.
    */
   export interface Schema$RefreshConnectionSchemaMetadataRequest {}
@@ -2673,11 +2817,11 @@ export namespace connectors_v1 {
    */
   export interface Schema$Resource {
     /**
-     * Template to uniquely represent a Google Cloud resource in a format IAM expects This is a template that can have references to other values provided in the config variable template.
+     * Optional. Template to uniquely represent a Google Cloud resource in a format IAM expects This is a template that can have references to other values provided in the config variable template.
      */
     pathTemplate?: string | null;
     /**
-     * Different types of resource supported.
+     * Optional. Different types of resource supported.
      */
     type?: string | null;
   }
@@ -2745,19 +2889,19 @@ export namespace connectors_v1 {
    */
   export interface Schema$RoleGrant {
     /**
-     * Template that UI can use to provide helper text to customers.
+     * Optional. Template that UI can use to provide helper text to customers.
      */
     helperTextTemplate?: string | null;
     /**
-     * Prinicipal/Identity for whom the role need to assigned.
+     * Optional. Prinicipal/Identity for whom the role need to assigned.
      */
     principal?: string | null;
     /**
-     * Resource on which the roles needs to be granted for the principal.
+     * Optional. Resource on which the roles needs to be granted for the principal.
      */
     resource?: Schema$Resource;
     /**
-     * List of roles that need to be granted.
+     * Optional. List of roles that need to be granted.
      */
     roles?: string[] | null;
   }
@@ -2786,6 +2930,10 @@ export namespace connectors_v1 {
      */
     inputParameters?: Schema$InputParameter[];
     /**
+     * Output only. Input schema as string.
+     */
+    inputSchemaAsString?: string | null;
+    /**
      * Output only. JsonSchema representation of this action's result metadata
      */
     resultJsonSchema?: Schema$JsonSchema;
@@ -2793,6 +2941,10 @@ export namespace connectors_v1 {
      * Output only. List of result field metadata.
      */
     resultMetadata?: Schema$ResultMetadata[];
+    /**
+     * Output only. Result schema as string.
+     */
+    resultSchemaAsString?: string | null;
   }
   /**
    * RuntimeConfig is the singleton resource of each location. It includes generic resource configs consumed by control plane and runtime plane like: pub/sub topic/subscription resource name, Cloud Storage location storing schema etc.
@@ -3036,43 +3188,43 @@ export namespace connectors_v1 {
    */
   export interface Schema$SslConfig {
     /**
-     * Additional SSL related field values
+     * Optional. Additional SSL related field values
      */
     additionalVariables?: Schema$ConfigVariable[];
     /**
-     * Client Certificate
+     * Optional. Client Certificate
      */
     clientCertificate?: Schema$Secret;
     /**
-     * Type of Client Cert (PEM/JKS/.. etc.)
+     * Optional. Type of Client Cert (PEM/JKS/.. etc.)
      */
     clientCertType?: string | null;
     /**
-     * Client Private Key
+     * Optional. Client Private Key
      */
     clientPrivateKey?: Schema$Secret;
     /**
-     * Secret containing the passphrase protecting the Client Private Key
+     * Optional. Secret containing the passphrase protecting the Client Private Key
      */
     clientPrivateKeyPass?: Schema$Secret;
     /**
-     * Private Server Certificate. Needs to be specified if trust model is `PRIVATE`.
+     * Optional. Private Server Certificate. Needs to be specified if trust model is `PRIVATE`.
      */
     privateServerCertificate?: Schema$Secret;
     /**
-     * Type of Server Cert (PEM/JKS/.. etc.)
+     * Optional. Type of Server Cert (PEM/JKS/.. etc.)
      */
     serverCertType?: string | null;
     /**
-     * Trust Model of the SSL connection
+     * Optional. Trust Model of the SSL connection
      */
     trustModel?: string | null;
     /**
-     * Controls the ssl type for the given connector version.
+     * Optional. Controls the ssl type for the given connector version.
      */
     type?: string | null;
     /**
-     * Bool for enabling SSL
+     * Optional. Bool for enabling SSL
      */
     useSsl?: boolean | null;
   }
@@ -3176,19 +3328,19 @@ export namespace connectors_v1 {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }
@@ -3278,6 +3430,15 @@ export namespace connectors_v1 {
     updateTime?: string | null;
   }
   /**
+   * WebhookSubscriptions has details of webhook subscriptions.
+   */
+  export interface Schema$WebhookSubscriptions {
+    /**
+     * Output only. Webhook data.
+     */
+    webhookData?: Schema$WebhookData[];
+  }
+  /**
    * Time window specified for weekly operations.
    */
   export interface Schema$WeeklyCycle {
@@ -3286,6 +3447,10 @@ export namespace connectors_v1 {
      */
     schedule?: Schema$Schedule[];
   }
+  /**
+   * Request message for ConnectorsService.WithdrawCustomConnectorVersion
+   */
+  export interface Schema$WithdrawCustomConnectorVersionRequest {}
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -6378,6 +6543,10 @@ export namespace connectors_v1 {
      * Required. Parent resource of RuntimeActionSchema Format: projects/{project\}/locations/{location\}/connections/{connection\}
      */
     parent?: string;
+    /**
+     * Optional. Flag to indicate if schema should be returned as string or not
+     */
+    schemaAsString?: boolean;
   }
 
   export class Resource$Projects$Locations$Connections$Runtimeentityschemas {
@@ -6808,6 +6977,184 @@ export namespace connectors_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Publish request for the CustomConnectorVersion. Once approved, the CustomConnectorVersion will be published as PartnerConnector.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    publish(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    publish(
+      params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    publish(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    publish(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    publish(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    publish(callback: BodyResponseCallback<Schema$Operation>): void;
+    publish(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:publish').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Withdraw the publish request for the CustomConnectorVersion. This can only be used before the CustomConnectorVersion is published.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    withdraw(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    withdraw(
+      params?: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    withdraw(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    withdraw(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    withdraw(
+      params: Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    withdraw(callback: BodyResponseCallback<Schema$Operation>): void;
+    withdraw(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:withdraw').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Delete
@@ -6828,6 +7175,30 @@ export namespace connectors_v1 {
      * Request body metadata
      */
     requestBody?: Schema$DeprecateCustomConnectorVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Publish
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PublishCustomConnectorVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Customconnectors$Customconnectorversions$Withdraw
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the form: `projects/{project\}/locations/{location\}/customConnectors/{custom_connector\}/customConnectorVersions/{custom_connector_version\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WithdrawCustomConnectorVersionRequest;
   }
 
   export class Resource$Projects$Locations$Endpointattachments {
@@ -8947,7 +9318,7 @@ export namespace connectors_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
