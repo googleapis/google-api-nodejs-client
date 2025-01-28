@@ -145,27 +145,35 @@ export namespace merchantapi_datasources_v1beta {
      */
     input?: string | null;
     /**
-     * Required. The [local inventory](https://support.google.com/merchants/answer/7023001) data source.
+     * The [local inventory](https://support.google.com/merchants/answer/7023001) data source.
      */
     localInventoryDataSource?: Schema$LocalInventoryDataSource;
+    /**
+     * The [merchant review](https://support.google.com/merchants/answer/7045996) data source.
+     */
+    merchantReviewDataSource?: Schema$MerchantReviewDataSource;
     /**
      * Identifier. The name of the data source. Format: `{datasource.name=accounts/{account\}/dataSources/{datasource\}\}`
      */
     name?: string | null;
     /**
-     * Required. The [primary data source](https://support.google.com/merchants/answer/7439058) for local and online products.
+     * The [primary data source](https://support.google.com/merchants/answer/7439058) for local and online products.
      */
     primaryProductDataSource?: Schema$PrimaryProductDataSource;
     /**
-     * Required. The [promotion](https://support.google.com/merchants/answer/2906014) data source.
+     * The [product review](https://support.google.com/merchants/answer/7045996) data source.
+     */
+    productReviewDataSource?: Schema$ProductReviewDataSource;
+    /**
+     * The [promotion](https://support.google.com/merchants/answer/2906014) data source.
      */
     promotionDataSource?: Schema$PromotionDataSource;
     /**
-     * Required. The [regional inventory](https://support.google.com/merchants/answer/7439058) data source.
+     * The [regional inventory](https://support.google.com/merchants/answer/7439058) data source.
      */
     regionalInventoryDataSource?: Schema$RegionalInventoryDataSource;
     /**
-     * Required. The [supplemental data source](https://support.google.com/merchants/answer/7439058) for local and online products.
+     * The [supplemental data source](https://support.google.com/merchants/answer/7439058) for local and online products.
      */
     supplementalProductDataSource?: Schema$SupplementalProductDataSource;
   }
@@ -228,7 +236,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     frequency?: string | null;
     /**
-     * Optional. An optional password for fetch url. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).
+     * Optional. An optional password for fetch_uri. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).
      */
     password?: string | null;
     /**
@@ -240,7 +248,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     timeZone?: string | null;
     /**
-     * Optional. An optional user name for fetch url. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).
+     * Optional. An optional user name for fetch_uri. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).
      */
     username?: string | null;
   }
@@ -354,6 +362,10 @@ export namespace merchantapi_datasources_v1beta {
     feedLabel?: string | null;
   }
   /**
+   * The merchant review data source.
+   */
+  export interface Schema$MerchantReviewDataSource {}
+  /**
    * The primary data source for local and online products.
    */
   export interface Schema$PrimaryProductDataSource {
@@ -400,6 +412,10 @@ export namespace merchantapi_datasources_v1beta {
     reportingContext?: string | null;
   }
   /**
+   * The product review data source.
+   */
+  export interface Schema$ProductReviewDataSource {}
+  /**
    * The message that the merchant will receive to notify about product status change event
    */
   export interface Schema$ProductStatusChangeMessage {
@@ -415,6 +431,10 @@ export namespace merchantapi_datasources_v1beta {
      * A message to describe the change that happened to the product
      */
     changes?: Schema$ProductChange[];
+    /**
+     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     */
+    expirationTime?: string | null;
     /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
@@ -459,7 +479,7 @@ export namespace merchantapi_datasources_v1beta {
     feedLabel?: string | null;
   }
   /**
-   * The supplemental data source for local and online products.
+   * The supplemental data source for local and online products. After creation, you should make sure to link the supplemental product data source into one or more primary product data sources.
    */
   export interface Schema$SupplementalProductDataSource {
     /**
@@ -467,7 +487,7 @@ export namespace merchantapi_datasources_v1beta {
      */
     contentLanguage?: string | null;
     /**
-     * Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.
+     * Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. The fields must be unset for data sources without file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.
      */
     feedLabel?: string | null;
     /**
@@ -480,19 +500,19 @@ export namespace merchantapi_datasources_v1beta {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     * Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
-     * Minutes of hour of day. Must be from 0 to 59.
+     * Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.
      */
     minutes?: number | null;
     /**
-     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     * Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.
      */
     nanos?: number | null;
     /**
-     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
   }

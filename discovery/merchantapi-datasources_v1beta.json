@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20240909",
+  "revision": "20250108",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -363,7 +363,11 @@
         },
         "localInventoryDataSource": {
           "$ref": "LocalInventoryDataSource",
-          "description": "Required. The [local inventory](https://support.google.com/merchants/answer/7023001) data source."
+          "description": "The [local inventory](https://support.google.com/merchants/answer/7023001) data source."
+        },
+        "merchantReviewDataSource": {
+          "$ref": "MerchantReviewDataSource",
+          "description": "The [merchant review](https://support.google.com/merchants/answer/7045996) data source."
         },
         "name": {
           "description": "Identifier. The name of the data source. Format: `{datasource.name=accounts/{account}/dataSources/{datasource}}`",
@@ -371,19 +375,23 @@
         },
         "primaryProductDataSource": {
           "$ref": "PrimaryProductDataSource",
-          "description": "Required. The [primary data source](https://support.google.com/merchants/answer/7439058) for local and online products."
+          "description": "The [primary data source](https://support.google.com/merchants/answer/7439058) for local and online products."
+        },
+        "productReviewDataSource": {
+          "$ref": "ProductReviewDataSource",
+          "description": "The [product review](https://support.google.com/merchants/answer/7045996) data source."
         },
         "promotionDataSource": {
           "$ref": "PromotionDataSource",
-          "description": "Required. The [promotion](https://support.google.com/merchants/answer/2906014) data source."
+          "description": "The [promotion](https://support.google.com/merchants/answer/2906014) data source."
         },
         "regionalInventoryDataSource": {
           "$ref": "RegionalInventoryDataSource",
-          "description": "Required. The [regional inventory](https://support.google.com/merchants/answer/7439058) data source."
+          "description": "The [regional inventory](https://support.google.com/merchants/answer/7439058) data source."
         },
         "supplementalProductDataSource": {
           "$ref": "SupplementalProductDataSource",
-          "description": "Required. The [supplemental data source](https://support.google.com/merchants/answer/7439058) for local and online products."
+          "description": "The [supplemental data source](https://support.google.com/merchants/answer/7439058) for local and online products."
         }
       },
       "type": "object"
@@ -491,7 +499,7 @@
           "type": "string"
         },
         "password": {
-          "description": "Optional. An optional password for fetch url. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).",
+          "description": "Optional. An optional password for fetch_uri. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).",
           "type": "string"
         },
         "timeOfDay": {
@@ -503,7 +511,7 @@
           "type": "string"
         },
         "username": {
-          "description": "Optional. An optional user name for fetch url. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).",
+          "description": "Optional. An optional user name for fetch_uri. Used for [submitting data sources through SFTP](https://support.google.com/merchants/answer/13813117).",
           "type": "string"
         }
       },
@@ -688,6 +696,12 @@
       },
       "type": "object"
     },
+    "MerchantReviewDataSource": {
+      "description": "The merchant review data source.",
+      "id": "MerchantReviewDataSource",
+      "properties": {},
+      "type": "object"
+    },
     "PrimaryProductDataSource": {
       "description": "The primary data source for local and online products.",
       "id": "PrimaryProductDataSource",
@@ -765,12 +779,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -803,11 +819,18 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ProductReviewDataSource": {
+      "description": "The product review data source.",
+      "id": "ProductReviewDataSource",
+      "properties": {},
       "type": "object"
     },
     "ProductStatusChangeMessage": {
@@ -836,6 +859,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",
@@ -895,7 +923,7 @@
       "type": "object"
     },
     "SupplementalProductDataSource": {
-      "description": "The supplemental data source for local and online products.",
+      "description": "The supplemental data source for local and online products. After creation, you should make sure to link the supplemental product data source into one or more primary product data sources.",
       "id": "SupplementalProductDataSource",
       "properties": {
         "contentLanguage": {
@@ -903,7 +931,7 @@
           "type": "string"
         },
         "feedLabel": {
-          "description": "Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.",
+          "description": "Optional. Immutable. The feed label that is specified on the data source level. Must be less than or equal to 20 uppercase letters (A-Z), numbers (0-9), and dashes (-). See also [migration to feed labels](https://developers.google.com/shopping-content/guides/products/feed-labels). `feedLabel` and `contentLanguage` must be either both set or unset for data sources with product content type. They must be set for data sources with a file input. The fields must be unset for data sources without file input. If set, the data source will only accept products matching this combination. If unset, the data source will accept produts without that restriction.",
           "type": "string"
         },
         "referencingPrimaryDataSources": {
@@ -922,22 +950,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }

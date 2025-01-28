@@ -469,7 +469,11 @@ export namespace merchantapi_products_v1beta {
      */
     subscriptionCost?: Schema$SubscriptionCost;
     /**
-     * The tax category of the product, used to configure detailed tax nexus in account-level tax settings.
+     * The list of sustainability incentive programs.
+     */
+    sustainabilityIncentives?: Schema$ProductSustainabilityIncentive[];
+    /**
+     * The tax category of the product.
      */
     taxCategory?: string | null;
     /**
@@ -740,6 +744,10 @@ export namespace merchantapi_products_v1beta {
      */
     programLabel?: string | null;
     /**
+     * The label of the shipping benefit. If the field has value, this offer has loyalty shipping benefit. If the field value isn't provided, the item is not eligible for loyalty shipping for the given loyalty tier.
+     */
+    shippingLabel?: string | null;
+    /**
      * The label of the tier within the loyalty program. Must match one of the labels within the program.
      */
     tierLabel?: string | null;
@@ -854,7 +862,7 @@ export namespace merchantapi_products_v1beta {
     value?: number | null;
   }
   /**
-   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the vertical spec with [some exceptions](https://support.google.com/merchants/answer/7052112).
+   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the vertical spec with [some exceptions](https://support.google.com/merchants/answer/7052112).
    */
   export interface Schema$ProductInput {
     /**
@@ -862,7 +870,7 @@ export namespace merchantapi_products_v1beta {
      */
     attributes?: Schema$Attributes;
     /**
-     * Required. Immutable. The [channel](https://support.google.com/merchants/answer/7361332) of the product.
+     * Immutable. The [channel](https://support.google.com/merchants/answer/7361332) of the product.
      */
     channel?: string | null;
     /**
@@ -936,6 +944,10 @@ export namespace merchantapi_products_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     */
+    expirationTime?: string | null;
+    /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
     managingAccount?: string | null;
@@ -977,6 +989,23 @@ export namespace merchantapi_products_v1beta {
      * The digital source type, for example "trained_algorithmic_media". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters.
      */
     digitalSourceType?: string | null;
+  }
+  /**
+   * Information regarding sustainability-related incentive programs such as rebates or tax relief.
+   */
+  export interface Schema$ProductSustainabilityIncentive {
+    /**
+     * The fixed amount of the incentive.
+     */
+    amount?: Schema$Price;
+    /**
+     * The percentage of the sale price that the incentive is applied to.
+     */
+    percentage?: number | null;
+    /**
+     * Sustainability incentive program.
+     */
+    type?: string | null;
   }
   /**
    * The weight of the product.
@@ -1339,7 +1368,7 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string;
     /**
-     * Required. The name of the product input resource to delete. Format: accounts/{account\}/productInputs/{product\}
+     * Required. The name of the product input resource to delete. Format: accounts/{account\}/productInputs/{product\} where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/productInputs/online~en~US~sku123"
      */
     name?: string;
   }
@@ -1551,7 +1580,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Products$Get
     extends StandardParameters {
     /**
-     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}`
+     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is "accounts/123/products/online~en~US~sku123"
      */
     name?: string;
   }

@@ -410,6 +410,10 @@ export namespace merchantapi_promotions_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     */
+    expirationTime?: string | null;
+    /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
     managingAccount?: string | null;
@@ -799,7 +803,7 @@ export namespace merchantapi_promotions_v1beta {
   export interface Params$Resource$Accounts$Promotions$List
     extends StandardParameters {
     /**
-     * Output only. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of promotions will be returned.
+     * Output only. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.
      */
     pageSize?: number;
     /**

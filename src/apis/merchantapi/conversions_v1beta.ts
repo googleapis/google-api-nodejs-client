@@ -132,9 +132,6 @@ export namespace merchantapi_conversions_v1beta {
      * Required. Lookback windows (in days) used for attribution in this source. Supported values are 7, 30, 40.
      */
     attributionLookbackWindowDays?: number | null;
-    /**
-     * Required. Attribution model.
-     */
     attributionModel?: string | null;
     /**
      * Immutable. Unordered list. List of different conversion types a conversion event can be classified as. A standard "purchase" type will be automatically created if this list is empty at creation time.
@@ -275,6 +272,10 @@ export namespace merchantapi_conversions_v1beta {
      * A message to describe the change that happened to the product
      */
     changes?: Schema$ProductChange[];
+    /**
+     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     */
+    expirationTime?: string | null;
     /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
@@ -902,7 +903,7 @@ export namespace merchantapi_conversions_v1beta {
      */
     name?: string;
     /**
-     * Required. List of fields being updated.
+     * Optional. List of fields being updated.
      */
     updateMask?: string;
 

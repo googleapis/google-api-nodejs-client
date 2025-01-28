@@ -245,7 +245,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. List of fields being updated.",
+                  "description": "Optional. List of fields being updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -295,7 +295,7 @@
       }
     }
   },
-  "revision": "20241001",
+  "revision": "20250118",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AttributionSettings": {
@@ -308,7 +308,6 @@
           "type": "integer"
         },
         "attributionModel": {
-          "description": "Required. Attribution model.",
           "enum": [
             "ATTRIBUTION_MODEL_UNSPECIFIED",
             "CROSS_CHANNEL_LAST_CLICK",
@@ -521,12 +520,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -559,7 +560,8 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         }
@@ -592,6 +594,11 @@
             "$ref": "ProductChange"
           },
           "type": "array"
+        },
+        "expirationTime": {
+          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",

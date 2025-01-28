@@ -204,6 +204,10 @@ export namespace merchantapi_notifications_v1beta {
      */
     changes?: Schema$ProductChange[];
     /**
+     * The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     */
+    expirationTime?: string | null;
+    /**
      * The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id\}`
      */
     managingAccount?: string | null;

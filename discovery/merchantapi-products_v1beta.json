@@ -124,7 +124,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The name of the product input resource to delete. Format: accounts/{account}/productInputs/{product}",
+                  "description": "Required. The name of the product input resource to delete. Format: accounts/{account}/productInputs/{product} where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is \"accounts/123/productInputs/online~en~US~sku123\"",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/productInputs/[^/]+$",
                   "required": true,
@@ -186,7 +186,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the product to retrieve. Format: `accounts/{account}/products/{product}`",
+                  "description": "Required. The name of the product to retrieve. Format: `accounts/{account}/products/{product}` where the last section `product` consists of 4 parts: channel~content_language~feed_label~offer_id example for product name is \"accounts/123/products/online~en~US~sku123\"",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/products/[^/]+$",
                   "required": true,
@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20241001",
+  "revision": "20250106",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -651,8 +651,15 @@
           "$ref": "SubscriptionCost",
           "description": "Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract."
         },
+        "sustainabilityIncentives": {
+          "description": "The list of sustainability incentive programs.",
+          "items": {
+            "$ref": "ProductSustainabilityIncentive"
+          },
+          "type": "array"
+        },
         "taxCategory": {
-          "description": "The tax category of the product, used to configure detailed tax nexus in account-level tax settings.",
+          "description": "The tax category of the product.",
           "type": "string"
         },
         "taxes": {
@@ -826,12 +833,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -864,7 +873,8 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         }
@@ -983,12 +993,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -1021,7 +1033,8 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         },
@@ -1110,6 +1123,10 @@
         },
         "programLabel": {
           "description": "The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a merchant entity and a loyalty program entity. The label must be provided so that the system can associate the assets below (for example, price and points) with a merchant. The corresponding program must be linked to the merchant account.",
+          "type": "string"
+        },
+        "shippingLabel": {
+          "description": "The label of the shipping benefit. If the field has value, this offer has loyalty shipping benefit. If the field value isn't provided, the item is not eligible for loyalty shipping for the given loyalty tier.",
           "type": "string"
         },
         "tierLabel": {
@@ -1240,12 +1257,14 @@
             "CLOUD_RETAIL",
             "LOCAL_CLOUD_RETAIL",
             "PRODUCT_REVIEWS",
-            "MERCHANT_REVIEWS"
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
           ],
           "enumDeprecated": [
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -1278,7 +1297,8 @@
             "[Cloud retail](https://cloud.google.com/solutions/retail).",
             "[Local cloud retail](https://cloud.google.com/solutions/retail).",
             "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
-            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds)."
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "[YouTube Checkout]("
           ],
           "type": "string"
         }
@@ -1321,7 +1341,7 @@
       "type": "object"
     },
     "ProductInput": {
-      "description": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the vertical spec with [some exceptions](https://support.google.com/merchants/answer/7052112).",
+      "description": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the vertical spec with [some exceptions](https://support.google.com/merchants/answer/7052112).",
       "id": "ProductInput",
       "properties": {
         "attributes": {
@@ -1329,7 +1349,7 @@
           "description": "Optional. A list of product attributes."
         },
         "channel": {
-          "description": "Required. Immutable. The [channel](https://support.google.com/merchants/answer/7361332) of the product.",
+          "description": "Immutable. The [channel](https://support.google.com/merchants/answer/7361332) of the product.",
           "enum": [
             "CHANNEL_ENUM_UNSPECIFIED",
             "ONLINE",
@@ -1441,6 +1461,11 @@
           },
           "type": "array"
         },
+        "expirationTime": {
+          "description": "The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "managingAccount": {
           "description": "The account that manages the merchant's account. can be the same as merchant id if it is standalone account. Format : `accounts/{service_provider_id}`",
           "type": "string"
@@ -1493,6 +1518,36 @@
         },
         "digitalSourceType": {
           "description": "The digital source type, for example \"trained_algorithmic_media\". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductSustainabilityIncentive": {
+      "description": "Information regarding sustainability-related incentive programs such as rebates or tax relief.",
+      "id": "ProductSustainabilityIncentive",
+      "properties": {
+        "amount": {
+          "$ref": "Price",
+          "description": "The fixed amount of the incentive."
+        },
+        "percentage": {
+          "description": "The percentage of the sale price that the incentive is applied to.",
+          "format": "double",
+          "type": "number"
+        },
+        "type": {
+          "description": "Sustainability incentive program.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "EV_TAX_CREDIT",
+            "EV_PRICE_DISCOUNT"
+          ],
+          "enumDescriptions": [
+            "Unspecified or unknown sustainability incentive type.",
+            "Program offering tax liability reductions for electric vehicles and, in some countries, plug-in hybrids. These reductions can be based on a specific amount or a percentage of the sale price.",
+            "A subsidy program, often called an environmental bonus, provides a purchase grant for electric vehicles and, in some countries, plug-in hybrids. The grant amount may be a fixed sum or a percentage of the sale price."
+          ],
           "type": "string"
         }
       },

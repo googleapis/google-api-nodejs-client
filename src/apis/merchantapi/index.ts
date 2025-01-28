@@ -24,6 +24,7 @@ import {merchantapi_products_v1beta} from './products_v1beta';
 import {merchantapi_promotions_v1beta} from './promotions_v1beta';
 import {merchantapi_quota_v1beta} from './quota_v1beta';
 import {merchantapi_reports_v1beta} from './reports_v1beta';
+import {merchantapi_reviews_v1beta} from './reviews_v1beta';
 
 export const VERSIONS = {
   accounts_v1beta: merchantapi_accounts_v1beta.Merchantapi,
@@ -36,6 +37,7 @@ export const VERSIONS = {
   promotions_v1beta: merchantapi_promotions_v1beta.Merchantapi,
   quota_v1beta: merchantapi_quota_v1beta.Merchantapi,
   reports_v1beta: merchantapi_reports_v1beta.Merchantapi,
+  reviews_v1beta: merchantapi_reviews_v1beta.Merchantapi,
 };
 
 export function merchantapi(
@@ -98,6 +100,12 @@ export function merchantapi(
 export function merchantapi(
   options: merchantapi_reports_v1beta.Options
 ): merchantapi_reports_v1beta.Merchantapi;
+export function merchantapi(
+  version: 'reviews_v1beta'
+): merchantapi_reviews_v1beta.Merchantapi;
+export function merchantapi(
+  options: merchantapi_reviews_v1beta.Options
+): merchantapi_reviews_v1beta.Merchantapi;
 export function merchantapi<
   T =
     | merchantapi_accounts_v1beta.Merchantapi
@@ -109,7 +117,8 @@ export function merchantapi<
     | merchantapi_products_v1beta.Merchantapi
     | merchantapi_promotions_v1beta.Merchantapi
     | merchantapi_quota_v1beta.Merchantapi
-    | merchantapi_reports_v1beta.Merchantapi,
+    | merchantapi_reports_v1beta.Merchantapi
+    | merchantapi_reviews_v1beta.Merchantapi,
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -133,6 +142,8 @@ export function merchantapi<
     | merchantapi_quota_v1beta.Options
     | 'reports_v1beta'
     | merchantapi_reports_v1beta.Options
+    | 'reviews_v1beta'
+    | merchantapi_reviews_v1beta.Options
 ) {
   return getAPI<T>('merchantapi', versionOrOptions, VERSIONS, this);
 }
@@ -149,6 +160,7 @@ export {merchantapi_products_v1beta};
 export {merchantapi_promotions_v1beta};
 export {merchantapi_quota_v1beta};
 export {merchantapi_reports_v1beta};
+export {merchantapi_reviews_v1beta};
 export {
   AuthPlus,
   GlobalOptions,
