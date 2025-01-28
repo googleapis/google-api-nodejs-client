@@ -170,7 +170,7 @@
       }
     }
   },
-  "revision": "20240813",
+  "revision": "20241127",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -366,16 +366,53 @@
       },
       "type": "object"
     },
+    "DeviceAttributes": {
+      "description": "Contains information about the device for which the integrity token was generated, e.g. Android SDK version.",
+      "id": "DeviceAttributes",
+      "properties": {
+        "sdkVersion": {
+          "description": "Android SDK version of the device, as defined in the public Android documentation: https://developer.android.com/reference/android/os/Build.VERSION_CODES. It won't be set if a necessary requirement was missed. For example DeviceIntegrity did not meet the minimum bar.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "DeviceIntegrity": {
       "description": "Contains the device attestation information.",
       "id": "DeviceIntegrity",
       "properties": {
+        "deviceAttributes": {
+          "$ref": "DeviceAttributes",
+          "description": "Attributes of the device where the integrity token was generated."
+        },
         "deviceRecall": {
           "$ref": "DeviceRecall",
           "description": "Details about the device recall bits set by the developer."
         },
         "deviceRecognitionVerdict": {
           "description": "Details about the integrity of the device the app is running on.",
+          "items": {
+            "enum": [
+              "UNKNOWN",
+              "MEETS_BASIC_INTEGRITY",
+              "MEETS_DEVICE_INTEGRITY",
+              "MEETS_STRONG_INTEGRITY",
+              "MEETS_VIRTUAL_INTEGRITY"
+            ],
+            "enumDescriptions": [
+              "Play does not have sufficient information to evaluate device integrity",
+              "App is running on a device that passes basic system integrity checks, but may not meet Android platform compatibility requirements and may not be approved to run Google Play services.",
+              "App is running on GMS Android device with Google Play services.",
+              "App is running on GMS Android device with Google Play services and has a strong guarantee of system integrity such as a hardware-backed keystore.",
+              "App is running on an Android emulator with Google Play services which meets core Android compatibility requirements."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "legacyDeviceRecognitionVerdict": {
+          "description": "Contains legacy details about the integrity of the device the app is running on. Only for devices with Android version T or higher and only for apps opted in to the new verdicts. Only available during the transition period to the new verdicts system and will be removed afterwards.",
           "items": {
             "enum": [
               "UNKNOWN",
