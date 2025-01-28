@@ -234,7 +234,7 @@ export namespace vmwareengine_v1 {
      */
     management?: boolean | null;
     /**
-     * Output only. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * Output only. Identifier. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      */
     name?: string | null;
     /**
@@ -297,7 +297,7 @@ export namespace vmwareengine_v1 {
      */
     forwardingRules?: Schema$ForwardingRule[];
     /**
-     * Output only. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
+     * Output only. Identifier. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
      */
     name?: string | null;
     /**
@@ -408,7 +408,7 @@ export namespace vmwareengine_v1 {
      */
     internalIp?: string | null;
     /**
-     * Output only. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`
+     * Output only. Identifier. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`
      */
     name?: string | null;
     /**
@@ -995,7 +995,7 @@ export namespace vmwareengine_v1 {
      */
     importCustomRoutesWithPublicIp?: boolean | null;
     /**
-     * Output only. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
+     * Output only. Identifier. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
      */
     name?: string | null;
     /**
@@ -1056,7 +1056,7 @@ export namespace vmwareengine_v1 {
      */
     internetAccess?: Schema$NetworkService;
     /**
-     * Output only. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
+     * Output only. Identifier. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
      */
     name?: string | null;
     /**
@@ -1355,7 +1355,7 @@ export namespace vmwareengine_v1 {
      */
     managementCluster?: Schema$ManagementCluster;
     /**
-     * Output only. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * Output only. Identifier. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
     name?: string | null;
     /**
@@ -1544,7 +1544,7 @@ export namespace vmwareengine_v1 {
      */
     ipCidrRange?: string | null;
     /**
-     * Output only. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
+     * Output only. Identifier. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      */
     name?: string | null;
     /**
@@ -1638,7 +1638,7 @@ export namespace vmwareengine_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`
+     * Output only. Identifier. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`
      */
     name?: string | null;
     /**
@@ -2741,7 +2741,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Networkpeerings$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
+     * Output only. Identifier. The resource name of the network peering. NetworkPeering is a global resource and location can only be global. Resource names are scheme-less URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/networkPeerings/my-peering`
      */
     name?: string;
     /**
@@ -3510,7 +3510,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Networkpolicies$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
+     * Output only. Identifier. The resource name of this network policy. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1/networkPolicies/my-network-policy`
      */
     name?: string;
     /**
@@ -6045,7 +6045,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Privateclouds$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     * Output only. Identifier. The resource name of this private cloud. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
      */
     name?: string;
     /**
@@ -6143,7 +6143,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Privateclouds$Updatednsforwarding
     extends StandardParameters {
     /**
-     * Output only. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
+     * Output only. Identifier. The resource name of this DNS profile. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/dnsForwarding`
      */
     name?: string;
     /**
@@ -6966,7 +6966,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Privateclouds$Clusters$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
+     * Output only. Identifier. The resource name of this cluster. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/clusters/my-cluster`
      */
     name?: string;
     /**
@@ -7736,7 +7736,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Privateclouds$Externaladdresses$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`
+     * Output only. Identifier. The resource name of this external IP address. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/externalAddresses/my-address`
      */
     name?: string;
     /**
@@ -9851,7 +9851,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Privateclouds$Subnets$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
+     * Output only. Identifier. The resource name of this subnet. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud/subnets/my-subnet`
      */
     name?: string;
     /**
@@ -11051,7 +11051,7 @@ export namespace vmwareengine_v1 {
   export interface Params$Resource$Projects$Locations$Vmwareenginenetworks$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`
+     * Output only. Identifier. The resource name of the VMware Engine network. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/global/vmwareEngineNetworks/my-network`
      */
     name?: string;
     /**
