@@ -5642,6 +5642,10 @@
         "privateEndpointEnforcementEnabled": {
           "description": "Whether master authorized networks is enforced on private endpoint or not.",
           "type": "boolean"
+        },
+        "privateEndpointEnforcementEnabled": {
+          "description": "Whether master authorized networks is enforced on private endpoint or not.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -6103,6 +6107,11 @@
         },
         "machineType": {
           "description": "The name of a Google Compute Engine [machine type](https://{$universe.dns_names.final_documentation_domain}/compute/docs/machine-types) If unspecified, the default machine type is `e2-medium`.",
+          "type": "string"
+        },
+        "maxRunDuration": {
+          "description": "The maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely.",
+          "format": "google-duration",
           "type": "string"
         },
         "maxRunDuration": {
@@ -8469,6 +8478,11 @@
         },
         "machineType": {
           "description": "Optional. The desired [Google Compute Engine machine type](https://{$universe.dns_names.final_documentation_domain}/compute/docs/machine-types) for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.",
+          "type": "string"
+        },
+        "maxRunDuration": {
+          "description": "The maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely.",
+          "format": "google-duration",
           "type": "string"
         },
         "maxRunDuration": {
