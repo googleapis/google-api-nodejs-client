@@ -125,6 +125,15 @@ export namespace healthcare_v1 {
   }
 
   /**
+   * Configures consent audit log config for FHIR create, read, update, and delete (CRUD) operations. Cloud audit log for healthcare API must be [enabled](https://cloud.google.com/logging/docs/audit/configure-data-access#config-console-enable). The consent-related logs are included as part of `protoPayload.metadata`.
+   */
+  export interface Schema$AccessDeterminationLogConfig {
+    /**
+     * Optional. Controls the amount of detail to include as part of the audit logs.
+     */
+    logLevel?: string | null;
+  }
+  /**
    * Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given Consent is in the `ACTIVE` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.
    */
   export interface Schema$ActivateConsentRequest {
@@ -140,6 +149,15 @@ export namespace healthcare_v1 {
      * The time to live for this Consent from when it is marked as active.
      */
     ttl?: string | null;
+  }
+  /**
+   * List of admin Consent resources to be applied.
+   */
+  export interface Schema$AdminConsents {
+    /**
+     * Optional. The versioned names of the admin Consent resource(s), in the format `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}/_history/{version_id\}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}`.
+     */
+    names?: string[] | null;
   }
   /**
    * The request to analyze healthcare entities in a document.
@@ -178,6 +196,87 @@ export namespace healthcare_v1 {
      * relationships contains all the binary relationships that were identified between entity mentions within the provided document.
      */
     relationships?: Schema$EntityMentionRelationship[];
+  }
+  /**
+   * Contains the error details of the unsupported admin Consent resources for when the ApplyAdminConsents method fails to apply one or more Consent resources.
+   */
+  export interface Schema$ApplyAdminConsentsErrorDetail {
+    /**
+     * The list of Consent resources that are unsupported or cannot be applied and the error associated with each of them.
+     */
+    consentErrors?: Schema$ConsentErrors[];
+    /**
+     * The currently in progress non-validate-only ApplyAdminConsents operation ID if exist.
+     */
+    existingOperationId?: string | null;
+  }
+  /**
+   * Request to apply the admin Consent resources for the specified FHIR store.
+   */
+  export interface Schema$ApplyAdminConsentsRequest {
+    /**
+     * A new list of admin Consent resources to be applied. Any existing enforced Consents, which are specified in `consent_config.enforced_admin_consents` of the FhirStore, that are not part of this list will be disabled. An empty list is equivalent to clearing or disabling all Consents enforced on the FHIR store. When a FHIR store has `disable_resource_versioning=true` and this list contains a Consent resource that exists in `consent_config.enforced_admin_consents`, the method enforces any updates to the existing resource since the last enforcement. If the existing resource hasn't been updated since the last enforcement, the resource is unaffected. After the method finishes, the resulting consent enforcement model is determined by the contents of the Consent resource(s) when the method was called: * When `disable_resource_versioning=true`, the result is identical to the current resource(s) in the FHIR store. * When `disable_resource_versioning=false`, the result is based on the historical version(s) of the Consent resource(s) at the point in time when the method was called. At most 200 Consents can be specified.
+     */
+    newConsentsList?: Schema$AdminConsents;
+    /**
+     * Optional. If true, the method only validates Consent resources to make sure they are supported. Otherwise, the method applies the aggregate consent information to update the enforcement model and reindex the FHIR resources. If all Consent resources can be applied successfully, the ApplyAdminConsentsResponse is returned containing the following fields: * `consent_apply_success` to indicate the number of Consent resources applied. * `affected_resources` to indicate the number of resources that might have had their consent access changed. If, however, one or more Consent resources are unsupported or cannot be applied, the method fails and ApplyAdminConsentsErrorDetail is is returned with details about the unsupported Consent resources.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response when all admin Consent resources in scope were processed and all affected resources were reindexed successfully. This structure will be included in the response when the operation finishes successfully.
+   */
+  export interface Schema$ApplyAdminConsentsResponse {
+    /**
+     * The number of resources (including the Consent resources) that may have consent access change.
+     */
+    affectedResources?: string | null;
+    /**
+     * If `validate_only=false` in ApplyAdminConsentsRequest, this counter contains the number of Consent resources that were successfully applied. Otherwise, it is the number of Consent resources that are supported.
+     */
+    consentApplySuccess?: string | null;
+    /**
+     * The number of resources (including the Consent resources) that ApplyAdminConsents failed to re-index.
+     */
+    failedResources?: string | null;
+  }
+  /**
+   * Request to apply the Consent resources for the specified FHIR store.
+   */
+  export interface Schema$ApplyConsentsRequest {
+    /**
+     * Optional. Scope down to a list of patients.
+     */
+    patientScope?: Schema$PatientScope;
+    /**
+     * Optional. Scope down to patients whose most recent consent changes are in the time range. Can only be used with a versioning store (i.e. when disable_resource_versioning is set to false).
+     */
+    timeRange?: Schema$TimeRange;
+    /**
+     * Optional. If true, the method only validates Consent resources to make sure they are supported. When the operation completes, ApplyConsentsResponse is returned where `consent_apply_success` and `consent_apply_failure` indicate supported and unsupported (or invalid) Consent resources, respectively. Otherwise, the method propagates the aggregate consensual information to the patient's resources. Upon success, `affected_resources` in the ApplyConsentsResponse indicates the number of resources that may have consensual access changed.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
+   * Response when all Consent resources in scope were processed and all affected resources were reindexed successfully. This structure is included in the response when the operation finishes successfully.
+   */
+  export interface Schema$ApplyConsentsResponse {
+    /**
+     * The number of resources (including the Consent resources) that may have consensual access change.
+     */
+    affectedResources?: string | null;
+    /**
+     * If `validate_only = false` in ApplyConsentsRequest, this counter is the number of Consent resources that were failed to apply. Otherwise, it is the number of Consent resources that are not supported or invalid.
+     */
+    consentApplyFailure?: string | null;
+    /**
+     * If `validate_only = false` in ApplyConsentsRequest, this counter is the number of Consent resources that were successfully applied. Otherwise, it is the number of Consent resources that are supported.
+     */
+    consentApplySuccess?: string | null;
+    /**
+     * The number of resources (including the Consent resources) that ApplyConsents failed to re-index.
+     */
+    failedResources?: string | null;
   }
   /**
    * Archives the specified User data mapping.
@@ -307,7 +406,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$CharacterMaskConfig {
     /**
-     * Character to mask the sensitive values. If not supplied, defaults to "*".
+     * Optional. Character to mask the sensitive values. If not supplied, defaults to "*".
      */
     maskingCharacter?: string | null;
   }
@@ -391,6 +490,23 @@ export namespace healthcare_v1 {
     userId?: string | null;
   }
   /**
+   * The accessor scope that describes who can access, for what purpose, in which environment.
+   */
+  export interface Schema$ConsentAccessorScope {
+    /**
+     * An individual, group, or access role that identifies the accessor or a characteristic of the accessor. This can be a resource ID (such as `{resourceType\}/{id\}`) or an external URI. This value must be present.
+     */
+    actor?: string | null;
+    /**
+     * An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be "*" if it applies to all environments.
+     */
+    environment?: string | null;
+    /**
+     * The intent of data use. Can be "*" if it applies to all purposes.
+     */
+    purpose?: string | null;
+  }
+  /**
    * Documentation of a user's consent.
    */
   export interface Schema$ConsentArtifact {
@@ -428,6 +544,44 @@ export namespace healthcare_v1 {
     witnessSignature?: Schema$Signature;
   }
   /**
+   * Configures whether to enforce consent for the FHIR store and which consent enforcement version is being used.
+   */
+  export interface Schema$ConsentConfig {
+    /**
+     * Optional. Specifies how the server logs the consent-aware requests. If not specified, the `AccessDeterminationLogConfig.LogLevel.MINIMUM` option is used.
+     */
+    accessDeterminationLogConfig?: Schema$AccessDeterminationLogConfig;
+    /**
+     * Optional. The default value is false. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.
+     */
+    accessEnforced?: boolean | null;
+    /**
+     * Optional. Different options to configure the behaviour of the server when handling the `X-Consent-Scope` header.
+     */
+    consentHeaderHandling?: Schema$ConsentHeaderHandling;
+    /**
+     * Output only. The versioned names of the enforced admin Consent resource(s), in the format `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}/_history/{version_id\}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}`. This field can only be updated using ApplyAdminConsents.
+     */
+    enforcedAdminConsents?: string[] | null;
+    /**
+     * Required. Specifies which consent enforcement version is being used for this FHIR store. This field can only be set once by either CreateFhirStore or UpdateFhirStore. After that, you must call ApplyConsents to change the version.
+     */
+    version?: string | null;
+  }
+  /**
+   * The Consent resource name and error.
+   */
+  export interface Schema$ConsentErrors {
+    /**
+     * The error code and message.
+     */
+    error?: Schema$Status;
+    /**
+     * The versioned name of the admin Consent resource, in the format `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}/_history/{version_id\}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}`.
+     */
+    name?: string | null;
+  }
+  /**
    * The detailed evaluation of a particular Consent.
    */
   export interface Schema$ConsentEvaluation {
@@ -435,6 +589,15 @@ export namespace healthcare_v1 {
      * The evaluation result.
      */
     evaluationResult?: string | null;
+  }
+  /**
+   * How the server handles the consent header.
+   */
+  export interface Schema$ConsentHeaderHandling {
+    /**
+     * Optional. Specifies the default server behavior when the header is empty. If not specified, the `ScopeProfile.PERMIT_EMPTY_SCOPE` option is used.
+     */
+    profile?: string | null;
   }
   /**
    * List of resource names of Consent resources.
@@ -523,11 +686,11 @@ export namespace healthcare_v1 {
    */
   export interface Schema$DeidentifiedStoreDestination {
     /**
-     * The configuration to use when de-identifying resources that are added to this store.
+     * Optional. The configuration to use when de-identifying resources that are added to this store.
      */
     config?: Schema$DeidentifyConfig;
     /**
-     * The full resource name of a Cloud Healthcare FHIR store, for example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     * Optional. The full resource name of a Cloud Healthcare FHIR store, for example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      */
     store?: string | null;
   }
@@ -536,23 +699,23 @@ export namespace healthcare_v1 {
    */
   export interface Schema$DeidentifyConfig {
     /**
-     * Configures de-id of application/DICOM content.
+     * Optional. Configures de-id of application/DICOM content.
      */
     dicom?: Schema$DicomConfig;
     /**
-     * Configures de-id of application/FHIR content.
+     * Optional. Configures de-id of application/FHIR content.
      */
     fhir?: Schema$FhirConfig;
     /**
-     * Configures de-identification of image pixels wherever they are found in the source_dataset.
+     * Optional. Configures de-identification of image pixels wherever they are found in the source_dataset.
      */
     image?: Schema$ImageConfig;
     /**
-     * Configures de-identification of text wherever it is found in the source_dataset.
+     * Optional. Configures de-identification of text wherever it is found in the source_dataset.
      */
     text?: Schema$TextConfig;
     /**
-     * Ensures in-flight data remains in the region of origin during de-identification. The default value is false. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.
+     * Optional. Ensures in-flight data remains in the region of origin during de-identification. The default value is false. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.
      */
     useRegionalDataProcessing?: boolean | null;
   }
@@ -640,7 +803,7 @@ export namespace healthcare_v1 {
      */
     removeList?: Schema$TagFilterList;
     /**
-     * If true, skip replacing StudyInstanceUID, SeriesInstanceUID, SOPInstanceUID, and MediaStorageSOPInstanceUID and leave them untouched. The Cloud Healthcare API regenerates these UIDs by default based on the DICOM Standard's reasoning: "Whilst these UIDs cannot be mapped directly to an individual out of context, given access to the original images, or to a database of the original images containing the UIDs, it would be possible to recover the individual's identity." http://dicom.nema.org/medical/dicom/current/output/chtml/part15/sect_E.3.9.html
+     * Optional. If true, skip replacing StudyInstanceUID, SeriesInstanceUID, SOPInstanceUID, and MediaStorageSOPInstanceUID and leave them untouched. The Cloud Healthcare API regenerates these UIDs by default based on the DICOM Standard's reasoning: "Whilst these UIDs cannot be mapped directly to an individual out of context, given access to the original images, or to a database of the original images containing the UIDs, it would be possible to recover the individual's identity." http://dicom.nema.org/medical/dicom/current/output/chtml/part15/sect_E.3.9.html
      */
     skipIdRedaction?: boolean | null;
   }
@@ -831,6 +994,73 @@ export namespace healthcare_v1 {
     results?: Schema$Result[];
   }
   /**
+   * The enforcing consent's metadata.
+   */
+  export interface Schema$ExplainDataAccessConsentInfo {
+    /**
+     * The compartment base resources that matched a cascading policy. Each resource has the following format: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/{resource_type\}/{resource_id\}`
+     */
+    cascadeOrigins?: string[] | null;
+    /**
+     * The resource name of this consent resource, in the format: `projects/{project_id\}/locations/{location\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{resource_id\}`.
+     */
+    consentResource?: string | null;
+    /**
+     * Last enforcement timestamp of this consent resource.
+     */
+    enforcementTime?: string | null;
+    /**
+     * A list of all the matching accessor scopes of this consent policy that enforced ExplainDataAccessConsentScope.accessor_scope.
+     */
+    matchingAccessorScopes?: Schema$ConsentAccessorScope[];
+    /**
+     * The patient owning the consent (only applicable for patient consents), in the format: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Patient/{patient_id\}`
+     */
+    patientConsentOwner?: string | null;
+    /**
+     * The policy type of consent resource (e.g. PATIENT, ADMIN).
+     */
+    type?: string | null;
+    /**
+     * The consent's variant combinations. A single consent may have multiple variants.
+     */
+    variants?: string[] | null;
+  }
+  /**
+   * A single consent scope that provides info on who has access to the requested resource scope for a particular purpose and environment, enforced by which consent.
+   */
+  export interface Schema$ExplainDataAccessConsentScope {
+    /**
+     * The accessor scope that describes who can access, for what purpose, and in which environment.
+     */
+    accessorScope?: Schema$ConsentAccessorScope;
+    /**
+     * Whether the current consent scope is permitted or denied access on the requested resource.
+     */
+    decision?: string | null;
+    /**
+     * Metadata of the consent resources that enforce the consent scope's access.
+     */
+    enforcingConsents?: Schema$ExplainDataAccessConsentInfo[];
+    /**
+     * Other consent scopes that created exceptions within this scope.
+     */
+    exceptions?: Schema$ExplainDataAccessConsentScope[];
+  }
+  /**
+   * List of consent scopes that are applicable to the explained access on a given resource.
+   */
+  export interface Schema$ExplainDataAccessResponse {
+    /**
+     * List of applicable consent scopes. Sorted in order of actor such that scopes belonging to the same actor will be adjacent to each other in the list.
+     */
+    consentScopes?: Schema$ExplainDataAccessConsentScope[];
+    /**
+     * Warnings associated with this response. It inform user with exceeded scope limit errors.
+     */
+    warning?: string | null;
+  }
+  /**
    * Exports data from the specified DICOM store. If a given resource, such as a DICOM object with the same SOPInstance UID, already exists in the output, it is overwritten with the version in the source dataset. Exported DICOM data persists when the DICOM store from which it was exported is deleted.
    */
   export interface Schema$ExportDicomDataRequest {
@@ -940,11 +1170,11 @@ export namespace healthcare_v1 {
    */
   export interface Schema$FhirConfig {
     /**
-     * The behaviour for handling FHIR extensions that aren't otherwise specified for de-identification. If true, all extensions are preserved during de-identification by default. If false or unspecified, all extensions are removed during de-identification by default.
+     * Optional. The behaviour for handling FHIR extensions that aren't otherwise specified for de-identification. If true, all extensions are preserved during de-identification by default. If false or unspecified, all extensions are removed during de-identification by default.
      */
     defaultKeepExtensions?: boolean | null;
     /**
-     * Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata is passed through to the output dataset unmodified. All extensions will be processed according to `default_keep_extensions`.
+     * Optional. Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata is passed through to the output dataset unmodified. All extensions will be processed according to `default_keep_extensions`.
      */
     fieldMetadataList?: Schema$FieldMetadata[];
   }
@@ -979,9 +1209,13 @@ export namespace healthcare_v1 {
    */
   export interface Schema$FhirStore {
     /**
-     * Enable parsing of references within complex FHIR data types such as Extensions. If this value is set to ENABLED, then features like referential integrity and Bundle reference rewriting apply to all references. If this flag has not been specified the behavior of the FHIR store will not change, references in complex data types will not be parsed. New stores will have this value set to ENABLED after a notification period. Warning: turning on this flag causes processing existing resources to fail if they contain references to non-existent resources.
+     * Optional. Enable parsing of references within complex FHIR data types such as Extensions. If this value is set to ENABLED, then features like referential integrity and Bundle reference rewriting apply to all references. If this flag has not been specified the behavior of the FHIR store will not change, references in complex data types will not be parsed. New stores will have this value set to ENABLED after a notification period. Warning: turning on this flag causes processing existing resources to fail if they contain references to non-existent resources.
      */
     complexDataTypeReferenceParsing?: string | null;
+    /**
+     * Optional. Specifies whether this store has consent enforcement. Not available for DSTU2 FHIR version due to absence of Consent resources.
+     */
+    consentConfig?: Schema$ConsentConfig;
     /**
      * Optional. If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`. Defaults to false.
      */
@@ -1019,7 +1253,7 @@ export namespace healthcare_v1 {
      */
     streamConfigs?: Schema$StreamConfig[];
     /**
-     * Configuration for how to validate incoming FHIR resources against configured profiles.
+     * Optional. Configuration for how to validate incoming FHIR resources against configured profiles.
      */
     validationConfig?: Schema$ValidationConfig;
     /**
@@ -1087,11 +1321,11 @@ export namespace healthcare_v1 {
    */
   export interface Schema$FieldMetadata {
     /**
-     * Deidentify action for one field.
+     * Optional. Deidentify action for one field.
      */
     action?: string | null;
     /**
-     * List of paths to FHIR fields to be redacted. Each path is a period-separated list where each component is either a field name or FHIR type name, for example: Patient, HumanName. For "choice" types (those defined in the FHIR spec with the form: field[x]) we use two separate components. For example, "deceasedAge.unit" is matched by "Deceased.Age.unit". Supported types are: AdministrativeGenderCode, Base64Binary, Boolean, Code, Date, DateTime, Decimal, HumanName, Id, Instant, Integer, LanguageCode, Markdown, Oid, PositiveInt, String, UnsignedInt, Uri, Uuid, Xhtml.
+     * Optional. List of paths to FHIR fields to be redacted. Each path is a period-separated list where each component is either a field name or FHIR type name, for example: Patient, HumanName. For "choice" types (those defined in the FHIR spec with the form: field[x]) we use two separate components. For example, "deceasedAge.unit" is matched by "Deceased.Age.unit". Supported types are: AdministrativeGenderCode, Base64Binary, Boolean, Code, Date, DateTime, Decimal, HumanName, Id, Instant, Integer, LanguageCode, Markdown, Oid, PositiveInt, String, UnsignedInt, Uri, Uuid, Xhtml.
      */
     paths?: string[] | null;
   }
@@ -1156,15 +1390,15 @@ export namespace healthcare_v1 {
    */
   export interface Schema$GoogleCloudHealthcareV1DicomBigQueryDestination {
     /**
-     * Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.
+     * Optional. Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.
      */
     force?: boolean | null;
     /**
-     * BigQuery URI to a table, up to 2000 characters long, in the format `bq://projectId.bqDatasetId.tableId`
+     * Optional. BigQuery URI to a table, up to 2000 characters long, in the format `bq://projectId.bqDatasetId.tableId`
      */
     tableUri?: string | null;
     /**
-     * Determines whether the existing table in the destination is to be overwritten or appended to. If a write_disposition is specified, the `force` parameter is ignored.
+     * Optional. Determines whether the existing table in the destination is to be overwritten or appended to. If a write_disposition is specified, the `force` parameter is ignored.
      */
     writeDisposition?: string | null;
   }
@@ -1374,7 +1608,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ImageConfig {
     /**
-     * Determines how to redact text from image.
+     * Optional. Determines how to redact text from image.
      */
     textRedactionMode?: string | null;
   }
@@ -1442,7 +1676,7 @@ export namespace healthcare_v1 {
      */
     dateShiftConfig?: Schema$DateShiftConfig;
     /**
-     * InfoTypes to apply this transformation to. If this is not specified, the transformation applies to any info_type.
+     * Optional. InfoTypes to apply this transformation to. If this is not specified, the transformation applies to any info_type.
      */
     infoTypes?: string[] | null;
     /**
@@ -1802,7 +2036,7 @@ export namespace healthcare_v1 {
      */
     schema?: Schema$SchemaPackage;
     /**
-     * Byte(s) to use as the segment terminator. If this is unset, '\r' is used as segment terminator, matching the HL7 version 2 specification.
+     * Optional. Byte(s) to use as the segment terminator. If this is unset, '\r' is used as segment terminator, matching the HL7 version 2 specification.
      */
     segmentTerminator?: string | null;
     /**
@@ -1822,6 +2056,15 @@ export namespace healthcare_v1 {
      * The patient's unique identifier.
      */
     value?: string | null;
+  }
+  /**
+   * Apply consents given by a list of patients.
+   */
+  export interface Schema$PatientScope {
+    /**
+     * Optional. The list of patient IDs whose Consent resources will be enforced. At most 10,000 patients can be specified. An empty list is equivalent to all patients (meaning the entire FHIR store).
+     */
+    patientIds?: string[] | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -2154,7 +2397,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$SearchResourcesRequest {
     /**
-     * Required. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     * Optional. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      */
     resourceType?: string | null;
   }
@@ -2290,7 +2533,7 @@ export namespace healthcare_v1 {
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1FhirBigQueryDestination;
     /**
-     * The destination FHIR store for de-identified resources. After this field is added, all subsequent creates/updates/patches to the source store will be de-identified using the provided configuration and applied to the destination store. Importing resources to the source store will not trigger the streaming. If the source store already contains resources when this option is enabled, those resources will not be copied to the destination store unless they are subsequently updated. This may result in invalid references in the destination store. Before adding this config, you must grant the healthcare.fhirResources.update permission on the destination store to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/healthcare/docs/how-tos/permissions-healthcare-api-gcp-products#the_cloud_healthcare_service_agent). The destination store must set enable_update_create to true. The destination store must have disable_referential_integrity set to true. If a resource cannot be de-identified, errors will be logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)).
+     * The destination FHIR store for de-identified resources. After this field is added, all subsequent creates/updates/patches to the source store will be de-identified using the provided configuration and applied to the destination store. Resources deleted from the source store will be deleted from the destination store. Importing resources to the source store will not trigger the streaming. If the source store already contains resources when this option is enabled, those resources will not be copied to the destination store unless they are subsequently updated. This may result in invalid references in the destination store. Before adding this config, you must grant the healthcare.fhirResources.update permission on the destination store to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/healthcare/docs/how-tos/permissions-healthcare-api-gcp-products#the_cloud_healthcare_service_agent). The destination store must set enable_update_create to true. The destination store must have disable_referential_integrity set to true. If a resource cannot be de-identified, errors will be logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)).
      */
     deidentifiedStoreDestination?: Schema$DeidentifiedStoreDestination;
     /**
@@ -2337,7 +2580,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$TagFilterList {
     /**
-     * Tags to be filtered. Tags must be DICOM Data Elements, File Meta Elements, or Directory Structuring Elements, as defined at: http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1,. They may be provided by "Keyword" or "Tag". For example "PatientID", "00100010".
+     * Optional. Tags to be filtered. Tags must be DICOM Data Elements, File Meta Elements, or Directory Structuring Elements, as defined at: http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1,. They may be provided by "Keyword" or "Tag". For example "PatientID", "00100010".
      */
     tags?: string[] | null;
   }
@@ -2361,15 +2604,15 @@ export namespace healthcare_v1 {
   }
   export interface Schema$TextConfig {
     /**
-     * Transformations to apply to the detected data, overridden by `exclude_info_types`.
+     * Optional. Transformations to apply to the detected data, overridden by `exclude_info_types`.
      */
     additionalTransformations?: Schema$InfoTypeTransformation[];
     /**
-     * InfoTypes to skip transforming, overriding `additional_transformations`.
+     * Optional. InfoTypes to skip transforming, overriding `additional_transformations`.
      */
     excludeInfoTypes?: string[] | null;
     /**
-     * The transformations to apply to the detected data. Deprecated. Use `additional_transformations` instead.
+     * Optional. The transformations to apply to the detected data. Deprecated. Use `additional_transformations` instead.
      */
     transformations?: Schema$InfoTypeTransformation[];
   }
@@ -2398,6 +2641,19 @@ export namespace healthcare_v1 {
      * Type of partitioning.
      */
     type?: string | null;
+  }
+  /**
+   * Apply consents given by patients whose most recent consent changes are in the time range. Note that after identifying these patients, the server applies all Consent resources given by those patients, not just the Consent resources within the timestamp in the range.
+   */
+  export interface Schema$TimeRange {
+    /**
+     * Optional. The latest consent change time, in format YYYY-MM-DDThh:mm:ss.sss+zz:zz If not specified, the system uses the time when ApplyConsents was called.
+     */
+    end?: string | null;
+    /**
+     * Optional. The earliest consent change time, in format YYYY-MM-DDThh:mm:ss.sss+zz:zz If not specified, the system uses the FHIR store creation time.
+     */
+    start?: string | null;
   }
   /**
    * A type definition for some HL7v2 type (incl. Segments and Datatypes).
@@ -2450,23 +2706,23 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ValidationConfig {
     /**
-     * Whether to disable FHIRPath validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Optional. Whether to disable FHIRPath validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableFhirpathValidation?: boolean | null;
     /**
-     * Whether to disable profile validation for this FHIR store. The default value is false. Set this to true to disable checking incoming resources for conformance against structure definitions in this FHIR store.
+     * Optional. Whether to disable profile validation for this FHIR store. The default value is false. Set this to true to disable checking incoming resources for conformance against structure definitions in this FHIR store.
      */
     disableProfileValidation?: boolean | null;
     /**
-     * Whether to disable reference type validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Optional. Whether to disable reference type validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableReferenceTypeValidation?: boolean | null;
     /**
-     * Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     * Optional. Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
      */
     disableRequiredFieldValidation?: boolean | null;
     /**
-     * A list of implementation guide URLs in this FHIR store that are used to configure the profiles to use for validation. For example, to use the US Core profiles for validation, set `enabled_implementation_guides` to `["http://hl7.org/fhir/us/core/ImplementationGuide/ig"]`. If `enabled_implementation_guides` is empty or omitted, then incoming resources are only required to conform to the base FHIR profiles. Otherwise, a resource must conform to at least one profile listed in the `global` property of one of the enabled ImplementationGuides. The Cloud Healthcare API does not currently enforce all of the rules in a StructureDefinition. The following rules are supported: - min/max - minValue/maxValue - maxLength - type - fixed[x] - pattern[x] on simple types - slicing, when using "value" as the discriminator type When a URL cannot be resolved (for example, in a type assertion), the server does not return an error.
+     * Optional. A list of implementation guide URLs in this FHIR store that are used to configure the profiles to use for validation. For example, to use the US Core profiles for validation, set `enabled_implementation_guides` to `["http://hl7.org/fhir/us/core/ImplementationGuide/ig"]`. If `enabled_implementation_guides` is empty or omitted, then incoming resources are only required to conform to the base FHIR profiles. Otherwise, a resource must conform to at least one profile listed in the `global` property of one of the enabled ImplementationGuides. The Cloud Healthcare API does not currently enforce all of the rules in a StructureDefinition. The following rules are supported: - min/max - minValue/maxValue - maxLength - type - fixed[x] - pattern[x] on simple types - slicing, when using "value" as the discriminator type When a URL cannot be resolved (for example, in a type assertion), the server does not return an error.
      */
     enabledImplementationGuides?: string[] | null;
   }
@@ -11550,6 +11806,184 @@ export namespace healthcare_v1 {
     }
 
     /**
+     * Applies the admin Consent resources for the FHIR store and reindexes the underlying resources in the FHIR store according to the aggregate consents. This method also updates the `consent_config.enforced_admin_consents` field of the FhirStore unless `validate_only=true` in ApplyAdminConsentsRequest. Any admin Consent resource change after this operation execution (including deletion) requires you to call ApplyAdminConsents again for the change to take effect. This method returns an Operation that can be used to track the progress of the resources that were reindexed, by calling GetOperation. Upon completion, the ApplyAdminConsentsResponse additionally contains the number of resources that were reindexed. If at least one Consent resource contains an error or fails be be enforced for any reason, the method returns an error instead of an Operation. No resources will be reindexed and the `consent_config.enforced_admin_consents` field will be unchanged. To enforce a consent check for data access, `consent_config.access_enforced` must be set to true for the FhirStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    applyAdminConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    applyAdminConsents(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    applyAdminConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    applyAdminConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyAdminConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyAdminConsents(callback: BodyResponseCallback<Schema$Operation>): void;
+    applyAdminConsents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:applyAdminConsents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Apply the Consent resources for the FHIR store and reindex the underlying resources in the FHIR store according to the aggregate consent. The aggregate consent of the patient in scope in this request replaces any previous call of this method. Any Consent resource change after this operation execution (including deletion) requires you to call ApplyConsents again to have effect. This method returns an Operation that can be used to track the progress of the consent resources that were processed by calling GetOperation. Upon completion, the ApplyConsentsResponse additionally contains the number of resources that was reindexed. Errors are logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). To enforce consent check for data access, `consent_config.access_enforced` must be set to true for the FhirStore.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    applyConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    applyConsents(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    applyConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    applyConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyConsents(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applyConsents(callback: BodyResponseCallback<Schema$Operation>): void;
+    applyConsents(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:applyConsents').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a new FHIR store within the parent dataset.
      *
      * @param params - Parameters for request
@@ -11810,6 +12244,102 @@ export namespace healthcare_v1 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Explains all the permitted/denied actor, purpose and environment for a given resource.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    explainDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    explainDataAccess(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ExplainDataAccessResponse>;
+    explainDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    explainDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ExplainDataAccessResponse>,
+      callback: BodyResponseCallback<Schema$ExplainDataAccessResponse>
+    ): void;
+    explainDataAccess(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess,
+      callback: BodyResponseCallback<Schema$ExplainDataAccessResponse>
+    ): void;
+    explainDataAccess(
+      callback: BodyResponseCallback<Schema$ExplainDataAccessResponse>
+    ): void;
+    explainDataAccess(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess
+        | BodyResponseCallback<Schema$ExplainDataAccessResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExplainDataAccessResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExplainDataAccessResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ExplainDataAccessResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:explainDataAccess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExplainDataAccessResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExplainDataAccessResponse>(parameters);
       }
     }
 
@@ -12706,6 +13236,30 @@ export namespace healthcare_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyadminconsents
+    extends StandardParameters {
+    /**
+     * Required. The name of the FHIR store to enforce, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApplyAdminConsentsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Applyconsents
+    extends StandardParameters {
+    /**
+     * Required. The name of the FHIR store to enforce, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApplyConsentsRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Create
     extends StandardParameters {
     /**
@@ -12740,6 +13294,17 @@ export namespace healthcare_v1 {
      * Required. The resource name of the FHIR store to delete.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Explaindataaccess
+    extends StandardParameters {
+    /**
+     * Required. The name of the FHIR store to enforce, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string;
+    /**
+     * Required. The ID (`{resourceType\}/{id\}`) of the resource to explain data access on.
+     */
+    resourceId?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Export
     extends StandardParameters {
@@ -12869,7 +13434,7 @@ export namespace healthcare_v1 {
     }
 
     /**
-     * Creates a FHIR Binary resource. This method can be used to create a Binary resource either by using one of the accepted FHIR JSON content types, or as a raw data stream. If a resource is created with this method using the FHIR content type this method's behavior is the same as [`fhir.create`](https://cloud.google.com/healthcare-api/docs/reference/rest/v1/projects.locations.datasets.fhirStores.fhir/create). If a resource type other than Binary is used in the request it's treated in the same way as non-FHIR data (e.g., images, zip archives, pdf files, documents). When a non-FHIR content type is used in the request, a Binary resource will be generated, and the uploaded data will be stored in the `content` field (`DSTU2` and `STU3`), or the `data` field (`R4`). The Binary resource's `contentType` will be filled in using the value of the `Content-Type` header, and the `securityContext` field (not present in `DSTU2`) will be populated from the `X-Security-Context` header if it exists. At this time `securityContext` has no special behavior in the Cloud Healthcare API. Note: the limit on data ingested through this method is 2 GB. For best performance, use a non-FHIR data type instead of wrapping the data in a Binary resource. Some of the Healthcare API features, such as [exporting to BigQuery](https://cloud.google.com/healthcare-api/docs/how-tos/fhir-export-bigquery) or [Pub/Sub notifications](https://cloud.google.com/healthcare-api/docs/fhir-pubsub#behavior_when_a_fhir_resource_is_too_large_or_traffic_is_high) with full resource content, do not support Binary resources that are larger than 10 MB. In these cases the resource's `data` field will be omitted. Instead, the "http://hl7.org/fhir/StructureDefinition/data-absent-reason" extension will be present to indicate that including the data is `unsupported`. On success, an empty `201 Created` response is returned. The newly created resource's ID and version are returned in the Location header. Using `Prefer: representation=resource` is not allowed for this method. The definition of the Binary REST API can be found at https://hl7.org/fhir/binary.html#rest.
+     * Creates a FHIR Binary resource. This method can be used to create a Binary resource either by using one of the accepted FHIR JSON content types, or as a raw data stream. If a resource is created with this method using the FHIR content type this method's behavior is the same as [`fhir.create`](https://cloud.google.com/healthcare-api/docs/reference/rest/v1/projects.locations.datasets.fhirStores.fhir/create). If a resource type other than Binary is used in the request it's treated in the same way as non-FHIR data (e.g., images, zip archives, pdf files, documents). When a non-FHIR content type is used in the request, a Binary resource will be generated, and the uploaded data will be stored in the `content` field (`DSTU2` and `STU3`), or the `data` field (`R4`). The Binary resource's `contentType` will be filled in using the value of the `Content-Type` header, and the `securityContext` field (not present in `DSTU2`) will be populated from the `X-Security-Context` header if it exists. At this time `securityContext` has no special behavior in the Cloud Healthcare API. Note: the limit on data ingested through this method is 1 GB. For best performance, use a non-FHIR data type instead of wrapping the data in a Binary resource. Some of the Healthcare API features, such as [exporting to BigQuery](https://cloud.google.com/healthcare-api/docs/how-tos/fhir-export-bigquery) or [Pub/Sub notifications](https://cloud.google.com/healthcare-api/docs/fhir-pubsub#behavior_when_a_fhir_resource_is_too_large_or_traffic_is_high) with full resource content, do not support Binary resources that are larger than 10 MB. In these cases the resource's `data` field will be omitted. Instead, the "http://hl7.org/fhir/StructureDefinition/data-absent-reason" extension will be present to indicate that including the data is `unsupported`. On success, an empty `201 Created` response is returned. The newly created resource's ID and version are returned in the Location header. Using `Prefer: representation=resource` is not allowed for this method. The definition of the Binary REST API can be found at https://hl7.org/fhir/binary.html#rest.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13572,6 +14137,97 @@ export namespace healthcare_v1 {
     }
 
     /**
+     * Returns the consent enforcement status of a single consent resource. On success, the response body contains a JSON-encoded representation of a `Parameters` (http://hl7.org/fhir/parameters.html) FHIR resource, containing the current enforcement status. Does not support DSTU2.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    ConsentEnforcementStatus(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    ConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConsentEnforcementStatus(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ConsentEnforcementStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/$consent-enforcement-status').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
      * Creates a FHIR resource. Implements the FHIR standard create interaction ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/http.html#create), [STU3](http://hl7.org/implement/standards/fhir/STU3/http.html#create), [R4](http://hl7.org/implement/standards/fhir/R4/http.html#create)), which creates a new resource with a server-assigned resource ID. Also supports the FHIR standard conditional create interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#ccreate), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#ccreate), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#ccreate)), specified by supplying an `If-None-Exist` header containing a FHIR search query, limited to searching by resource identifier. If no resources match this search query, the server processes the create operation as normal. When using conditional create, the search term for identifier should be in the pattern `identifier=system|value` or `identifier=value` - similar to the `search` method on resources with a specific identifier. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. On success, the response body contains a JSON-encoded representation of the resource as it was created on the server, including the server-assigned resource ID and version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `create`, see [Creating a FHIR resource](https://cloud.google.com/healthcare/docs/how-tos/fhir-resources#creating_a_fhir_resource).
      *
      * @param params - Parameters for request
@@ -13988,6 +14644,97 @@ export namespace healthcare_v1 {
           {
             url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Returns the consent enforcement status of all consent resources for a patient. On success, the response body contains a JSON-encoded representation of a bundle of `Parameters` (http://hl7.org/fhir/parameters.html) FHIR resources, containing the current enforcement status for each consent resource of the patient. Does not support DSTU2.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    PatientConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    PatientConsentEnforcementStatus(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    PatientConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    PatientConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    PatientConsentEnforcementStatus(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    PatientConsentEnforcementStatus(
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    PatientConsentEnforcementStatus(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/$consent-enforcement-status').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
             apiVersion: '',
           },
           options
@@ -14795,6 +15542,13 @@ export namespace healthcare_v1 {
      */
     requestBody?: Schema$HttpBody;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Consentenforcementstatus
+    extends StandardParameters {
+    /**
+     * Required. The name of the consent resource to find enforcement status, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Consent/{consent_id\}`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create
     extends StandardParameters {
     /**
@@ -14865,6 +15619,21 @@ export namespace healthcare_v1 {
      */
     requestBody?: Schema$HttpBody;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patientconsentenforcementstatus
+    extends StandardParameters {
+    /**
+     * Required. The name of the patient to find enforcement statuses, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}/fhir/Patient/{patient_id\}`
+     */
+    name?: string;
+    /**
+     * Optional. The maximum number of results on a page. If not specified, 100 is used. May not be larger than 1000.
+     */
+    _count?: number;
+    /**
+     * Optional. Used to retrieve the first, previous, next, or last page of consent enforcement statuses when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
+     */
+    _page_token?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything
     extends StandardParameters {
     /**
@@ -14917,7 +15686,7 @@ export namespace healthcare_v1 {
      */
     parent?: string;
     /**
-     * Required. The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.
+     * Optional. The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.
      */
     profile?: string;
     /**
@@ -14949,7 +15718,7 @@ export namespace healthcare_v1 {
      */
     parent?: string;
     /**
-     * Required. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     * Optional. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
      */
     resourceType?: string;
 
@@ -16839,7 +17608,7 @@ export namespace healthcare_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

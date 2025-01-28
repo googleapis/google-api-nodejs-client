@@ -2942,6 +2942,64 @@
                 },
                 "fhirStores": {
                   "methods": {
+                    "applyAdminConsents": {
+                      "description": "Applies the admin Consent resources for the FHIR store and reindexes the underlying resources in the FHIR store according to the aggregate consents. This method also updates the `consent_config.enforced_admin_consents` field of the FhirStore unless `validate_only=true` in ApplyAdminConsentsRequest. Any admin Consent resource change after this operation execution (including deletion) requires you to call ApplyAdminConsents again for the change to take effect. This method returns an Operation that can be used to track the progress of the resources that were reindexed, by calling GetOperation. Upon completion, the ApplyAdminConsentsResponse additionally contains the number of resources that were reindexed. If at least one Consent resource contains an error or fails be be enforced for any reason, the method returns an error instead of an Operation. No resources will be reindexed and the `consent_config.enforced_admin_consents` field will be unchanged. To enforce a consent check for data access, `consent_config.access_enforced` must be set to true for the FhirStore.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:applyAdminConsents",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.applyAdminConsents",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FHIR store to enforce, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:applyAdminConsents",
+                      "request": {
+                        "$ref": "ApplyAdminConsentsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "applyConsents": {
+                      "description": "Apply the Consent resources for the FHIR store and reindex the underlying resources in the FHIR store according to the aggregate consent. The aggregate consent of the patient in scope in this request replaces any previous call of this method. Any Consent resource change after this operation execution (including deletion) requires you to call ApplyConsents again to have effect. This method returns an Operation that can be used to track the progress of the consent resources that were processed by calling GetOperation. Upon completion, the ApplyConsentsResponse additionally contains the number of resources that was reindexed. Errors are logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). To enforce consent check for data access, `consent_config.access_enforced` must be set to true for the FhirStore.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:applyConsents",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.applyConsents",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FHIR store to enforce, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:applyConsents",
+                      "request": {
+                        "$ref": "ApplyConsentsRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a new FHIR store within the parent dataset.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores",
@@ -3025,6 +3083,37 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-healthcare",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "explainDataAccess": {
+                      "description": "Explains all the permitted/denied actor, purpose and environment for a given resource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:explainDataAccess",
+                      "httpMethod": "GET",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.explainDataAccess",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the FHIR store to enforce, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "resourceId": {
+                          "description": "Required. The ID (`{resourceType}/{id}`) of the resource to explain data access on.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:explainDataAccess",
+                      "response": {
+                        "$ref": "ExplainDataAccessResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-healthcare",
@@ -3342,7 +3431,7 @@
                     "fhir": {
                       "methods": {
                         "Binary-create": {
-                          "description": "Creates a FHIR Binary resource. This method can be used to create a Binary resource either by using one of the accepted FHIR JSON content types, or as a raw data stream. If a resource is created with this method using the FHIR content type this method's behavior is the same as [`fhir.create`](https://cloud.google.com/healthcare-api/docs/reference/rest/v1/projects.locations.datasets.fhirStores.fhir/create). If a resource type other than Binary is used in the request it's treated in the same way as non-FHIR data (e.g., images, zip archives, pdf files, documents). When a non-FHIR content type is used in the request, a Binary resource will be generated, and the uploaded data will be stored in the `content` field (`DSTU2` and `STU3`), or the `data` field (`R4`). The Binary resource's `contentType` will be filled in using the value of the `Content-Type` header, and the `securityContext` field (not present in `DSTU2`) will be populated from the `X-Security-Context` header if it exists. At this time `securityContext` has no special behavior in the Cloud Healthcare API. Note: the limit on data ingested through this method is 2 GB. For best performance, use a non-FHIR data type instead of wrapping the data in a Binary resource. Some of the Healthcare API features, such as [exporting to BigQuery](https://cloud.google.com/healthcare-api/docs/how-tos/fhir-export-bigquery) or [Pub/Sub notifications](https://cloud.google.com/healthcare-api/docs/fhir-pubsub#behavior_when_a_fhir_resource_is_too_large_or_traffic_is_high) with full resource content, do not support Binary resources that are larger than 10 MB. In these cases the resource's `data` field will be omitted. Instead, the \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\" extension will be present to indicate that including the data is `unsupported`. On success, an empty `201 Created` response is returned. The newly created resource's ID and version are returned in the Location header. Using `Prefer: representation=resource` is not allowed for this method. The definition of the Binary REST API can be found at https://hl7.org/fhir/binary.html#rest.",
+                          "description": "Creates a FHIR Binary resource. This method can be used to create a Binary resource either by using one of the accepted FHIR JSON content types, or as a raw data stream. If a resource is created with this method using the FHIR content type this method's behavior is the same as [`fhir.create`](https://cloud.google.com/healthcare-api/docs/reference/rest/v1/projects.locations.datasets.fhirStores.fhir/create). If a resource type other than Binary is used in the request it's treated in the same way as non-FHIR data (e.g., images, zip archives, pdf files, documents). When a non-FHIR content type is used in the request, a Binary resource will be generated, and the uploaded data will be stored in the `content` field (`DSTU2` and `STU3`), or the `data` field (`R4`). The Binary resource's `contentType` will be filled in using the value of the `Content-Type` header, and the `securityContext` field (not present in `DSTU2`) will be populated from the `X-Security-Context` header if it exists. At this time `securityContext` has no special behavior in the Cloud Healthcare API. Note: the limit on data ingested through this method is 1 GB. For best performance, use a non-FHIR data type instead of wrapping the data in a Binary resource. Some of the Healthcare API features, such as [exporting to BigQuery](https://cloud.google.com/healthcare-api/docs/how-tos/fhir-export-bigquery) or [Pub/Sub notifications](https://cloud.google.com/healthcare-api/docs/fhir-pubsub#behavior_when_a_fhir_resource_is_too_large_or_traffic_is_high) with full resource content, do not support Binary resources that are larger than 10 MB. In these cases the resource's `data` field will be omitted. Instead, the \"http://hl7.org/fhir/StructureDefinition/data-absent-reason\" extension will be present to indicate that including the data is `unsupported`. On success, an empty `201 Created` response is returned. The newly created resource's ID and version are returned in the Location header. Using `Prefer: representation=resource` is not allowed for this method. The definition of the Binary REST API can be found at https://hl7.org/fhir/binary.html#rest.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/Binary",
                           "httpMethod": "POST",
                           "id": "healthcare.projects.locations.datasets.fhirStores.fhir.Binary-create",
@@ -3443,6 +3532,69 @@
                             }
                           },
                           "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-healthcare",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "Consent-enforcement-status": {
+                          "description": "Returns the consent enforcement status of a single consent resource. On success, the response body contains a JSON-encoded representation of a `Parameters` (http://hl7.org/fhir/parameters.html) FHIR resource, containing the current enforcement status. Does not support DSTU2.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/Consent/{ConsentId}/$consent-enforcement-status",
+                          "httpMethod": "GET",
+                          "id": "healthcare.projects.locations.datasets.fhirStores.fhir.Consent-enforcement-status",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the consent resource to find enforcement status, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{consent_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+/fhir/Consent/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/$consent-enforcement-status",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-healthcare",
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "Patient-consent-enforcement-status": {
+                          "description": "Returns the consent enforcement status of all consent resources for a patient. On success, the response body contains a JSON-encoded representation of a bundle of `Parameters` (http://hl7.org/fhir/parameters.html) FHIR resources, containing the current enforcement status for each consent resource of the patient. Does not support DSTU2.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}/fhir/Patient/{PatientId}/$consent-enforcement-status",
+                          "httpMethod": "GET",
+                          "id": "healthcare.projects.locations.datasets.fhirStores.fhir.Patient-consent-enforcement-status",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "_count": {
+                              "description": "Optional. The maximum number of results on a page. If not specified, 100 is used. May not be larger than 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "_page_token": {
+                              "description": "Optional. Used to retrieve the first, previous, next, or last page of consent enforcement statuses when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is \"previous\" or \"next\". Omit `_page_token` if no previous request has been made.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "name": {
+                              "description": "Required. The name of the patient to find enforcement statuses, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Patient/{patient_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+/fhir/Patient/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/$consent-enforcement-status",
                           "response": {
                             "$ref": "HttpBody"
                           },
@@ -3552,7 +3704,7 @@
                               "type": "string"
                             },
                             "profile": {
-                              "description": "Required. The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.",
+                              "description": "Optional. The canonical URL of a profile that this resource should be validated against. For example, to validate a Patient resource against the US Core Patient profile this parameter would be `http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient`. A StructureDefinition with this canonical URL must exist in the FHIR store.",
                               "location": "query",
                               "type": "string"
                             },
@@ -3951,7 +4103,7 @@
                               "type": "string"
                             },
                             "resourceType": {
-                              "description": "Required. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).",
+                              "description": "Optional. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).",
                               "location": "path",
                               "required": true,
                               "type": "string"
@@ -4641,7 +4793,7 @@
                 "operations": {
                   "methods": {
                     "cancel": {
-                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                      "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/operations/{operationsId}:cancel",
                       "httpMethod": "POST",
                       "id": "healthcare.projects.locations.datasets.operations.cancel",
@@ -4783,9 +4935,32 @@
       }
     }
   },
-  "revision": "20240910",
+  "revision": "20241226",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
+    "AccessDeterminationLogConfig": {
+      "description": "Configures consent audit log config for FHIR create, read, update, and delete (CRUD) operations. Cloud audit log for healthcare API must be [enabled](https://cloud.google.com/logging/docs/audit/configure-data-access#config-console-enable). The consent-related logs are included as part of `protoPayload.metadata`.",
+      "id": "AccessDeterminationLogConfig",
+      "properties": {
+        "logLevel": {
+          "description": "Optional. Controls the amount of detail to include as part of the audit logs.",
+          "enum": [
+            "LOG_LEVEL_UNSPECIFIED",
+            "DISABLED",
+            "MINIMUM",
+            "VERBOSE"
+          ],
+          "enumDescriptions": [
+            "No log level specified. This value is unused.",
+            "No additional consent-related logging is added to audit logs.",
+            "The following information is included: * One of the following [`consentMode`](https://cloud.google.com/healthcare-api/docs/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). * The accessor's request headers * The `log_level` of the AccessDeterminationLogConfig * The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) * A human-readable summary of the evaluation",
+            "Includes `MINIMUM` and, for each resource owner, returns: * The resource owner's name * Most specific part of the `X-Consent-Scope` resulting in consensual determination * Timestamp of the applied enforcement leading to the decision * Enforcement version at the time the applicable consents were applied * The Consent resource name * The timestamp of the Consent resource used for enforcement * Policy type (`PATIENT` or `ADMIN`) Note that this mode adds some overhead to CRUD operations."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ActivateConsentRequest": {
       "description": "Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given Consent is in the `ACTIVE` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.",
       "id": "ActivateConsentRequest",
@@ -4803,6 +4978,20 @@
           "description": "The time to live for this Consent from when it is marked as active.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AdminConsents": {
+      "description": "List of admin Consent resources to be applied.",
+      "id": "AdminConsents",
+      "properties": {
+        "names": {
+          "description": "Optional. The versioned names of the admin Consent resource(s), in the format `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}/_history/{version_id}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4875,6 +5064,108 @@
             "$ref": "EntityMentionRelationship"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyAdminConsentsErrorDetail": {
+      "description": "Contains the error details of the unsupported admin Consent resources for when the ApplyAdminConsents method fails to apply one or more Consent resources.",
+      "id": "ApplyAdminConsentsErrorDetail",
+      "properties": {
+        "consentErrors": {
+          "description": "The list of Consent resources that are unsupported or cannot be applied and the error associated with each of them.",
+          "items": {
+            "$ref": "ConsentErrors"
+          },
+          "type": "array"
+        },
+        "existingOperationId": {
+          "description": "The currently in progress non-validate-only ApplyAdminConsents operation ID if exist.",
+          "format": "uint64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyAdminConsentsRequest": {
+      "description": "Request to apply the admin Consent resources for the specified FHIR store.",
+      "id": "ApplyAdminConsentsRequest",
+      "properties": {
+        "newConsentsList": {
+          "$ref": "AdminConsents",
+          "description": "A new list of admin Consent resources to be applied. Any existing enforced Consents, which are specified in `consent_config.enforced_admin_consents` of the FhirStore, that are not part of this list will be disabled. An empty list is equivalent to clearing or disabling all Consents enforced on the FHIR store. When a FHIR store has `disable_resource_versioning=true` and this list contains a Consent resource that exists in `consent_config.enforced_admin_consents`, the method enforces any updates to the existing resource since the last enforcement. If the existing resource hasn't been updated since the last enforcement, the resource is unaffected. After the method finishes, the resulting consent enforcement model is determined by the contents of the Consent resource(s) when the method was called: * When `disable_resource_versioning=true`, the result is identical to the current resource(s) in the FHIR store. * When `disable_resource_versioning=false`, the result is based on the historical version(s) of the Consent resource(s) at the point in time when the method was called. At most 200 Consents can be specified."
+        },
+        "validateOnly": {
+          "description": "Optional. If true, the method only validates Consent resources to make sure they are supported. Otherwise, the method applies the aggregate consent information to update the enforcement model and reindex the FHIR resources. If all Consent resources can be applied successfully, the ApplyAdminConsentsResponse is returned containing the following fields: * `consent_apply_success` to indicate the number of Consent resources applied. * `affected_resources` to indicate the number of resources that might have had their consent access changed. If, however, one or more Consent resources are unsupported or cannot be applied, the method fails and ApplyAdminConsentsErrorDetail is is returned with details about the unsupported Consent resources.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyAdminConsentsResponse": {
+      "description": "Response when all admin Consent resources in scope were processed and all affected resources were reindexed successfully. This structure will be included in the response when the operation finishes successfully.",
+      "id": "ApplyAdminConsentsResponse",
+      "properties": {
+        "affectedResources": {
+          "description": "The number of resources (including the Consent resources) that may have consent access change.",
+          "format": "int64",
+          "type": "string"
+        },
+        "consentApplySuccess": {
+          "description": "If `validate_only=false` in ApplyAdminConsentsRequest, this counter contains the number of Consent resources that were successfully applied. Otherwise, it is the number of Consent resources that are supported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "failedResources": {
+          "description": "The number of resources (including the Consent resources) that ApplyAdminConsents failed to re-index.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyConsentsRequest": {
+      "description": "Request to apply the Consent resources for the specified FHIR store.",
+      "id": "ApplyConsentsRequest",
+      "properties": {
+        "patientScope": {
+          "$ref": "PatientScope",
+          "description": "Optional. Scope down to a list of patients."
+        },
+        "timeRange": {
+          "$ref": "TimeRange",
+          "description": "Optional. Scope down to patients whose most recent consent changes are in the time range. Can only be used with a versioning store (i.e. when disable_resource_versioning is set to false)."
+        },
+        "validateOnly": {
+          "description": "Optional. If true, the method only validates Consent resources to make sure they are supported. When the operation completes, ApplyConsentsResponse is returned where `consent_apply_success` and `consent_apply_failure` indicate supported and unsupported (or invalid) Consent resources, respectively. Otherwise, the method propagates the aggregate consensual information to the patient's resources. Upon success, `affected_resources` in the ApplyConsentsResponse indicates the number of resources that may have consensual access changed.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ApplyConsentsResponse": {
+      "description": "Response when all Consent resources in scope were processed and all affected resources were reindexed successfully. This structure is included in the response when the operation finishes successfully.",
+      "id": "ApplyConsentsResponse",
+      "properties": {
+        "affectedResources": {
+          "description": "The number of resources (including the Consent resources) that may have consensual access change.",
+          "format": "int64",
+          "type": "string"
+        },
+        "consentApplyFailure": {
+          "description": "If `validate_only = false` in ApplyConsentsRequest, this counter is the number of Consent resources that were failed to apply. Otherwise, it is the number of Consent resources that are not supported or invalid.",
+          "format": "int64",
+          "type": "string"
+        },
+        "consentApplySuccess": {
+          "description": "If `validate_only = false` in ApplyConsentsRequest, this counter is the number of Consent resources that were successfully applied. Otherwise, it is the number of Consent resources that are supported.",
+          "format": "int64",
+          "type": "string"
+        },
+        "failedResources": {
+          "description": "The number of resources (including the Consent resources) that ApplyConsents failed to re-index.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5097,7 +5388,7 @@
       "id": "CharacterMaskConfig",
       "properties": {
         "maskingCharacter": {
-          "description": "Character to mask the sensitive values. If not supplied, defaults to \"*\".",
+          "description": "Optional. Character to mask the sensitive values. If not supplied, defaults to \"*\".",
           "type": "string"
         }
       },
@@ -5231,6 +5522,25 @@
       },
       "type": "object"
     },
+    "ConsentAccessorScope": {
+      "description": "The accessor scope that describes who can access, for what purpose, in which environment.",
+      "id": "ConsentAccessorScope",
+      "properties": {
+        "actor": {
+          "description": "An individual, group, or access role that identifies the accessor or a characteristic of the accessor. This can be a resource ID (such as `{resourceType}/{id}`) or an external URI. This value must be present.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "An abstract identifier that describes the environment or conditions under which the accessor is acting. Can be \"*\" if it applies to all environments.",
+          "type": "string"
+        },
+        "purpose": {
+          "description": "The intent of data use. Can be \"*\" if it applies to all purposes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConsentArtifact": {
       "description": "Documentation of a user's consent.",
       "id": "ConsentArtifact",
@@ -5276,6 +5586,60 @@
       },
       "type": "object"
     },
+    "ConsentConfig": {
+      "description": "Configures whether to enforce consent for the FHIR store and which consent enforcement version is being used.",
+      "id": "ConsentConfig",
+      "properties": {
+        "accessDeterminationLogConfig": {
+          "$ref": "AccessDeterminationLogConfig",
+          "description": "Optional. Specifies how the server logs the consent-aware requests. If not specified, the `AccessDeterminationLogConfig.LogLevel.MINIMUM` option is used."
+        },
+        "accessEnforced": {
+          "description": "Optional. The default value is false. If set to true, when accessing FHIR resources, the consent headers will be verified against consents given by patients. See the ConsentEnforcementVersion for the supported consent headers.",
+          "type": "boolean"
+        },
+        "consentHeaderHandling": {
+          "$ref": "ConsentHeaderHandling",
+          "description": "Optional. Different options to configure the behaviour of the server when handling the `X-Consent-Scope` header."
+        },
+        "enforcedAdminConsents": {
+          "description": "Output only. The versioned names of the enforced admin Consent resource(s), in the format `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}/_history/{version_id}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}`. This field can only be updated using ApplyAdminConsents.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "version": {
+          "description": "Required. Specifies which consent enforcement version is being used for this FHIR store. This field can only be set once by either CreateFhirStore or UpdateFhirStore. After that, you must call ApplyConsents to change the version.",
+          "enum": [
+            "CONSENT_ENFORCEMENT_VERSION_UNSPECIFIED",
+            "V1"
+          ],
+          "enumDescriptions": [
+            "Users must specify an enforcement version or an error is returned.",
+            "Enforcement version 1. See the [FHIR Consent resources in the Cloud Healthcare API](https://cloud.google.com/healthcare-api/docs/fhir-consent) guide for more details."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConsentErrors": {
+      "description": "The Consent resource name and error.",
+      "id": "ConsentErrors",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "The error code and message."
+        },
+        "name": {
+          "description": "The versioned name of the admin Consent resource, in the format `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}/_history/{version_id}`. For FHIR stores with `disable_resource_versioning=true`, the format is `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConsentEvaluation": {
       "description": "The detailed evaluation of a particular Consent.",
       "id": "ConsentEvaluation",
@@ -5295,6 +5659,27 @@
             "The Consent does not have a policy that matches the `resource_attributes` of the evaluated resource.",
             "The Consent has at least one policy that matches the `resource_attributes` of the evaluated resource, but no `authorization_rule` was satisfied.",
             "The Consent has at least one policy that matches the `resource_attributes` of the evaluated resource, and at least one `authorization_rule` was satisfied."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConsentHeaderHandling": {
+      "description": "How the server handles the consent header.",
+      "id": "ConsentHeaderHandling",
+      "properties": {
+        "profile": {
+          "description": "Optional. Specifies the default server behavior when the header is empty. If not specified, the `ScopeProfile.PERMIT_EMPTY_SCOPE` option is used.",
+          "enum": [
+            "SCOPE_PROFILE_UNSPECIFIED",
+            "PERMIT_EMPTY_SCOPE",
+            "REQUIRED_ON_READ"
+          ],
+          "enumDescriptions": [
+            "If not specified, the default value `PERMIT_EMPTY_SCOPE` is used.",
+            "When no consent scopes are provided (for example, if there's an empty or missing header), then consent check is disabled, similar to when `access_enforced` is `false`. You can use audit logs to differentiate these two cases by looking at the value of `protopayload.metadata.consentMode`. If consents scopes are present, they must be valid and within the allowed limits, otherwise the request will be rejected with a `4xx` code.",
+            "The consent header must be non-empty when performing read and search operations, otherwise the request is rejected with a `4xx` code. Additionally, invalid consent scopes or scopes exceeding the allowed limits are rejected."
           ],
           "type": "string"
         }
@@ -5410,10 +5795,10 @@
       "properties": {
         "config": {
           "$ref": "DeidentifyConfig",
-          "description": "The configuration to use when de-identifying resources that are added to this store."
+          "description": "Optional. The configuration to use when de-identifying resources that are added to this store."
         },
         "store": {
-          "description": "The full resource name of a Cloud Healthcare FHIR store, for example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+          "description": "Optional. The full resource name of a Cloud Healthcare FHIR store, for example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
           "type": "string"
         }
       },
@@ -5425,22 +5810,22 @@
       "properties": {
         "dicom": {
           "$ref": "DicomConfig",
-          "description": "Configures de-id of application/DICOM content."
+          "description": "Optional. Configures de-id of application/DICOM content."
         },
         "fhir": {
           "$ref": "FhirConfig",
-          "description": "Configures de-id of application/FHIR content."
+          "description": "Optional. Configures de-id of application/FHIR content."
         },
         "image": {
           "$ref": "ImageConfig",
-          "description": "Configures de-identification of image pixels wherever they are found in the source_dataset."
+          "description": "Optional. Configures de-identification of image pixels wherever they are found in the source_dataset."
         },
         "text": {
           "$ref": "TextConfig",
-          "description": "Configures de-identification of text wherever it is found in the source_dataset."
+          "description": "Optional. Configures de-identification of text wherever it is found in the source_dataset."
         },
         "useRegionalDataProcessing": {
-          "description": "Ensures in-flight data remains in the region of origin during de-identification. The default value is false. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.",
+          "description": "Optional. Ensures in-flight data remains in the region of origin during de-identification. The default value is false. Using this option results in a significant reduction of throughput, and is not compatible with `LOCATION` or `ORGANIZATION_NAME` infoTypes. `LOCATION` must be excluded within TextConfig, and must also be excluded within ImageConfig if image redaction is required.",
           "type": "boolean"
         }
       },
@@ -5552,7 +5937,7 @@
           "description": "List of tags to remove. Keep all other tags."
         },
         "skipIdRedaction": {
-          "description": "If true, skip replacing StudyInstanceUID, SeriesInstanceUID, SOPInstanceUID, and MediaStorageSOPInstanceUID and leave them untouched. The Cloud Healthcare API regenerates these UIDs by default based on the DICOM Standard's reasoning: \"Whilst these UIDs cannot be mapped directly to an individual out of context, given access to the original images, or to a database of the original images containing the UIDs, it would be possible to recover the individual's identity.\" http://dicom.nema.org/medical/dicom/current/output/chtml/part15/sect_E.3.9.html",
+          "description": "Optional. If true, skip replacing StudyInstanceUID, SeriesInstanceUID, SOPInstanceUID, and MediaStorageSOPInstanceUID and leave them untouched. The Cloud Healthcare API regenerates these UIDs by default based on the DICOM Standard's reasoning: \"Whilst these UIDs cannot be mapped directly to an individual out of context, given access to the original images, or to a database of the original images containing the UIDs, it would be possible to recover the individual's identity.\" http://dicom.nema.org/medical/dicom/current/output/chtml/part15/sect_E.3.9.html",
           "type": "boolean"
         }
       },
@@ -5805,6 +6190,128 @@
       },
       "type": "object"
     },
+    "ExplainDataAccessConsentInfo": {
+      "description": "The enforcing consent's metadata.",
+      "id": "ExplainDataAccessConsentInfo",
+      "properties": {
+        "cascadeOrigins": {
+          "description": "The compartment base resources that matched a cascading policy. Each resource has the following format: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/{resource_type}/{resource_id}`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "consentResource": {
+          "description": "The resource name of this consent resource, in the format: `projects/{project_id}/locations/{location}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Consent/{resource_id}`.",
+          "type": "string"
+        },
+        "enforcementTime": {
+          "description": "Last enforcement timestamp of this consent resource.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "matchingAccessorScopes": {
+          "description": "A list of all the matching accessor scopes of this consent policy that enforced ExplainDataAccessConsentScope.accessor_scope.",
+          "items": {
+            "$ref": "ConsentAccessorScope"
+          },
+          "type": "array"
+        },
+        "patientConsentOwner": {
+          "description": "The patient owning the consent (only applicable for patient consents), in the format: `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}/fhir/Patient/{patient_id}`",
+          "type": "string"
+        },
+        "type": {
+          "description": "The policy type of consent resource (e.g. PATIENT, ADMIN).",
+          "enum": [
+            "CONSENT_POLICY_TYPE_UNSPECIFIED",
+            "CONSENT_POLICY_TYPE_PATIENT",
+            "CONSENT_POLICY_TYPE_ADMIN"
+          ],
+          "enumDescriptions": [
+            "Unspecified policy type.",
+            "Consent represent a patient consent.",
+            "Consent represent an admin consent."
+          ],
+          "type": "string"
+        },
+        "variants": {
+          "description": "The consent's variant combinations. A single consent may have multiple variants.",
+          "items": {
+            "enum": [
+              "CONSENT_VARIANT_UNSPECIFIED",
+              "CONSENT_VARIANT_STANDARD",
+              "CONSENT_VARIANT_CASCADE"
+            ],
+            "enumDescriptions": [
+              "Consent variant unspecified.",
+              "Consent is a standard patient or admin consent.",
+              "Consent is a cascading consent."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExplainDataAccessConsentScope": {
+      "description": "A single consent scope that provides info on who has access to the requested resource scope for a particular purpose and environment, enforced by which consent.",
+      "id": "ExplainDataAccessConsentScope",
+      "properties": {
+        "accessorScope": {
+          "$ref": "ConsentAccessorScope",
+          "description": "The accessor scope that describes who can access, for what purpose, and in which environment."
+        },
+        "decision": {
+          "description": "Whether the current consent scope is permitted or denied access on the requested resource.",
+          "enum": [
+            "CONSENT_DECISION_TYPE_UNSPECIFIED",
+            "CONSENT_DECISION_TYPE_PERMIT",
+            "CONSENT_DECISION_TYPE_DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified consent decision type.",
+            "Consent permitted access.",
+            "Consent denied access."
+          ],
+          "type": "string"
+        },
+        "enforcingConsents": {
+          "description": "Metadata of the consent resources that enforce the consent scope's access.",
+          "items": {
+            "$ref": "ExplainDataAccessConsentInfo"
+          },
+          "type": "array"
+        },
+        "exceptions": {
+          "description": "Other consent scopes that created exceptions within this scope.",
+          "items": {
+            "$ref": "ExplainDataAccessConsentScope"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExplainDataAccessResponse": {
+      "description": "List of consent scopes that are applicable to the explained access on a given resource.",
+      "id": "ExplainDataAccessResponse",
+      "properties": {
+        "consentScopes": {
+          "description": "List of applicable consent scopes. Sorted in order of actor such that scopes belonging to the same actor will be adjacent to each other in the list.",
+          "items": {
+            "$ref": "ExplainDataAccessConsentScope"
+          },
+          "type": "array"
+        },
+        "warning": {
+          "description": "Warnings associated with this response. It inform user with exceeded scope limit errors.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExportDicomDataRequest": {
       "description": "Exports data from the specified DICOM store. If a given resource, such as a DICOM object with the same SOPInstance UID, already exists in the output, it is overwritten with the version in the source dataset. Exported DICOM data persists when the DICOM store from which it was exported is deleted.",
       "id": "ExportDicomDataRequest",
@@ -5934,11 +6441,11 @@
       "id": "FhirConfig",
       "properties": {
         "defaultKeepExtensions": {
-          "description": "The behaviour for handling FHIR extensions that aren't otherwise specified for de-identification. If true, all extensions are preserved during de-identification by default. If false or unspecified, all extensions are removed during de-identification by default.",
+          "description": "Optional. The behaviour for handling FHIR extensions that aren't otherwise specified for de-identification. If true, all extensions are preserved during de-identification by default. If false or unspecified, all extensions are removed during de-identification by default.",
           "type": "boolean"
         },
         "fieldMetadataList": {
-          "description": "Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata is passed through to the output dataset unmodified. All extensions will be processed according to `default_keep_extensions`.",
+          "description": "Optional. Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata is passed through to the output dataset unmodified. All extensions will be processed according to `default_keep_extensions`.",
           "items": {
             "$ref": "FieldMetadata"
           },
@@ -5982,7 +6489,7 @@
       "id": "FhirStore",
       "properties": {
         "complexDataTypeReferenceParsing": {
-          "description": "Enable parsing of references within complex FHIR data types such as Extensions. If this value is set to ENABLED, then features like referential integrity and Bundle reference rewriting apply to all references. If this flag has not been specified the behavior of the FHIR store will not change, references in complex data types will not be parsed. New stores will have this value set to ENABLED after a notification period. Warning: turning on this flag causes processing existing resources to fail if they contain references to non-existent resources.",
+          "description": "Optional. Enable parsing of references within complex FHIR data types such as Extensions. If this value is set to ENABLED, then features like referential integrity and Bundle reference rewriting apply to all references. If this flag has not been specified the behavior of the FHIR store will not change, references in complex data types will not be parsed. New stores will have this value set to ENABLED after a notification period. Warning: turning on this flag causes processing existing resources to fail if they contain references to non-existent resources.",
           "enum": [
             "COMPLEX_DATA_TYPE_REFERENCE_PARSING_UNSPECIFIED",
             "DISABLED",
@@ -5994,6 +6501,10 @@
             "References in complex data types are parsed."
           ],
           "type": "string"
+        },
+        "consentConfig": {
+          "$ref": "ConsentConfig",
+          "description": "Optional. Specifies whether this store has consent enforcement. Not available for DSTU2 FHIR version due to absence of Consent resources."
         },
         "defaultSearchHandlingStrict": {
           "description": "Optional. If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`. Defaults to false.",
@@ -6043,7 +6554,7 @@
         },
         "validationConfig": {
           "$ref": "ValidationConfig",
-          "description": "Configuration for how to validate incoming FHIR resources against configured profiles."
+          "description": "Optional. Configuration for how to validate incoming FHIR resources against configured profiles."
         },
         "version": {
           "description": "Required. Immutable. The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.",
@@ -6137,7 +6648,7 @@
       "id": "FieldMetadata",
       "properties": {
         "action": {
-          "description": "Deidentify action for one field.",
+          "description": "Optional. Deidentify action for one field.",
           "enum": [
             "ACTION_UNSPECIFIED",
             "TRANSFORM",
@@ -6145,7 +6656,7 @@
             "DO_NOT_TRANSFORM"
           ],
           "enumDescriptions": [
-            "No action specified.",
+            "No action specified. Defaults to DO_NOT_TRANSFORM.",
             "Transform the entire field.",
             "Inspect and transform any found PHI.",
             "Do not transform."
@@ -6153,7 +6664,7 @@
           "type": "string"
         },
         "paths": {
-          "description": "List of paths to FHIR fields to be redacted. Each path is a period-separated list where each component is either a field name or FHIR type name, for example: Patient, HumanName. For \"choice\" types (those defined in the FHIR spec with the form: field[x]) we use two separate components. For example, \"deceasedAge.unit\" is matched by \"Deceased.Age.unit\". Supported types are: AdministrativeGenderCode, Base64Binary, Boolean, Code, Date, DateTime, Decimal, HumanName, Id, Instant, Integer, LanguageCode, Markdown, Oid, PositiveInt, String, UnsignedInt, Uri, Uuid, Xhtml.",
+          "description": "Optional. List of paths to FHIR fields to be redacted. Each path is a period-separated list where each component is either a field name or FHIR type name, for example: Patient, HumanName. For \"choice\" types (those defined in the FHIR spec with the form: field[x]) we use two separate components. For example, \"deceasedAge.unit\" is matched by \"Deceased.Age.unit\". Supported types are: AdministrativeGenderCode, Base64Binary, Boolean, Code, Date, DateTime, Decimal, HumanName, Id, Instant, Integer, LanguageCode, Markdown, Oid, PositiveInt, String, UnsignedInt, Uri, Uuid, Xhtml.",
           "items": {
             "type": "string"
           },
@@ -6262,15 +6773,15 @@
       "id": "GoogleCloudHealthcareV1DicomBigQueryDestination",
       "properties": {
         "force": {
-          "description": "Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.",
+          "description": "Optional. Use `write_disposition` instead. If `write_disposition` is specified, this parameter is ignored. force=false is equivalent to write_disposition=WRITE_EMPTY and force=true is equivalent to write_disposition=WRITE_TRUNCATE.",
           "type": "boolean"
         },
         "tableUri": {
-          "description": "BigQuery URI to a table, up to 2000 characters long, in the format `bq://projectId.bqDatasetId.tableId`",
+          "description": "Optional. BigQuery URI to a table, up to 2000 characters long, in the format `bq://projectId.bqDatasetId.tableId`",
           "type": "string"
         },
         "writeDisposition": {
-          "description": "Determines whether the existing table in the destination is to be overwritten or appended to. If a write_disposition is specified, the `force` parameter is ignored.",
+          "description": "Optional. Determines whether the existing table in the destination is to be overwritten or appended to. If a write_disposition is specified, the `force` parameter is ignored.",
           "enum": [
             "WRITE_DISPOSITION_UNSPECIFIED",
             "WRITE_EMPTY",
@@ -6572,7 +7083,7 @@
       "id": "ImageConfig",
       "properties": {
         "textRedactionMode": {
-          "description": "Determines how to redact text from image.",
+          "description": "Optional. Determines how to redact text from image.",
           "enum": [
             "TEXT_REDACTION_MODE_UNSPECIFIED",
             "REDACT_ALL_TEXT",
@@ -6680,7 +7191,7 @@
           "description": "Config for date shift."
         },
         "infoTypes": {
-          "description": "InfoTypes to apply this transformation to. If this is not specified, the transformation applies to any info_type.",
+          "description": "Optional. InfoTypes to apply this transformation to. If this is not specified, the transformation applies to any info_type.",
           "items": {
             "type": "string"
           },
@@ -7185,7 +7696,7 @@
           "description": "Optional. Schemas used to parse messages in this store, if schematized parsing is desired."
         },
         "segmentTerminator": {
-          "description": "Byte(s) to use as the segment terminator. If this is unset, '\\r' is used as segment terminator, matching the HL7 version 2 specification.",
+          "description": "Optional. Byte(s) to use as the segment terminator. If this is unset, '\\r' is used as segment terminator, matching the HL7 version 2 specification.",
           "format": "byte",
           "type": "string"
         },
@@ -7219,6 +7730,20 @@
         "value": {
           "description": "The patient's unique identifier.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PatientScope": {
+      "description": "Apply consents given by a list of patients.",
+      "id": "PatientScope",
+      "properties": {
+        "patientIds": {
+          "description": "Optional. The list of patient IDs whose Consent resources will be enforced. At most 10,000 patients can be specified. An empty list is equivalent to all patients (meaning the entire FHIR store).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7715,7 +8240,7 @@
       "id": "SearchResourcesRequest",
       "properties": {
         "resourceType": {
-          "description": "Required. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).",
+          "description": "Optional. The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)).",
           "type": "string"
         }
       },
@@ -7889,7 +8414,7 @@
         },
         "deidentifiedStoreDestination": {
           "$ref": "DeidentifiedStoreDestination",
-          "description": "The destination FHIR store for de-identified resources. After this field is added, all subsequent creates/updates/patches to the source store will be de-identified using the provided configuration and applied to the destination store. Importing resources to the source store will not trigger the streaming. If the source store already contains resources when this option is enabled, those resources will not be copied to the destination store unless they are subsequently updated. This may result in invalid references in the destination store. Before adding this config, you must grant the healthcare.fhirResources.update permission on the destination store to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/healthcare/docs/how-tos/permissions-healthcare-api-gcp-products#the_cloud_healthcare_service_agent). The destination store must set enable_update_create to true. The destination store must have disable_referential_integrity set to true. If a resource cannot be de-identified, errors will be logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging))."
+          "description": "The destination FHIR store for de-identified resources. After this field is added, all subsequent creates/updates/patches to the source store will be de-identified using the provided configuration and applied to the destination store. Resources deleted from the source store will be deleted from the destination store. Importing resources to the source store will not trigger the streaming. If the source store already contains resources when this option is enabled, those resources will not be copied to the destination store unless they are subsequently updated. This may result in invalid references in the destination store. Before adding this config, you must grant the healthcare.fhirResources.update permission on the destination store to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/healthcare/docs/how-tos/permissions-healthcare-api-gcp-products#the_cloud_healthcare_service_agent). The destination store must set enable_update_create to true. The destination store must have disable_referential_integrity set to true. If a resource cannot be de-identified, errors will be logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging))."
         },
         "resourceTypes": {
           "description": "Optional. Supply a FHIR resource type (such as \"Patient\" or \"Observation\"). See https://www.hl7.org/fhir/valueset-resource-types.html for a list of all FHIR resource types. The server treats an empty list as an intent to stream all the supported resource types in this FHIR store.",
@@ -7949,7 +8474,7 @@
       "id": "TagFilterList",
       "properties": {
         "tags": {
-          "description": "Tags to be filtered. Tags must be DICOM Data Elements, File Meta Elements, or Directory Structuring Elements, as defined at: http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1,. They may be provided by \"Keyword\" or \"Tag\". For example \"PatientID\", \"00100010\".",
+          "description": "Optional. Tags to be filtered. Tags must be DICOM Data Elements, File Meta Elements, or Directory Structuring Elements, as defined at: http://dicom.nema.org/medical/dicom/current/output/html/part06.html#table_6-1,. They may be provided by \"Keyword\" or \"Tag\". For example \"PatientID\", \"00100010\".",
           "items": {
             "type": "string"
           },
@@ -7990,21 +8515,21 @@
       "id": "TextConfig",
       "properties": {
         "additionalTransformations": {
-          "description": "Transformations to apply to the detected data, overridden by `exclude_info_types`.",
+          "description": "Optional. Transformations to apply to the detected data, overridden by `exclude_info_types`.",
           "items": {
             "$ref": "InfoTypeTransformation"
           },
           "type": "array"
         },
         "excludeInfoTypes": {
-          "description": "InfoTypes to skip transforming, overriding `additional_transformations`.",
+          "description": "Optional. InfoTypes to skip transforming, overriding `additional_transformations`.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "transformations": {
-          "description": "The transformations to apply to the detected data. Deprecated. Use `additional_transformations` instead.",
+          "description": "Optional. The transformations to apply to the detected data. Deprecated. Use `additional_transformations` instead.",
           "items": {
             "$ref": "InfoTypeTransformation"
           },
@@ -8054,6 +8579,21 @@
             "Data partitioned by month.",
             "Data partitioned by year."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeRange": {
+      "description": "Apply consents given by patients whose most recent consent changes are in the time range. Note that after identifying these patients, the server applies all Consent resources given by those patients, not just the Consent resources within the timestamp in the range.",
+      "id": "TimeRange",
+      "properties": {
+        "end": {
+          "description": "Optional. The latest consent change time, in format YYYY-MM-DDThh:mm:ss.sss+zz:zz If not specified, the system uses the time when ApplyConsents was called.",
+          "type": "string"
+        },
+        "start": {
+          "description": "Optional. The earliest consent change time, in format YYYY-MM-DDThh:mm:ss.sss+zz:zz If not specified, the system uses the FHIR store creation time.",
           "type": "string"
         }
       },
@@ -8135,23 +8675,23 @@
       "id": "ValidationConfig",
       "properties": {
         "disableFhirpathValidation": {
-          "description": "Whether to disable FHIRPath validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "description": "Optional. Whether to disable FHIRPath validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
           "type": "boolean"
         },
         "disableProfileValidation": {
-          "description": "Whether to disable profile validation for this FHIR store. The default value is false. Set this to true to disable checking incoming resources for conformance against structure definitions in this FHIR store.",
+          "description": "Optional. Whether to disable profile validation for this FHIR store. The default value is false. Set this to true to disable checking incoming resources for conformance against structure definitions in this FHIR store.",
           "type": "boolean"
         },
         "disableReferenceTypeValidation": {
-          "description": "Whether to disable reference type validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "description": "Optional. Whether to disable reference type validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
           "type": "boolean"
         },
         "disableRequiredFieldValidation": {
-          "description": "Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "description": "Optional. Whether to disable required fields validation for incoming resources. The default value is false. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
           "type": "boolean"
         },
         "enabledImplementationGuides": {
-          "description": "A list of implementation guide URLs in this FHIR store that are used to configure the profiles to use for validation. For example, to use the US Core profiles for validation, set `enabled_implementation_guides` to `[\"http://hl7.org/fhir/us/core/ImplementationGuide/ig\"]`. If `enabled_implementation_guides` is empty or omitted, then incoming resources are only required to conform to the base FHIR profiles. Otherwise, a resource must conform to at least one profile listed in the `global` property of one of the enabled ImplementationGuides. The Cloud Healthcare API does not currently enforce all of the rules in a StructureDefinition. The following rules are supported: - min/max - minValue/maxValue - maxLength - type - fixed[x] - pattern[x] on simple types - slicing, when using \"value\" as the discriminator type When a URL cannot be resolved (for example, in a type assertion), the server does not return an error.",
+          "description": "Optional. A list of implementation guide URLs in this FHIR store that are used to configure the profiles to use for validation. For example, to use the US Core profiles for validation, set `enabled_implementation_guides` to `[\"http://hl7.org/fhir/us/core/ImplementationGuide/ig\"]`. If `enabled_implementation_guides` is empty or omitted, then incoming resources are only required to conform to the base FHIR profiles. Otherwise, a resource must conform to at least one profile listed in the `global` property of one of the enabled ImplementationGuides. The Cloud Healthcare API does not currently enforce all of the rules in a StructureDefinition. The following rules are supported: - min/max - minValue/maxValue - maxLength - type - fixed[x] - pattern[x] on simple types - slicing, when using \"value\" as the discriminator type When a URL cannot be resolved (for example, in a type assertion), the server does not return an error.",
           "items": {
             "type": "string"
           },
