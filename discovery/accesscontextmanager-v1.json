@@ -958,7 +958,7 @@
     "operations": {
       "methods": {
         "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "flatPath": "v1/operations/{operationsId}:cancel",
           "httpMethod": "POST",
           "id": "accesscontextmanager.operations.cancel",
@@ -1205,8 +1205,8 @@
                 "name"
               ],
               "parameters": {
-                "appendScopedAccessSettings": {
-                  "description": "Optional. This field will be used to control whether or not scoped access settings are appended to the existing list of scoped access settings. If true, the scoped access settings in the request will be appended to the existing list of scoped access settings. If false, the scoped access settings in the request replace the existing list of scoped access settings.",
+                "append": {
+                  "description": "Optional. This field controls whether or not certain repeated settings in the update request overwrite or append to existing settings on the binding. If true, then append. Otherwise overwrite. So far, only scoped_access_settings with reauth_settings supports appending. Global access_levels, access_levels in scoped_access_settings, dry_run_access_levels, reauth_settings, and session_settings are not compatible with append functionality, and the request will return an error if append=true when these settings are in the update_mask. The request will also return an error if append=true when \"scoped_access_settings\" is not set in the update_mask.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -1218,7 +1218,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings`, `scoped_access_settings`. update_mask { paths: \"access_levels\" }",
+                  "description": "Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and may only contain the following fields: `access_levels`, `dry_run_access_levels`, `reauth_settings` `session_settings`, `scoped_access_settings`. update_mask { paths: \"access_levels\" }",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1295,7 +1295,7 @@
       }
     }
   },
-  "revision": "20240923",
+  "revision": "20250115",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
     "AccessContextManagerOperationMetadata": {
@@ -1384,9 +1384,9 @@
           },
           "type": "array"
         },
-        "reauthSettings": {
-          "$ref": "ReauthSettings",
-          "description": "Optional. Reauth settings applied to user access on a given AccessScope."
+        "sessionSettings": {
+          "$ref": "SessionSettings",
+          "description": "Optional. Session settings applied to user access on a given AccessScope."
         }
       },
       "type": "object"
@@ -1807,6 +1807,10 @@
         "egressTo": {
           "$ref": "EgressTo",
           "description": "Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply."
+        },
+        "title": {
+          "description": "Optional. Human-readable title for the egress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1817,6 +1821,10 @@
       "properties": {
         "accessLevel": {
           "description": "An AccessLevel resource name that allows protected resources inside the ServicePerimeters to access outside the ServicePerimeter boundaries. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If an AccessLevel name is not specified, only resources within the perimeter can be accessed through Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all EgressSources will be allowed.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "A Google Cloud resource that you want to allow to egress the perimeter. These resources can access data outside the perimeter. This field only supports projects. The project format is `projects/{project_number}`. The resource can be in any Google Cloud organization, not just the organization where the perimeter is defined. You can't use `*` in this field to allow all Google Cloud resources.",
           "type": "string"
         }
       },
@@ -1905,10 +1913,6 @@
           "description": "Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: \"organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N\"",
           "type": "string"
         },
-        "reauthSettings": {
-          "$ref": "ReauthSettings",
-          "description": "Optional. GCSL policy for the group key."
-        },
         "restrictedClientApplications": {
           "description": "Optional. A list of applications that are subject to this binding's restrictions. If the list is empty, the binding restrictions will universally apply to all applications.",
           "items": {
@@ -1922,12 +1926,16 @@
             "$ref": "ScopedAccessSettings"
           },
           "type": "array"
+        },
+        "sessionSettings": {
+          "$ref": "SessionSettings",
+          "description": "Optional. The Google Cloud session length (GCSL) policy for the group key."
         }
       },
       "type": "object"
     },
     "GcpUserAccessBindingOperationMetadata": {
-      "description": "Metadata of GCP Access Binding Long Running Operations.",
+      "description": "Metadata of Google Cloud Access Binding Long Running Operations.",
       "id": "GcpUserAccessBindingOperationMetadata",
       "properties": {},
       "type": "object"
@@ -2003,6 +2011,10 @@
         "ingressTo": {
           "$ref": "IngressTo",
           "description": "Defines the conditions on the ApiOperation and request destination that cause this IngressPolicy to apply."
+        },
+        "title": {
+          "description": "Optional. Human-readable title for the ingress rule. The title must be unique within the perimeter and can not exceed 100 characters. Within the access policy, the combined length of all rule titles must not exceed 240,000 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2287,47 +2299,6 @@
       },
       "type": "object"
     },
-    "ReauthSettings": {
-      "description": "Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.",
-      "id": "ReauthSettings",
-      "properties": {
-        "maxInactivity": {
-          "description": "Optional. How long a user is allowed to take between actions before a new access token must be issued. Presently only set for Cloud Apps.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "reauthMethod": {
-          "description": "Optional. Reauth method when users GCP session is up.",
-          "enum": [
-            "REAUTH_METHOD_UNSPECIFIED",
-            "LOGIN",
-            "SECURITY_KEY",
-            "PASSWORD"
-          ],
-          "enumDescriptions": [
-            "If method undefined in API, we will use LOGIN by default.",
-            "The user will prompted to perform regular login. Users who are enrolled for two-step verification and haven't chosen to \"Remember this computer\" will be prompted for their second factor.",
-            "The user will be prompted to autheticate using their security key. If no security key has been configured, then we will fallback to LOGIN.",
-            "The user will be prompted for their password."
-          ],
-          "type": "string"
-        },
-        "sessionLength": {
-          "description": "Optional. The session length. Setting this field to zero is equal to disabling. Reauth. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "sessionLengthEnabled": {
-          "description": "Optional. Big red button to turn off GCSL. When false, all fields set above will be disregarded and the session length is basically infinite.",
-          "type": "boolean"
-        },
-        "useOidcMaxAge": {
-          "description": "Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "ReplaceAccessLevelsRequest": {
       "description": "A request to replace all existing Access Levels in an Access Policy with the Access Levels provided. This is done atomically.",
       "id": "ReplaceAccessLevelsRequest",
@@ -2419,6 +2390,10 @@
           "description": "Description of the `ServicePerimeter` and its use. Does not affect behavior.",
           "type": "string"
         },
+        "etag": {
+          "description": "Optional. An opaque identifier for the current version of the `ServicePerimeter`. This identifier does not follow any specific format. If an etag is not provided, the operation will be performed as if a valid etag is provided.",
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. Resource name for the `ServicePerimeter`. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`. The `service_perimeter` component must begin with a letter, followed by alphanumeric characters or `_`. After you create a `ServicePerimeter`, you cannot change its `name`.",
           "type": "string"
@@ -2496,6 +2471,47 @@
         "vpcAccessibleServices": {
           "$ref": "VpcAccessibleServices",
           "description": "Configuration for APIs allowed within Perimeter."
+        }
+      },
+      "type": "object"
+    },
+    "SessionSettings": {
+      "description": "Stores settings related to Google Cloud Session Length including session duration, the type of challenge (i.e. method) they should face when their session expires, and other related settings.",
+      "id": "SessionSettings",
+      "properties": {
+        "maxInactivity": {
+          "description": "Optional. How long a user is allowed to take between actions before a new access token must be issued. Only set for Google Cloud apps.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "sessionLength": {
+          "description": "Optional. The session length. Setting this field to zero is equal to disabling session. Also can set infinite session by flipping the enabled bit to false below. If use_oidc_max_age is true, for OIDC apps, the session length will be the minimum of this field and OIDC max_age param.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "sessionLengthEnabled": {
+          "description": "Optional. This field enables or disables Google Cloud session length. When false, all fields set above will be disregarded and the session length is basically infinite.",
+          "type": "boolean"
+        },
+        "sessionReauthMethod": {
+          "description": "Optional. Session method when user's Google Cloud session is up.",
+          "enum": [
+            "SESSION_REAUTH_METHOD_UNSPECIFIED",
+            "LOGIN",
+            "SECURITY_KEY",
+            "PASSWORD"
+          ],
+          "enumDescriptions": [
+            "If method is undefined in the API, LOGIN will be used by default.",
+            "The user will be prompted to perform regular login. Users who are enrolled for two-step verification and haven't chosen \"Remember this computer\" will be prompted for their second factor.",
+            "The user will be prompted to authenticate using their security key. If no security key has been configured, then authentication will fallback to LOGIN.",
+            "The user will be prompted for their password."
+          ],
+          "type": "string"
+        },
+        "useOidcMaxAge": {
+          "description": "Optional. Only useful for OIDC apps. When false, the OIDC max_age param, if passed in the authentication request will be ignored. When true, the re-auth period will be the minimum of the session_length field and the max_age OIDC param.",
+          "type": "boolean"
         }
       },
       "type": "object"
