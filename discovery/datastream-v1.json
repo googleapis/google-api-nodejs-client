@@ -407,7 +407,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Output only. The resource's name.",
+                      "description": "Output only. Identifier. The resource's name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/connectionProfiles/[^/]+$",
                       "required": true,
@@ -446,7 +446,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.operations.cancel",
@@ -1030,7 +1030,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Output only. The stream's name.",
+                      "description": "Output only. Identifier. The stream's name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/streams/[^/]+$",
                       "required": true,
@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20240904",
+  "revision": "20250115",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1394,6 +1394,27 @@
       "properties": {},
       "type": "object"
     },
+    "BinaryLogParser": {
+      "description": "Configuration to use Binary Log Parser CDC technique.",
+      "id": "BinaryLogParser",
+      "properties": {
+        "logFileDirectories": {
+          "$ref": "LogFileDirectories",
+          "description": "Use Oracle directories."
+        },
+        "oracleAsmLogFileAccess": {
+          "$ref": "OracleAsmLogFileAccess",
+          "description": "Use Oracle ASM."
+        }
+      },
+      "type": "object"
+    },
+    "BinaryLogPosition": {
+      "description": "Use Binary log position based replication.",
+      "id": "BinaryLogPosition",
+      "properties": {},
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -1457,7 +1478,7 @@
           "description": "MySQL ConnectionProfile configuration."
         },
         "name": {
-          "description": "Output only. The resource's name.",
+          "description": "Output only. Identifier. The resource's name.",
           "readOnly": true,
           "type": "string"
         },
@@ -1472,6 +1493,16 @@
         "privateConnectivity": {
           "$ref": "PrivateConnectivity",
           "description": "Private connectivity."
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "sqlServerProfile": {
           "$ref": "SqlServerProfile",
@@ -1724,6 +1755,12 @@
       },
       "type": "object"
     },
+    "Gtid": {
+      "description": "Use GTID based replication.",
+      "id": "Gtid",
+      "properties": {},
+      "type": "object"
+    },
     "JsonFileFormat": {
       "description": "JSON file format configuration.",
       "id": "JsonFileFormat",
@@ -1947,6 +1984,27 @@
       },
       "type": "object"
     },
+    "LogFileDirectories": {
+      "description": "Configuration to specify the Oracle directories to access the log files.",
+      "id": "LogFileDirectories",
+      "properties": {
+        "archivedLogDirectory": {
+          "description": "Required. Oracle directory for archived logs.",
+          "type": "string"
+        },
+        "onlineLogDirectory": {
+          "description": "Required. Oracle directory for online logs.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LogMiner": {
+      "description": "Configuration to use LogMiner CDC method.",
+      "id": "LogMiner",
+      "properties": {},
+      "type": "object"
+    },
     "LookupStreamObjectRequest": {
       "description": "Request for looking up a specific stream object by its source object identifier.",
       "id": "LookupStreamObjectRequest",
@@ -2067,7 +2125,7 @@
       "type": "object"
     },
     "MysqlProfile": {
-      "description": "MySQL database profile.",
+      "description": "MySQL database profile. Next ID: 7.",
       "id": "MysqlProfile",
       "properties": {
         "hostname": {
@@ -2075,7 +2133,7 @@
           "type": "string"
         },
         "password": {
-          "description": "Required. Input only. Password for the MySQL connection.",
+          "description": "Optional. Input only. Password for the MySQL connection. Mutually exclusive with the `secret_manager_stored_password` field.",
           "type": "string"
         },
         "port": {
@@ -2112,9 +2170,17 @@
       "description": "MySQL source configuration",
       "id": "MysqlSourceConfig",
       "properties": {
+        "binaryLogPosition": {
+          "$ref": "BinaryLogPosition",
+          "description": "Use Binary log position based replication."
+        },
         "excludeObjects": {
           "$ref": "MysqlRdbms",
           "description": "MySQL objects to exclude from the stream."
+        },
+        "gtid": {
+          "$ref": "Gtid",
+          "description": "Use GTID based replication."
         },
         "includeObjects": {
           "$ref": "MysqlRdbms",
@@ -2147,7 +2213,7 @@
           "type": "boolean"
         },
         "clientCertificate": {
-          "description": "Input only. PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'client_key' and the 'ca_certificate' fields are mandatory.",
+          "description": "Optional. Input only. PEM-encoded certificate that will be used by the replica to authenticate against the source database server. If this field is used then the 'client_key' and the 'ca_certificate' fields are mandatory.",
           "type": "string"
         },
         "clientCertificateSet": {
@@ -2156,7 +2222,7 @@
           "type": "boolean"
         },
         "clientKey": {
-          "description": "Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory.",
+          "description": "Optional. Input only. PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' and the 'ca_certificate' fields are mandatory. Mutually exclusive with the `secret_manager_stored_client_key` field.",
           "type": "string"
         },
         "clientKeySet": {
@@ -2248,7 +2314,7 @@
           "type": "string"
         },
         "requestedCancellation": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2273,6 +2339,51 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "OracleAsmConfig": {
+      "description": "Configuration for Oracle Automatic Storage Management (ASM) connection. .",
+      "id": "OracleAsmConfig",
+      "properties": {
+        "asmService": {
+          "description": "Required. ASM service name for the Oracle ASM connection.",
+          "type": "string"
+        },
+        "connectionAttributes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Connection string attributes",
+          "type": "object"
+        },
+        "hostname": {
+          "description": "Required. Hostname for the Oracle ASM connection.",
+          "type": "string"
+        },
+        "oracleSslConfig": {
+          "$ref": "OracleSslConfig",
+          "description": "Optional. SSL configuration for the Oracle connection."
+        },
+        "password": {
+          "description": "Optional. Password for the Oracle ASM connection.",
+          "type": "string"
+        },
+        "port": {
+          "description": "Required. Port for the Oracle ASM connection.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "username": {
+          "description": "Required. Username for the Oracle ASM connection.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OracleAsmLogFileAccess": {
+      "description": "Configuration to use Oracle ASM to access the log files.",
+      "id": "OracleAsmLogFileAccess",
+      "properties": {},
       "type": "object"
     },
     "OracleColumn": {
@@ -2338,7 +2449,7 @@
       "type": "object"
     },
     "OracleProfile": {
-      "description": "Oracle database profile.",
+      "description": "Oracle database profile. Next ID: 10.",
       "id": "OracleProfile",
       "properties": {
         "connectionAttributes": {
@@ -2356,18 +2467,26 @@
           "description": "Required. Hostname for the Oracle connection.",
           "type": "string"
         },
+        "oracleAsmConfig": {
+          "$ref": "OracleAsmConfig",
+          "description": "Optional. Configuration for Oracle ASM connection."
+        },
         "oracleSslConfig": {
           "$ref": "OracleSslConfig",
           "description": "Optional. SSL configuration for the Oracle connection."
         },
         "password": {
-          "description": "Required. Password for the Oracle connection.",
+          "description": "Optional. Password for the Oracle connection. Mutually exclusive with the `secret_manager_stored_password` field.",
           "type": "string"
         },
         "port": {
           "description": "Port for the Oracle connection, default value is 1521.",
           "format": "int32",
           "type": "integer"
+        },
+        "secretManagerStoredPassword": {
+          "description": "Optional. A reference to a Secret Manager resource name storing the Oracle connection password. Mutually exclusive with the `password` field.",
+          "type": "string"
         },
         "username": {
           "description": "Required. Username for the Oracle connection.",
@@ -2424,6 +2543,10 @@
       "description": "Oracle data source configuration",
       "id": "OracleSourceConfig",
       "properties": {
+        "binaryLogParser": {
+          "$ref": "BinaryLogParser",
+          "description": "Use Binary Log Parser."
+        },
         "dropLargeObjects": {
           "$ref": "DropLargeObjects",
           "description": "Drop large object values."
@@ -2435,6 +2558,10 @@
         "includeObjects": {
           "$ref": "OracleRdbms",
           "description": "Oracle objects to include in the stream."
+        },
+        "logMiner": {
+          "$ref": "LogMiner",
+          "description": "Use LogMiner."
         },
         "maxConcurrentBackfillTasks": {
           "description": "Maximum number of concurrent backfill tasks. The number should be non-negative. If not set (or set to 0), the system's default value is used.",
@@ -2558,13 +2685,17 @@
           "type": "string"
         },
         "password": {
-          "description": "Required. Password for the PostgreSQL connection.",
+          "description": "Optional. Password for the PostgreSQL connection. Mutually exclusive with the `secret_manager_stored_password` field.",
           "type": "string"
         },
         "port": {
           "description": "Port for the PostgreSQL connection, default value is 5432.",
           "format": "int32",
           "type": "integer"
+        },
+        "sslConfig": {
+          "$ref": "PostgresqlSslConfig",
+          "description": "Optional. SSL configuration for the PostgreSQL connection. In case PostgresqlSslConfig is not set, the connection will use the default SSL mode, which is `prefer` (i.e. this mode will only use encryption if enabled from database side, otherwise will use unencrypted communication)"
         },
         "username": {
           "description": "Required. Username for the PostgreSQL connection.",
@@ -2633,6 +2764,21 @@
       },
       "type": "object"
     },
+    "PostgresqlSslConfig": {
+      "description": "PostgreSQL SSL configuration information.",
+      "id": "PostgresqlSslConfig",
+      "properties": {
+        "serverAndClientVerification": {
+          "$ref": "ServerAndClientVerification",
+          "description": "If this field is set, the communication will be encrypted with TLS encryption and both the server identity and the client identity will be authenticated."
+        },
+        "serverVerification": {
+          "$ref": "ServerVerification",
+          "description": " If this field is set, the communication will be encrypted with TLS encryption and the server identity will be authenticated."
+        }
+      },
+      "type": "object"
+    },
     "PostgresqlTable": {
       "description": "PostgreSQL table.",
       "id": "PostgresqlTable",
@@ -2678,9 +2824,19 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The resource's name.",
+          "description": "Output only. Identifier. The resource's name.",
           "readOnly": true,
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The state of the Private Connection.",
@@ -2758,7 +2914,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. The resource's name.",
+          "description": "Output only. Identifier. The resource's name.",
           "readOnly": true,
           "type": "string"
         },
@@ -2782,6 +2938,36 @@
         "force": {
           "description": "Optional. Update the stream without validating it.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ServerAndClientVerification": {
+      "description": "Message represents the option where Datastream will enforce the encryption and authenticate the server identity as well as the client identity. ca_certificate, client_certificate and client_key must be set if user selects this option.",
+      "id": "ServerAndClientVerification",
+      "properties": {
+        "caCertificate": {
+          "description": "Required. Input only. PEM-encoded server root CA certificate.",
+          "type": "string"
+        },
+        "clientCertificate": {
+          "description": "Required. Input only. PEM-encoded certificate used by the source database to authenticate the client identity (i.e., the Datastream's identity). This certificate is signed by either a root certificate trusted by the server or one or more intermediate certificates (which is stored with the leaf certificate) to link the this certificate to the trusted root certificate.",
+          "type": "string"
+        },
+        "clientKey": {
+          "description": "Optional. Input only. PEM-encoded private key associated with the client certificate. This value will be used during the SSL/TLS handshake, allowing the PostgreSQL server to authenticate the client's identity, i.e. identity of the Datastream. Mutually exclusive with the `secret_manager_stored_client_key` field.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServerVerification": {
+      "description": "Message represents the option where Datastream will enforce the encryption and authenticate the server identity. ca_certificate must be set if user selects this option.",
+      "id": "ServerVerification",
+      "properties": {
+        "caCertificate": {
+          "description": "Required. Input only. PEM-encoded server root CA certificate.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2869,6 +3055,10 @@
         "oracleScnPosition": {
           "$ref": "OracleScnPosition",
           "description": "Oracle SCN to start replicating from."
+        },
+        "sqlServerLsnPosition": {
+          "$ref": "SqlServerLsnPosition",
+          "description": "SqlServer LSN to start replicating from."
         }
       },
       "type": "object"
@@ -2922,6 +3112,17 @@
       },
       "type": "object"
     },
+    "SqlServerLsnPosition": {
+      "description": "SQL Server LSN position",
+      "id": "SqlServerLsnPosition",
+      "properties": {
+        "lsn": {
+          "description": "Required. Log sequence number (LSN) from where Logs will be read",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SqlServerObjectIdentifier": {
       "description": "SQLServer data source object identifier.",
       "id": "SqlServerObjectIdentifier",
@@ -2938,7 +3139,7 @@
       "type": "object"
     },
     "SqlServerProfile": {
-      "description": "SQLServer database profile",
+      "description": "SQLServer database profile. Next ID: 8.",
       "id": "SqlServerProfile",
       "properties": {
         "database": {
@@ -2950,7 +3151,7 @@
           "type": "string"
         },
         "password": {
-          "description": "Required. Password for the SQLServer connection.",
+          "description": "Optional. Password for the SQLServer connection. Mutually exclusive with the `secret_manager_stored_password` field.",
           "type": "string"
         },
         "port": {
@@ -3173,9 +3374,19 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The stream's name.",
+          "description": "Output only. Identifier. The stream's name.",
           "readOnly": true,
           "type": "string"
+        },
+        "satisfiesPzi": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "sourceConfig": {
           "$ref": "SourceConfig",
@@ -3249,7 +3460,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The object resource's name.",
+          "description": "Output only. Identifier. The object resource's name.",
           "readOnly": true,
           "type": "string"
         },
