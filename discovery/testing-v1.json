@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20240917",
+  "revision": "20241231",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -972,9 +972,15 @@
           "type": "array"
         },
         "usesPermission": {
-          "description": "Permissions declared to be used by the application",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "usesPermissionTags": {
+          "description": "Permissions declared to be used by the application",
+          "items": {
+            "$ref": "UsesPermissionTag"
           },
           "type": "array"
         },
@@ -1567,7 +1573,7 @@
         },
         "roboScript": {
           "$ref": "FileReference",
-          "description": "An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts."
+          "description": "An optional Roboscript to customize the crawl. See https://firebase.google.com/docs/test-lab/android/robo-scripts-reference for more information about Roboscripts. The maximum allowed file size of the roboscript is 10MiB."
         }
       },
       "type": "object"
@@ -2811,6 +2817,22 @@
         "isRequired": {
           "description": "The android:required value",
           "type": "boolean"
+        },
+        "name": {
+          "description": "The android:name value",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UsesPermissionTag": {
+      "description": "The tag within a manifest. https://developer.android.com/guide/topics/manifest/uses-permission-element.html",
+      "id": "UsesPermissionTag",
+      "properties": {
+        "maxSdkVersion": {
+          "description": "The android:name value",
+          "format": "int32",
+          "type": "integer"
         },
         "name": {
           "description": "The android:name value",
