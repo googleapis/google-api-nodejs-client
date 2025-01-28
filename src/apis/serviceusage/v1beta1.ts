@@ -715,6 +715,10 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$Documentation {
     /**
+     * Optional information about the IAM configuration. This is typically used to link to documentation about a product's IAM roles and permissions.
+     */
+    additionalIamInfo?: string | null;
+    /**
      * The URL to the root of documentation.
      */
     documentationRootUrl?: string | null;
@@ -915,6 +919,10 @@ export namespace serviceusage_v1beta1 {
    * Experimental features to be included during client library generation. These fields will be deprecated once the feature graduates and is enabled by default.
    */
   export interface Schema$ExperimentalFeatures {
+    /**
+     * Enables generation of protobuf code using new types that are more Pythonic which are included in `protobuf\>=5.29.x`. This feature will be enabled by default 1 month after launching the feature in preview packages.
+     */
+    protobufPythonicTypesEnabled?: boolean | null;
     /**
      * Enables generation of asynchronous REST clients if `rest` transport is enabled. By default, asynchronous REST clients will not be generated. This feature will be enabled by default 1 month after launching the feature in preview packages.
      */
@@ -1260,6 +1268,108 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$GoogleApiServiceusageV2alphaUpdateConsumerPolicyMetadata {}
   /**
+   * A message to group the analysis information.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalysis {
+    /**
+     * Output only. Analysis result of updating a policy.
+     */
+    analysis?: Schema$GoogleApiServiceusageV2betaAnalysisResult;
+    /**
+     * Output only. The type of analysis.
+     */
+    analysisType?: string | null;
+    /**
+     * Output only. The user friendly display name of the analysis type. E.g. service dependency analysis, service resource usage analysis, etc.
+     */
+    displayName?: string | null;
+    /**
+     * The names of the service that has analysis result of warnings or blockers. Example: `services/storage.googleapis.com`.
+     */
+    service?: string | null;
+  }
+  /**
+   * An analysis result including blockers and warnings.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalysisResult {
+    /**
+     * Blocking information that would prevent the policy changes at runtime.
+     */
+    blockers?: Schema$GoogleApiServiceusageV2betaImpact[];
+    /**
+     * Warning information indicating that the policy changes might be unsafe, but will not block the changes at runtime.
+     */
+    warnings?: Schema$GoogleApiServiceusageV2betaImpact[];
+  }
+  /**
+   * Metadata for the `AnalyzeConsumerPolicy` method.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalyzeConsumerPolicyMetadata {}
+  /**
+   * The response of analyzing a consumer policy update.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaAnalyzeConsumerPolicyResponse {
+    /**
+     * The list of analyses returned from performing the intended policy update analysis. The analysis is grouped by service name and different analysis types. The empty analysis list means that the consumer policy can be updated without any warnings or blockers.
+     */
+    analysis?: Schema$GoogleApiServiceusageV2betaAnalysis[];
+  }
+  /**
+   * Consumer Policy is a set of rules that define what services or service groups can be used for a cloud resource hierarchy.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaConsumerPolicy {
+    /**
+     * Optional. Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. [AIP-128](https://google.aip.dev/128#annotations)
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. The time the policy was created. For singleton policies, this is the first touch of the policy.
+     */
+    createTime?: string | null;
+    /**
+     * Enable rules define usable services, groups, and categories. There can currently be at most one `EnableRule`. This restriction will be lifted in later releases.
+     */
+    enableRules?: Schema$GoogleApiServiceusageV2betaEnableRule[];
+    /**
+     * Output only. An opaque tag indicating the current version of the policy, used for concurrency control.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the policy. Only the `default` policy is supported: `projects/12345/consumerPolicies/default`, `folders/12345/consumerPolicies/default`, `organizations/12345/consumerPolicies/default`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The time the policy was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The consumer policy rule that defines enabled services, groups, and categories.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaEnableRule {
+    /**
+     * The names of the services that are enabled. Example: `services/storage.googleapis.com`.
+     */
+    services?: string[] | null;
+  }
+  /**
+   * A message to group impacts of updating a policy.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaImpact {
+    /**
+     * Output only. User friendly impact detail in a free form message.
+     */
+    detail?: string | null;
+    /**
+     * Output only. The type of impact.
+     */
+    impactType?: string | null;
+  }
+  /**
+   * Metadata for the `UpdateConsumerPolicy` method.
+   */
+  export interface Schema$GoogleApiServiceusageV2betaUpdateConsumerPolicyMetadata {}
+  /**
    * Settings for Go client libraries.
    */
   export interface Schema$GoSettings {
@@ -1267,6 +1377,10 @@ export namespace serviceusage_v1beta1 {
      * Some settings.
      */
     common?: Schema$CommonLanguageSettings;
+    /**
+     * Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin
+     */
+    renamedServices?: {[key: string]: string} | null;
   }
   /**
    * Defines the HTTP configuration for an API service. It contains a list of HttpRule, each specifying the mapping of an RPC method to one or more HTTP REST API methods.
@@ -1338,6 +1452,10 @@ export namespace serviceusage_v1beta1 {
      * Output only. The type of impact.
      */
     impactType?: string | null;
+    /**
+     * The parent resource that the analysis is based on and the service name that the analysis is for. Example: `projects/100/services/compute.googleapis.com`, folders/101/services/compute.googleapis.com` and `organizations/102/services/compute.googleapis.com`. Usually, the parent resource here is same as the parent resource of the analyzed policy. However, for some analysis types, the parent can be different. For example, for resource existence analysis, if the parent resource of the analyzed policy is a folder or an organization, the parent resource here can still be the project that contains the resources.
+     */
+    parent?: string | null;
   }
   /**
    * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportAdminOverrides.
@@ -2092,7 +2210,7 @@ export namespace serviceusage_v1beta1 {
      */
     name?: string | null;
     /**
-     * Specify the unit of the quota limit. It uses the same syntax as Metric.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project\}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax.
+     * Specify the unit of the quota limit. It uses the same syntax as MetricDescriptor.unit. The supported unit kinds are determined by the quota backend system. Here are some examples: * "1/min/{project\}" for quota per minute per project. Note: the order of unit components is insignificant. The "1" at the beginning is required to follow the metric unit syntax.
      */
     unit?: string | null;
     /**
