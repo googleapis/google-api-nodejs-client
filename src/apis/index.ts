@@ -105,6 +105,7 @@ import {
   VERSIONS as area120tablesVersions,
   area120tables,
 } from './area120tables';
+import {VERSIONS as areainsightsVersions, areainsights} from './areainsights';
 import {
   VERSIONS as artifactregistryVersions,
   artifactregistry,
@@ -472,6 +473,7 @@ import {
   VERSIONS as mybusinessverificationsVersions,
   mybusinessverifications,
 } from './mybusinessverifications';
+import {VERSIONS as netappVersions, netapp} from './netapp';
 import {
   VERSIONS as networkconnectivityVersions,
   networkconnectivity,
@@ -505,6 +507,10 @@ import {
   VERSIONS as pagespeedonlineVersions,
   pagespeedonline,
 } from './pagespeedonline';
+import {
+  VERSIONS as parallelstoreVersions,
+  parallelstore,
+} from './parallelstore';
 import {
   VERSIONS as paymentsresellersubscriptionVersions,
   paymentsresellersubscription,
@@ -604,6 +610,10 @@ import {
   VERSIONS as securitycenterVersions,
   securitycenter,
 } from './securitycenter';
+import {
+  VERSIONS as securitypostureVersions,
+  securityposture,
+} from './securityposture';
 import {
   VERSIONS as serviceconsumermanagementVersions,
   serviceconsumermanagement,
@@ -762,6 +772,7 @@ export const APIS: APIList = {
   apphub: apphubVersions,
   appsactivity: appsactivityVersions,
   area120tables: area120tablesVersions,
+  areainsights: areainsightsVersions,
   artifactregistry: artifactregistryVersions,
   assuredworkloads: assuredworkloadsVersions,
   authorizedbuyersmarketplace: authorizedbuyersmarketplaceVersions,
@@ -925,6 +936,7 @@ export const APIS: APIList = {
   mybusinessplaceactions: mybusinessplaceactionsVersions,
   mybusinessqanda: mybusinessqandaVersions,
   mybusinessverifications: mybusinessverificationsVersions,
+  netapp: netappVersions,
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   networksecurity: networksecurityVersions,
@@ -937,6 +949,7 @@ export const APIS: APIList = {
   osconfig: osconfigVersions,
   oslogin: osloginVersions,
   pagespeedonline: pagespeedonlineVersions,
+  parallelstore: parallelstoreVersions,
   paymentsresellersubscription: paymentsresellersubscriptionVersions,
   people: peopleVersions,
   places: placesVersions,
@@ -976,6 +989,7 @@ export const APIS: APIList = {
   searchconsole: searchconsoleVersions,
   secretmanager: secretmanagerVersions,
   securitycenter: securitycenterVersions,
+  securityposture: securitypostureVersions,
   serviceconsumermanagement: serviceconsumermanagementVersions,
   servicecontrol: servicecontrolVersions,
   servicedirectory: servicedirectoryVersions,
@@ -1067,6 +1081,7 @@ export class GeneratedAPIs {
   apphub = apphub;
   appsactivity = appsactivity;
   area120tables = area120tables;
+  areainsights = areainsights;
   artifactregistry = artifactregistry;
   assuredworkloads = assuredworkloads;
   authorizedbuyersmarketplace = authorizedbuyersmarketplace;
@@ -1230,6 +1245,7 @@ export class GeneratedAPIs {
   mybusinessplaceactions = mybusinessplaceactions;
   mybusinessqanda = mybusinessqanda;
   mybusinessverifications = mybusinessverifications;
+  netapp = netapp;
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   networksecurity = networksecurity;
@@ -1242,6 +1258,7 @@ export class GeneratedAPIs {
   osconfig = osconfig;
   oslogin = oslogin;
   pagespeedonline = pagespeedonline;
+  parallelstore = parallelstore;
   paymentsresellersubscription = paymentsresellersubscription;
   people = people;
   places = places;
@@ -1281,6 +1298,7 @@ export class GeneratedAPIs {
   searchconsole = searchconsole;
   secretmanager = secretmanager;
   securitycenter = securitycenter;
+  securityposture = securityposture;
   serviceconsumermanagement = serviceconsumermanagement;
   servicecontrol = servicecontrol;
   servicedirectory = servicedirectory;

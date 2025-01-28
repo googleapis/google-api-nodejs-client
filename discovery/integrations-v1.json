@@ -212,6 +212,34 @@
       "resources": {
         "locations": {
           "methods": {
+            "generateOpenApiSpec": {
+              "description": "Generate OpenAPI spec for the requested integrations and api triggers",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generateOpenApiSpec",
+              "httpMethod": "POST",
+              "id": "integrations.projects.locations.generateOpenApiSpec",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Project and location from which the integrations should be fetched. Format: projects/{project}/location/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:generateOpenApiSpec",
+              "request": {
+                "$ref": "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getClients": {
               "description": "Gets the client configuration for the given project and location resource name",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients",
@@ -1410,7 +1438,7 @@
                       ]
                     },
                     "replay": {
-                      "description": "Re-execute an existing execution, with same request parameters and execution strategy",
+                      "description": "Re-execute an existing execution, with same request parameters and execution strategy.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/executions/{executionsId}:replay",
                       "httpMethod": "POST",
                       "id": "integrations.projects.locations.integrations.executions.replay",
@@ -1419,7 +1447,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The execution resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration}/executions/{execution_id}",
+                          "description": "Required. Next ID: 6 The execution resource name. Format: projects/{gcp_project_id}/locations/{location}/integrations/{integration}/executions/{execution_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/executions/[^/]+$",
                           "required": true,
@@ -2001,6 +2029,34 @@
                           "path": "v1/{+name}:download",
                           "response": {
                             "$ref": "GoogleCloudIntegrationsV1alphaDownloadTestCaseResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "execute": {
+                          "description": "Executes all test cases in an integration version.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/integrations/{integrationsId}/versions/{versionsId}/testCases:execute",
+                          "httpMethod": "POST",
+                          "id": "integrations.projects.locations.integrations.versions.testCases.execute",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent resource whose test cases are executed. Format: projects/{project}/locations/{location}/integrations/{integration}/versions/{integration_version}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/integrations/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/testCases:execute",
+                          "request": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaExecuteTestCasesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudIntegrationsV1alphaExecuteTestCasesResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -4497,7 +4553,7 @@
       }
     }
   },
-  "revision": "20240927",
+  "revision": "20250113",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -8109,6 +8165,20 @@
           "description": "If this execution is a replay of another execution, then this field contains the original execution id.",
           "type": "string"
         },
+        "replayMode": {
+          "description": "Replay mode for the execution",
+          "enum": [
+            "REPLAY_MODE_UNSPECIFIED",
+            "REPLAY_MODE_FROM_BEGINNING",
+            "REPLAY_MODE_POINT_OF_FAILURE"
+          ],
+          "enumDescriptions": [
+            "",
+            "Replay the original execution from the beginning.",
+            "Replay the execution from the first failed task."
+          ],
+          "type": "string"
+        },
         "replayReason": {
           "description": "reason for replay",
           "type": "string"
@@ -8869,11 +8939,8 @@
           "type": "string"
         },
         "inputVariables": {
-          "description": "Optional. List of input variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables",
+          "description": "Optional. List of input variables for the api trigger."
         },
         "label": {
           "description": "The user created label for a particular trigger.",
@@ -8894,11 +8961,8 @@
           "type": "string"
         },
         "outputVariables": {
-          "description": "Optional. List of output variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables",
+          "description": "Optional. List of output variables for the api trigger."
         },
         "pauseWorkflowExecutions": {
           "description": "Optional. If set to true, any upcoming requests for this trigger config will be paused and the executions will be resumed later when the flag is reset. The workflow to which this trigger config belongs has to be in ACTIVE status for the executions to be paused or resumed.",
@@ -8954,9 +9018,11 @@
             "SFDC_PLATFORM_EVENTS_CHANNEL",
             "CLOUD_SCHEDULER",
             "INTEGRATION_CONNECTOR_TRIGGER",
-            "PRIVATE_TRIGGER"
+            "PRIVATE_TRIGGER",
+            "EVENTARC_TRIGGER"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -8974,6 +9040,20 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables": {
+      "description": "Variables names mapped to api trigger.",
+      "id": "EnterpriseCrmFrontendsEventbusProtoTriggerConfigVariables",
+      "properties": {
+        "names": {
+          "description": "Optional. List of variable names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -9436,6 +9516,7 @@
             "PREVIEW",
             "GA",
             "DEPRECATED",
+            "TEST",
             "PRIVATE_PREVIEW"
           ],
           "enumDescriptions": [
@@ -9443,6 +9524,7 @@
             "PREVIEW.",
             "GA.",
             "DEPRECATED.",
+            "TEST.",
             "PRIVATE_PREVIEW."
           ],
           "readOnly": true,
@@ -9633,7 +9715,7 @@
           "type": "string"
         },
         "deploymentModel": {
-          "description": "Optional. Indicates whether connector is deployed on GKE/CloudRun",
+          "description": "Output only. Indicates whether connector is deployed on GKE/CloudRun",
           "enum": [
             "DEPLOYMENT_MODEL_UNSPECIFIED",
             "GKE_MST",
@@ -9644,6 +9726,7 @@
             "Default model gke mst.",
             "Cloud run mst."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "deploymentModelMigrationState": {
@@ -9789,7 +9872,7 @@
       "id": "GoogleCloudConnectorsV1EventingConfig",
       "properties": {
         "additionalVariables": {
-          "description": "Additional eventing related field values",
+          "description": "Optional. Additional eventing related field values",
           "items": {
             "$ref": "GoogleCloudConnectorsV1ConfigVariable"
           },
@@ -9797,14 +9880,14 @@
         },
         "authConfig": {
           "$ref": "GoogleCloudConnectorsV1AuthConfig",
-          "description": "Auth details for the webhook adapter."
+          "description": "Optional. Auth details for the webhook adapter."
         },
         "deadLetterConfig": {
           "$ref": "GoogleCloudConnectorsV1EventingConfigDeadLetterConfig",
           "description": "Optional. Dead letter configuration for eventing of a connection."
         },
         "enrichmentEnabled": {
-          "description": "Enrichment Enabled.",
+          "description": "Optional. Enrichment Enabled.",
           "type": "boolean"
         },
         "eventsListenerIngressEndpoint": {
@@ -9825,7 +9908,7 @@
         },
         "registrationDestinationConfig": {
           "$ref": "GoogleCloudConnectorsV1DestinationConfig",
-          "description": "Registration endpoint for auto registration."
+          "description": "Optional. Registration endpoint for auto registration."
         }
       },
       "type": "object"
@@ -9867,6 +9950,11 @@
         "webhookData": {
           "$ref": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData",
           "description": "Output only. Webhook data.",
+          "readOnly": true
+        },
+        "webhookSubscriptions": {
+          "$ref": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookSubscriptions",
+          "description": "Output only. Webhook subscriptions.",
           "readOnly": true
         }
       },
@@ -9911,6 +9999,21 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudConnectorsV1EventingRuntimeDataWebhookSubscriptions": {
+      "description": "WebhookSubscriptions has details of webhook subscriptions.",
+      "id": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookSubscriptions",
+      "properties": {
+        "webhookData": {
+          "description": "Output only. Webhook data.",
+          "items": {
+            "$ref": "GoogleCloudConnectorsV1EventingRuntimeDataWebhookData"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -10072,14 +10175,14 @@
       "id": "GoogleCloudConnectorsV1SslConfig",
       "properties": {
         "additionalVariables": {
-          "description": "Additional SSL related field values",
+          "description": "Optional. Additional SSL related field values",
           "items": {
             "$ref": "GoogleCloudConnectorsV1ConfigVariable"
           },
           "type": "array"
         },
         "clientCertType": {
-          "description": "Type of Client Cert (PEM/JKS/.. etc.)",
+          "description": "Optional. Type of Client Cert (PEM/JKS/.. etc.)",
           "enum": [
             "CERT_TYPE_UNSPECIFIED",
             "PEM"
@@ -10092,22 +10195,22 @@
         },
         "clientCertificate": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Client Certificate"
+          "description": "Optional. Client Certificate"
         },
         "clientPrivateKey": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Client Private Key"
+          "description": "Optional. Client Private Key"
         },
         "clientPrivateKeyPass": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Secret containing the passphrase protecting the Client Private Key"
+          "description": "Optional. Secret containing the passphrase protecting the Client Private Key"
         },
         "privateServerCertificate": {
           "$ref": "GoogleCloudConnectorsV1Secret",
-          "description": "Private Server Certificate. Needs to be specified if trust model is `PRIVATE`."
+          "description": "Optional. Private Server Certificate. Needs to be specified if trust model is `PRIVATE`."
         },
         "serverCertType": {
-          "description": "Type of Server Cert (PEM/JKS/.. etc.)",
+          "description": "Optional. Type of Server Cert (PEM/JKS/.. etc.)",
           "enum": [
             "CERT_TYPE_UNSPECIFIED",
             "PEM"
@@ -10119,7 +10222,7 @@
           "type": "string"
         },
         "trustModel": {
-          "description": "Trust Model of the SSL connection",
+          "description": "Optional. Trust Model of the SSL connection",
           "enum": [
             "PUBLIC",
             "PRIVATE",
@@ -10133,7 +10236,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Controls the ssl type for the given connector version.",
+          "description": "Optional. Controls the ssl type for the given connector version.",
           "enum": [
             "SSL_TYPE_UNSPECIFIED",
             "TLS",
@@ -10147,7 +10250,7 @@
           "type": "string"
         },
         "useSsl": {
-          "description": "Bool for enabling SSL",
+          "description": "Optional. Bool for enabling SSL",
           "type": "boolean"
         }
       },
@@ -10182,12 +10285,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaApiTriggerResource": {
+      "description": "List of API triggerID and their workflow resource name.",
+      "id": "GoogleCloudIntegrationsV1alphaApiTriggerResource",
+      "properties": {
+        "integrationResource": {
+          "description": "Required. Integration where the API is published",
+          "type": "string"
+        },
+        "triggerId": {
+          "description": "Required. Trigger Id of the API trigger(s) in the integration",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaAssertion": {
-      "description": "An assertion which will check for a condition over task execution status or an expression for task output variables Next available id: 5",
+      "description": "An assertion which will check for a condition over task execution status or an expression for task output variables",
       "id": "GoogleCloudIntegrationsV1alphaAssertion",
       "properties": {
         "assertionStrategy": {
-          "description": "The type of assertion to perform.",
+          "description": "Optional. The type of assertion to perform.",
           "enum": [
             "ASSERTION_STRATEGY_UNSPECIFIED",
             "ASSERT_SUCCESSFUL_EXECUTION",
@@ -10456,7 +10577,7 @@
       "id": "GoogleCloudIntegrationsV1alphaCancelExecutionRequest",
       "properties": {
         "cancelReason": {
-          "description": "Optional. Reason for cancelling the execution This is provided by the client requesting the cancellation Platform will not use this field",
+          "description": "Required. Reason for cancelling the execution. This is provided by the client requesting the cancellation, and is not used by the Platform.",
           "type": "string"
         }
       },
@@ -10467,7 +10588,7 @@
       "id": "GoogleCloudIntegrationsV1alphaCancelExecutionResponse",
       "properties": {
         "isCanceled": {
-          "description": "True if cancellation performed successfully",
+          "description": "True if cancellation performed successfully.",
           "type": "boolean"
         }
       },
@@ -11190,6 +11311,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaExecuteTestCasesRequest": {
+      "description": "Request for ExecuteTestCases.",
+      "id": "GoogleCloudIntegrationsV1alphaExecuteTestCasesRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaExecuteTestCasesResponse": {
+      "description": "Response for ExecuteTestCases.",
+      "id": "GoogleCloudIntegrationsV1alphaExecuteTestCasesResponse",
+      "properties": {
+        "executeTestCaseResponses": {
+          "description": "Results of each execution of test cases in an integration version.",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaExecuteTestCaseResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaExecution": {
       "description": "The Execution resource contains detailed information of an individual integration execution.",
       "id": "GoogleCloudIntegrationsV1alphaExecution",
@@ -11370,6 +11511,20 @@
           "description": "If this execution is a replay of another execution, then this field contains the original execution id.",
           "type": "string"
         },
+        "replayMode": {
+          "description": "Replay mode for the execution",
+          "enum": [
+            "REPLAY_MODE_UNSPECIFIED",
+            "REPLAY_MODE_FROM_BEGINNING",
+            "REPLAY_MODE_POINT_OF_FAILURE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Replay the original execution from the beginning.",
+            "Replay the execution from the first failed task."
+          ],
+          "type": "string"
+        },
         "replayReason": {
           "description": "reason for replay",
           "type": "string"
@@ -11533,6 +11688,45 @@
             "Integration file.",
             "Integration Config variables."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest": {
+      "description": "Request for GenerateOpenApiSpec.",
+      "id": "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecRequest",
+      "properties": {
+        "apiTriggerResources": {
+          "description": "Required. List of api triggers",
+          "items": {
+            "$ref": "GoogleCloudIntegrationsV1alphaApiTriggerResource"
+          },
+          "type": "array"
+        },
+        "fileFormat": {
+          "description": "Required. File format for generated spec.",
+          "enum": [
+            "FILE_FORMAT_UNSPECIFIED",
+            "JSON",
+            "YAML"
+          ],
+          "enumDescriptions": [
+            "Unspecified file format",
+            "JSON File Format",
+            "YAML File Format"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecResponse": {
+      "description": "Response of the GenerateOpenApiSpec API.",
+      "id": "GoogleCloudIntegrationsV1alphaGenerateOpenApiSpecResponse",
+      "properties": {
+        "openApiSpec": {
+          "description": "Open API spec as per the required format",
           "type": "string"
         }
       },
@@ -12936,22 +13130,22 @@
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaReplayExecutionRequest": {
-      "description": "Request for replaying an execution Next ID: 3",
+      "description": "Request for replaying an execution.",
       "id": "GoogleCloudIntegrationsV1alphaReplayExecutionRequest",
       "properties": {
         "replayReason": {
-          "description": "Optional. The user provided reason for replaying the execution.",
+          "description": "Required. The user provided reason for replaying the execution.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaReplayExecutionResponse": {
-      "description": "Response for replaying an execution Next ID: 4",
+      "description": "Response for replaying an execution.",
       "id": "GoogleCloudIntegrationsV1alphaReplayExecutionResponse",
       "properties": {
         "executionId": {
-          "description": "The id of the execution corresponding to this run of integration.",
+          "description": "Next ID: 4 The id of the execution corresponding to this run of the integration.",
           "type": "string"
         },
         "outputParameters": {
@@ -12959,11 +13153,11 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. The parameters would only be present in case of synchrounous execution Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
+          "description": "OUTPUT parameters in format of Map. Where Key is the name of the parameter. The parameters would only be present in case of synchrounous execution. Note: Name of the system generated parameters are wrapped by backtick(`) to distinguish them from the user defined parameters.",
           "type": "object"
         },
         "replayedExecutionId": {
-          "description": "The execution id which is replayed",
+          "description": "The execution id which is replayed.",
           "type": "string"
         }
       },
@@ -13025,7 +13219,7 @@
       "type": "object"
     },
     "GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest": {
-      "description": "The request for scheduling an integration. Next available id: 11",
+      "description": "The request for scheduling an integration.",
       "id": "GoogleCloudIntegrationsV1alphaScheduleIntegrationsRequest",
       "properties": {
         "inputParameters": {
@@ -14037,11 +14231,8 @@
           "type": "string"
         },
         "inputVariables": {
-          "description": "Optional. List of input variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "GoogleCloudIntegrationsV1alphaTriggerConfigVariables",
+          "description": "Optional. List of input variables for the api trigger."
         },
         "label": {
           "description": "Optional. The user created label for a particular trigger.",
@@ -14062,11 +14253,8 @@
           "type": "string"
         },
         "outputVariables": {
-          "description": "Optional. List of output variables for the api trigger.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
+          "$ref": "GoogleCloudIntegrationsV1alphaTriggerConfigVariables",
+          "description": "Optional. List of output variables for the api trigger."
         },
         "position": {
           "$ref": "GoogleCloudIntegrationsV1alphaCoordinate",
@@ -14110,7 +14298,8 @@
             "CLOUD_SCHEDULER",
             "INTEGRATION_CONNECTOR_TRIGGER",
             "PRIVATE_TRIGGER",
-            "CLOUD_PUBSUB"
+            "CLOUD_PUBSUB",
+            "EVENTARC_TRIGGER"
           ],
           "enumDescriptions": [
             "Unknown.",
@@ -14122,9 +14311,24 @@
             "Trigger by Cloud Scheduler job.",
             "Trigger by Connector Event",
             "Trigger for private workflow",
-            "Trigger by cloud pub/sub for internal ip"
+            "Trigger by cloud pub/sub for internal ip",
+            "Trigger by Eventarc"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaTriggerConfigVariables": {
+      "description": "Variables names mapped to api trigger.",
+      "id": "GoogleCloudIntegrationsV1alphaTriggerConfigVariables",
+      "properties": {
+        "names": {
+          "description": "Optional. List of variable names.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

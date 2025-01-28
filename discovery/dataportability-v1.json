@@ -3,199 +3,202 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/dataportability.alerts.subscriptions": {
-          "description": "Move a copy of the Google Alerts subscriptions you created."
+          "description": "Move a copy of the Google Alerts subscriptions you created"
         },
         "https://www.googleapis.com/auth/dataportability.businessmessaging.conversations": {
-          "description": "Move a copy of messages between you and the businesses you have conversations with across Google services."
+          "description": "Move a copy of messages between you and the businesses you have conversations with across Google services"
         },
         "https://www.googleapis.com/auth/dataportability.chrome.autofill": {
-          "description": "Move a copy of the information you entered into online forms in Chrome."
+          "description": "Move a copy of the information you entered into online forms in Chrome"
         },
         "https://www.googleapis.com/auth/dataportability.chrome.bookmarks": {
-          "description": "Move a copy of pages you bookmarked in Chrome."
+          "description": "Move a copy of pages you bookmarked in Chrome"
         },
         "https://www.googleapis.com/auth/dataportability.chrome.dictionary": {
-          "description": "Move a copy of words you added to Chrome's dictionary."
+          "description": "Move a copy of words you added to Chrome's dictionary"
         },
         "https://www.googleapis.com/auth/dataportability.chrome.extensions": {
-          "description": "Move a copy of extensions you installed from the Chrome Web Store."
+          "description": "Move a copy of extensions you installed from the Chrome Web Store"
         },
         "https://www.googleapis.com/auth/dataportability.chrome.history": {
-          "description": "Move a copy of sites you visited in Chrome."
+          "description": "Move a copy of sites you visited in Chrome"
         },
         "https://www.googleapis.com/auth/dataportability.chrome.reading_list": {
-          "description": "Move a copy of pages you added to your reading list in Chrome."
+          "description": "Move a copy of pages you added to your reading list in Chrome"
         },
         "https://www.googleapis.com/auth/dataportability.chrome.settings": {
-          "description": "Move a copy of your settings in Chrome."
+          "description": "Move a copy of your settings in Chrome"
         },
         "https://www.googleapis.com/auth/dataportability.discover.follows": {
-          "description": "Move a copy of searches and sites you follow, saved by Discover."
+          "description": "Move a copy of searches and sites you follow, saved by Discover"
         },
         "https://www.googleapis.com/auth/dataportability.discover.likes": {
-          "description": "Move a copy of links to your liked documents, saved by Discover."
+          "description": "Move a copy of links to your liked documents, saved by Discover"
         },
         "https://www.googleapis.com/auth/dataportability.discover.not_interested": {
-          "description": "Move a copy of content you marked as not interested, saved by Discover."
+          "description": "Move a copy of content you marked as not interested, saved by Discover"
         },
         "https://www.googleapis.com/auth/dataportability.maps.aliased_places": {
-          "description": "Move a copy of the places you labeled on Maps."
+          "description": "Move a copy of the places you labeled on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.commute_routes": {
-          "description": "Move a copy of your pinned trips on Maps."
+          "description": "Move a copy of your pinned trips on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.commute_settings": {
-          "description": "Move a copy of your commute settings on Maps."
+          "description": "Move a copy of your commute settings on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.ev_profile": {
-          "description": "Move a copy of your electric vehicle profile on Maps."
+          "description": "Move a copy of your electric vehicle profile on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.factual_contributions": {
-          "description": "Move a copy of the corrections you made to places or map information on Maps."
+          "description": "Move a copy of the corrections you made to places or map information on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.offering_contributions": {
-          "description": "Move a copy of your updates to places on Maps."
+          "description": "Move a copy of your updates to places on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.photos_videos": {
-          "description": "Move a copy of the photos and videos you posted on Maps."
+          "description": "Move a copy of the photos and videos you posted on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.questions_answers": {
-          "description": "Move a copy of the questions and answers you posted on Maps."
+          "description": "Move a copy of the questions and answers you posted on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.reviews": {
-          "description": "Move a copy of your reviews and posts on Maps."
+          "description": "Move a copy of your reviews and posts on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.maps.starred_places": {
-          "description": "Move a copy of your Starred places list on Maps."
+          "description": "Move a copy of your Starred places list on Maps"
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.maps": {
-          "description": "Move a copy of your Maps activity."
+          "description": "Move a copy of your Maps activity"
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.myadcenter": {
-          "description": "Move a copy of your My Ad Center activity."
+          "description": "Move a copy of your My Ad Center activity"
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.play": {
-          "description": "Move a copy of your Google Play activity."
+          "description": "Move a copy of your Google Play activity"
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.search": {
-          "description": "Move a copy of your Google Search activity."
+          "description": "Move a copy of your Google Search activity"
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.shopping": {
-          "description": "Move a copy of your Shopping activity."
+          "description": "Move a copy of your Shopping activity"
         },
         "https://www.googleapis.com/auth/dataportability.myactivity.youtube": {
-          "description": "Move a copy of your YouTube activity."
+          "description": "Move a copy of your YouTube activity"
         },
         "https://www.googleapis.com/auth/dataportability.mymaps.maps": {
-          "description": "Move a copy of the maps you created in My Maps."
+          "description": "Move a copy of the maps you created in My Maps"
         },
         "https://www.googleapis.com/auth/dataportability.order_reserve.purchases_reservations": {
-          "description": "Move a copy of your food purchase and reservation activity."
+          "description": "Move a copy of your food purchase and reservation activity"
         },
         "https://www.googleapis.com/auth/dataportability.play.devices": {
-          "description": "Move a copy of information about your devices with Google Play Store installed."
+          "description": "Move a copy of information about your devices with Google Play Store installed"
         },
         "https://www.googleapis.com/auth/dataportability.play.grouping": {
-          "description": "Move a copy of your Google Play Store Grouping tags created by app developers."
+          "description": "Move a copy of your Google Play Store Grouping tags created by app developers"
         },
         "https://www.googleapis.com/auth/dataportability.play.installs": {
-          "description": "Move a copy of your Google Play Store app installations."
+          "description": "Move a copy of your Google Play Store app installations"
         },
         "https://www.googleapis.com/auth/dataportability.play.library": {
-          "description": "Move a copy of your Google Play Store downloads, including books, games, and apps."
+          "description": "Move a copy of your Google Play Store downloads, including books, games, and apps"
         },
         "https://www.googleapis.com/auth/dataportability.play.playpoints": {
-          "description": "Move a copy of information about your Google Play Store Points."
+          "description": "Move a copy of information about your Google Play Store Points"
         },
         "https://www.googleapis.com/auth/dataportability.play.promotions": {
-          "description": "Move a copy of information about your Google Play Store promotions."
+          "description": "Move a copy of information about your Google Play Store promotions"
         },
         "https://www.googleapis.com/auth/dataportability.play.purchases": {
-          "description": "Move a copy of your Google Play Store purchases."
+          "description": "Move a copy of your Google Play Store purchases"
         },
         "https://www.googleapis.com/auth/dataportability.play.redemptions": {
-          "description": "Move a copy of your Google Play Store redemption activities."
+          "description": "Move a copy of your Google Play Store redemption activities"
         },
         "https://www.googleapis.com/auth/dataportability.play.subscriptions": {
-          "description": "Move a copy of your Google Play Store subscriptions."
+          "description": "Move a copy of your Google Play Store subscriptions"
         },
         "https://www.googleapis.com/auth/dataportability.play.usersettings": {
-          "description": "Move a copy of your Google Play Store user settings and preferences."
+          "description": "Move a copy of your Google Play Store user settings and preferences"
         },
         "https://www.googleapis.com/auth/dataportability.saved.collections": {
-          "description": "Move a copy of your saved links, images, places, and collections from your use of Google services."
+          "description": "Move a copy of your saved links, images, places, and collections from your use of Google services"
+        },
+        "https://www.googleapis.com/auth/dataportability.search_ugc.comments": {
+          "description": "Move a copy of your comments on Google Search"
         },
         "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars": {
-          "description": "Move a copy of your media reviews on Google Search."
+          "description": "Move a copy of your media reviews on Google Search"
         },
         "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers": {
-          "description": "Move a copy of your self-reported video streaming provider preferences from Google Search and Google TV."
+          "description": "Move a copy of your self-reported video streaming provider preferences from Google Search and Google TV"
         },
         "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs": {
-          "description": "Move a copy of your indicated thumbs up and thumbs down on media in Google Search and Google TV."
+          "description": "Move a copy of your indicated thumbs up and thumbs down on media in Google Search and Google TV"
         },
         "https://www.googleapis.com/auth/dataportability.search_ugc.media.watched": {
-          "description": "Move a copy of information about the movies and TV shows you marked as watched on Google Search and Google TV."
+          "description": "Move a copy of information about the movies and TV shows you marked as watched on Google Search and Google TV"
         },
         "https://www.googleapis.com/auth/dataportability.searchnotifications.settings": {
-          "description": "Move a copy of your notification settings on the Google Search app."
+          "description": "Move a copy of your notification settings on the Google Search app"
         },
         "https://www.googleapis.com/auth/dataportability.searchnotifications.subscriptions": {
-          "description": "Move a copy of your notification subscriptions on Google Search app."
+          "description": "Move a copy of your notification subscriptions on Google Search app"
         },
         "https://www.googleapis.com/auth/dataportability.shopping.addresses": {
-          "description": "Move a copy of your shipping information on Shopping."
+          "description": "Move a copy of your shipping information on Shopping"
         },
         "https://www.googleapis.com/auth/dataportability.shopping.reviews": {
-          "description": "Move a copy of reviews you wrote about products or online stores on Google Search."
+          "description": "Move a copy of reviews you wrote about products or online stores on Google Search"
         },
         "https://www.googleapis.com/auth/dataportability.streetview.imagery": {
-          "description": "Move a copy of the images and videos you uploaded to Street View."
+          "description": "Move a copy of the images and videos you uploaded to Street View"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.channel": {
-          "description": "Move a copy of information about your YouTube channel."
+          "description": "Move a copy of information about your YouTube channel"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.clips": {
-          "description": "Move a copy of your YouTube clips metadata."
+          "description": "Move a copy of your YouTube clips metadata"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.comments": {
-          "description": "Move a copy of your YouTube comments."
+          "description": "Move a copy of your YouTube comments"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.live_chat": {
-          "description": "Move a copy of your YouTube messages in live chat."
+          "description": "Move a copy of your YouTube messages in live chat"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.music": {
-          "description": "Move a copy of your uploaded YouTube music tracks and your YouTube music library."
+          "description": "Move a copy of your uploaded YouTube music tracks and your YouTube music library"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.playable": {
-          "description": "Move a copy of your YouTube playables saved game progress files."
+          "description": "Move a copy of your YouTube playables saved game progress files"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.posts": {
-          "description": "Move a copy of your YouTube posts."
+          "description": "Move a copy of your YouTube posts"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.private_playlists": {
-          "description": "Move a copy of your YouTube private playlists."
+          "description": "Move a copy of your YouTube private playlists"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.private_videos": {
-          "description": "Move a copy of your private YouTube videos and information about them."
+          "description": "Move a copy of your private YouTube videos and information about them"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.public_playlists": {
-          "description": "Move a copy of your public YouTube playlists."
+          "description": "Move a copy of your public YouTube playlists"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.public_videos": {
-          "description": "Move a copy of your public YouTube videos and information about them."
+          "description": "Move a copy of your public YouTube videos and information about them"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.shopping": {
-          "description": "Move a copy of your YouTube shopping wishlists, and wishlist items."
+          "description": "Move a copy of your YouTube shopping wishlists, and wishlist items"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.subscriptions": {
-          "description": "Move a copy of your YouTube channel subscriptions, even if they're private."
+          "description": "Move a copy of your YouTube channel subscriptions, even if they're private"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.unlisted_playlists": {
-          "description": "Move a copy of your unlisted YouTube playlists."
+          "description": "Move a copy of your unlisted YouTube playlists"
         },
         "https://www.googleapis.com/auth/dataportability.youtube.unlisted_videos": {
-          "description": "Move a copy of your unlisted YouTube videos and information about them."
+          "description": "Move a copy of your unlisted YouTube videos and information about them"
         }
       }
     }
@@ -362,6 +365,7 @@
             "https://www.googleapis.com/auth/dataportability.play.subscriptions",
             "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.comments",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
@@ -454,6 +458,7 @@
             "https://www.googleapis.com/auth/dataportability.play.subscriptions",
             "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.comments",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
@@ -540,6 +545,7 @@
             "https://www.googleapis.com/auth/dataportability.play.subscriptions",
             "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.comments",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
@@ -626,6 +632,7 @@
             "https://www.googleapis.com/auth/dataportability.play.subscriptions",
             "https://www.googleapis.com/auth/dataportability.play.usersettings",
             "https://www.googleapis.com/auth/dataportability.saved.collections",
+            "https://www.googleapis.com/auth/dataportability.search_ugc.comments",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.reviews_and_stars",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.streaming_video_providers",
             "https://www.googleapis.com/auth/dataportability.search_ugc.media.thumbs",
@@ -655,7 +662,7 @@
       }
     }
   },
-  "revision": "20240828",
+  "revision": "20250120",
   "rootUrl": "https://dataportability.googleapis.com/",
   "schemas": {
     "Empty": {

@@ -15,6 +15,7 @@
   "description": "Programmatically creates and manages Firebase Dynamic Links.",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/dynamic-links/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -224,7 +225,7 @@
       }
     }
   },
-  "revision": "20240821",
+  "revision": "20241125",
   "rootUrl": "https://firebasedynamiclinks.googleapis.com/",
   "schemas": {
     "AnalyticsInfo": {
