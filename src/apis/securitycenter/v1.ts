@@ -295,13 +295,21 @@ export namespace securitycenter_v1 {
      */
     classification?: string | null;
     /**
-     * Total BPS (bytes per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack. Deprecated - refer to volume_bps_long instead.
      */
     volumeBps?: number | null;
     /**
-     * Total PPS (packets per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack.
+     */
+    volumeBpsLong?: string | null;
+    /**
+     * Total PPS (packets per second) volume of attack. Deprecated - refer to volume_pps_long instead.
      */
     volumePps?: number | null;
+    /**
+     * Total PPS (packets per second) volume of attack.
+     */
+    volumePpsLong?: string | null;
   }
   /**
    * An attack exposure contains the results of an attack path simulation run.
@@ -667,15 +675,6 @@ export namespace securitycenter_v1 {
      * Optional. All findings matching the given filter will have their mute state set to this value. The default value is `MUTED`. Setting this to `UNDEFINED` will clear the mute state on all matching findings.
      */
     muteState?: string | null;
-  }
-  /**
-   * YAML-based rule that uses CEL, which supports the declaration of variables and a filtering predicate. A vulnerable resource is emitted if the evaluation is false. Given: 1) the resource types as: - resource_types: "compute.googleapis.com/Instance" - resource_types: "compute.googleapis.com/Firewall" 2) the CEL policy spec as: name: bad_instance resource_filters: - name: instance resource_type: compute.googleapis.com/Instance filter: \> instance.status == 'RUNNING' && 'public' in instance.tags.items - name: firewall resource_type: compute.googleapis.com/Firewall filter: \> firewall.direction == 'INGRESS' && !firewall.disabled && firewall.allowed.exists(rule, rule.IPProtocol.upperAscii() in ['TCP', 'ALL'] && rule.ports.exists(port, network.portsInRange(port, '11-256'))) rule: match: - predicate: \> instance.networkInterfaces.exists(net, firewall.network == net.network) output: \> {'message': 'Compute instance with publicly accessible ports', 'instance': instance.name\} Users are able to join resource types together using the exact format as Kubernetes Validating Admission policies.
-   */
-  export interface Schema$CelPolicySpec {
-    /**
-     * The CEL policy to evaluate to produce findings. A finding is generated when the policy validation evaluates to false.
-     */
-    spec?: string | null;
   }
   /**
    * Fields related to Google Cloud Armor findings.
@@ -1085,6 +1084,27 @@ export namespace securitycenter_v1 {
     violatedLocation?: string | null;
   }
   /**
+   * Details about data retention deletion violations, in which the data is non-compliant based on their retention or deletion time, as defined in the applicable data security policy. The Data Retention Deletion (DRD) control is a control of the DSPM (Data Security Posture Management) suite that enables organizations to manage data retention and deletion policies in compliance with regulations, such as GDPR and CRPA. DRD supports two primary policy types: maximum storage length (max TTL) and minimum storage length (min TTL). Both are aimed at helping organizations meet regulatory and data management commitments.
+   */
+  export interface Schema$DataRetentionDeletionEvent {
+    /**
+     * Number of objects that violated the policy for this resource. If the number is less than 1,000, then the value of this field is the exact number. If the number of objects that violated the policy is greater than or equal to 1,000, then the value of this field is 1000.
+     */
+    dataObjectCount?: string | null;
+    /**
+     * Timestamp indicating when the event was detected.
+     */
+    eventDetectionTime?: string | null;
+    /**
+     * Type of the DRD event.
+     */
+    eventType?: string | null;
+    /**
+     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
+     */
+    maxRetentionAllowed?: string | null;
+  }
+  /**
    * Memory hash detection contributing to the binary family match.
    */
   export interface Schema$Detection {
@@ -1096,6 +1116,15 @@ export namespace securitycenter_v1 {
      * The percentage of memory page hashes in the signature that were matched.
      */
     percentPagesMatched?: number | null;
+  }
+  /**
+   * Contains information about the disk associated with the finding.
+   */
+  export interface Schema$Disk {
+    /**
+     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id".
+     */
+    name?: string | null;
   }
   /**
    * Path of the file in terms of underlying disk/partition identifiers.
@@ -1127,6 +1156,10 @@ export namespace securitycenter_v1 {
    * An EffectiveEventThreatDetectionCustomModule is the representation of an Event Threat Detection custom module at a specified level of the resource hierarchy: organization, folder, or project. If a custom module is inherited from a parent organization or folder, the value of the `enablement_state` property in EffectiveEventThreatDetectionCustomModule is set to the value that is effective in the parent, instead of `INHERITED`. For example, if the module is enabled in a parent organization or folder, the effective `enablement_state` for the module in all child folders or projects is also `enabled`. EffectiveEventThreatDetectionCustomModule is read-only.
    */
   export interface Schema$EffectiveEventThreatDetectionCustomModule {
+    /**
+     * The cloud provider of the custom module.
+     */
+    cloudProvider?: string | null;
     /**
      * Output only. Config for the effective module.
      */
@@ -1177,6 +1210,10 @@ export namespace securitycenter_v1 {
      * Output only. The closest ancestor module that this module inherits the enablement state from. The format is the same as the EventThreatDetectionCustomModule resource name.
      */
     ancestorModule?: string | null;
+    /**
+     * The cloud provider of the custom module.
+     */
+    cloudProvider?: string | null;
     /**
      * Config for the module. For the resident module, its config value is defined at this level. For the inherited module, its config value is inherited from the ancestor module.
      */
@@ -1367,9 +1404,17 @@ export namespace securitycenter_v1 {
      */
     dataFlowEvents?: Schema$DataFlowEvent[];
     /**
+     * Data retention deletion events associated with the finding.
+     */
+    dataRetentionDeletionEvents?: Schema$DataRetentionDeletionEvent[];
+    /**
      * Contains more details about the finding.
      */
     description?: string | null;
+    /**
+     * Disk associated with the finding.
+     */
+    disk?: Schema$Disk;
     /**
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
@@ -1658,10 +1703,6 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1CustomConfig {
     /**
-     * The CEL policy spec attached to the custom module.
-     */
-    celPolicy?: Schema$CelPolicySpec;
-    /**
      * Custom output properties.
      */
     customOutput?: Schema$GoogleCloudSecuritycenterV1CustomOutputSpec;
@@ -1699,6 +1740,10 @@ export namespace securitycenter_v1 {
    * An EffectiveSecurityHealthAnalyticsCustomModule is the representation of a Security Health Analytics custom module at a specified level of the resource hierarchy: organization, folder, or project. If a custom module is inherited from a parent organization or folder, the value of the `enablementState` property in EffectiveSecurityHealthAnalyticsCustomModule is set to the value that is effective in the parent, instead of `INHERITED`. For example, if the module is enabled in a parent organization or folder, the effective enablement_state for the module in all child folders or projects is also `enabled`. EffectiveSecurityHealthAnalyticsCustomModule is read-only.
    */
   export interface Schema$GoogleCloudSecuritycenterV1EffectiveSecurityHealthAnalyticsCustomModule {
+    /**
+     * The cloud provider of the custom module.
+     */
+    cloudProvider?: string | null;
     /**
      * Output only. The user-specified configuration for the module.
      */
@@ -2097,7 +2142,7 @@ export namespace securitycenter_v1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV1SensitiveDataProtectionMapping;
     /**
-     * Required. Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Required. Tag values combined with `AND` to check against. For Google Cloud resources, they are tag value IDs in the form of "tagValues/123". Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -2126,6 +2171,10 @@ export namespace securitycenter_v1 {
      * Output only. If empty, indicates that the custom module was created in the organization, folder, or project in which you are viewing the custom module. Otherwise, `ancestor_module` specifies the organization or folder from which the custom module is inherited.
      */
     ancestorModule?: string | null;
+    /**
+     * The cloud provider of the custom module.
+     */
+    cloudProvider?: string | null;
     /**
      * The user specified custom configuration for the module.
      */
@@ -2277,13 +2326,21 @@ export namespace securitycenter_v1 {
      */
     classification?: string | null;
     /**
-     * Total BPS (bytes per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack. Deprecated - refer to volume_bps_long instead.
      */
     volumeBps?: number | null;
     /**
-     * Total PPS (packets per second) volume of attack.
+     * Total BPS (bytes per second) volume of attack.
+     */
+    volumeBpsLong?: string | null;
+    /**
+     * Total PPS (packets per second) volume of attack. Deprecated - refer to volume_pps_long instead.
      */
     volumePps?: number | null;
+    /**
+     * Total PPS (packets per second) volume of attack.
+     */
+    volumePpsLong?: string | null;
   }
   /**
    * An attack exposure contains the results of an attack path simulation run.
@@ -2881,6 +2938,27 @@ export namespace securitycenter_v1 {
     violatedLocation?: string | null;
   }
   /**
+   * Details about data retention deletion violations, in which the data is non-compliant based on their retention or deletion time, as defined in the applicable data security policy. The Data Retention Deletion (DRD) control is a control of the DSPM (Data Security Posture Management) suite that enables organizations to manage data retention and deletion policies in compliance with regulations, such as GDPR and CRPA. DRD supports two primary policy types: maximum storage length (max TTL) and minimum storage length (min TTL). Both are aimed at helping organizations meet regulatory and data management commitments.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2DataRetentionDeletionEvent {
+    /**
+     * Number of objects that violated the policy for this resource. If the number is less than 1,000, then the value of this field is the exact number. If the number of objects that violated the policy is greater than or equal to 1,000, then the value of this field is 1000.
+     */
+    dataObjectCount?: string | null;
+    /**
+     * Timestamp indicating when the event was detected.
+     */
+    eventDetectionTime?: string | null;
+    /**
+     * Type of the DRD event.
+     */
+    eventType?: string | null;
+    /**
+     * Maximum duration of retention allowed from the DRD control. This comes from the DRD control where users set a max TTL for their data. For example, suppose that a user set the max TTL for a Cloud Storage bucket to 90 days. However, an object in that bucket is 100 days old. In this case, a DataRetentionDeletionEvent will be generated for that Cloud Storage bucket, and the max_retention_allowed is 90 days.
+     */
+    maxRetentionAllowed?: string | null;
+  }
+  /**
    * Memory hash detection contributing to the binary family match.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Detection {
@@ -2892,6 +2970,15 @@ export namespace securitycenter_v1 {
      * The percentage of memory page hashes in the signature that were matched.
      */
     percentPagesMatched?: number | null;
+  }
+  /**
+   * Contains information about the disk associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Disk {
+    /**
+     * The name of the disk, for example, "https://www.googleapis.com/compute/v1/projects/project-id/zones/zone-id/disks/disk-id".
+     */
+    name?: string | null;
   }
   /**
    * Path of the file in terms of underlying disk/partition identifiers.
@@ -3119,9 +3206,17 @@ export namespace securitycenter_v1 {
      */
     dataFlowEvents?: Schema$GoogleCloudSecuritycenterV2DataFlowEvent[];
     /**
+     * Data retention deletion events associated with the finding.
+     */
+    dataRetentionDeletionEvents?: Schema$GoogleCloudSecuritycenterV2DataRetentionDeletionEvent[];
+    /**
      * Contains more details about the finding.
      */
     description?: string | null;
+    /**
+     * Disk associated with the finding.
+     */
+    disk?: Schema$GoogleCloudSecuritycenterV2Disk;
     /**
      * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
@@ -3333,6 +3428,269 @@ export namespace securitycenter_v1 {
      * The list of URIs associated to the Findings.
      */
     uris?: string[] | null;
+  }
+  /**
+   * Security Command Center Issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Issue {
+    /**
+     * Output only. The time the issue was created.
+     */
+    createTime?: string | null;
+    /**
+     * The description of the issue in Markdown format.
+     */
+    description?: string | null;
+    /**
+     * The finding category or rule name that generated the issue.
+     */
+    detection?: string | null;
+    /**
+     * The domains of the issue.
+     */
+    domains?: Schema$GoogleCloudSecuritycenterV2IssueDomain[];
+    /**
+     * The exposure score of the issue.
+     */
+    exposureScore?: number | null;
+    /**
+     * The type of the issue.
+     */
+    issueType?: string | null;
+    /**
+     * The time the issue was last observed.
+     */
+    lastObservationTime?: string | null;
+    /**
+     * The mute information of the issue.
+     */
+    mute?: Schema$GoogleCloudSecuritycenterV2IssueMute;
+    /**
+     * Identifier. The name of the issue. Format: organizations/{organization\}/locations/{location\}/issues/{issue\}
+     */
+    name?: string | null;
+    /**
+     * The primary resource associated with the issue.
+     */
+    primaryResource?: Schema$GoogleCloudSecuritycenterV2IssueResource;
+    /**
+     * The findings related to the issue.
+     */
+    relatedFindings?: Schema$GoogleCloudSecuritycenterV2IssueFinding[];
+    /**
+     * Approaches to remediate the issue in Markdown format.
+     */
+    remediations?: string[] | null;
+    /**
+     * Additional resources associated with the issue.
+     */
+    secondaryResources?: Schema$GoogleCloudSecuritycenterV2IssueResource[];
+    /**
+     * The security context of the issue.
+     */
+    securityContexts?: Schema$GoogleCloudSecuritycenterV2IssueSecurityContext[];
+    /**
+     * The severity of the issue.
+     */
+    severity?: string | null;
+    /**
+     * Output only. The state of the issue.
+     */
+    state?: string | null;
+    /**
+     * Output only. The time the issue was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The domains of an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueDomain {
+    /**
+     * The domain category of the issue.
+     */
+    domainCategory?: string | null;
+  }
+  /**
+   * Finding related to an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueFinding {
+    /**
+     * The CVE of the finding.
+     */
+    cve?: Schema$GoogleCloudSecuritycenterV2IssueFindingCve;
+    /**
+     * The name of the finding.
+     */
+    name?: string | null;
+    /**
+     * The security bulletin of the finding.
+     */
+    securityBulletin?: Schema$GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin;
+  }
+  /**
+   * The CVE of the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueFindingCve {
+    /**
+     * The CVE name.
+     */
+    name?: string | null;
+  }
+  /**
+   * The security bulletin of the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueFindingSecurityBulletin {
+    /**
+     * The security bulletin name.
+     */
+    name?: string | null;
+  }
+  /**
+   * The mute information of the issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueMute {
+    /**
+     * The email address of the user who last changed the mute state of the issue.
+     */
+    muteInitiator?: string | null;
+    /**
+     * The user-provided reason for muting the issue.
+     */
+    muteReason?: string | null;
+    /**
+     * Output only. The mute state of the issue.
+     */
+    muteState?: string | null;
+    /**
+     * The time the issue was muted.
+     */
+    muteUpdateTime?: string | null;
+  }
+  /**
+   * A resource associated with the an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResource {
+    /**
+     * The AWS metadata of the resource associated with the issue. Only populated for AWS resources.
+     */
+    awsMetadata?: Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadata;
+    /**
+     * The Azure metadata of the resource associated with the issue. Only populated for Azure resources.
+     */
+    azureMetadata?: Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadata;
+    /**
+     * The cloud provider of the resource associated with the issue.
+     */
+    cloudProvider?: string | null;
+    /**
+     * The resource-type specific display name of the resource associated with the issue.
+     */
+    displayName?: string | null;
+    /**
+     * The Google Cloud metadata of the resource associated with the issue. Only populated for Google Cloud resources.
+     */
+    googleCloudMetadata?: Schema$GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata;
+    /**
+     * The full resource name of the resource associated with the issue.
+     */
+    name?: string | null;
+    /**
+     * The type of the resource associated with the issue.
+     */
+    type?: string | null;
+  }
+  /**
+   * The AWS metadata of a resource associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadata {
+    /**
+     * The AWS account of the resource associated with the issue.
+     */
+    account?: Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount;
+  }
+  /**
+   * The AWS account of the resource associated with the issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadataAwsAccount {
+    /**
+     * The AWS account ID of the resource associated with the issue.
+     */
+    id?: string | null;
+    /**
+     * The AWS account name of the resource associated with the issue.
+     */
+    name?: string | null;
+  }
+  /**
+   * The Azure metadata of a resource associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadata {
+    /**
+     * The Azure subscription of the resource associated with the issue.
+     */
+    subscription?: Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription;
+  }
+  /**
+   * The Azure subscription of the resource associated with the issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceAzureMetadataAzureSubscription {
+    /**
+     * The Azure subscription display name of the resource associated with the issue.
+     */
+    displayName?: string | null;
+    /**
+     * The Azure subscription ID of the resource associated with the issue.
+     */
+    id?: string | null;
+  }
+  /**
+   * Google Cloud metadata of a resource associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceGoogleCloudMetadata {
+    /**
+     * The project ID that the resource associated with the issue belongs to.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * Security context associated with an issue.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueSecurityContext {
+    /**
+     * The aggregated count of the security context.
+     */
+    aggregatedCount?: Schema$GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount;
+    /**
+     * The context of the security context.
+     */
+    context?: Schema$GoogleCloudSecuritycenterV2IssueSecurityContextContext;
+  }
+  /**
+   * Aggregated count of a security context.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueSecurityContextAggregatedCount {
+    /**
+     * Aggregation key.
+     */
+    key?: string | null;
+    /**
+     * Aggregation value.
+     */
+    value?: number | null;
+  }
+  /**
+   * Context of a security context.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueSecurityContextContext {
+    /**
+     * Context type.
+     */
+    type?: string | null;
+    /**
+     * Context values.
+     */
+    values?: string[] | null;
   }
   /**
    * Kernel mode rootkit signatures.
@@ -3892,7 +4250,7 @@ export namespace securitycenter_v1 {
      */
     sensitiveDataProtectionMapping?: Schema$GoogleCloudSecuritycenterV2SensitiveDataProtectionMapping;
     /**
-     * Tag values combined with `AND` to check against. Values in the form "tagValues/123" Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
+     * Tag values combined with `AND` to check against. For Google Cloud resources, they are tag value IDs in the form of "tagValues/123". Example: `[ "tagValues/123", "tagValues/456", "tagValues/789" ]` https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing
      */
     tagValues?: string[] | null;
     /**
@@ -5336,7 +5694,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$SetFindingStateRequest {
     /**
-     * Required. The time at which the updated state takes effect.
+     * Optional. The time at which the updated state takes effect. If unset, defaults to the request time.
      */
     startTime?: string | null;
     /**
@@ -11021,6 +11379,7 @@ export namespace securitycenter_v1 {
   export class Resource$Organizations {
     context: APIRequestContext;
     assets: Resource$Organizations$Assets;
+    attackPaths: Resource$Organizations$Attackpaths;
     bigQueryExports: Resource$Organizations$Bigqueryexports;
     eventThreatDetectionSettings: Resource$Organizations$Eventthreatdetectionsettings;
     findings: Resource$Organizations$Findings;
@@ -11036,6 +11395,7 @@ export namespace securitycenter_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Organizations$Assets(this.context);
+      this.attackPaths = new Resource$Organizations$Attackpaths(this.context);
       this.bigQueryExports = new Resource$Organizations$Bigqueryexports(
         this.context
       );
@@ -11718,6 +12078,127 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityMarks;
+  }
+
+  export class Resource$Organizations$Attackpaths {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the attack paths for a set of simulation results or valued resources and filter.
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Attackpaths$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Attackpaths$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAttackPathsResponse>;
+    list(
+      params: Params$Resource$Organizations$Attackpaths$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Attackpaths$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Attackpaths$List,
+      callback: BodyResponseCallback<Schema$ListAttackPathsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAttackPathsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Attackpaths$List
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAttackPathsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAttackPathsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Attackpaths$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Attackpaths$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/attackPaths').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAttackPathsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAttackPathsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Attackpaths$List
+    extends StandardParameters {
+    /**
+     * The filter expression that filters the attack path in the response. Supported fields: * `valued_resources` supports =
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return in a single response. Default is 10, minimum is 1, maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListAttackPathsResponse`; indicates that this is a continuation of a prior `ListAttackPaths` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of parent to list attack paths. Valid formats: `organizations/{organization\}`, `organizations/{organization\}/simulations/{simulation\}` `organizations/{organization\}/simulations/{simulation\}/attackExposureResults/{attack_exposure_result_v2\}` `organizations/{organization\}/simulations/{simulation\}/valuedResources/{valued_resource\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Organizations$Bigqueryexports {
@@ -14771,7 +15252,7 @@ export namespace securitycenter_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
