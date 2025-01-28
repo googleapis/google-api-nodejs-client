@@ -273,6 +273,36 @@ export namespace dataflow_v1b3 {
     tableId?: string | null;
   }
   /**
+   * The message type used for encoding metrics of type bounded trie.
+   */
+  export interface Schema$BoundedTrie {
+    /**
+     * The maximum number of elements to store before truncation.
+     */
+    bound?: number | null;
+    /**
+     * A compact representation of all the elements in this trie.
+     */
+    root?: Schema$BoundedTrieNode;
+    /**
+     * A more efficient representation for metrics consisting of a single value.
+     */
+    singleton?: string[] | null;
+  }
+  /**
+   * A single node in a BoundedTrie.
+   */
+  export interface Schema$BoundedTrieNode {
+    /**
+     * Children of this node. Must be empty if truncated is true.
+     */
+    children?: {[key: string]: Schema$BoundedTrieNode} | null;
+    /**
+     * Whether this node has been truncated. A truncated leaf represents possibly many children with the same prefix.
+     */
+    truncated?: boolean | null;
+  }
+  /**
    * `BucketOptions` describes the bucket boundaries used in the histogram.
    */
   export interface Schema$BucketOptions {
@@ -474,13 +504,17 @@ export namespace dataflow_v1b3 {
     name?: Schema$CounterStructuredName;
   }
   /**
-   * An update to a Counter sent from a worker.
+   * An update to a Counter sent from a worker. Next ID: 17
    */
   export interface Schema$CounterUpdate {
     /**
      * Boolean value for And, Or.
      */
     boolean?: boolean | null;
+    /**
+     * Bounded trie data
+     */
+    boundedTrie?: Schema$BoundedTrie;
     /**
      * True if this counter is reported as the total cumulative aggregate value accumulated since the worker started working on this WorkItem. By default this is false, indicating that this counter is reported as a delta.
      */
@@ -601,6 +635,19 @@ export namespace dataflow_v1b3 {
      * VM instance name the data disks mounted to, for example "myproject-1014-104817-4c2-harness-0".
      */
     vmInstance?: string | null;
+  }
+  /**
+   * The gauge value of a metric.
+   */
+  export interface Schema$DataflowGaugeValue {
+    /**
+     * The timestamp when the gauge was recorded.
+     */
+    measuredTime?: string | null;
+    /**
+     * The value of the gauge.
+     */
+    value?: string | null;
   }
   /**
    * Summary statistics for a population of values. HistogramValue contains a sequence of buckets and gives a count of values that fall into each bucket. Bucket boundares are defined by a formula and bucket widths are either fixed or exponentially increasing.
@@ -983,7 +1030,7 @@ export namespace dataflow_v1b3 {
     inputs?: Schema$InstructionInput[];
   }
   /**
-   * The environment values to be set at runtime for flex template. LINT.IfChange
+   * The environment values to be set at runtime for flex template.
    */
   export interface Schema$FlexTemplateRuntimeEnvironment {
     /**
@@ -1155,6 +1202,28 @@ export namespace dataflow_v1b3 {
      * Template Type.
      */
     templateType?: string | null;
+  }
+  /**
+   * Information about the GPU usage on the worker.
+   */
+  export interface Schema$GPUUsage {
+    /**
+     * Required. Timestamp of the measurement.
+     */
+    timestamp?: string | null;
+    /**
+     * Required. Utilization info about the GPU.
+     */
+    utilization?: Schema$GPUUtilization;
+  }
+  /**
+   * Utilization details about the GPU.
+   */
+  export interface Schema$GPUUtilization {
+    /**
+     * Required. GPU utilization rate of any kernel over the last sample period in the range of [0, 1].
+     */
+    rate?: number | null;
   }
   /**
    * Histogram of value counts for a distribution. Buckets have an inclusive lower bound and exclusive upper bound and use "1,2,5 bucketing": The first bucket range is from [0,1) and all subsequent bucket boundaries are powers of ten multiplied by 1, 2, or 5. Thus, bucket boundaries are 0, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000, ... Negative values are not supported.
@@ -1830,7 +1899,7 @@ export namespace dataflow_v1b3 {
     origin?: string | null;
   }
   /**
-   * Describes the state of a metric.
+   * Describes the state of a metric. Next ID: 14
    */
   export interface Schema$MetricUpdate {
     /**
@@ -1870,9 +1939,13 @@ export namespace dataflow_v1b3 {
      */
     scalar?: any | null;
     /**
-     * Worker-computed aggregate value for the "Set" aggregation kind. The only possible value type is a list of Values whose type can be Long, Double, or String, according to the metric's type. All Values in the list must be of the same type.
+     * Worker-computed aggregate value for the "Set" aggregation kind. The only possible value type is a list of Values whose type can be Long, Double, String, or BoundedTrie according to the metric's type. All Values in the list must be of the same type.
      */
     set?: any | null;
+    /**
+     * Worker-computed aggregate value for the "Trie" aggregation kind. The only possible value type is a BoundedTrieNode.
+     */
+    trie?: any | null;
     /**
      * Timestamp associated with the metric value. Optional when workers are reporting work progress; it will be filled in responses from the metrics API.
      */
@@ -1890,6 +1963,10 @@ export namespace dataflow_v1b3 {
      * Optional. Set of metric labels for this metric.
      */
     metricLabels?: {[key: string]: string} | null;
+    /**
+     * Non-cumulative int64 value of this metric.
+     */
+    valueGauge64?: Schema$DataflowGaugeValue;
     /**
      * Histogram value of this metric.
      */
@@ -2392,6 +2469,10 @@ export namespace dataflow_v1b3 {
      */
     cpuTime?: Schema$CPUTime[];
     /**
+     * Optional. GPU usage samples.
+     */
+    gpuUsage?: Schema$GPUUsage[];
+    /**
      * Memory utilization samples.
      */
     memoryInfo?: Schema$MemInfo[];
@@ -2401,7 +2482,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ResourceUtilizationReportResponse {}
   /**
-   * The environment values to set at runtime. LINT.IfChange
+   * The environment values to set at runtime.
    */
   export interface Schema$RuntimeEnvironment {
     /**
