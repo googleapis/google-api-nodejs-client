@@ -240,7 +240,7 @@ export namespace privateca_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
+     * Identifier. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
      */
     name?: string | null;
     /**
@@ -291,7 +291,7 @@ export namespace privateca_v1 {
      */
     lifetime?: string | null;
     /**
-     * Output only. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
+     * Identifier. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
      */
     name?: string | null;
     /**
@@ -364,7 +364,7 @@ export namespace privateca_v1 {
      */
     lifetime?: string | null;
     /**
-     * Output only. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
+     * Identifier. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
     name?: string | null;
     /**
@@ -527,7 +527,7 @@ export namespace privateca_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource name for this CertificateRevocationList in the format `projects/x/locations/x/caPools/xcertificateAuthorities/x/ certificateRevocationLists/x`.
+     * Identifier. The resource name for this CertificateRevocationList in the format `projects/x/locations/x/caPools/xcertificateAuthorities/x/ certificateRevocationLists/x`.
      */
     name?: string | null;
     /**
@@ -580,7 +580,7 @@ export namespace privateca_v1 {
      */
     maximumLifetime?: string | null;
     /**
-     * Output only. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
+     * Identifier. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
      */
     name?: string | null;
     /**
@@ -839,7 +839,7 @@ export namespace privateca_v1 {
      */
     caPools?: Schema$CaPool[];
     /**
-     * A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.next_page_token to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
@@ -856,7 +856,7 @@ export namespace privateca_v1 {
      */
     certificateAuthorities?: Schema$CertificateAuthority[];
     /**
-     * A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.next_page_token to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in ListCertificateAuthoritiesRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
@@ -873,7 +873,7 @@ export namespace privateca_v1 {
      */
     certificateRevocationLists?: Schema$CertificateRevocationList[];
     /**
-     * A token to retrieve next page of results. Pass this value in ListCertificateRevocationListsRequest.next_page_token to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in ListCertificateRevocationListsRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
@@ -890,7 +890,7 @@ export namespace privateca_v1 {
      */
     certificates?: Schema$Certificate[];
     /**
-     * A token to retrieve next page of results. Pass this value in ListCertificatesRequest.next_page_token to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in ListCertificatesRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
@@ -907,7 +907,7 @@ export namespace privateca_v1 {
      */
     certificateTemplates?: Schema$CertificateTemplate[];
     /**
-     * A token to retrieve next page of results. Pass this value in ListCertificateTemplatesRequest.next_page_token to retrieve the next page of results.
+     * A token to retrieve next page of results. Pass this value in ListCertificateTemplatesRequest.page_token to retrieve the next page of results.
      */
     nextPageToken?: string | null;
     /**
@@ -1058,7 +1058,7 @@ export namespace privateca_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     requestedCancellation?: boolean | null;
     /**
@@ -2562,7 +2562,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
+     * Identifier. The resource name for this CaPool in the format `projects/x/locations/x/caPools/x`.
      */
     name?: string;
     /**
@@ -3633,7 +3633,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
+     * Identifier. The resource name for this CertificateAuthority in the format `projects/x/locations/x/caPools/x/certificateAuthorities/x`.
      */
     name?: string;
     /**
@@ -4263,7 +4263,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name for this CertificateRevocationList in the format `projects/x/locations/x/caPools/xcertificateAuthorities/x/ certificateRevocationLists/x`.
+     * Identifier. The resource name for this CertificateRevocationList in the format `projects/x/locations/x/caPools/xcertificateAuthorities/x/ certificateRevocationLists/x`.
      */
     name?: string;
     /**
@@ -4756,7 +4756,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Certificates$Create
     extends StandardParameters {
     /**
-     * Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.Tier, but is optional and its value is ignored otherwise.
+     * Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.tier, but is optional and its value is ignored otherwise.
      */
     certificateId?: string;
     /**
@@ -4814,7 +4814,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Capools$Certificates$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
+     * Identifier. The resource name for this Certificate in the format `projects/x/locations/x/caPools/x/certificates/x`.
      */
     name?: string;
     /**
@@ -5648,7 +5648,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$Certificatetemplates$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
+     * Identifier. The resource name for this CertificateTemplate in the format `projects/x/locations/x/certificateTemplates/x`.
      */
     name?: string;
     /**
@@ -5697,7 +5697,7 @@ export namespace privateca_v1 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
