@@ -753,7 +753,7 @@
       }
     }
   },
-  "revision": "20240929",
+  "revision": "20241212",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1060,6 +1060,33 @@
       },
       "type": "object"
     },
+    "ColumnSortingOptions": {
+      "description": "Data structure to storing column's sort strategy",
+      "id": "ColumnSortingOptions",
+      "properties": {
+        "column": {
+          "description": "Optional. Column name to sort data by",
+          "type": "string"
+        },
+        "direction": {
+          "description": "Optional. A sorting direction that determines ascending or descending order. This is a legacy field kept for backwards compatibility with table.",
+          "enum": [
+            "SORT_ORDER_UNSPECIFIED",
+            "SORT_ORDER_NONE",
+            "SORT_ORDER_ASCENDING",
+            "SORT_ORDER_DESCENDING"
+          ],
+          "enumDescriptions": [
+            "An unspecified sort order. This option is invalid when sorting is required.",
+            "No sorting is applied.",
+            "The lowest-valued entries are selected first.",
+            "The highest-valued entries are selected first."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Dashboard": {
       "description": "A Google Stackdriver dashboard. Dashboards define the content and layout of pages in the Stackdriver web application.",
       "id": "Dashboard",
@@ -1252,6 +1279,13 @@
             "The data is plotted as a heatmap. The series being plotted must have a DISTRIBUTION value type. The value of each bucket in the distribution is displayed as a color. This type is not currently available in the Stackdriver Monitoring application."
           ],
           "type": "string"
+        },
+        "sort": {
+          "description": "Optional. A collection of sort options, affects the order of the data and legend.",
+          "items": {
+            "$ref": "ColumnSortingOptions"
+          },
+          "type": "array"
         },
         "targetAxis": {
           "description": "Optional. The target axis to use for plotting the metric.",
@@ -1800,7 +1834,7 @@
       "id": "MosaicLayout",
       "properties": {
         "columns": {
-          "description": "The number of columns in the mosaic grid. The number of columns must be between 1 and 12, inclusive.",
+          "description": "The number of columns in the mosaic grid. The number of columns must be between 1 and 48, inclusive.",
           "format": "int32",
           "type": "integer"
         },
