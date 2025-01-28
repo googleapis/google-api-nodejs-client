@@ -1045,13 +1045,17 @@
             "STEP_STATE_UNSPECIFIED",
             "IN_PROGRESS",
             "PASSED",
-            "FAILED"
+            "FAILED",
+            "TIMED_OUT",
+            "GOAL_ACTION_LIMIT_REACHED"
           ],
           "enumDescriptions": [
             "Step state unspecified",
             "The step is in progress",
             "The step has completed successfully",
-            "The step has failed"
+            "The step has failed",
+            "The test timed out during this step",
+            "The number of actions needed to reach the goal exceeded its limit"
           ],
           "readOnly": true,
           "type": "string"
