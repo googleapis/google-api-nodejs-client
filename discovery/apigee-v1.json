@@ -15,6 +15,18 @@
   "description": "Use the Apigee API to programmatically develop and manage APIs with a set of RESTful operations. Develop and secure API proxies, deploy and undeploy API proxy revisions, monitor APIs, configure environments, manage users, and more. Note: This product is available as a free trial for a time period of 60 days.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/apigee-api-management/",
+  "endpoints": [
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://apigee.us.rep.googleapis.com/",
+      "location": "us"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://apigee.eu.rep.googleapis.com/",
+      "location": "eu"
+    }
+  ],
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -9574,7 +9586,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent resource name.",
+                  "description": "Required. The parent resource name. Format: `organizations/{org}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -9607,7 +9619,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the security profile v2 to delete.",
+                  "description": "Required. The name of the security profile v2 to delete. Format: `organizations/{org}/securityProfilesV2/{profile}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
                   "required": true,
@@ -9632,7 +9644,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The security profile id.",
+                  "description": "Required. The name of the security profile v2 to get. Format: `organizations/{org}/securityProfilesV2/{profile}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/securityProfilesV2/[^/]+$",
                   "required": true,
@@ -9700,7 +9712,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The list of fields to update.",
+                  "description": "Optional. The list of fields to update. Valid fields to update are `description` and `profileAssessmentConfigs`.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -10373,7 +10385,7 @@
       }
     }
   },
-  "revision": "20241004",
+  "revision": "20241213",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -13378,6 +13390,10 @@
           ],
           "type": "string"
         },
+        "clientIpResolutionConfig": {
+          "$ref": "GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig",
+          "description": "Optional. The algorithm to resolve IP. This will affect Analytics, API Security, and other features that use the client ip. To remove a client ip resolution config, update the field to an empty value. Example: '{ \"clientIpResolutionConfig\" = {} }' For more information, see: https://cloud.google.com/apigee/docs/api-platform/system-administration/client-ip-resolution."
+        },
         "createdAt": {
           "description": "Output only. Creation time of this environment as milliseconds since epoch.",
           "format": "int64",
@@ -13469,6 +13485,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig": {
+      "description": "Configuration for resolving the client ip.",
+      "id": "GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig",
+      "properties": {
+        "headerIndexAlgorithm": {
+          "$ref": "GoogleCloudApigeeV1EnvironmentClientIPResolutionConfigHeaderIndexAlgorithm",
+          "description": "Resolves the client ip based on a custom header."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1EnvironmentClientIPResolutionConfigHeaderIndexAlgorithm": {
+      "description": "Resolves the client ip based on a custom header.",
+      "id": "GoogleCloudApigeeV1EnvironmentClientIPResolutionConfigHeaderIndexAlgorithm",
+      "properties": {
+        "ipHeaderIndex": {
+          "description": "Required. The index of the ip in the header. Positive indices 0, 1, 2, 3 chooses indices from the left (first ips) Negative indices -1, -2, -3 chooses indices from the right (last ips)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ipHeaderName": {
+          "description": "Required. The name of the header to extract the client ip from. We are currently only supporting the X-Forwarded-For header.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1EnvironmentConfig": {
       "id": "GoogleCloudApigeeV1EnvironmentConfig",
       "properties": {
@@ -13479,6 +13522,10 @@
         "arcConfigLocation": {
           "description": "The location for the config blob of API Runtime Control, aka Envoy Adapter, for op-based authentication as a URI, e.g. a Cloud Storage URI. This is only used by Envoy-based gateways.",
           "type": "string"
+        },
+        "clientIpResolutionConfig": {
+          "$ref": "GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfig",
+          "description": "The algorithm to resolve IP."
         },
         "createTime": {
           "description": "Time that the environment configuration was created.",
@@ -13593,6 +13640,33 @@
         },
         "uid": {
           "description": "Unique ID for the environment configuration. The ID will only change if the environment is deleted and recreated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfig": {
+      "description": "Configuration for resolving the client ip.",
+      "id": "GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfig",
+      "properties": {
+        "headerIndexAlgorithm": {
+          "$ref": "GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfigHeaderIndexAlgorithm",
+          "description": "Resolves the client ip based on a custom header."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfigHeaderIndexAlgorithm": {
+      "description": "Resolves the client ip based on a custom header.",
+      "id": "GoogleCloudApigeeV1EnvironmentConfigClientIPResolutionConfigHeaderIndexAlgorithm",
+      "properties": {
+        "ipHeaderIndex": {
+          "description": "The index of the ip in the header. (By default, value is 0 if missing)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ipHeaderName": {
+          "description": "The name of the header to extract the client ip from.",
           "type": "string"
         }
       },
@@ -15429,7 +15503,7 @@
           "type": "array"
         },
         "authorizedNetwork": {
-          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType](#RuntimeType) is set to `CLOUD`. The value must be set before the creation of a runtime instance and can be updated only when there are no runtime instances. For example: `default`. Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork` **Note:** Not supported for Apigee hybrid.",
+          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType](#RuntimeType) is set to `CLOUD`. The value must be set before the creation of a runtime instance and can be updated only when there are no runtime instances. For example: `default`. When changing authorizedNetwork, you must reconfigure VPC peering. After VPC peering with previous network is deleted, [run the following command](https://cloud.google.com/sdk/gcloud/reference/services/vpc-peerings/delete): `gcloud services vpc-peerings delete --network=NETWORK`, where `NETWORK` is the name of the previous network. This will delete the previous Service Networking. Otherwise, you will get the following error: `The resource 'projects/...-tp' is already linked to another shared VPC host 'projects/...-tp`. Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork` **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "billingType": {

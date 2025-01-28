@@ -15,6 +15,7 @@
   "description": "API to publish and access results from developer tools.",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/test-lab/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -1463,7 +1464,7 @@
       }
     }
   },
-  "revision": "20240321",
+  "revision": "20241121",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {

@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20240708",
+  "revision": "20250122",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -1333,6 +1333,7 @@
         },
         "mobileUsabilityResult": {
           "$ref": "MobileUsabilityInspectionResult",
+          "deprecated": true,
           "description": "Result of the Mobile usability analysis."
         },
         "richResultsResult": {
