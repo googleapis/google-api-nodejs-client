@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20240429",
+  "revision": "20241028",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AbuseDetected": {
@@ -856,7 +856,7 @@
       "type": "object"
     },
     "AppSettingsChanged": {
-      "description": "Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the below rules. Calendar settings changed Drive settings changed Email settings changed Mobile settings changed",
+      "description": "* Alerts from AppSettingsChanged bucket Rules configured by Admin which contain the below rules. Calendar settings changed Drive settings changed Email settings changed Mobile settings changed",
       "id": "AppSettingsChanged",
       "properties": {
         "alertDetails": {
@@ -1577,7 +1577,7 @@
       "type": "object"
     },
     "PrimaryAdminChangedEvent": {
-      "description": "Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder",
+      "description": "* Event occurred when primary admin changed in customer's account. The event are being received from insight forwarder",
       "id": "PrimaryAdminChangedEvent",
       "properties": {
         "domain": {
@@ -1888,7 +1888,7 @@
       "type": "object"
     },
     "SSOProfileCreatedEvent": {
-      "description": "Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder",
+      "description": "* Event occurred when SSO Profile created in customer's account. The event are being received from insight forwarder",
       "id": "SSOProfileCreatedEvent",
       "properties": {
         "inboundSsoProfileName": {
@@ -1899,7 +1899,7 @@
       "type": "object"
     },
     "SSOProfileDeletedEvent": {
-      "description": "Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder",
+      "description": "* Event occurred when SSO Profile deleted in customer's account. The event are being received from insight forwarder",
       "id": "SSOProfileDeletedEvent",
       "properties": {
         "inboundSsoProfileName": {
@@ -1910,7 +1910,7 @@
       "type": "object"
     },
     "SSOProfileUpdatedEvent": {
-      "description": "Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder",
+      "description": "* Event occurred when SSO Profile updated in customer's account. The event are being received from insight forwarder",
       "id": "SSOProfileUpdatedEvent",
       "properties": {
         "inboundSsoProfileChanges": {
@@ -2013,7 +2013,7 @@
       "type": "object"
     },
     "SuperAdminPasswordResetEvent": {
-      "description": "Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder",
+      "description": "* Event occurred when password was reset for super admin in customer's account. The event are being received from insight forwarder",
       "id": "SuperAdminPasswordResetEvent",
       "properties": {
         "userEmail": {
@@ -2193,7 +2193,7 @@
       "type": "object"
     },
     "UserChanges": {
-      "description": "Alerts from UserChanges bucket Rules for predefined rules which contain the below rules. Suspended user made active New user Added User suspended (by admin) User granted admin privileges User admin privileges revoked User deleted Users password changed",
+      "description": "* Alerts from UserChanges bucket Rules for predefined rules which contain the below rules. Suspended user made active New user Added User suspended (by admin) User granted admin privileges User admin privileges revoked User deleted Users password changed",
       "id": "UserChanges",
       "properties": {
         "name": {
