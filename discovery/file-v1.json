@@ -726,6 +726,11 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "returnPartialSuccess": {
+                          "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests.",
+                          "location": "query",
+                          "type": "boolean"
                         }
                       },
                       "path": "v1/{+parent}/snapshots",
@@ -777,7 +782,7 @@
             "operations": {
               "methods": {
                 "cancel": {
-                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+                  "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "file.projects.locations.operations.cancel",
@@ -902,7 +907,7 @@
       }
     }
   },
-  "revision": "20240905",
+  "revision": "20250106",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1038,7 +1043,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs bound to this resource. Each key must be a namespaced name and each value a short name. Example: \"123456789012/environment\" : \"production\", \"123456789013/costCenter\" : \"marketing\" See the documentation for more information: - Namespaced name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key - Short name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value",
           "type": "object"
         }
       },
@@ -1144,8 +1149,8 @@
       "description": "Fixed IOPS (input/output operations per second) parameters.",
       "id": "FixedIOPS",
       "properties": {
-        "maxReadIops": {
-          "description": "Required. Maximum raw read IOPS.",
+        "maxIops": {
+          "description": "Required. Maximum IOPS.",
           "format": "int64",
           "type": "string"
         }
@@ -1431,8 +1436,8 @@
       "description": "IOPS per TB. Filestore defines TB as 1024^4 bytes (TiB).",
       "id": "IOPSPerTB",
       "properties": {
-        "maxReadIopsPerTb": {
-          "description": "Required. Maximum read IOPS per TiB.",
+        "maxIopsPerTb": {
+          "description": "Required. Maximum IOPS per TiB.",
           "format": "int64",
           "type": "string"
         }
@@ -1443,16 +1448,16 @@
       "description": "A Filestore instance.",
       "id": "Instance",
       "properties": {
-        "configurablePerformanceEnabled": {
-          "description": "Output only. Indicates whether this instance's performance is configurable. If enabled, adjust it using the 'performance_config' field.",
-          "readOnly": true,
-          "type": "boolean"
-        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "customPerformanceSupported": {
+          "description": "Output only. Indicates whether this instance supports configuring its performance. If true, the user can configure the instance's performance by using the 'performance_config' field.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "deletionProtectionEnabled": {
           "description": "Optional. Indicates whether the instance is protected against deletion.",
@@ -1595,7 +1600,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs bound to this resource. Each key must be a namespaced name and each value a short name. Example: \"123456789012/environment\" : \"production\", \"123456789013/costCenter\" : \"marketing\" See the documentation for more information: - Namespaced name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key - Short name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value",
           "type": "object"
         },
         "tier": {
@@ -1643,7 +1648,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -1668,7 +1673,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -1725,6 +1730,13 @@
           "description": "A list of snapshots in the project for the specified instance.",
           "items": {
             "$ref": "Snapshot"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -1979,7 +1991,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2032,6 +2044,12 @@
       "description": "The enforced performance limits, calculated from the instance's performance configuration.",
       "id": "PerformanceLimits",
       "properties": {
+        "maxIops": {
+          "description": "Output only. The max IOPS.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "maxReadIops": {
           "description": "Output only. The max read IOPS.",
           "format": "int64",
@@ -2264,7 +2282,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag key-value pairs are bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "description": "Optional. Input only. Immutable. Tag key-value pairs bound to this resource. Each key must be a namespaced name and each value a short name. Example: \"123456789012/environment\" : \"production\", \"123456789013/costCenter\" : \"marketing\" See the documentation for more information: - Namespaced name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_key - Short name: https://cloud.google.com/resource-manager/docs/tags/tags-creating-and-managing#retrieving_tag_value",
           "type": "object"
         }
       },
@@ -2302,22 +2320,22 @@
       "id": "TimeOfDay",
       "properties": {
         "hours": {
-          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "description": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
-          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "description": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59.",
           "format": "int32",
           "type": "integer"
         },
         "nanos": {
-          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "description": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999.",
           "format": "int32",
           "type": "integer"
         },
         "seconds": {
-          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
         }
