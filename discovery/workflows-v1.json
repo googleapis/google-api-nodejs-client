@@ -485,7 +485,7 @@
       }
     }
   },
-  "revision": "20240925",
+  "revision": "20241204",
   "rootUrl": "https://workflows.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -839,6 +839,13 @@
           "$ref": "StateError",
           "description": "Output only. Error regarding the state of the workflow. For example, this field will have error details if the execution data is unavailable due to revoked KMS key permissions.",
           "readOnly": true
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tags associated with this workflow.",
+          "type": "object"
         },
         "updateTime": {
           "description": "Output only. The timestamp for when the workflow was last updated. This is a workflow-wide field and is not tied to a specific revision.",

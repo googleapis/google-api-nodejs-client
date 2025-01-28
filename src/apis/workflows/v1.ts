@@ -358,6 +358,10 @@ export namespace workflows_v1 {
      */
     stateError?: Schema$StateError;
     /**
+     * Optional. Input only. Immutable. Tags associated with this workflow.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Output only. The timestamp for when the workflow was last updated. This is a workflow-wide field and is not tied to a specific revision.
      */
     updateTime?: string | null;
