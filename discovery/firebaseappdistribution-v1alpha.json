@@ -557,6 +557,21 @@
                           "pattern": "^projects/[^/]+/apps/[^/]+/releases/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The requested view on the returned ReleaseTests. Defaults to the basic view.",
+                          "enum": [
+                            "RELEASE_TEST_VIEW_UNSPECIFIED",
+                            "RELEASE_TEST_VIEW_BASIC",
+                            "RELEASE_TEST_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default / unset value. The default view depends on the RPC.",
+                            "Include basic metadata about the release test and its status, but not the full result details. This is the default value for ListReleaseTests.",
+                            "Include everything."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1alpha/{+parent}/tests",
@@ -568,6 +583,157 @@
                       ]
                     }
                   }
+                }
+              }
+            },
+            "testCases": {
+              "methods": {
+                "create": {
+                  "description": "Create a new test case.",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases",
+                  "httpMethod": "POST",
+                  "id": "firebaseappdistribution.projects.apps.testCases.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this test case will be created. Format: `projects/{project_number}/apps/{app_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "testCaseId": {
+                      "description": "Optional. The ID to use for the test case, which will become the final component of the test case's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/testCases",
+                  "request": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaTestCase"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaTestCase"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a test case.",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases/{testCasesId}",
+                  "httpMethod": "DELETE",
+                  "id": "firebaseappdistribution.projects.apps.testCases.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the test case resource to delete. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a test case.",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases/{testCasesId}",
+                  "httpMethod": "GET",
+                  "id": "firebaseappdistribution.projects.apps.testCases.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the test case resource to retrieve. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaTestCase"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List test cases.",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases",
+                  "httpMethod": "GET",
+                  "id": "firebaseappdistribution.projects.apps.testCases.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of test cases to return. The service may return fewer than this value. If unspecified, at most 50 test cases will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListTestCases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTestCases` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource from which to list test cases. Format: `projects/{project_number}/apps/{app_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/testCases",
+                  "response": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaListTestCasesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a test case.",
+                  "flatPath": "v1alpha/projects/{projectsId}/apps/{appsId}/testCases/{testCasesId}",
+                  "httpMethod": "PATCH",
+                  "id": "firebaseappdistribution.projects.apps.testCases.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/testCases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaTestCase"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirebaseAppdistroV1alphaTestCase"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -610,7 +776,7 @@
       }
     }
   },
-  "revision": "20241004",
+  "revision": "20250123",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -742,6 +908,7 @@
       "id": "GoogleFirebaseAppdistroV1alphaAiInstructions",
       "properties": {
         "appDescription": {
+          "deprecated": true,
           "description": "Optional. Describes the app to give the AI some context",
           "type": "string"
         },
@@ -765,6 +932,14 @@
         },
         "goal": {
           "description": "A goal to be accomplished by the AI",
+          "type": "string"
+        },
+        "hint": {
+          "description": "Optional. Hint text containing suggestions to help the agent accomplish the goal",
+          "type": "string"
+        },
+        "successCriteria": {
+          "description": "Optional. A description of criteria the agent should use to determine if the goal has been successfully completed",
           "type": "string"
         }
       },
@@ -790,13 +965,17 @@
             "STEP_STATE_UNSPECIFIED",
             "IN_PROGRESS",
             "PASSED",
-            "FAILED"
+            "FAILED",
+            "TIMED_OUT",
+            "GOAL_ACTION_LIMIT_REACHED"
           ],
           "enumDescriptions": [
             "Step state unspecified",
             "The step is in progress",
             "The step has completed successfully",
-            "The step has failed"
+            "The step has failed",
+            "The test timed out during this step",
+            "The number of actions needed to reach the goal exceeded its limit"
           ],
           "readOnly": true,
           "type": "string"
@@ -809,6 +988,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaApp": {
+      "description": "An app.",
       "id": "GoogleFirebaseAppdistroV1alphaApp",
       "properties": {
         "aabCertificate": {
@@ -906,6 +1086,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest": {
+      "description": "The request message for `CreateReleaseNotes`.",
       "id": "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesRequest",
       "properties": {
         "releaseNotes": {
@@ -916,6 +1097,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponse": {
+      "description": "The response message for `CreateReleaseNotes`.",
       "id": "GoogleFirebaseAppdistroV1alphaCreateReleaseNotesResponse",
       "properties": {},
       "type": "object"
@@ -1067,6 +1249,11 @@
       "description": "An interaction with the device, such as a tap, text entry, wait, etc.",
       "id": "GoogleFirebaseAppdistroV1alphaDeviceInteraction",
       "properties": {
+        "keyCode": {
+          "description": "Output only. Key code for a key event action.",
+          "readOnly": true,
+          "type": "string"
+        },
         "screenshot": {
           "$ref": "GoogleFirebaseAppdistroV1alphaScreenshot",
           "description": "Output only. The screenshot used in the context of this action. The screen may have changed before the action was actually taken.",
@@ -1126,6 +1313,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest": {
+      "description": "The request message for `EnableAccessOnRelease`.",
       "id": "GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseRequest",
       "properties": {
         "buildVersion": {
@@ -1156,6 +1344,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse": {
+      "description": "The response message for `EnableAccessOnRelease`.",
       "id": "GoogleFirebaseAppdistroV1alphaEnableAccessOnReleaseResponse",
       "properties": {},
       "type": "object"
@@ -1186,6 +1375,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse": {
+      "description": "The response message for `GetUploadStatus`.",
       "id": "GoogleFirebaseAppdistroV1alphaGetUploadStatusResponse",
       "properties": {
         "errorCode": {
@@ -1258,11 +1448,11 @@
             "ERROR"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
+            "Status unspecified.",
+            "The upload is in progress.",
+            "The binary has already been uploaded.",
+            "The upload was successful.",
+            "The upload failed."
           ],
           "type": "string"
         }
@@ -1273,6 +1463,11 @@
       "description": "An action taken by the AI agent while attempting to accomplish a goal.",
       "id": "GoogleFirebaseAppdistroV1alphaGoalAction",
       "properties": {
+        "debugInfo": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo",
+          "description": "Output only. Debug information explaining why the agent to the specific action",
+          "readOnly": true
+        },
         "deviceAction": {
           "$ref": "GoogleFirebaseAppdistroV1alphaDeviceAction",
           "description": "Output only. A high level action taken by the AI on the device.",
@@ -1287,6 +1482,23 @@
           "$ref": "GoogleFirebaseAppdistroV1alphaTerminalAction",
           "description": "Output only. An action taken by the AI to end the goal.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo": {
+      "description": "Information to help the customer understand why the agent took this action",
+      "id": "GoogleFirebaseAppdistroV1alphaGoalActionDebugInfo",
+      "properties": {
+        "annotatedScreenshotUri": {
+          "description": "Output only. URI of the screenshot with elements labeled which was used by the agent",
+          "readOnly": true,
+          "type": "string"
+        },
+        "jsonUri": {
+          "description": "Output only. Structured data explaining the agent's choice",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1307,9 +1519,11 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaJwt": {
+      "description": "A JWT token.",
       "id": "GoogleFirebaseAppdistroV1alphaJwt",
       "properties": {
         "token": {
+          "description": "The JWT token (three Base64URL-encoded strings joined by dots).",
           "type": "string"
         }
       },
@@ -1327,6 +1541,24 @@
           "description": "The tests listed.",
           "items": {
             "$ref": "GoogleFirebaseAppdistroV1alphaReleaseTest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaListTestCasesResponse": {
+      "description": "The response message for `ListTestCases`.",
+      "id": "GoogleFirebaseAppdistroV1alphaListTestCasesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "testCases": {
+          "description": "The test cases from the specified app.",
+          "items": {
+            "$ref": "GoogleFirebaseAppdistroV1alphaTestCase"
           },
           "type": "array"
         }
@@ -1372,6 +1604,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaProvisionAppResponse": {
+      "description": "The response message for `ProvisionApp`.",
       "id": "GoogleFirebaseAppdistroV1alphaProvisionAppResponse",
       "properties": {},
       "type": "object"
@@ -1435,9 +1668,11 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaReleaseNotes": {
+      "description": "Release notes for a release.",
       "id": "GoogleFirebaseAppdistroV1alphaReleaseNotes",
       "properties": {
         "releaseNotes": {
+          "description": "The actual release notes text from the user.",
           "type": "string"
         }
       },
@@ -1464,12 +1699,20 @@
           },
           "type": "array"
         },
+        "displayName": {
+          "description": "Optional. Display name of the release test. Required if the release test is created with multiple goals.",
+          "type": "string"
+        },
         "loginCredential": {
           "$ref": "GoogleFirebaseAppdistroV1alphaLoginCredential",
           "description": "Optional. Input only. Login credentials for the test. Input only."
         },
         "name": {
           "description": "The name of the release test resource. Format: `projects/{project_number}/apps/{app_id}/releases/{release_id}/tests/{test_id}`",
+          "type": "string"
+        },
+        "testCase": {
+          "description": "Optional. The test case that was used to generate this release test. Note: The test case may have changed or been deleted since the release test was created. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
           "type": "string"
         },
         "testState": {
@@ -1590,10 +1833,39 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppdistroV1alphaTestCase": {
+      "description": "AI test cases",
+      "id": "GoogleFirebaseAppdistroV1alphaTestCase",
+      "properties": {
+        "aiInstructions": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaAiInstructions",
+          "description": "Optional. Instructions for AI driven test."
+        },
+        "createTime": {
+          "description": "Output only. Timestamp when the test case was created",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. Display name of the test case.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppdistroV1alphaTestConfig": {
       "description": "Configuration for automated tests",
       "id": "GoogleFirebaseAppdistroV1alphaTestConfig",
       "properties": {
+        "displayName": {
+          "description": "Optional. Display name of the AI driven test. Required if the release test is created with multiple goals.",
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. The name of the test configuration resource. Format: `projects/{project_number}/apps/{app_id}/testConfig`",
           "type": "string"
@@ -1652,6 +1924,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleProtobufEmpty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
+      "id": "GoogleProtobufEmpty",
+      "properties": {},
       "type": "object"
     }
   },
