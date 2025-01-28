@@ -3137,19 +3137,6 @@
       },
       "type": "object"
     },
-    "BlobstoreLocation": {
-      "description": "Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains",
-      "id": "BlobstoreLocation",
-      "properties": {
-        "policyId": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -4474,64 +4461,6 @@
       },
       "type": "object"
     },
-    "LocationAssignment": {
-      "id": "LocationAssignment",
-      "properties": {
-        "location": {
-          "type": "string"
-        },
-        "locationType": {
-          "enum": [
-            "UNSPECIFIED",
-            "CLUSTER",
-            "POP",
-            "CLOUD_ZONE",
-            "CLOUD_REGION",
-            "MULTI_REGION_GEO",
-            "MULTI_REGION_JURISDICTION",
-            "GLOBAL",
-            "OTHER"
-          ],
-          "enumDescriptions": [
-            "",
-            "1-10: Physical failure domains.",
-            "",
-            "11-20: Logical failure domains.",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "LocationData": {
-      "id": "LocationData",
-      "properties": {
-        "blobstoreLocation": {
-          "$ref": "BlobstoreLocation"
-        },
-        "childAssetLocation": {
-          "$ref": "CloudAssetComposition"
-        },
-        "directLocation": {
-          "$ref": "DirectLocationAssignment"
-        },
-        "gcpProjectProxy": {
-          "$ref": "TenantProjectProxy"
-        },
-        "placerLocation": {
-          "$ref": "PlacerLocation"
-        },
-        "spannerLocation": {
-          "$ref": "SpannerLocation"
-        }
-      },
-      "type": "object"
-    },
     "ManagementServer": {
       "description": "ManagementServer describes a single BackupDR ManagementServer instance.",
       "id": "ManagementServer",
@@ -5642,15 +5571,6 @@
         "thirdPartyOauth2ClientId": {
           "description": "Output only. Third party OAuth Client ID for External Identity Providers.",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ZoneConfiguration": {
-      "id": "ZoneConfiguration",
-      "properties": {
-        "zone": {
           "type": "string"
         }
       },

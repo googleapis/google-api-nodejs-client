@@ -896,22 +896,9 @@ export namespace backupdr_v1 {
     role?: string | null;
   }
   /**
-   * Policy ID that identified data placement in Blobstore as per go/blobstore-user-guide#data-metadata-placement-and-failure-domains
-   */
-  export interface Schema$BlobstoreLocation {
-    policyId?: string[] | null;
-  }
-  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
-  export interface Schema$CloudAsset {
-    assetName?: string | null;
-    assetType?: string | null;
-  }
-  export interface Schema$CloudAssetComposition {
-    childAsset?: Schema$CloudAsset[];
-  }
   /**
    * ComputeInstanceBackupProperties represents Compute Engine instance backup properties.
    */
@@ -1252,9 +1239,6 @@ export namespace backupdr_v1 {
      * The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
      */
     type?: string | null;
-  }
-  export interface Schema$DirectLocationAssignment {
-    location?: Schema$LocationAssignment[];
   }
   /**
    * A set of Display Device options
@@ -2217,18 +2201,6 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
   }
-  export interface Schema$LocationAssignment {
-    location?: string | null;
-    locationType?: string | null;
-  }
-  export interface Schema$LocationData {
-    blobstoreLocation?: Schema$BlobstoreLocation;
-    childAssetLocation?: Schema$CloudAssetComposition;
-    directLocation?: Schema$DirectLocationAssignment;
-    gcpProjectProxy?: Schema$TenantProjectProxy;
-    placerLocation?: Schema$PlacerLocation;
-    spannerLocation?: Schema$SpannerLocation;
-  }
   /**
    * ManagementServer describes a single BackupDR ManagementServer instance.
    */
@@ -2885,9 +2857,6 @@ export namespace backupdr_v1 {
      * Output only. Third party OAuth Client ID for External Identity Providers.
      */
     thirdPartyOauth2ClientId?: string | null;
-  }
-  export interface Schema$ZoneConfiguration {
-    zone?: string | null;
   }
 
   export class Resource$Projects {
